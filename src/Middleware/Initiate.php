@@ -11,7 +11,7 @@ class Initiate {
 
     public function handle(Request $request, Closure $next) {
         Req::$r = $request;
-        if ($request->bearerToken() !== null || $request->session()->has('logged_in_user_id')) {
+        if ($request->bearerToken() !== null || $request->cookie('session.cookie') !== null) {
             self::$headers['Cache-Control'] = 'must-revalidate, no-store, private';
         }
         $resp = $next($request);
