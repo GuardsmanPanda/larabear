@@ -1,13 +1,13 @@
 # Larabear
 
-Make LAravel strong like bear!
+Make Laravel strong like bear!
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require guardspanda/larabear
+composer require guardsmanpanda/larabear
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ If you discover any security related issues, please email guardsmanpanda@gmail.c
 
 ## Credits
 
--   [Bjørn Dons](https://github.com/guardspanda)
+-   [Bjørn Dons](https://github.com/guardsmanpanda)
 
 ## License
 
