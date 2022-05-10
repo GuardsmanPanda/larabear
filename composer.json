@@ -1,0 +1,45 @@
+{
+    "name": "guardsmanpanda/larabear",
+    "description": "Make Project Strong Like Bear.",
+    "keywords": [
+        "guardspanda",
+        "larabear"
+    ],
+    "homepage": "https://github.com/guardsmanpanda/larabear",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Bjørn Dons",
+            "email": "guardsmanpanda@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/http": "^9.11",
+        "illuminate/support": "^9.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "GuardsmanPanda\\Larabear\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "scripts": {
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+            ],
+            "aliases": {
+            }
+        }
+    }
+}
