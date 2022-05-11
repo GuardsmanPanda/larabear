@@ -81,7 +81,7 @@ class ConsoleOutputFilter extends ConsoleOutput {
         '  <info>view:clear</info>',
     ];
 
-    public function write(string|iterable $messages, bool $newline = false, int $options = self::OUTPUT_NORMAL): void {
+    public function write($messages, bool $newline = false, int $options = self::OUTPUT_NORMAL): void {
         if (!is_string($messages)) {
             parent::write($messages, $newline, $options);
             return;
