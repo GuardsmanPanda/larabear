@@ -4,14 +4,25 @@ namespace GuardsmanPanda\Larabear\Middleware;
 
 use Closure;
 use GuardsmanPanda\Larabear\Service\Req;
+use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Config;
+use InvalidArgumentException;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class Initiate {
-    public function __construct(private readonly Application $app, public array $headers = []) {}
+    public static array $headers =  ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
+    private Encrypter|null $encrypter = null;
+
+    public function __construct(private readonly Application $app) {
+        $key = Config::get('bear.cookie.session_key');
+        if ($key !== null) {
+            $this->encrypter = new \Illuminate\Encryption\Encrypter(key: $key, cipher: 'aes-128-cbc');
+        }
+    }
 
     public function handle(Request $request, Closure $next) {
         //----------------------------------------------------------------------------------------------------------
@@ -24,11 +35,11 @@ class Initiate {
                 if ($request->path() !== $path) {
                     return new RedirectResponse($path, 307);
                 }
-                $headers = isset($data['retry']) ? ['Retry-After' => $data['retry']] : [];
+                $hh = isset($data['retry']) ? ['Retry-After' => $data['retry']] : [];
                 if (isset($data['refresh'])) {
-                    $headers['Refresh'] = $data['refresh'];
+                    $hh['Refresh'] = $data['refresh'];
                 }
-                return new Response($data['template'] ?? 'Service Unavailable', $data['status'] ?? 503, $headers);
+                return new Response($data['template'] ?? 'Service Unavailable', $data['status'] ?? 503, $hh);
             }
         }
 
@@ -37,24 +48,26 @@ class Initiate {
         //----------------------------------------------------------------------------------------------------------
         Req::$r = $request;
         if ($request->bearerToken() !== null || $request->cookie('session.cookie') !== null) {
-            $this->headers['Cache-Control'] = 'must-revalidate, no-store, private';
+            self::$headers['Cache-Control'] = 'must-revalidate, no-store, private';
         }
 
-        //----------------------------------------------------------------------------------------------------------
         //  Trim strings and convert empty strings to null, potential todo: config value to ignore params (such as password).
-        //----------------------------------------------------------------------------------------------------------
         $this->trimAndConvertEmptyInputToNull($request);
 
-        //----------------------------------------------------------------------------------------------------------
+        //  Decrypt the request cookies.
+        $this->decryptCookies($request);
+
         //  Execute the request
-        //----------------------------------------------------------------------------------------------------------
         $resp = $next($request);
+
+        //  Encrypt the response cookies.
+        $this->encryptCookies($resp);
 
         //----------------------------------------------------------------------------------------------------------
         //  Apply headers to response
         //----------------------------------------------------------------------------------------------------------
         if (method_exists($resp, 'header')) {
-            foreach ($this->headers as $key => $value) {
+            foreach (self::$headers as $key => $value) {
                 $resp->header($key, $value);
             }
         }
@@ -75,9 +88,54 @@ class Initiate {
                     continue;
                 }
                 $value = trim($value);
-                Log::info("Cleaning $key, set to $value");
                 $bag->set($key, $value === '' ? null : $value);
             }
+        }
+    }
+
+
+    private function encryptCookies(Response $response): void {
+        foreach ($response->headers->getCookies() as $cookie) {
+            if (!is_string($cookie->getValue())) {
+                throw new InvalidArgumentException('Cookie value must be a string.. name: ' . $cookie->getName());
+            }
+            $name = $cookie->getName();
+            if (!str_starts_with(haystack: $name, needle: '__host-')) {
+                throw new InvalidArgumentException('Cookie name must start with "__host-".. name: ' . $name);
+            }
+            $session_name = Config::get('session.cookie');
+            if ($name !== $session_name) {
+                throw new InvalidArgumentException('Cookie name must be the same as the session cookie.. name: ' . $name . ', session cookie: ' . $session_name);
+            }
+            if ($this->encrypter === null) {
+                throw new InvalidArgumentException('Cookie encryption key is not set..');
+            }
+            $response->headers->setCookie(new Cookie(
+                name: $name,
+                value: $this->encrypter->encrypt(hash_hmac('sha256', $name, $this->encrypter->getKey()). '|' . $cookie->getValue()),
+                expire: $cookie->getExpiresTime(),
+                path: '/',
+                secure: true,
+                httpOnly: true,
+                raw: $cookie->isRaw(),
+                sameSite: 'strict'
+            ));
+        }
+    }
+
+
+    private function decryptCookies(Request $request): void {
+        $session_name = Config::get('session.cookie');
+        foreach ($request->cookies as $key => $cookie) {
+            if ($key !== $session_name) {
+                $request->cookies->remove($key);
+            }
+            $value = $this->encrypter->decrypt($cookie);
+            $expected_prefix = hash_hmac('sha256', $key, $this->encrypter->getKey()) . '|';
+            if (!str_starts_with(haystack: $value, needle: $expected_prefix)) {
+                throw new InvalidArgumentException('Cookie value does not pass integrity check.. name: ' . $key);
+            }
+            $request->cookies->set($key, substr($value, strlen($expected_prefix)));
         }
     }
 }

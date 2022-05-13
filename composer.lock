@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6aec9cfdc5e2a7e16c13e667aed27c8f",
+    "content-hash": "25cdd102fcc0a57c4c083f49e0ea36db",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -170,7 +170,7 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v9.11.0",
+            "version": "v9.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -225,7 +225,7 @@
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v9.11.0",
+            "version": "v9.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -271,7 +271,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v9.11.0",
+            "version": "v9.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -318,8 +318,59 @@
             "time": "2022-04-28T13:05:07+00:00"
         },
         {
+            "name": "illuminate/encryption",
+            "version": "v9.12.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/encryption.git",
+                "reference": "71459f1717bd031f705b5bee232bee900c4081a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/encryption/zipball/71459f1717bd031f705b5bee232bee900c4081a3",
+                "reference": "71459f1717bd031f705b5bee232bee900c4081a3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "illuminate/contracts": "^9.0",
+                "illuminate/support": "^9.0",
+                "php": "^8.0.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "9.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Encryption\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Encryption package.",
+            "homepage": "https://laravel.com",
+            "support": {
+                "issues": "https://github.com/laravel/framework/issues",
+                "source": "https://github.com/laravel/framework"
+            },
+            "time": "2022-03-15T13:39:41+00:00"
+        },
+        {
             "name": "illuminate/filesystem",
-            "version": "v9.11.0",
+            "version": "v9.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
@@ -381,16 +432,16 @@
         },
         {
             "name": "illuminate/http",
-            "version": "v9.11.0",
+            "version": "v9.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
-                "reference": "32b36bf8982bb30f88e7ec85698148e271e0c410"
+                "reference": "9e34b7cc1a6946d8e869a5804c48c371331b4f22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/http/zipball/32b36bf8982bb30f88e7ec85698148e271e0c410",
-                "reference": "32b36bf8982bb30f88e7ec85698148e271e0c410",
+                "url": "https://api.github.com/repos/illuminate/http/zipball/9e34b7cc1a6946d8e869a5804c48c371331b4f22",
+                "reference": "9e34b7cc1a6946d8e869a5804c48c371331b4f22",
                 "shasum": ""
             },
             "require": {
@@ -436,11 +487,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-04-27T14:07:15+00:00"
+            "time": "2022-05-10T14:02:00+00:00"
         },
         {
             "name": "illuminate/macroable",
-            "version": "v9.11.0",
+            "version": "v9.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -486,7 +537,7 @@
         },
         {
             "name": "illuminate/session",
-            "version": "v9.11.0",
+            "version": "v9.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
@@ -542,16 +593,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v9.11.0",
+            "version": "v9.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "9f1dbbec9a0be19ed6e703e9e2083b204db8a48f"
+                "reference": "d949479b8e0b9fd9daca1e0177a3f96767a94ea0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/9f1dbbec9a0be19ed6e703e9e2083b204db8a48f",
-                "reference": "9f1dbbec9a0be19ed6e703e9e2083b204db8a48f",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/d949479b8e0b9fd9daca1e0177a3f96767a94ea0",
+                "reference": "d949479b8e0b9fd9daca1e0177a3f96767a94ea0",
                 "shasum": ""
             },
             "require": {
@@ -607,7 +658,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-05-03T14:06:09+00:00"
+            "time": "2022-05-10T14:02:00+00:00"
         },
         {
             "name": "nesbot/carbon",
