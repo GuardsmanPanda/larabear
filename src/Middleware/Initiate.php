@@ -18,9 +18,9 @@ class Initiate {
     private Encrypter|null $encrypter = null;
 
     public function __construct(private readonly Application $app) {
-        $key = Config::get('bear.cookie.session_key');
+        $key = Config::get('larabear.cookie.session_key');
         if ($key !== null) {
-            $this->encrypter = new \Illuminate\Encryption\Encrypter(key: $key, cipher: 'aes-128-cbc');
+            $this->encrypter = new \Illuminate\Encryption\Encrypter(key: $key, cipher: Config::get('app.cipher'));
         }
     }
 
@@ -108,7 +108,7 @@ class Initiate {
                 throw new InvalidArgumentException('Cookie name must be the same as the session cookie.. name: ' . $name . ', session cookie: ' . $session_name);
             }
             if ($this->encrypter === null) {
-                throw new InvalidArgumentException('Cookie encryption key is not set..');
+                throw new InvalidArgumentException('Session cookie encryption key is not set, please run "php artisan bear:generate-session-key" to generate a key.');
             }
             $response->headers->setCookie(new Cookie(
                 name: $name,
