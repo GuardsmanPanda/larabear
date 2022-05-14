@@ -4,8 +4,8 @@ namespace GuardsmanPanda\Larabear\Middleware;
 
 use Closure;
 use GuardsmanPanda\Larabear\Service\Req;
-use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use InvalidArgumentException;
@@ -20,7 +20,7 @@ class Initiate {
     public function __construct(private readonly Application $app) {
         $key = Config::get('larabear.cookie.session_key');
         if ($key !== null) {
-            $this->encrypter = new \Illuminate\Encryption\Encrypter(key: $key, cipher: Config::get('app.cipher'));
+            $this->encrypter = new Encrypter(key: base64_decode($key), cipher: Config::get('app.cipher'));
         }
     }
 
