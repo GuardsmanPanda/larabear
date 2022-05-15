@@ -108,7 +108,7 @@ class Initiate {
                 throw new InvalidArgumentException('Cookie name must be the same as the session cookie.. name: ' . $name . ', session cookie: ' . $session_name);
             }
             if ($this->encrypt === null) {
-                throw new InvalidArgumentException('Session cookie encryption key is not set, please run "php artisan bear:generate-session-key" to generate a key.');
+                throw new InvalidArgumentException('Session cookie encryption key is not set, please read the documentation.');
             }
             $response->headers->setCookie(new Cookie(
                 name: $name,
@@ -127,7 +127,7 @@ class Initiate {
     private function decryptCookies(Request $request): void {
         $session_name = Config::get('session.cookie');
         foreach ($request->cookies as $key => $cookie) {
-            if ($key !== $session_name) {
+            if ($key !== $session_name || !is_string($cookie)) {
                 $request->cookies->remove($key);
             }
             $value = $this->encrypt->decrypt($cookie);
