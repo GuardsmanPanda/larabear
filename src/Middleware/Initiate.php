@@ -110,6 +110,7 @@ class Initiate {
             if ($this->encrypt === null) {
                 throw new InvalidArgumentException('Session cookie encryption key is not set, please read the documentation.');
             }
+            $response->headers->removeCookie($name); //TODO: Consider throwing error on insecure cookie parameters, instead of silently fixing.
             $response->headers->setCookie(new Cookie(
                 name: $name,
                 value: $this->encrypt->encrypt(hash_hmac('sha256', $name, $this->encrypt->getKey()). '|' . $cookie->getValue()),
