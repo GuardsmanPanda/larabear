@@ -129,6 +129,7 @@ class Initiate {
         foreach ($request->cookies as $key => $cookie) {
             if ($key !== $session_name || !is_string($cookie)) {
                 $request->cookies->remove($key);
+                continue;
             }
             $value = $this->encrypt->decrypt($cookie);
             $expected_prefix = hash_hmac('sha256', $key, $this->encrypt->getKey()) . '|';
