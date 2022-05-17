@@ -42,7 +42,7 @@ class ValidateBearConfigurationCommand extends Command {
         );
         $this->terminalService->printTestResult(
             testName: "Cookie Name Should Start With '__host-'",
-            errorMessage: str_starts_with(haystack: Config::get('session.cookie'), needle: '__host-') ? "'cookie'  in config/session.php should start_with '__host-'" : null
+            errorMessage: str_starts_with(haystack: Config::get('session.cookie'), needle: '__host-') ? null : "'cookie'  in config/session.php should start_with '__host-'"
         );
         $this->terminalService->printTestResult(
             testName: "Session Only Encryption Key Should Be Set",
