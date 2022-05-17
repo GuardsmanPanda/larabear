@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Provider;
 
 use GuardsmanPanda\Larabear\Command\GenerateSessionKeyCommand;
+use GuardsmanPanda\Larabear\Command\ValidateBearConfigurationCommand;
 use Illuminate\Support\ServiceProvider;
 
 class BearServiceProvider extends ServiceProvider {
@@ -10,6 +11,7 @@ class BearServiceProvider extends ServiceProvider {
         if ($this->app->runningInConsole()) {
             $this->commands([
                 GenerateSessionKeyCommand::class,
+                ValidateBearConfigurationCommand::class,
             ]);
 
             $this->publishes([
