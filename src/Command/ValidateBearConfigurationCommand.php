@@ -46,7 +46,7 @@ class ValidateBearConfigurationCommand extends Command {
         );
         $this->terminalService->printTestResult(
             testName: "Session Only Encryption Key Should Be Set",
-            errorMessage: Config::get('bear.cookie.session_key') !== null ? "Missing session encryption key, generate with 'php artisan bear:generate-session-key' and check 'cookie' => 'session_key' config/bear.php" : null
+            errorMessage: Config::get('bear.cookie.session_key') === null ? "Missing session encryption key, generate with 'php artisan bear:generate-session-key' and check 'cookie' => 'session_key' config/bear.php" : null
         );
     }
 }
