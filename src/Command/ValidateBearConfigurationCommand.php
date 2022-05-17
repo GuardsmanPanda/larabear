@@ -13,7 +13,7 @@ class ValidateBearConfigurationCommand extends Command {
 
     public function handle(): void {
         $this->terminalService = new TerminalService($this->output);
-        $this->terminalService->printH1(headline: 'Validate larabear configuration');
+        $this->terminalService->printH1(headline: 'Validating larabear configuration');
         $this->validateSessionSettings();
     }
 
