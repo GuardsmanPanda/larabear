@@ -59,8 +59,8 @@ class Initiate {
         //  Decrypt the request cookies.
         $this->decryptCookies($request);
 
-        // Share errors from previous requests.
-        $this->view->share('errors', $request->session()->get('errors') ?? new ViewErrorBag);
+        // Share errors from previous requests. TODO, needs to run after start session.
+        // $this->view->share('errors', $request->session()->get('errors') ?? new ViewErrorBag);
 
         //  Execute the request
         $resp = $next($request);
