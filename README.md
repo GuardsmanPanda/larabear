@@ -10,13 +10,24 @@ You can install the package via composer:
 composer require guardsmanpanda/larabear
 ```
 
+Remember to publish the required config file:
+```bash
+php artisan vendor:publish --provider="Guardsmanpanda\Larabear\LarabearServiceProvider
+```
+
+To test and verify that the system is configured properly you can run 
+```bash
+php artisan bear
+```
+
+
 
 To enable the majority of the functionality make sure that the "Initiate" middle is enabled on all routes
 ```php
 class HttpKernel extends Kernel {
     // These middlewares are run during every request to your application.
     protected $middleware = [
-        Initiate::class,
+        \GuardsmanPanda\Larabear\Middleware\InitiateMiddleware::class,
         OtherMiddleware::class,
     ];
 ```

@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Service;
 
-use GuardsmanPanda\Larabear\Middleware\Initiate;
+use GuardsmanPanda\Larabear\Middleware\InitiateMiddleware;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -28,6 +28,6 @@ class Resp {
     }
 
     public static function header(string $name, string $value): void {
-        Initiate::$headers[$name] = $value;
+        InitiateMiddleware::$headers[$name] = $value;
     }
 }

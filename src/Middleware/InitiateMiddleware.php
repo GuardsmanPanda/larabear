@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class Initiate {
+class InitiateMiddleware {
     public static array $headers =  ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
     private Encrypter|null $encrypt = null;
 
@@ -58,9 +58,6 @@ class Initiate {
 
         //  Decrypt the request cookies.
         $this->decryptCookies($request);
-
-        // Share errors from previous requests. TODO, needs to run after start session.
-        // $this->view->share('errors', $request->session()->get('errors') ?? new ViewErrorBag);
 
         //  Execute the request
         $resp = $next($request);
