@@ -5,9 +5,11 @@ namespace GuardsmanPanda\Larabear\Middleware;
 use Closure;
 use GuardsmanPanda\Larabear\Service\Req;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\ViewErrorBag;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -17,7 +19,7 @@ class Initiate {
     public static array $headers =  ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
     private Encrypter|null $encrypt = null;
 
-    public function __construct(private readonly Application $app) {
+    public function __construct(private readonly Application $app, private readonly ViewFactory $view) {
         $key = Config::get('bear.cookie.session_key');
         if ($key !== null) {
             $this->encrypt = new Encrypter(key: base64_decode($key), cipher: Config::get('app.cipher'));
@@ -56,6 +58,9 @@ class Initiate {
 
         //  Decrypt the request cookies.
         $this->decryptCookies($request);
+
+        // Share errors from previous requests.
+        $this->view->share('errors', $request->session()->get('errors') ?? new ViewErrorBag);
 
         //  Execute the request
         $resp = $next($request);
