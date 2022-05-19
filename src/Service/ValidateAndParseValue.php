@@ -7,56 +7,62 @@ use InvalidArgumentException;
 use Throwable;
 
 class ValidateAndParseValue {
-    public static function parseInt(mixed $value): int {
+    public static function parseInt(mixed $value, string $errorMessage = null): int {
         if (is_int($value) || (is_string($value) && ctype_digit($value))) {
             return (int) $value;
         }
-        throw new InvalidArgumentException("$value is not an integer, type: " . gettype($value));
+        $msg = "$value is not an integer, type: " . gettype($value);
+        throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
     }
 
-    public static function parseFloat(mixed $value): float {
+    public static function parseFloat(mixed $value, string $errorMessage = null): float {
         if (is_float($value) || (is_string($value) && is_numeric($value))) {
             return (float) $value;
         }
-        throw new InvalidArgumentException("$value is not a float, type: " . gettype($value));
+        $msg = "$value is not a float, type: " . gettype($value);
+        throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
     }
 
-    public static function parseString(mixed $value): string {
+    public static function parseString(mixed $value, string $errorMessage = null): string {
         if (is_string($value)) {
             return $value;
         }
-        throw new InvalidArgumentException("$value is not a string, type: " . gettype($value));
+        $msg = "$value is not a string, type: " . gettype($value);
+        throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
     }
 
-    public static function parseJson(string|array $value): array {
+    public static function parseJson(string|array $value, string $errorMessage = null): array {
         if (is_array($value)) {
             return $value;
         }
         try {
             return json_decode($value, false, 512, JSON_THROW_ON_ERROR);
         } catch (Throwable $e) {
-            throw new InvalidArgumentException("Invalid JSON: " . $e->getMessage());
+            $msg = "Invalid JSON: " . $e->getMessage();
+            throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
         }
     }
 
-    public static function parseBool(mixed $value): bool {
+    public static function parseBool(mixed $value, string $errorMessage = null): bool {
         return match ($value) {
             'true', true => true,
             'false', false => false,
-            default => throw new InvalidArgumentException("$value is not a bool, type: " . gettype($value)),
+            default => throw new InvalidArgumentException(message: $errorMessage === null ? "$value is not a bool, type: " . gettype($value) : "$errorMessage [$value is not a bool, type: " . gettype($value) . "]"),
         };
     }
 
-    public static function parseDate(mixed $value): CarbonImmutable {
+    public static function parseDate(mixed $value, string $errorMessage = null): CarbonImmutable {
         if ($value instanceof CarbonImmutable) {
             return $value;
         }
         if (!is_string($value)) {
-            throw new InvalidArgumentException("$value is not a string, type: " . gettype($value));
+            $msg = "$value is not a string, type: " . gettype($value);
+            throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
         }
         $arr = explode('-', $value);
         if (count($arr) !== 3 || strlen($arr[0]) !== 4 || strlen($arr[1]) !== 2 || strlen($arr[2]) !== 2) {
-            throw new InvalidArgumentException("Invalid date format: $value, must be YYYY-MM-DD");
+            $msg = "Invalid date format: $value, must be YYYY-MM-DD";
+            throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
         }
         $year = (int)$arr[0];
         $month = (int)$arr[1];
@@ -68,17 +74,19 @@ class ValidateAndParseValue {
     }
 
 
-    public static function parseDateTime(mixed $value, string|null $timezone = null): CarbonImmutable {
+    public static function parseDateTime(mixed $value, string|null $timezone = null, string $errorMessage = null): CarbonImmutable {
         if ($value instanceof CarbonImmutable) {
             return $value;
         }
         if (!is_string($value)) {
-            throw new InvalidArgumentException("$value is not a string, type: " . gettype($value));
+            $msg = "$value is not a string, type: " . gettype($value);
+            throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
         }
 
         $date = CarbonImmutable::parse($value);
         if ($timezone === null && $value !== $date->toIso8601String()) {
-            throw new InvalidArgumentException("Invalid date time: $value (must be ISO 8601), example: " . $date->toIso8601String());
+            $msg = "Invalid date time: $value (must be ISO 8601), example: " . $date->toIso8601String();
+            throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
         }
         if ($timezone !== null) {
             $date->setTimezone($timezone);
@@ -87,10 +95,20 @@ class ValidateAndParseValue {
     }
 
 
-    public static function parseArray(mixed $value): array {
+    public static function parseArray(mixed $value, string $errorMessage = null): array {
         if (is_array($value)) {
             return $value;
         }
-        throw new InvalidArgumentException("$value is not array, type: " . gettype($value));
+        $msg = "$value is not an array, type: " . gettype($value);
+        throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
+    }
+
+
+    public static function ensureInArray(mixed $value, array $array, string $errorMessage = null): bool {
+        if (in_array(needle: $value, haystack: $array, strict: true)) {
+            return true;
+        }
+        $msg = "Value $value is not in array: " . implode(', ', $array);
+        throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
     }
 }
