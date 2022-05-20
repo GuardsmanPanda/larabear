@@ -21,7 +21,8 @@ class SessionAuthMiddleware {
     }
 
     public function handle(Request $request, Closure $next) {
-        $this->session = $this->manager->driver()->setId($request->cookies->get(Config::get('session.cookie')));
+        $this->session = $this->manager->driver();
+        $this->session->setId($request->cookies->get($this->config['cookie']));
         $this->startSession($request, $this->session);
 
         $response = $next($request);
@@ -52,6 +53,7 @@ class SessionAuthMiddleware {
     private function startSession(Request $request, Session $session): void {
         $session->setRequestOnHandler($request);
         $session->start();
+        $request->setLaravelSession($session);
         if ($request->isMethod('GET') && !$request->ajax()) {
             $session->setPreviousUrl($request->fullUrl());
         }
