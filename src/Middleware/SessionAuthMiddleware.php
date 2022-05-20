@@ -11,25 +11,23 @@ use Illuminate\Session\SessionManager;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ViewErrorBag;
 use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\HttpFoundation\Response;
 
 class SessionAuthMiddleware {
-    private Session $session;
     private array $config;
     public function __construct(private readonly SessionManager $manager, private readonly ViewFactory $view) {
         $this->config = Config::get('session');
     }
 
     public function handle(Request $request, Closure $next) {
-        $this->session = $this->manager->driver();
-        $this->session->setId($request->cookies->get($this->config['cookie']));
-        $this->startSession($request, $this->session);
+        $session = $this->manager->driver();
+        $session->setId($request->cookies->get($this->config['cookie']));
+        $this->startSession($request, $session);
 
         $response = $next($request);
 
         $response->headers->setCookie(new Cookie(
             name: $this->config['cookie'],
-            value: $this->session->getId(),
+            value: $session->getId(),
             expire: $this->config['expire_on_close'] ? 0 : new DateTime('+' . $this->config['lifetime'] . ' minutes'),
             path: $this->config['path'],
             domain: $this->config['domain'],
@@ -38,15 +36,8 @@ class SessionAuthMiddleware {
             sameSite: $this->config['same_site']
         ));
 
-        $this->session->save();
+        $session->save();
         return $next($request);
-    }
-
-
-    public function terminate(Request $request, Response $response): void {
-        if (random_int(1, $this->config['lottery'][1]) <= $this->config['lottery'][0]) {
-            $this->session->getHandler()->gc($this->config['lifetime'] * 60);
-        }
     }
 
 
