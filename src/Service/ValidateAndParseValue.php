@@ -15,6 +15,7 @@ class ValidateAndParseValue {
         throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
     }
 
+
     public static function parseFloat(mixed $value, string $errorMessage = null): float {
         if (is_float($value) || (is_string($value) && is_numeric($value))) {
             return (float) $value;
@@ -23,6 +24,7 @@ class ValidateAndParseValue {
         throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
     }
 
+
     public static function parseString(mixed $value, string $errorMessage = null): string {
         if (is_string($value)) {
             return $value;
@@ -30,6 +32,7 @@ class ValidateAndParseValue {
         $msg = "$value is not a string, type: " . gettype($value);
         throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
     }
+
 
     public static function parseJson(string|array $value, string $errorMessage = null): array {
         if (is_array($value)) {
@@ -43,6 +46,7 @@ class ValidateAndParseValue {
         }
     }
 
+
     public static function parseBool(mixed $value, string $errorMessage = null): bool {
         return match ($value) {
             'true', true => true,
@@ -50,6 +54,7 @@ class ValidateAndParseValue {
             default => throw new InvalidArgumentException(message: $errorMessage === null ? "$value is not a bool, type: " . gettype($value) : "$errorMessage [$value is not a bool, type: " . gettype($value) . "]"),
         };
     }
+
 
     public static function parseDate(mixed $value, string $errorMessage = null): CarbonImmutable {
         if ($value instanceof CarbonImmutable) {

@@ -24,7 +24,7 @@ class Resp {
      * @return JsonResponse
      */
     public static function SQLJsonSingle(string $sql, array $data = []): JsonResponse {
-        return new JsonResponse(DB::selectOne($sql, $data));
+        return new JsonResponse(DB::selectOne($sql, $data), json: true);
     }
 
     public static function header(string $name, string $value): void {

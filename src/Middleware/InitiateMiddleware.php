@@ -5,11 +5,9 @@ namespace GuardsmanPanda\Larabear\Middleware;
 use Closure;
 use GuardsmanPanda\Larabear\Service\Req;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\ViewErrorBag;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -19,7 +17,7 @@ class InitiateMiddleware {
     public static array $headers =  ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
     private Encrypter|null $encrypt = null;
 
-    public function __construct(private readonly Application $app, private readonly ViewFactory $view) {
+    public function __construct(private readonly Application $app) {
         $key = Config::get('bear.cookie.session_key');
         if ($key !== null) {
             $this->encrypt = new Encrypter(key: base64_decode($key), cipher: Config::get('app.cipher'));
