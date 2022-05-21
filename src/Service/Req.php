@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Service;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use RuntimeException;
 
 class Req {
@@ -162,5 +163,14 @@ class Req {
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseDateTime($val);
+    }
+
+    public static function getFile(string $name): UploadedFile {
+        foreach (self::$r->allFiles() as $key => $file) {
+            if ($key === $name) {
+                return $file;
+            }
+        }
+        throw new RuntimeException("No input field named: $name");
     }
 }

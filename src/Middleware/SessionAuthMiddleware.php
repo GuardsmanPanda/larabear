@@ -37,7 +37,7 @@ class SessionAuthMiddleware {
         ));
 
         $session->save();
-        return $next($request);
+        return $response;
     }
 
 
