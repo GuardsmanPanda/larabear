@@ -14,8 +14,11 @@ class Req {
         return self::$r?->hasHeader($name) ?? false;
     }
 
-    public static function header(string $name): string {
+    public static function header(string $name, bool $nullIfMissing = false): string|null {
         $value = self::$r?->header($name);
+        if ($value === null && $nullIfMissing) {
+            return null;
+        }
         if (!is_string($value)) {
             throw new RuntimeException("Header '$name' is missing or not a string");
         }

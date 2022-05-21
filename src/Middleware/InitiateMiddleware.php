@@ -47,7 +47,7 @@ class InitiateMiddleware {
         //  Init the Req class and set headers to ensure browser does not store data if endpoint is auth secured.
         //----------------------------------------------------------------------------------------------------------
         Req::$r = $request;
-        if ($request->bearerToken() !== null || $request->cookie('session.cookie') !== null) {
+        if ($request->bearerToken() !== null || $request->cookie(Config::get('session.cookie')) !== null) {
             self::$headers['Cache-Control'] = 'must-revalidate, no-store, private';
         }
 
