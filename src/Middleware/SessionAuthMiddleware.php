@@ -16,20 +16,20 @@ class SessionAuthMiddleware {
     private array $config;
 
     public function __construct(private readonly SessionManager $manager, private readonly ViewFactory $view) {
-        $this->config = Config::get('session');
+        $this->config = Config::get(key: 'session');
     }
 
     public function handle(Request $request, Closure $next, string $extra = null) {
         $session = $this->manager->driver();
-        $session->setId($request->cookies->get($this->config['cookie']));
-        $this->startSession($request, $session);
+        $session->setId($request->cookies->get(key: $this->config['cookie']));
+        $this->startSession(request: $request, session: $session);
 
         $response = $next($request);
 
         $response->headers->setCookie(new Cookie(
             name: $this->config['cookie'],
             value: $session->getId(),
-            expire: $this->config['expire_on_close'] ? 0 : $this->config['lifetime'] * 60,
+            expire: $this->config['expire_on_close'] ? 0 : (new Carbon())->addMinutes($this->config['lifetime']),
             path: $this->config['path'],
             domain: $this->config['domain'],
             secure: $this->config['secure'],
@@ -43,9 +43,9 @@ class SessionAuthMiddleware {
 
 
     private function startSession(Request $request, Session $session): void {
-        $session->setRequestOnHandler($request);
+        $session->setRequestOnHandler(request: $request);
         $session->start();
-        $request->setLaravelSession($session);
+        $request->setLaravelSession(session: $session);
         if ($request->isMethod(method: 'GET') && !$request->ajax()) {
             $session->setPreviousUrl(url: $request->fullUrl());
         }
