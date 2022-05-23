@@ -29,7 +29,7 @@ class SessionAuthMiddleware {
         $response->headers->setCookie(new Cookie(
             name: $this->config['cookie'],
             value: $session->getId(),
-            expire: $this->config['expire_on_close'] ? 0 : ((new Carbon())->addMinutes(value: $this->config['lifetime'])),
+            expire: $this->config['expire_on_close'] ? 0 : $this->config['lifetime'] * 60,
             path: $this->config['path'],
             domain: $this->config['domain'],
             secure: $this->config['secure'],
