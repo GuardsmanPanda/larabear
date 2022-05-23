@@ -2,8 +2,8 @@
 
 namespace GuardsmanPanda\Larabear\Middleware;
 
+use Carbon\Carbon;
 use Closure;
-use DateTime;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Http\Request;
@@ -14,11 +14,12 @@ use Symfony\Component\HttpFoundation\Cookie;
 
 class SessionAuthMiddleware {
     private array $config;
+
     public function __construct(private readonly SessionManager $manager, private readonly ViewFactory $view) {
         $this->config = Config::get('session');
     }
 
-    public function handle(Request $request, Closure $next) {
+    public function handle(Request $request, Closure $next, string $extra = null) {
         $session = $this->manager->driver();
         $session->setId($request->cookies->get($this->config['cookie']));
         $this->startSession($request, $session);
@@ -28,7 +29,7 @@ class SessionAuthMiddleware {
         $response->headers->setCookie(new Cookie(
             name: $this->config['cookie'],
             value: $session->getId(),
-            expire: $this->config['expire_on_close'] ? 0 : new DateTime('+' . $this->config['lifetime'] . ' minutes'),
+            expire: $this->config['expire_on_close'] ? 0 : ((new Carbon())->addMinutes(value: $this->config['lifetime'])),
             path: $this->config['path'],
             domain: $this->config['domain'],
             secure: $this->config['secure'],
@@ -45,9 +46,9 @@ class SessionAuthMiddleware {
         $session->setRequestOnHandler($request);
         $session->start();
         $request->setLaravelSession($session);
-        if ($request->isMethod('GET') && !$request->ajax()) {
-            $session->setPreviousUrl($request->fullUrl());
+        if ($request->isMethod(method: 'GET') && !$request->ajax()) {
+            $session->setPreviousUrl(url: $request->fullUrl());
         }
-        $this->view->share('errors', $request->session()->get('errors') ?? new ViewErrorBag);
+        $this->view->share(key: 'errors', value: $request->session()->get(key: 'errors') ?? new ViewErrorBag);
     }
 }
