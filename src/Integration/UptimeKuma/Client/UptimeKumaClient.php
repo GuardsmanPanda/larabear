@@ -11,8 +11,8 @@ class UptimeKumaClient {
         string|null $key,
         string      $msg = 'OK',
         bool        $isUp = true,
-        int         $runtimeSeconds = null,
-        int         $runtimeMilliSeconds = null,
+        float         $runtimeSeconds = null,
+        float         $runtimeMilliSeconds = null,
         float       $runtimeMicroSeconds = null
     ): void {
         if ($key === null) {
@@ -25,9 +25,9 @@ class UptimeKumaClient {
         ];
 
         if ($runtimeSeconds !== null) {
-            $query['ping'] = $runtimeSeconds * 1000;
+            $query['ping'] = (int)($runtimeSeconds * 1000);
         } else if ($runtimeMilliSeconds !== null) {
-            $query['ping'] = $runtimeMilliSeconds;
+            $query['ping'] = (int)$runtimeMilliSeconds;
         } else if ($runtimeMicroSeconds !== null) {
             $query['ping'] = (int)($runtimeMicroSeconds / 1000);
         }
