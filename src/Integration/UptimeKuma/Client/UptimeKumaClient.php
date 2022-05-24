@@ -33,7 +33,7 @@ class UptimeKumaClient {
         }
 
         try {
-            Http::get(url: Config::get(key: 'bear.uptime_kuma.base_url') . "push/$key", query: $query);
+            Http::get(url: trim(string: Config::get(key: 'bear.uptime_kuma.base_url'), characters: '/') . "/api/push/$key", query: $query);
         } catch (Throwable $e) {
             // We can safely ignore any exceptions, as the fail to fire event will be visible in Uptime Kuma.
         }
