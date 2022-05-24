@@ -64,7 +64,7 @@ class BearValidateConfigurationCommand extends Command {
         }
         $this->terminalService->printTestResult(
             testName: 'Uptime Kuma API Secret Should Be Set',
-            errorMessage: $config['base_url'] === null ? "Missing uptime kuma base url, add 'base_url' to 'uptime_kuma' in config/bear.php" : null
+            errorMessage: array_key_exists(key: 'base_url', array: $config) ? "Missing uptime kuma base url, add 'base_url' to 'uptime_kuma' in config/bear.php" : null
         );
     }
 }
