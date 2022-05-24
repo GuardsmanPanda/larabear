@@ -7,7 +7,7 @@ use Illuminate\Encryption\Encrypter;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 
-class GenerateSessionKeyCommand extends Command {
+class BearGenerateSessionKeyCommand extends Command {
     protected $signature = 'bear:generate-session-key';
     protected $description = 'Generate a new session key';
     protected $hidden = true;

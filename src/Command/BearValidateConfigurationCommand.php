@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Service\TerminalService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 
-class ValidateBearConfigurationCommand extends Command {
+class BearValidateConfigurationCommand extends Command {
     protected $signature = 'bear';
     protected $description = 'Validate the configuration for larabear';
     private TerminalService $terminalService;
