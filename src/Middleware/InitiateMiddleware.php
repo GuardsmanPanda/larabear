@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class InitiateMiddleware {
-    public static array $headers =  ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
+    public static array $headers = ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
     private Encrypter|null $encrypt = null;
 
     public function __construct(private readonly Application $app) {
@@ -79,7 +79,7 @@ class InitiateMiddleware {
         $bags = [$request->query];
         if ($request->isJson()) {
             $bags[] = $request->json();
-        } elseif ($request->request !== $request->query) {
+        } else if ($request->request !== $request->query) {
             $bags[] = $request->request;
         }
         foreach ($bags as $bag) {
@@ -113,7 +113,7 @@ class InitiateMiddleware {
             $response->headers->removeCookie(name: $name, path: $cookie->getPath(), domain: $cookie->getDomain()); //TODO: Consider throwing error on insecure cookie parameters, instead of silently fixing.
             $response->headers->setCookie(new Cookie(
                 name: $name,
-                value: $this->encrypt->encrypt(hash_hmac('sha256', $name, $this->encrypt->getKey()). '|' . $cookie->getValue()),
+                value: $this->encrypt->encrypt(hash_hmac('sha256', $name, $this->encrypt->getKey()) . '|' . $cookie->getValue()),
                 expire: $cookie->getExpiresTime(),
                 path: '/',
                 secure: true,

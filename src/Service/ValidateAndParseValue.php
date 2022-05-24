@@ -9,7 +9,7 @@ use Throwable;
 class ValidateAndParseValue {
     public static function parseInt(mixed $value, string $errorMessage = null): int {
         if (is_int($value) || (is_string($value) && ctype_digit($value))) {
-            return (int) $value;
+            return (int)$value;
         }
         $msg = "$value is not an integer, type: " . gettype($value);
         throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
@@ -18,7 +18,7 @@ class ValidateAndParseValue {
 
     public static function parseFloat(mixed $value, string $errorMessage = null): float {
         if (is_float($value) || (is_string($value) && is_numeric($value))) {
-            return (float) $value;
+            return (float)$value;
         }
         $msg = "$value is not a float, type: " . gettype($value);
         throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");

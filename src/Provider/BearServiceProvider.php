@@ -15,7 +15,7 @@ class BearServiceProvider extends ServiceProvider {
             ]);
 
             $this->publishes([
-                __DIR__.'/../../config/config.php' => $this->app->configPath('bear.php'),
+                __DIR__ . '/../../config/config.php' => $this->app->configPath('bear.php'),
             ]);
         }
     }

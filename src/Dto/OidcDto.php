@@ -9,8 +9,8 @@ class OidcDto {
         public readonly string $user_identifier,
         public readonly string $email,
         public readonly string $issued_to_client_id,
-        public readonly int $not_before,
-        public readonly int $expires_at,
+        public readonly int    $not_before,
+        public readonly int    $expires_at,
         public readonly string $token_unique_id,
     ) {}
 

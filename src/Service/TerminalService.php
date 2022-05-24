@@ -13,14 +13,14 @@ class TerminalService {
     }
 
     public function printH1(string $headline): void {
-        $this->output->writeln(str_pad("### <fg=green;options=bold>$headline</> ###" , $this->terminalWidth, ' ', STR_PAD_BOTH));
+        $this->output->writeln(str_pad("### <fg=green;options=bold>$headline</> ###", $this->terminalWidth, ' ', STR_PAD_BOTH));
     }
 
     public function printH2(string $headline): void {
         $this->output->writeln("<fg=blue;options=bold>$headline</>");
     }
 
-    public function printTestResult(String $testName, string $errorMessage = null): void {
+    public function printTestResult(string $testName, string $errorMessage = null): void {
         $prefix = $errorMessage === null ? "<bg=green;fg=black;options=bold>  PASS  </>" : "<bg=red;fg=white;options=bold>  FAIL  </>";
         $this->output->writeln(" $prefix " . ($errorMessage ?? $testName));
     }
