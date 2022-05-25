@@ -12,7 +12,7 @@ composer require guardsmanpanda/larabear
 
 Remember to publish the required config file:
 ```bash
-php artisan vendor:publish --provider="Guardsmanpanda\Larabear\LarabearServiceProvider"
+php artisan vendor:publish --tag=bear
 ```
 
 To test and verify that the system is configured properly you can run 
