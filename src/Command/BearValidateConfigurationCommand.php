@@ -14,6 +14,10 @@ class BearValidateConfigurationCommand extends Command {
     public function handle(): void {
         $this->terminalService = new TerminalService($this->output);
         $this->terminalService->printH1(headline: 'Validating larabear configuration');
+        if (Config::get(key: 'bear') === null) {
+            $this->terminalService->printTestResult(testName: '', errorMessage: 'Missing bear.php file in config/ directory please run "php artisan vendor:publish --tag=bear"');
+            return;
+        }
         $this->validateSessionSettings();
         $this->validateUptimeKumaSettings();
         $this->output->writeln(messages: '');
@@ -51,6 +55,7 @@ class BearValidateConfigurationCommand extends Command {
             errorMessage: Config::get('bear.cookie.session_key') === null ? "Missing session encryption key, generate with 'php artisan bear:generate-session-key' and check 'cookie' => 'session_key' config/bear.php" : null
         );
     }
+
 
     private function validateUptimeKumaSettings(): void {
         $this->terminalService->printH2(headline: 'Validating uptime kuma settings');
