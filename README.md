@@ -7,7 +7,7 @@ Make Laravel strong like bear!
 You can install the package via composer:
 
 ```bash
-composer require guardsmanpanda/larabear --dev dev-main
+composer require guardsmanpanda/larabear
 ```
 
 Remember to publish the required config file:
