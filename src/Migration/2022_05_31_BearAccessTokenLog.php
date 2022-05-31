@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->text(column: 'response_body');
             $table->uuid(column: 'access_token_id');
             $table->integer(column: 'request_time_milliseconds');
-            $table->boolean(column: 'is_processed')->default(value: false);
+            $table->boolean(column: 'is_processed')->default(false);
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->foreign( 'access_token_id')->references('id')->on('bear_access_token');
         });
