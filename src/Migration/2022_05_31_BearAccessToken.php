@@ -16,7 +16,8 @@ return new class extends Migration {
             $table->text(column: 'hashed_access_token')->unique();
             $table->integer(column: 'usage_count')->default(value: 0);
             $table->timestampTz(column: 'last_usage_at')->nullable();
-            $table->integer(column: 'delete_access_token_log_after_days')->nullable();
+            $table->integer(column: 'delete_get_request_log_after_days')->nullable();
+            $table->integer(column: 'delete_all_request_log_after_days')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->useCurrentOnUpdate();
         });
