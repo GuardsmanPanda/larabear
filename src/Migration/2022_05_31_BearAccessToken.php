@@ -8,10 +8,15 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void {
         Schema::create(table: 'bear_access_token', callback: static function (Blueprint $table) {
+            if (DB::getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+                $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));
+            }   else {
+                $table->uuid(column: 'id')->primary()->default(DB::raw('uuid()'));
+            }
             $table->uuid(column: 'id')->primary();
-            $table->text(column: 'api_route_prefix');
-            $table->ipAddress(column: 'ipv4_limit')->nullable();
-            $table->ipAddress(column: 'ipv6_limit')->nullable();
+            $table->text(column: 'api_route_prefix')->default(value: '');
+            $table->ipAddress(column: 'ipv4_limit')->default('0.0.0.0/0');
+            $table->ipAddress(column: 'ipv6_limit')->default('::/0');
             $table->timestampTz(column: 'expires_at')->nullable();
             $table->text(column: 'hashed_access_token')->unique();
             $table->integer(column: 'usage_count')->default(0);
