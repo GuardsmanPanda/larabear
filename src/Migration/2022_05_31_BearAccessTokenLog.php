@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void {
         Schema::create(table: 'bear_access_token_log', callback: static function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id();
             $table->ipAddress(column: 'request_ip');
             $table->text(column: 'country_code')->nullable();
             $table->text(column: 'http_method');
@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->integer(column: 'request_time_milliseconds');
             $table->boolean(column: 'is_processed')->default(value: false);
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->foreign(columns: 'access_token_id')->references(columns: 'id')->on(table: 'bear_access_token');
+            $table->foreign( 'access_token_id')->references('id')->on('bear_access_token');
         });
     }
 
