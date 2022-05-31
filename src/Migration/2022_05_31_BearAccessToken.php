@@ -14,7 +14,7 @@ return new class extends Migration {
                 $table->uuid(column: 'id')->primary()->default(DB::raw('uuid()'));
             }
             $table->uuid(column: 'id')->primary();
-            $table->text(column: 'api_route_prefix')->default(value: '');
+            $table->text(column: 'api_route_prefix')->default('');
             $table->ipAddress(column: 'ipv4_limit')->default('0.0.0.0/0');
             $table->ipAddress(column: 'ipv6_limit')->default('::/0');
             $table->timestampTz(column: 'expires_at')->nullable();
