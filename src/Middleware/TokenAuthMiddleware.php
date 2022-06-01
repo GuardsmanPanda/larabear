@@ -7,12 +7,13 @@ use GuardsmanPanda\Larabear\Service\Req;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class TokenAuthMiddleware {
     public static string $primary_api_key = '';
     public function handle(Request $request, Closure $next) {
         if ($request->bearerToken() === null) {
-            abort(403, 'The request must include a bearer token.');
+            throw new AccessDeniedHttpException(message: 'The request must include a bearer token.');
         }
         $hashed_token = hash('xxh128', $request->bearerToken());
         $access = DB::selectOne("

@@ -7,4 +7,7 @@ return [
     'uptime_kuma' => [
         'base_url' => env('LARABEAR_UPTIME_KUMA_BASE_URL'),
     ],
+    'uptime_kuma' => [
+        'base_url' => env('LARABEAR_UPTIME_KUMA_BASE_URL'),
+    ],
 ];

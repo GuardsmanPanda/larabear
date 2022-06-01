@@ -9,9 +9,11 @@ use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use InvalidArgumentException;
+use JsonException;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class InitiateMiddleware {
     public static array $headers = ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
@@ -29,7 +31,11 @@ class InitiateMiddleware {
         //  First Handle maintenance mode
         //----------------------------------------------------------------------------------------------------------
         if ($this->app->isDownForMaintenance()) {
-            $data = json_decode(file_get_contents($this->app->storagePath() . '/framework/down'), true, 512, JSON_THROW_ON_ERROR);
+            try {
+                $data = json_decode(file_get_contents($this->app->storagePath() . '/framework/down'), true, 512, JSON_THROW_ON_ERROR);
+            } catch (JsonException $e) {
+                throw new HttpException(statusCode: 500, message: 'The down file is not valid JSON.', previous: $e);
+            }
             if (isset($data['redirect'])) {
                 $path = $data['redirect'] === '/' ? $data['redirect'] : trim($data['redirect'], '/');
                 if ($request->path() !== $path) {
