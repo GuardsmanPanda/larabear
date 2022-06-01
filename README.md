@@ -22,12 +22,13 @@ php artisan bear
 
 
 
-To enable the majority of the functionality make sure that the "Initiate" middle is enabled on all routes
+To enable the majority of the functionality make sure that the "BearInitiateMiddleware" is enabled on all routes
+
 ```php
 class HttpKernel extends Kernel {
     // These middlewares are run during every request to your application.
     protected $middleware = [
-        \GuardsmanPanda\Larabear\Middleware\InitiateMiddleware::class,
+        \GuardsmanPanda\Larabear\Middleware\BearInitiateMiddleware::class,
         OtherMiddleware::class,
     ];
 ```

@@ -2,6 +2,6 @@
 
 namespace GuardsmanPanda\Larabear\Middleware;
 
-class RoleMiddleware {
+class BearRoleMiddleware {
 
 }

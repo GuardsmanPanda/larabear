@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-class TokenAuthMiddleware {
+class BearTokenAuthMiddleware {
     public static string $primary_api_key = '';
     public function handle(Request $request, Closure $next) {
         if ($request->bearerToken() === null) {
