@@ -15,8 +15,7 @@ return new class extends Migration {
             }
             $table->text(column: 'api_route_prefix')->default('');
             $table->text(column: 'api_primary_key')->nullable();
-            $table->ipAddress(column: 'ipv4_limit')->default('0.0.0.0/0');
-            $table->ipAddress(column: 'ipv6_limit')->default('::/0');
+            $table->ipAddress(column: 'ip_restriction')->default('0.0.0.0/0');
             $table->timestampTz(column: 'expires_at')->nullable();
             $table->text(column: 'hashed_access_token')->unique();
             $table->integer(column: 'usage_count')->default(0);

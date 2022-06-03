@@ -9,12 +9,12 @@ return new class extends Migration {
     public function up(): void {
         Schema::create(table: 'bear_security_incident', callback: static function (Blueprint $table) {
             $table->id();
-            $table->text(column: 'severity');
-            $table->text(column: 'namespace')->default('default');
-            $table->text(column: 'headline');
-            $table->text(column: 'description');
-            $table->text(column: 'remediation')->nullable();
-            $table->text(column: 'reference')->nullable();
+            $table->text(column: 'security_incident_severity');
+            $table->text(column: 'security_incident_namespace')->default('default');
+            $table->text(column: 'security_incident_headline');
+            $table->text(column: 'security_incident_description');
+            $table->text(column: 'security_incident_remediation')->nullable();
+            $table->text(column: 'security_incident_reference')->nullable();
             $table->ipAddress(column: 'request_ip');
             $table->text(column: 'user_id')->nullable();
             $table->text(column: 'country_code')->nullable();
