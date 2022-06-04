@@ -33,7 +33,7 @@ return new class extends Migration {
                 "country_dialing_code" => "33",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "IN",
@@ -43,7 +43,7 @@ return new class extends Migration {
                 "country_dialing_code" => "91",
                 "country_currency_code" => "INR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "PK",
@@ -53,7 +53,7 @@ return new class extends Migration {
                 "country_dialing_code" => "92",
                 "country_currency_code" => "PKR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "US",
@@ -63,7 +63,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1",
                 "country_currency_code" => "USD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "NG",
@@ -73,7 +73,7 @@ return new class extends Migration {
                 "country_dialing_code" => "234",
                 "country_currency_code" => "NGN",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GB-ENG",
@@ -113,7 +113,7 @@ return new class extends Migration {
                 "country_dialing_code" => "685",
                 "country_currency_code" => "WST",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CN",
@@ -123,7 +123,7 @@ return new class extends Migration {
                 "country_dialing_code" => "86",
                 "country_currency_code" => "CNY",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "ID",
@@ -133,7 +133,7 @@ return new class extends Migration {
                 "country_dialing_code" => "62",
                 "country_currency_code" => "IDR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BR",
@@ -143,7 +143,7 @@ return new class extends Migration {
                 "country_dialing_code" => "55",
                 "country_currency_code" => "BRL",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BD",
@@ -153,7 +153,7 @@ return new class extends Migration {
                 "country_dialing_code" => "880",
                 "country_currency_code" => "BDT",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "RU",
@@ -163,7 +163,7 @@ return new class extends Migration {
                 "country_dialing_code" => "7",
                 "country_currency_code" => "RUB",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "JP",
@@ -173,7 +173,7 @@ return new class extends Migration {
                 "country_dialing_code" => "81",
                 "country_currency_code" => "JPY",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MX",
@@ -183,7 +183,7 @@ return new class extends Migration {
                 "country_dialing_code" => "52",
                 "country_currency_code" => "MXN",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "PH",
@@ -193,7 +193,7 @@ return new class extends Migration {
                 "country_dialing_code" => "63",
                 "country_currency_code" => "PHP",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "VN",
@@ -203,7 +203,7 @@ return new class extends Migration {
                 "country_dialing_code" => "84",
                 "country_currency_code" => "VND",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "ET",
@@ -213,7 +213,7 @@ return new class extends Migration {
                 "country_dialing_code" => "251",
                 "country_currency_code" => "ETB",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "EG",
@@ -223,7 +223,7 @@ return new class extends Migration {
                 "country_dialing_code" => "20",
                 "country_currency_code" => "EGP",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CD",
@@ -233,7 +233,7 @@ return new class extends Migration {
                 "country_dialing_code" => "243",
                 "country_currency_code" => "CDF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "DE",
@@ -243,7 +243,7 @@ return new class extends Migration {
                 "country_dialing_code" => "49",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "IR",
@@ -253,7 +253,7 @@ return new class extends Migration {
                 "country_dialing_code" => "98",
                 "country_currency_code" => "IRR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TR",
@@ -263,7 +263,7 @@ return new class extends Migration {
                 "country_dialing_code" => "90",
                 "country_currency_code" => "TRY",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TH",
@@ -273,7 +273,7 @@ return new class extends Migration {
                 "country_dialing_code" => "66",
                 "country_currency_code" => "THB",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GB",
@@ -283,7 +283,7 @@ return new class extends Migration {
                 "country_dialing_code" => "44",
                 "country_currency_code" => "GBP",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "IT",
@@ -293,7 +293,7 @@ return new class extends Migration {
                 "country_dialing_code" => "39",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "ZA",
@@ -303,7 +303,7 @@ return new class extends Migration {
                 "country_dialing_code" => "27",
                 "country_currency_code" => "ZAR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TZ",
@@ -313,7 +313,7 @@ return new class extends Migration {
                 "country_dialing_code" => "255",
                 "country_currency_code" => "TZS",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MM",
@@ -323,7 +323,7 @@ return new class extends Migration {
                 "country_dialing_code" => "95",
                 "country_currency_code" => "MMK",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "KR",
@@ -333,7 +333,7 @@ return new class extends Migration {
                 "country_dialing_code" => "82",
                 "country_currency_code" => "KRW",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CO",
@@ -343,7 +343,7 @@ return new class extends Migration {
                 "country_dialing_code" => "57",
                 "country_currency_code" => "COP",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "KE",
@@ -353,7 +353,7 @@ return new class extends Migration {
                 "country_dialing_code" => "254",
                 "country_currency_code" => "KES",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "ES",
@@ -363,7 +363,7 @@ return new class extends Migration {
                 "country_dialing_code" => "34",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "AR",
@@ -373,7 +373,7 @@ return new class extends Migration {
                 "country_dialing_code" => "54",
                 "country_currency_code" => "ARS",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "DZ",
@@ -383,7 +383,7 @@ return new class extends Migration {
                 "country_dialing_code" => "213",
                 "country_currency_code" => "DZD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "UA",
@@ -393,7 +393,7 @@ return new class extends Migration {
                 "country_dialing_code" => "380",
                 "country_currency_code" => "UAH",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SD",
@@ -403,7 +403,7 @@ return new class extends Migration {
                 "country_dialing_code" => "249",
                 "country_currency_code" => "SDG",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "PL",
@@ -413,7 +413,7 @@ return new class extends Migration {
                 "country_dialing_code" => "48",
                 "country_currency_code" => "PLN",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "IQ",
@@ -423,7 +423,7 @@ return new class extends Migration {
                 "country_dialing_code" => "964",
                 "country_currency_code" => "IQD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "AF",
@@ -433,7 +433,7 @@ return new class extends Migration {
                 "country_dialing_code" => "93",
                 "country_currency_code" => "AFN",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CA",
@@ -443,7 +443,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1",
                 "country_currency_code" => "CAD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "UG",
@@ -453,7 +453,7 @@ return new class extends Migration {
                 "country_dialing_code" => "256",
                 "country_currency_code" => "UGX",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MA",
@@ -463,7 +463,7 @@ return new class extends Migration {
                 "country_dialing_code" => "212",
                 "country_currency_code" => "MAD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SA",
@@ -473,7 +473,7 @@ return new class extends Migration {
                 "country_dialing_code" => "966",
                 "country_currency_code" => "SAR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "UZ",
@@ -483,7 +483,7 @@ return new class extends Migration {
                 "country_dialing_code" => "998",
                 "country_currency_code" => "UZS",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "PE",
@@ -493,7 +493,7 @@ return new class extends Migration {
                 "country_dialing_code" => "51",
                 "country_currency_code" => "PEN",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MY",
@@ -503,7 +503,7 @@ return new class extends Migration {
                 "country_dialing_code" => "60",
                 "country_currency_code" => "MYR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "VE",
@@ -513,7 +513,7 @@ return new class extends Migration {
                 "country_dialing_code" => "58",
                 "country_currency_code" => "VES",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "NP",
@@ -523,7 +523,7 @@ return new class extends Migration {
                 "country_dialing_code" => "977",
                 "country_currency_code" => "NPR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GH",
@@ -533,7 +533,7 @@ return new class extends Migration {
                 "country_dialing_code" => "233",
                 "country_currency_code" => "GHS",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "YE",
@@ -543,7 +543,7 @@ return new class extends Migration {
                 "country_dialing_code" => "967",
                 "country_currency_code" => "YER",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MZ",
@@ -553,7 +553,7 @@ return new class extends Migration {
                 "country_dialing_code" => "258",
                 "country_currency_code" => "MZN",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "AO",
@@ -563,7 +563,7 @@ return new class extends Migration {
                 "country_dialing_code" => "244",
                 "country_currency_code" => "AOA",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "KP",
@@ -573,7 +573,7 @@ return new class extends Migration {
                 "country_dialing_code" => "850",
                 "country_currency_code" => "KPW",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "AU",
@@ -583,7 +583,7 @@ return new class extends Migration {
                 "country_dialing_code" => "61",
                 "country_currency_code" => "AUD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TW",
@@ -593,7 +593,7 @@ return new class extends Migration {
                 "country_dialing_code" => "886",
                 "country_currency_code" => "TWD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CM",
@@ -603,7 +603,7 @@ return new class extends Migration {
                 "country_dialing_code" => "237",
                 "country_currency_code" => "XAF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CI",
@@ -613,7 +613,7 @@ return new class extends Migration {
                 "country_dialing_code" => "225",
                 "country_currency_code" => "XOF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MG",
@@ -623,7 +623,7 @@ return new class extends Migration {
                 "country_dialing_code" => "261",
                 "country_currency_code" => "MGA",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "LK",
@@ -633,7 +633,7 @@ return new class extends Migration {
                 "country_dialing_code" => "94",
                 "country_currency_code" => "LKR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "NE",
@@ -643,7 +643,7 @@ return new class extends Migration {
                 "country_dialing_code" => "227",
                 "country_currency_code" => "XOF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "RO",
@@ -653,7 +653,7 @@ return new class extends Migration {
                 "country_dialing_code" => "40",
                 "country_currency_code" => "RON",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BF",
@@ -663,7 +663,7 @@ return new class extends Migration {
                 "country_dialing_code" => "226",
                 "country_currency_code" => "XOF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SY",
@@ -673,7 +673,7 @@ return new class extends Migration {
                 "country_dialing_code" => "963",
                 "country_currency_code" => "SYP",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CL",
@@ -683,7 +683,7 @@ return new class extends Migration {
                 "country_dialing_code" => "56",
                 "country_currency_code" => "CLP",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "ML",
@@ -693,7 +693,7 @@ return new class extends Migration {
                 "country_dialing_code" => "223",
                 "country_currency_code" => "XOF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "KZ",
@@ -703,7 +703,7 @@ return new class extends Migration {
                 "country_dialing_code" => "7",
                 "country_currency_code" => "KZT",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "NL",
@@ -713,7 +713,7 @@ return new class extends Migration {
                 "country_dialing_code" => "31",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MW",
@@ -723,7 +723,7 @@ return new class extends Migration {
                 "country_dialing_code" => "265",
                 "country_currency_code" => "MWK",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "EC",
@@ -733,7 +733,7 @@ return new class extends Migration {
                 "country_dialing_code" => "593",
                 "country_currency_code" => "USD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GT",
@@ -743,7 +743,7 @@ return new class extends Migration {
                 "country_dialing_code" => "502",
                 "country_currency_code" => "GTQ",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "ZM",
@@ -753,7 +753,7 @@ return new class extends Migration {
                 "country_dialing_code" => "260",
                 "country_currency_code" => "ZMW",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "KH",
@@ -763,7 +763,7 @@ return new class extends Migration {
                 "country_dialing_code" => "855",
                 "country_currency_code" => "KHR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SN",
@@ -773,7 +773,7 @@ return new class extends Migration {
                 "country_dialing_code" => "221",
                 "country_currency_code" => "XOF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TD",
@@ -783,7 +783,7 @@ return new class extends Migration {
                 "country_dialing_code" => "235",
                 "country_currency_code" => "XAF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "ZW",
@@ -793,7 +793,7 @@ return new class extends Migration {
                 "country_dialing_code" => "263",
                 "country_currency_code" => "ZWL",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GN",
@@ -803,7 +803,7 @@ return new class extends Migration {
                 "country_dialing_code" => "224",
                 "country_currency_code" => "GNF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SS",
@@ -813,7 +813,7 @@ return new class extends Migration {
                 "country_dialing_code" => "211",
                 "country_currency_code" => "SSP",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "RW",
@@ -823,7 +823,7 @@ return new class extends Migration {
                 "country_dialing_code" => "250",
                 "country_currency_code" => "RWF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BE",
@@ -833,7 +833,7 @@ return new class extends Migration {
                 "country_dialing_code" => "32",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CU",
@@ -843,7 +843,7 @@ return new class extends Migration {
                 "country_dialing_code" => "53",
                 "country_currency_code" => "CUP,CUC",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TN",
@@ -853,7 +853,7 @@ return new class extends Migration {
                 "country_dialing_code" => "216",
                 "country_currency_code" => "TND",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SO",
@@ -863,7 +863,7 @@ return new class extends Migration {
                 "country_dialing_code" => "252",
                 "country_currency_code" => "SOS",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "HT",
@@ -873,7 +873,7 @@ return new class extends Migration {
                 "country_dialing_code" => "509",
                 "country_currency_code" => "HTG,USD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BO",
@@ -883,7 +883,7 @@ return new class extends Migration {
                 "country_dialing_code" => "591",
                 "country_currency_code" => "BOB",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GR",
@@ -893,7 +893,7 @@ return new class extends Migration {
                 "country_dialing_code" => "30",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BJ",
@@ -903,7 +903,7 @@ return new class extends Migration {
                 "country_dialing_code" => "229",
                 "country_currency_code" => "XOF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CZ",
@@ -913,7 +913,7 @@ return new class extends Migration {
                 "country_dialing_code" => "420",
                 "country_currency_code" => "CZK",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "PT",
@@ -923,7 +923,7 @@ return new class extends Migration {
                 "country_dialing_code" => "351",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BI",
@@ -933,7 +933,7 @@ return new class extends Migration {
                 "country_dialing_code" => "257",
                 "country_currency_code" => "BIF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "DO",
@@ -943,7 +943,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1-809,1-829,1-849",
                 "country_currency_code" => "DOP",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SE",
@@ -953,7 +953,7 @@ return new class extends Migration {
                 "country_dialing_code" => "46",
                 "country_currency_code" => "SEK",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "AE",
@@ -963,7 +963,7 @@ return new class extends Migration {
                 "country_dialing_code" => "971",
                 "country_currency_code" => "AED",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "HU",
@@ -973,7 +973,7 @@ return new class extends Migration {
                 "country_dialing_code" => "36",
                 "country_currency_code" => "HUF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "AZ",
@@ -983,7 +983,7 @@ return new class extends Migration {
                 "country_dialing_code" => "994",
                 "country_currency_code" => "AZN",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "JO",
@@ -993,7 +993,7 @@ return new class extends Migration {
                 "country_dialing_code" => "962",
                 "country_currency_code" => "JOD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BY",
@@ -1003,7 +1003,7 @@ return new class extends Migration {
                 "country_dialing_code" => "375",
                 "country_currency_code" => "BYN",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "AT",
@@ -1013,7 +1013,7 @@ return new class extends Migration {
                 "country_dialing_code" => "43",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TJ",
@@ -1023,7 +1023,7 @@ return new class extends Migration {
                 "country_dialing_code" => "992",
                 "country_currency_code" => "TJS",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "HN",
@@ -1033,7 +1033,7 @@ return new class extends Migration {
                 "country_dialing_code" => "504",
                 "country_currency_code" => "HNL",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "IL",
@@ -1043,7 +1043,7 @@ return new class extends Migration {
                 "country_dialing_code" => "972",
                 "country_currency_code" => "ILS",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CH",
@@ -1053,7 +1053,7 @@ return new class extends Migration {
                 "country_dialing_code" => "41",
                 "country_currency_code" => "CHF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "PG",
@@ -1063,7 +1063,7 @@ return new class extends Migration {
                 "country_dialing_code" => "675",
                 "country_currency_code" => "PGK",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "HK",
@@ -1083,7 +1083,7 @@ return new class extends Migration {
                 "country_dialing_code" => "359",
                 "country_currency_code" => "BGN",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TG",
@@ -1093,7 +1093,7 @@ return new class extends Migration {
                 "country_dialing_code" => "228",
                 "country_currency_code" => "XOF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "RS",
@@ -1103,7 +1103,7 @@ return new class extends Migration {
                 "country_dialing_code" => "381",
                 "country_currency_code" => "RSD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SL",
@@ -1113,7 +1113,7 @@ return new class extends Migration {
                 "country_dialing_code" => "232",
                 "country_currency_code" => "SLL",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "PY",
@@ -1123,7 +1123,7 @@ return new class extends Migration {
                 "country_dialing_code" => "595",
                 "country_currency_code" => "PYG",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SV",
@@ -1133,7 +1133,7 @@ return new class extends Migration {
                 "country_dialing_code" => "503",
                 "country_currency_code" => "SVC,USD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "LA",
@@ -1143,7 +1143,7 @@ return new class extends Migration {
                 "country_dialing_code" => "856",
                 "country_currency_code" => "LAK",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "LY",
@@ -1153,7 +1153,7 @@ return new class extends Migration {
                 "country_dialing_code" => "218",
                 "country_currency_code" => "LYD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "IE",
@@ -1163,7 +1163,7 @@ return new class extends Migration {
                 "country_dialing_code" => "353",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "NI",
@@ -1173,7 +1173,7 @@ return new class extends Migration {
                 "country_dialing_code" => "505",
                 "country_currency_code" => "NIO",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "KG",
@@ -1183,7 +1183,7 @@ return new class extends Migration {
                 "country_dialing_code" => "996",
                 "country_currency_code" => "KGS",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "LB",
@@ -1193,7 +1193,7 @@ return new class extends Migration {
                 "country_dialing_code" => "961",
                 "country_currency_code" => "LBP",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "DK",
@@ -1203,7 +1203,7 @@ return new class extends Migration {
                 "country_dialing_code" => "45",
                 "country_currency_code" => "DKK",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SG",
@@ -1213,7 +1213,7 @@ return new class extends Migration {
                 "country_dialing_code" => "65",
                 "country_currency_code" => "SGD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "FI",
@@ -1223,7 +1223,7 @@ return new class extends Migration {
                 "country_dialing_code" => "358",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SK",
@@ -1233,7 +1233,7 @@ return new class extends Migration {
                 "country_dialing_code" => "421",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "ER",
@@ -1243,7 +1243,7 @@ return new class extends Migration {
                 "country_dialing_code" => "291",
                 "country_currency_code" => "ERN",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "NO",
@@ -1253,7 +1253,7 @@ return new class extends Migration {
                 "country_dialing_code" => "47",
                 "country_currency_code" => "NOK",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CF",
@@ -1263,7 +1263,7 @@ return new class extends Migration {
                 "country_dialing_code" => "236",
                 "country_currency_code" => "XAF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CR",
@@ -1273,7 +1273,7 @@ return new class extends Migration {
                 "country_dialing_code" => "506",
                 "country_currency_code" => "CRC",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TM",
@@ -1283,7 +1283,7 @@ return new class extends Migration {
                 "country_dialing_code" => "993",
                 "country_currency_code" => "TMT",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CG",
@@ -1293,7 +1293,7 @@ return new class extends Migration {
                 "country_dialing_code" => "242",
                 "country_currency_code" => "XAF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "NZ",
@@ -1303,7 +1303,7 @@ return new class extends Migration {
                 "country_dialing_code" => "64",
                 "country_currency_code" => "NZD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "PS",
@@ -1323,7 +1323,7 @@ return new class extends Migration {
                 "country_dialing_code" => "231",
                 "country_currency_code" => "LRD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "OM",
@@ -1333,7 +1333,7 @@ return new class extends Migration {
                 "country_dialing_code" => "968",
                 "country_currency_code" => "OMR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "HR",
@@ -1343,7 +1343,7 @@ return new class extends Migration {
                 "country_dialing_code" => "385",
                 "country_currency_code" => "HRK",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "KW",
@@ -1353,7 +1353,7 @@ return new class extends Migration {
                 "country_dialing_code" => "965",
                 "country_currency_code" => "KWD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "PA",
@@ -1363,7 +1363,7 @@ return new class extends Migration {
                 "country_dialing_code" => "507",
                 "country_currency_code" => "PAB,USD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GE",
@@ -1373,7 +1373,7 @@ return new class extends Migration {
                 "country_dialing_code" => "995",
                 "country_currency_code" => "GEL",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MR",
@@ -1383,7 +1383,7 @@ return new class extends Migration {
                 "country_dialing_code" => "222",
                 "country_currency_code" => "MRU",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MD",
@@ -1393,7 +1393,7 @@ return new class extends Migration {
                 "country_dialing_code" => "373",
                 "country_currency_code" => "MDL",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BA",
@@ -1403,7 +1403,7 @@ return new class extends Migration {
                 "country_dialing_code" => "387",
                 "country_currency_code" => "BAM",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "UY",
@@ -1413,7 +1413,7 @@ return new class extends Migration {
                 "country_dialing_code" => "598",
                 "country_currency_code" => "UYU",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "PR",
@@ -1443,7 +1443,7 @@ return new class extends Migration {
                 "country_dialing_code" => "976",
                 "country_currency_code" => "MNT",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "AL",
@@ -1453,7 +1453,7 @@ return new class extends Migration {
                 "country_dialing_code" => "355",
                 "country_currency_code" => "ALL",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "AM",
@@ -1463,7 +1463,7 @@ return new class extends Migration {
                 "country_dialing_code" => "374",
                 "country_currency_code" => "AMD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "LT",
@@ -1473,7 +1473,7 @@ return new class extends Migration {
                 "country_dialing_code" => "370",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "JM",
@@ -1483,7 +1483,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1-876",
                 "country_currency_code" => "JMD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "QA",
@@ -1493,7 +1493,7 @@ return new class extends Migration {
                 "country_dialing_code" => "974",
                 "country_currency_code" => "QAR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "NA",
@@ -1503,7 +1503,7 @@ return new class extends Migration {
                 "country_dialing_code" => "264",
                 "country_currency_code" => "NAD,ZAR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BW",
@@ -1513,7 +1513,7 @@ return new class extends Migration {
                 "country_dialing_code" => "267",
                 "country_currency_code" => "BWP",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SI",
@@ -1523,7 +1523,7 @@ return new class extends Migration {
                 "country_dialing_code" => "386",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MK",
@@ -1533,7 +1533,7 @@ return new class extends Migration {
                 "country_dialing_code" => "389",
                 "country_currency_code" => "MKD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "LV",
@@ -1543,7 +1543,7 @@ return new class extends Migration {
                 "country_dialing_code" => "371",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "LS",
@@ -1553,7 +1553,7 @@ return new class extends Migration {
                 "country_dialing_code" => "266",
                 "country_currency_code" => "LSL,ZAR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GM",
@@ -1563,7 +1563,7 @@ return new class extends Migration {
                 "country_dialing_code" => "220",
                 "country_currency_code" => "GMD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GA",
@@ -1573,7 +1573,7 @@ return new class extends Migration {
                 "country_dialing_code" => "241",
                 "country_currency_code" => "XAF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "XK",
@@ -1593,7 +1593,7 @@ return new class extends Migration {
                 "country_dialing_code" => "245",
                 "country_currency_code" => "XOF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BH",
@@ -1603,7 +1603,7 @@ return new class extends Migration {
                 "country_dialing_code" => "973",
                 "country_currency_code" => "BHD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TT",
@@ -1613,7 +1613,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1-868",
                 "country_currency_code" => "TTD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "EE",
@@ -1623,7 +1623,7 @@ return new class extends Migration {
                 "country_dialing_code" => "372",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MU",
@@ -1633,7 +1633,7 @@ return new class extends Migration {
                 "country_dialing_code" => "230",
                 "country_currency_code" => "MUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GQ",
@@ -1643,7 +1643,7 @@ return new class extends Migration {
                 "country_dialing_code" => "240",
                 "country_currency_code" => "XAF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TL",
@@ -1653,7 +1653,7 @@ return new class extends Migration {
                 "country_dialing_code" => "670",
                 "country_currency_code" => "USD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SZ",
@@ -1663,7 +1663,7 @@ return new class extends Migration {
                 "country_dialing_code" => "268",
                 "country_currency_code" => "SZL",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "DJ",
@@ -1673,7 +1673,7 @@ return new class extends Migration {
                 "country_dialing_code" => "253",
                 "country_currency_code" => "DJF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "FJ",
@@ -1683,7 +1683,7 @@ return new class extends Migration {
                 "country_dialing_code" => "679",
                 "country_currency_code" => "FJD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CY",
@@ -1693,7 +1693,7 @@ return new class extends Migration {
                 "country_dialing_code" => "357",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "RE",
@@ -1713,7 +1713,7 @@ return new class extends Migration {
                 "country_dialing_code" => "269",
                 "country_currency_code" => "KMF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BT",
@@ -1723,7 +1723,7 @@ return new class extends Migration {
                 "country_dialing_code" => "975",
                 "country_currency_code" => "INR,BTN",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GY",
@@ -1733,7 +1733,7 @@ return new class extends Migration {
                 "country_dialing_code" => "592",
                 "country_currency_code" => "GYD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MO",
@@ -1753,7 +1753,7 @@ return new class extends Migration {
                 "country_dialing_code" => "677",
                 "country_currency_code" => "SBD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "ME",
@@ -1763,7 +1763,7 @@ return new class extends Migration {
                 "country_dialing_code" => "382",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "LU",
@@ -1773,7 +1773,7 @@ return new class extends Migration {
                 "country_dialing_code" => "352",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SR",
@@ -1783,7 +1783,7 @@ return new class extends Migration {
                 "country_dialing_code" => "597",
                 "country_currency_code" => "SRD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "CV",
@@ -1793,7 +1793,7 @@ return new class extends Migration {
                 "country_dialing_code" => "238",
                 "country_currency_code" => "CVE",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "EH",
@@ -1813,7 +1813,7 @@ return new class extends Migration {
                 "country_dialing_code" => "356",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BN",
@@ -1823,7 +1823,7 @@ return new class extends Migration {
                 "country_dialing_code" => "673",
                 "country_currency_code" => "BND",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GP",
@@ -1853,7 +1853,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1-242",
                 "country_currency_code" => "BSD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BZ",
@@ -1863,7 +1863,7 @@ return new class extends Migration {
                 "country_dialing_code" => "501",
                 "country_currency_code" => "BZD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MV",
@@ -1873,7 +1873,7 @@ return new class extends Migration {
                 "country_dialing_code" => "960",
                 "country_currency_code" => "MVR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "IS",
@@ -1883,7 +1883,7 @@ return new class extends Migration {
                 "country_dialing_code" => "354",
                 "country_currency_code" => "ISK",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BB",
@@ -1893,7 +1893,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1-246",
                 "country_currency_code" => "BBD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "VU",
@@ -1903,7 +1903,7 @@ return new class extends Migration {
                 "country_dialing_code" => "678",
                 "country_currency_code" => "VUV",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "PF",
@@ -1953,7 +1953,7 @@ return new class extends Migration {
                 "country_dialing_code" => "239",
                 "country_currency_code" => "STN",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "LC",
@@ -1963,7 +1963,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1-758",
                 "country_currency_code" => "XCD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GU",
@@ -2003,7 +2003,7 @@ return new class extends Migration {
                 "country_dialing_code" => "686",
                 "country_currency_code" => "AUD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "VC",
@@ -2013,7 +2013,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1-784",
                 "country_currency_code" => "XCD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "AW",
@@ -2033,7 +2033,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1-473",
                 "country_currency_code" => "XCD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TO",
@@ -2043,7 +2043,7 @@ return new class extends Migration {
                 "country_dialing_code" => "676",
                 "country_currency_code" => "TOP",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "FM",
@@ -2053,7 +2053,7 @@ return new class extends Migration {
                 "country_dialing_code" => "691",
                 "country_currency_code" => "USD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "JE",
@@ -2073,7 +2073,7 @@ return new class extends Migration {
                 "country_dialing_code" => "248",
                 "country_currency_code" => "SCR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "AG",
@@ -2083,7 +2083,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1-268",
                 "country_currency_code" => "XCD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "IM",
@@ -2103,7 +2103,7 @@ return new class extends Migration {
                 "country_dialing_code" => "376",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "DM",
@@ -2113,7 +2113,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1-767",
                 "country_currency_code" => "XCD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "GG",
@@ -2183,7 +2183,7 @@ return new class extends Migration {
                 "country_dialing_code" => "692",
                 "country_currency_code" => "USD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "FO",
@@ -2203,7 +2203,7 @@ return new class extends Migration {
                 "country_dialing_code" => "1-869",
                 "country_currency_code" => "XCD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MC",
@@ -2213,7 +2213,7 @@ return new class extends Migration {
                 "country_dialing_code" => "377",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "SX",
@@ -2233,7 +2233,7 @@ return new class extends Migration {
                 "country_dialing_code" => "423",
                 "country_currency_code" => "CHF",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "MF",
@@ -2263,7 +2263,7 @@ return new class extends Migration {
                 "country_dialing_code" => "378",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "TC",
@@ -2313,7 +2313,7 @@ return new class extends Migration {
                 "country_dialing_code" => "680",
                 "country_currency_code" => "USD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BQ",
@@ -2353,7 +2353,7 @@ return new class extends Migration {
                 "country_dialing_code" => "688",
                 "country_currency_code" => "AUD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "NR",
@@ -2363,7 +2363,7 @@ return new class extends Migration {
                 "country_dialing_code" => "674",
                 "country_currency_code" => "AUD",
                 "is_country_independent" => "true",
-
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "BL",
@@ -2493,6 +2493,7 @@ return new class extends Migration {
                 "country_dialing_code" => "61",
                 "country_currency_code" => "AUD",
                 "is_country_independent" => "false",
+                "country_dependency_status" => "Territory of AU",
             ),
             array(
                 "country_iso2_code" => "VA",
@@ -2502,6 +2503,7 @@ return new class extends Migration {
                 "country_dialing_code" => "39-06",
                 "country_currency_code" => "EUR",
                 "is_country_independent" => "true",
+                "country_dependency_status" => null,
             ),
             array(
                 "country_iso2_code" => "UM",
@@ -2564,6 +2566,7 @@ return new class extends Migration {
                 "country_dependency_status" => "Territory of NO",
             ),
         );
+
         DB::table('bear_country')->insert($country);
     }
 
