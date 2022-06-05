@@ -80,7 +80,7 @@ class BearValidateConfigurationCommand extends Command {
         if ($config === null) {
             $this->terminalService->printTestResult(
                 testName: 'User Table Settings Are Not Set',
-                warningMessage: 'Missing user table settings, add "user_table" to config/bear.php'
+                errorMessage: 'Missing user table settings, add "user_table" to config/bear.php'
             );
             $this->output->writeln(messages: "
     'user_table' => [

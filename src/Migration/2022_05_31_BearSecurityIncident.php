@@ -30,7 +30,6 @@ return new class extends Migration {
             } else {
                 $table->text(column: 'caused_by_user_id')->nullable();
             }
-            $table->text(column: 'user_identifier')->nullable();
             $table->ipAddress(column: 'request_ip')->nullable();
             $table->text(column: 'request_country_code')->nullable();
             $table->text(column: 'request_http_method')->nullable();
