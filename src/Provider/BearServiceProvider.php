@@ -13,7 +13,6 @@ class BearServiceProvider extends ServiceProvider {
                 BearGenerateSessionKeyCommand::class,
                 BearValidateConfigurationCommand::class,
             ]);
-
             $this->publishes(paths: [__DIR__ . '/../../config/config.php' => $this->app->configPath(path: 'bear.php'),], groups: 'bear');
             $this->loadMigrationsFrom(paths: [ __DIR__.'/../Migration']);
         }

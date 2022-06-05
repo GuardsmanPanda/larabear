@@ -15,12 +15,12 @@ return new class extends Migration {
             $table->text(column: 'security_incident_description');
             $table->text(column: 'security_incident_remediation')->nullable();
             $table->text(column: 'security_incident_reference')->nullable();
-            $table->ipAddress(column: 'request_ip');
-            $table->text(column: 'user_id')->nullable();
-            $table->text(column: 'country_code')->nullable();
-            $table->text(column: 'http_method');
-            $table->text(column: 'http_path');
-            $table->text(column: 'http_query')->nullable();
+            $table->text(column: 'user_identifier')->nullable();
+            $table->ipAddress(column: 'request_ip')->nullable();
+            $table->text(column: 'request_country_code')->nullable();
+            $table->text(column: 'request_http_method')->nullable();
+            $table->text(column: 'request_http_path')->nullable();
+            $table->text(column: 'request_http_query')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }

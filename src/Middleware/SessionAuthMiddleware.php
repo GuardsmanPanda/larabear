@@ -13,6 +13,7 @@ use Illuminate\Support\ViewErrorBag;
 use Symfony\Component\HttpFoundation\Cookie;
 
 class SessionAuthMiddleware {
+    public string|int|null $userId = null;
     private array $config;
 
     public function __construct(private readonly SessionManager $manager, private readonly ViewFactory $view) {
@@ -23,6 +24,7 @@ class SessionAuthMiddleware {
         $session = $this->manager->driver();
         $session->setId($request->cookies->get(key: $this->config['cookie']));
         $this->startSession(request: $request, session: $session);
+        $this->userId = $session->get(key: 'logged_in_user_id');
 
         $response = $next($request);
 
