@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Enum;
 
-enum SecurityIncidentSeverityEnum: string {
+enum BearSecurityIncidentSeverityEnum: string {
     case BASELINE = 'BASELINE';
     case LOW = 'LOW';
     case MEDIUM = 'MEDIUM';
