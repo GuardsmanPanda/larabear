@@ -37,14 +37,5 @@
     },
     "config": {
         "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "GuardsmanPanda\\Larabear\\Provider\\BearServiceProvider"
-            ],
-            "aliases": {
-            }
-        }
     }
 }
