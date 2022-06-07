@@ -21,12 +21,12 @@ return new class extends Migration {
         });
 
         DB::table(table: 'bear_security_incident_enum')->insert([
-            ['slug' => 'BASELINE', 'name' => 'Baseline', 'description' => 'Incidents which are unlikely to cause any damage, and can safely be ignored.'],
-            ['slug' => 'LOW', 'name' => 'Low', 'description' => 'Incidents could are unlikely to be a risk, but should be investigated and resolved.'],
-            ['slug' => 'MEDIUM', 'name' => 'Medium', 'description' => 'Incidents could be a risk, or a sign of an attempted breach.'],
-            ['slug' => 'HIGH', 'name' => 'High', 'description' => 'Incidents which are likely to cause a breach of security, or a security incident.'],
-            ['slug' => 'CRITICAL', 'name' => 'Critical', 'description' => 'Incidents which MUST be investigated and resolved ASAP.'],
-            ['slug' => 'EMERGENCY', 'name' => 'Emergency', 'description' => 'This signifies that a security breach has already occurred, and must be investigated and resolved immediately.'],
+            ['slug' => 'BASELINE', 'security_incident_enum_name' => 'Baseline', 'security_incident_enum_description' => 'Incidents which are unlikely to cause any damage, and can safely be ignored.'],
+            ['slug' => 'LOW', 'security_incident_enum_name' => 'Low', 'security_incident_enum_description' => 'Incidents could are unlikely to be a risk, but should be investigated and resolved.'],
+            ['slug' => 'MEDIUM', 'security_incident_enum_name' => 'Medium', 'security_incident_enum_description' => 'Incidents could be a risk, or a sign of an attempted breach.'],
+            ['slug' => 'HIGH', 'security_incident_enum_name' => 'High', 'security_incident_enum_description' => 'Incidents which are likely to cause a breach of security, or a security incident.'],
+            ['slug' => 'CRITICAL', 'security_incident_enum_name' => 'Critical', 'security_incident_enum_description' => 'Incidents which MUST be investigated and resolved ASAP.'],
+            ['slug' => 'EMERGENCY', 'security_incident_enum_name' => 'Emergency', 'security_incident_enum_description' => 'This signifies that a security breach has already occurred, and must be investigated and resolved immediately.'],
         ]);
 
         Schema::table(table: 'bear_security_incident', callback: static function (Blueprint $table): void {

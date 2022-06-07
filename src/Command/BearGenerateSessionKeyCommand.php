@@ -13,7 +13,7 @@ class BearGenerateSessionKeyCommand extends Command {
     protected $hidden = true;
 
     public function handle(): void {
-        $this->info('Generating a new session key...');
+        $this->info(string: 'Generating a new session key...');
         $key = base64_encode(Encrypter::generateKey(cipher: Config::get('app.cipher')));
         $old_env = file_get_contents(App::environmentFilePath());
         $new_env = preg_replace(pattern: "/^LARABEAR_SESSION_KEY=.*$/m", replacement: 'LARABEAR_SESSION_KEY=' . $key, subject: $old_env);
@@ -21,6 +21,6 @@ class BearGenerateSessionKeyCommand extends Command {
             $new_env .= PHP_EOL . 'LARABEAR_SESSION_KEY=' . $key . PHP_EOL;
         }
         file_put_contents(filename: App::environmentFilePath(), data: $new_env);
-        $this->info("Session key generated successfully.");
+        $this->info(string: "Session key generated successfully.");
     }
 }
