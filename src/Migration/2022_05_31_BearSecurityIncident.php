@@ -45,12 +45,12 @@ return new class extends Migration {
 
             if (DB::getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql') {
                 $table->text(column: 'request_country_code')->nullable();
-                $table->text(column: 'request_http_method')->nullable();
+                $table->text(column: 'request_http_method');
                 $table->text(column: 'request_http_path')->nullable();
                 $table->text(column: 'request_http_query')->nullable();
             } else {
                 $table->string(column: 'request_country_code')->nullable();
-                $table->string(column: 'request_http_method')->nullable();
+                $table->string(column: 'request_http_method');
                 $table->string(column: 'request_http_path')->nullable();
                 $table->string(column: 'request_http_query')->nullable();
             }
