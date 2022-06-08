@@ -10,10 +10,7 @@ class UptimeKumaClient {
     public static function pushStatus(
         string|null $key,
         string      $msg = 'OK',
-        bool        $isUp = true,
-        float         $runtimeSeconds = null,
-        float         $runtimeMilliSeconds = null,
-        float       $runtimeMicroSeconds = null
+        bool        $isUp = true
     ): void {
         if ($key === null) {
             return; // We can safely ignore null keys, as the fail to fire event will be visible in Uptime Kuma.
@@ -24,12 +21,8 @@ class UptimeKumaClient {
             'msg' => $msg,
         ];
 
-        if ($runtimeSeconds !== null) {
-            $query['ping'] = (int)($runtimeSeconds * 1000);
-        } else if ($runtimeMilliSeconds !== null) {
-            $query['ping'] = (int)$runtimeMilliSeconds;
-        } else if ($runtimeMicroSeconds !== null) {
-            $query['ping'] = (int)($runtimeMicroSeconds / 1000);
+        if (defined(constant_name: 'LARAVEL_START')) {
+            $query['ping'] = (int)((microtime(true) - $GLOBALS['LARAVEL_START'])/1000);
         }
 
         try {
