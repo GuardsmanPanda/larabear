@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        $config = Config::get(key: 'bear.idempotency');
+        $config = Config::get(key: 'bear.user_table');
         if ($config === null) {
             throw new RuntimeException(message: 'bear.user_table is not configured, run "php artisan bear" to fix this problem.');
         }
