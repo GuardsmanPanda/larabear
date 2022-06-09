@@ -4,7 +4,9 @@ namespace GuardsmanPanda\Larabear\Service;
 
 use GuardsmanPanda\Larabear\Middleware\BearInitiateMiddleware;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class Resp {
     public static function SQLJson(string $sql, array $data = []): JsonResponse {
@@ -17,5 +19,10 @@ class Resp {
 
     public static function header(string $name, string $value): void {
         BearInitiateMiddleware::$headers[$name] = $value;
+    }
+
+    public static function redirectWithError(string $url, string $error, int $status = 303): RedirectResponse {
+        Session::flash(key: 'error', value: $error);
+        return new RedirectResponse(url: $url, status: $status);
     }
 }
