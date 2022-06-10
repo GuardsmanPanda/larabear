@@ -68,17 +68,6 @@ class Req {
         };
     }
 
-    public static function getAreaFromPath(): string {
-        return explode(separator: '/', string: self::$r->path())[0];
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    public static function allInput(): array {
-        return self::$r?->all() ?? throw new RuntimeException(message: 'No Request');
-    }
-
     /**
      * @return array<string, mixed>
      */
@@ -87,9 +76,9 @@ class Req {
         return empty($tmp) && !$allowEmpty ? throw new RuntimeException(message: 'No Json Data') : $tmp;
     }
 
-    public static function allQuery(bool $allowEmpty = false): array {
+    public static function allQuery(bool $allowEmpty = false): array|null {
         $tmp = self::$r?->query();
-        return empty($tmp) && !$allowEmpty ? throw new RuntimeException(message: 'No Query Data') : $tmp;
+        return empty($tmp) && !$allowEmpty ? throw new RuntimeException(message: 'No Query Data') : null;
     }
 
     public static function content(): string {
