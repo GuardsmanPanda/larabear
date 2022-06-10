@@ -37,6 +37,10 @@ class Req {
         return $value;
     }
 
+    public static function hostname(): string {
+        return self::$r?->getHost();
+    }
+
     public static function method(): string {
         return self::$r?->method() ?? 'CLI';
     }
