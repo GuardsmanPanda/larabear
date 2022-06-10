@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use function GuardsmanPanda\Larabear\Middleware\str_starts_with;
 
 class BearInitiateMiddleware {
     public static array $headers = ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
