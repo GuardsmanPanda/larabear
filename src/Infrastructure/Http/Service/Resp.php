@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
-use GuardsmanPanda\Larabear\Middleware\BearInitiateMiddleware;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearInitiateMiddleware;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;

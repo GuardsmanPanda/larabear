@@ -1,6 +1,6 @@
 <?php
 
-namespace GuardsmanPanda\Larabear\Middleware;
+namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use function GuardsmanPanda\Larabear\Middleware\str_starts_with;
 
 class BearInitiateMiddleware {
     public static array $headers = ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];

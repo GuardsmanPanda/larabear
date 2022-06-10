@@ -28,7 +28,7 @@ To enable the majority of the functionality make sure that the "BearInitiateMidd
 class HttpKernel extends Kernel {
     // These middlewares are run during every request to your application.
     protected $middleware = [
-        \GuardsmanPanda\Larabear\Middleware\BearInitiateMiddleware::class,
+        \GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearInitiateMiddleware::class,
         OtherMiddleware::class,
     ];
 ```
