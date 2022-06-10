@@ -84,12 +84,12 @@ class Req {
      */
     public static function allJson(bool $allowEmpty = false): array {
         $tmp = self::$r?->json()?->all();
-        return empty($tmp) && !$allowEmpty ? throw new RuntimeException(message: 'No JSON') : $tmp;
+        return empty($tmp) && !$allowEmpty ? throw new RuntimeException(message: 'No Json Data') : $tmp;
     }
 
     public static function allQuery(bool $allowEmpty = false): array {
         $tmp = self::$r?->query();
-        return empty($tmp) && !$allowEmpty ? throw new RuntimeException(message: 'No JSON') : $tmp;
+        return empty($tmp) && !$allowEmpty ? throw new RuntimeException(message: 'No Query Data') : $tmp;
     }
 
     public static function content(): string {
