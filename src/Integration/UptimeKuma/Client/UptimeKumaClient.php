@@ -22,7 +22,7 @@ class UptimeKumaClient {
         ];
 
         if (defined(constant_name: 'LARAVEL_START')) {
-            $query['ping'] = (int)((microtime(as_float: true) - LARAVEL_START)/1000);
+            $query['ping'] = (int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START'])*1000);
         }
 
         try {
