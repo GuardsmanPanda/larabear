@@ -30,13 +30,13 @@ return new class extends Migration {
         ]);
 
         Schema::table(table: 'bear_security_incident', callback: static function (Blueprint $table): void {
-            $table->foreign('security_incident_severity')->references('slug')->on('bear_severity');
+            $table->foreign('security_incident_severity', 'security_incident_severity_foreign')->references('slug')->on('bear_severity');
         });
     }
 
     public function down(): void {
         Schema::table(table: 'bear_security_incident', callback: static function (Blueprint $table): void {
-            $table->dropForeign('security_incident_severity');
+            $table->dropForeign('security_incident_severity_foreign');
         });
         Schema::dropIfExists('bear_severity');
     }
