@@ -48,11 +48,13 @@ return new class extends Migration {
                 $table->text(column: 'request_http_method');
                 $table->text(column: 'request_http_path')->nullable();
                 $table->text(column: 'request_http_query')->nullable();
+                $table->text(column: 'request_http_hostname')->nullable();
             } else {
                 $table->string(column: 'request_country_code')->nullable();
                 $table->string(column: 'request_http_method');
                 $table->string(column: 'request_http_path')->nullable();
                 $table->string(column: 'request_http_query')->nullable();
+                $table->string(column: 'request_http_hostname')->nullable();
             }
 
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
