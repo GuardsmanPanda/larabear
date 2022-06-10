@@ -1,8 +1,9 @@
 <?php
 
-namespace GuardsmanPanda\Larabear\Service;
+namespace GuardsmanPanda\Larabear\Infrastructure\Console\Service;
 
 use Symfony\Component\Console\Output\ConsoleOutput;
+use function GuardsmanPanda\Larabear\Service\str_starts_with;
 
 class ConsoleOutputFilter extends ConsoleOutput {
     private static bool $remove_next_line = false;

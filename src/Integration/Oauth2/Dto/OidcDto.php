@@ -1,8 +1,8 @@
 <?php
 
-namespace GuardsmanPanda\Larabear\Dto;
+namespace GuardsmanPanda\Larabear\Integration\Oauth2\Dto;
 
-use Illuminate\Support\Facades\DB;
+use GuardsmanPanda\Larabear\Infrastructure\Idempotency\Crud\BearIdempotencyCreator;
 
 class OidcDto {
     public function __construct(
@@ -17,7 +17,7 @@ class OidcDto {
     public static function fromJwt(string $jwt): self {
         $stdClass = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $jwt)[1]))), false, 512, JSON_THROW_ON_ERROR);
         $uniq = $stdClass->aud . ':' . $stdClass->jti;
-        DB::insert("INSERT INTO bear_idempotency (name_space, key) VALUES('oidc', ?)", [$uniq]);
+        BearIdempotencyCreator::create(idempotency_key: $uniq, persistForMonths: 1);
         return new self(
             user_identifier: $stdClass->sub,
             email: $stdClass->email,

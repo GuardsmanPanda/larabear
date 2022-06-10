@@ -19,6 +19,7 @@ return new class extends Migration {
             } else {
                 $table->string(column: 'idempotency_key')->primary();
             }
+            $table->integer(column: 'persist_for_months')->unsigned();
 
             if ($config['primary_key_type'] === 'uuid') {
                 $table->uuid(column: 'created_by_user_id')->nullable();

@@ -34,11 +34,12 @@ class HttpKernel extends Kernel {
 ```
 
  To filter console output from "php artisan" changed main artisan file to:
+
 ```php
 #!/usr/bin/env php
 <?php
 
-use GuardsmanPanda\Larabear\Service\ConsoleOutputFilter;
+use GuardsmanPanda\Larabear\Infrastructure\Console\Service\ConsoleOutputFilter;
 
 define('LARAVEL_START', microtime(true));
 

@@ -1,8 +1,9 @@
 <?php
 
-namespace GuardsmanPanda\Larabear\Service;
+namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
 use Carbon\CarbonImmutable;
+use GuardsmanPanda\Larabear\Service\ValidateAndParseValue;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use RuntimeException;
@@ -20,7 +21,7 @@ class Req {
             return null;
         }
         if (!is_string($value)) {
-            throw new RuntimeException("Header '$name' is missing or not a string");
+            throw new RuntimeException(message: "Header '$name' is missing or not a string");
         }
         return $value;
     }
@@ -31,7 +32,7 @@ class Req {
     public static function allHeaders(): array {
         $value = self::$r?->header();
         if (!is_array($value)) {
-            throw new RuntimeException('Headers not found');
+            throw new RuntimeException(message: 'Headers not found');
         }
         return $value;
     }
@@ -53,7 +54,7 @@ class Req {
     }
 
     public static function ipCountry(): string {
-        return self::hasHeader('CF_IPCOUNTRY') ? self::header('CF_IPCOUNTRY') : 'XX';
+        return self::hasHeader(name: 'CF_IPCOUNTRY') ? self::header(name: 'CF_IPCOUNTRY') : 'XX';
     }
 
     public static function isWriteRequest(): bool {
@@ -64,14 +65,14 @@ class Req {
     }
 
     public static function getAreaFromPath(): string {
-        return explode('/', self::$r->path())[0];
+        return explode(separator: '/', string: self::$r->path())[0];
     }
 
     /**
      * @return array<string, string>
      */
     public static function allInput(): array {
-        return self::$r?->all() ?? throw new RuntimeException('No Request');
+        return self::$r?->all() ?? throw new RuntimeException(message: 'No Request');
     }
 
     /**
@@ -79,16 +80,16 @@ class Req {
      */
     public static function allJson(bool $allowEmpty = false): array {
         $tmp = self::$r?->json()?->all();
-        return empty($tmp) && !$allowEmpty ? throw new RuntimeException('No JSON') : $tmp;
+        return empty($tmp) && !$allowEmpty ? throw new RuntimeException(message: 'No JSON') : $tmp;
     }
 
     public static function allQuery(bool $allowEmpty = false): array {
         $tmp = self::$r?->query();
-        return empty($tmp) && !$allowEmpty ? throw new RuntimeException('No JSON') : $tmp;
+        return empty($tmp) && !$allowEmpty ? throw new RuntimeException(message: 'No JSON') : $tmp;
     }
 
     public static function content(): string {
-        return self::$r?->getContent() ?? throw new RuntimeException('No Content');
+        return self::$r?->getContent() ?? throw new RuntimeException(message: 'No Content');
     }
 
     public static function has(string $key): bool {
@@ -98,7 +99,7 @@ class Req {
 
     public static function getString(string $name): ?string {
         if (!self::has($name)) {
-            throw new RuntimeException("No input field named: $name");
+            throw new RuntimeException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseString($val);
@@ -106,7 +107,7 @@ class Req {
 
     public static function getInt(string $name): ?int {
         if (!self::has($name)) {
-            throw new RuntimeException("No input field named: $name");
+            throw new RuntimeException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseInt($val);
@@ -114,7 +115,7 @@ class Req {
 
     public static function getFloat(string $name): ?float {
         if (!self::has($name)) {
-            throw new RuntimeException("No input field named: $name");
+            throw new RuntimeException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseFloat($val);
@@ -122,7 +123,7 @@ class Req {
 
     public static function getBool(string $name): ?bool {
         if (!self::has($name)) {
-            throw new RuntimeException("No input field named: $name");
+            throw new RuntimeException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseBool($val);
@@ -134,7 +135,7 @@ class Req {
      */
     public static function getArray(string $name): ?array {
         if (!self::has($name)) {
-            throw new RuntimeException("No input field named: $name");
+            throw new RuntimeException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseArray($val);
@@ -146,7 +147,7 @@ class Req {
      */
     public static function getJson(string $name): ?array {
         if (!self::has($name)) {
-            throw new RuntimeException("No input field named: $name");
+            throw new RuntimeException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseJson($val);
@@ -154,7 +155,7 @@ class Req {
 
     public static function getDate(string $name): ?CarbonImmutable {
         if (!self::has($name)) {
-            throw new RuntimeException("No input field named: $name");
+            throw new RuntimeException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseDate($val);
@@ -162,7 +163,7 @@ class Req {
 
     public static function getDateTime(string $name): ?CarbonImmutable {
         if (!self::has($name)) {
-            throw new RuntimeException("No input field named: $name");
+            throw new RuntimeException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseDateTime($val);
@@ -174,6 +175,6 @@ class Req {
                 return $file;
             }
         }
-        throw new RuntimeException("No input field named: $name");
+        throw new RuntimeException(message: "No input field named: $name");
     }
 }

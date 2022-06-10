@@ -3,7 +3,7 @@
 namespace GuardsmanPanda\Larabear\Middleware;
 
 use Closure;
-use GuardsmanPanda\Larabear\Service\Req;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
@@ -45,7 +45,7 @@ class BearInitiateMiddleware {
                 if (isset($data['refresh'])) {
                     $hh['Refresh'] = $data['refresh'];
                 }
-                return new Response($data['template'] ?? 'Service Unavailable', $data['status'] ?? 503, $hh);
+                return new Response(content: $data['template'] ?? 'Service Unavailable', status: $data['status'] ?? 503, headers: $hh);
             }
         }
 

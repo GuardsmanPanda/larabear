@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Service;
 
 
 class ShortUrlCodeService {
-    private const CHARS = '256789bcdfghjklmnpqrstvwxyz';
+    private const CHARS = '256789bcdfghjklmnpqrstvwxz';
 
     public static function generateNextCode(string $value): string {
         // Change value string into array of characters
@@ -37,6 +37,6 @@ class ShortUrlCodeService {
         }, array: $value_array);
 
         // join the array back into a string
-        return implode('', array_reverse(array: $value_array));
+        return implode(array: array_reverse(array: $value_array));
     }
 }

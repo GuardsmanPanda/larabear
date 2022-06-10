@@ -1,22 +1,22 @@
 <?php
 
-namespace GuardsmanPanda\Larabear\Crud;
+namespace GuardsmanPanda\Larabear\Infrastructure\Security\Crud;
 
-use GuardsmanPanda\Larabear\Enum\BearSecurityIncidentSeverityEnum;
-use GuardsmanPanda\Larabear\Service\Req;
+use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use JsonException;
 
 class BearSecurityIncidentCreator {
     public static function create(
-        string                           $namespace,
-        BearSecurityIncidentSeverityEnum $severity,
-        string                           $headline,
-        string                           $description,
-        string                           $remediation = null,
-        string                           $reference = null,
-        string|int                       $causedByUserId = null,
+        string           $namespace,
+        BearSeverityEnum $severity,
+        string           $headline,
+        string           $description,
+        string           $remediation = null,
+        string           $reference = null,
+        string|int       $causedByUserId = null,
     ): void {
         $query_json = null;
         try {
