@@ -10,8 +10,8 @@ use JsonException;
 
 class BearSecurityIncidentCreator {
     public static function create(
-        string           $namespace,
         BearSeverityEnum $severity,
+        string           $namespace,
         string           $headline,
         string           $description,
         string           $remediation = null,
@@ -20,7 +20,8 @@ class BearSecurityIncidentCreator {
     ): void {
         $query_json = null;
         try {
-            $query_json = json_encode(value: Req::allQuery(allowEmpty: true), flags: JSON_THROW_ON_ERROR);
+            $query = Req::allQueryData(allowEmpty: true);
+            $query_json = empty($query) ? null : json_encode(value: $query, flags: JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
             Log::error(message: 'Failed to encode query parameters: ' . $e->getMessage());
         }

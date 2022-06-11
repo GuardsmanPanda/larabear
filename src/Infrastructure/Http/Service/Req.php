@@ -72,13 +72,15 @@ class Req {
      * @return array<string, mixed>
      */
     public static function allJson(bool $allowEmpty = false): array {
+        if (!self::$r?->isJson()) {
+            throw new RuntimeException(message: 'Request does not have application/json content type');
+        }
         $tmp = self::$r?->json()?->all();
         return empty($tmp) && !$allowEmpty ? throw new RuntimeException(message: 'No Json Data') : $tmp;
     }
 
-    public static function allQuery(bool $allowEmpty = false): array|null {
-        $tmp = self::$r?->query();
-        return empty($tmp) && !$allowEmpty ? throw new RuntimeException(message: 'No Query Data') : null;
+    public static function allQueryData(bool $allowEmpty = false): array {
+        return  self::$r?->query() ?? [];
     }
 
     public static function content(): string {
