@@ -12,8 +12,8 @@ class Req {
     public static Request|null $r = null;
     private static string|int|null $user_id = null;
 
-    public static function setUserId(string|int $user_id): void {
-        self::$user_id = $user_id;
+    public static function setUserId(string|int $userId): void {
+        self::$user_id = $userId;
     }
     public static function getUserId(): string|int|null {
         return self::$user_id;
