@@ -8,6 +8,8 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use JsonException;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -145,5 +147,34 @@ class BearInitiateMiddleware {
             }
             $request->cookies->set($key, substr($value, strlen($expected_prefix)));
         }
+    }
+
+
+    public function terminate(Request $request, Response $response): void {
+        if (Config::get('bear.log_request_errors') !== true) {
+            return;
+        }
+        $status_code = $response->getStatusCode();
+
+        $time = -1;
+        if (defined(constant_name: 'LARAVEL_START')) {
+            $time = (int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1000);
+        }
+
+        $query_json = null;
+        if ($status_code >= 400) {
+            try {
+                $query = Req::allQueryData();
+                $query_json = empty($query) ? null : json_encode(value: $query, flags: JSON_THROW_ON_ERROR);
+            } catch (JsonException $e) {
+                Log::error(message: 'Failed to encode query parameters: ' . $e->getMessage());
+            }
+        }
+
+        DB::insert("
+            INSERT INTO bear_access_token_log (request_ip, request_country_code, request_http_method, request_http_path, request_http_query, request_http_hostname, response_status_code, response_body, response_time_in_milliseconds, application_access_token_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [Req::ip(), Req::ipCountry(), Req::method(), Req::path(), $query_json, Req::hostname(), $status_code, $status_code >= 400 ? $response->getContent() : null, $time, self::$access_token_id]
+        );
     }
 }
