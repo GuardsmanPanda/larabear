@@ -9,14 +9,22 @@ use Illuminate\Http\UploadedFile;
 use RuntimeException;
 
 class Req {
-    public static ?Request $r = null;
+    public static Request|null $r = null;
+    private static string|int|null $user_id = null;
+
+    public static function setUserId(string|int $user_id): void {
+        self::$user_id = $user_id;
+    }
+    public static function getUserId(): string|int|null {
+        return self::$user_id;
+    }
 
     public static function hasHeader(string $name): bool {
-        return self::$r?->hasHeader($name) ?? false;
+        return self::$r?->hasHeader($name);
     }
 
     public static function header(string $name, bool $nullIfMissing = false): string|null {
-        $value = self::$r?->header($name);
+        $value = self::$r->header($name);
         if ($value === null && $nullIfMissing) {
             return null;
         }
@@ -79,7 +87,7 @@ class Req {
         return empty($tmp) && !$allowEmpty ? throw new RuntimeException(message: 'No Json Data') : $tmp;
     }
 
-    public static function allQueryData(bool $allowEmpty = false): array {
+    public static function allQueryData(): array {
         return  self::$r?->query() ?? [];
     }
 
