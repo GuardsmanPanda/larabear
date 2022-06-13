@@ -29,7 +29,6 @@ return new class extends Migration {
                 $table->string(column: 'request_http_path')->nullable();
             }
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->foreign('created_by_user_id')->references($config['primary_key_column'])->on($config['table_name']);
         });
     }
 

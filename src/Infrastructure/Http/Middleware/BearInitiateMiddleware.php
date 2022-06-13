@@ -156,12 +156,6 @@ class BearInitiateMiddleware {
         }
         $status_code = $response->getStatusCode();
 
-        $time = -1;
-        if (defined(constant_name: 'LARAVEL_START')) {
-            $time = (int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1000);
-        }
-
-        $query_json = null;
         if ($status_code >= 400) {
             try {
                 $query = Req::allQueryData();
@@ -170,11 +164,5 @@ class BearInitiateMiddleware {
                 Log::error(message: 'Failed to encode query parameters: ' . $e->getMessage());
             }
         }
-
-        DB::insert("
-            INSERT INTO bear_access_token_log (request_ip, request_country_code, request_http_method, request_http_path, request_http_query, request_http_hostname, response_status_code, response_body, response_time_in_milliseconds, application_access_token_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            [Req::ip(), Req::ipCountry(), Req::method(), Req::path(), $query_json, Req::hostname(), $status_code, $status_code >= 400 ? $response->getContent() : null, $time, self::$access_token_id]
-        );
     }
 }

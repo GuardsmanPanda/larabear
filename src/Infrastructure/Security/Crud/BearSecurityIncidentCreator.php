@@ -20,7 +20,7 @@ class BearSecurityIncidentCreator {
     ): void {
         $query_json = null;
         try {
-            $query = Req::allQueryData(allowEmpty: true);
+            $query = Req::allQueryData();
             $query_json = empty($query) ? null : json_encode(value: $query, flags: JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
             Log::error(message: 'Failed to encode query parameters: ' . $e->getMessage());
