@@ -1,27 +1,40 @@
 # Larabear
 
 Make Laravel strong like bear!
-
+***
 ## Installation
 
 You can install the package via composer:
 
+### Step 1
 ```bash
 composer require guardsmanpanda/larabear
 ```
 
-Remember to publish the required config file:
+### Step 2
+Add the Service provider to config/app.php:
+```php
+    'providers' => [
+        Illuminate\Auth\AuthServiceProvider::class,
+        Illuminate\Broadcasting\BroadcastServiceProvider::class,
+        ...
+        \GuardsmanPanda\Larabear\Provider\BearServiceProvider::class,
+    ],
+```
+
+### Step 3
+Publish the required config file:
 ```bash
 php artisan vendor:publish --tag=bear
 ```
 
+### Step 4
 To test and verify that the system is configured properly you can run 
 ```bash
 php artisan bear
 ```
 
-
-
+### Step 5
 To enable the majority of the functionality make sure that the "BearInitiateMiddleware" is enabled on all routes
 
 ```php
@@ -33,8 +46,8 @@ class HttpKernel extends Kernel {
     ];
 ```
 
+### Step 6
  To filter console output from "php artisan" changed main artisan file to:
-
 ```php
 #!/usr/bin/env php
 <?php
@@ -52,6 +65,7 @@ $status = $kernel->handle($input = new Symfony\Component\Console\Input\ArgvInput
 $kernel->terminate($input, $status);
 exit($status);
 ```
+***
 ## Usage
 You can get proper type check data from the request by using the "Req" class:
 ```php
@@ -59,15 +73,14 @@ class MyController extends Controller {
     public function myMethod(): JsonResponse {
         $data = Req::getString('data');
 ```
-
+***
 ### Security
 
 If you discover any security related issues, please email guardsmanpanda@gmail.com instead of using the issue tracker.
-
+***
 ## Credits
 
 -   [Bjørn Dons](https://github.com/guardsmanpanda)
-
+***
 ## License
-
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
