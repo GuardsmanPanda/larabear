@@ -63,6 +63,6 @@ return new class extends Migration {
     }
 
     public function down(): void {
-        Schema::dropIfExists('bear_security_incident');
+        Schema::dropIfExists(table: 'bear_security_incident');
     }
 };
