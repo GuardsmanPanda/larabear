@@ -3,7 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
 use Carbon\CarbonImmutable;
-use GuardsmanPanda\Larabear\Service\ValidateAndParseValue;
+use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use RuntimeException;

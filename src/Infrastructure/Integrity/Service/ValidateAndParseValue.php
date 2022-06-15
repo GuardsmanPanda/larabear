@@ -1,6 +1,6 @@
 <?php
 
-namespace GuardsmanPanda\Larabear\Service;
+namespace GuardsmanPanda\Larabear\Infrastructure\Integrity\Service;
 
 use Carbon\CarbonImmutable;
 use InvalidArgumentException;
@@ -17,7 +17,7 @@ class ValidateAndParseValue {
 
 
     public static function parseFloat(mixed $value, string $errorMessage = null): float {
-        if (is_float($value) || (is_string($value) && is_numeric($value))) {
+        if (is_numeric($value)) {
             return (float)$value;
         }
         $msg = "$value is not a float, type: " . gettype($value);
