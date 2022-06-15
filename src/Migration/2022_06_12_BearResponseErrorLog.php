@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::create(table: 'bear_request_error_log', callback: static function (Blueprint $table) {
+        Schema::create(table: 'bear_response_error_log', callback: static function (Blueprint $table) {
             $config = Config::get(key: 'bear.user_table');
             if ($config === null) {
                 throw new RuntimeException(message: 'bear.user_table is not configured, run "php artisan bear" to fix this problem.');
@@ -35,6 +35,6 @@ return new class extends Migration {
     }
 
     public function down(): void {
-        Schema::dropIfExists(table: 'bear_request_error_log');
+        Schema::dropIfExists(table: 'bear_response_error_log');
     }
 };
