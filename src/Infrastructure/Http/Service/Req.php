@@ -7,6 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseVal
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use InvalidArgumentException;
+use stdClass;
 
 class Req {
     public static Request|null $r = null;
@@ -158,9 +159,9 @@ class Req {
 
     /**
      * @param string $name
-     * @return array<string, mixed>|null
+     * @return stdClass|null
      */
-    public static function getJson(string $name): ?array {
+    public static function getJson(string $name): stdClass|null {
         if (!self::has($name)) {
             throw new InvalidArgumentException(message: "No input field named: $name");
         }
