@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Integrity\Service;
 
 use Carbon\CarbonImmutable;
 use InvalidArgumentException;
+use stdClass;
 use Throwable;
 
 class ValidateAndParseValue {
@@ -34,7 +35,7 @@ class ValidateAndParseValue {
     }
 
 
-    public static function parseJson(string|array $value, string $errorMessage = null): array {
+    public static function parseJson(string|array $value, string $errorMessage = null): stdClass|array {
         if (is_array($value)) {
             return $value;
         }
