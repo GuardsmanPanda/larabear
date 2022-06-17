@@ -11,15 +11,6 @@ use stdClass;
 
 class Req {
     public static Request|null $r = null;
-    private static string|int|null $user_id = null;
-
-    public static function setUserId(string|int|null $userId): void {
-        self::$user_id = $userId;
-    }
-
-    public static function getUserId(): string|int|null {
-        return self::$user_id;
-    }
 
     public static function hasHeader(string $name): bool {
         return self::$r?->hasHeader($name);

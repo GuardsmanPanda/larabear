@@ -3,12 +3,12 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 
 use Closure;
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use JsonException;
@@ -29,8 +29,9 @@ class BearInitiateMiddleware {
     }
 
     public function handle(Request $request, Closure $next) {
+        BearGlobalStateService::clearState();
         //----------------------------------------------------------------------------------------------------------
-        //  First Handle maintenance mode
+        //  Handle maintenance mode
         //----------------------------------------------------------------------------------------------------------
         if ($this->app->isDownForMaintenance()) {
             try {
@@ -54,7 +55,7 @@ class BearInitiateMiddleware {
         //----------------------------------------------------------------------------------------------------------
         //  Init the Req class and set headers to ensure browser does not store data if endpoint is auth secured.
         //----------------------------------------------------------------------------------------------------------
-        Req::$r = $request;
+        BearGlobalStateService::setRequest($request);
         if ($request->bearerToken() !== null || $request->cookie(Config::get('session.cookie')) !== null) {
             self::$headers['Cache-Control'] = 'must-revalidate, no-store, private';
         }

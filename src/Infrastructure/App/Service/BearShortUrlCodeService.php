@@ -1,9 +1,9 @@
 <?php
 
-namespace GuardsmanPanda\Larabear\Service;
+namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 
-class ShortUrlCodeService {
+class BearShortUrlCodeService {
     private const CHARS = '256789bcdfghjklmnpqrstvwxz';
 
     public static function generateNextCode(string $value): string {

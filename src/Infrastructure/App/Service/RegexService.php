@@ -1,6 +1,6 @@
 <?php
 
-namespace GuardsmanPanda\Larabear\Service;
+namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 use RuntimeException;
 
