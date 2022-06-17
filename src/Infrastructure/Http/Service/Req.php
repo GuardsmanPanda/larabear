@@ -6,8 +6,9 @@ use Carbon\CarbonImmutable;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
-use InvalidArgumentException;
+use RuntimeException;
 use stdClass;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class Req {
     public static Request|null $r = null;
@@ -22,7 +23,7 @@ class Req {
             return null;
         }
         if (!is_string($value)) {
-            throw new InvalidArgumentException(message: "Header '$name' is missing or not a string");
+            throw new BadRequestHttpException(message: "Header '$name' is missing or not a string");
         }
         return $value;
     }
@@ -33,7 +34,7 @@ class Req {
     public static function allHeaders(): array {
         $value = self::$r?->header();
         if (!is_array($value)) {
-            throw new InvalidArgumentException(message: 'Headers not found');
+            throw new RuntimeException(message: 'Headers not found');
         }
         return $value;
     }
@@ -74,10 +75,10 @@ class Req {
      */
     public static function allJson(bool $allowEmpty = false): array {
         if (!self::$r?->isJson()) {
-            throw new InvalidArgumentException(message: 'Request does not have application/json content type');
+            throw new BadRequestHttpException(message: 'Request does not have application/json content type');
         }
         $tmp = self::$r?->json()?->all();
-        return empty($tmp) && !$allowEmpty ? throw new InvalidArgumentException(message: 'No Json Data') : $tmp;
+        return empty($tmp) && !$allowEmpty ? throw new BadRequestHttpException(message: 'No Json Data') : $tmp;
     }
 
     public static function allQueryData(): array {
@@ -85,7 +86,7 @@ class Req {
     }
 
     public static function content(): string {
-        return self::$r?->getContent() ?? throw new InvalidArgumentException(message: 'No Content');
+        return self::$r?->getContent() ?? throw new BadRequestHttpException(message: 'No Content');
     }
 
 
@@ -98,7 +99,7 @@ class Req {
             return false;
         }
         if ($throwOnNull && self::$r?->get($key) === null) {
-            throw new InvalidArgumentException(message: "'$key' is null but must be set to a value.");
+            throw new BadRequestHttpException(message: "'$key' is null but must be set to a value.");
         }
         return true;
     }
@@ -106,7 +107,7 @@ class Req {
 
     public static function getString(string $name): ?string {
         if (!self::has($name)) {
-            throw new InvalidArgumentException(message: "No input field named: $name");
+            throw new BadRequestHttpException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseString($val);
@@ -114,7 +115,7 @@ class Req {
 
     public static function getInt(string $name): ?int {
         if (!self::has($name)) {
-            throw new InvalidArgumentException(message: "No input field named: $name");
+            throw new BadRequestHttpException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseInt($val);
@@ -122,7 +123,7 @@ class Req {
 
     public static function getFloat(string $name): ?float {
         if (!self::has($name)) {
-            throw new InvalidArgumentException(message: "No input field named: $name");
+            throw new BadRequestHttpException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseFloat($val);
@@ -130,7 +131,7 @@ class Req {
 
     public static function getBool(string $name): ?bool {
         if (!self::has($name)) {
-            throw new InvalidArgumentException(message: "No input field named: $name");
+            throw new BadRequestHttpException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseBool($val);
@@ -142,27 +143,23 @@ class Req {
      */
     public static function getArray(string $name): ?array {
         if (!self::has($name)) {
-            throw new InvalidArgumentException(message: "No input field named: $name");
+            throw new BadRequestHttpException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseArray($val);
     }
 
-    /**
-     * @param string $name
-     * @return stdClass|null
-     */
-    public static function getJson(string $name): stdClass|null {
+    public static function getJson(string $name): array|null {
         if (!self::has($name)) {
-            throw new InvalidArgumentException(message: "No input field named: $name");
+            throw new BadRequestHttpException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
-        return $val === null ? null : ValidateAndParseValue::parseJson($val);
+        return $val === null ? null : ValidateAndParseValue::parseJsonToArray($val);
     }
 
     public static function getDate(string $name): ?CarbonImmutable {
         if (!self::has($name)) {
-            throw new InvalidArgumentException(message: "No input field named: $name");
+            throw new BadRequestHttpException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseDate($val);
@@ -170,7 +167,7 @@ class Req {
 
     public static function getDateTime(string $name): ?CarbonImmutable {
         if (!self::has($name)) {
-            throw new InvalidArgumentException(message: "No input field named: $name");
+            throw new BadRequestHttpException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
         return $val === null ? null : ValidateAndParseValue::parseDateTime($val);
@@ -182,6 +179,6 @@ class Req {
                 return $file;
             }
         }
-        throw new InvalidArgumentException(message: "No input field named: $name");
+        throw new BadRequestHttpException(message: "No input field named: $name");
     }
 }

@@ -35,12 +35,21 @@ class ValidateAndParseValue {
     }
 
 
-    public static function parseJson(string|array $value, string $errorMessage = null): stdClass|array {
+    public static function parseJsonToArray(string|array $value, string $errorMessage = null): array {
         if (is_array($value)) {
             return $value;
         }
         try {
-            return json_decode($value, false, 512, JSON_THROW_ON_ERROR);
+            return json_decode(json: $value, associative: true, depth: 512, flags: JSON_THROW_ON_ERROR);
+        } catch (Throwable $e) {
+            $msg = "Invalid JSON: " . $e->getMessage();
+            throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
+        }
+    }
+
+    public static function parseJsonToStdClass(string $value, string $errorMessage = null): stdClass {
+        try {
+            return json_decode(json: $value, associative: false, depth: 512, flags: JSON_THROW_ON_ERROR);
         } catch (Throwable $e) {
             $msg = "Invalid JSON: " . $e->getMessage();
             throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
