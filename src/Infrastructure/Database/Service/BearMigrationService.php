@@ -3,14 +3,20 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Config;
+use RuntimeException;
 
 class BearMigrationService {
-    public static function buildUserReferencingColumn(Blueprint $table, string $columnName, string $userTableName = 'users', string $userTableColumnName = 'id', string $columnType = 'uuid', bool $nullable = true): void {
-        if ($columnType === 'uuid') {
+    public static function buildUserReferencingColumn(Blueprint $table, string $columnName, bool $nullable = true): void {
+        $config = Config::get(key: 'bear.user_table');
+        if ($config === null) {
+            throw new RuntimeException(message: 'bear.user_table is not configured, run "php artisan bear" to fix this problem.');
+        }
+        if ($config['primary_key_type'] === 'uuid') {
             $column = $table->uuid(column: $columnName);
-        } else if ($columnType === 'biginteger') {
+        } else if ($config['primary_key_type'] === 'biginteger') {
             $column = $table->bigInteger(column: $columnName)->unsigned();
-        } else if ($columnType === 'integer') {
+        } else if ($config['primary_key_type'] === 'integer') {
             $column = $table->integer(column: $columnName)->unsigned();
         } else {
             $column = $table->text(column: $columnName);
@@ -18,6 +24,6 @@ class BearMigrationService {
         if ($nullable) {
             $column->nullable();
         }
-        $table->foreign($columnName)->references($userTableColumnName)->on($userTableName);
+        $table->foreign($columnName)->references($config['primary_key_column'])->on($config['table_name']);
     }
 }
