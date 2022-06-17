@@ -149,12 +149,25 @@ class Req {
         return $val === null ? null : ValidateAndParseValue::parseArray($val);
     }
 
-    public static function getJson(string $name): array|null {
+    /**
+     * @param string $name
+     * @return stdClass|null
+     */
+    public static function getJson(string $name): stdClass|null {
         if (!self::has($name)) {
             throw new BadRequestHttpException(message: "No input field named: $name");
         }
         $val = self::$r->get($name);
-        return $val === null ? null : ValidateAndParseValue::parseJsonToArray($val);
+        if ($val === null) {
+            return null;
+        }
+        if (is_array($val)) {
+            return (object)ValidateAndParseValue::parseJsonToArray($val);
+        }
+        if (is_string($val)) {
+            return ValidateAndParseValue::parseJsonToStdClass($val);
+        }
+        throw new BadRequestHttpException(message: "Input field named: $name, is not a json string or json array");
     }
 
     public static function getDate(string $name): ?CarbonImmutable {
