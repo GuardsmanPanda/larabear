@@ -24,6 +24,7 @@ class BearMigrationService {
         if ($nullable) {
             $column->nullable();
         }
+        $column->index();
         $table->foreign($columnName)->references($config['primary_key_column'])->on($config['table_name']);
     }
 }

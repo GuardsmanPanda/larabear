@@ -22,6 +22,19 @@ class BearValidateConfigurationCommand extends Command {
         $this->output->writeln(messages: '');
     }
 
+    private function validateResponseErrorLogSettings(): void {
+        ConsoleService::printH2(headline: 'Validating response error log settings');
+        $config = Config::get(key: 'bear.response_error_log');
+        if ($config === null) {
+            ConsoleService::printTestResult(testName: '', warningMessage: 'Missing response_error_log in bear.php file');
+            return;
+        }
+        ConsoleService::printTestResult(
+            testName: "'enabled' should be set in response error log settings.",
+            errorMessage: isset($config['enabled']) ? null : 'Missing enabled in response_error_log in bear.php file should be true or false'
+        );
+    }
+
 
     private function validateSessionSettings(): void {
         ConsoleService::printH2(headline: 'Validating session settings');
@@ -71,6 +84,7 @@ class BearValidateConfigurationCommand extends Command {
             errorMessage: array_key_exists(key: 'base_url', array: $config) ? null : "Missing uptime kuma base url, add 'base_url' to 'uptime_kuma' in config/bear.php"
         );
     }
+
 
     private function validateUserTableSettings(): void {
         ConsoleService::printH2(headline: 'Validating user table settings');

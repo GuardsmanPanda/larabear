@@ -29,10 +29,6 @@ return new class extends Migration {
             ['slug' => 'CRITICAL', 'severity_name' => 'Critical', 'severity_description' => 'Something is critically broken, MUST be investigated.', 'severity_level' => 2],
             ['slug' => 'EMERGENCY', 'severity_name' => 'Emergency', 'severity_description' => 'All hands situation, MUST be resolved immediately.', 'severity_level' => 1],
         ]);
-
-        Schema::table(table: 'bear_security_incident', callback: static function (Blueprint $table): void {
-            $table->foreign('security_incident_severity', 'security_incident_severity_foreign')->references('slug')->on('bear_severity');
-        });
     }
 
     public function down(): void {
