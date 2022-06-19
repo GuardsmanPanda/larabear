@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Bear\Models;
+namespace GuardsmanPanda\Larabear\Infrastructure\App\Model;
 
 use Carbon\CarbonInterface;
 use Closure;

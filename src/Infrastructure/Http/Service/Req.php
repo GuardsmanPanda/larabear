@@ -63,6 +63,14 @@ class Req {
         return self::hasHeader(name: 'CF_IPCOUNTRY') ? self::header(name: 'CF_IPCOUNTRY') : 'XX';
     }
 
+    public static function actionName(): string|null {
+        return self::$r?->route()?->getActionName();
+    }
+
+    public static function uri(): string|null {
+        return self::$r?->route()?->uri();
+    }
+
     public static function isWriteRequest(): bool {
         return match (self::method()) {
             'GET', 'HEAD' => false,

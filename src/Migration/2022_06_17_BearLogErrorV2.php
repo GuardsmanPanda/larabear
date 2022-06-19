@@ -35,6 +35,7 @@ return new class extends Migration {
             }
             $table->text(column: 'request_http_path')->nullable();
             $table->text(column: 'request_http_query')->nullable();
+            $table->text(column: 'app_action_name')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->foreign('error_severity', 'error_severity_foreign')->references('slug')->on('bear_severity');
         });

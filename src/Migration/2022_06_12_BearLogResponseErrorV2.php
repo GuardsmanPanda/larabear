@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->text(column: 'request_http_path');
             $table->text(column: 'request_http_query')->nullable();
             $table->text(column: 'request_http_hostname');
+            $table->text(column: 'app_action_name')->nullable();
             $table->text(column: 'response_body');
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
