@@ -58,6 +58,9 @@ class ValidateAndParseValue {
 
 
     public static function parseBool(mixed $value, string $errorMessage = null): bool {
+        if (is_string($value)) {
+            $value = strtolower($value);
+        }
         return match ($value) {
             'true', true => true,
             'false', false => false,
@@ -74,7 +77,7 @@ class ValidateAndParseValue {
             $msg = "$value is not a string, type: " . gettype($value);
             throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
         }
-        $arr = explode('-', $value);
+        $arr = explode(separator: '-', string: $value);
         if (count($arr) !== 3 || strlen($arr[0]) !== 4 || strlen($arr[1]) !== 2 || strlen($arr[2]) !== 2) {
             $msg = "Invalid date format: $value, must be YYYY-MM-DD";
             throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
@@ -83,7 +86,7 @@ class ValidateAndParseValue {
         $month = (int)$arr[1];
         $day = (int)$arr[2];
         if (!checkdate(month: $month, day: $day, year: $year)) {
-            throw new InvalidArgumentException("Invalid date: $value");
+            throw new InvalidArgumentException(message: "Invalid date: $value");
         }
         return CarbonImmutable::createFromDate(year: $year, month: $month, day: $day);
     }
