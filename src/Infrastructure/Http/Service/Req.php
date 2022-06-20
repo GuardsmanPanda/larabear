@@ -89,7 +89,7 @@ class Req {
         return empty($tmp) && !$allowEmpty ? throw new BadRequestHttpException(message: 'No Json Data') : $tmp;
     }
 
-    public static function allFormData(string $key, bool $allowEmpty = false): array {
+    public static function allFormData(bool $allowEmpty = false): array {
         $tmp = self::$r?->request?->all();
         return empty($tmp) && !$allowEmpty ? throw new BadRequestHttpException(message: 'No Form Data') : $tmp;
     }
