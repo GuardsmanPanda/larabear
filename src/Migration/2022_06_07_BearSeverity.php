@@ -32,9 +32,6 @@ return new class extends Migration {
     }
 
     public function down(): void {
-        Schema::table(table: 'bear_security_incident', callback: static function (Blueprint $table): void {
-            $table->dropForeign('security_incident_severity_foreign');
-        });
         Schema::dropIfExists(table: 'bear_severity');
     }
 };

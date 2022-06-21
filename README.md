@@ -1,3 +1,7 @@
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/guardsmanpanda/larabear.svg?style=flat-square)](https://packagist.org/packages/guardsmanpanda/larabear)
+[![Total Downloads](https://img.shields.io/packagist/dt/guardsmanpanda/larabear.svg?style=flat-square)](https://packagist.org/packages/guardsmanpanda/larabear)
+
+
 # Larabear
 
 Make Laravel strong like bear!
