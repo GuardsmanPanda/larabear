@@ -42,6 +42,6 @@ return new class extends Migration {
     }
 
     public function down(): void {
-        Schema::dropIfExists(table: 'bear_error_log');
+        Schema::dropIfExists(table: 'bear_log_error');
     }
 };
