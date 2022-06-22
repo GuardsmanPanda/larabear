@@ -13,6 +13,7 @@ class BearGlobalStateService {
 
 
     public static function clearState(): void {
+        self::$accessTokenId = null;
         self::$apiPrimaryKey = null;
         self::$request = null;
         self::$userId = null;
