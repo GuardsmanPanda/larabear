@@ -6,8 +6,9 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Http\Request;
 
 class BearGlobalStateService {
-    private static string|int|null $userId = null;
+    private static string|null $accessTokenId = null;
     private static string|null $apiPrimaryKey = null;
+    private static string|int|null $userId = null;
     private static Request|null $request = null;
 
 
@@ -25,6 +26,15 @@ class BearGlobalStateService {
 
     public static function getUserId(): string|int|null {
         return self::$userId;
+    }
+
+
+    public static function setAccessTokenId(string|null $accessTokenId): void {
+        self::$accessTokenId = $accessTokenId;
+    }
+
+    public static function getAccessTokenId(): string|null {
+        return self::$accessTokenId;
     }
 
 
