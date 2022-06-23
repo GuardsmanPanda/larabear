@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
 class BearMigrationService {

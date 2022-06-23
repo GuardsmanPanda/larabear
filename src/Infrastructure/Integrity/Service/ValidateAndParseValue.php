@@ -122,7 +122,7 @@ class ValidateAndParseValue {
     }
 
 
-    public static function getFromArray(mixed $value, array $array, string $errorMessage = null): mixed {
+    public static function mustBeInArray(mixed $value, array $array, string $errorMessage = null): mixed {
         if (in_array(needle: $value, haystack: $array, strict: true)) {
             return $value;
         }
