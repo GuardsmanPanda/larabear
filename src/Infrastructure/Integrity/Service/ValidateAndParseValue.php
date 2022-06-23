@@ -122,9 +122,9 @@ class ValidateAndParseValue {
     }
 
 
-    public static function ensureInArray(mixed $value, array $array, string $errorMessage = null): bool {
+    public static function getFromArray(mixed $value, array $array, string $errorMessage = null): mixed {
         if (in_array(needle: $value, haystack: $array, strict: true)) {
-            return true;
+            return $value;
         }
         $msg = "Value $value is not in array: " . implode(', ', $array);
         throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
