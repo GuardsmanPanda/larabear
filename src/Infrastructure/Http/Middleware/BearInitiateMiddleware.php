@@ -5,12 +5,10 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogResponseErrorCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use JsonException;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -154,8 +152,8 @@ class BearInitiateMiddleware {
 
     public function terminate(Request $request, Response $response): void {
         $statusCode = $response->getStatusCode();
-        if ($statusCode >= 400 && Config::get(key: 'response_error_log.enabled') === true) {
-            if (in_array($statusCode, Config::get(key: 'response_error_log.include_status_codes'), true)) {
+        if ($statusCode >= 400 && Config::get(key: 'bear.response_error_log.enabled') === true) {
+            if (in_array(needle: $statusCode, haystack: Config::get(key: 'bear.response_error_log.ignore_response_codes', default: []), strict: true)) {
                 return;
             }
             BearLogResponseErrorCreator::create(statusCode: $response->getStatusCode(), responseBody: $response->getContent());
