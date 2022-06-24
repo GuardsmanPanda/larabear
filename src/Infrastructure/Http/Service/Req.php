@@ -12,6 +12,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class Req {
     public static Request|null $r = null;
+    public static array $variables = [];
 
     public static function hasHeader(string $name): bool {
         return self::$r?->hasHeader($name);
@@ -206,5 +207,16 @@ class Req {
             }
         }
         throw new BadRequestHttpException(message: "No input field named: $name");
+    }
+
+    public static function setVariable(string $name, mixed $value): void {
+        self::$variables[$name] = $value;
+    }
+
+    public static function getVariable(string $name): mixed {
+        if (isset(self::$variables[$name])) {
+            throw new BadRequestHttpException(message: "No variable named: $name");
+        }
+        return self::$variables[$name];
     }
 }
