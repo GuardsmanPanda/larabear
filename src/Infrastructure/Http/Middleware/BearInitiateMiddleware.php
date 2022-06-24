@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogResponseErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Encryption\Encrypter;
@@ -152,18 +153,12 @@ class BearInitiateMiddleware {
 
 
     public function terminate(Request $request, Response $response): void {
-        if (Config::get('bear.log_request_errors') !== true) {
-            return;
-        }
-        $status_code = $response->getStatusCode();
-
-        if ($status_code >= 400) {
-            try {
-                $query = Req::allQueryData();
-                $query_json = empty($query) ? null : json_encode(value: $query, flags: JSON_THROW_ON_ERROR);
-            } catch (JsonException $e) {
-                Log::error(message: 'Failed to encode query parameters: ' . $e->getMessage());
+        $statusCode = $response->getStatusCode();
+        if ($statusCode >= 400 && Config::get(key: 'response_error_log.enabled') === true) {
+            if (in_array($statusCode, Config::get(key: 'response_error_log.include_status_codes'), true)) {
+                return;
             }
+            BearLogResponseErrorCreator::create(statusCode: $response->getStatusCode(), responseBody: $response->getContent());
         }
     }
 }
