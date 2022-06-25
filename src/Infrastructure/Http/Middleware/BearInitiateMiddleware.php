@@ -74,9 +74,13 @@ class BearInitiateMiddleware {
         //----------------------------------------------------------------------------------------------------------
         //  Apply headers to response
         //----------------------------------------------------------------------------------------------------------
-        if (method_exists($resp, 'header')) {
+        if (method_exists(object_or_class: $resp, method: 'header')) {
             foreach (self::$headers as $key => $value) {
                 $resp->header($key, $value);
+            }
+        } else if (property_exists(object_or_class: $resp, property: 'headers') && method_exists(object_or_class: $resp->headers, method: 'set')) {
+            foreach (self::$headers as $key => $value) {
+                $resp->headers->set($key, $value);
             }
         }
         return $resp;
