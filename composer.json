@@ -23,7 +23,8 @@
         "illuminate/database": "^v8.83.12 || ^9.16",
         "illuminate/encryption": "^v8.83.12 || ^9.16",
         "illuminate/http": "^v8.83.12 || ^9.16",
-        "illuminate/support": "^v8.83.12 || ^9.16"
+        "illuminate/support": "^v8.83.12 || ^9.16",
+        "illuminate/view": "^v8.83.12 || ^9.16"
     },
     "autoload": {
         "psr-4": {
