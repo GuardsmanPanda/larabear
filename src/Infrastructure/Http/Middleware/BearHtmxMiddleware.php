@@ -12,7 +12,7 @@ class BearHtmxMiddleware {
     public function handle(Request $request, Closure $next): Response {
         $res = $next($request);
         if (Req::method() === 'GET' && Req::header(name: 'hx-request', nullIfMissing: true) === null && str_contains(Req::header(name: 'accept', nullIfMissing: true), 'html')) {
-            return new Response(View::make(view:'shared::layout.layout', data: [
+            return new Response(View::make(view:'layout.layout', data: [
                 'content' => $res->getContent(),
             ])->render());
         }
