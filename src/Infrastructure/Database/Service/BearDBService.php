@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
-class DBService {
+class BearDBService {
     public static function mustBeInTransaction(): void {
         if (DB::transactionLevel() !== 0) {
            return;

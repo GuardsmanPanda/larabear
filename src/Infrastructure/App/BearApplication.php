@@ -2,9 +2,15 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\App;
 
-class BearApplication extends \Illuminate\Foundation\Application {
+use Illuminate\Foundation\Application;
+
+class BearApplication extends Application {
 
     public function path($path = ''): string {
-        return $this->basePath.DIRECTORY_SEPARATOR.'infrastructure'.($path ? DIRECTORY_SEPARATOR.$path : $path);
+        return $this->basePath.DIRECTORY_SEPARATOR.'Infrastructure'.($path ? DIRECTORY_SEPARATOR.$path : $path);
+    }
+
+    public function getNamespace(): string {
+        return 'Infrastructure\\';
     }
 }
