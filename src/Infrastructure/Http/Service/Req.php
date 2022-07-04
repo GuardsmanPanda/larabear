@@ -74,7 +74,7 @@ class Req {
 
     public static function isWriteRequest(): bool {
         return match (self::method()) {
-            'GET', 'HEAD' => false,
+            'GET', 'HEAD', 'OPTIONS' => false,
             default => true
         };
     }
