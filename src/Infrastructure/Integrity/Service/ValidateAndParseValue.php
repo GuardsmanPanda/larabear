@@ -100,7 +100,7 @@ class ValidateAndParseValue {
             $msg = "$value is not a string, type: " . gettype($value);
             throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
         }
-
+        $value = str_replace(search: 'Z', replace: '+00:00', subject: $value);
         $date = CarbonImmutable::parse($value);
         if ($timezone === null && $value !== $date->toIso8601String()) {
             $msg = "Invalid date time: $value (must be ISO 8601), example: " . $date->toIso8601String();
