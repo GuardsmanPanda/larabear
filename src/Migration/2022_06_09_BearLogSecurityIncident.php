@@ -1,5 +1,6 @@
 <?php
 
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearMigrationService;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,7 +13,7 @@ return new class extends Migration {
         Schema::dropIfExists(table: 'bear_log_security_incident');
         Schema::create(table: 'bear_log_security_incident', callback: static function (Blueprint $table): void {
             $table->id();
-            if (DB::getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'security_incident_severity')->index();
                 $table->text(column: 'security_incident_namespace')->index();
                 $table->text(column: 'security_incident_headline');
@@ -27,7 +28,7 @@ return new class extends Migration {
 
             BearMigrationService::buildUserReferencingColumn(table: $table, columnName: 'caused_by_user_id');
             $table->ipAddress(column: 'request_ip')->nullable()->index();
-            if (DB::getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_country_code')->nullable();
                 $table->text(column: 'request_http_method');
             } else {
