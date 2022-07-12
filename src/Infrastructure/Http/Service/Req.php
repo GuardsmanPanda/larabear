@@ -83,11 +83,14 @@ class Req {
      * @return array<string, mixed>
      */
     public static function allJsonData(bool $allowEmpty = false): array {
+        $tmp = self::$r?->json()?->all();
+        if (empty($tmp) && $allowEmpty) {
+            return $tmp;
+        }
         if (!self::$r?->isJson()) {
             throw new BadRequestHttpException(message: 'Request does not have application/json content type');
         }
-        $tmp = self::$r?->json()?->all();
-        return empty($tmp) && !$allowEmpty ? throw new BadRequestHttpException(message: 'No Json Data') : $tmp;
+        return empty($tmp) ? throw new BadRequestHttpException(message: 'No Json Data') : $tmp;
     }
 
     public static function allFormData(bool $allowEmpty = false): array {
