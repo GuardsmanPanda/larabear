@@ -17,8 +17,7 @@
     ],
     "require": {
         "php": "^8.1",
-        "erusev/parsedown": "^1.7",
-        "laravel/framework": "^v8.83.12 || ^9.18"
+        "laravel/framework": "^v8.83.12 || ^9.25"
     },
     "autoload": {
         "psr-4": {

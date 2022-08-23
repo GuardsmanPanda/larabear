@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 
 class BearShortUrlCodeService {
-    private const CHARS = '256789bcdfghjklmnpqrstvwxz';
+    private const CHARS = '256789bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ';
 
     public static function generateNextCode(string $value): string {
         // Change value string into array of characters
@@ -19,7 +19,7 @@ class BearShortUrlCodeService {
         $value_array = array_reverse(array: $value_array);
         $value_array[0]++;
 
-        // For each index, if it is greater than the length of the chars string, set it to 0 and increment the next element
+        // For each index, if it is greater than the length of the chars string, set it to 0 and increment the next element.
         foreach ($value_array as $i => $iValue) {
             if ($iValue >= strlen(string: self::CHARS)) {
                 $value_array[$i] = 0;

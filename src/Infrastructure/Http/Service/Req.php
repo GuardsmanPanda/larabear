@@ -12,7 +12,6 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class Req {
     public static Request|null $r = null;
-    public static array $variables = [];
 
     public static function hasHeader(string $name): bool {
         return self::$r?->hasHeader($name);
@@ -122,49 +121,114 @@ class Req {
     }
 
 
-    public static function getString(string $name): ?string {
+    public static function getString(string $name): string|null {
         if (!self::has($name)) {
             throw new BadRequestHttpException(message: "No input field named: $name");
         }
-        $val = self::$r->get($name);
+        $val = self::$r->input($name);
+        return $val === null ? null : ValidateAndParseValue::parseString($val);
+    }
+    public static function getStringOrDefault(string $name, string $default = null): string|null {
+        if (!self::has($name)) {
+            return $default;
+        }
+        $val = self::$r->input($name);
         return $val === null ? null : ValidateAndParseValue::parseString($val);
     }
 
-    public static function getInt(string $name): ?int {
+
+    public static function getInt(string $name): int|null {
         if (!self::has($name)) {
             throw new BadRequestHttpException(message: "No input field named: $name");
         }
-        $val = self::$r->get($name);
+        $val = self::$r->input($name);
+        return $val === null ? null : ValidateAndParseValue::parseInt($val);
+    }
+    public static function getIntOrDefault(string $name, int $default = null): int|null {
+        if (!self::has($name)) {
+            return $default;
+        }
+        $val = self::$r->input($name);
         return $val === null ? null : ValidateAndParseValue::parseInt($val);
     }
 
-    public static function getFloat(string $name): ?float {
+
+    public static function getFloat(string $name): float|null {
         if (!self::has($name)) {
             throw new BadRequestHttpException(message: "No input field named: $name");
         }
-        $val = self::$r->get($name);
+        $val = self::$r->input($name);
+        return $val === null ? null : ValidateAndParseValue::parseFloat($val);
+    }
+    public static function getFloatOrDefault(string $name, float $default = null): float|null {
+        if (!self::has($name)) {
+            return $default;
+        }
+        $val = self::$r->input($name);
         return $val === null ? null : ValidateAndParseValue::parseFloat($val);
     }
 
-    public static function getBool(string $name): ?bool {
+
+    public static function getBool(string $name): bool|null {
         if (!self::has($name)) {
             throw new BadRequestHttpException(message: "No input field named: $name");
         }
-        $val = self::$r->get($name);
+        $val = self::$r->input($name);
         return $val === null ? null : ValidateAndParseValue::parseBool($val);
     }
+    public static function getBoolOrDefault(string $name, bool $default = null): bool|null {
+        if (!self::has($name)) {
+            return $default;
+        }
+        $val = self::$r->input($name);
+        return $val === null ? null : ValidateAndParseValue::parseBool($val);
+    }
+
+
+    public static function getDate(string $name): CarbonImmutable|null {
+        if (!self::has($name)) {
+            throw new BadRequestHttpException(message: "No input field named: $name");
+        }
+        $val = self::$r->input($name);
+        return $val === null ? null : ValidateAndParseValue::parseDate($val);
+    }
+    public static function getDateOrDefault(string $name, CarbonImmutable $default = null): CarbonImmutable|null {
+        if (!self::has($name)) {
+            return $default;
+        }
+        $val = self::$r->input($name);
+        return $val === null ? null : ValidateAndParseValue::parseDate($val);
+    }
+
+
+    public static function getDateTime(string $name): CarbonImmutable|null {
+        if (!self::has($name)) {
+            throw new BadRequestHttpException(message: "No input field named: $name");
+        }
+        $val = self::$r->input($name);
+        return $val === null ? null : ValidateAndParseValue::parseDateTime($val);
+    }
+    public static function getDateTimeOrDefault(string $name, CarbonImmutable $default = null): CarbonImmutable|null {
+        if (!self::has($name)) {
+            return $default;
+        }
+        $val = self::$r->input($name);
+        return $val === null ? null : ValidateAndParseValue::parseDateTime($val);
+    }
+
 
     /**
      * @param string $name
      * @return array<string, mixed>|null
      */
-    public static function getArray(string $name): ?array {
+    public static function getArray(string $name): array|null {
         if (!self::has($name)) {
             throw new BadRequestHttpException(message: "No input field named: $name");
         }
-        $val = self::$r->get($name);
+        $val = self::$r->input($name);
         return $val === null ? null : ValidateAndParseValue::parseArray($val);
     }
+
 
     /**
      * @param string $name
@@ -174,7 +238,7 @@ class Req {
         if (!self::has($name)) {
             throw new BadRequestHttpException(message: "No input field named: $name");
         }
-        $val = self::$r->get($name);
+        $val = self::$r->input($name);
         if ($val === null) {
             return null;
         }
@@ -187,21 +251,6 @@ class Req {
         throw new BadRequestHttpException(message: "Input field named: $name, is not a json string or json array");
     }
 
-    public static function getDate(string $name): ?CarbonImmutable {
-        if (!self::has($name)) {
-            throw new BadRequestHttpException(message: "No input field named: $name");
-        }
-        $val = self::$r->get($name);
-        return $val === null ? null : ValidateAndParseValue::parseDate($val);
-    }
-
-    public static function getDateTime(string $name): ?CarbonImmutable {
-        if (!self::has($name)) {
-            throw new BadRequestHttpException(message: "No input field named: $name");
-        }
-        $val = self::$r->get($name);
-        return $val === null ? null : ValidateAndParseValue::parseDateTime($val);
-    }
 
     public static function getFile(string $name): UploadedFile {
         foreach (self::$r->allFiles() as $key => $file) {
@@ -210,16 +259,5 @@ class Req {
             }
         }
         throw new BadRequestHttpException(message: "No input field named: $name");
-    }
-
-    public static function setVariable(string $name, mixed $value): void {
-        self::$variables[$name] = $value;
-    }
-
-    public static function getVariable(string $name): mixed {
-        if (isset(self::$variables[$name])) {
-            throw new BadRequestHttpException(message: "No variable named: $name");
-        }
-        return self::$variables[$name];
     }
 }
