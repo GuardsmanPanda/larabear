@@ -167,9 +167,9 @@ class BearInitiateMiddleware {
                 BearLogResponseErrorCreator::create(statusCode: $response->getStatusCode(), responseBody: $response->getContent());
             }
             if (Config::get(key: 'bear.route_usage_log.enabled') === true) {
-                $target = Config::get(key: 'bear.route_usage_log.log_one_in_every', default: 1);
-                if (random_int(min: 1, max: $target) === 1) {
-                    BearLogRouteUsageCrud::createOrUpdate(Config::get(key: 'bear.route_usage_log.log_one_in_every', default: 1));
+                $multiply = Config::get(key: 'bear.route_usage_log.log_one_in_every', default: 1);
+                if (random_int(min: 1, max: $multiply) === 1) {
+                    BearLogRouteUsageCrud::createOrUpdate(multiply: $multiply);
                 }
             }
         } catch (Throwable $e) {
