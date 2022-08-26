@@ -5,16 +5,19 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogResponseErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Crud\BearLogRouteUsageCrud;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use JsonException;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Throwable;
 
 class BearInitiateMiddleware {
     public static array $headers = ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
@@ -155,16 +158,22 @@ class BearInitiateMiddleware {
 
 
     public function terminate(Request $request, Response $response): void {
-        $statusCode = $response->getStatusCode();
-        if ($statusCode >= 400 && Config::get(key: 'bear.response_error_log.enabled') === true) {
-            if (in_array(needle: $statusCode, haystack: Config::get(key: 'bear.response_error_log.ignore_response_codes', default: []), strict: true)) {
-                return;
+        try {
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 400 && Config::get(key: 'bear.response_error_log.enabled') === true) {
+                if (in_array(needle: $statusCode, haystack: Config::get(key: 'bear.response_error_log.ignore_response_codes', default: []), strict: true)) {
+                    return;
+                }
+                BearLogResponseErrorCreator::create(statusCode: $response->getStatusCode(), responseBody: $response->getContent());
             }
-            BearLogResponseErrorCreator::create(statusCode: $response->getStatusCode(), responseBody: $response->getContent());
-        }
-
-        if (Config::get(key: 'bear.route_usage_log.enabled') === true) {
-
+            if (Config::get(key: 'bear.route_usage_log.enabled') === true) {
+                $target = Config::get(key: 'bear.route_usage_log.log_one_in_every', default: 1);
+                if (random_int(min: 1, max: $target) === 1) {
+                    BearLogRouteUsageCrud::createOrUpdate(Config::get(key: 'bear.route_usage_log.log_one_in_every', default: 1));
+                }
+            }
+        } catch (Throwable $e) {
+            Log::error(message: 'Bear middleware terminate error: ' . $e->getMessage(), context: ['exception' => $e]);
         }
     }
 }
