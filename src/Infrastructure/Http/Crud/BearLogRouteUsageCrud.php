@@ -22,8 +22,8 @@ class BearLogRouteUsageCrud {
             VALUES (?, ?, ?, ?, ?)
             ON CONFLICT (request_http_method, request_route_path, app_action_name)  DO UPDATE SET
                 last_usage_at = NOW(),                                                                                                  
-                route_usage_count = route_usage_count + excluded.route_usage_count,
-                route_usage_time_microseconds = route_usage_time_microseconds + excluded.route_usage_time_microseconds
+                route_usage_count = bear_log_route_usage.route_usage_count + excluded.route_usage_count,
+                route_usage_time_microseconds = bear_log_route_usage.route_usage_time_microseconds + excluded.route_usage_time_microseconds
         ", bindings: [$method, $route, $action, $multiply, $time]);
     }
 }
