@@ -8,8 +8,12 @@ return [
         'enabled' => true,
         'ignore_response_codes' => [401,403],
     ],
+    'route_usage_log' => [
+        'enabled' => true,
+        'log_one_in_every' => 1,
+    ],
     'uptime_kuma' => [
-        'base_url' => env('LARABEAR_UPTIME_KUMA_BASE_URL'),
+        'base_url' => env(key: 'LARABEAR_UPTIME_KUMA_BASE_URL'),
     ],
     'user_table' => [
         'table_name' => 'users',

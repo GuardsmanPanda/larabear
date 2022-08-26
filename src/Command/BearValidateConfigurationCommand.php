@@ -19,8 +19,28 @@ class BearValidateConfigurationCommand extends Command {
         $this->validateSessionSettings();
         $this->validateUptimeKumaSettings();
         $this->validateUserTableSettings();
+        $this->validateResponseErrorLogSettings();
+        $this->validateRouteUsageLogSettings();
         $this->output->writeln(messages: '');
     }
+
+    private function validateRouteUsageLogSettings(): void {
+        ConsoleService::printH2(headline: 'Validating route usage log settings');
+        $config = Config::get(key: 'bear.route_usage_log');
+        if ($config === null) {
+            ConsoleService::printTestResult(testName: '', warningMessage: 'Missing route_usage_log in bear.php file');
+            return;
+        }
+        ConsoleService::printTestResult(
+            testName: "'enabled' should be set to a boolean value in route_usage_log settings.",
+            errorMessage: is_bool($config['enabled'] ?? null) ? null : 'Missing or invalid value for enabled in route_usage_log in bear.php file should be true or false'
+        );
+        ConsoleService::printTestResult(
+            testName: "'log_one_in_every' should be set to an integer value in route_usage_log settings.",
+            errorMessage: is_int($config['log_one_in_every'] ?? null) ? null : 'Missing or invalid value for log_one_in_every in route_usage_log in bear.php file should be an integer'
+        );
+    }
+
 
     private function validateResponseErrorLogSettings(): void {
         ConsoleService::printH2(headline: 'Validating response error log settings');
@@ -30,8 +50,12 @@ class BearValidateConfigurationCommand extends Command {
             return;
         }
         ConsoleService::printTestResult(
-            testName: "'enabled' should be set in response error log settings.",
-            errorMessage: isset($config['enabled']) ? null : 'Missing enabled in response_error_log in bear.php file should be true or false'
+            testName: "'enabled' should be set to a boolean value in response_error_log settings.",
+            errorMessage: is_bool($config['enabled'] ?? null) ? null : 'Missing or invalid value for enabled in response_error_log in bear.php file should be true or false'
+        );
+        ConsoleService::printTestResult(
+            testName: "'ignore_response_codes' should be set to an array in response error log settings.",
+            errorMessage: is_array(value: $config['ignore_response_codes'] ?? null) ? null : 'Missing or invalid value for enabled in response_error_log in bear.php file should be an array'
         );
     }
 

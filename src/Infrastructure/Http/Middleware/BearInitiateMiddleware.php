@@ -162,5 +162,9 @@ class BearInitiateMiddleware {
             }
             BearLogResponseErrorCreator::create(statusCode: $response->getStatusCode(), responseBody: $response->getContent());
         }
+
+        if (Config::get(key: 'bear.route_usage_log.enabled') === true) {
+
+        }
     }
 }

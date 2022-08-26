@@ -51,6 +51,10 @@ class Req {
         return self::$r?->path();
     }
 
+    public static function routePath(): string|null {
+        return self::$r?->route()?->uri();
+    }
+
     public static function userAgent(): string|null {
         return self::$r?->userAgent();
     }
