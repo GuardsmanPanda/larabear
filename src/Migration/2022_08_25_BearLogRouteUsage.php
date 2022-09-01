@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->bigInteger(column: 'route_usage_time_microseconds')->default(0);
             $table->timestampTz(column: 'last_usage_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->primary(['request_http_method', 'request_route_path', 'app_action_name']);
+            $table->primary(columns: ['request_http_method', 'request_route_path', 'app_action_name'], name: 'bear_log_route_usage_pk');
         });
     }
 
