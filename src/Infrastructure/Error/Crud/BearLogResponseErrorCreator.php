@@ -10,7 +10,7 @@ use Throwable;
 
 class BearLogResponseErrorCreator {
     public static function create(
-        int $statusCode,
+        int    $statusCode,
         string $responseBody,
     ): void {
         try {
