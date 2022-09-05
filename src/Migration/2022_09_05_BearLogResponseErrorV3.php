@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::dropIfExists(table: 'bear_response_error_log');
         Schema::dropIfExists(table: 'bear_log_response_error');
         Schema::create(table: 'bear_log_response_error', callback: static function (Blueprint $table) {
             $table->id();
@@ -18,7 +17,7 @@ return new class extends Migration {
             $table->integer(column: 'response_status_code')->index();
             $table->text(column: 'request_http_method');
             $table->text(column: 'request_http_path');
-            $table->text(column: 'request_http_query')->nullable();
+            $table->jsonb(column: 'request_http_query_json')->nullable();
             $table->text(column: 'request_http_hostname');
             $table->text(column: 'app_action_name')->nullable();
             $table->text(column: 'response_body');
