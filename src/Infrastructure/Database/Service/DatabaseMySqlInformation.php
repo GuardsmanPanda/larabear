@@ -15,15 +15,15 @@ class DatabaseMySqlInformation extends DatabaseBaseInformation {
     }
 
     public function getAllTableNames(): array {
-        $res = DB::connection(name: $this->connectionName)->select(query: "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = ?", bindings: [$this->databaseName]);
+        $res = DB::connection(name: $this->connectionName)->select(query: "SELECT table_name as table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = ?", bindings: [$this->databaseName]);
         return array_column(array: $res, column_key: 'table_name');
     }
 
     public function getColumnsForTable(string $tableName): array {
         $res = DB::connection(name: $this->connectionName)->select(query: "
-            SELECT column_name, data_type, is_nullable = 'YES' AS is_nullable
+            SELECT column_name as column_name, data_type as data_type, is_nullable = 'YES' AS is_nullable
             FROM information_schema.columns
-            WHERE table_catalog = ? AND table_name = ?
+            WHERE table_schema = ? AND table_name = ?
             ORDER BY ordinal_position
         ", bindings: [$this->databaseName, $tableName]);
         $tmp = [];
@@ -76,7 +76,7 @@ class DatabaseMySqlInformation extends DatabaseBaseInformation {
     public function databaseTypeToPhpType(string $databaseType): string {
         return match ($databaseType) {
             'date', 'datetime', 'timestamp' => 'CarbonInterface',
-            'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum' => 'string',
+            'char', 'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum' => 'string',
             'tinyint', 'smallint', 'mediumint', 'int', 'bigint' => 'int',
             'decimal', 'double' => 'float',
             'json' => 'stdClass',
@@ -91,7 +91,7 @@ class DatabaseMySqlInformation extends DatabaseBaseInformation {
             'smallint', 'mediumint', 'int', 'bigint' => 2,
             'datetime', 'timestamp' => 12,
             'date', => 10,
-            'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum' => 6,
+            'char', 'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum' => 6,
             'decimal', 'double' => 4,
             'json' => 8,
             default => throw new RuntimeException(message: "Unknown type: $mysql_type")
@@ -102,7 +102,7 @@ class DatabaseMySqlInformation extends DatabaseBaseInformation {
     private function mysqlTypeToPhpHeader(string $mysql_type): string {
         return match ($mysql_type) {
             'json' => 'use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;' . PHP_EOL . 'use stdClass;',
-            'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum', 'tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'double' => '',
+            'char', 'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum', 'tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'double' => '',
             'date', 'datetime', 'timestamp' => 'use Carbon\\CarbonInterface;',
             default => throw new RuntimeException(message: "Unknown type: $mysql_type")
         };
@@ -114,7 +114,7 @@ class DatabaseMySqlInformation extends DatabaseBaseInformation {
             return "'encrypted'";
         }
         return match ($mysql_type) {
-            'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum', 'tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'double' => null,
+            'char', 'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum', 'tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'double' => null,
             'datetime', 'timestamp' => "'immutable_datetime'",
             'json' => "BearAsJsonCast::class",
             'date' => "'immutable_date'",

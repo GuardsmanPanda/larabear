@@ -12,7 +12,7 @@ class BearCheckForeignKeysOnSoftDeletesCommand extends Command {
 
     public function handle(): void {
         $defaultConnection = config(key: 'database.default');
-        ConsoleService::printH1(headline: "Checking  [$defaultConnection] Foreign Keys Against Soft Deletes");
+        ConsoleService::printH1(headline: "Checking [$defaultConnection] Foreign Keys Against Soft Deletes");
         $dbInfo = DatabaseBaseInformation::getInstance(connectionName: $defaultConnection);
         $table_names = $dbInfo->getAllTableNames();
         $tables_with_soft_deletes = [];
@@ -20,7 +20,7 @@ class BearCheckForeignKeysOnSoftDeletesCommand extends Command {
         foreach ($table_names as $table_name) {
             $columns = $dbInfo->getColumnsForTable(tableName: $table_name);
             foreach ($columns as $column) {
-                if ($column['name'] === 'deleted_at') {
+                if ($column->columnName === 'deleted_at') {
                     $tables_with_soft_deletes[] = $table_name;
                 }
             }
