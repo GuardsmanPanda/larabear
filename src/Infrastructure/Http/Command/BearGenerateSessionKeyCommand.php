@@ -1,6 +1,6 @@
 <?php
 
-namespace GuardsmanPanda\Larabear\Command;
+namespace GuardsmanPanda\Larabear\Infrastructure\Http\Command;
 
 use Illuminate\Console\Command;
 use Illuminate\Encryption\Encrypter;

@@ -2,8 +2,8 @@
 
 namespace GuardsmanPanda\Larabear\Provider;
 
-use GuardsmanPanda\Larabear\Command\BearGenerateSessionKeyCommand;
-use GuardsmanPanda\Larabear\Command\BearValidateConfigurationCommand;
+use GuardsmanPanda\Larabear\Infrastructure\App\Command\BearValidateConfigurationCommand;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Command\BearGenerateSessionKeyCommand;
 use Illuminate\Support\ServiceProvider;
 
 class BearServiceProvider extends ServiceProvider {

@@ -9,6 +9,7 @@ abstract class DatabaseBaseInformation {
     public static function getInstance(string $connectionName): DatabaseBaseInformation {
         return match (Config::get(key: "database.connections.$connectionName.driver")) {
             'pgsql' => new DatabasePostgresInformation($connectionName),
+            'mysql' => new DatabaseMySqlInformation($connectionName),
             default => throw new RuntimeException(message: 'Unsupported database driver for: ' . $connectionName)
         };
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace GuardsmanPanda\Larabear\Command;
+namespace GuardsmanPanda\Larabear\Infrastructure\App\Command;
 
 use GuardsmanPanda\Larabear\Infrastructure\Console\Service\ConsoleService;
 use Illuminate\Console\Command;

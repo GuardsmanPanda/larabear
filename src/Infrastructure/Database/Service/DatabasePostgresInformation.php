@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
 class DatabasePostgresInformation extends DatabaseBaseInformation {
-    private string $databaseName;
-    private string $schemaName;
+    private readonly string $databaseName;
+    private readonly string $schemaName;
 
     public function __construct(private readonly string $connectionName) {
         $this->databaseName = Config::get(key: "database.connections.$connectionName.database");
@@ -34,7 +34,7 @@ class DatabasePostgresInformation extends DatabaseBaseInformation {
                 columnName: $row->column_name,
                 nativeDataType: $row->data_type,
                 phpDataType: $this->databaseTypeToPhpType(databaseType: $row->data_type),
-                sortOrder: $this->postgresTypeSortOrder($row->data_type),
+                sortOrder: $this->postgresTypeSortOrder($row->data_type) + ($row->is_nullable ? 1 : 0),
                 isNullable: $row->is_nullable,
                 requiredHeader: $this->postgresTypeToPhpHeader($row->data_type),
                 eloquentCast: $this->postgresTypeToEloquentCast($row->column_name, $row->data_type)
