@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Command;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Service\ConsoleService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\DatabaseBaseInformation;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class BearCheckForeignKeysOnSoftDeletesCommand extends Command {
     protected $signature = 'bear:cfk';
@@ -25,8 +26,22 @@ class BearCheckForeignKeysOnSoftDeletesCommand extends Command {
                 }
             }
         }
-
         $foreign_keys = $dbInfo->getAllForeignKeys();
-        dd($tables_with_soft_deletes, $foreign_keys);
+        ConsoleService::printH2(headline: "Checking " . count($foreign_keys) . " Foreign Keys");
+        foreach ($foreign_keys as $foreign_key) {
+            if (!in_array($foreign_key->foreign_table, $tables_with_soft_deletes, true)) {
+                continue;
+            }
+            $where = in_array($foreign_key->table_name, $tables_with_soft_deletes, true) ? "AND t1.deleted_at IS NULL" : '';
+            $res = DB::connection($defaultConnection)->select("
+                SELECT
+                    * 
+                FROM $foreign_key->table_name t1
+                LEFT JOIN $foreign_key->foreign_table t2 ON t1.$foreign_key->column_name = t2.$foreign_key->foreign_key
+                WHERE t2.deleted_at IS NOT NULL $where
+                LIMIT 100
+            ");
+            $this->info(count($res) . " rows found in $foreign_key->table_name with a foreign key to $foreign_key->foreign_table that has been soft deleted");
+        }
     }
 }
