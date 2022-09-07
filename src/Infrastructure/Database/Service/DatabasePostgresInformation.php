@@ -17,7 +17,7 @@ class DatabasePostgresInformation extends DatabaseBaseInformation {
     }
 
     public function getAllTableNames(): array {
-        $res = DB::connection(name: $this->connectionName)->select(query: "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_catalog = ?", bindings: [$this->databaseName]);
+        $res = DB::connection(name: $this->connectionName)->select(query: "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_catalog = ? AND table_schema = ?", bindings: [$this->databaseName, $this->schemaName]);
         return array_column(array: $res, column_key: 'table_name');
     }
 
