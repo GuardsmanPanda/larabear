@@ -14,7 +14,7 @@ class Req {
     public static Request|null $r = null;
 
     public static function hasHeader(string $name): bool {
-        return self::$r?->hasHeader($name);
+        return self::$r?->hasHeader($name) ?? false;
     }
 
     public static function header(string $name, bool $nullIfMissing = false): string|null {
@@ -40,7 +40,7 @@ class Req {
     }
 
     public static function hostname(): string {
-        return self::$r?->getHost();
+        return self::$r?->getHost() ?? 'CLI';
     }
 
     public static function method(): string {
