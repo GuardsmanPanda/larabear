@@ -4,6 +4,7 @@ return [
     'cookie' => [
         'session_key' => env('LARABEAR_SESSION_KEY'),
     ],
+    'logging_database_connection' => null,
     'response_error_log' => [
         'enabled' => true,
         'ignore_response_codes' => [401,403],
