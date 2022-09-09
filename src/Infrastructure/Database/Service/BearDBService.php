@@ -27,6 +27,8 @@ class BearDBService {
             $res[0] = $primary_key_value;
         } else if (is_string($primary_key_value) && preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i', $primary_key_value)) {
             $res[1] = $primary_key_value;
+        } else if (is_array($primary_key_value)) {
+            $res[2] = json_encode($primary_key_value, JSON_THROW_ON_ERROR);
         } else {
             $res[2] = $primary_key_value;
         }
