@@ -34,7 +34,7 @@ class BearDBService {
     }
 
     public static function extractAuditColumns(Model $model): array {
-        $ignore_columns = $model->audit_ignore_columns ?? [];
+        $ignore_columns = $model->log_exclude_columns ?? [];
         $arr = $model->toArray();
         foreach ($arr as $key => $value) {
             if (str_starts_with($key, 'encrypted_')) {
