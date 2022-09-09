@@ -56,7 +56,7 @@ trait BearLogDatabaseChanges {
             try {
                 $keys = BearDBService::extractPrimaryKeyArray($model);
 
-                $ignore_columns = $model->log_exclude_columns ?? [];
+                $ignore_columns = property_exists($model, 'log_exclude_columns') ? $model->log_exclude_columns : [];
                 foreach ($model->getChanges() as $column_name => $new_value) {
                     if ($column_name === 'updated_at' || in_array($column_name, $ignore_columns, true)) {
                         continue;
