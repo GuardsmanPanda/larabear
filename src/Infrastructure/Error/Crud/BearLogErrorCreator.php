@@ -20,7 +20,7 @@ class BearLogErrorCreator {
         Throwable        $exception = null
     ): void {
         try {
-            $connection = Config::get(key: 'bear.logging_database_connection', default: Config::get(key: 'database.default'));
+            $connection = Config::get(key: 'bear.log_database_connection', default: Config::get(key: 'database.default'));
             $query = Req::allQueryData();
             $query_json = empty($query) ? null : json_encode(value: $query, flags: JSON_THROW_ON_ERROR);
             DB::connection($connection)->insert(query: "

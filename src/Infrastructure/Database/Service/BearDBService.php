@@ -19,7 +19,7 @@ class BearDBService {
         return Config::get(key: 'database.connections.'. Config::get(key: 'database.default') . '.driver');
     }
 
-    public static function extraPrimaryKeyArray(Model $model): array {
+    public static function extractPrimaryKeyArray(Model $model): array {
         $primary_key_value = $model->getKey();
         $res = [null, null, null];
         // Test the key to find out what type it is.

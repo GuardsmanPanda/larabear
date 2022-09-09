@@ -36,7 +36,7 @@ return new class extends Migration {
             $table->boolean(column: 'is_soft_deletion')->nullable();
             BearMigrationService::buildUserReferencingColumn(table: $table, columnName: 'changed_by_user_id');
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->ipAddress(column: 'request_ip')->nullable()->index();
+            $table->ipAddress(column: 'request_ip')->nullable();
             if (BearDBService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_country_code')->nullable();
                 $table->text(column: 'request_http_method');
