@@ -65,6 +65,7 @@ class DatabaseMySqlInformation extends DatabaseBaseInformation {
             JOIN information_schema.key_column_usage kcu
             USING(constraint_name,table_schema,table_name)
             WHERE tc.table_schema = ? AND tc.constraint_type = 'FOREIGN KEY'
+            ORDER BY REVERSE(kcu.column_name)
         ", bindings: [$this->databaseName]);
     }
 

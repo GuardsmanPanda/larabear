@@ -67,6 +67,7 @@ class DatabasePostgresInformation extends DatabaseBaseInformation {
             JOIN information_schema.key_column_usage kcu ON kcu.constraint_name = tc.constraint_name
             JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
             WHERE tc.table_catalog = ? AND tc.table_schema = ? AND tc.constraint_type = 'FOREIGN KEY'
+            ORDER BY REVERSE(kcu.column_name)
         ", bindings: [$this->databaseName, $this->schemaName]);
     }
 
