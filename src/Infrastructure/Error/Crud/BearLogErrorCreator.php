@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class BearLogErrorCreator {
+    /**
+     * @param string $message The error message, should be short and concise
+     * @param string $namespace The namespace that the error belongs to, used to disambiguate errors.
+     * @param string|null $key The key that the error belongs to, used to disambiguate errors.
+     * @param BearSeverityEnum $severity The severity of the error, use high or greater for errors which *must* be handled.
+     * @param string|null $remedy How to resolve the error, if known.
+     * @param Throwable|null $exception The exception that caused the error, if any.
+     * @return void
+     */
     public static function create(
         string           $message,
         string           $namespace = 'default',

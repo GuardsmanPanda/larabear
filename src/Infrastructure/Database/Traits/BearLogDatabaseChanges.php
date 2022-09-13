@@ -24,7 +24,7 @@ trait BearLogDatabaseChanges {
             } catch (Throwable $t) {
                 BearLogErrorCreator::create(
                     message: 'Error logging database Create change',
-                    namespace: 'bear', key: 'database_log_change_error',
+                    namespace: 'larabear', key: 'database_log_change_error',
                     severity: BearSeverityEnum::CRITICAL,
                     remedy: 'Contact Bjørn', exception: $t,
                 );
@@ -45,7 +45,7 @@ trait BearLogDatabaseChanges {
             } catch (Throwable $t) {
                 BearLogErrorCreator::create(
                     message: 'Error logging database Delete change',
-                    namespace: 'bear', key: 'database_log_change_error',
+                    namespace: 'larabear', key: 'database_log_change_error',
                     severity: BearSeverityEnum::CRITICAL,
                     remedy: 'Contact Bjørn', exception: $t,
                 );
@@ -86,7 +86,7 @@ trait BearLogDatabaseChanges {
             } catch (Throwable $t) {
                 BearLogErrorCreator::create(
                     message: 'Error logging database Update change',
-                    namespace: 'bear', key: 'database_log_change_error',
+                    namespace: 'larabear', key: 'database_log_change_error',
                     severity: BearSeverityEnum::CRITICAL,
                     remedy: 'Contact Bjørn', exception: $t,
                 );

@@ -58,7 +58,7 @@ class BearLogDatabaseChangeCreator {
              } catch (Throwable $throwable) {
                  BearLogErrorCreator::create(
                      message: "Failed to log database change to channel [$channel]",
-                     namespace: 'bear',
+                     namespace: 'larabear',
                      key: 'database_change_log_channel_failed',
                      severity: BearSeverityEnum::MEDIUM,
                      remedy: 'Check the database change log channel is configured correctly',
