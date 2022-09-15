@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 
 class BearShortUrlCodeService {
-    private const CHARS = '256789bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ';
+    private const CHARS = '25679bcdfghjklmnpqrstvwxz';
 
     public static function generateNextCode(string $value): string {
         // Change value string into array of characters

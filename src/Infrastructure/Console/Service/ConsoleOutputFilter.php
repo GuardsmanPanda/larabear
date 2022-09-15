@@ -78,6 +78,7 @@ class ConsoleOutputFilter extends ConsoleOutput {
         ' <comment>session</comment>',
         '  <info>session:table</info>',
         '  <info>schedule:test</info>',
+        '  <info>schedule:work</info>',
         ' <comment>schema</comment>',
         '  <info>schema:dump</info>',
         ' <comment>storage</comment>',

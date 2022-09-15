@@ -49,7 +49,7 @@ class BearLogDatabaseChangeCreator {
          if ($channel !== null) {
              try {
                  if ($change_type === 'CREATE') {
-                     Log::channel(channel: $channel)->info(message: "CREATE in [$table_name] Data: " . json_encode(value: $record_data, flags: JSON_THROW_ON_ERROR), context: ['user_id' => BearGlobalStateService::getUserId()]);
+                     Log::channel(channel: $channel)->info(message: "CREATE in [$table_name] ID: " . ($record_id ?? $record_uuid ?? $record_identifier) . ", Data: " . json_encode(value: $record_data, flags: JSON_THROW_ON_ERROR), context: ['user_id' => BearGlobalStateService::getUserId()]);
                  } else if ($change_type === 'DELETE') {
                      Log::channel(channel: $channel)->info(message: "*DELETE* in [$table_name] - ID: " . ($record_id ?? $record_uuid ?? $record_identifier), context: ['user_id' => BearGlobalStateService::getUserId()]);
                  } else {
