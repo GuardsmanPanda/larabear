@@ -4,16 +4,18 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Integrity\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
+use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
+use RuntimeException;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
  *
  * @method static BearLogIdempotency|null find(string $id, array $columns = ['*'])
  * @method static BearLogIdempotency findOrFail(string $id, array $columns = ['*'])
- * @method static BearLogIdempotency findOrNew(string $id, array $columns = ['*'])
  * @method static BearLogIdempotency sole(array $columns = ['*'])
  * @method static BearLogIdempotency|null first(array $columns = ['*'])
  * @method static BearLogIdempotency firstOrFail(array $columns = ['*'])
@@ -27,8 +29,10 @@ use Illuminate\Database\Query\Builder;
  * @method static Builder|BearLogIdempotency with(array  $relations)
  * @method static Builder|BearLogIdempotency leftJoin(string $table, string $first, string $operator = null, string $second = null)
  * @method static Builder|BearLogIdempotency where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Builder|BearLogIdempotency whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
+ * @method static Builder|BearLogIdempotency whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
+ * @method static Builder|BearLogIdempotency whereNotExists(Closure $callback, string $boolean = 'and')
  * @method static Builder|BearLogIdempotency whereHas(string $relation, Closure $callback, string $operator = '>=', int $count = 1)
+ * @method static Builder|BearLogIdempotency whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
  * @method static Builder|BearLogIdempotency whereNull(string|array $columns, string $boolean = 'and')
  * @method static Builder|BearLogIdempotency whereNotNull(string|array $columns, string $boolean = 'and')
  * @method static Builder|BearLogIdempotency whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
@@ -47,13 +51,28 @@ class BearLogIdempotency extends Model {
     protected $table = 'bear_log_idempotency';
     protected $primaryKey = 'idempotency_key';
     protected $keyType = 'string';
-    public $incrementing = false;
     protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
 
+    /** @var array<string, string> $casts */
     protected $casts = [
         'created_at' => 'immutable_datetime',
     ];
 
-    protected $guarded = ['idempotency_key','updated_at','created_at','deleted_at'];
+    protected $guarded = ['idempotency_key', 'updated_at', 'created_at', 'deleted_at'];
+
+    public function getAttribute($key) {
+        $resp =  parent::getAttribute($key);
+        if ($resp !== null || array_key_exists(key: $key, array: $this->attributes) || array_key_exists(key: $key, array: $this->relations)) {
+            return $resp;
+        }
+        BearLogErrorCreator::create(
+            message: "Attribute $key not loaded on " . static::class,
+            namespace: "larabear",
+            key: "attribute_not_loaded",
+            severity: BearSeverityEnum::CRITICAL,
+            remedy: "Make sure to include used attributes in the SELECT statement",
+        );
+        throw new RuntimeException(message: "Attribute $key not loaded on " . static::class);
+    }
 }
