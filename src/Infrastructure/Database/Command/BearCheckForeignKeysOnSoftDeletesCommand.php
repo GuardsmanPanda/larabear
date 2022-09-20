@@ -17,10 +17,16 @@ class BearCheckForeignKeysOnSoftDeletesCommand extends Command {
         foreach ($res as $table) {
             ConsoleService::printH2(headline: "Table: {$table['table_name']}  -->  {$table['foreign_table']} [{$table['foreign_key']}]");
             $amount = count($table['errors']);
-            ConsoleService::writeLine("  <bg=bright-yellow;fg=black;options=bold> $amount </>" . " Column: {$table['column_name']}");
+            ConsoleService::writeLine("  <bg=green;fg=bright-green;options=bold> $amount </>" . " Column: {$table['column_name']}");
             foreach ($table['errors'] as $error) {
                 ConsoleService::writeLine("    $error->error_column");
             }
+        }
+        $tableAmount = count($res);
+        if ($tableAmount > 0) {
+            ConsoleService::writeLine("");
+            ConsoleService::writeLine(" <bg=bright-yellow;fg=black;options=bold>  $tableAmount  </> Tables With Soft Deleted Foreign Key Errors");
+            ConsoleService::writeLine("");
         }
     }
 }
