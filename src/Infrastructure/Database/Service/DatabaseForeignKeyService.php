@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseForeignKeyService {
-    public static function getSoftDeletedForeignKeyConstraints(string $connection): array {
+    public static function getSoftDeletedForeignKeyConstraints(string $connection, int $limit = 30): array {
         $dbInfo = DatabaseBaseInformation::getInstance(connectionName: $connection);
         $table_names = $dbInfo->getAllTableNames();
         $tables_with_soft_deletes = [];
@@ -34,7 +34,7 @@ class DatabaseForeignKeyService {
                 WHERE t2.deleted_at IS NOT NULL $where
                 GROUP BY error_column
                 ORDER BY error_column
-                LIMIT 30
+                LIMIT $limit
             ");
             if (count($res) > 0) {
                 $result[] = [
