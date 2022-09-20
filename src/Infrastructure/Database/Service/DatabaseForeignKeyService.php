@@ -34,7 +34,7 @@ class DatabaseForeignKeyService {
                 WHERE t2.deleted_at IS NOT NULL $where
                 GROUP BY error_column
                 ORDER BY error_column
-                LIMIT 100
+                LIMIT 30
             ");
             if (count($res) > 0) {
                 $result[] = [
