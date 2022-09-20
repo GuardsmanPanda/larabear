@@ -28,10 +28,12 @@ class DatabaseForeignKeyService {
             $where = in_array($foreign_key->table_name, $tables_with_soft_deletes, true) ? "AND t1.deleted_at IS NULL" : '';
             $res = DB::connection($connection)->select("
                 SELECT
-                    * 
+                    t1.$foreign_key->column_name as error_column
                 FROM $foreign_key->table_name t1
                 LEFT JOIN $foreign_key->foreign_table t2 ON t1.$foreign_key->column_name = t2.$foreign_key->foreign_key
                 WHERE t2.deleted_at IS NOT NULL $where
+                GROUP BY error_column
+                ORDER BY error_column
                 LIMIT 100
             ");
             if (count($res) > 0) {
