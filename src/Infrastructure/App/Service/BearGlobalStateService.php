@@ -6,13 +6,17 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Http\Request;
 
 class BearGlobalStateService {
+    private static bool $logUnhandledException = true;
     private static string|null $accessTokenId = null;
     private static string|null $apiPrimaryKey = null;
+    private static bool $logResponseError = true;
     private static string|int|null $userId = null;
     private static Request|null $request = null;
 
 
     public static function clearState(): void {
+        self::$logUnhandledException = true;
+        self::$logResponseError = true;
         self::$accessTokenId = null;
         self::$apiPrimaryKey = null;
         self::$request = null;
@@ -55,5 +59,23 @@ class BearGlobalStateService {
 
     public static function getRequest(): Request|null {
         return self::$request;
+    }
+
+
+    public static function setLogResponseError(bool $value): void {
+        self::$logResponseError = $value;
+    }
+
+    public static function getLogResponseError(): bool {
+        return self::$logResponseError;
+    }
+
+
+    public static function setLogUnhandledException(bool $value): void {
+        self::$logUnhandledException = $value;
+    }
+
+    public static function getLogUnhandledException(): bool {
+        return self::$logUnhandledException;
     }
 }

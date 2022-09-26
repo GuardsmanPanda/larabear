@@ -160,10 +160,7 @@ class BearInitiateMiddleware {
     public function terminate(Request $request, Response $response): void {
         try {
             $statusCode = $response->getStatusCode();
-            if ($statusCode >= 400 && Config::get(key: 'bear.response_error_log.enabled') === true) {
-                if (in_array(needle: $statusCode, haystack: Config::get(key: 'bear.response_error_log.ignore_response_codes', default: []), strict: true)) {
-                    return;
-                }
+            if ($statusCode >= 400 && Config::get(key: 'bear.response_error_log.enabled') === true && BearGlobalStateService::getLogResponseError() && !in_array(needle: $statusCode, haystack: Config::get(key: 'bear.response_error_log.ignore_response_codes', default: []), strict: true)) {
                 BearLogResponseErrorCreator::create(statusCode: $response->getStatusCode(), responseBody: $response->getContent());
             }
             if (Config::get(key: 'bear.route_usage_log.enabled') === true) {
