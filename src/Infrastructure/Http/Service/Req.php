@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
 use Carbon\CarbonImmutable;
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -65,6 +66,10 @@ class Req {
 
     public static function ipCountry(): string {
         return self::hasHeader(name: 'CF_IPCOUNTRY') ? self::header(name: 'CF_IPCOUNTRY') : 'XX';
+    }
+
+    public static function requestId(): string|null {
+        return BearGlobalStateService::getRequestId();
     }
 
     public static function actionName(): string|null {

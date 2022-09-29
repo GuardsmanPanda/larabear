@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BearGlobalStateService {
     private static bool $logUnhandledException = true;
@@ -12,6 +13,8 @@ class BearGlobalStateService {
     private static bool $logResponseError = true;
     private static string|int|null $userId = null;
     private static Request|null $request = null;
+    private static string|null $requestId = null;
+    private static string|null $consoleId = null;
 
 
     public static function clearState(): void {
@@ -19,6 +22,8 @@ class BearGlobalStateService {
         self::$logResponseError = true;
         self::$accessTokenId = null;
         self::$apiPrimaryKey = null;
+        self::$requestId = null;
+        self::$consoleId = null;
         self::$request = null;
         self::$userId = null;
         Req::$r = null;
@@ -52,16 +57,6 @@ class BearGlobalStateService {
     }
 
 
-    public static function setRequest(Request $request): void {
-        self::$request = $request;
-        Req::$r = $request;
-    }
-
-    public static function getRequest(): Request|null {
-        return self::$request;
-    }
-
-
     public static function setLogResponseError(bool $value): void {
         self::$logResponseError = $value;
     }
@@ -77,5 +72,36 @@ class BearGlobalStateService {
 
     public static function getLogUnhandledException(): bool {
         return self::$logUnhandledException;
+    }
+
+
+    public static function setRequest(Request $request): void {
+        self::$request = $request;
+        Req::$r = $request;
+        if (Req::hasHeader(name: 'cf-ray')) {
+            self::$requestId = Req::header(name: 'cf-ray');
+        } else if (Req::hasHeader(name: 'x-request-id')) {
+            self::$requestId = Req::header(name: 'x-request-id');
+        } else {
+            self::$requestId = Str::uuid()->toString();
+        }
+    }
+
+    public static function getRequest(): Request|null {
+        return self::$request;
+    }
+
+
+    public static function getRequestId(): string|null {
+        return self::$requestId;
+    }
+
+
+    public static function setConsoleId(string $consoleId): void {
+        self::$consoleId = $consoleId;
+    }
+
+    public static function getConsoleId(): string|null {
+        return self::$consoleId;
     }
 }

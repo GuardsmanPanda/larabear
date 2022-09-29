@@ -24,9 +24,9 @@ class BearInitiateMiddleware {
     private Encrypter|null $encrypt = null;
 
     public function __construct(private readonly Application $app) {
-        $key = Config::get('bear.cookie.session_key');
+        $key = Config::get(key: 'bear.cookie.session_key');
         if ($key !== null) {
-            $this->encrypt = new Encrypter(key: base64_decode($key), cipher: Config::get('app.cipher'));
+            $this->encrypt = new Encrypter(key: base64_decode($key), cipher: Config::get(key: 'app.cipher'));
         }
     }
 
@@ -44,7 +44,7 @@ class BearInitiateMiddleware {
             if (isset($data['redirect'])) {
                 $path = $data['redirect'] === '/' ? $data['redirect'] : trim($data['redirect'], '/');
                 if ($request->path() !== $path) {
-                    return new RedirectResponse($path, 307);
+                    return new RedirectResponse($path, status: 307);
                 }
                 $hh = isset($data['retry']) ? ['Retry-After' => $data['retry']] : [];
                 if (isset($data['refresh'])) {
@@ -112,18 +112,18 @@ class BearInitiateMiddleware {
     private function encryptCookies(Response $response): void {
         foreach ($response->headers->getCookies() as $cookie) {
             if (!is_string($cookie->getValue())) {
-                throw new InvalidArgumentException('Cookie value must be a string.. name: ' . $cookie->getName());
+                throw new InvalidArgumentException(message: 'Cookie value must be a string.. name: ' . $cookie->getName());
             }
             $name = $cookie->getName();
             if (!str_starts_with(haystack: $name, needle: '__host-')) {
-                throw new InvalidArgumentException('Cookie name must start with "__host-".. name: ' . $name);
+                throw new InvalidArgumentException(message: 'Cookie name must start with "__host-".. name: ' . $name);
             }
             $session_name = Config::get('session.cookie');
             if ($name !== $session_name) {
-                throw new InvalidArgumentException('Cookie name must be the same as the session cookie.. name: ' . $name . ', session cookie: ' . $session_name);
+                throw new InvalidArgumentException(message: 'Cookie name must be the same as the session cookie.. name: ' . $name . ', session cookie: ' . $session_name);
             }
             if ($this->encrypt === null) {
-                throw new InvalidArgumentException('Session cookie encryption key is not set, please read the documentation.');
+                throw new InvalidArgumentException(message: 'Session cookie encryption key is not set, please read the documentation.');
             }
             $response->headers->removeCookie(name: $name, path: $cookie->getPath(), domain: $cookie->getDomain()); //TODO: Consider throwing error on insecure cookie parameters, instead of silently fixing.
             $response->headers->setCookie(new Cookie(
@@ -150,7 +150,7 @@ class BearInitiateMiddleware {
             $value = $this->encrypt->decrypt($cookie);
             $expected_prefix = hash_hmac('sha256', $key, $this->encrypt->getKey()) . '|';
             if (!str_starts_with(haystack: $value, needle: $expected_prefix)) {
-                throw new InvalidArgumentException('Cookie value does not pass integrity check.. name: ' . $key);
+                throw new InvalidArgumentException(message: 'Cookie value does not pass integrity check.. name: ' . $key);
             }
             $request->cookies->set($key, substr($value, strlen($expected_prefix)));
         }

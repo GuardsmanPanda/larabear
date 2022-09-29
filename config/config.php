@@ -2,7 +2,7 @@
 
 return [
     'cookie' => [
-        'session_key' => env('LARABEAR_SESSION_KEY'),
+        'session_key' => env(key: 'LARABEAR_SESSION_KEY'),
     ],
     'log_database_connection' => null,
     'log_database_change_channel' => null,
