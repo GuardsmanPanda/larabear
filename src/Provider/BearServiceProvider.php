@@ -2,9 +2,14 @@
 
 namespace GuardsmanPanda\Larabear\Provider;
 
+use Carbon\CarbonImmutable;
+use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Command\BearValidateConfigurationCommand;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
+use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearLogConsoleEventCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearLogConsoleEventUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\BearCheckForeignKeysOnSoftDeletesCommand;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Command\BearGenerateSessionKeyCommand;
 use Illuminate\Console\Events\CommandFinished;
 use Illuminate\Console\Events\CommandStarting;
@@ -13,25 +18,20 @@ use Illuminate\Console\Events\ScheduledTaskStarting;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use stdClass;
+use Throwable;
 
 class BearServiceProvider extends ServiceProvider {
+    private array $ignoreCommands = [
+        'about',
+        'migrate',
+        'package:discover'
+    ];
+
     public function boot(): void {
         if ($this->app->runningInConsole()) {
-            Event::listen(events: CommandStarting::class, listener: static function ($event) {
-                BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
-            });
+            $this->addEventListeners();
 
-            Event::listen(events: ScheduledTaskStarting::class, listener: static function ($event) {
-                BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
-            });
-
-            Event::listen(events: CommandFinished::class, listener: function ($event) {
-                //dd($event);
-            });
-
-            Event::listen(events: ScheduledTaskFinished::class, listener: function ($event) {
-                //dd($event);
-            });
 
             $this->commands(commands: [
                 BearGenerateSessionKeyCommand::class,
@@ -42,5 +42,47 @@ class BearServiceProvider extends ServiceProvider {
             $this->publishes(paths: [__DIR__ . '/../../config/config.php' => $this->app->configPath(path: 'bear.php'),], groups: 'bear');
             $this->loadMigrationsFrom(paths: [__DIR__ . '/../Migration']);
         }
+    }
+
+
+    private function addEventListeners(): void {
+        Event::listen(events: CommandStarting::class, listener: function ($event) {
+            if (in_array($event->command, $this->ignoreCommands, true)) {
+                return;
+            }
+            try {
+                BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
+                BearLogConsoleEventCreator::create(
+                    console_event_type: 'command',
+                    console_command: $event->input->__toString(),
+                    console_input_parameters: new stdClass(),
+                    console_event_id: BearGlobalStateService::getConsoleId(),
+                );
+            } catch (Throwable $t) {
+                BearLogErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-command-starting', severity: BearSeverityEnum::MEDIUM, exception: $t);
+            }
+        });
+
+        Event::listen(events: ScheduledTaskStarting::class, listener: static function ($event) {
+            BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
+        });
+
+        Event::listen(events: CommandFinished::class, listener: function ($event) {
+            if (in_array($event->command, $this->ignoreCommands, true)) {
+                return;
+            }
+            $updater = BearLogConsoleEventUpdater::fromConsoleEventId(consoleEventId: BearGlobalStateService::getConsoleId());
+            if ($event->exitCode === 0) {
+                $updater->setConsoleEventFinishedAt(CarbonImmutable::now());
+            } else {
+                $updater->setConsoleEventFailedAt(CarbonImmutable::now());
+            }
+            $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1000));
+            $updater->save();
+        });
+
+        Event::listen(events: ScheduledTaskFinished::class, listener: function ($event) {
+            //dd($event);
+        });
     }
 }
