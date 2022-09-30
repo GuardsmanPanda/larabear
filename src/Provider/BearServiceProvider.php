@@ -59,7 +59,6 @@ class BearServiceProvider extends ServiceProvider {
                 BearLogConsoleEventCreator::create(
                     console_event_type: 'command',
                     console_command: $event->input->__toString(),
-                    console_input_parameters: new stdClass(),
                     console_event_id: BearGlobalStateService::getConsoleId(),
                 );
                 DB::commit();
@@ -76,11 +75,10 @@ class BearServiceProvider extends ServiceProvider {
                 DB::beginTransaction();
                 BearLogConsoleEventCreator::create(
                     console_event_type: 'scheduled_task',
-                    console_command: $event->command,
-                    console_input_parameters: new stdClass(),
+                    console_command: $event->task->command,
                     console_event_id: BearGlobalStateService::getConsoleId(),
-                    cron_schedule_expression: $event->expression,
-                    cron_schedule_timezone: $event->timezone,
+                    cron_schedule_expression: $event->task->expression,
+                    cron_schedule_timezone: $event->task->timezone,
                 );
                 DB::commit();
             } catch (Throwable $t) {

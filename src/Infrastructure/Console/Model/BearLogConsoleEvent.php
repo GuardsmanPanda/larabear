@@ -6,7 +6,6 @@ use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
-use stdClass;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -48,7 +47,6 @@ use RuntimeException;
  * @property string|null $console_event_output
  * @property string|null $cron_schedule_timezone
  * @property string|null $cron_schedule_expression
- * @property stdClass $console_input_parameters
  * @property CarbonInterface $created_at
  * @property CarbonInterface $console_event_started_at
  * @property CarbonInterface|null $console_event_failed_at
