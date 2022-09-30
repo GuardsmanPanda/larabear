@@ -38,6 +38,10 @@ class BearLogConsoleEventCreator {
         $model->execution_time_microseconds = $execution_time_microseconds;
         $model->console_event_output = $console_event_output;
 
+        if (BearDBService::defaultConnectionDriver() === 'mysql') {
+            $model->setDateFormat('Y-m-d H:i:s');
+        }
+
         $model->save();
         return $model->fresh();
     }
