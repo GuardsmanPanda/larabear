@@ -24,10 +24,13 @@ use Throwable;
 
 class BearServiceProvider extends ServiceProvider {
     private array $ignoreCommands = [
+        '',
         'about',
         'migrate',
+        'optimize',
         'package:discover'
     ];
+
 
     public function boot(): void {
         if ($this->app->runningInConsole()) {
@@ -68,13 +71,21 @@ class BearServiceProvider extends ServiceProvider {
 
 
         Event::listen(events: ScheduledTaskStarting::class, listener: static function ($event) {
+                BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
             try {
                 DB::beginTransaction();
-                BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
+                BearLogConsoleEventCreator::create(
+                    console_event_type: 'scheduled_task',
+                    console_command: $event->command,
+                    console_input_parameters: new stdClass(),
+                    console_event_id: BearGlobalStateService::getConsoleId(),
+                    cron_schedule_expression: $event->expression,
+                    cron_schedule_timezone: $event->timezone,
+                );
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();
-                BearLogErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-command-finished', severity: BearSeverityEnum::MEDIUM, exception: $t);
+                BearLogErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-scheduled-task-starting', severity: BearSeverityEnum::MEDIUM, exception: $t);
             }
         });
 
@@ -83,14 +94,21 @@ class BearServiceProvider extends ServiceProvider {
             if (in_array($event->command, $this->ignoreCommands, true)) {
                 return;
             }
-            $updater = BearLogConsoleEventUpdater::fromConsoleEventId(consoleEventId: BearGlobalStateService::getConsoleId());
-            if ($event->exitCode === 0) {
-                $updater->setConsoleEventFinishedAt(CarbonImmutable::now());
-            } else {
-                $updater->setConsoleEventFailedAt(CarbonImmutable::now());
+            try {
+                DB::beginTransaction();
+                $updater = BearLogConsoleEventUpdater::fromConsoleEventId(consoleEventId: BearGlobalStateService::getConsoleId());
+                if ($event->exitCode === 0) {
+                    $updater->setConsoleEventFinishedAt(CarbonImmutable::now());
+                } else {
+                    $updater->setConsoleEventFailedAt(CarbonImmutable::now());
+                }
+                $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1000));
+                $updater->save();
+                DB::commit();
+            } catch (Throwable $t) {
+                DB::rollBack();
+                BearLogErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-command-finished', severity: BearSeverityEnum::MEDIUM, exception: $t);
             }
-            $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1000));
-            $updater->save();
         });
 
 
