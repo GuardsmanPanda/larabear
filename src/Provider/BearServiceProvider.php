@@ -15,6 +15,7 @@ use Illuminate\Console\Events\CommandFinished;
 use Illuminate\Console\Events\CommandStarting;
 use Illuminate\Console\Events\ScheduledTaskFinished;
 use Illuminate\Console\Events\ScheduledTaskStarting;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -31,7 +32,6 @@ class BearServiceProvider extends ServiceProvider {
     public function boot(): void {
         if ($this->app->runningInConsole()) {
             $this->addEventListeners();
-
 
             $this->commands(commands: [
                 BearGenerateSessionKeyCommand::class,
@@ -50,22 +50,34 @@ class BearServiceProvider extends ServiceProvider {
             if (in_array($event->command, $this->ignoreCommands, true)) {
                 return;
             }
+            BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
             try {
-                BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
+                DB::beginTransaction();
                 BearLogConsoleEventCreator::create(
                     console_event_type: 'command',
                     console_command: $event->input->__toString(),
                     console_input_parameters: new stdClass(),
                     console_event_id: BearGlobalStateService::getConsoleId(),
                 );
+                DB::commit();
             } catch (Throwable $t) {
+                DB::rollBack();
                 BearLogErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-command-starting', severity: BearSeverityEnum::MEDIUM, exception: $t);
             }
         });
 
+
         Event::listen(events: ScheduledTaskStarting::class, listener: static function ($event) {
-            BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
+            try {
+                DB::beginTransaction();
+                BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
+                DB::commit();
+            } catch (Throwable $t) {
+                DB::rollBack();
+                BearLogErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-command-finished', severity: BearSeverityEnum::MEDIUM, exception: $t);
+            }
         });
+
 
         Event::listen(events: CommandFinished::class, listener: function ($event) {
             if (in_array($event->command, $this->ignoreCommands, true)) {
@@ -80,6 +92,7 @@ class BearServiceProvider extends ServiceProvider {
             $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1000));
             $updater->save();
         });
+
 
         Event::listen(events: ScheduledTaskFinished::class, listener: function ($event) {
             //dd($event);

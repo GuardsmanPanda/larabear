@@ -42,7 +42,6 @@ class BearLogConsoleEventCreator {
         $model->console_event_output = $console_event_output;
 
         $model->save();
-        $model = $model->fresh();
-        return $model;
+        return $model->fresh();
     }
 }
