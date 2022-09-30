@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::table('bear_log_database_changes', static function (Blueprint $table) {
+        Schema::table('bear_log_database_change', static function (Blueprint $table) {
             if (BearDBService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_id')->nullable();
                 $table->text(column: 'console_id')->nullable();
@@ -19,7 +19,7 @@ return new class extends Migration {
     }
 
     public function down(): void {
-        Schema::table('bear_log_database_changes', static function (Blueprint $table) {
+        Schema::table('bear_log_database_change', static function (Blueprint $table) {
             $table->dropColumn(columns: 'request_id');
             $table->dropColumn(columns: 'console_id');
         });
