@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use stdClass;
 use Throwable;
 
 class BearServiceProvider extends ServiceProvider {
@@ -28,7 +27,8 @@ class BearServiceProvider extends ServiceProvider {
         'about',
         'migrate',
         'optimize',
-        'package:discover'
+        'package:discover',
+        'schedule:run,'
     ];
 
 
@@ -59,7 +59,6 @@ class BearServiceProvider extends ServiceProvider {
                 BearLogConsoleEventCreator::create(
                     console_event_type: 'command',
                     console_command: $event->input->__toString(),
-                    console_event_id: BearGlobalStateService::getConsoleId(),
                 );
                 DB::commit();
             } catch (Throwable $t) {
@@ -70,13 +69,12 @@ class BearServiceProvider extends ServiceProvider {
 
 
         Event::listen(events: ScheduledTaskStarting::class, listener: static function ($event) {
-                BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
+            BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
             try {
                 DB::beginTransaction();
                 BearLogConsoleEventCreator::create(
                     console_event_type: 'scheduled_task',
                     console_command: $event->task->command,
-                    console_event_id: BearGlobalStateService::getConsoleId(),
                     cron_schedule_expression: $event->task->expression,
                     cron_schedule_timezone: $event->task->timezone,
                 );
@@ -110,8 +108,29 @@ class BearServiceProvider extends ServiceProvider {
         });
 
 
-        Event::listen(events: ScheduledTaskFinished::class, listener: function ($event) {
-            //dd($event);
+        Event::listen(events: ScheduledTaskFinished::class, listener: static function ($event) {
+            try {
+                DB::beginTransaction();
+                $updater = BearLogConsoleEventUpdater::fromConsoleEventId(consoleEventId: BearGlobalStateService::getConsoleId());
+                if ($event->task->exitCode === 0) {
+                    $updater->setConsoleEventFinishedAt(CarbonImmutable::now());
+                } else {
+                    $updater->setConsoleEventFailedAt(CarbonImmutable::now());
+                    $command = $event->task->command;
+                    BearLogErrorCreator::create(
+                        message: "Scheduled task [$command] failed",
+                        namespace: 'larabear',
+                        key: 'scheduled-task-failed',
+                        severity: BearSeverityEnum::HIGH,
+                    );
+                }
+                $updater->setExecutionTimeMicroseconds((int)($event->runtime * 1_000_000));
+                $updater->save();
+                DB::commit();
+            } catch (Throwable $t) {
+                DB::rollBack();
+                BearLogErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-scheduled-task-finished', severity: BearSeverityEnum::MEDIUM, exception: $t);
+            }
         });
     }
 }
