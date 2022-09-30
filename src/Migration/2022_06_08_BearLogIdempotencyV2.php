@@ -8,21 +8,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::dropIfExists(table: 'bear_idempotency');
+        Schema::dropIfExists(table: 'bear_log_idempotency');
         Schema::create(table: 'bear_log_idempotency', callback: static function (Blueprint $table): void {
             if (BearDBService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'idempotency_key')->primary();
                 $table->ipAddress(column: 'request_ip')->nullable();
                 $table->text(column: 'request_country_code')->nullable();
                 $table->text(column: 'request_http_method');
+                $table->text(column: 'request_http_path')->nullable();
             } else {
                 $table->string(column: 'idempotency_key')->primary();
                 $table->ipAddress(column: 'request_ip')->nullable();
                 $table->string(column: 'request_country_code')->nullable();
                 $table->string(column: 'request_http_method');
+                $table->string(column: 'request_http_path', length: 2048)->nullable();
             }
-            $table->text(column: 'request_http_path')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+                $table->text(column: 'request_id')->nullable();
+                $table->text(column: 'console_id')->nullable();
+            } else {
+                $table->string(column: 'request_id')->nullable();
+                $table->string(column: 'console_id')->nullable();
+            }
         });
     }
 

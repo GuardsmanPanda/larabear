@@ -30,14 +30,22 @@ return new class extends Migration {
             if (BearDBService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_country_code')->nullable();
                 $table->text(column: 'request_http_method');
+                $table->text(column: 'request_http_path')->nullable();
             } else {
                 $table->string(column: 'request_country_code')->nullable();
                 $table->string(column: 'request_http_method');
+                $table->string(column: 'request_http_path', length: 2048)->nullable();
             }
-            $table->text(column: 'request_http_path')->nullable();
             $table->jsonb(column: 'request_http_query_json')->nullable();
             $table->text(column: 'app_action_name')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+                $table->text(column: 'request_id')->nullable();
+                $table->text(column: 'console_id')->nullable();
+            } else {
+                $table->string(column: 'request_id')->nullable();
+                $table->string(column: 'console_id')->nullable();
+            }
             $table->foreign('error_severity', 'error_severity_foreign')->references('slug')->on('bear_severity');
         });
     }

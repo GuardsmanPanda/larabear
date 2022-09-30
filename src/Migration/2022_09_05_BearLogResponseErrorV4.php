@@ -1,5 +1,6 @@
 <?php
 
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearMigrationService;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,15 +14,28 @@ return new class extends Migration {
             $table->id();
             $table->ipAddress(column: 'request_ip')->index();
             BearMigrationService::buildUserReferencingColumn(table: $table, columnName: 'user_id');
-            $table->text(column: 'request_country_code')->nullable();
-            $table->integer(column: 'response_status_code')->index();
-            $table->text(column: 'request_http_method');
-            $table->text(column: 'request_http_path');
+
+            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+                $table->text(column: 'request_country_code')->nullable();
+                $table->text(column: 'request_http_method');
+                $table->text(column: 'request_http_path')->nullable();
+            } else {
+                $table->string(column: 'request_country_code')->nullable();
+                $table->string(column: 'request_http_method');
+                $table->string(column: 'request_http_path', length: 2048)->nullable();
+            }
             $table->jsonb(column: 'request_http_query_json')->nullable();
             $table->text(column: 'request_http_hostname');
             $table->text(column: 'app_action_name')->nullable();
             $table->text(column: 'response_body');
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+                $table->text(column: 'request_id')->nullable();
+                $table->text(column: 'console_id')->nullable();
+            } else {
+                $table->string(column: 'request_id')->nullable();
+                $table->string(column: 'console_id')->nullable();
+            }
         });
     }
 
