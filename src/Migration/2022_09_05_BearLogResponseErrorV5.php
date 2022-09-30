@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->ipAddress(column: 'request_ip')->index();
             BearMigrationService::buildUserReferencingColumn(table: $table, columnName: 'user_id');
-
+            $table->integer(column: 'response_status_code')->index();
             if (BearDBService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_country_code')->nullable();
                 $table->text(column: 'request_http_method');
@@ -31,10 +31,8 @@ return new class extends Migration {
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             if (BearDBService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_id')->nullable();
-                $table->text(column: 'console_id')->nullable();
             } else {
                 $table->string(column: 'request_id')->nullable();
-                $table->string(column: 'console_id')->nullable();
             }
         });
     }
