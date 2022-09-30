@@ -28,7 +28,7 @@ class BearServiceProvider extends ServiceProvider {
         'migrate',
         'optimize',
         'package:discover',
-        'schedule:run,'
+        'schedule:run',
     ];
 
 
@@ -124,7 +124,7 @@ class BearServiceProvider extends ServiceProvider {
                         severity: BearSeverityEnum::HIGH,
                     );
                 }
-                $updater->setExecutionTimeMicroseconds((int)($event->runtime * 1_000_000));
+                $updater->setExecutionTimeMicroseconds((int)($event->runtime * 1000));
                 $updater->save();
                 DB::commit();
             } catch (Throwable $t) {
