@@ -32,9 +32,10 @@ class BearLogDatabaseChangeCreator {
                 change_type, is_soft_deletion,
                 changed_by_user_id,
                 request_ip, request_country_code, 
-                request_http_method, request_http_path, app_action_name
+                request_http_method, request_http_path, app_action_name,
+                request_id, console_id                                                  
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,?, ?, ?, ?, ?, ?, ?, ?)
         ", bindings: [
             $table_name, $column_name,
             $record_id, $record_uuid, $record_identifier,
@@ -42,7 +43,8 @@ class BearLogDatabaseChangeCreator {
             $change_type, $is_soft_deletion,
             BearGlobalStateService::getUserId(),
             Req::ip(), Req::ipCountry(),
-            Req::method(), Req::path(), Req::actionName()
+            Req::method(), Req::path(), Req::actionName(),
+            BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleId()
         ]);
 
          $channel = Config::get(key: "bear.log_database_change_channel");
