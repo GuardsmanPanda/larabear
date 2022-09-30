@@ -98,7 +98,7 @@ class BearServiceProvider extends ServiceProvider {
                 } else {
                     $updater->setConsoleEventFailedAt(CarbonImmutable::now());
                 }
-                $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1000));
+                $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1_000_000));
                 $updater->save();
                 DB::commit();
             } catch (Throwable $t) {
@@ -124,7 +124,7 @@ class BearServiceProvider extends ServiceProvider {
                         severity: BearSeverityEnum::HIGH,
                     );
                 }
-                $updater->setExecutionTimeMicroseconds((int)($event->runtime * 1000));
+                $updater->setExecutionTimeMicroseconds((int)($event->runtime * 1_000_000));
                 $updater->save();
                 DB::commit();
             } catch (Throwable $t) {
