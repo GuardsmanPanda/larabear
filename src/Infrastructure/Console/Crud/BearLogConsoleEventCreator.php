@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Console\Crud;
 
-use Carbon\CarbonImmutable;
+use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Model\BearLogConsoleEvent;
@@ -29,7 +29,7 @@ class BearLogConsoleEventCreator {
 
         $model->console_event_type = $console_event_type;
         $model->console_command = $console_command;
-        $model->console_event_started_at = CarbonImmutable::now();
+        $model->console_event_started_at = Carbon::now();
         $model->console_event_id = BearGlobalStateService::getConsoleId();
         $model->cron_schedule_expression = $cron_schedule_expression;
         $model->cron_schedule_timezone = $cron_schedule_timezone;
@@ -37,10 +37,6 @@ class BearLogConsoleEventCreator {
         $model->console_event_failed_at = $console_event_failed_at;
         $model->execution_time_microseconds = $execution_time_microseconds;
         $model->console_event_output = $console_event_output;
-
-        if (BearDBService::defaultConnectionDriver() === 'mysql') {
-            $model->setDateFormat('Y-m-d H:i:s');
-        }
 
         $model->save();
         return $model->fresh();

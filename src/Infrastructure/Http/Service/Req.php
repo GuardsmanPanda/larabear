@@ -64,8 +64,8 @@ class Req {
         return self::$r?->ip();
     }
 
-    public static function ipCountry(): string {
-        return self::hasHeader(name: 'CF_IPCOUNTRY') ? self::header(name: 'CF_IPCOUNTRY') : 'XX';
+    public static function ipCountry(): string|null {
+        return self::hasHeader(name: 'CF_IPCOUNTRY') ? self::header(name: 'CF_IPCOUNTRY') : null;
     }
 
     public static function requestId(): string|null {

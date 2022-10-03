@@ -39,9 +39,6 @@ class BearLogConsoleEventUpdater {
     }
 
     public function save(): BearLogConsoleEvent {
-        if (BearDBService::defaultConnectionDriver() === 'mysql') {
-            $this->model->setDateFormat('Y-m-d H:i:s');
-        }
         $this->model->save();
         return $this->model;
     }

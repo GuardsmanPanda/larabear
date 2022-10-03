@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Provider;
 
-use Carbon\CarbonImmutable;
+use Carbon\Carbon;
 use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Command\BearValidateConfigurationCommand;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
@@ -94,9 +94,9 @@ class BearServiceProvider extends ServiceProvider {
                 DB::beginTransaction();
                 $updater = BearLogConsoleEventUpdater::fromConsoleEventId(consoleEventId: BearGlobalStateService::getConsoleId());
                 if ($event->exitCode === 0) {
-                    $updater->setConsoleEventFinishedAt(CarbonImmutable::now());
+                    $updater->setConsoleEventFinishedAt(Carbon::now());
                 } else {
-                    $updater->setConsoleEventFailedAt(CarbonImmutable::now());
+                    $updater->setConsoleEventFailedAt(Carbon::now());
                 }
                 $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1_000_000));
                 $updater->save();
@@ -113,9 +113,9 @@ class BearServiceProvider extends ServiceProvider {
                 DB::beginTransaction();
                 $updater = BearLogConsoleEventUpdater::fromConsoleEventId(consoleEventId: BearGlobalStateService::getConsoleId());
                 if ($event->task->exitCode === 0) {
-                    $updater->setConsoleEventFinishedAt(CarbonImmutable::now());
+                    $updater->setConsoleEventFinishedAt(Carbon::now());
                 } else {
-                    $updater->setConsoleEventFailedAt(CarbonImmutable::now());
+                    $updater->setConsoleEventFailedAt(Carbon::now());
                     $command = $event->task->command;
                     BearLogErrorCreator::create(
                         message: "Scheduled task [$command] failed",

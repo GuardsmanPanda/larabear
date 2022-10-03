@@ -25,11 +25,7 @@ return new class extends Migration {
             $table->timestampTz(column: 'console_event_finished_at')->nullable();
             $table->timestampTz(column: 'console_event_failed_at')->nullable();
             $table->bigInteger(column: 'execution_time_microseconds')->nullable();
-            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
-                $table->text(column: 'console_event_id')->index();
-            } else {
-                $table->string(column: 'console_event_id')->index();
-            }
+            $table->uuid(column: 'console_event_id')->index();
             $table->text(column: 'console_event_output')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
