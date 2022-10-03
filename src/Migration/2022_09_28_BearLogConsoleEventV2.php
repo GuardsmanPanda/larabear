@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
+        Schema::dropIfExists(table: 'bear_log_console_event');
         Schema::create(table: 'bear_log_console_event', callback: static function (Blueprint $table): void {
             $table->id();
             if (BearDBService::defaultConnectionDriver() === 'pgsql') {
