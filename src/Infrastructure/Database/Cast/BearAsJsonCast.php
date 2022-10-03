@@ -11,7 +11,7 @@ class BearAsJsonCast implements CastsAttributes {
         if ($value === null) {
             return new stdClass();
         }
-        $decodedJson = json_decode($value, false, 512, JSON_THROW_ON_ERROR);
+        $decodedJson = json_decode(json: $value, associative: false, depth: 256, flags: JSON_THROW_ON_ERROR);
         if (is_array($decodedJson)) {
             return new ArrayObject($decodedJson);
         }
@@ -20,6 +20,6 @@ class BearAsJsonCast implements CastsAttributes {
     }
 
     public function set($model, string $key, mixed $value, array $attributes): string {
-        return json_encode($value, JSON_THROW_ON_ERROR);
+        return json_encode(value: $value, flags: JSON_THROW_ON_ERROR);
     }
 }

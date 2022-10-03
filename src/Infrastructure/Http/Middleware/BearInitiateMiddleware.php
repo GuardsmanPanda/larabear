@@ -37,7 +37,7 @@ class BearInitiateMiddleware {
         //----------------------------------------------------------------------------------------------------------
         if ($this->app->isDownForMaintenance()) {
             try {
-                $data = json_decode(file_get_contents($this->app->storagePath() . '/framework/down'), true, 512, JSON_THROW_ON_ERROR);
+                $data = json_decode(json: file_get_contents(filename: $this->app->storagePath() . '/framework/down'), associative: true, depth: 256, flags: JSON_THROW_ON_ERROR);
             } catch (JsonException $e) {
                 throw new HttpException(statusCode: 500, message: 'The down file is not valid JSON.', previous: $e);
             }

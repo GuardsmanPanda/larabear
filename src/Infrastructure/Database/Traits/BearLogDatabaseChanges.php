@@ -67,11 +67,11 @@ trait BearLogDatabaseChanges {
                     }
                     // If old_value is array
                     if (is_array($old_value) || $old_value instanceof stdClass || $old_value instanceof ArrayObject) {
-                        $old_value = json_encode($old_value, JSON_THROW_ON_ERROR);
+                        $old_value = json_encode(value: $old_value, flags: JSON_THROW_ON_ERROR);
                     }
                     // If new_value is array
                     if (is_array($new_value) || $new_value instanceof stdClass || $new_value instanceof ArrayObject) {
-                        $new_value = json_encode($new_value, JSON_THROW_ON_ERROR);
+                        $new_value = json_encode(value: $new_value, flags: JSON_THROW_ON_ERROR);
                     }
 
                     BearLogDatabaseChangeCreator::create(

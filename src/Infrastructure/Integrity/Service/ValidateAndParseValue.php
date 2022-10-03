@@ -40,7 +40,7 @@ class ValidateAndParseValue {
             return $value;
         }
         try {
-            return json_decode(json: $value, associative: true, depth: 512, flags: JSON_THROW_ON_ERROR);
+            return json_decode(json: $value, associative: true, depth: 256, flags: JSON_THROW_ON_ERROR);
         } catch (Throwable $e) {
             $msg = "Invalid JSON: " . $e->getMessage();
             throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
@@ -49,7 +49,7 @@ class ValidateAndParseValue {
 
     public static function parseJsonToStdClass(string $value, string $errorMessage = null): stdClass {
         try {
-            return json_decode(json: $value, associative: false, depth: 512, flags: JSON_THROW_ON_ERROR);
+            return json_decode(json: $value, associative: false, depth: 256, flags: JSON_THROW_ON_ERROR);
         } catch (Throwable $e) {
             $msg = "Invalid JSON: " . $e->getMessage();
             throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
