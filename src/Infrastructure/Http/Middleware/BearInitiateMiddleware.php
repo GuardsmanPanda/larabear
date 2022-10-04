@@ -3,7 +3,9 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 
 use Closure;
+use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogResponseErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Crud\BearLogRouteUsageCrud;
 use Illuminate\Contracts\Foundation\Application;
@@ -170,6 +172,13 @@ class BearInitiateMiddleware {
                 }
             }
         } catch (Throwable $e) {
+            BearLogErrorCreator::create(
+                message: 'Bear middleware terminate error: ' . $e->getMessage(),
+                namespace: "larabear",
+                key: "initiate-middleware-terminate",
+                severity: BearSeverityEnum::HIGH,
+                exception: $e
+            );
             Log::error(message: 'Bear middleware terminate error: ' . $e->getMessage(), context: ['exception' => $e]);
         }
     }

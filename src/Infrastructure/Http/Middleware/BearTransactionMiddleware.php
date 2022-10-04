@@ -26,7 +26,7 @@ class BearTransactionMiddleware {
             return $res;
         } catch (Throwable $t) {
             DB::rollBack();
-            throw new RuntimeException("Transaction failed: [{$t->getMessage()}]", $t->getCode(), $t);
+            throw new RuntimeException(message: "Transaction failed: [{$t->getMessage()}]", code: $t->getCode(), previous: $t);
         }
     }
 }
