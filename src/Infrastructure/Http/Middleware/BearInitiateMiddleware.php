@@ -165,7 +165,7 @@ class BearInitiateMiddleware {
             if ($statusCode >= 400 && Config::get(key: 'bear.response_error_log.enabled') === true && BearGlobalStateService::getLogResponseError() && !in_array(needle: $statusCode, haystack: Config::get(key: 'bear.response_error_log.ignore_response_codes', default: []), strict: true)) {
                 BearLogResponseErrorCreator::create(statusCode: $response->getStatusCode(), responseBody: $response->getContent());
             }
-            if (Config::get(key: 'bear.route_usage_log.enabled') === true) {
+            if ($response->getStatusCode() < 400 && Config::get(key: 'bear.route_usage_log.enabled') === true) {
                 $multiply = Config::get(key: 'bear.route_usage_log.log_one_in_every', default: 1);
                 if (random_int(min: 1, max: $multiply) === 1) {
                     BearLogRouteUsageCrud::createOrUpdate(multiply: $multiply);

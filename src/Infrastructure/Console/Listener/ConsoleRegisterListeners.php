@@ -51,6 +51,7 @@ class ConsoleRegisterListeners {
             BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
             try {
                 DB::beginTransaction();
+                $event->task->storeOutput();
                 BearLogConsoleEventCreator::create(
                     console_event_type: 'scheduled_task',
                     console_command: $event->task->command ?? $event->task->getSummaryForDisplay(),
@@ -78,6 +79,7 @@ class ConsoleRegisterListeners {
                     $updater->setConsoleEventFailedAt(Carbon::now());
                 }
                 $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1_000_000));
+                $updater->setConsoleEventOutput(file_get_contents($event->task->output));
                 $updater->save();
                 DB::commit();
             } catch (Throwable $t) {
