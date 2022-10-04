@@ -16,6 +16,7 @@ return new class extends Migration {
                 $table->string(column: 'config_key')->primary();
             }
             $table->text(column: 'config_text')->nullable();
+            $table->text(column: 'encrypted_config_text')->nullable();
             $table->boolean(column: 'config_boolean')->nullable();
             $table->integer(column: 'config_integer')->nullable();
             $table->date(column: 'config_date')->nullable();
