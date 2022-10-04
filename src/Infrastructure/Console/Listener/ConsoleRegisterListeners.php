@@ -79,7 +79,6 @@ class ConsoleRegisterListeners {
                     $updater->setConsoleEventFailedAt(Carbon::now());
                 }
                 $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1_000_000));
-                $updater->setConsoleEventOutput(file_get_contents($event->task->output));
                 $updater->save();
                 DB::commit();
             } catch (Throwable $t) {
@@ -106,6 +105,7 @@ class ConsoleRegisterListeners {
                     );
                 }
                 $updater->setExecutionTimeMicroseconds((int)($event->runtime * 1_000_000));
+                $updater->setConsoleEventOutput(file_get_contents($event->task->output));
                 $updater->save();
                 DB::commit();
             } catch (Throwable $t) {
