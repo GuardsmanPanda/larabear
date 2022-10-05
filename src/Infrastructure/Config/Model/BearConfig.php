@@ -62,7 +62,6 @@ class BearConfig extends Model {
     protected $keyType = 'string';
     protected $dateFormat = 'Y-m-d H:i:sO';
 
-    /** @var array<string, string> $casts */
     protected $casts = [
         'config_date' => 'immutable_date',
         'config_json' => BearAsJsonCast::class,

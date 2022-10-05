@@ -105,7 +105,9 @@ class ConsoleRegisterListeners {
                     );
                 }
                 $updater->setExecutionTimeMicroseconds((int)($event->runtime * 1_000_000));
-                $updater->setConsoleEventOutput(file_get_contents($event->task->output));
+                if ($event->task->command !== null) {
+                    $updater->setConsoleEventOutput(file_get_contents($event->task->output));
+                }
                 $updater->save();
                 DB::commit();
             } catch (Throwable $t) {
