@@ -22,9 +22,9 @@ return new class extends Migration {
             $table->integer(column: 'config_integer')->nullable();
             $table->date(column: 'config_date')->nullable();
             $table->timestampTz(column: 'config_timestamp')->nullable();
-            $table->jsonb(column: 'config_json')->default(value: '{}');
-            $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
-            $table->timestampTz(column: 'updated_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
+            $table->jsonb(column: 'config_json')->default( '{}');
+            $table->timestampTz(column: 'created_at')->default(DB::raw( 'CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'updated_at')->default(DB::raw( 'CURRENT_TIMESTAMP'));
         });
 
         BearConfigCreator::create(config_key: 'larabear.version', config_string: '0.4.0');
