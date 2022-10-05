@@ -7,14 +7,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        try {
-            Schema::table('bear_log_database_change', static function (Blueprint $table) {
-                $table->dropColumn(columns: 'request_id');
-                $table->dropColumn(columns: 'console_id');
-            });
-        } catch (Throwable $t) {
-            // Do nothing
-        }
         Schema::table('bear_log_database_change', static function (Blueprint $table) {
             if (BearDBService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_id')->nullable();
