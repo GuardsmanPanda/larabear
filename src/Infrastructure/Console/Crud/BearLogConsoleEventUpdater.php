@@ -17,10 +17,9 @@ class BearLogConsoleEventUpdater {
     }
 
     public static function fromConsoleEventId(string $consoleEventId): BearLogConsoleEventUpdater {
-        return new BearLogConsoleEventUpdater(
-            model:BearLogConsoleEvent::where('console_event_id', $consoleEventId)->sole()
-        );
+        return new BearLogConsoleEventUpdater(model: BearLogConsoleEvent::where(column: 'console_event_id', operator: '=', value: $consoleEventId)->sole());
     }
+
 
     public function setConsoleEventFinishedAt(CarbonInterface|null $console_event_finished_at): void {
         $this->model->console_event_finished_at = $console_event_finished_at;
