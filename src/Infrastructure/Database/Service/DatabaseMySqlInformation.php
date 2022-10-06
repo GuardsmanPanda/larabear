@@ -45,10 +45,10 @@ class DatabaseMySqlInformation extends DatabaseBaseInformation {
         return DB::connection(name: $this->connectionName)->select(query: "
             SELECT
                 kcu.table_name,
-                kcu.column_name
+                kcu.column_name, kcu.*, tc.*
             FROM information_schema.key_column_usage kcu
-            LEFT JOIN information_schema.table_constraints tc ON kcu.constraint_name = tc.constraint_name
-            WHERE kcu.table_schema = ? AND tc.constraint_type = 'PRIMARY KEY'
+            LEFT JOIN information_schema.table_constraints tc ON kcu.table_name = tc.table_name AND kcu.constraint_schema = tc.table_schema
+            WHERE kcu.table_schema = 'crm' AND tc.constraint_type = 'PRIMARY KEY' AND kcu.constraint_name = 'PRIMARY'
         ", bindings: [$this->databaseName]);
     }
 
