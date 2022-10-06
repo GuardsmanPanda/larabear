@@ -44,8 +44,8 @@ class DatabaseMySqlInformation extends DatabaseBaseInformation {
     public function getAllPrimaryKeys(): array {
         return DB::connection(name: $this->connectionName)->select(query: "
             SELECT
-                kcu.table_name,
-                kcu.column_name, kcu.*, tc.*
+                kcu.table_name AS table_name,
+                kcu.column_name AS column_name
             FROM information_schema.key_column_usage kcu
             LEFT JOIN information_schema.table_constraints tc ON kcu.table_name = tc.table_name AND kcu.constraint_schema = tc.table_schema
             WHERE kcu.table_schema = ? AND tc.constraint_type = 'PRIMARY KEY' AND kcu.constraint_name = 'PRIMARY'
