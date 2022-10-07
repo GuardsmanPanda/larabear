@@ -22,7 +22,11 @@ return new class extends Migration {
             $table->integer(column: 'config_integer')->nullable();
             $table->date(column: 'config_date')->nullable();
             $table->timestampTz(column: 'config_timestamp')->nullable();
-            $table->jsonb(column: 'config_json')->default( '{}');
+            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+                $table->jsonb(column: 'config_json')->default( '{}');
+            } else {
+                $table->jsonb(column: 'config_json')->default( '(json_object())');
+            }
             $table->timestampTz(column: 'created_at')->default(DB::raw( 'CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw( 'CURRENT_TIMESTAMP'));
         });
