@@ -105,8 +105,10 @@ class ConsoleRegisterListeners {
                     );
                 }
                 $updater->setExecutionTimeMicroseconds((int)($event->runtime * 1_000_000));
-                if ($event->task->command !== null) {
+                try {
                     $updater->setConsoleEventOutput(file_get_contents($event->task->output));
+                } catch (Throwable $t) {
+                    $updater->setConsoleEventOutput("# Command output not available");
                 }
                 $updater->save();
                 DB::commit();
