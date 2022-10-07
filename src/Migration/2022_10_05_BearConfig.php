@@ -26,7 +26,7 @@ return new class extends Migration {
                     );
             ");
         } else {
-            Schema::create(table: 'bear_log_console_event', callback: static function (Blueprint $table): void {
+            Schema::create(table: 'bear_config', callback: static function (Blueprint $table): void {
                 $table->text(column: 'config_key')->primary();
                 $table->text(column: 'config_string')->nullable();
                 $table->text(column: 'encrypted_config_string')->nullable();
