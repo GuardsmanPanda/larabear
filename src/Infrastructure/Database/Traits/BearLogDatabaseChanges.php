@@ -74,6 +74,14 @@ trait BearLogDatabaseChanges {
                         $new_value = json_encode(value: $new_value, flags: JSON_THROW_ON_ERROR);
                     }
 
+                    // Fix bool to string conversion in PHP
+                    if (is_bool($old_value)) {
+                        $old_value = $old_value ? 'true' : 'false';
+                    }
+                    if (is_bool($new_value)) {
+                        $new_value = $new_value ? 'true' : 'false';
+                    }
+
                     BearLogDatabaseChangeCreator::create(
                         table_name: $model->getTable(),
                         change_type: 'UPDATE',
