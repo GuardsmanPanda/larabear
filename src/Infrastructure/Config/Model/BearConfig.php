@@ -44,6 +44,7 @@ use stdClass;
  * @property int|null $config_integer
  * @property bool|null $config_boolean
  * @property string $config_key
+ * @property string $config_description
  * @property string|null $config_string
  * @property string|null $encrypted_config_string
  * @property stdClass $config_json

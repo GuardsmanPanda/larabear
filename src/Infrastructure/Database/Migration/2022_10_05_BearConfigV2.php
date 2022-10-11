@@ -14,6 +14,7 @@ return new class extends Migration {
             DB::statement("
                     CREATE TABLE bear_config (
                         config_key VARCHAR(255) PRIMARY KEY,
+                        config_description TEXT NULL,
                         config_string TEXT NULL,
                         encrypted_config_string TEXT NULL,
                         config_boolean TINYINT(1) NULL,
@@ -28,6 +29,7 @@ return new class extends Migration {
         } else {
             Schema::create(table: 'bear_config', callback: static function (Blueprint $table): void {
                 $table->text(column: 'config_key')->primary();
+                $table->text(column: 'config_description')->primary();
                 $table->text(column: 'config_string')->nullable();
                 $table->text(column: 'encrypted_config_string')->nullable();
                 $table->boolean(column: 'config_boolean')->nullable();
@@ -41,11 +43,11 @@ return new class extends Migration {
         }
         try {
             DB::beginTransaction();
-            BearConfigCreator::create(config_key: 'larabear.version', config_string: '0.4.0');
-            BearConfigCreator::create(config_key: 'larabear.last_short_url_code', config_string: '1');
-            BearConfigCreator::create(config_key: 'larabear.delete_log_console_event_after_days', config_integer: 60);
-            BearConfigCreator::create(config_key: 'larabear.delete_log_response_error_after_days', config_integer: 60);
-            BearConfigCreator::create(config_key: 'larabear.delete_log_access_token_after_days', config_integer: 60);
+            BearConfigCreator::create(config_key: 'larabear.version', config_description: 'Version of the larabear package.', config_string: '0.5.0');
+            BearConfigCreator::create(config_key: 'larabear.last_short_url_code', config_description: 'Used for Generation ShortUrl codes. (BearShortUrlCodeService.php)', config_string: '1');
+            BearConfigCreator::create(config_key: 'larabear.delete_log_console_event_days', config_description: 'How many days to store console errors.', config_integer: 60);
+            BearConfigCreator::create(config_key: 'larabear.delete_log_response_error_days', config_description: 'How many days to store response errors.', config_integer: 60);
+            BearConfigCreator::create(config_key: 'larabear.delete_log_access_token_days', config_description: 'How many days to store access token logs.', config_integer: 60);
             DB::commit();
         } catch (Throwable $t) {
             DB::rollBack();

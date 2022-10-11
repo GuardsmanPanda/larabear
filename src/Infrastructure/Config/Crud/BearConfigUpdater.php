@@ -21,6 +21,10 @@ class BearConfigUpdater {
         return new self(model: BearConfig::findOrFail(id: $configKey));
     }
 
+    public function setConfigDescription(string $config_description): void {
+        $this->model->config_description = $config_description;
+    }
+
     public function setConfigJson(stdClass $config_json): void {
         $this->model->config_json = $config_json;
     }
