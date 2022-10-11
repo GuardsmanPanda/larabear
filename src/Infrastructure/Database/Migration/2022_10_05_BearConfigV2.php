@@ -29,7 +29,7 @@ return new class extends Migration {
         } else {
             Schema::create(table: 'bear_config', callback: static function (Blueprint $table): void {
                 $table->text(column: 'config_key')->primary();
-                $table->text(column: 'config_description')->primary();
+                $table->text(column: 'config_description');
                 $table->text(column: 'config_string')->nullable();
                 $table->text(column: 'encrypted_config_string')->nullable();
                 $table->boolean(column: 'config_boolean')->nullable();
