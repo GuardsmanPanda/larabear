@@ -42,7 +42,7 @@ use RuntimeException;
  * @property int $id
  * @property int|null $execution_time_microseconds
  * @property string $console_command
- * @property string $console_event_id
+ * @property string $console_id
  * @property string $console_event_type
  * @property string|null $console_event_output
  * @property string|null $cron_schedule_timezone

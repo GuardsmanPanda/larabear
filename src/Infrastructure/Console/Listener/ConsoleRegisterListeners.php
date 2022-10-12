@@ -29,10 +29,10 @@ class ConsoleRegisterListeners {
 
     public static function RegisterListeners(): void {
         Event::listen(events: CommandStarting::class, listener: static function ($event) {
+            BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
             if (in_array(needle: $event->command, haystack: self::$ignoreCommands, strict: true)) {
                 return;
             }
-            BearGlobalStateService::setConsoleId(consoleId: Str::uuid()->toString());
             try {
                 DB::beginTransaction();
                 BearLogConsoleEventCreator::create(

@@ -26,8 +26,8 @@ return new class extends Migration {
             $table->timestampTz(column: 'console_event_finished_at')->nullable();
             $table->timestampTz(column: 'console_event_failed_at')->nullable();
             $table->bigInteger(column: 'execution_time_microseconds')->nullable();
-            $table->uuid(column: 'console_event_id')->index();
             $table->text(column: 'console_event_output')->nullable();
+            $table->uuid(column: 'console_id')->index();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }

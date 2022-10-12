@@ -30,7 +30,7 @@ class BearLogConsoleEventCreator {
         $model->console_event_type = $console_event_type;
         $model->console_command = $console_command;
         $model->console_event_started_at = Carbon::now();
-        $model->console_event_id = BearGlobalStateService::getConsoleId();
+        $model->console_id = BearGlobalStateService::getConsoleId();
         $model->cron_schedule_expression = $cron_schedule_expression;
         $model->cron_schedule_timezone = $cron_schedule_timezone;
         $model->console_event_finished_at = $console_event_finished_at;

@@ -17,7 +17,7 @@ class BearLogConsoleEventUpdater {
     }
 
     public static function fromConsoleEventId(string $consoleEventId): BearLogConsoleEventUpdater {
-        return new BearLogConsoleEventUpdater(model: BearLogConsoleEvent::where(column: 'console_event_id', operator: '=', value: $consoleEventId)->sole());
+        return new BearLogConsoleEventUpdater(model: BearLogConsoleEvent::where(column: 'console_id', operator: '=', value: $consoleEventId)->sole());
     }
 
 
