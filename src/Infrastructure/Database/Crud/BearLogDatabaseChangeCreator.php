@@ -33,9 +33,9 @@ class BearLogDatabaseChangeCreator {
                 changed_by_user_id,
                 request_ip, request_country_code, 
                 request_http_method, request_http_path, app_action_name,
-                request_id, console_id                                                  
+                request_http_hostname, request_id, console_id                                                  
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,?, ?, ?, ?, ?, ?, ?, ?, ?)
         ", bindings: [
             $table_name, $column_name,
             $record_id, $record_uuid, $record_identifier,
@@ -43,7 +43,7 @@ class BearLogDatabaseChangeCreator {
             $change_type, $is_soft_deletion,
             BearGlobalStateService::getUserId(),
             Req::ip(), Req::ipCountry(),
-            Req::method(), Req::path(), Req::actionName(),
+            Req::method(), Req::path(), Req::actionName(), Req::hostname(),
             BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleId()
         ]);
 
