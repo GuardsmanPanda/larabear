@@ -138,7 +138,7 @@ class Req {
         return $val === null ? null : ValidateAndParseValue::parseString($val);
     }
     public static function getStringOrDefault(string $name, string $default = null): string|null {
-        if (!self::has($name)) {
+        if (!self::has(key: $name, falseOnNull: true)) {
             return $default;
         }
         $val = self::$r->input($name);
@@ -154,7 +154,7 @@ class Req {
         return $val === null ? null : ValidateAndParseValue::parseInt($val);
     }
     public static function getIntOrDefault(string $name, int $default = null): int|null {
-        if (!self::has($name)) {
+        if (!self::has(key: $name, falseOnNull: true)) {
             return $default;
         }
         $val = self::$r->input($name);
@@ -170,7 +170,7 @@ class Req {
         return $val === null ? null : ValidateAndParseValue::parseFloat($val);
     }
     public static function getFloatOrDefault(string $name, float $default = null): float|null {
-        if (!self::has($name)) {
+        if (!self::has(key: $name, falseOnNull: true)) {
             return $default;
         }
         $val = self::$r->input($name);
@@ -186,7 +186,7 @@ class Req {
         return $val === null ? null : ValidateAndParseValue::parseBool($val);
     }
     public static function getBoolOrDefault(string $name, bool $default = null): bool|null {
-        if (!self::has($name)) {
+        if (!self::has(key: $name, falseOnNull: true)) {
             return $default;
         }
         $val = self::$r->input($name);
@@ -202,7 +202,7 @@ class Req {
         return $val === null ? null : ValidateAndParseValue::parseDate($val);
     }
     public static function getDateOrDefault(string $name, CarbonImmutable $default = null): CarbonImmutable|null {
-        if (!self::has($name)) {
+        if (!self::has(key: $name, falseOnNull: true)) {
             return $default;
         }
         $val = self::$r->input($name);
@@ -218,7 +218,7 @@ class Req {
         return $val === null ? null : ValidateAndParseValue::parseDateTime($val);
     }
     public static function getDateTimeOrDefault(string $name, CarbonImmutable $default = null): CarbonImmutable|null {
-        if (!self::has($name)) {
+        if (!self::has(key: $name, falseOnNull: true)) {
             return $default;
         }
         $val = self::$r->input($name);
