@@ -13,6 +13,7 @@ class BearConfigCreator {
     public static function create(
         string $config_key,
         string $config_description,
+        string $config_data_type,
         string $config_string = null,
         string $encrypted_config_string = null,
         bool $config_boolean = null,
@@ -29,6 +30,7 @@ class BearConfigCreator {
 
         $model->config_key = $config_key;
         $model->config_description = $config_description;
+        $model->config_data_type = $config_data_type;
         $model->config_json = $config_json;
         $model->config_string = $config_string;
         $model->encrypted_config_string = $encrypted_config_string;

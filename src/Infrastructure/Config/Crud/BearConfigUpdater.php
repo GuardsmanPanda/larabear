@@ -25,6 +25,10 @@ class BearConfigUpdater {
         $this->model->config_description = $config_description;
     }
 
+    public function setConfigDataType(string $config_data_type): void {
+        $this->model->config_data_type = $config_data_type;
+    }
+
     public function setConfigJson(stdClass $config_json): void {
         $this->model->config_json = $config_json;
     }
