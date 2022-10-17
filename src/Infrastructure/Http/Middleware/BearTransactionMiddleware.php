@@ -20,7 +20,7 @@ class BearTransactionMiddleware {
         try {
             DB::beginTransaction();
             $res = $next($request);
-            if ($res->getStatusCode() <= 400) {
+            if ($res->getStatusCode() < 400) {
                 DB::commit();
             } else {
                 DB::rollBack();
