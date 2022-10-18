@@ -102,12 +102,18 @@ class ValidateAndParseValue {
         }
         $value = str_replace(search: 'Z', replace: '+00:00', subject: $value);
         $date = CarbonImmutable::parse($value);
+
         if ($timezone === null && $value !== $date->toIso8601String()) {
             $msg = "Invalid date time: $value (must be ISO 8601), example: " . $date->toIso8601String();
             throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
         }
+
         if ($timezone !== null) {
-            $date->setTimezone($timezone);
+            if (!preg_match(pattern: '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,3})?$/', subject: $value)) {
+                $msg = "Invalid date time: $value (must be ISO 8601 without timezone when timezone included), example: YYYY-MM-DDTHH:MM:SS";
+                throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
+            }
+            $date = $date->setTimezone($timezone);
         }
         return $date;
     }
