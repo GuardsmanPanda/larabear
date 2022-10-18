@@ -215,7 +215,7 @@ class Req {
             throw new BadRequestHttpException(message: "No input field named: $name");
         }
         $val = self::$r->input(key: $name);
-        $timezone = self::getStringOrDefault(name: $name . "_timezone");
+        $timezone =  self::$r->input(key: $name . "_timezone");
         return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone');
     }
     public static function getDateTimeOrDefault(string $name, CarbonImmutable $default = null): CarbonImmutable|null {
@@ -223,7 +223,7 @@ class Req {
             return $default;
         }
         $val = self::$r->input(key: $name);
-        $timezone = self::getStringOrDefault(name: $name . "_timezone");
+        $timezone =  self::$r->input(key: $name . "_timezone");
         return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone');
     }
 

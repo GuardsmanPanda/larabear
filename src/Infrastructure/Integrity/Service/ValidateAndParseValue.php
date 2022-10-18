@@ -109,8 +109,8 @@ class ValidateAndParseValue {
         }
 
         if ($timezone !== null) {
-            if (!preg_match(pattern: '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,3})?$/', subject: $value)) {
-                $msg = "Invalid date time: $value (must be ISO 8601 without timezone when timezone included), example: YYYY-MM-DDTHH:MM:SS";
+            if (!preg_match(pattern: '/^\d{4}-\d\d-\d\dT\d\d:\d\d(:\d\d)?$/', subject: $value)) {
+                $msg = "Invalid date time: $value (must be ISO 8601 without timezone when timezone included), example: YYYY-MM-DDTHH:MM(:SS)";
                 throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
             }
             $date = $date->setTimezone($timezone);
