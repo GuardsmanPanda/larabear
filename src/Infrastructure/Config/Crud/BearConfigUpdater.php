@@ -17,7 +17,10 @@ class BearConfigUpdater {
         }
     }
 
-    public static function fromConfigKey(string $configKey): self {
+    public static function fromConfigKey(string $configKey, bool $lockForUpdate = false): self {
+        if ($lockForUpdate) {
+            return new self(model: BearConfig::lockForUpdate()->findOrFail(id: $configKey));
+        }
         return new self(model: BearConfig::findOrFail(id: $configKey));
     }
 
@@ -55,6 +58,11 @@ class BearConfigUpdater {
 
     public function setConfigTimestamp(CarbonInterface|null $config_timestamp): void {
         $this->model->config_timestamp = $config_timestamp;
+    }
+
+
+    public function getConfigString(): string|null {
+        return $this->model->config_string;
     }
 
     public function save(): BearConfig {

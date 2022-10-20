@@ -3,10 +3,15 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 
+use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
+
 class BearShortCodeService {
     private const CHARS = '25679bcdfghjklmnpqrstvwxz';
 
-    public static function generateNextCode(string $value): string {
+    public static function generateNextCode(): string {
+        $updater = BearConfigUpdater::fromConfigKey(configKey: 'larabear.last_unique_short_code', lockForUpdate: true);
+        $value = $updater->getConfigString();
+
         // Change value string into array of characters
         $value_array = str_split(string: $value);
 
@@ -37,6 +42,9 @@ class BearShortCodeService {
         }, array: $value_array);
 
         // join the array back into a string
-        return implode(array: array_reverse(array: $value_array));
+        $value = implode(array: array_reverse(array: $value_array));;
+        $updater->setConfigString(config_string: $value);
+        $updater->save();
+        return $value;
     }
 }
