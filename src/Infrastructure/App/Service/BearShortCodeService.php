@@ -6,7 +6,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
 
 class BearShortCodeService {
-    private const CHARS = '25679bcdfghjklmnpqrstvwxz';
+    private const CHARS = '25679bcdfghjkmnpqrstvwxz';
 
     public static function generateNextCode(): string {
         $updater = BearConfigUpdater::fromConfigKey(configKey: 'larabear.last_unique_short_code', lockForUpdate: true);
