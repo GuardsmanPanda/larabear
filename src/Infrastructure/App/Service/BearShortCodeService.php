@@ -17,7 +17,7 @@ class BearShortCodeService {
 
         // Map each character to the index in the chars string
         $value_array = array_map(callback: static function($char) {
-            return strpos(haystack: self::CHARS, needle: $char);
+            return str_contains(self::CHARS, $char) ? strpos(haystack: self::CHARS, needle: $char) : -1;
         }, array: $value_array);
 
         // Reverse the value array
@@ -42,7 +42,7 @@ class BearShortCodeService {
         }, array: $value_array);
 
         // join the array back into a string
-        $value = implode(array: array_reverse(array: $value_array));;
+        $value = implode(separator: '', array: array_reverse(array: $value_array));
         $updater->setConfigString(config_string: $value);
         $updater->save();
         return $value;
