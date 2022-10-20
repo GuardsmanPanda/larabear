@@ -4,13 +4,9 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Console\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
-use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
-use RuntimeException;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -38,11 +34,12 @@ use RuntimeException;
  * @method static Builder|BearLogConsoleEvent whereNotNull(string|array $columns, string $boolean = 'and')
  * @method static Builder|BearLogConsoleEvent whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static Builder|BearLogConsoleEvent orderBy(string $column, string $direction = 'asc')
+ * @method static int count(array $columns = ['*'])
  *
  * @property int $id
  * @property int|null $execution_time_microseconds
- * @property string $console_command
  * @property string $console_id
+ * @property string $console_command
  * @property string $console_event_type
  * @property string|null $console_event_output
  * @property string|null $cron_schedule_timezone
@@ -64,24 +61,8 @@ class BearLogConsoleEvent extends Model {
         'console_event_failed_at' => 'immutable_datetime',
         'console_event_finished_at' => 'immutable_datetime',
         'console_event_started_at' => 'immutable_datetime',
-        'console_input_parameters' => BearAsJsonCast::class,
         'created_at' => 'immutable_datetime',
     ];
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];
-
-    public function getAttribute($key) {
-        $resp =  parent::getAttribute($key);
-        if ($resp !== null || array_key_exists(key: $key, array: $this->attributes) || array_key_exists(key: $key, array: $this->relations)) {
-            return $resp;
-        }
-        BearLogErrorCreator::create(
-            message: "Attribute $key not loaded on " . static::class,
-            namespace: "larabear",
-            key: "attribute_not_loaded",
-            severity: BearSeverityEnum::CRITICAL,
-            remedy: "Make sure to include used attributes in the SELECT statement",
-        );
-        throw new RuntimeException(message: "Attribute $key not loaded on " . static::class);
-    }
 }

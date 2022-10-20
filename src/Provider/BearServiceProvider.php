@@ -6,11 +6,15 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Command\BearValidateConfiguration
 use GuardsmanPanda\Larabear\Infrastructure\Console\Listener\ConsoleRegisterListeners;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\BearCheckForeignKeysOnSoftDeletesCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Command\BearGenerateSessionKeyCommand;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
 class BearServiceProvider extends ServiceProvider {
 
     public function boot(): void {
+        if (method_exists(object_or_class: Model::class, method: 'preventsAccessingMissingAttributes')) {
+            Model::preventAccessingMissingAttributes();
+        }
         if ($this->app->runningInConsole()) {
             ConsoleRegisterListeners::RegisterListeners();
 

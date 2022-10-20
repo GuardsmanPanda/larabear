@@ -4,12 +4,9 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Integrity\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
-use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
-use RuntimeException;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -21,7 +18,7 @@ use RuntimeException;
  * @method static BearLogIdempotency firstOrFail(array $columns = ['*'])
  * @method static BearLogIdempotency firstOrCreate(array $filter, array $values)
  * @method static BearLogIdempotency firstOrNew(array $filter, array $values)
- * @method static BearLogIdempotency firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
+ * @method static BearLogIdempotency|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method static Collection|BearLogIdempotency all(array $columns = ['*'])
  * @method static Collection|BearLogIdempotency fromQuery(string $query, array $bindings = [])
  * @method static Builder|BearLogIdempotency lockForUpdate()
@@ -37,9 +34,12 @@ use RuntimeException;
  * @method static Builder|BearLogIdempotency whereNotNull(string|array $columns, string $boolean = 'and')
  * @method static Builder|BearLogIdempotency whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static Builder|BearLogIdempotency orderBy(string $column, string $direction = 'asc')
+ * @method static int count(array $columns = ['*'])
  *
  * @property string $idempotency_key
  * @property string $request_http_method
+ * @property string|null $console_id
+ * @property string|null $request_id
  * @property string|null $request_ip
  * @property string|null $request_http_path
  * @property string|null $request_country_code
@@ -60,19 +60,4 @@ class BearLogIdempotency extends Model {
     ];
 
     protected $guarded = ['idempotency_key', 'updated_at', 'created_at', 'deleted_at'];
-
-    public function getAttribute($key) {
-        $resp =  parent::getAttribute($key);
-        if ($resp !== null || array_key_exists(key: $key, array: $this->attributes) || array_key_exists(key: $key, array: $this->relations)) {
-            return $resp;
-        }
-        BearLogErrorCreator::create(
-            message: "Attribute $key not loaded on " . static::class,
-            namespace: "larabear",
-            key: "attribute_not_loaded",
-            severity: BearSeverityEnum::CRITICAL,
-            remedy: "Make sure to include used attributes in the SELECT statement",
-        );
-        throw new RuntimeException(message: "Attribute $key not loaded on " . static::class);
-    }
 }

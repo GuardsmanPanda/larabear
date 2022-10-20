@@ -4,13 +4,10 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
-use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
-use RuntimeException;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -22,7 +19,7 @@ use RuntimeException;
  * @method static BearSeverity firstOrFail(array $columns = ['*'])
  * @method static BearSeverity firstOrCreate(array $filter, array $values)
  * @method static BearSeverity firstOrNew(array $filter, array $values)
- * @method static BearSeverity firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
+ * @method static BearSeverity|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method static Collection|BearSeverity all(array $columns = ['*'])
  * @method static Collection|BearSeverity fromQuery(string $query, array $bindings = [])
  * @method static Builder|BearSeverity lockForUpdate()
@@ -38,6 +35,7 @@ use RuntimeException;
  * @method static Builder|BearSeverity whereNotNull(string|array $columns, string $boolean = 'and')
  * @method static Builder|BearSeverity whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static Builder|BearSeverity orderBy(string $column, string $direction = 'asc')
+ * @method static int count(array $columns = ['*'])
  *
  * @property int $severity_level
  * @property string $slug
@@ -62,19 +60,4 @@ class BearSeverity extends Model {
     ];
 
     protected $guarded = ['slug', 'updated_at', 'created_at', 'deleted_at'];
-
-    public function getAttribute($key) {
-        $resp =  parent::getAttribute($key);
-        if ($resp !== null || array_key_exists(key: $key, array: $this->attributes) || array_key_exists(key: $key, array: $this->relations)) {
-            return $resp;
-        }
-        BearLogErrorCreator::create(
-            message: "Attribute $key not loaded on " . static::class,
-            namespace: "larabear",
-            key: "attribute_not_loaded",
-            severity: BearSeverityEnum::CRITICAL,
-            remedy: "Make sure to include used attributes in the SELECT statement",
-        );
-        throw new RuntimeException(message: "Attribute $key not loaded on " . static::class);
-    }
 }

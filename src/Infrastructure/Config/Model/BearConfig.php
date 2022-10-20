@@ -4,15 +4,12 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Config\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
-use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
+use stdClass;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
-use RuntimeException;
-use stdClass;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -29,7 +26,7 @@ use stdClass;
  * @method static Collection|BearConfig fromQuery(string $query, array $bindings = [])
  * @method static Builder|BearConfig lockForUpdate()
  * @method static Builder|BearConfig select(array $columns = ['*'])
- * @method static Builder|BearConfig with(array $relations)
+ * @method static Builder|BearConfig with(array  $relations)
  * @method static Builder|BearConfig leftJoin(string $table, string $first, string $operator = null, string $second = null)
  * @method static Builder|BearConfig where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method static Builder|BearConfig whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
@@ -40,12 +37,13 @@ use stdClass;
  * @method static Builder|BearConfig whereNotNull(string|array $columns, string $boolean = 'and')
  * @method static Builder|BearConfig whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static Builder|BearConfig orderBy(string $column, string $direction = 'asc')
+ * @method static int count(array $columns = ['*'])
  *
  * @property int|null $config_integer
  * @property bool|null $config_boolean
  * @property string $config_key
- * @property string $config_description
  * @property string $config_data_type
+ * @property string $config_description
  * @property string|null $config_string
  * @property string|null $encrypted_config_string
  * @property stdClass $config_json
@@ -64,6 +62,7 @@ class BearConfig extends Model {
     protected $keyType = 'string';
     protected $dateFormat = 'Y-m-d H:i:sO';
 
+    /** @var array<string, string> $casts */
     protected $casts = [
         'config_date' => 'immutable_date',
         'config_json' => BearAsJsonCast::class,
@@ -74,19 +73,4 @@ class BearConfig extends Model {
     ];
 
     protected $guarded = ['config_key', 'updated_at', 'created_at', 'deleted_at'];
-
-    public function getAttribute($key) {
-        $resp = parent::getAttribute($key);
-        if ($resp !== null || array_key_exists(key: $key, array: $this->attributes) || array_key_exists(key: $key, array: $this->relations)) {
-            return $resp;
-        }
-        BearLogErrorCreator::create(
-            message: "Attribute $key not loaded on " . static::class,
-            namespace: "larabear",
-            key: "attribute_not_loaded",
-            severity: BearSeverityEnum::CRITICAL,
-            remedy: "Make sure to include used attributes in the SELECT statement",
-        );
-        throw new RuntimeException(message: "Attribute $key not loaded on " . static::class);
-    }
 }

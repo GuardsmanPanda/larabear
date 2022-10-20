@@ -4,16 +4,13 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Error\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
-use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Model\BearSeverity;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
 use stdClass;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;
-use RuntimeException;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -25,7 +22,7 @@ use RuntimeException;
  * @method static BearLogError firstOrFail(array $columns = ['*'])
  * @method static BearLogError firstOrCreate(array $filter, array $values)
  * @method static BearLogError firstOrNew(array $filter, array $values)
- * @method static BearLogError firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
+ * @method static BearLogError|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method static Collection|BearLogError all(array $columns = ['*'])
  * @method static Collection|BearLogError fromQuery(string $query, array $bindings = [])
  * @method static Builder|BearLogError lockForUpdate()
@@ -41,6 +38,7 @@ use RuntimeException;
  * @method static Builder|BearLogError whereNotNull(string|array $columns, string $boolean = 'and')
  * @method static Builder|BearLogError whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static Builder|BearLogError orderBy(string $column, string $direction = 'asc')
+ * @method static int count(array $columns = ['*'])
  *
  * @property int $id
  * @property string $error_severity
@@ -48,6 +46,8 @@ use RuntimeException;
  * @property string $request_http_method
  * @property string|null $user_id
  * @property string|null $error_key
+ * @property string|null $console_id
+ * @property string|null $request_id
  * @property string|null $request_ip
  * @property string|null $error_remedy
  * @property string|null $error_message
@@ -56,6 +56,7 @@ use RuntimeException;
  * @property string|null $exception_message
  * @property string|null $request_http_path
  * @property string|null $request_country_code
+ * @property string|null $request_http_hostname
  * @property stdClass|null $request_http_query_json
  * @property CarbonInterface $created_at
  *
@@ -64,7 +65,6 @@ use RuntimeException;
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 class BearLogError extends Model {
-    protected $connection = 'pgsql';
     protected $table = 'bear_log_error';
     protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
@@ -80,19 +80,4 @@ class BearLogError extends Model {
     }
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];
-
-    public function getAttribute($key) {
-        $resp =  parent::getAttribute($key);
-        if ($resp !== null || array_key_exists(key: $key, array: $this->attributes) || array_key_exists(key: $key, array: $this->relations)) {
-            return $resp;
-        }
-        BearLogErrorCreator::create(
-            message: "Attribute $key not loaded on " . static::class,
-            namespace: "larabear",
-            key: "attribute_not_loaded",
-            severity: BearSeverityEnum::CRITICAL,
-            remedy: "Make sure to include used attributes in the SELECT statement",
-        );
-        throw new RuntimeException(message: "Attribute $key not loaded on " . static::class);
-    }
 }
