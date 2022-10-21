@@ -15,4 +15,8 @@ class BearConfigDeleter {
         }
         $model->delete();
     }
+
+    public static function deleteFromConfigKey(string $config_key): void {
+        self::delete(model: BearConfig::findOrFail($config_key));
+    }
 }
