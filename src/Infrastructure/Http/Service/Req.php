@@ -7,6 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use JsonException;
 use RuntimeException;
 use stdClass;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -99,6 +100,18 @@ class Req {
             throw new BadRequestHttpException(message: 'Request does not have application/json content type');
         }
         return empty($tmp) ? throw new BadRequestHttpException(message: 'No Json Data') : $tmp;
+    }
+
+    public static function allObjectData(bool $allowEmpty = false): stdClass {
+        if (!self::$r?->isJson()) {
+            throw new BadRequestHttpException(message: 'Request does not have application/json content type');
+        }
+        try {
+            $res = json_decode(self::$r->getContent(), false, 512, JSON_THROW_ON_ERROR);
+            return !$allowEmpty && empty($res) ? throw new BadRequestHttpException(message: 'No request data in body') : $res;
+        } catch (JsonException) {
+            throw new BadRequestHttpException(message: 'Invalid Json Data');
+        }
     }
 
     public static function allFormData(bool $allowEmpty = false): array {
