@@ -17,11 +17,11 @@ class BearConfigUpdater {
         }
     }
 
-    public static function fromConfigKey(string $configKey, bool $lockForUpdate = false): self {
+    public static function fromConfigKey(string $config_key, bool $lockForUpdate = false): self {
         if ($lockForUpdate) {
-            return new self(model: BearConfig::lockForUpdate()->findOrFail(id: $configKey));
+            return new self(model: BearConfig::lockForUpdate()->findOrFail(id: $config_key));
         }
-        return new self(model: BearConfig::findOrFail(id: $configKey));
+        return new self(model: BearConfig::findOrFail(id: $config_key));
     }
 
     public function setConfigDescription(string $config_description): void {
