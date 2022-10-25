@@ -40,6 +40,8 @@ class ConsoleOutputFilter extends ConsoleOutput {
         ' <comment>db</comment>',
         '  <info>db:monitor</info>',
         '  <info>db:seed</info>',
+        '  <info>db:show</info>',
+        '  <info>db:table</info>',
         '  <info>db:wipe</info>',
         ' <comment>event</comment>',
         '  <info>event:cache</info>',
