@@ -53,6 +53,8 @@ class ConsoleOutputFilter extends ConsoleOutput {
         '  <info>env:encrypt</info>',
         ' <comment>key</comment>',
         '  <info>key:generate</info>',
+        ' <comment>larabear</comment>',
+        '  <info>larabear:',
         ' <comment>make</comment>',
         '  <info>make:',
         ' <comment>migrate</comment>',

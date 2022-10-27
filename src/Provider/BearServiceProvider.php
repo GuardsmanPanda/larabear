@@ -3,9 +3,11 @@
 namespace GuardsmanPanda\Larabear\Provider;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Command\BearValidateConfigurationCommand;
+use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearCleanLogTablesCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Listener\ConsoleRegisterListeners;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\BearCheckForeignKeysOnSoftDeletesCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Command\BearGenerateSessionKeyCommand;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,10 +24,16 @@ class BearServiceProvider extends ServiceProvider {
                 BearGenerateSessionKeyCommand::class,
                 BearValidateConfigurationCommand::class,
                 BearCheckForeignKeysOnSoftDeletesCommand::class,
+                LarabearCleanLogTablesCommand::class,
             ]);
 
             $this->publishes(paths: [__DIR__ . '/../../config/config.php' => $this->app->configPath(path: 'bear.php'),], groups: 'bear');
             $this->loadMigrationsFrom(paths: [__DIR__ . '/../Infrastructure/Database/Migration']);
+
+            $this->app->booted(function () {
+                $schedule = $this->app->make(Schedule::class);
+                $schedule->command('some:command')->dailyAt(time: '03:45');
+            });
         }
     }
 }
