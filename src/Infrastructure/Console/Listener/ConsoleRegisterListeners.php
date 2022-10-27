@@ -23,6 +23,7 @@ class ConsoleRegisterListeners {
         'about',
         'migrate',
         'optimize',
+        'optimize:clear',
         'package:discover',
         'schedule:run',
     ];
@@ -67,7 +68,7 @@ class ConsoleRegisterListeners {
 
 
         Event::listen(events: CommandFinished::class, listener: static function ($event) {
-            if (in_array(needle: $event->command, haystack: self::$ignoreCommands, strict: true)) {
+            if ($event->command === null || in_array(needle: $event->command, haystack: self::$ignoreCommands, strict: true)) {
                 return;
             }
             try {
