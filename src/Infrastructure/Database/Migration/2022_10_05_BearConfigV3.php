@@ -50,7 +50,7 @@ return new class extends Migration {
             BearConfigCreator::create(config_key: 'larabear.delete_log_console_event_days', config_description: 'How many days to store console errors.', config_data_type: 'INTEGER', config_integer: 90);
             BearConfigCreator::create(config_key: 'larabear.delete_log_response_error_days', config_description: 'How many days to store response errors.', config_data_type: 'INTEGER', config_integer: 90);
             BearConfigCreator::create(config_key: 'larabear.delete_log_access_token_days', config_description: 'How many days to store access token logs.', config_data_type: 'INTEGER', config_integer: 90);
-            BearConfigCreator::create(config_key: 'larabear.delete_log_database_change_days', config_description: 'How many days to store database change logs.', config_data_type: 'INTEGER', config_integer: 90000);
+            BearConfigCreator::create(config_key: 'larabear.delete_log_database_change_days', config_description: 'How many days to store database change logs.', config_data_type: 'INTEGER', config_integer: 9000);
             DB::commit();
         } catch (Throwable $t) {
             DB::rollBack();
