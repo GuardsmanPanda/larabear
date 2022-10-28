@@ -20,6 +20,7 @@ trait BearLogDatabaseChanges {
                     change_type: 'CREATE',
                     record_id: $keys[0], record_uuid: $keys[1], record_identifier: $keys[2],
                     record_data: BearDBService::extractAuditColumns($model),
+                    connection_name: $model->getConnectionName()
                 );
             } catch (Throwable $t) {
                 BearLogErrorCreator::create(
@@ -41,6 +42,7 @@ trait BearLogDatabaseChanges {
                     record_id: $keys[0], record_uuid: $keys[1], record_identifier: $keys[2],
                     is_soft_deletion: $soft_deleted,
                     record_data: BearDBService::extractAuditColumns($model),
+                    connection_name: $model->getConnectionName()
                 );
             } catch (Throwable $t) {
                 BearLogErrorCreator::create(
@@ -89,6 +91,7 @@ trait BearLogDatabaseChanges {
                         column_name: $column_name,
                         old_value: $old_value,
                         new_value: $new_value,
+                        connection_name: $model->getConnectionName()
                     );
                 }
             } catch (Throwable $t) {

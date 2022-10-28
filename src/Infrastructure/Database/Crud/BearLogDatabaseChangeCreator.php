@@ -22,9 +22,10 @@ class BearLogDatabaseChangeCreator {
         string $old_value = null,
         string $new_value = null,
         bool   $is_soft_deletion = null,
-        array  $record_data = null
+        array  $record_data = null,
+        string $connection_name = 'default',
     ): void {
-        DB::insert(query: "
+        DB::connection($connection_name)->insert(query: "
             INSERT INTO bear_log_database_change (
                 table_name, column_name,
                 record_id, record_uuid, record_identifier,

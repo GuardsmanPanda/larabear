@@ -32,7 +32,7 @@ class BearServiceProvider extends ServiceProvider {
 
             $this->app->booted(function () {
                 $schedule = $this->app->make(Schedule::class);
-                $schedule->command('some:command')->dailyAt(time: '09:45');
+                $schedule->command('larabear:clean-log-tables')->dailyAt(time: '01:45');
             });
         }
     }
