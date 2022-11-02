@@ -2,7 +2,6 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Model;
 
-use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use Illuminate\Database\Eloquent\Collection;
@@ -39,9 +38,9 @@ use Illuminate\Database\Query\Builder;
  *
  * @property int $severity_level
  * @property string $slug
+ * @property string $created_at
  * @property string $severity_name
  * @property string $severity_description
- * @property CarbonInterface $created_at
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -53,11 +52,6 @@ class BearSeverity extends Model {
     protected $keyType = 'string';
     protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
-
-    /** @var array<string, string> $casts */
-    protected $casts = [
-        'created_at' => 'immutable_datetime',
-    ];
 
     protected $guarded = ['slug', 'updated_at', 'created_at', 'deleted_at'];
 }

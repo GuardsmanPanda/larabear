@@ -2,7 +2,6 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Integrity\Model;
 
-use Carbon\CarbonInterface;
 use Closure;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -36,6 +35,7 @@ use Illuminate\Database\Query\Builder;
  * @method static Builder|BearLogIdempotency orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
  *
+ * @property string $created_at
  * @property string $idempotency_key
  * @property string $request_http_method
  * @property string|null $console_id
@@ -43,7 +43,6 @@ use Illuminate\Database\Query\Builder;
  * @property string|null $request_ip
  * @property string|null $request_http_path
  * @property string|null $request_country_code
- * @property CarbonInterface $created_at
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -53,11 +52,6 @@ class BearLogIdempotency extends Model {
     protected $keyType = 'string';
     protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
-
-    /** @var array<string, string> $casts */
-    protected $casts = [
-        'created_at' => 'immutable_datetime',
-    ];
 
     protected $guarded = ['idempotency_key', 'updated_at', 'created_at', 'deleted_at'];
 }

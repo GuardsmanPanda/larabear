@@ -2,7 +2,6 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Error\Model;
 
-use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
 use stdClass;
@@ -41,6 +40,7 @@ use Illuminate\Database\Query\Builder;
  * @property int $id
  * @property int $response_status_code
  * @property string $request_ip
+ * @property string $created_at
  * @property string $response_body
  * @property string $request_http_method
  * @property string $request_http_hostname
@@ -50,7 +50,6 @@ use Illuminate\Database\Query\Builder;
  * @property string|null $request_http_path
  * @property string|null $request_country_code
  * @property stdClass|null $request_http_query_json
- * @property CarbonInterface $created_at
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -61,7 +60,6 @@ class BearLogResponseError extends Model {
 
     /** @var array<string, string> $casts */
     protected $casts = [
-        'created_at' => 'immutable_datetime',
         'request_http_query_json' => BearAsJsonCast::class,
     ];
 

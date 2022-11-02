@@ -41,6 +41,7 @@ use Illuminate\Database\Query\Builder;
  * @method static int count(array $columns = ['*'])
  *
  * @property int $id
+ * @property string $created_at
  * @property string $error_severity
  * @property string $error_namespace
  * @property string $request_http_method
@@ -58,7 +59,6 @@ use Illuminate\Database\Query\Builder;
  * @property string|null $request_country_code
  * @property string|null $request_http_hostname
  * @property stdClass|null $request_http_query_json
- * @property CarbonInterface $created_at
  *
  * @property BearSeverity $errorSeverity
  *
@@ -71,7 +71,6 @@ class BearLogError extends Model {
 
     /** @var array<string, string> $casts */
     protected $casts = [
-        'created_at' => 'immutable_datetime',
         'request_http_query_json' => BearAsJsonCast::class,
     ];
 

@@ -39,12 +39,12 @@ use Illuminate\Database\Query\Builder;
  * @property int $id
  * @property int|null $execution_time_microseconds
  * @property string $console_id
+ * @property string $created_at
  * @property string $console_command
  * @property string $console_event_type
  * @property string|null $console_event_output
  * @property string|null $cron_schedule_timezone
  * @property string|null $cron_schedule_expression
- * @property CarbonInterface $created_at
  * @property CarbonInterface $console_event_started_at
  * @property CarbonInterface|null $console_event_failed_at
  * @property CarbonInterface|null $console_event_finished_at
@@ -61,7 +61,6 @@ class BearLogConsoleEvent extends Model {
         'console_event_failed_at' => 'immutable_datetime',
         'console_event_finished_at' => 'immutable_datetime',
         'console_event_started_at' => 'immutable_datetime',
-        'created_at' => 'immutable_datetime',
     ];
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];
