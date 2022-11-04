@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->text(column: 'error_remedy')->nullable();
             $table->text(column: 'exception_message')->nullable();
             $table->text(column: 'exception_trace')->nullable();
-            BearMigrationService::buildUserReferencingColumn(table: $table, columnName: 'user_id');
+            $table->uuid(column: 'user_id')->nullable()->index();
             $table->ipAddress(column: 'request_ip')->nullable()->index();
             if (BearDBService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_country_code')->nullable();
@@ -48,6 +48,8 @@ return new class extends Migration {
             }
             $table->uuid(column: 'console_id')->nullable();
             $table->foreign('error_severity', 'error_severity_foreign')->references('slug')->on('bear_severity');
+            $table->foreign('error_namespace', 'error_namespace_foreign')->references('slug')->on('bear_namespace');
+            $table->foreign('user_id')->references('id')->on('bear_user');
         });
     }
 

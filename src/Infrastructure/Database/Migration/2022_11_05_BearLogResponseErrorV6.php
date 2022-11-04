@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create(table: 'bear_log_response_error', callback: static function (Blueprint $table) {
             $table->id();
             $table->ipAddress(column: 'request_ip')->index();
-            BearMigrationService::buildUserReferencingColumn(table: $table, columnName: 'user_id');
+            $table->uuid(column: 'user_id')->nullable()->index();
             $table->integer(column: 'response_status_code')->index();
             if (BearDBService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_country_code')->nullable();
@@ -34,6 +34,7 @@ return new class extends Migration {
             } else {
                 $table->string(column: 'request_id')->nullable();
             }
+            $table->foreign('user_id')->references('id')->on('bear_user');
         });
     }
 
