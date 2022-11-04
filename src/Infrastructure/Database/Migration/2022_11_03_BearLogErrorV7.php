@@ -48,7 +48,6 @@ return new class extends Migration {
             }
             $table->uuid(column: 'console_id')->nullable();
             $table->foreign('error_severity', 'error_severity_foreign')->references('slug')->on('bear_severity');
-            $table->foreign('error_namespace', 'error_namespace_foreign')->references('slug')->on('bear_namespace');
             $table->foreign('user_id')->references('id')->on('bear_user');
         });
     }
