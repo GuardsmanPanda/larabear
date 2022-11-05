@@ -34,19 +34,25 @@ return new class extends Migration {
             }
             $table->jsonb(column: 'record_json')->nullable();
             $table->boolean(column: 'is_soft_deletion')->nullable();
-            BearMigrationService::buildUserReferencingColumn(table: $table, columnName: 'changed_by_user_id');
+            $table->uuid(column: 'user_id')->nullable()->index();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->ipAddress(column: 'request_ip')->nullable();
             if (BearDBService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_country_code')->nullable();
                 $table->text(column: 'request_http_method');
                 $table->text(column: 'request_http_path')->nullable();
+                $table->text(column: 'request_http_hostname')->nullable();
+                $table->text(column: 'request_id')->nullable();
             } else {
                 $table->string(column: 'request_country_code')->nullable();
                 $table->string(column: 'request_http_method');
                 $table->string(column: 'request_http_path')->nullable();
+                $table->string(column: 'request_http_hostname')->nullable();
+                $table->string(column: 'request_id')->nullable();
             }
+            $table->uuid(column: 'console_id')->nullable();
             $table->text(column: 'app_action_name')->nullable();
+            $table->foreign('user_id')->references('id')->on('bear_user');
         });
     }
 

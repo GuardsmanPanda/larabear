@@ -30,8 +30,7 @@ class BearLogDatabaseChangeCreator {
                 table_name, column_name,
                 record_id, record_uuid, record_identifier,
                 old_value, new_value, record_json,
-                change_type, is_soft_deletion,
-                changed_by_user_id,
+                change_type, is_soft_deletion, user_id,
                 request_ip, request_country_code, 
                 request_http_method, request_http_path, app_action_name,
                 request_http_hostname, request_id, console_id                                                  
