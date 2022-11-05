@@ -8,7 +8,6 @@ use Illuminate\Support\Str;
 
 class BearGlobalStateService {
     private static bool $logUnhandledException = true;
-    private static string|int|null $linkedUserId = null;
     private static string|null $accessTokenId = null;
     private static string|null $apiPrimaryKey = null;
     private static bool $logResponseError = true;
@@ -23,7 +22,6 @@ class BearGlobalStateService {
         self::$logResponseError = true;
         self::$accessTokenId = null;
         self::$apiPrimaryKey = null;
-        self::$linkedUserId = null;
         self::$requestId = null;
         self::$consoleId = null;
         self::$request = null;
@@ -38,14 +36,6 @@ class BearGlobalStateService {
 
     public static function getUserId(): string|null {
         return self::$userId;
-    }
-
-    public static function setLinkedUserId(string|int|null $linkedUserId): void {
-        self::$linkedUserId = $linkedUserId;
-    }
-
-    public static function getLinkedUserId(): string|int|null {
-        return self::$linkedUserId;
     }
 
     public static function setAccessTokenId(string|null $accessTokenId): void {

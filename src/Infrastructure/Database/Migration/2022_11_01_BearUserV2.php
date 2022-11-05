@@ -11,14 +11,14 @@ return new class extends Migration {
     public function up(): void {
         Schema::dropIfExists('bear_user');
         Schema::create(table: 'bear_user', callback: static function (Blueprint $table) {
-            $table->uuid(column: 'id')->primary();
-            BearMigrationService::buildUserReferencingColumn(table: $table, columnName: 'linked_user_id');
             if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+                $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));
                 $table->text(column: 'user_display_name')->nullable();
                 $table->text(column: 'user_email')->nullable()->unique();
                 $table->text(column: 'user_country_iso2_code')->nullable();
                 $table->text(column: 'user_language_iso2_code')->nullable();
             } else {
+                $table->uuid(column: 'id')->primary();
                 $table->string(column: 'user_display_name')->nullable();
                 $table->string(column: 'user_email')->nullable()->unique();
                 $table->string(column: 'user_country_iso2_code')->nullable();

@@ -40,7 +40,6 @@ use Illuminate\Database\Query\Builder;
  *
  * @property string $id
  * @property string|null $user_email
- * @property string|null $linked_user_id
  * @property string|null $user_display_name
  * @property string|null $user_country_iso2_code
  * @property string|null $user_language_iso2_code
