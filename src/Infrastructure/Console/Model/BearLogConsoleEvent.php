@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Console\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
@@ -39,12 +40,12 @@ use Illuminate\Database\Query\Builder;
  * @property int $id
  * @property int|null $execution_time_microseconds
  * @property string $console_id
- * @property string $created_at
  * @property string $console_command
  * @property string $console_event_type
  * @property string|null $console_event_output
  * @property string|null $cron_schedule_timezone
  * @property string|null $cron_schedule_expression
+ * @property CarbonInterface $created_at
  * @property CarbonInterface $console_event_started_at
  * @property CarbonInterface|null $console_event_failed_at
  * @property CarbonInterface|null $console_event_finished_at
@@ -53,14 +54,17 @@ use Illuminate\Database\Query\Builder;
  */
 class BearLogConsoleEvent extends Model {
     protected $table = 'bear_log_console_event';
-    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
+    public function getDateFormat(): string {
+        return BearDBService::defaultConnectionDriver() === 'mysql' ? 'Y-m-d H:i:s' : 'Y-m-d H:i:sO';
+    }
 
     /** @var array<string, string> $casts */
     protected $casts = [
         'console_event_failed_at' => 'immutable_datetime',
         'console_event_finished_at' => 'immutable_datetime',
         'console_event_started_at' => 'immutable_datetime',
+        'created_at' => 'immutable_datetime',
     ];
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];

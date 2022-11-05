@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Config\Model;
 use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
 use stdClass;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use Illuminate\Database\Eloquent\Collection;
@@ -42,14 +43,14 @@ use Illuminate\Database\Query\Builder;
  * @property int|null $config_integer
  * @property bool|null $config_boolean
  * @property string $config_key
- * @property string $created_at
- * @property string $updated_at
  * @property string $config_data_type
  * @property string $config_description
  * @property string|null $config_string
  * @property string|null $encrypted_config_string
  * @property stdClass $config_json
  * @property CarbonInterface|null $config_date
+ * @property CarbonInterface $created_at
+ * @property CarbonInterface $updated_at
  * @property CarbonInterface|null $config_timestamp
  *
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -60,14 +61,18 @@ class BearConfig extends Model {
     protected $table = 'bear_config';
     protected $primaryKey = 'config_key';
     protected $keyType = 'string';
-    protected $dateFormat = 'Y-m-d H:i:sO';
+    public function getDateFormat(): string {
+        return BearDBService::defaultConnectionDriver() === 'mysql' ? 'Y-m-d H:i:s' : 'Y-m-d H:i:sO';
+    }
 
     /** @var array<string, string> $casts */
     protected $casts = [
         'config_date' => 'immutable_date',
         'config_json' => BearAsJsonCast::class,
         'config_timestamp' => 'immutable_datetime',
+        'created_at' => 'immutable_datetime',
         'encrypted_config_string' => 'encrypted',
+        'updated_at' => 'immutable_datetime',
     ];
 
     protected $guarded = ['config_key', 'updated_at', 'created_at', 'deleted_at'];
