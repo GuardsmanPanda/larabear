@@ -27,7 +27,6 @@ class BearConfigCreator {
             throw new RuntimeException(message: 'Database write operations should not be performed in read-only [GET, HEAD, OPTIONS] requests.');
         }
         $model = new BearConfig();
-
         $model->config_key = $config_key;
         $model->config_description = $config_description;
         $model->config_data_type = $config_data_type;

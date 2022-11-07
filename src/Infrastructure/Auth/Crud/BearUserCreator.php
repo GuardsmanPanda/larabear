@@ -10,6 +10,7 @@ use RuntimeException;
 
 class BearUserCreator {
     public static function create(
+        string $id = null,
         string $user_display_name = null,
         string $user_email = null,
         string $user_country_iso2_code = null,
@@ -20,7 +21,7 @@ class BearUserCreator {
             throw new RuntimeException(message: 'Database write operations should not be performed in read-only [GET, HEAD, OPTIONS] requests.');
         }
         $model = new BearUser();
-        $model->id = Str::uuid()->toString();
+        $model->id = $id ?? Str::uuid()->toString();
 
         $model->user_display_name = $user_display_name;
         $model->user_email = $user_email;
