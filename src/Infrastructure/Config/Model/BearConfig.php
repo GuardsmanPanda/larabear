@@ -61,6 +61,7 @@ class BearConfig extends Model {
     protected $table = 'bear_config';
     protected $primaryKey = 'config_key';
     protected $keyType = 'string';
+    public $incrementing = false;
     public function getDateFormat(): string {
         return BearDBService::defaultConnectionDriver() === 'mysql' ? 'Y-m-d H:i:s' : 'Y-m-d H:i:sO';
     }
