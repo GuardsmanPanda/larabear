@@ -18,7 +18,7 @@ class BearUserCreator {
         string $user_language_iso2_code = null
     ): BearUser {
         BearDBService::mustBeInTransaction();
-        if (!App::runningUnitTests() || !Req::isWriteRequest()) {
+        if (!App::runningUnitTests() && !Req::isWriteRequest()) {
             throw new RuntimeException(message: 'Database write operations should not be performed in read-only [GET, HEAD, OPTIONS] requests.');
         }
         $model = new BearUser();

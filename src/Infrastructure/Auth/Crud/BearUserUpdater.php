@@ -11,7 +11,7 @@ use RuntimeException;
 class BearUserUpdater {
     public function __construct(private readonly BearUser $model) {
         BearDBService::mustBeInTransaction();
-        if (!App::runningUnitTests() || !Req::isWriteRequest()) {
+        if (!App::runningUnitTests() && !Req::isWriteRequest()) {
             throw new RuntimeException(message: 'Database write operations should not be performed in read-only [GET, HEAD, OPTIONS] requests.');
         }
     }
