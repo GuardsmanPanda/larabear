@@ -54,7 +54,6 @@ use Illuminate\Database\Query\Builder;
  * @property string|null $app_action_name
  * @property string|null $record_identifier
  * @property string|null $request_http_path
- * @property string|null $changed_by_user_id
  * @property string|null $request_country_code
  * @property string|null $request_http_hostname
  * @property stdClass|null $record_json
