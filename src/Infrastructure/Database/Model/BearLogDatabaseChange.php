@@ -2,8 +2,12 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Model;
 
+use Carbon\CarbonInterface;
 use Closure;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use stdClass;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -40,10 +44,10 @@ use Illuminate\Database\Query\Builder;
  * @property int $id
  * @property int|null $record_id
  * @property bool|null $is_soft_deletion
- * @property string $created_at
  * @property string $table_name
  * @property string $change_type
  * @property string $request_http_method
+ * @property string|null $user_id
  * @property string|null $new_value
  * @property string|null $old_value
  * @property string|null $console_id
@@ -57,18 +61,27 @@ use Illuminate\Database\Query\Builder;
  * @property string|null $request_country_code
  * @property string|null $request_http_hostname
  * @property stdClass|null $record_json
+ * @property CarbonInterface $created_at
+ *
+ * @property BearUser|null $user
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 class BearLogDatabaseChange extends Model {
     protected $table = 'bear_log_database_change';
-    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
+    public function getDateFormat(): string {
+        return BearDBService::defaultConnectionDriver() === 'mysql' ? 'Y-m-d H:i:s' : 'Y-m-d H:i:sO';
+    }
 
     /** @var array<string, string> $casts */
     protected $casts = [
         'record_json' => BearAsJsonCast::class,
     ];
+
+    public function user(): BelongsTo|null {
+        return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
+    }
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];
 }
