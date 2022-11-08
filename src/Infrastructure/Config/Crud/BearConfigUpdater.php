@@ -6,13 +6,14 @@ use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
+use Illuminate\Support\Facades\App;
 use RuntimeException;
 use stdClass;
 
 class BearConfigUpdater {
     public function __construct(private readonly BearConfig $model) {
         BearDBService::mustBeInTransaction();
-        if (!Req::isWriteRequest()) {
+        if (!App::runningUnitTests() && !Req::isWriteRequest()) {
             throw new RuntimeException(message: 'Database write operations should not be performed in read-only [GET, HEAD, OPTIONS] requests.');
         }
     }
