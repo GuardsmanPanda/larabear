@@ -31,9 +31,9 @@ class DatabaseMySqlInformation extends DatabaseBaseInformation {
             $tmp[] = new EloquentModelColumnDto(
                 columnName: $row->column_name,
                 nativeDataType: $row->data_type,
+                isNullable: $row->is_nullable,
                 phpDataType: $this->databaseTypeToPhpType(databaseType: $row->data_type),
                 sortOrder: $this->mysqlTypeSortOrder($row->data_type) + ($row->is_nullable ? 1 : 0),
-                isNullable: $row->is_nullable,
                 requiredHeader: $this->mysqlTypeToPhpHeader($row->data_type),
                 eloquentCast: $this->mysqlTypeToEloquentCast($row->column_name, $row->data_type)
             );

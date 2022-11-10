@@ -7,10 +7,10 @@ class EloquentModelColumnDto {
     public function __construct(
         public readonly string      $columnName,
         public readonly string      $nativeDataType,
-        public readonly string      $phpDataType,
-        public readonly int         $sortOrder,
         public readonly bool        $isNullable,
-        public readonly string      $requiredHeader,
-        public readonly string|null $eloquentCast,
+        public string      $phpDataType,
+        public int         $sortOrder,
+        public string      $requiredHeader,
+        public string|null $eloquentCast,
     ) {}
 }
