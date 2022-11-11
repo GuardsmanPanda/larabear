@@ -12,7 +12,7 @@ class BearUserUpdater {
     }
 
     public static function fromId(string $id): BearUserUpdater {
-        return new BearUserUpdater(model: BearUser::where(column: 'id', operator: '=', value: $id)->sole());
+        return new BearUserUpdater(model: BearUser::findOrFail(id: $id));
     }
 
 

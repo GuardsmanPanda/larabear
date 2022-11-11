@@ -13,6 +13,6 @@ class BearUserDeleter {
     }
 
     public static function deleteFromId(string $id): void {
-        self::delete(model: BearUser::where(column: 'id', operator: '=', value: $id)->sole());
+        self::delete(model: BearUser::findOrFail(id: $id));
     }
 }
