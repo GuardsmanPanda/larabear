@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Integrity\Model;
 
 use Closure;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
@@ -22,12 +23,10 @@ use Illuminate\Database\Query\Builder;
  * @method static Collection|BearLogIdempotency fromQuery(string $query, array $bindings = [])
  * @method static Builder|BearLogIdempotency lockForUpdate()
  * @method static Builder|BearLogIdempotency select(array $columns = ['*'])
- * @method static Builder|BearLogIdempotency with(array  $relations)
  * @method static Builder|BearLogIdempotency leftJoin(string $table, string $first, string $operator = null, string $second = null)
  * @method static Builder|BearLogIdempotency where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method static Builder|BearLogIdempotency whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
  * @method static Builder|BearLogIdempotency whereNotExists(Closure $callback, string $boolean = 'and')
- * @method static Builder|BearLogIdempotency whereHas(string $relation, Closure $callback, string $operator = '>=', int $count = 1)
  * @method static Builder|BearLogIdempotency whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
  * @method static Builder|BearLogIdempotency whereNull(string|array $columns, string $boolean = 'and')
  * @method static Builder|BearLogIdempotency whereNotNull(string|array $columns, string $boolean = 'and')
@@ -47,9 +46,12 @@ use Illuminate\Database\Query\Builder;
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 class BearLogIdempotency extends Model {
+    use LarabearFixDateFormatTrait;
+
     protected $table = 'bear_log_idempotency';
     protected $primaryKey = 'idempotency_key';
     protected $keyType = 'string';
+    public $incrementing = false;
     protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
 

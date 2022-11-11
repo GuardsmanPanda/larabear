@@ -4,10 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
-use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
-use RuntimeException;
 
 class BearUserCreator {
     public static function create(
@@ -19,9 +16,7 @@ class BearUserCreator {
     ): BearUser {
         BearDBService::mustBeInTransaction();
         BearDBService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
-        if (!App::runningUnitTests() && !Req::isWriteRequest()) {
-            throw new RuntimeException(message: 'Database write operations should not be performed in read-only [GET, HEAD, OPTIONS] requests.');
-        }
+
         $model = new BearUser();
         $model->id = $id ?? Str::uuid()->toString();
 

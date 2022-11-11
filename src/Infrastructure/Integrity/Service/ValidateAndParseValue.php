@@ -34,7 +34,11 @@ class ValidateAndParseValue {
         throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
     }
 
-
+    /**
+     * @param string|array<mixed> $value
+     * @param string|null $errorMessage
+     * @return array<mixed>
+     */
     public static function parseJsonToArray(string|array $value, string $errorMessage = null): array {
         if (is_array($value)) {
             return $value;
@@ -119,6 +123,11 @@ class ValidateAndParseValue {
     }
 
 
+    /**
+     * @param mixed $value
+     * @param string|null $errorMessage
+     * @return array<mixed>
+     */
     public static function parseArray(mixed $value, string $errorMessage = null): array {
         if (is_array($value)) {
             return $value;
@@ -127,7 +136,12 @@ class ValidateAndParseValue {
         throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
     }
 
-
+    /**
+     * @param mixed $value
+     * @param array<mixed> $array
+     * @param string|null $errorMessage
+     * @return mixed
+     */
     public static function mustBeInArray(mixed $value, array $array, string $errorMessage = null): mixed {
         if (in_array(needle: $value, haystack: $array, strict: true)) {
             return $value;

@@ -2,10 +2,11 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Error\Model;
 
-use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Model\BearSeverity;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use stdClass;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -27,12 +28,14 @@ use Illuminate\Database\Query\Builder;
  * @method static Collection|BearLogError fromQuery(string $query, array $bindings = [])
  * @method static Builder|BearLogError lockForUpdate()
  * @method static Builder|BearLogError select(array $columns = ['*'])
- * @method static Builder|BearLogError with(array  $relations)
+ * @method static Builder|BearLogError with(array $relations)
  * @method static Builder|BearLogError leftJoin(string $table, string $first, string $operator = null, string $second = null)
  * @method static Builder|BearLogError where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method static Builder|BearLogError whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
  * @method static Builder|BearLogError whereNotExists(Closure $callback, string $boolean = 'and')
- * @method static Builder|BearLogError whereHas(string $relation, Closure $callback, string $operator = '>=', int $count = 1)
+ * @method static Builder|BearLogError whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder|BearLogError whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static Builder|BearLogError withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
  * @method static Builder|BearLogError whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
  * @method static Builder|BearLogError whereNull(string|array $columns, string $boolean = 'and')
  * @method static Builder|BearLogError whereNotNull(string|array $columns, string $boolean = 'and')
@@ -60,11 +63,14 @@ use Illuminate\Database\Query\Builder;
  * @property string|null $request_http_hostname
  * @property stdClass|null $request_http_query_json
  *
+ * @property BearUser|null $user
  * @property BearSeverity $errorSeverity
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 class BearLogError extends Model {
+    use LarabearFixDateFormatTrait;
+
     protected $table = 'bear_log_error';
     protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
@@ -73,6 +79,10 @@ class BearLogError extends Model {
     protected $casts = [
         'request_http_query_json' => BearAsJsonCast::class,
     ];
+
+    public function user(): BelongsTo|null {
+        return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
+    }
 
     public function errorSeverity(): BelongsTo {
         return $this->belongsTo(related: BearSeverity::class, foreignKey: 'error_severity', ownerKey: 'slug');

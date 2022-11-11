@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Console\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
@@ -24,12 +24,10 @@ use Illuminate\Database\Query\Builder;
  * @method static Collection|BearLogConsoleEvent fromQuery(string $query, array $bindings = [])
  * @method static Builder|BearLogConsoleEvent lockForUpdate()
  * @method static Builder|BearLogConsoleEvent select(array $columns = ['*'])
- * @method static Builder|BearLogConsoleEvent with(array  $relations)
  * @method static Builder|BearLogConsoleEvent leftJoin(string $table, string $first, string $operator = null, string $second = null)
  * @method static Builder|BearLogConsoleEvent where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method static Builder|BearLogConsoleEvent whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
  * @method static Builder|BearLogConsoleEvent whereNotExists(Closure $callback, string $boolean = 'and')
- * @method static Builder|BearLogConsoleEvent whereHas(string $relation, Closure $callback, string $operator = '>=', int $count = 1)
  * @method static Builder|BearLogConsoleEvent whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
  * @method static Builder|BearLogConsoleEvent whereNull(string|array $columns, string $boolean = 'and')
  * @method static Builder|BearLogConsoleEvent whereNotNull(string|array $columns, string $boolean = 'and')
@@ -40,12 +38,12 @@ use Illuminate\Database\Query\Builder;
  * @property int $id
  * @property int|null $execution_time_microseconds
  * @property string $console_id
+ * @property string $created_at
  * @property string $console_command
  * @property string $console_event_type
  * @property string|null $console_event_output
  * @property string|null $cron_schedule_timezone
  * @property string|null $cron_schedule_expression
- * @property CarbonInterface $created_at
  * @property CarbonInterface $console_event_started_at
  * @property CarbonInterface|null $console_event_failed_at
  * @property CarbonInterface|null $console_event_finished_at
@@ -53,18 +51,17 @@ use Illuminate\Database\Query\Builder;
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 class BearLogConsoleEvent extends Model {
+    use LarabearFixDateFormatTrait;
+
     protected $table = 'bear_log_console_event';
+    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
-    public function getDateFormat(): string {
-        return BearDBService::defaultConnectionDriver() === 'mysql' ? 'Y-m-d H:i:s' : 'Y-m-d H:i:sO';
-    }
 
     /** @var array<string, string> $casts */
     protected $casts = [
         'console_event_failed_at' => 'immutable_datetime',
         'console_event_finished_at' => 'immutable_datetime',
         'console_event_started_at' => 'immutable_datetime',
-        'created_at' => 'immutable_datetime',
     ];
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];

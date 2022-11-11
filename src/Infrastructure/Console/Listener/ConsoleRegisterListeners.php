@@ -79,8 +79,7 @@ class ConsoleRegisterListeners {
                 } else {
                     $updater->setConsoleEventFailedAt(Carbon::now());
                 }
-                $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1_000_000));
-                $updater->save();
+                $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1_000_000))->save();
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();
@@ -107,11 +106,10 @@ class ConsoleRegisterListeners {
                 }
                 $updater->setExecutionTimeMicroseconds((int)($event->runtime * 1_000_000));
                 try {
-                    $updater->setConsoleEventOutput(file_get_contents($event->task->output));
+                    $updater->setConsoleEventOutput(console_event_output: file_get_contents($event->task->output))->save();
                 } catch (Throwable $t) {
-                    $updater->setConsoleEventOutput("# Command output not available");
+                    $updater->setConsoleEventOutput(console_event_output: "# Command output not available")->save();
                 }
-                $updater->save();
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();

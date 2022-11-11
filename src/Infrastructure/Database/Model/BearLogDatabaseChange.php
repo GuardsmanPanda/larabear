@@ -2,15 +2,14 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Model;
 
-use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use stdClass;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;
 
 /**
@@ -28,12 +27,14 @@ use Illuminate\Database\Query\Builder;
  * @method static Collection|BearLogDatabaseChange fromQuery(string $query, array $bindings = [])
  * @method static Builder|BearLogDatabaseChange lockForUpdate()
  * @method static Builder|BearLogDatabaseChange select(array $columns = ['*'])
- * @method static Builder|BearLogDatabaseChange with(array  $relations)
+ * @method static Builder|BearLogDatabaseChange with(array $relations)
  * @method static Builder|BearLogDatabaseChange leftJoin(string $table, string $first, string $operator = null, string $second = null)
  * @method static Builder|BearLogDatabaseChange where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method static Builder|BearLogDatabaseChange whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
  * @method static Builder|BearLogDatabaseChange whereNotExists(Closure $callback, string $boolean = 'and')
- * @method static Builder|BearLogDatabaseChange whereHas(string $relation, Closure $callback, string $operator = '>=', int $count = 1)
+ * @method static Builder|BearLogDatabaseChange whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder|BearLogDatabaseChange whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static Builder|BearLogDatabaseChange withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
  * @method static Builder|BearLogDatabaseChange whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
  * @method static Builder|BearLogDatabaseChange whereNull(string|array $columns, string $boolean = 'and')
  * @method static Builder|BearLogDatabaseChange whereNotNull(string|array $columns, string $boolean = 'and')
@@ -44,6 +45,7 @@ use Illuminate\Database\Query\Builder;
  * @property int $id
  * @property int|null $record_id
  * @property bool|null $is_soft_deletion
+ * @property string $created_at
  * @property string $table_name
  * @property string $change_type
  * @property string $request_http_method
@@ -61,18 +63,17 @@ use Illuminate\Database\Query\Builder;
  * @property string|null $request_country_code
  * @property string|null $request_http_hostname
  * @property stdClass|null $record_json
- * @property CarbonInterface $created_at
  *
  * @property BearUser|null $user
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 class BearLogDatabaseChange extends Model {
+    use LarabearFixDateFormatTrait;
+
     protected $table = 'bear_log_database_change';
+    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
-    public function getDateFormat(): string {
-        return BearDBService::defaultConnectionDriver() === 'mysql' ? 'Y-m-d H:i:s' : 'Y-m-d H:i:sO';
-    }
 
     /** @var array<string, string> $casts */
     protected $casts = [

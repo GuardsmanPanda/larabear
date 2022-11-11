@@ -22,6 +22,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
 class BearInitiateMiddleware {
+    /** @var array<string> $headers */
     public static array $headers = ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
     private Encrypter|null $encrypt = null;
 
@@ -32,7 +33,7 @@ class BearInitiateMiddleware {
         }
     }
 
-    public function handle(Request $request, Closure $next) {
+    public function handle(Request $request, Closure $next): Response {
         BearGlobalStateService::clearState();
         //----------------------------------------------------------------------------------------------------------
         //  Handle maintenance mode

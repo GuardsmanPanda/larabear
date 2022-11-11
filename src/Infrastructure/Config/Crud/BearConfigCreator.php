@@ -24,10 +24,10 @@ class BearConfigCreator {
         stdClass $config_json = new stdClass()
     ): BearConfig {
         BearDBService::mustBeInTransaction();
-        if (!App::runningUnitTests() && !Req::isWriteRequest()) {
-            throw new RuntimeException(message: 'Database write operations should not be performed in read-only [GET, HEAD, OPTIONS] requests.');
-        }
+        BearDBService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
+
         $model = new BearConfig();
+
         $model->config_key = $config_key;
         $model->config_description = $config_description;
         $model->config_data_type = $config_data_type;

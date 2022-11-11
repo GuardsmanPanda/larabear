@@ -7,6 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Routing\Route;
 use JsonException;
 use RuntimeException;
 use stdClass;
@@ -54,7 +55,8 @@ class Req {
     }
 
     public static function routePath(): string|null {
-        return self::$r?->route()?->uri();
+        $route = self::$r?->route();
+        return $route instanceof Route ? $route->uri() : null;
     }
 
     public static function userAgent(): string|null {

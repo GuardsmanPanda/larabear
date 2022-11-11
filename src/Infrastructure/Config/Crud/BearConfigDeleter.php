@@ -11,9 +11,7 @@ use RuntimeException;
 class BearConfigDeleter {
     public static function delete(BearConfig $model): void {
         BearDBService::mustBeInTransaction();
-        if (!App::runningUnitTests() && !Req::isWriteRequest()) {
-            throw new RuntimeException(message: 'Database write operations should not be performed in read-only [GET, HEAD, OPTIONS] requests.');
-        }
+        BearDBService::mustBeProperHttpMethod(verbs: ['DELETE']);
         $model->delete();
     }
 

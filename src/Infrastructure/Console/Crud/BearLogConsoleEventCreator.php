@@ -7,8 +7,6 @@ use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Model\BearLogConsoleEvent;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
-use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
-use RuntimeException;
 
 class BearLogConsoleEventCreator {
     public static function create(
@@ -22,9 +20,8 @@ class BearLogConsoleEventCreator {
         string $console_event_output = null
     ): BearLogConsoleEvent {
         BearDBService::mustBeInTransaction();
-        if (!Req::isWriteRequest()) {
-            throw new RuntimeException(message: 'Database write operations should not be performed in read-only [GET, HEAD, OPTIONS] requests.');
-        }
+        BearDBService::mustBeProperHttpMethod(verbs: ['POST']);
+
         $model = new BearLogConsoleEvent();
 
         $model->console_event_type = $console_event_type;
