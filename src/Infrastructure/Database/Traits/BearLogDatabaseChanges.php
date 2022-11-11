@@ -18,7 +18,7 @@ trait BearLogDatabaseChanges {
                 BearLogDatabaseChangeCreator::create(
                     table_name: $model->getTable(),
                     change_type: 'CREATE',
-                    connection_name: $model->getConnectionName() ?? 'default',
+                    connection_name: $model->getConnectionName(),
                     record_id: $keys[0], record_uuid: $keys[1], record_identifier: $keys[2],
                     record_data: BearDBService::extractAuditColumns($model)
                 );
@@ -39,7 +39,7 @@ trait BearLogDatabaseChanges {
                 BearLogDatabaseChangeCreator::create(
                     table_name: $model->getTable(),
                     change_type: 'DELETE',
-                    connection_name: $model->getConnectionName() ?? 'default',
+                    connection_name: $model->getConnectionName(),
                     record_id: $keys[0], record_uuid: $keys[1], record_identifier: $keys[2],
                     is_soft_deletion: $soft_deleted,
                     record_data: BearDBService::extractAuditColumns($model)
@@ -87,7 +87,7 @@ trait BearLogDatabaseChanges {
                     BearLogDatabaseChangeCreator::create(
                         table_name: $model->getTable(),
                         change_type: 'UPDATE',
-                        connection_name: $model->getConnectionName() ?? 'default',
+                        connection_name: $model->getConnectionName(),
                         record_id: $keys[0], record_uuid: $keys[1], record_identifier: $keys[2],
                         column_name: $column_name,
                         old_value: $old_value,

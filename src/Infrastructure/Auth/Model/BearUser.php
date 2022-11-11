@@ -2,10 +2,10 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 
-use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
@@ -30,7 +30,9 @@ use Illuminate\Database\Query\Builder;
  * @method static Builder|BearUser where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method static Builder|BearUser whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
  * @method static Builder|BearUser whereNotExists(Closure $callback, string $boolean = 'and')
- * @method static Builder|BearUser whereHas(string $relation, Closure $callback, string $operator = '>=', int $count = 1)
+ * @method static Builder|BearUser whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder|BearUser whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static Builder|BearUser withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
  * @method static Builder|BearUser whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
  * @method static Builder|BearUser whereNull(string|array $columns, string $boolean = 'and')
  * @method static Builder|BearUser whereNotNull(string|array $columns, string $boolean = 'and')
@@ -39,30 +41,22 @@ use Illuminate\Database\Query\Builder;
  * @method static int count(array $columns = ['*'])
  *
  * @property string $id
+ * @property string $created_at
+ * @property string $updated_at
  * @property string|null $user_email
  * @property string|null $user_display_name
  * @property string|null $user_country_iso2_code
  * @property string|null $user_language_iso2_code
- * @property CarbonInterface $created_at
- * @property CarbonInterface $updated_at
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 class BearUser extends Model {
-    use BearLogDatabaseChanges;
+    use BearLogDatabaseChanges, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_user';
     protected $keyType = 'string';
     public $incrementing = false;
-    public function getDateFormat(): string {
-        return BearDBService::defaultConnectionDriver() === 'mysql' ? 'Y-m-d H:i:s' : 'Y-m-d H:i:sO';
-    }
-
-    /** @var array<string, string> $casts */
-    protected $casts = [
-        'created_at' => 'immutable_datetime',
-        'updated_at' => 'immutable_datetime',
-    ];
+    protected $dateFormat = 'Y-m-d H:i:sO';
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];
 }

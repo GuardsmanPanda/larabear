@@ -25,40 +25,53 @@ class BearConfigUpdater {
         return new self(model: BearConfig::findOrFail(id: $config_key));
     }
 
-    public function setConfigDescription(string $config_description): void {
+
+    public function setConfigDescription(string $config_description): self {
         $this->model->config_description = $config_description;
+        return $this;
     }
 
-    public function setConfigDataType(string $config_data_type): void {
+    public function setConfigDataType(string $config_data_type): self {
         $this->model->config_data_type = $config_data_type;
+        return $this;
     }
 
-    public function setConfigJson(stdClass $config_json): void {
+    public function setConfigJson(stdClass $config_json): self {
         $this->model->config_json = $config_json;
+        return $this;
     }
 
-    public function setConfigString(string|null $config_string): void {
+    public function setConfigString(string|null $config_string): self {
         $this->model->config_string = $config_string;
+        return $this;
     }
 
-    public function setEncryptedConfigString(string|null $encrypted_config_string): void {
+    public function setEncryptedConfigString(string|null $encrypted_config_string): self {
         $this->model->encrypted_config_string = $encrypted_config_string;
+        return $this;
     }
 
-    public function setConfigBoolean(bool|null $config_boolean): void {
+    public function setConfigBoolean(bool|null $config_boolean): self {
         $this->model->config_boolean = $config_boolean;
+        return $this;
     }
 
-    public function setConfigInteger(int|null $config_integer): void {
+    public function setConfigInteger(int|null $config_integer): self {
         $this->model->config_integer = $config_integer;
+        return $this;
     }
 
-    public function setConfigDate(CarbonInterface|null $config_date): void {
+    public function setConfigDate(CarbonInterface|null $config_date): self {
+        if ($config_date?->toDateString() === $this->model->config_date?->toDateString()) {
+            return $this;
+        }
         $this->model->config_date = $config_date;
+        return $this;
     }
 
-    public function setConfigTimestamp(CarbonInterface|null $config_timestamp): void {
+    public function setConfigTimestamp(CarbonInterface|null $config_timestamp): self {
         $this->model->config_timestamp = $config_timestamp;
+        return $this;
     }
 
 

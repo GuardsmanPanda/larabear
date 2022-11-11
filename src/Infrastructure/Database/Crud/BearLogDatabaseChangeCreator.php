@@ -15,7 +15,7 @@ class BearLogDatabaseChangeCreator {
     public static function create(
         string $table_name,
         string $change_type,
-        string $connection_name,
+        string $connection_name = null,
         int    $record_id = null,
         string $record_uuid = null,
         string $record_identifier = null,

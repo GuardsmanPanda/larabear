@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -11,13 +12,22 @@ use RuntimeException;
 class BearDBService {
     public static function mustBeInTransaction(): void {
         if (App::runningUnitTests() || DB::transactionLevel() > 0) {
-           return;
+            return;
         }
         throw new RuntimeException(message: 'DB::transaction() must be called before calling this method.');
     }
 
+    public static function mustBeProperHttpMethod(array $verbs): void {
+        if (App::runningUnitTests() || App::runningInConsole()) {
+            return;
+        }
+        if (!in_array(needle: Req::method(), haystack: $verbs, strict: true)) {
+            throw new RuntimeException(message: 'This method can only be called in the following HTTP methods: ' . implode(separator: ', ', array: $verbs));
+        }
+    }
+
     public static function defaultConnectionDriver(): string {
-        return Config::get(key: 'database.connections.'. Config::get(key: 'database.default') . '.driver');
+        return Config::get(key: 'database.connections.' . Config::get(key: 'database.default') . '.driver');
     }
 
     public static function extractPrimaryKeyArray(Model $model): array {
@@ -43,7 +53,7 @@ class BearDBService {
             if (str_starts_with($key, 'encrypted_')) {
                 $arr[$key] = 'HIDDEN';
             }
-            if (in_array($key, $ignore_columns, true))  {
+            if (in_array($key, $ignore_columns, true)) {
                 unset($arr[$key]);
             }
         }

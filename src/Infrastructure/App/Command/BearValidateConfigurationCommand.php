@@ -108,35 +108,4 @@ class BearValidateConfigurationCommand extends Command {
             errorMessage: array_key_exists(key: 'base_url', array: $config) ? null : "Missing uptime kuma base url, add 'base_url' to 'uptime_kuma' in config/bear.php"
         );
     }
-
-
-    private function validateUserTableSettings(): void {
-        ConsoleService::printH2(headline: 'Validating user table settings');
-        $config = Config::get(key: 'bear.user_table');
-        if ($config === null) {
-            ConsoleService::printTestResult(
-                testName: 'User Table Settings Are Not Set',
-                errorMessage: 'Missing user table settings, add "user_table" to config/bear.php'
-            );
-            $this->output->writeln(messages: "
-    'user_table' => [
-        'table_name' => 'users',
-        'primary_key_column' => 'id',
-        'primary_key_type' => 'uuid', //Options uuid, integer, biginteger
-    ],");
-            return;
-        }
-        ConsoleService::printTestResult(
-            testName: 'User Table Should Be In Config',
-            errorMessage: array_key_exists(key: 'table_name', array: $config) ? null : "Missing user table name, add 'table_name' to 'user_table' in config/bear.php"
-        );
-        ConsoleService::printTestResult(
-            testName: 'Primary Key Column Should Be In Config',
-            errorMessage: array_key_exists(key: 'primary_key_column', array: $config) ? null : "Missing user table name, add 'primary_key_column' to 'user_table' in config/bear.php"
-        );
-        ConsoleService::printTestResult(
-            testName: 'Primary Key Type Should Be In Config',
-            errorMessage: array_key_exists(key: 'primary_key_type', array: $config) ? null : "Missing user table name, add 'table_name' to 'primary_key_type' in config/bear.php"
-        );
-    }
 }
