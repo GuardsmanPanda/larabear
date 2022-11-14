@@ -18,7 +18,6 @@ class BearValidateConfigurationCommand extends Command {
         }
         $this->validateSessionSettings();
         $this->validateUptimeKumaSettings();
-        $this->validateUserTableSettings();
         $this->validateResponseErrorLogSettings();
         $this->validateRouteUsageLogSettings();
         $this->output->writeln(messages: '');
