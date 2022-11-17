@@ -26,6 +26,6 @@ class BearUserCreator {
         $model->user_language_iso2_code = $user_language_iso2_code;
 
         $model->save();
-        return $model->fresh();
+        return $model;
     }
 }

@@ -40,6 +40,6 @@ class BearConfigCreator {
         $model->config_timestamp = $config_timestamp;
 
         $model->save();
-        return $model->fresh();
+        return $model;
     }
 }

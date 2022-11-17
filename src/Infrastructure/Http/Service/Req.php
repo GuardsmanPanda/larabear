@@ -145,126 +145,132 @@ class Req {
     }
 
 
-    public static function getString(string $key): string|null {
+    public static function getString(string $key, bool $nullIfMissing = false): string|null {
         if (!self::has(key: $key)) {
-            throw new BadRequestHttpException(message: "No input field named: $key");
+            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseString(value: $val);
-    }
-    public static function getStringOrDefault(string $key, string $default = null): string|null {
-        if (!self::has(key: $key, falseOnNull: true)) {
-            return $default;
-        }
-        $val = self::$r->input(key: $key);
+        $val = self::$r?->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseString(value: $val);
     }
 
-
-    public static function getInt(string $key): int|null {
-        if (!self::has(key: $key)) {
-            throw new BadRequestHttpException(message: "No input field named: $key");
+    public static function getStringOrDefault(string $key, string $default): string {
+        if (!self::has(key: $key, falseOnNull: true)) {
+            return $default;
         }
-        $val = self::$r->input(key: $key);
+        return ValidateAndParseValue::parseString(value: self::$r->input(key: $key) ?? $default);
+    }
+
+
+    public static function getInt(string $key, bool $nullIfMissing = false): int|null {
+        if (!self::has(key: $key)) {
+            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+        }
+        $val = self::$r?->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseInt(value: $val);
     }
-    public static function getIntOrDefault(string $key, int $default = null): int|null {
+
+    public static function getIntOrDefault(string $key, int $default): int {
         if (!self::has(key: $key, falseOnNull: true)) {
             return $default;
         }
-        $val = self::$r->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseInt(value: $val);
+        return ValidateAndParseValue::parseInt(value: self::$r->input(key: $key) ?? $default);
     }
 
 
-    public static function getFloat(string $key): float|null {
+    public static function getFloat(string $key, bool $nullIfMissing = false): float|null {
         if (!self::has(key: $key)) {
-            throw new BadRequestHttpException(message: "No input field named: $key");
+            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseFloat(value: $val);
-    }
-    public static function getFloatOrDefault(string $key, float $default = null): float|null {
-        if (!self::has(key: $key, falseOnNull: true)) {
-            return $default;
-        }
-        $val = self::$r->input(key: $key);
+        $val = self::$r?->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseFloat(value: $val);
     }
 
-
-    public static function getBool(string $key): bool|null {
-        if (!self::has(key: $key)) {
-            throw new BadRequestHttpException(message: "No input field named: $key");
+    public static function getFloatOrDefault(string $key, float $default): float {
+        if (!self::has(key: $key, falseOnNull: true)) {
+            return $default;
         }
-        $val = self::$r->input(key: $key);
+        return ValidateAndParseValue::parseFloat(value: self::$r->input(key: $key) ?? $default);
+    }
+
+
+    public static function getBool(string $key, bool $nullIfMissing = false): bool|null {
+        if (!self::has(key: $key)) {
+            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+        }
+        $val = self::$r?->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseBool(value: $val);
     }
-    public static function getBoolOrDefault(string $key, bool $default = null): bool|null {
+
+    public static function getBoolOrDefault(string $key, bool $default): bool {
         if (!self::has(key: $key, falseOnNull: true)) {
             return $default;
         }
-        $val = self::$r->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseBool(value: $val);
+        return ValidateAndParseValue::parseBool(value: self::$r->input(key: $key) ?? $default);
     }
 
 
-    public static function getDate(string $key): CarbonImmutable|null {
+    public static function getDate(string $key, bool $nullIfMissing = false): CarbonImmutable|null {
         if (!self::has(key: $key)) {
-            throw new BadRequestHttpException(message: "No input field named: $key");
+            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseDate(value: $val);
-    }
-    public static function getDateOrDefault(string $key, CarbonImmutable $default = null): CarbonImmutable|null {
-        if (!self::has(key: $key, falseOnNull: true)) {
-            return $default;
-        }
-        $val = self::$r->input(key: $key);
+        $val = self::$r?->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseDate(value: $val);
     }
 
-
-    public static function getDateTime(string $key): CarbonImmutable|null {
-        if (!self::has(key: $key)) {
-            throw new BadRequestHttpException(message: "No input field named: $key");
-        }
-        $val = self::$r->input(key: $key);
-        $timezone =  self::$r->input(key: $key . "_timezone");
-        return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone');
-    }
-    public static function getDateTimeOrDefault(string $key, CarbonImmutable $default = null): CarbonImmutable|null {
+    public static function getDateOrDefault(string $key, CarbonImmutable $default): CarbonImmutable {
         if (!self::has(key: $key, falseOnNull: true)) {
             return $default;
         }
-        $val = self::$r->input(key: $key);
-        $timezone =  self::$r->input(key: $key . "_timezone");
+        return ValidateAndParseValue::parseDate(value: self::$r->input(key: $key) ?? $default);
+    }
+
+
+    public static function getDateTime(string $key, bool $nullIfMissing = false): CarbonImmutable|null {
+        if (!self::has(key: $key)) {
+            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+        }
+        $val = self::$r?->input(key: $key);
+        $timezone = self::$r->input(key: $key . "_timezone");
         return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone');
+    }
+
+    public static function getDateTimeOrDefault(string $key, CarbonImmutable $default): CarbonImmutable {
+        if (!self::has(key: $key, falseOnNull: true)) {
+            return $default;
+        }
+        $val = self::$r?->input(key: $key);
+        if ($val === null) {
+            return $default;
+        }
+        $timezone = self::$r->input(key: $key . "_timezone");
+        return ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone');
     }
 
 
     /**
      * @param string $key
+     * @param bool $nullIfMissing
      * @return array<string, mixed>|null
      */
-    public static function getArray(string $key): array|null {
+    public static function getArray(string $key, bool $nullIfMissing = false): array|null {
         if (!self::has(key: $key)) {
-            throw new BadRequestHttpException(message: "No input field named: $key");
+            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r->input(key: $key);
+        $val = self::$r?->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseArray(value: $val);
     }
 
 
     /**
      * @param string $key
+     * @param bool $nullIfMissing
      * @return stdClass|null
      */
-    public static function getJson(string $key): stdClass|null {
+    public static function getJson(string $key, bool $nullIfMissing = false): stdClass|null {
         if (!self::has(key: $key)) {
-            throw new BadRequestHttpException(message: "No input field named: $key");
+            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r->input(key: $key);
+        $val = self::$r?->input(key: $key);
         if ($val === null) {
             return null;
         }
@@ -278,12 +284,12 @@ class Req {
     }
 
 
-    public static function getFile(string $key): UploadedFile {
+    public static function getFile(string $key, bool $nullIfMissing = false): UploadedFile|null {
         foreach (self::$r->allFiles() as $name => $file) {
             if ($name === $key) {
                 return $file;
             }
         }
-        throw new BadRequestHttpException(message: "No input field named: $key");
+        return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
     }
 }
