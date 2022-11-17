@@ -17,8 +17,8 @@ class Resp {
         return new JsonResponse(data: DB::select(query: " SELECT row_to_json(t) FROM ($sql) t ", bindings: $data)[0]->row_to_json ?? '{}', json: true);
     }
 
-    public static function header(string $name, string $value): void {
-        BearInitiateMiddleware::$headers[$name] = $value;
+    public static function header(string $key, string $value): void {
+        BearInitiateMiddleware::$headers[$key] = $value;
     }
 
     public static function redirectWithError(string $url, string $error, int $status = 303): RedirectResponse {

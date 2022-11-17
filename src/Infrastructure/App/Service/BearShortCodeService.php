@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
+use RuntimeException;
 
 class BearShortCodeService {
     private const CHARS = '25679bcdfghjkmnpqrstvwxz';
@@ -11,6 +12,9 @@ class BearShortCodeService {
     public static function generateNextCode(): string {
         $updater = BearConfigUpdater::fromConfigKey(config_key: 'larabear.last_unique_short_code', lockForUpdate: true);
         $value = $updater->getConfigString();
+        if (!is_string($value)) {
+            throw new RuntimeException(message: 'The last_unique_short_code config value is not a string.');
+        }
 
         // Change value string into array of characters
         $value_array = str_split(string: $value);

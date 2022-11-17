@@ -77,10 +77,10 @@ class BearGlobalStateService {
     public static function setRequest(Request $request): void {
         self::$request = $request;
         Req::$r = $request;
-        if (Req::hasHeader(name: 'x-request-id')) {
-            self::$requestId = Req::header(name: 'x-request-id');
-        } else if (Req::hasHeader(name: 'cf-ray')) {
-            self::$requestId = Req::header(name: 'cf-ray');
+        if (Req::hasHeader(key: 'x-request-id')) {
+            self::$requestId = Req::header(key: 'x-request-id');
+        } else if (Req::hasHeader(key: 'cf-ray')) {
+            self::$requestId = Req::header(key: 'cf-ray');
         } else {
             self::$requestId = Str::uuid()->toString();
         }
