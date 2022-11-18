@@ -229,7 +229,7 @@ class Req {
             return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
         $val = self::request()->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: self::getStringOrDefault(key: $key . "_timezone"));
+        return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: self::getString(key: $key . "_timezone", nullIfMissing: true), errorMessage: 'You may need to include timezone as form_field_name_timezone');
     }
 
     public static function getDateTimeOrDefault(string $key, CarbonImmutable $default = null): CarbonImmutable {
@@ -237,7 +237,7 @@ class Req {
         if ($value === null) {
             return $default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
-        return ValidateAndParseValue::parseDateTime(value: $value, timezone: self::getStringOrDefault(key: $key . "_timezone"));
+        return ValidateAndParseValue::parseDateTime(value: $value, timezone: self::getString(key: $key . "_timezone", nullIfMissing: true), errorMessage: 'You may need to include timezone as form_field_name_timezone');
     }
 
 
