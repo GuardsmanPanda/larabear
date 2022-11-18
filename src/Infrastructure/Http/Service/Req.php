@@ -134,7 +134,8 @@ class Req {
     }
 
     public static function content(): string {
-        return self::request()->getContent() ?? throw new BadRequestHttpException(message: 'No Content');
+        $value = self::request()->getContent();
+        return is_string($value) ? $value : throw new BadRequestHttpException(message: 'No Content or Content is not text');
     }
 
 

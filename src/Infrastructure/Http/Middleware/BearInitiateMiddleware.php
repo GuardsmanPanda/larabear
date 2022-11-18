@@ -8,6 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogResponseErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Crud\BearLogRouteUsageCrud;
+use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
@@ -23,13 +24,11 @@ use Throwable;
 class BearInitiateMiddleware {
     /** @var array<string> $headers */
     public static array $headers = ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
-    private Encrypter|null $encrypt = null;
+    private Encrypter $encrypt;
 
     public function __construct(private readonly Application $app) {
-        $key = Config::get(key: 'bear.cookie.session_key');
-        if ($key !== null) {
-            $this->encrypt = new Encrypter(key: base64_decode($key), cipher: Config::get(key: 'app.cipher'));
-        }
+        $key = ValidateAndParseValue::parseString(value: Config::get(key: 'bear.cookie.session_key'), errorMessage: 'bear.cookie.session_key must be set to  a string');
+        $this->encrypt = new Encrypter(key: base64_decode($key), cipher: Config::get(key: 'app.cipher'));
     }
 
     public function handle(Request $request, Closure $next): Response {
@@ -129,9 +128,6 @@ class BearInitiateMiddleware {
             if ($name !== $session_name) {
                 throw new InvalidArgumentException(message: 'Cookie name must be the same as the session cookie.. name: ' . $name . ', session cookie: ' . $session_name);
             }
-            if ($this->encrypt === null) {
-                throw new InvalidArgumentException(message: 'Session cookie encryption key is not set, please read the documentation.');
-            }
             $response->headers->removeCookie(name: $name, path: $cookie->getPath(), domain: $cookie->getDomain()); //TODO: Consider throwing error on insecure cookie parameters, instead of silently fixing.
             $response->headers->setCookie(new Cookie(
                 name: $name,
@@ -168,7 +164,7 @@ class BearInitiateMiddleware {
         try {
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 400 && Config::get(key: 'bear.response_error_log.enabled') === true && BearGlobalStateService::getLogResponseError() && !in_array(needle: $statusCode, haystack: Config::get(key: 'bear.response_error_log.ignore_response_codes', default: []), strict: true)) {
-                BearLogResponseErrorCreator::create(statusCode: $response->getStatusCode(), responseBody: $response->getContent());
+                BearLogResponseErrorCreator::create(statusCode: $response->getStatusCode(), responseBody: is_string($response->getContent()) ? $response->getContent() : '');
             }
             if ($response->getStatusCode() < 400 && Config::get(key: 'bear.route_usage_log.enabled') === true) {
                 $multiply = Config::get(key: 'bear.route_usage_log.log_one_in_every', default: 1);
