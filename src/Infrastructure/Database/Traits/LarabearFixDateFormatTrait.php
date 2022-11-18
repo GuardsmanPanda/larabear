@@ -2,10 +2,10 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Traits;
 
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 trait LarabearFixDateFormatTrait {
     public function getDateFormat(): string {
-        return BearDBService::defaultConnectionDriver() === 'mysql' ? 'Y-m-d H:i:s' : 'Y-m-d H:i:sO';
+        return BearDatabaseService::defaultConnectionDriver() === 'mysql' ? 'Y-m-d H:i:s' : 'Y-m-d H:i:sO';
     }
 }

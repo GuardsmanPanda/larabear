@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Config\Crud;
 
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Support\Facades\App;
 use RuntimeException;
@@ -23,8 +23,8 @@ class BearConfigCreator {
         CarbonInterface $config_timestamp = null,
         stdClass $config_json = new stdClass()
     ): BearConfig {
-        BearDBService::mustBeInTransaction();
-        BearDBService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
+        BearDatabaseService::mustBeInTransaction();
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
 
         $model = new BearConfig();
 

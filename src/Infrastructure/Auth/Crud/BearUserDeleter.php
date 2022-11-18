@@ -3,12 +3,12 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 class BearUserDeleter {
     public static function delete(BearUser $model): void {
-        BearDBService::mustBeInTransaction();
-        BearDBService::mustBeProperHttpMethod(verbs: ['DELETE']);
+        BearDatabaseService::mustBeInTransaction();
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['DELETE']);
         $model->delete();
     }
 

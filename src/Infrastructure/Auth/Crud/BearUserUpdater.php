@@ -3,12 +3,12 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 class BearUserUpdater {
     public function __construct(private readonly BearUser $model) {
-        BearDBService::mustBeInTransaction();
-        BearDBService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
+        BearDatabaseService::mustBeInTransaction();
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
     }
 
     public static function fromId(string $id): BearUserUpdater {

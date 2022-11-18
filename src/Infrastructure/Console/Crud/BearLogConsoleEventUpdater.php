@@ -4,12 +4,12 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Console\Crud;
 
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Model\BearLogConsoleEvent;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 class BearLogConsoleEventUpdater {
     public function __construct(private readonly BearLogConsoleEvent $model) {
-        BearDBService::mustBeInTransaction();
-        BearDBService::mustBeProperHttpMethod(verbs: ['PATCH']);
+        BearDatabaseService::mustBeInTransaction();
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);
     }
 
     public static function fromConsoleEventId(string $consoleEventId): BearLogConsoleEventUpdater {

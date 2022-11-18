@@ -5,7 +5,8 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Traits;
 use ArrayObject;
 use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Crud\BearLogDatabaseChangeCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\LarabearDatabaseModelService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use stdClass;
 use Throwable;
@@ -14,13 +15,13 @@ trait BearLogDatabaseChanges {
     public static function bootBearLogDatabaseChanges(): void {
         static::created(static function ($model) {
             try {
-                $keys = BearDBService::extractPrimaryKeyArray($model);
+                $keys = LarabearDatabaseModelService::extractPrimaryKeyArray($model);
                 BearLogDatabaseChangeCreator::create(
                     table_name: $model->getTable(),
                     change_type: 'CREATE',
                     connection_name: $model->getConnectionName(),
                     record_id: $keys[0], record_uuid: $keys[1], record_identifier: $keys[2],
-                    record_data: BearDBService::extractAuditColumns($model)
+                    record_data: LarabearDatabaseModelService::extractAuditColumns($model)
                 );
             } catch (Throwable $t) {
                 BearLogErrorCreator::create(
@@ -35,14 +36,14 @@ trait BearLogDatabaseChanges {
         static::deleted(static function ($model) {
             try {
                 $soft_deleted = method_exists($model, 'isForceDeleting') && !$model->isForceDeleting();
-                $keys = BearDBService::extractPrimaryKeyArray($model);
+                $keys = LarabearDatabaseModelService::extractPrimaryKeyArray($model);
                 BearLogDatabaseChangeCreator::create(
                     table_name: $model->getTable(),
                     change_type: 'DELETE',
                     connection_name: $model->getConnectionName(),
                     record_id: $keys[0], record_uuid: $keys[1], record_identifier: $keys[2],
                     is_soft_deletion: $soft_deleted,
-                    record_data: BearDBService::extractAuditColumns($model)
+                    record_data: LarabearDatabaseModelService::extractAuditColumns($model)
                 );
             } catch (Throwable $t) {
                 BearLogErrorCreator::create(
@@ -56,7 +57,7 @@ trait BearLogDatabaseChanges {
 
         static::updated(static function ($model) {
             try {
-                $keys = BearDBService::extractPrimaryKeyArray($model);
+                $keys = LarabearDatabaseModelService::extractPrimaryKeyArray($model);
                 $ignore_columns = property_exists(object_or_class: $model, property: 'log_exclude_columns') ? $model->log_exclude_columns : [];
                 foreach ($model->getChanges() as $column_name => $new_value) {
                     if ($column_name === 'updated_at' || in_array($column_name, $ignore_columns, true)) {

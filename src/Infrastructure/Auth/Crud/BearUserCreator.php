@@ -3,7 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Support\Str;
 
 class BearUserCreator {
@@ -14,8 +14,8 @@ class BearUserCreator {
         string $user_country_iso2_code = null,
         string $user_language_iso2_code = null
     ): BearUser {
-        BearDBService::mustBeInTransaction();
-        BearDBService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
+        BearDatabaseService::mustBeInTransaction();
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
 
         $model = new BearUser();
         $model->id = $id ?? Str::uuid()->toString();

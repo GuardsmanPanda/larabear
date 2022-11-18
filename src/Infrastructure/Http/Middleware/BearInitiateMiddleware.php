@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
-use JsonException;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,21 +39,25 @@ class BearInitiateMiddleware {
         //----------------------------------------------------------------------------------------------------------
         if ($this->app->isDownForMaintenance()) {
             try {
-                $data = json_decode(json: file_get_contents(filename: $this->app->storagePath() . '/framework/down'), associative: true, depth: 256, flags: JSON_THROW_ON_ERROR);
-            } catch (JsonException $e) {
-                throw new HttpException(statusCode: 500, message: 'The down file is not valid JSON.', previous: $e);
-            }
-            if (isset($data['redirect'])) {
-                $path = $data['redirect'] === '/' ? $data['redirect'] : trim($data['redirect'], '/');
-                if ($request->path() !== $path) {
-                    return new RedirectResponse($path, status: 307);
+                $data = file_get_contents(filename: $this->app->storagePath() . '/framework/down');
+                if (is_string($data)) {
+                    $json = json_decode(json: $data, associative: true, depth: 256, flags: JSON_THROW_ON_ERROR);
+                    if (isset($json['redirect'])) {
+                        $path = $json['redirect'] === '/' ? $json['redirect'] : trim($json['redirect'], '/');
+                        if ($request->path() !== $path) {
+                            return new RedirectResponse($path, status: 307);
+                        }
+                        $hh = isset($json['retry']) ? ['Retry-After' => $json['retry']] : [];
+                        if (isset($json['refresh'])) {
+                            $hh['Refresh'] = $json['refresh'];
+                        }
+                        return new Response(content: $json['template'] ?? 'Service Unavailable', status: $json['status'] ?? 503, headers: $hh);
+                    }
                 }
-                $hh = isset($data['retry']) ? ['Retry-After' => $data['retry']] : [];
-                if (isset($data['refresh'])) {
-                    $hh['Refresh'] = $data['refresh'];
-                }
-                return new Response(content: $data['template'] ?? 'Service Unavailable', status: $data['status'] ?? 503, headers: $hh);
+            } catch (Throwable $t) {
+                throw new HttpException(statusCode: 500, message: 'The down file is not valid JSON.', previous: $t);
             }
+            throw new HttpException(statusCode: 500, message: 'The down file error.');
         }
 
         //----------------------------------------------------------------------------------------------------------
@@ -80,7 +83,8 @@ class BearInitiateMiddleware {
         //----------------------------------------------------------------------------------------------------------
         //  Apply headers to response
         //----------------------------------------------------------------------------------------------------------
-        if (method_exists(object_or_class: $resp, method: 'header')) {
+        Log::info(message: "resp is instance of type: " . get_class($resp));
+        if (is_object($resp) && method_exists(object_or_class: $resp, method: 'header')) {
             foreach (self::$headers as $key => $value) {
                 $resp->header($key, $value);
             }

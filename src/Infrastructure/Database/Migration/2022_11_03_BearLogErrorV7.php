@@ -1,6 +1,6 @@
 <?php
 
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +11,7 @@ return new class extends Migration {
         Schema::dropIfExists(table: 'bear_log_error');
         Schema::create(table: 'bear_log_error', callback: static function (Blueprint $table): void {
             $table->id();
-            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+            if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'error_severity')->index();
                 $table->text(column: 'error_namespace')->index();
                 $table->text(column: 'error_key')->nullable()->index();
@@ -26,7 +26,7 @@ return new class extends Migration {
             $table->text(column: 'exception_trace')->nullable();
             $table->uuid(column: 'user_id')->nullable()->index();
             $table->ipAddress(column: 'request_ip')->nullable()->index();
-            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+            if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_country_code')->nullable();
                 $table->text(column: 'request_http_method');
                 $table->text(column: 'request_http_path')->nullable();
@@ -38,7 +38,7 @@ return new class extends Migration {
             $table->jsonb(column: 'request_http_query_json')->nullable();
             $table->text(column: 'app_action_name')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+            if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_http_hostname')->nullable();
                 $table->text(column: 'request_id')->nullable();
             } else {

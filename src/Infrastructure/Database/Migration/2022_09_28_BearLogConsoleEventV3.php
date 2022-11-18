@@ -1,6 +1,6 @@
 <?php
 
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +11,7 @@ return new class extends Migration {
         Schema::dropIfExists(table: 'bear_log_console_event');
         Schema::create(table: 'bear_log_console_event', callback: static function (Blueprint $table): void {
             $table->id();
-            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+            if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'console_event_type');
                 $table->text(column: 'console_command')->index();
                 $table->text(column: 'cron_schedule_expression')->nullable();

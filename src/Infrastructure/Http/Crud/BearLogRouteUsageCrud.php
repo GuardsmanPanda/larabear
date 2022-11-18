@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Crud;
 
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +18,7 @@ class BearLogRouteUsageCrud {
         if (defined(constant_name: 'LARAVEL_START')) {
             $time = (int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1_000_000 * $multiply);
         }
-        if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+        if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
             DB::insert(query: "
             INSERT INTO bear_log_route_usage (request_http_method, request_route_path, app_action_name, route_usage_count, route_usage_time_microseconds)
             VALUES (?, ?, ?, ?, ?)

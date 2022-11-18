@@ -16,12 +16,19 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class Req {
     public static Request|null $r = null;
 
+    public static function request(): Request {
+        if (self::$r === null) {
+            throw new RuntimeException(message: 'Not In Request Context');
+        }
+        return self::$r;
+    }
+
     public static function hasHeader(string $key): bool {
         return self::$r?->hasHeader(key: $key) ?? false;
     }
 
     public static function header(string $key, bool $nullIfMissing = false): string|null {
-        $value = self::$r->header(key: $key);
+        $value = self::$r?->header(key: $key);
         if ($value === null && $nullIfMissing) {
             return null;
         }
@@ -59,10 +66,6 @@ class Req {
         return $route instanceof Route ? $route->uri() : null;
     }
 
-    public static function userAgent(): string|null {
-        return self::$r?->userAgent();
-    }
-
     public static function ip(): string|null {
         return self::$r?->ip();
     }
@@ -76,11 +79,13 @@ class Req {
     }
 
     public static function actionName(): string|null {
-        return self::$r?->route()?->getActionName();
+        $route = self::$r?->route();
+        return $route instanceof Route ? $route->getActionName() : null;
     }
 
     public static function uri(): string|null {
-        return self::$r?->route()?->uri();
+        $route = self::$r?->route();
+        return $route instanceof Route ? $route->uri() : null;
     }
 
     public static function isWriteRequest(): bool {
@@ -94,22 +99,22 @@ class Req {
      * @return array<string, mixed>
      */
     public static function allJsonData(bool $allowEmpty = false): array {
-        $tmp = self::$r?->json()?->all();
+        $tmp = self::request()->json()?->all();
         if (empty($tmp) && $allowEmpty) {
             return $tmp;
         }
-        if (!self::$r?->isJson()) {
+        if (!self::request()->isJson()) {
             throw new BadRequestHttpException(message: 'Request does not have application/json content type');
         }
         return empty($tmp) ? throw new BadRequestHttpException(message: 'No Json Data') : $tmp;
     }
 
     public static function allObjectData(bool $allowEmpty = false): stdClass {
-        if (!self::$r?->isJson()) {
+        if (!self::request()->isJson()) {
             throw new BadRequestHttpException(message: 'Request does not have application/json content type');
         }
         try {
-            $res = json_decode(self::$r->getContent(), false, 512, JSON_THROW_ON_ERROR);
+            $res = json_decode(self::request()->getContent(), false, 512, JSON_THROW_ON_ERROR);
             return !$allowEmpty && empty($res) ? throw new BadRequestHttpException(message: 'No request data in body') : $res;
         } catch (JsonException) {
             throw new BadRequestHttpException(message: 'Invalid Json Data');
@@ -117,28 +122,28 @@ class Req {
     }
 
     public static function allFormData(bool $allowEmpty = false): array {
-        $tmp = self::$r?->request?->all();
+        $tmp = self::request()->all();
         return empty($tmp) && !$allowEmpty ? throw new BadRequestHttpException(message: 'No Form Data') : $tmp;
     }
 
     public static function allQueryData(): array {
-        return self::$r?->query() ?? [];
+        return self::request()->query() ?? [];
     }
 
     public static function content(): string {
-        return self::$r?->getContent() ?? throw new BadRequestHttpException(message: 'No Content');
+        return self::request()->getContent() ?? throw new BadRequestHttpException(message: 'No Content');
     }
 
 
     public static function has(string $key, bool $falseOnNull = false, bool $throwOnNull = false): bool {
-        $result = self::$r?->has(key: $key) ?? false;
-        if ($result === false) {
+        $req = self::request();
+        if ($req->has(key: $key) !== true) {
             return false;
         }
-        if ($falseOnNull && self::$r?->get(key: $key) === null) {
+        if ($falseOnNull && $req->get(key: $key) === null) {
             return false;
         }
-        if ($throwOnNull && self::$r?->get(key: $key) === null) {
+        if ($throwOnNull && $req->get(key: $key) === null) {
             throw new BadRequestHttpException(message: "'$key' is null but must be set to a value.");
         }
         return true;
@@ -149,7 +154,7 @@ class Req {
         if (!self::has(key: $key)) {
             return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r?->input(key: $key);
+        $val = self::request()->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseString(value: $val);
     }
 
@@ -157,7 +162,7 @@ class Req {
         if (!self::has(key: $key, falseOnNull: true)) {
             return $default;
         }
-        return ValidateAndParseValue::parseString(value: self::$r->input(key: $key) ?? $default);
+        return ValidateAndParseValue::parseString(value: self::request()->input(key: $key) ?? $default);
     }
 
 
@@ -165,7 +170,7 @@ class Req {
         if (!self::has(key: $key)) {
             return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r?->input(key: $key);
+        $val = self::request()->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseInt(value: $val);
     }
 
@@ -173,7 +178,7 @@ class Req {
         if (!self::has(key: $key, falseOnNull: true)) {
             return $default;
         }
-        return ValidateAndParseValue::parseInt(value: self::$r->input(key: $key) ?? $default);
+        return ValidateAndParseValue::parseInt(value: self::request()->input(key: $key) ?? $default);
     }
 
 
@@ -181,7 +186,7 @@ class Req {
         if (!self::has(key: $key)) {
             return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r?->input(key: $key);
+        $val = self::request()->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseFloat(value: $val);
     }
 
@@ -189,7 +194,7 @@ class Req {
         if (!self::has(key: $key, falseOnNull: true)) {
             return $default;
         }
-        return ValidateAndParseValue::parseFloat(value: self::$r->input(key: $key) ?? $default);
+        return ValidateAndParseValue::parseFloat(value: self::request()->input(key: $key) ?? $default);
     }
 
 
@@ -197,7 +202,7 @@ class Req {
         if (!self::has(key: $key)) {
             return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r?->input(key: $key);
+        $val = self::request()->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseBool(value: $val);
     }
 
@@ -205,7 +210,7 @@ class Req {
         if (!self::has(key: $key, falseOnNull: true)) {
             return $default;
         }
-        return ValidateAndParseValue::parseBool(value: self::$r->input(key: $key) ?? $default);
+        return ValidateAndParseValue::parseBool(value: self::request()->input(key: $key) ?? $default);
     }
 
 
@@ -213,7 +218,7 @@ class Req {
         if (!self::has(key: $key)) {
             return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r?->input(key: $key);
+        $val = self::request()->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseDate(value: $val);
     }
 
@@ -221,7 +226,7 @@ class Req {
         if (!self::has(key: $key, falseOnNull: true)) {
             return $default;
         }
-        return ValidateAndParseValue::parseDate(value: self::$r->input(key: $key) ?? $default);
+        return ValidateAndParseValue::parseDate(value: self::request()->input(key: $key) ?? $default);
     }
 
 
@@ -229,8 +234,8 @@ class Req {
         if (!self::has(key: $key)) {
             return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r?->input(key: $key);
-        $timezone = self::$r->input(key: $key . "_timezone");
+        $val = self::request()->input(key: $key);
+        $timezone = self::getString(key: $key . "_timezone");
         return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone');
     }
 
@@ -238,11 +243,11 @@ class Req {
         if (!self::has(key: $key, falseOnNull: true)) {
             return $default;
         }
-        $val = self::$r?->input(key: $key);
+        $val = self::request()->input(key: $key);
         if ($val === null) {
             return $default;
         }
-        $timezone = self::$r->input(key: $key . "_timezone");
+        $timezone = self::getString(key: $key . "_timezone");
         return ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone');
     }
 
@@ -256,7 +261,7 @@ class Req {
         if (!self::has(key: $key)) {
             return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r?->input(key: $key);
+        $val = self::request()->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseArray(value: $val);
     }
 
@@ -270,7 +275,7 @@ class Req {
         if (!self::has(key: $key)) {
             return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
-        $val = self::$r?->input(key: $key);
+        $val = self::request()->input(key: $key);
         if ($val === null) {
             return null;
         }
@@ -285,7 +290,7 @@ class Req {
 
 
     public static function getFile(string $key, bool $nullIfMissing = false): UploadedFile|null {
-        foreach (self::$r->allFiles() as $name => $file) {
+        foreach (self::request()->allFiles() as $name => $file) {
             if ($name === $key) {
                 return $file;
             }

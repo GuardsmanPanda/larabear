@@ -1,6 +1,6 @@
 <?php
 
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +12,7 @@ return new class extends Migration {
         Schema::dropIfExists(table: 'bear_log_database_change');
         Schema::create(table: 'bear_log_database_change', callback: static function (Blueprint $table): void {
             $table->id();
-            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+            if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'table_name')->index();
                 $table->text(column: 'column_name')->nullable()->index();
                 $table->bigInteger(column: 'record_id')->nullable()->index();
@@ -37,7 +37,7 @@ return new class extends Migration {
             $table->uuid(column: 'user_id')->nullable()->index();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->ipAddress(column: 'request_ip')->nullable();
-            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+            if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_country_code')->nullable();
                 $table->text(column: 'request_http_method');
                 $table->text(column: 'request_http_path')->nullable();

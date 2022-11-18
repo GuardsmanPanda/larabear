@@ -1,7 +1,7 @@
 <?php
 
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void {
         Schema::dropIfExists(table: 'bear_config');
-        if (BearDBService::defaultConnectionDriver() === 'mysql') {
+        if (BearDatabaseService::defaultConnectionDriver() === 'mysql') {
             DB::statement("
                     CREATE TABLE bear_config (
                         config_key VARCHAR(255) PRIMARY KEY,
