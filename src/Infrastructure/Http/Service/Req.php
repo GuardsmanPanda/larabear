@@ -8,10 +8,10 @@ use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseVal
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Route;
-use JsonException;
 use RuntimeException;
 use stdClass;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Throwable;
 
 class Req {
     public static Request|null $r = null;
@@ -99,26 +99,29 @@ class Req {
      * @return array<string, mixed>
      */
     public static function allJsonData(bool $allowEmpty = false): array {
-        $tmp = self::request()->json()?->all();
-        if (empty($tmp) && $allowEmpty) {
-            return $tmp;
+        $value = self::request()->json()?->all();
+        if (!is_array(value: $value) || !self::request()->isJson()) {
+            throw new BadRequestHttpException(message: 'Request does not have application/json content type or is not valid JSON');
         }
-        if (!self::request()->isJson()) {
-            throw new BadRequestHttpException(message: 'Request does not have application/json content type');
+        if (empty($value)) {
+            return $allowEmpty ? [] : throw new BadRequestHttpException(message: 'Request JSON is empty');
         }
-        return empty($tmp) ? throw new BadRequestHttpException(message: 'No Json Data') : $tmp;
+        return $value;
     }
 
-    public static function allObjectData(bool $allowEmpty = false): stdClass {
-        if (!self::request()->isJson()) {
-            throw new BadRequestHttpException(message: 'Request does not have application/json content type');
-        }
+    public static function allObjectData(): stdClass {
         try {
-            $res = json_decode(self::request()->getContent(), false, 512, JSON_THROW_ON_ERROR);
-            return !$allowEmpty && empty($res) ? throw new BadRequestHttpException(message: 'No request data in body') : $res;
-        } catch (JsonException) {
-            throw new BadRequestHttpException(message: 'Invalid Json Data');
+            $content = self::request()->getContent();
+            if (is_string(value: $content)) {
+                $value = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                if ($value instanceof stdClass) {
+                    return $value;
+                }
+            }
+        } catch (Throwable $t) {
+            throw new BadRequestHttpException(message: 'Invalid Json Data', previous: $t);
         }
+        throw new BadRequestHttpException(message: 'Data is not a Json Object');
     }
 
     public static function allFormData(bool $allowEmpty = false): array {
@@ -158,11 +161,9 @@ class Req {
         return $val === null ? null : ValidateAndParseValue::parseString(value: $val);
     }
 
-    public static function getStringOrDefault(string $key, string $default): string {
-        if (!self::has(key: $key, falseOnNull: true)) {
-            return $default;
-        }
-        return ValidateAndParseValue::parseString(value: self::request()->input(key: $key) ?? $default);
+    public static function getStringOrDefault(string $key, string $default = null): string {
+        $value = self::request()->input(key: $key);
+        return $value !== null ? ValidateAndParseValue::parseString(value: $value) : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
     }
 
 
@@ -174,11 +175,9 @@ class Req {
         return $val === null ? null : ValidateAndParseValue::parseInt(value: $val);
     }
 
-    public static function getIntOrDefault(string $key, int $default): int {
-        if (!self::has(key: $key, falseOnNull: true)) {
-            return $default;
-        }
-        return ValidateAndParseValue::parseInt(value: self::request()->input(key: $key) ?? $default);
+    public static function getIntOrDefault(string $key, int $default = null): int {
+        $value = self::request()->input(key: $key);
+        return $value !== null ? ValidateAndParseValue::parseInt(value: $value) : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
     }
 
 
@@ -190,11 +189,9 @@ class Req {
         return $val === null ? null : ValidateAndParseValue::parseFloat(value: $val);
     }
 
-    public static function getFloatOrDefault(string $key, float $default): float {
-        if (!self::has(key: $key, falseOnNull: true)) {
-            return $default;
-        }
-        return ValidateAndParseValue::parseFloat(value: self::request()->input(key: $key) ?? $default);
+    public static function getFloatOrDefault(string $key, float $default = null): float {
+        $value = self::request()->input(key: $key);
+        return $value !== null ? ValidateAndParseValue::parseFloat(value: $value) : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
     }
 
 
@@ -206,11 +203,9 @@ class Req {
         return $val === null ? null : ValidateAndParseValue::parseBool(value: $val);
     }
 
-    public static function getBoolOrDefault(string $key, bool $default): bool {
-        if (!self::has(key: $key, falseOnNull: true)) {
-            return $default;
-        }
-        return ValidateAndParseValue::parseBool(value: self::request()->input(key: $key) ?? $default);
+    public static function getBoolOrDefault(string $key, bool $default = null): bool {
+        $value = self::request()->input(key: $key);
+        return $value !== null ? ValidateAndParseValue::parseBool(value: $value) : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
     }
 
 
@@ -222,11 +217,9 @@ class Req {
         return $val === null ? null : ValidateAndParseValue::parseDate(value: $val);
     }
 
-    public static function getDateOrDefault(string $key, CarbonImmutable $default): CarbonImmutable {
-        if (!self::has(key: $key, falseOnNull: true)) {
-            return $default;
-        }
-        return ValidateAndParseValue::parseDate(value: self::request()->input(key: $key) ?? $default);
+    public static function getDateOrDefault(string $key, CarbonImmutable $default = null): CarbonImmutable {
+        $value = self::request()->input(key: $key);
+        return $value !== null ? ValidateAndParseValue::parseDate(value: $value) : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
     }
 
 
@@ -235,20 +228,15 @@ class Req {
             return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
         $val = self::request()->input(key: $key);
-        $timezone = self::getString(key: $key . "_timezone");
-        return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone');
+        return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: self::getStringOrDefault(key: $key . "_timezone"));
     }
 
-    public static function getDateTimeOrDefault(string $key, CarbonImmutable $default): CarbonImmutable {
-        if (!self::has(key: $key, falseOnNull: true)) {
-            return $default;
+    public static function getDateTimeOrDefault(string $key, CarbonImmutable $default = null): CarbonImmutable {
+        $value = self::request()->input(key: $key);
+        if ($value === null) {
+            return $default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
-        $val = self::request()->input(key: $key);
-        if ($val === null) {
-            return $default;
-        }
-        $timezone = self::getString(key: $key . "_timezone");
-        return ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone');
+        return ValidateAndParseValue::parseDateTime(value: $value, timezone: self::getStringOrDefault(key: $key . "_timezone"));
     }
 
 
