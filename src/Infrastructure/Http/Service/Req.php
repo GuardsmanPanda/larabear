@@ -130,7 +130,7 @@ class Req {
     }
 
     public static function allQueryData(): array {
-        return self::$r?->query() ?? [];
+        return self::request()->query() ?? [];
     }
 
     public static function content(): string {
