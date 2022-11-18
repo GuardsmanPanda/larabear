@@ -1,6 +1,6 @@
 parameters:
     tmpDir: storage/phpstan
-    level: 8
+    level: 9
     paths:
         - src
         - config
