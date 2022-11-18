@@ -17,7 +17,8 @@
   ],
   "require": {
     "php": "^8.1",
-    "laravel/framework": "^v8.83.12 || ^9.39"
+    "laravel/framework": "^v8.83.12 || ^9.39",
+    "phpstan/phpstan": "^1.9"
   },
   "autoload": {
     "psr-4": {
@@ -26,8 +27,5 @@
   },
   "config": {
     "sort-packages": true
-  },
-  "require-dev": {
-    "phpstan/phpstan": "^1.9"
   }
 }
