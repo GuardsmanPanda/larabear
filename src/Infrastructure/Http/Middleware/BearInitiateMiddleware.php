@@ -83,15 +83,15 @@ class BearInitiateMiddleware {
         //----------------------------------------------------------------------------------------------------------
         //  Apply headers to response
         //----------------------------------------------------------------------------------------------------------
-        Log::info(message: "resp is instance of type: " . get_class($resp));
-        if (is_object($resp) && method_exists(object_or_class: $resp, method: 'header')) {
-            foreach (self::$headers as $key => $value) {
-                $resp->header($key, $value);
-            }
-        } else if (property_exists(object_or_class: $resp, property: 'headers') && method_exists(object_or_class: $resp->headers, method: 'set')) {
+        if ($resp instanceof Response) {
             foreach (self::$headers as $key => $value) {
                 $resp->headers->set($key, $value);
             }
+        } else {
+            BearLogErrorCreator::create(
+                message: 'Response is not an instance of Response, instead is ' . get_class($resp),
+                namespace: 'larabear', key: 'initiate_middleware', severity: BearSeverityEnum::BASELINE
+            );
         }
         return $resp;
     }
