@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use RuntimeException;
 
 class BearGlobalStateService {
     private static bool $logUnhandledException = true;
@@ -51,7 +52,10 @@ class BearGlobalStateService {
         self::$apiPrimaryKey = $apiPrimaryKey;
     }
 
-    public static function getApiPrimaryKey(): string|null {
+    public static function getApiPrimaryKey(): string {
+        if (self::$apiPrimaryKey === null) {
+            throw new RuntimeException('Api Primary Key is not set');
+        }
         return self::$apiPrimaryKey;
     }
 
