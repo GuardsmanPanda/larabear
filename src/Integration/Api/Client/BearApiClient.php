@@ -2,8 +2,8 @@
 
 namespace GuardsmanPanda\Larabear\Integration\Api\Client;
 
-use GuardsmanPanda\LarabearAuth\Infrastructure\Oauth2\Model\BearOauth2Client;
-use GuardsmanPanda\LarabearAuth\Infrastructure\Oauth2\Model\BearOauth2User;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2ClientService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2UserService;
 use Illuminate\Http\Client\Response;

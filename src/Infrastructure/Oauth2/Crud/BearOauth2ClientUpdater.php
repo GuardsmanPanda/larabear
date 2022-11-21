@@ -1,10 +1,10 @@
 <?php
 
-namespace GuardsmanPanda\LarabearAuth\Infrastructure\Oauth2\Crud;
+namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
-use GuardsmanPanda\LarabearAuth\Infrastructure\Oauth2\Model\BearOauth2Client;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 
 class BearOauth2ClientUpdater {
     public function __construct(private readonly BearOauth2Client $model) {

@@ -1,10 +1,10 @@
 <?php
 
-namespace GuardsmanPanda\LarabearAuth\Infrastructure\Oauth2\Crud;
+namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
-use GuardsmanPanda\LarabearAuth\Infrastructure\Oauth2\Model\BearOauth2Client;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use Illuminate\Support\Str;
 
 class BearOauth2ClientCreator {

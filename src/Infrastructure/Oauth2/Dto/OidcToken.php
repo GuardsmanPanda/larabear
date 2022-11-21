@@ -1,12 +1,12 @@
 <?php
 
-namespace GuardsmanPanda\LarabearAuth\Infrastructure\Oauth2\Dto;
+namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Dto;
 
 use Carbon\Carbon;
 use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Crud\BearIdempotencyCreator;
-use GuardsmanPanda\LarabearAuth\Infrastructure\Oauth2\Model\BearOauth2Client;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use RuntimeException;
 use Throwable;
 

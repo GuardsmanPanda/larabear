@@ -1,9 +1,9 @@
 <?php
 
-namespace GuardsmanPanda\LarabearAuth\Infrastructure\Oauth2\Crud;
+namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
-use GuardsmanPanda\LarabearAuth\Infrastructure\Oauth2\Model\BearOauth2User;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 
 class BearOauth2UserDeleter {
     public static function delete(BearOauth2User $model): void {
