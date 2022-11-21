@@ -3,12 +3,11 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 
 use Closure;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -44,14 +43,16 @@ use Illuminate\Database\Query\Builder;
  * @property string $id
  * @property string $created_at
  * @property string $updated_at
+ * @property string|null $password
  * @property string|null $user_email
+ * @property string|null $remember_token
  * @property string|null $user_display_name
  * @property string|null $user_country_iso2_code
  * @property string|null $user_language_iso2_code
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
-class BearUser extends Model {
+class BearUser extends Model implements Authenticatable {
     use BearLogDatabaseChanges, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_user';
@@ -60,4 +61,28 @@ class BearUser extends Model {
     protected $dateFormat = 'Y-m-d H:i:sO';
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];
+
+    public function getAuthIdentifierName(): string {
+        return 'id';
+    }
+
+    public function getAuthIdentifier(): string {
+        return $this->id;
+    }
+
+    public function getAuthPassword(): string|null {
+        return $this->password;
+    }
+
+    public function getRememberToken(): string|null {
+        return $this->remember_token;
+    }
+
+    public function setRememberToken($value): void {
+        $this->remember_token = $value;
+    }
+
+    public function getRememberTokenName(): string {
+        return 'remember_token';
+    }
 }
