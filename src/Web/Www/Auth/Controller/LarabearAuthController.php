@@ -33,7 +33,15 @@ class LarabearAuthController extends Controller {
         if (Session::get(key: 'oauth2_login_user', default: false) !== true) {
             $createUserIfNotExists = false;
         }
-        $user = BearOauth2ClientService::getUserFromCallback(client: BearOauth2Client::findOrFail(id: $oauth2_client_id), code: Req::getStringOrDefault(key: 'code'), redirectUri: $redirectUri);
-        return new RedirectResponse(url: '/');
+        $user = BearOauth2ClientService::getUserFromCallback(
+            client: BearOauth2Client::findOrFail(id: $oauth2_client_id),
+            code: Req::getStringOrDefault(key: 'code'),
+            redirectUri: $redirectUri, createBearUser: $createUserIfNotExists
+        );
+
+        if (Session::get(key: 'oauth2_login_user', default: false) === true) {
+            Session::put(key: 'bear_user_id', value: $user->user_id);
+        }
+        return new RedirectResponse(url: Session::get(key: 'oauth2_redirect_url') ?? BearConfigService::getString(config_key: 'larabear-auth.oauth2_redirect_url') ?? '/');
     }
 }

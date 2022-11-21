@@ -16,6 +16,10 @@ class LarabearGenerateSessionKeyCommand extends Command {
         $this->info(string: 'Generating a new session key...');
         $key = base64_encode(Encrypter::generateKey(cipher: Config::get(key: 'app.cipher')));
         $old_env = file_get_contents(App::environmentFilePath());
+        if (!is_string($old_env)) {
+            $this->error(string: 'Could not read environment file');
+            return;
+        }
         $new_env = preg_replace(pattern: "/^LARABEAR_SESSION_KEY=.*$/m", replacement: 'LARABEAR_SESSION_KEY=' . $key, subject: $old_env);
         if ($old_env === $new_env) {
             $new_env .= PHP_EOL . 'LARABEAR_SESSION_KEY=' . $key . PHP_EOL;
