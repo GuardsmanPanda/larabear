@@ -10,6 +10,9 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCrud
 use GuardsmanPanda\Larabear\Infrastructure\Http\Command\LarabearGenerateSessionKeyCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Command\LarabearPhpStanCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseModelGeneratorCommand;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearPermissionMiddleware;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearRoleMiddleware;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearSessionAuthMiddleware;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +23,10 @@ class BearServiceProvider extends ServiceProvider {
         if (method_exists(object_or_class: Model::class, method: 'preventsAccessingMissingAttributes')) {
             Model::preventAccessingMissingAttributes();
         }
+        app(abstract: 'router')->aliasMiddleware('permission', BearPermissionMiddleware::class);
+        app(abstract: 'router')->aliasMiddleware('role', BearRoleMiddleware::class);
+        app(abstract: 'router')->aliasMiddleware('session', BearSessionAuthMiddleware::class);
+
         if ($this->app->runningInConsole()) {
             ConsoleRegisterListeners::RegisterListeners();
 

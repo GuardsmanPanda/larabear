@@ -8,12 +8,13 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Crud\BearLogDatabaseChangeCr
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\LarabearDatabaseModelService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use Illuminate\Database\Eloquent\Model;
 use stdClass;
 use Throwable;
 
 trait BearLogDatabaseChanges {
     public static function bootBearLogDatabaseChanges(): void {
-        static::created(static function ($model) {
+        static::created(static function (Model $model) {
             try {
                 $keys = LarabearDatabaseModelService::extractPrimaryKeyArray($model);
                 BearLogDatabaseChangeCreator::create(
@@ -33,7 +34,7 @@ trait BearLogDatabaseChanges {
             }
         });
 
-        static::deleted(static function ($model) {
+        static::deleted(static function (Model $model) {
             try {
                 $soft_deleted = method_exists($model, 'isForceDeleting') && !$model->isForceDeleting();
                 $keys = LarabearDatabaseModelService::extractPrimaryKeyArray($model);
@@ -55,7 +56,7 @@ trait BearLogDatabaseChanges {
             }
         });
 
-        static::updated(static function ($model) {
+        static::updated(static function (Model $model) {
             try {
                 $keys = LarabearDatabaseModelService::extractPrimaryKeyArray($model);
                 $ignore_columns = property_exists(object_or_class: $model, property: 'log_exclude_columns') ? $model->log_exclude_columns : [];

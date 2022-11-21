@@ -17,6 +17,10 @@ class BearDatabaseService {
         throw new RuntimeException(message: 'DB::transaction() must be called before calling this method.');
     }
 
+    /**
+     * @param array<string> $verbs
+     * @return void
+     */
     public static function mustBeProperHttpMethod(array $verbs): void {
         if (App::runningUnitTests() || App::runningInConsole()) {
             return;
