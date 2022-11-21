@@ -42,6 +42,6 @@ class LarabearAuthController extends Controller {
         if (Session::get(key: 'oauth2_login_user', default: false) === true) {
             Session::put(key: 'bear_user_id', value: $user->user_id);
         }
-        return new RedirectResponse(url: Session::get(key: 'oauth2_redirect_url') ?? BearConfigService::getString(config_key: 'larabear-auth.oauth2_redirect_url') ?? '/');
+        return new RedirectResponse(url: Session::get(key: 'oauth2_redirect_url') ?? BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_after_login'));
     }
 }
