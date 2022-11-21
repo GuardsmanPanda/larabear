@@ -23,7 +23,11 @@ return new class extends Migration {
             $table->timestampTz('password_reset_expires_at')->nullable();
             $table->timestampTz('email_verified_at')->nullable();
             $table->timestampTz('last_login_at')->nullable();
-            $table->jsonb('user_metadata_json');
+            if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
+                $table->jsonb('user_metadata_json')->default(DB::raw("'{}'::jsonb"));
+            } else {
+                $table->jsonb('user_metadata_json')->default(DB::raw('(json_object())'));
+            }
         });
     }
 
