@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service;
 
 use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientUpdater;
@@ -38,34 +39,54 @@ class BearOauth2ClientService {
     public static function getUserFromCallback(BearOauth2Client $client, string $code, string $redirectUri, bool $createBearUser = false): BearOauth2User {
         $data = self::exchangeCode(code: $code, client: $client, redirect_uri: $redirectUri)->json();
         $token = OidcToken::fromJwt(jwt: $data['id_token'], client: $client);
-        $bearOauth2User = BearOauth2User::where(column: 'oauth2_client_id', operator: '=', value: $token->issuedToClientId)
-            ->where(column: 'oauth2_user_identifier', operator: '=', value: $token->userIdentifier)
-            ->first();
-        if ($bearOauth2User === null) {
-            return BearOauth2UserCreator::create(
-                oauth2_client_id: $token->issuedToClientId,
-                oauth2_user_identifier: $token->userIdentifier,
-                oauth2_scope: $data['scope'],
-                oauth2_user_email: $token->email,
-                oauth2_user_name: $token->name,
-                user_access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']),
-                encrypted_user_access_token: $data['access_token'],
-                encrypted_user_refresh_token: $data['refresh_token'],
-                createUserIfNotExists: $createBearUser
+
+        try {
+            DB::beginTransaction();
+
+            $bearOauth2User = BearOauth2User::where(column: 'oauth2_client_id', operator: '=', value: $token->issuedToClientId)
+                ->where(column: 'oauth2_user_identifier', operator: '=', value: $token->userIdentifier)
+                ->first();
+            $bearUser = $bearOauth2User?->user;
+            if ($bearUser === null && $createBearUser) {
+                $bearUser = BearUserCreator::create(user_display_name: $token->name, user_email: $token->email);
+            }
+
+            if ($bearOauth2User === null) {
+                return BearOauth2UserCreator::create(
+                    oauth2_client_id: $token->issuedToClientId,
+                    oauth2_user_identifier: $token->userIdentifier,
+                    oauth2_scope: $data['scope'],
+                    oauth2_user_email: $token->email,
+                    oauth2_user_name: $token->name,
+                    user_access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']),
+                    encrypted_user_access_token: $data['access_token'],
+                    encrypted_user_refresh_token: $data['refresh_token'],
+                    user: $bearUser
+                );
+            }
+            $updater = new BearOauth2UserUpdater($bearOauth2User);
+            $updater->setEncryptedUserRefreshToken(encrypted_user_refresh_token: $data['refresh_token'] ?? $bearOauth2User->encrypted_user_refresh_token)
+                ->setEncryptedUserAccessToken(encrypted_user_access_token: $data['access_token'], user_access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']))
+                ->setOauth2UserName(oauth2_user_name: $token->name)
+                ->setOauth2UserEmail(oauth2_user_email: $token->email);
+
+            if ($updater->getUserId() === null) {
+                $updater->setUserId(user_id: $bearUser?->id);
+            }
+
+            $result =  $updater->save();
+            DB::commit();
+            return $result;
+        } catch (Throwable $e) {
+            DB::rollBack();
+            BearLogErrorCreator::create(
+                message: "Error while getting user from callback",
+                namespace: 'larabear', key: 'oauth2-user-from-callback',
+                severity: BearSeverityEnum::CRITICAL,
+                exception: $e
             );
+            throw new RuntimeException(message: "Error while getting user from callback", previous: $e);
         }
-        $updater = new BearOauth2UserUpdater($bearOauth2User);
-        $updater->setEncryptedUserRefreshToken(encrypted_user_refresh_token: $data['refresh_token'] ?? $bearOauth2User->encrypted_user_refresh_token)
-            ->setEncryptedUserAccessToken(encrypted_user_access_token: $data['access_token'], user_access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']))
-            ->setOauth2UserName(oauth2_user_name: $token->name)
-            ->setOauth2UserEmail(oauth2_user_email: $token->email);
-
-        if ($bearOauth2User->user_id === null) {
-
-        }
-
-        return $updater->save();
-
     }
 
     public static function exchangeCode(string $code, BearOauth2Client $client, string $redirect_uri = null): Response {

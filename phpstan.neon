@@ -4,3 +4,5 @@ parameters:
     paths:
         - src
         - config
+    ignoreErrors:
+        - '#should return Illuminate\\View\\View but returns Illuminate\\Contracts\\View\\Factory|Illuminate\\Contracts\\View\\View.#'

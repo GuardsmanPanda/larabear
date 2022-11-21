@@ -22,7 +22,7 @@ class BearOauth2UserCreator {
         CarbonInterface $user_access_token_expires_at = null,
         string $encrypted_user_access_token = null,
         string $encrypted_user_refresh_token = null,
-        bool $createUserIfNotExists = true
+        BearUser $user = null,
     ): BearOauth2User {
         BearDBService::mustBeInTransaction();
 
@@ -45,13 +45,7 @@ class BearOauth2UserCreator {
             $model->oauth2_scope_json->$scope = $dateString;
         }
 
-        $model->user_id = BearUser::where(column: 'user_email', operator: '=', value: $oauth2_user_email)->first(columns: ['id'])?->id;
-        if ($model->user_id === null && $createUserIfNotExists) {
-            $model->user_id = BearUserCreator::create(
-                user_display_name: $oauth2_user_name,
-                user_email: $oauth2_user_email
-            )->id;
-        }
+        $model->user_id = $user?->id;
 
         $model->save();
         return $model;
