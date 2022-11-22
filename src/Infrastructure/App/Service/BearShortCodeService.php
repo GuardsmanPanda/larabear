@@ -2,7 +2,6 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
-
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
 use RuntimeException;
 

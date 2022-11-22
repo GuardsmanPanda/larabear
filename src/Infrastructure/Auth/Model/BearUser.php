@@ -2,12 +2,18 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 
+use Carbon\CarbonInterface;
 use Closure;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use GuardsmanPanda\Larabear\Infrastructure\Locale\Model\BearCountry;
+use GuardsmanPanda\Larabear\Infrastructure\Locale\Model\BearLanguage;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use stdClass;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -40,6 +46,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearUser orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
  *
+ * @property bool $is_user_activated
  * @property string $id
  * @property string $created_at
  * @property string $updated_at
@@ -47,8 +54,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $user_email
  * @property string|null $remember_token
  * @property string|null $user_display_name
+ * @property string|null $password_reset_token
  * @property string|null $user_country_iso2_code
  * @property string|null $user_language_iso2_code
+ * @property stdClass $user_metadata_json
+ * @property CarbonInterface|null $last_login_at
+ * @property CarbonInterface|null $email_verified_at
+ * @property CarbonInterface|null $password_reset_expires_at
+ *
+ * @property BearLanguage|null $userLanguageIso2Code
+ * @property BearCountry|null $userCountryIso2Code
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -59,6 +74,22 @@ class BearUser extends Model implements Authenticatable {
     protected $keyType = 'string';
     public $incrementing = false;
     protected $dateFormat = 'Y-m-d H:i:sO';
+
+    /** @var array<string, string> $casts */
+    protected $casts = [
+        'email_verified_at' => 'immutable_datetime',
+        'last_login_at' => 'immutable_datetime',
+        'password_reset_expires_at' => 'immutable_datetime',
+        'user_metadata_json' => BearAsJsonCast::class,
+    ];
+
+    public function userLanguageIso2Code(): BelongsTo|null {
+        return $this->belongsTo(related: BearLanguage::class, foreignKey: 'user_language_iso2_code', ownerKey: 'language_iso2_code');
+    }
+
+    public function userCountryIso2Code(): BelongsTo|null {
+        return $this->belongsTo(related: BearCountry::class, foreignKey: 'user_country_iso2_code', ownerKey: 'country_iso2_code');
+    }
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];
 

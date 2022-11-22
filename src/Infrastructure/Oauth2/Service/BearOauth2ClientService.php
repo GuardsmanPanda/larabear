@@ -48,7 +48,7 @@ class BearOauth2ClientService {
                 ->first();
             $bearUser = $bearOauth2User?->user;
             if ($bearUser === null && $createBearUser) {
-                $bearUser = BearUserCreator::create(user_display_name: $token->name, user_email: $token->email);
+                $bearUser = BearUserCreator::create(user_display_name: $token->name, user_email: $token->email, email_verified_at: Carbon::now());
             }
 
             if ($bearOauth2User === null) {

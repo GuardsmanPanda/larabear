@@ -9,8 +9,8 @@ use RuntimeException;
 
 class BearGlobalStateService {
     private static bool $logUnhandledException = true;
-    private static string|null $accessTokenId = null;
     private static string|null $apiPrimaryKey = null;
+    private static string|null $accessTokenId = null;
     private static bool $logResponseError = true;
     private static Request|null $request = null;
     private static string|null $requestId = null;
@@ -21,8 +21,8 @@ class BearGlobalStateService {
     public static function clearState(): void {
         self::$logUnhandledException = true;
         self::$logResponseError = true;
-        self::$accessTokenId = null;
         self::$apiPrimaryKey = null;
+        self::$accessTokenId = null;
         self::$requestId = null;
         self::$consoleId = null;
         self::$request = null;

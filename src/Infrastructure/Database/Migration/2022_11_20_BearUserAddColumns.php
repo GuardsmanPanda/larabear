@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::table('bear_user', function (Blueprint $table) {
+        Schema::table('bear_user', static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->boolean('is_user_activated')->default(true);
                 $table->text('password')->nullable();
@@ -32,7 +32,7 @@ return new class extends Migration {
     }
 
     public function down(): void {
-        Schema::table('bear_user', function (Blueprint $table) {
+        Schema::table('bear_user', static function (Blueprint $table) {
             $table->dropColumn('is_user_activated');
             $table->dropColumn('password');
             $table->dropColumn('remember_token');
