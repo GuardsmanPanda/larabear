@@ -3,13 +3,13 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
 use Carbon\CarbonInterface;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessTokenApp;
 
 class BearAccessTokenAppUpdater {
     public function __construct(private readonly BearAccessTokenApp $model) {
-        BearDBService::mustBeInTransaction();
-        BearDBService::mustBeProperHttpMethod(verbs: ['PATCH']);
+        BearDatabaseService::mustBeInTransaction();
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);
     }
 
     public static function fromId(string $id): BearAccessTokenAppUpdater {

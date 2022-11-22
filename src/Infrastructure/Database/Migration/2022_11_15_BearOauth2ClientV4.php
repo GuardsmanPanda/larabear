@@ -1,6 +1,6 @@
 <?php
 
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +11,7 @@ return new class extends Migration {
         Schema::dropIfExists(table: 'bear_oauth2_user');
         Schema::dropIfExists(table: 'bear_oauth2_client');
         Schema::create(table: 'bear_oauth2_client', callback: static function (Blueprint $table) {
-            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+            if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'oauth2_client_id')->primary();
                 $table->text(column: 'oauth2_client_slug');
                 $table->text(column: 'oauth2_client_description');

@@ -3,12 +3,12 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
 use Carbon\CarbonInterface;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 
 class BearOauth2ClientUpdater {
     public function __construct(private readonly BearOauth2Client $model) {
-        BearDBService::mustBeInTransaction();
+        BearDatabaseService::mustBeInTransaction();
     }
 
     public static function fromOauth2ClientId(string $oauth2_client_id, bool $lockForUpdate = false): BearOauth2ClientUpdater {

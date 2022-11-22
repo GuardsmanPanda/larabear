@@ -1,6 +1,6 @@
 <?php
 
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +11,7 @@ return new class extends Migration {
         Schema::dropIfExists('bear_access_token_log');
         Schema::dropIfExists('bear_application_access_token');
         Schema::create(table: 'bear_access_token_app', callback: static function (Blueprint $table) {
-            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+            if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));
                 $table->text(column: 'api_primary_key')->nullable();
                 $table->text(column: 'route_prefix_restriction')->default('');
@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->ipAddress(column: 'request_ip_restriction')->default('0.0.0.0/0');
             $table->text(column: 'access_token_purpose');
             $table->timestampTz(column: 'expires_at')->nullable();
-            if (BearDBService::defaultConnectionDriver() === 'pgsql') {
+            if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'hashed_access_token')->index();
             } else {
                 $table->string(column: 'hashed_access_token')->index();

@@ -3,7 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
 use Carbon\CarbonInterface;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessTokenApp;
 use Illuminate\Support\Str;
 
@@ -18,8 +18,8 @@ class BearAccessTokenAppCreator {
         CarbonInterface $expires_at = null,
         CarbonInterface $last_usage_at = null
     ): BearAccessTokenApp {
-        BearDBService::mustBeInTransaction();
-        BearDBService::mustBeProperHttpMethod(verbs: ['POST']);
+        BearDatabaseService::mustBeInTransaction();
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);
 
         $model = new BearAccessTokenApp();
         $model->id = Str::uuid()->toString();

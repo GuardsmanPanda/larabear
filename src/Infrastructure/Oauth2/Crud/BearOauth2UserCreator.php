@@ -7,7 +7,7 @@ use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use Illuminate\Support\Str;
 use stdClass;
@@ -24,7 +24,7 @@ class BearOauth2UserCreator {
         string $encrypted_user_refresh_token = null,
         BearUser $user = null,
     ): BearOauth2User {
-        BearDBService::mustBeInTransaction();
+        BearDatabaseService::mustBeInTransaction();
 
         $model = new BearOauth2User();
         $model->id = Str::uuid()->toString();

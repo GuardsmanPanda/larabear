@@ -97,8 +97,8 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
         $content = substr($content, 0, -2);
         $content .= PHP_EOL;
         $content .= "    ): {$model->getModelClassName()} {" . PHP_EOL;
-        $content .= "        BearDBService::mustBeInTransaction();" . PHP_EOL;
-        $content .= "        BearDBService::mustBeProperHttpMethod(verbs: ['POST']);" . PHP_EOL . PHP_EOL;
+        $content .= "        BearDatabaseService::mustBeInTransaction();" . PHP_EOL;
+        $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);" . PHP_EOL . PHP_EOL;
         $content .= "        \$model = new {$model->getModelClassName()}();" . PHP_EOL;
 
         if (!$model->hasCompositePrimaryKey() && $model->getColumns()[$model->getPrimaryKeyColumns()[0]]->nativeDataType === 'uuid') {
@@ -133,8 +133,8 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
         $content = $this->classHeader(model: $model, headers: $headers, addColumnHeaders: true);
         $content .= "class $className {" . PHP_EOL;
         $content .= "    public function __construct(private readonly {$model->getModelClassName()} \$model) {" . PHP_EOL;
-        $content .= "        BearDBService::mustBeInTransaction();" . PHP_EOL;
-        $content .= "        BearDBService::mustBeProperHttpMethod(verbs: ['PATCH']);" . PHP_EOL;
+        $content .= "        BearDatabaseService::mustBeInTransaction();" . PHP_EOL;
+        $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);" . PHP_EOL;
         $content .= '    }' . PHP_EOL . PHP_EOL;
 
 
@@ -193,8 +193,8 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
         $content = $this->classHeader(model: $model, headers: $headers);
         $content .= 'class ' . $model->getModelClassName() . 'Deleter {' . PHP_EOL;
         $content .= "    public static function delete({$model->getModelClassName()} \$model): void {" . PHP_EOL;
-        $content .= "        BearDBService::mustBeInTransaction();" . PHP_EOL;
-        $content .= "        BearDBService::mustBeProperHttpMethod(verbs: ['DELETE']);" . PHP_EOL;
+        $content .= "        BearDatabaseService::mustBeInTransaction();" . PHP_EOL;
+        $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['DELETE']);" . PHP_EOL;
         $content .= "        \$model->delete();" . PHP_EOL;
         $content .= '    }' . PHP_EOL;
 
@@ -246,7 +246,7 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
 
 
     private function classHeader(LarabearDatabaseModelDto $model, Set $headers, bool $addColumnHeaders = false): string {
-        $headers->add("use GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Service\\BearDBService;");
+        $headers->add("use GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Service\\BearDatabaseService;");
         $headers->add("use {$model->getNameSpace()}\\{$model->getModelClassName()};");
 
         if ($addColumnHeaders) {

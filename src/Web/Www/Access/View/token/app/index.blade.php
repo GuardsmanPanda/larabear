@@ -1,11 +1,10 @@
-<div class="mb-2 sm:flex sm:items-end">
+<div class="mb-4 sm:flex sm:items-end">
     <div class="sm:flex-auto">
         <h1 class="text-2xl font-semibold text-gray-800">Application Access Tokens</h1>
         <p class="mt-2 text-sm text-gray-600">A list of all application (API) access tokens.</p>
     </div>
     <div class="mt-2 sm:mt-0 sm:ml-16 sm:flex-none">
-        <x-bear::buttonDark icon="key" hx-get="/bear/access/token/app/create" dialog="true">New Token
-        </x-bear::buttonDark>
+        <x-bear::buttonDark icon="key" hx-get="/bear/access/token/app/create" dialog="true">New Token</x-bear::buttonDark>
     </div>
 </div>
 <x-bear::table.layout.standard>
@@ -35,12 +34,8 @@
             <x-bear::table.cell.relative>{{$token->created_at}}</x-bear::table.cell.relative>
             <x-bear::table.cell.relative>{{$token->updated_at}}</x-bear::table.cell.relative>
             <td class="px-2.5">
-                <x-bear::buttonOutline icon="pencil" size="tiny" hx-get='{{"/bear/access/token/app/$token->id/update"}}'
-                                       dialog="true">Edit
-                </x-bear::buttonOutline>
-                <x-bear::buttonOutline color="red" class="ml-1" icon="trash" size="tiny"
-                                       hx-delete='{{"/bear/access/token/app/$token->id"}}' hx-target="closest tr">Delete
-                </x-bear::buttonOutline>
+                <x-bear::buttonOutline icon="pencil" size="tiny" hx-get='{{"/bear/access/token/app/$token->id/update"}}' dialog="true">Edit</x-bear::buttonOutline>
+                <x-bear::buttonOutline color="red" class="ml-1" icon="trash" size="tiny" hx-delete='{{"/bear/access/token/app/$token->id"}}' hx-target="closest tr">Delete</x-bear::buttonOutline>
             </td>
         </tr>
     @endforeach

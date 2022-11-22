@@ -3,7 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
 use Carbon\CarbonInterface;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDBService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use Illuminate\Support\Str;
 
@@ -23,8 +23,8 @@ class BearOauth2ClientCreator {
         string $oauth2_client_redirect_path = null,
         string $oauth2_user_scope = null,
     ): BearOauth2Client {
-        BearDBService::mustBeInTransaction();
-        BearDBService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
+        BearDatabaseService::mustBeInTransaction();
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
 
         $model = new BearOauth2Client();
 
