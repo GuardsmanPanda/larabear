@@ -7,6 +7,7 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 class ConsoleOutputFilter extends ConsoleOutput {
     private static bool $remove_next_line = false;
 
+    /** @var array<string> $filtered */
     private static array $filtered = [
         '<comment>Usage:</comment>',
         '  command [options] [arguments]',
@@ -100,24 +101,24 @@ class ConsoleOutputFilter extends ConsoleOutput {
         '  <info>view:clear</info>',
     ];
 
-    public function write($messages, bool $newline = false, int $options = self::OUTPUT_NORMAL): void {
-        if (!is_string($messages)) {
-            parent::write($messages, $newline, $options);
+    public function write(mixed $messages, bool $newline = false, int $options = self::OUTPUT_NORMAL): void {
+        if (!is_string(value: $messages)) {
+            parent::write(messages: $messages, newline: $newline, options: $options);
             return;
         }
-        if (self::$remove_next_line && trim($messages) === "") {
+        if (self::$remove_next_line && trim(string: $messages) === "") {
             self::$remove_next_line = false;
             return;
         }
         foreach (self::$filtered as $filter) {
-            if (str_starts_with($messages, $filter)) {
+            if (str_starts_with(haystack: $messages, needle: $filter)) {
                 self::$remove_next_line = true;
                 return;
             }
         }
-        if (str_starts_with($messages, 'Laravel Framework <info>')) {
-            $messages = trim($messages);
+        if (str_starts_with(haystack: $messages, needle: 'Laravel Framework <info>')) {
+            $messages = trim(string: $messages);
         }
-        parent::write($messages, $newline, $options);
+        parent::write(messages: $messages, newline: $newline, options: $options);
     }
 }

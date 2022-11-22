@@ -8,15 +8,15 @@ use Illuminate\Support\Str;
 use Ramsey\Collection\Set;
 
 class LarabearDatabaseModelDto {
+    /** @var array<string> $primaryKeyColumns */
     private array $primaryKeyColumns = [];
+    /** @var array<array<string>> $foreignKeyColumns */
     private array $foreignKeyColumns = [];
     private string $primaryKeyType;
     private bool $timestamps = false;
     private Set $headers;
 
-    /**
-     * @var array<string, LarabearDatabaseColumnDto>
-     */
+    /** @var array<string, LarabearDatabaseColumnDto> $columns */
     private array $columns = [];
 
     public function __construct(

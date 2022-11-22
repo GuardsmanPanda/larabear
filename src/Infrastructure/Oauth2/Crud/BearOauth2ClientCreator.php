@@ -18,8 +18,6 @@ class BearOauth2ClientCreator {
         string $encrypted_oauth2_client_secret,
         string $oauth2_client_base_url = null,
         string $oauth2_client_scope = null,
-        CarbonInterface $oauth2_client_access_token_expires_at = null,
-        string $encrypted_oauth2_client_access_token = null,
         string $oauth2_client_redirect_path = null,
         string $oauth2_user_scope = null,
     ): BearOauth2Client {
@@ -37,8 +35,6 @@ class BearOauth2ClientCreator {
         $model->encrypted_oauth2_client_secret = $encrypted_oauth2_client_secret;
         $model->oauth2_client_base_url = $oauth2_client_base_url;
         $model->oauth2_client_scope = $oauth2_client_scope;
-        $model->oauth2_client_access_token_expires_at = $oauth2_client_access_token_expires_at;
-        $model->encrypted_oauth2_client_access_token = $encrypted_oauth2_client_access_token;
         $model->oauth2_client_redirect_path = $oauth2_client_redirect_path;
         $model->oauth2_user_scope = $oauth2_user_scope;
 
