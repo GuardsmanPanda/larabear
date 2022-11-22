@@ -104,7 +104,14 @@ class BearGlobalStateService {
         self::$consoleId = $consoleId;
     }
 
-    public static function getConsoleId(): string|null {
+    public static function getConsoleId(): string {
+        if (self::$consoleId === null) {
+            throw new RuntimeException(message: 'Console Id is not set');
+        }
+        return self::$consoleId;
+    }
+
+    public static function getConsoleIdOrNull(): string|null {
         return self::$consoleId;
     }
 }

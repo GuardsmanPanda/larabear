@@ -5,7 +5,6 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Traits;
 use ArrayObject;
 use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Crud\BearLogDatabaseChangeCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\LarabearDatabaseModelService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use Illuminate\Database\Eloquent\Model;

@@ -1,5 +1,11 @@
 <div class="mb-4 sm:flex sm:items-end">
-    <h1 class="text-2xl font-semibold text-gray-800">Application Response Error Log</h1>
+    <div class="sm:flex-auto">
+        <h1 class="text-2xl font-semibold text-gray-800">Application Response Error Log</h1>
+        <p class="mt-2 text-sm text-gray-600">A list of all responses with status code >= 400.</p>
+    </div>
+    <div class="mt-2 sm:mt-0 sm:ml-16 sm:flex-none">
+        <x-bear::buttonOutline icon="trash" hx-delete="/bear/log/response-error?response_status_code=404">Delete All 404</x-bear::buttonOutline>
+    </div>
 </div>
 <x-bear::table.layout.standard>
     <x-slot name="tableHead">

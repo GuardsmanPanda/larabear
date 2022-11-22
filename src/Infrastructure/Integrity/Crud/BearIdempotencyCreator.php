@@ -11,6 +11,6 @@ class BearIdempotencyCreator {
         DB::insert(query: "
             INSERT INTO bear_log_idempotency (idempotency_key, request_ip, request_country_code, request_http_method, request_http_path, request_id, console_id)
             VALUES (?, ?, ?, ?, ?, ?, ?)
-        ", bindings: [$idempotency_key, Req::ip(), Req::ipCountry(), Req::method(), Req::path(), BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleId()]);
+        ", bindings: [$idempotency_key, Req::ip(), Req::ipCountry(), Req::method(), Req::path(), BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleIdOrNull()]);
     }
 }

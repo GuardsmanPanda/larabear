@@ -101,7 +101,7 @@ class BearAuthService {
 
 
     private static function cacheCheck(): void {
-        $current_global_id = BearGlobalStateService::getRequestId() ?? BearGlobalStateService::getConsoleId() ?? '';
+        $current_global_id = BearGlobalStateService::getRequestId() ?? BearGlobalStateService::getConsoleIdOrNull() ?? '';
         if ($current_global_id !== self::$globalId) {
             self::$globalId = $current_global_id;
             self::$userPermissions = [];

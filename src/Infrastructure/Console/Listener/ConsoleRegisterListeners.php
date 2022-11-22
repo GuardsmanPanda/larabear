@@ -8,6 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearLogConsoleEventCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearLogConsoleEventUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use http\Exception\RuntimeException;
 use Illuminate\Console\Events\CommandFinished;
 use Illuminate\Console\Events\CommandStarting;
 use Illuminate\Console\Events\ScheduledTaskFinished;
@@ -18,6 +19,7 @@ use Illuminate\Support\Str;
 use Throwable;
 
 class ConsoleRegisterListeners {
+    /** @var array<string> $ignoreCommands */
     private static array $ignoreCommands = [
         '',
         'about',
@@ -106,9 +108,13 @@ class ConsoleRegisterListeners {
                 }
                 $updater->setExecutionTimeMicroseconds((int)($event->runtime * 1_000_000));
                 try {
-                    $updater->setConsoleEventOutput(console_event_output: file_get_contents($event->task->output))->save();
+                    $data = file_get_contents($event->task->output);
+                    if (!is_string($data)) {
+                        throw new RuntimeException(message: 'Could not read scheduled task output');
+                    }
+                    $updater->setConsoleEventOutput(console_event_output: $data )->save();
                 } catch (Throwable $t) {
-                    $updater->setConsoleEventOutput(console_event_output: "# Command output not available")->save();
+                    $updater->setConsoleEventOutput(console_event_output: "# Command output not available [{$t->getMessage()}]")->save();
                 }
                 DB::commit();
             } catch (Throwable $t) {

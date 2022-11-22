@@ -34,7 +34,7 @@ class BearLogErrorCreator {
             DB::connection($connection)->insert(query: "
             INSERT INTO bear_log_error (error_severity, error_namespace, error_key, error_message, error_remedy, exception_message, exception_trace, user_id, request_ip, request_country_code, request_http_method, request_http_path, request_http_query_json, app_action_name, request_http_hostname, request_id, console_id)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ", bindings: [$severity->name, $namespace, $key, $message, $remedy, $exception?->getMessage(), $exception?->getTraceAsString(), BearGlobalStateService::getUserId(), Req::ip(), Req::ipCountry(), Req::method(), Req::path(), $query_json, Req::actionName(), Req::hostname(), BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleId()]);
+        ", bindings: [$severity->name, $namespace, $key, $message, $remedy, $exception?->getMessage(), $exception?->getTraceAsString(), BearGlobalStateService::getUserId(), Req::ip(), Req::ipCountry(), Req::method(), Req::path(), $query_json, Req::actionName(), Req::hostname(), BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleIdOrNull()]);
         } catch (Throwable $e) {
             Log::error(message: 'Failed log error: ' . $e->getMessage());
         }

@@ -7,7 +7,6 @@ use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Model\BearLogConsoleEvent;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use RuntimeException;
 
 class BearLogConsoleEventCreator {
     public static function create(
@@ -28,7 +27,7 @@ class BearLogConsoleEventCreator {
         $model->console_event_type = $console_event_type;
         $model->console_command = $console_command;
         $model->console_event_started_at = Carbon::now();
-        $model->console_id = BearGlobalStateService::getConsoleId() ?? throw new RuntimeException("Not in console context");
+        $model->console_id = BearGlobalStateService::getConsoleId();
         $model->cron_schedule_expression = $cron_schedule_expression;
         $model->cron_schedule_timezone = $cron_schedule_timezone;
         $model->console_event_finished_at = $console_event_finished_at;
