@@ -22,7 +22,12 @@ class LarabearAuthController extends Controller {
     }
 
     public function oauth2Redirect(string $oauth2_client_id): RedirectResponse {
-        return BearOauth2ClientService::getAuthorizeRedirectResponse(client: BearOauth2Client::findOrFail(id: $oauth2_client_id), overwriteRedirectUri: "/bear/auth/oauth2-client/$oauth2_client_id/callback");
+        return BearOauth2ClientService::getAuthorizeRedirectResponse(
+            client: BearOauth2Client::findOrFail(id: $oauth2_client_id),
+            afterSignInRedirectPath: Req::getString(key: 'redirect-path', nullIfMissing: true),
+            loginUser: Req::getBoolOrDefault(key: 'login-user', default: true),
+            overwriteRedirectUri: "/bear/auth/oauth2-client/$oauth2_client_id/callback"
+        );
     }
 
     public static function oauth2Callback(string $oauth2_client_id): RedirectResponse {

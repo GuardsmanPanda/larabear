@@ -1,4 +1,6 @@
-<form id="dialog-form" action="/bear/oauth2/client/{{$oauth2_client_id}}/redirect?test=22" autocomplete="off" class ="py-4 px-6">
+<form id="dialog-form" action="/bear/auth/oauth2-client/{{$oauth2_client_id}}/redirect" autocomplete="off" class ="py-4 px-6">
+    <input type="hidden" name="redirect-patch" value="{{urlencode('/bear/oauth2/client')}}">
+    <input type="hidden" name="login-user" value="false">
     <x-bear::form.text id="scope" required></x-bear::form.text>
 </form>
 <div class="border-t flex gap-2 py-3  px-4 flex-row-reverse">

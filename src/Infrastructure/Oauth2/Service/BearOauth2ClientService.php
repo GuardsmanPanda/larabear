@@ -26,15 +26,16 @@ use Throwable;
 class BearOauth2ClientService {
     private const SAFETY_BUFFER_MINUTES = 10;
 
-    public static function getAuthorizeRedirectResponse(BearOauth2Client $client, string $afterSignInRedirectPath = null, bool $loginUser = true, string $overwriteRedirectUri = null): RedirectResponse {
+    public static function getAuthorizeRedirectResponse(BearOauth2Client $client, string $afterSignInRedirectPath = null, bool $loginUser = true, string $overwriteRedirectUri = null, string $specialScope = null): RedirectResponse {
         $state = Str::random(length: 24);
         Session::put(key: 'oauth2_state', value: $state);
         Session::put(key: 'oauth2_redirect_path', value: $afterSignInRedirectPath);
         Session::put(key: 'oauth2_login_user', value: $loginUser);
         $overwriteRedirectUri ??= $client->oauth2_client_redirect_path;
         $overwriteRedirectUri ??= "/bear/auth/oauth2-client/$client->oauth2_client_id/callback";
-        $redirect_uri = urlencode(string: config(key: 'app.url') . $overwriteRedirectUri);
-        return new RedirectResponse(url: "$client->oauth2_authorize_uri?client_id=$client->oauth2_client_id&response_type=code&scope=$client->oauth2_user_scope&state=$state&redirect_uri=$redirect_uri");
+        $redirect_uri = 'redirect_uri=' . urlencode(string: config(key: 'app.url') . $overwriteRedirectUri);
+        $scope =  'scope=' . ($specialScope ?? $client->oauth2_client_scope);
+        return new RedirectResponse(url: "$client->oauth2_authorize_uri?client_id=$client->oauth2_client_id&response_type=code&$scope&$redirect_uri&state=$state");
     }
 
     public static function getUserFromCallback(BearOauth2Client $client, string $code, string $redirectUri, bool $createBearUser = false): BearOauth2User {
