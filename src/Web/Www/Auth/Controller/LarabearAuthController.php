@@ -26,7 +26,9 @@ class LarabearAuthController extends Controller {
             client: BearOauth2Client::findOrFail(id: $oauth2_client_id),
             afterSignInRedirectPath: Req::getString(key: 'redirect-path', nullIfMissing: true),
             loginUser: Req::getBoolOrDefault(key: 'login-user', default: true),
-            overwriteRedirectUri: "/bear/auth/oauth2-client/$oauth2_client_id/callback"
+            overwriteRedirectUri: "/bear/auth/oauth2-client/$oauth2_client_id/callback",
+            specialScope: Req::getString(key: 'special-scope', nullIfMissing: true),
+            accountPrompt: Req::getBoolOrDefault(key: 'account-prompt', default: false),
         );
     }
 

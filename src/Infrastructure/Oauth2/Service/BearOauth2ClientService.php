@@ -5,7 +5,6 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service;
 use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
-use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2UserCreator;
@@ -19,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Ramsey\Collection\Set;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Throwable;
@@ -26,16 +26,27 @@ use Throwable;
 class BearOauth2ClientService {
     private const SAFETY_BUFFER_MINUTES = 10;
 
-    public static function getAuthorizeRedirectResponse(BearOauth2Client $client, string $afterSignInRedirectPath = null, bool $loginUser = true, string $overwriteRedirectUri = null, string $specialScope = null): RedirectResponse {
+    public static function getAuthorizeRedirectResponse(BearOauth2Client $client, string $afterSignInRedirectPath = null, bool $loginUser = true, string $overwriteRedirectUri = null, string $specialScope = null, bool $accountPrompt = false): RedirectResponse {
         $state = Str::random(length: 24);
         Session::put(key: 'oauth2_state', value: $state);
         Session::put(key: 'oauth2_redirect_path', value: $afterSignInRedirectPath);
         Session::put(key: 'oauth2_login_user', value: $loginUser);
+
+        $query_data = "client_id=$client->oauth2_client_id&response_type=code&state=$state";
+        $query_data .= '&scope=' . self::buildScopeString(client: $client, scopeString: $specialScope ?? $client->oauth2_user_scope);
+
         $overwriteRedirectUri ??= $client->oauth2_client_redirect_path;
         $overwriteRedirectUri ??= "/bear/auth/oauth2-client/$client->oauth2_client_id/callback";
-        $redirect_uri = 'redirect_uri=' . urlencode(string: config(key: 'app.url') . $overwriteRedirectUri);
-        $scope =  'scope=' . ($specialScope ?? $client->oauth2_client_scope);
-        return new RedirectResponse(url: "$client->oauth2_authorize_uri?client_id=$client->oauth2_client_id&response_type=code&$scope&$redirect_uri&state=$state");
+        $query_data .= '&redirect_uri=' . urlencode(string: config(key: 'app.url') . $overwriteRedirectUri);
+
+        if ($accountPrompt) {
+            $query_data .= match ($client->oauth2_client_type) {
+                'MICROSOFT', 'GOOGLE' => '&prompt=select_account',
+                default => throw new RuntimeException(message: "User prompt not supported for client type $client->oauth2_client_type"),
+            };
+        }
+
+        return new RedirectResponse(url: "$client->oauth2_authorize_uri?$query_data");
     }
 
     public static function getUserFromCallback(BearOauth2Client $client, string $code, string $redirectUri, bool $createBearUser = false): BearOauth2User {
@@ -77,7 +88,7 @@ class BearOauth2ClientService {
             if ($updater->getUserId() === null) {
                 $updater->setUserId(user_id: $bearUser?->id);
             }
-            $result =  $updater->save();
+            $result = $updater->save();
             DB::commit();
             return $result;
         } catch (Throwable $e) {
@@ -160,5 +171,39 @@ class BearOauth2ClientService {
             );
             throw new RuntimeException(message: 'Failed to update client access token');
         }
+    }
+
+    private static function buildScopeString(BearOauth2Client $client, string $scopeString): string {
+        $scopes = new Set(setType: 'string');
+
+        if (str_contains(haystack: $scopeString, needle: ' ')) {
+            foreach (explode(separator: ' ', string: $scopeString) as $scope) {
+                $scopes->add(element: $scope);
+            }
+        }
+        if (str_contains(haystack: $scopeString, needle: '+')) {
+            foreach (explode(separator: '+', string: $scopeString) as $scope) {
+                $scopes->add(element: $scope);
+            }
+        }
+
+        switch ($client->oauth2_client_type) {
+            case 'MICROSOFT':
+                $scopes->add(element: 'offline_access');
+                $scopes->add(element: 'openid');
+                $scopes->add(element: 'profile');
+                $scopes->add(element: 'email');
+                break;
+            case 'GOOGLE':
+                $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.profile');
+                $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.email');
+                $scopes->add(element: 'openid');
+                break;
+            case 'OTHER':
+                break;
+            default:
+                throw new RuntimeException(message: "Unknown oauth2 client type: $client->oauth2_client_type");
+        }
+        return implode(separator: '+', array: $scopes->toArray());
     }
 }
