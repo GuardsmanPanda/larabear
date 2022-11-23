@@ -2,8 +2,10 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Auth\Controller;
 
+use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2ClientService;
@@ -34,10 +36,11 @@ class LarabearAuthController extends Controller {
     }
 
     public static function oauth2Callback(string $oauth2_client_id): RedirectResponse {
+        if (Req::getStringOrDefault(key: 'state', default: '-----') !== Session::get(key: 'oauth2_state')) {
+            return Resp::redirectWithMessage(url: BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_if_not_logged_in'), message: 'Invalid state');
+        }
         try {
-            if (Req::getStringOrDefault(key: 'state', default: '-----') !== Session::get(key: 'oauth2_state')) {
-                return Resp::redirectWithMessage(url: BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_if_not_logged_in'), message: 'Invalid state');
-            }
+            DB::beginTransaction();
             $redirectUri = config(key: 'app.url') . "/bear/auth/oauth2-client/$oauth2_client_id/callback";
             $createUserIfNotExists = BearConfigService::getBoolean(config_key: 'larabear-auth.oauth2_create_user_if_not_exists');
             if (Session::get(key: 'oauth2_login_user', default: false) !== true) {
@@ -49,10 +52,18 @@ class LarabearAuthController extends Controller {
                 redirectUri: $redirectUri, createBearUser: $createUserIfNotExists
             );
             if (Session::get(key: 'oauth2_login_user', default: false) === true) {
-                BearUserUpdater::fromId(id: $user->id)->setLastLoginNow()->save();
+                BearUserUpdater::fromId(id: $user->user_id)->setLastLoginNow()->save();
                 Session::put(key: 'bear_user_id', value: $user->user_id);
             }
+            DB::commit();
         } catch (Throwable $t) {
+            DB::rollBack();
+            BearLogErrorCreator::create(
+                message: "Error while getting user from callback",
+                namespace: 'larabear', key: 'oauth2-user-callback',
+                severity: BearSeverityEnum::CRITICAL,
+                exception: $t
+            );
             return Resp::redirectWithMessage(url: BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_if_not_logged_in'), message: $t->getMessage());
         }
         return new RedirectResponse(url: Session::get(key: 'oauth2_redirect_url') ?? BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_after_login'));
