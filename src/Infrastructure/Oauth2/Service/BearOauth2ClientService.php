@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service;
 
 use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientUpdater;
@@ -42,17 +43,17 @@ class BearOauth2ClientService {
 
         try {
             DB::beginTransaction();
-
             $bearOauth2User = BearOauth2User::where(column: 'oauth2_client_id', operator: '=', value: $token->issuedToClientId)
                 ->where(column: 'oauth2_user_identifier', operator: '=', value: $token->userIdentifier)
                 ->first();
             $bearUser = $bearOauth2User?->user;
+            $bearUser ??= BearUser::where(column: 'user_email', operator: '=', value: $token->email)->first();
             if ($bearUser === null && $createBearUser) {
                 $bearUser = BearUserCreator::create(user_display_name: $token->name, user_email: $token->email, email_verified_at: Carbon::now());
             }
 
             if ($bearOauth2User === null) {
-                return BearOauth2UserCreator::create(
+                $bearOauth2User = BearOauth2UserCreator::create(
                     oauth2_client_id: $token->issuedToClientId,
                     oauth2_user_identifier: $token->userIdentifier,
                     oauth2_scope: $data['scope'],
@@ -63,6 +64,8 @@ class BearOauth2ClientService {
                     encrypted_user_refresh_token: $data['refresh_token'],
                     user: $bearUser
                 );
+                DB::commit();
+                return $bearOauth2User;
             }
             $updater = new BearOauth2UserUpdater($bearOauth2User);
             $updater->setEncryptedUserRefreshToken(encrypted_user_refresh_token: $data['refresh_token'] ?? $bearOauth2User->encrypted_user_refresh_token)
@@ -73,7 +76,6 @@ class BearOauth2ClientService {
             if ($updater->getUserId() === null) {
                 $updater->setUserId(user_id: $bearUser?->id);
             }
-
             $result =  $updater->save();
             DB::commit();
             return $result;

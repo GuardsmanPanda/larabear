@@ -17,7 +17,6 @@ class BearUserCreator {
         CarbonInterface $email_verified_at = null
     ): BearUser {
         BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
 
         $model = new BearUser();
         $model->id = $id ?? Str::uuid()->toString();

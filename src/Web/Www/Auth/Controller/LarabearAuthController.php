@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Throwable;
 
 class LarabearAuthController extends Controller {
     public function showSignInForm(): View {
@@ -25,22 +26,25 @@ class LarabearAuthController extends Controller {
     }
 
     public static function oauth2Callback(string $oauth2_client_id): RedirectResponse {
-        if (Req::getStringOrDefault(key: 'state', default: '-----') !== Session::get(key: 'oauth2_state')) {
-            return Resp::redirectWithError(url: '/', error: 'Invalid state');
-        }
-        $redirectUri = config(key: 'app.url') . "/bear/auth/oauth2-client/$oauth2_client_id/callback";
-        $createUserIfNotExists = BearConfigService::getBoolean(config_key: 'larabear-auth.oauth2_create_user_if_not_exists');
-        if (Session::get(key: 'oauth2_login_user', default: false) !== true) {
-            $createUserIfNotExists = false;
-        }
-        $user = BearOauth2ClientService::getUserFromCallback(
-            client: BearOauth2Client::findOrFail(id: $oauth2_client_id),
-            code: Req::getStringOrDefault(key: 'code'),
-            redirectUri: $redirectUri, createBearUser: $createUserIfNotExists
-        );
-
-        if (Session::get(key: 'oauth2_login_user', default: false) === true) {
-            Session::put(key: 'bear_user_id', value: $user->user_id);
+        try {
+            if (Req::getStringOrDefault(key: 'state', default: '-----') !== Session::get(key: 'oauth2_state')) {
+                return Resp::redirectWithError(url: BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_if_not_logged_in'), error: 'Invalid state');
+            }
+            $redirectUri = config(key: 'app.url') . "/bear/auth/oauth2-client/$oauth2_client_id/callback";
+            $createUserIfNotExists = BearConfigService::getBoolean(config_key: 'larabear-auth.oauth2_create_user_if_not_exists');
+            if (Session::get(key: 'oauth2_login_user', default: false) !== true) {
+                $createUserIfNotExists = false;
+            }
+            $user = BearOauth2ClientService::getUserFromCallback(
+                client: BearOauth2Client::findOrFail(id: $oauth2_client_id),
+                code: Req::getStringOrDefault(key: 'code'),
+                redirectUri: $redirectUri, createBearUser: $createUserIfNotExists
+            );
+            if (Session::get(key: 'oauth2_login_user', default: false) === true) {
+                Session::put(key: 'bear_user_id', value: $user->user_id);
+            }
+        } catch (Throwable $t) {
+            return Resp::redirectWithError(url: BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_if_not_logged_in'), error: $t->getMessage());
         }
         return new RedirectResponse(url: Session::get(key: 'oauth2_redirect_url') ?? BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_after_login'));
     }
