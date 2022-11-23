@@ -14,11 +14,18 @@ class LarabearLarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInfor
         $this->databaseName = Config::get(key: "database.connections.$connectionName.database");
     }
 
+    /**
+     * @return array<string>
+     */
     public function getAllTableNames(): array {
         $res = DB::connection(name: $this->connectionName)->select(query: "SELECT table_name as table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = ?", bindings: [$this->databaseName]);
         return array_column(array: $res, column_key: 'table_name');
     }
 
+    /**
+     * @param string $tableName
+     * @return array<LarabearDatabaseColumnDto>
+     */
     public function getColumnsForTable(string $tableName): array {
         $res = DB::connection(name: $this->connectionName)->select(query: "
             SELECT column_name as column_name, data_type as data_type, is_nullable = 'YES' AS is_nullable

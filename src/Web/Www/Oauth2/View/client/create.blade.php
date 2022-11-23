@@ -6,6 +6,7 @@
             <option value="MICROSOFT">MICROSOFT</option>
             <option value="GOOGLE">GOOGLE</option>
             <option value="META">META</option>
+            <option value="HELP_SCOUT">HELP_SCOUT</option>
             <option value="OTHER">OTHER</option>
         </x-bear::form.select>
         <x-bear::form.text id="encrypted_oauth2_client_secret" required></x-bear::form.text>
