@@ -50,4 +50,8 @@ class Oauth2ClientController extends Controller {
     public function delete(string $oauth2_client_id): void {
         DB::delete(query: "DELETE FROM bear_oauth2_client WHERE oauth2_client_id = ?", bindings: [$oauth2_client_id]);
     }
+
+    public function addUserDialog(string $oauth2_client_id): View {
+        return view(view: 'larabear-oauth2::client.add-user', data: ['oauth2_client_id' => $oauth2_client_id]);
+    }
 }

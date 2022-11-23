@@ -24,7 +24,8 @@
             <td class="px-2.5 py-2.5">{{$client->oauth2_client_description}}</td>
             <x-bear::table.cell.relative>{{$client->created_at}}</x-bear::table.cell.relative>
             <td class="px-2.5">
-                <x-bear::buttonOutline icon="pencil" size="tiny" hx-get='{{"/bear/config/$client->oauth2_client_id/update"}}' dialog="true">Edit</x-bear::buttonOutline>
+                <x-bear::buttonDark icon="user-plus" size="tiny" hx-get='{{"/bear/oauth2/client/$client->oauth2_client_id/add-user"}}' dialog="true">Add User</x-bear::buttonDark>
+                <x-bear::buttonOutline icon="pencil" size="tiny" hx-get='{{"/bear/oauth2/client/$client->oauth2_client_id/update"}}' dialog="true">Edit</x-bear::buttonOutline>
             </td>
         </tr>
     @endforeach
