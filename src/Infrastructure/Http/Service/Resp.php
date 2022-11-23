@@ -31,8 +31,7 @@ class Resp {
         BearInitiateMiddleware::$headers[$key] = $value;
     }
 
-    public static function redirectWithError(string $url, string $error, int $status = 303): RedirectResponse {
-        Session::flash(key: 'error', value: $error);
-        return new RedirectResponse(url: $url, status: $status);
+    public static function redirectWithMessage(string $url, string $message, int $status = 303): RedirectResponse {
+        return new RedirectResponse(url: $url, status: $status, headers: ['X-Message' => $message]);
     }
 }
