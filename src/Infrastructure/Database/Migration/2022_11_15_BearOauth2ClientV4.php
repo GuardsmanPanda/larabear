@@ -21,7 +21,7 @@ return new class extends Migration {
                 $table->text(column: 'oauth2_authorize_uri');
                 $table->text(column: 'oauth2_token_uri');
                 $table->text(column: 'encrypted_oauth2_client_secret');
-                $table->text(column: 'oauth2_user_scope')->nullable();
+                $table->text(column: 'oauth2_user_scope')->default('');
                 $table->text(column: 'oauth2_client_redirect_path')->nullable();
             } else {
                 $table->string(column: 'oauth2_client_id')->primary();
@@ -33,7 +33,7 @@ return new class extends Migration {
                 $table->string(column: 'oauth2_authorize_uri');
                 $table->string(column: 'oauth2_token_uri');
                 $table->string(column: 'encrypted_oauth2_client_secret');
-                $table->string(column: 'oauth2_user_scope')->nullable();
+                $table->string(column: 'oauth2_user_scope')->default('');
                 $table->string(column: 'oauth2_client_redirect_path')->nullable();
             }
             $table->boolean(column: 'allow_user_logins')->default(false);

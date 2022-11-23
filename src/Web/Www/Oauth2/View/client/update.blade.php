@@ -3,11 +3,11 @@
         <x-bear::form.text id="oauth2_client_id" required>{{$client->oauth2_client_id}}</x-bear::form.text>
         <x-bear::form.text id="oauth2_client_slug" required>{{$client->oauth2_client_slug}}</x-bear::form.text>
         <x-bear::form.select id="oauth2_client_type" required>
-            <option value="MICROSOFT" @if($config_data->oauth2_client_type === 'MICROSOFT') selected @endif>MICROSOFT</option>
-            <option value="GOOGLE" @if($config_data->oauth2_client_type === 'GOOGLE') selected @endif>GOOGLE</option>
-            <option value="META" @if($config_data->oauth2_client_type === 'META') selected @endif>META</option>
-            <option value="HELP_SCOUT" @if($config_data->oauth2_client_type === 'HELP_SCOUT') selected @endif>HELP_SCOUT</option>
-            <option value="OTHER" @if($config_data->oauth2_client_type === 'OTHER') selected @endif>OTHER</option>
+            <option value="MICROSOFT" @if($client->oauth2_client_type === 'MICROSOFT') selected @endif>MICROSOFT</option>
+            <option value="GOOGLE" @if($client->oauth2_client_type === 'GOOGLE') selected @endif>GOOGLE</option>
+            <option value="META" @if($client->oauth2_client_type === 'META') selected @endif>META</option>
+            <option value="HELP_SCOUT" @if($client->oauth2_client_type === 'HELP_SCOUT') selected @endif>HELP_SCOUT</option>
+            <option value="OTHER" @if($client->oauth2_client_type === 'OTHER') selected @endif>OTHER</option>
         </x-bear::form.select>
         <x-bear::form.text id="encrypted_oauth2_client_secret" required>{{$client->encrypted_oauth2_client_secret}}</x-bear::form.text>
     </div>

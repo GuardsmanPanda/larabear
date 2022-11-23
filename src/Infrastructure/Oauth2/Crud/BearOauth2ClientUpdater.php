@@ -78,7 +78,7 @@ class BearOauth2ClientUpdater {
     }
 
     public function setOauth2UserScope(string|null $oauth2_user_scope): self {
-        $this->model->oauth2_user_scope = $oauth2_user_scope;
+        $this->model->oauth2_user_scope = $oauth2_user_scope ?? '';
         return $this;
     }
 

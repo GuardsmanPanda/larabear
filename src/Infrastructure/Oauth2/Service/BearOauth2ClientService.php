@@ -180,11 +180,12 @@ class BearOauth2ClientService {
             foreach (explode(separator: ' ', string: $scopeString) as $scope) {
                 $scopes->add(element: $scope);
             }
-        }
-        if (str_contains(haystack: $scopeString, needle: '+')) {
+        } else if (str_contains(haystack: $scopeString, needle: '+')) {
             foreach (explode(separator: '+', string: $scopeString) as $scope) {
                 $scopes->add(element: $scope);
             }
+        } else {
+            $scopes->add(element: $scopeString);
         }
 
         switch ($client->oauth2_client_type) {
@@ -204,6 +205,6 @@ class BearOauth2ClientService {
             default:
                 throw new RuntimeException(message: "Unknown oauth2 client type: $client->oauth2_client_type");
         }
-        return implode(separator: '+', array: $scopes->toArray());
+        return urlencode(implode(separator: ' ', array: $scopes->toArray()));
     }
 }

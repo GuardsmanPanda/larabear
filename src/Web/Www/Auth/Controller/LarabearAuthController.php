@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Auth\Controller;
 
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
@@ -48,6 +49,7 @@ class LarabearAuthController extends Controller {
                 redirectUri: $redirectUri, createBearUser: $createUserIfNotExists
             );
             if (Session::get(key: 'oauth2_login_user', default: false) === true) {
+                BearUserUpdater::fromId(id: $user->id)->setLastLoginNow()->save();
                 Session::put(key: 'bear_user_id', value: $user->user_id);
             }
         } catch (Throwable $t) {

@@ -41,11 +41,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $oauth2_client_id
  * @property string $oauth2_token_uri
  * @property string $oauth2_client_slug
+ * @property string $oauth2_user_scope
  * @property string $oauth2_client_type
  * @property string $oauth2_authorize_uri
  * @property string $oauth2_client_description
  * @property string $encrypted_oauth2_client_secret
- * @property string|null $oauth2_user_scope
  * @property string|null $oauth2_client_scope
  * @property string|null $oauth2_client_base_url
  * @property string|null $oauth2_client_redirect_path

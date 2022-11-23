@@ -32,6 +32,6 @@ class Resp {
     }
 
     public static function redirectWithMessage(string $url, string $message, int $status = 303): RedirectResponse {
-        return new RedirectResponse(url: $url, status: $status, headers: ['X-Message' => $message]);
+        return new RedirectResponse(url: "$url?message=" . urlencode($message), status: $status);
     }
 }

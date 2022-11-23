@@ -36,7 +36,7 @@ class BearOauth2ClientCreator {
         $model->oauth2_client_base_url = $oauth2_client_base_url;
         $model->oauth2_client_scope = $oauth2_client_scope;
         $model->oauth2_client_redirect_path = $oauth2_client_redirect_path;
-        $model->oauth2_user_scope = $oauth2_user_scope;
+        $model->oauth2_user_scope = $oauth2_user_scope ?? '';
 
         $model->save();
         return $model;
