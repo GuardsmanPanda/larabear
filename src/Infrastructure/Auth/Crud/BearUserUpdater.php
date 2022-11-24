@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 class BearUserUpdater {
     public function __construct(private readonly BearUser $model) {
         BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
     }
 
     public static function fromId(string $id): BearUserUpdater {
