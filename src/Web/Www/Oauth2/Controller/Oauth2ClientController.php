@@ -4,6 +4,8 @@ namespace GuardsmanPanda\Larabear\Web\Www\Oauth2\Controller;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientDeleter;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -39,7 +41,7 @@ class Oauth2ClientController extends Controller {
 
     public function updateDialog(string $oauth2_client_id): View {
         return view(view: 'larabear-oauth2::client.update', data: [
-            'client' => DB::selectOne(query: "SELECT * FROM bear_oauth2_client WHERE oauth2_client_id = ?", bindings: [$oauth2_client_id]),
+            'client' => BearOauth2Client::findOrFail(id: $oauth2_client_id),
         ]);
     }
 
@@ -48,7 +50,7 @@ class Oauth2ClientController extends Controller {
     }
 
     public function delete(string $oauth2_client_id): void {
-        DB::delete(query: "DELETE FROM bear_oauth2_client WHERE oauth2_client_id = ?", bindings: [$oauth2_client_id]);
+        BearOauth2ClientDeleter::deleteFromId(id: $oauth2_client_id);
     }
 
     public function addUserDialog(string $oauth2_client_id): View {
