@@ -100,11 +100,11 @@ class Req {
      */
     public static function allJsonData(bool $allowEmpty = false): array {
         $value = self::request()->json()?->all();
-        if (!is_array(value: $value) || !self::request()->isJson()) {
-            throw new BadRequestHttpException(message: 'Request does not have application/json content type or is not valid JSON');
-        }
         if (empty($value)) {
             return $allowEmpty ? [] : throw new BadRequestHttpException(message: 'Request JSON is empty');
+        }
+        if (!is_array(value: $value) || !self::request()->isJson()) {
+            throw new BadRequestHttpException(message: 'Request does not have application/json content type or is not valid JSON');
         }
         return $value;
     }
