@@ -129,8 +129,12 @@ class Req {
         return empty($tmp) && !$allowEmpty ? throw new BadRequestHttpException(message: 'No Form Data') : $tmp;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public static function allQueryData(): array {
-        return self::request()->query() ?? [];
+        $tmp = self::request()->query();
+        return is_array(value: $tmp) ? $tmp : [];
     }
 
     public static function content(): string {

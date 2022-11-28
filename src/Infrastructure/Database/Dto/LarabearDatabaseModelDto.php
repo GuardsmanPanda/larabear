@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Dto;
 
-use GuardsmanPanda\Larabear\Infrastructure\App\Service\RegexService;
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Ramsey\Collection\Set;
@@ -136,7 +136,7 @@ class LarabearDatabaseModelDto {
 
         if (count($this->modelTraits) > 0) {
             foreach ($this->modelTraits as $trait) {
-                $content .= "    use " . RegexService::extractFirst('~.*\\\\([^\\\\]+)$~', $trait) . ';' . PHP_EOL;
+                $content .= "    use " . BearRegexService::extractFirst('~.*\\\\([^\\\\]+)$~', $trait) . ';' . PHP_EOL;
             }
             $content .= PHP_EOL;
         }

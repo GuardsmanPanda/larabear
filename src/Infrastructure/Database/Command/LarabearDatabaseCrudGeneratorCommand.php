@@ -2,8 +2,9 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Command;
 
-use GuardsmanPanda\Larabear\Infrastructure\App\Service\RegexService;
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Service\ConsoleService;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Dto\LarabearDatabaseColumnDto;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Dto\LarabearDatabaseModelDto;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\LarabearDatabaseModelService;
 use Illuminate\Console\Command;
@@ -44,7 +45,7 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
 
         $models = LarabearDatabaseModelService::buildAll(connectionName: $connectionUse, tableConfig: $connectionUseConfig);
         $model = $models[$table_input];
-        $location = RegexService::extractFirst(regex: '~(.*?)/[^/]+$~', subject:$model->getModelDirectory()) . '/Crud';
+        $location = BearRegexService::extractFirst(regex: '~(.*?)/[^/]+$~', subject:$model->getModelDirectory()) . '/Crud';
 
         if (!is_dir($location)) {
             if (!mkdir($location) && !is_dir($location)) {
@@ -214,7 +215,7 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
 
     private function generateServiceCrud(LarabearDatabaseModelDto $model): void {
         $filename = $model->getModelClassName() . 'Crud.php';
-        $location = RegexService::extractFirst(regex: '~(.*?)/.+$~', subject:$model->getModelLocation()) . '/Crud';
+        $location = BearRegexService::extractFirst(regex: '~(.*?)/.+$~', subject:$model->getModelLocation()) . '/Crud';
         $location = preg_replace(pattern: '~'.Config::get(key:'bear.data_access_layer_folder') . '~', replacement: Config::get(key:'bear.application_layer_folder'), subject: $location, limit: 1);
         if (!is_string($location) || File::exists($location)) {
             ConsoleService::printTestResult(testName: '', warningMessage: "File: [$filename] already exists.  [$location]");
@@ -244,7 +245,12 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
         ConsoleService::printTestResult(testName: "File [$filename] created.");
     }
 
-
+    /**
+     * @param LarabearDatabaseModelDto $model
+     * @param Set<string> $headers
+     * @param bool $addColumnHeaders
+     * @return string
+     */
     private function classHeader(LarabearDatabaseModelDto $model, Set $headers, bool $addColumnHeaders = false): string {
         $headers->add("use GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Service\\BearDatabaseService;");
         $headers->add("use {$model->getNameSpace()}\\{$model->getModelClassName()};");
@@ -259,7 +265,7 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
             }
         }
 
-        $namespace = RegexService::extractFirst('~(.*)\\\\[^\\\\]+$~', $model->getNameSpace()) . '\\Crud';
+        $namespace = BearRegexService::extractFirst('~(.*)\\\\[^\\\\]+$~', $model->getNameSpace()) . '\\Crud';
         $content = '<?php' . PHP_EOL . PHP_EOL;
         $content .= 'namespace ' . $namespace . ';' . PHP_EOL . PHP_EOL;
         $hh = $headers->toArray();
@@ -277,6 +283,11 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
     }
 
 
+    /**
+     * @param LarabearDatabaseModelDto $model
+     * @param bool $forCreator
+     * @return array<LarabearDatabaseColumnDto>
+     */
     private function getModifiableColumnArray(LarabearDatabaseModelDto $model, bool $forCreator = false): array {
         $skipColumns = ['id', 'created_at', 'updated_at', 'deleted_at'];
         if (!$forCreator) {
