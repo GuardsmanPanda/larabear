@@ -69,8 +69,6 @@ class BearServiceProvider extends ServiceProvider {
                 $schedule->command('larabear:clean-log-tables')->dailyAt(time: '01:45');
             });
         } else {
-            Blade::componentNamespace('GuardsmanPanda\\Larabear\\Web\\Www\\Shared\\Component', 'bear');
-            $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Shared/View'), namespace: 'bear');
             $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Access/View'), namespace: 'larabear-access');
             $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Config/View'), namespace: 'larabear-config');
             $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Dashboard/View'), namespace: 'larabear-dashboard');
@@ -78,5 +76,7 @@ class BearServiceProvider extends ServiceProvider {
             $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Oauth2/View'), namespace: 'larabear-oauth2');
             $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Internal/View'), namespace: 'larabear');
         }
+        Blade::componentNamespace('GuardsmanPanda\\Larabear\\Web\\Www\\Shared\\Component', 'bear');
+        $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Shared/View'), namespace: 'bear');
     }
 }
