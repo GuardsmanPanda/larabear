@@ -172,7 +172,7 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
             $content .= '    }' . PHP_EOL . PHP_EOL;
         }
 
-        $content .= "    public function save(): {$model->getModelClassName()} {" . PHP_EOL;
+        $content .= "    public function update(): {$model->getModelClassName()} {" . PHP_EOL;
         $content .= "        \$this->model->save();" . PHP_EOL;
         $content .= "        return \$this->model;" . PHP_EOL;
         $content .= '    }' . PHP_EOL;

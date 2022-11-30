@@ -12,8 +12,7 @@ class Button extends Component {
     public function __construct(
         public readonly string      $color = 'gray',
         public readonly string      $size = 'default',
-        public readonly string|null $icon = null,
-        public readonly bool $dialog = false
+        public readonly string|null $icon = null
     ) {
         $this->classes .= match ($this->size) {
             'default' => ' px-5 h-9',

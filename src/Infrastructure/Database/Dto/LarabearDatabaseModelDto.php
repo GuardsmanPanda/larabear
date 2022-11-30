@@ -16,7 +16,6 @@ class LarabearDatabaseModelDto {
     private bool $timestamps = false;
     /** @var Set<string> $headers */
     private Set $headers;
-
     /** @var array<string, LarabearDatabaseColumnDto> $columns */
     private array $columns = [];
 
