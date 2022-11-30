@@ -4,7 +4,7 @@
         <p class="mt-2 text-sm text-gray-600">A list of all roles in the system.</p>
     </div>
     <div class="mt-2 sm:mt-0 sm:ml-16 sm:flex-none">
-        <x-bear::buttonDark icon="wrench" hx-get="/bear/config/create" dialog="true">New Config</x-bear::buttonDark>
+        <x-bear::buttonDark icon="wrench" hx-get="/bear/config/create" hx-target="#dialog-content">New Config</x-bear::buttonDark>
     </div>
 </div>
 <x-bear::table.layout.standard>
@@ -34,7 +34,7 @@
             <x-bear::table.cell.relative>{{$config->created_at}}</x-bear::table.cell.relative>
             <x-bear::table.cell.relative class="hidden 2xl:table-cell">{{$config->updated_at}}</x-bear::table.cell.relative>
             <td class="px-2.5">
-                <x-bear::buttonOutline icon="pencil" size="tiny" hx-get='{{"/bear/config/$config->config_key/update"}}' dialog="true">Edit</x-bear::buttonOutline>
+                <x-bear::buttonOutline icon="pencil" size="tiny" hx-get='{{"/bear/config/$config->config_key/update"}}' hx-target="#dialog-content">Edit</x-bear::buttonOutline>
                 @if(!str_starts_with(haystack: $config->config_key, needle: 'larabear'))
                     <x-bear::buttonOutline color="red" class="ml-1" icon="trash" size="tiny" hx-delete='{{"/bear/config/$config->config_key"}}' hx-target="closest tr">Delete</x-bear::buttonOutline>
                 @endif

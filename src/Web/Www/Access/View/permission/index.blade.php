@@ -4,7 +4,7 @@
         <p class="mt-2 text-sm text-gray-600">A list of all permissions in the system.</p>
     </div>
     <div class="mt-2 sm:mt-0 sm:ml-16 sm:flex-none">
-        <x-bear::buttonDark icon="lock-closed" hx-get="/bear/access/permission/create" dialog="true">New Permission</x-bear::buttonDark>
+        <x-bear::buttonDark icon="lock-closed" hx-get="/bear/access/permission/create" hx-target="#dialog-content">New Permission</x-bear::buttonDark>
     </div>
 </div>
 <x-bear::table.layout.standard>
@@ -22,7 +22,7 @@
             <x-bear::table.cell.relative>{{$permission->created_at}}</x-bear::table.cell.relative>
             <x-bear::table.cell.relative>{{$permission->updated_at}}</x-bear::table.cell.relative>
             <td class="px-2.5">
-                <x-bear::buttonOutline icon="pencil" size="tiny" hx-get='{{"/bear/access/permission/$permission->permission_slug/update"}}' dialog="true">Edit</x-bear::buttonOutline>
+                <x-bear::buttonOutline icon="pencil" size="tiny" hx-get='{{"/bear/access/permission/$permission->permission_slug/update"}}' hx-target="#dialog-content">Edit</x-bear::buttonOutline>
                 <x-bear::buttonOutline color="red" class="ml-1" icon="trash" size="tiny" hx-delete='{{"/bear/access/permission/$permission->permission_slug"}}' hx-target="closest tr">Delete</x-bear::buttonOutline>
             </td>
         </tr>
