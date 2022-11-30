@@ -124,6 +124,9 @@ class Req {
         throw new BadRequestHttpException(message: 'Data is not a Json Object');
     }
 
+    /**
+     * @return array<string, string>
+     */
     public static function allFormData(bool $allowEmpty = false): array {
         $tmp = self::request()->all();
         return empty($tmp) && !$allowEmpty ? throw new BadRequestHttpException(message: 'No Form Data') : $tmp;

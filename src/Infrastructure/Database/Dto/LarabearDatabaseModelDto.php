@@ -14,11 +14,22 @@ class LarabearDatabaseModelDto {
     private array $foreignKeyColumns = [];
     private string $primaryKeyType;
     private bool $timestamps = false;
+    /** @var Set<string> $headers */
     private Set $headers;
 
     /** @var array<string, LarabearDatabaseColumnDto> $columns */
     private array $columns = [];
 
+    /**
+     * @param string $connectionName
+     * @param string $connectionDriver
+     * @param string $tableName
+     * @param string $modelClassName
+     * @param string $modelLocation
+     * @param string $dateFormat
+     * @param array<string> $modelTraits
+     * @param array<string> $logExcludeColumns
+     */
     public function __construct(
         private readonly string $connectionName,
         private readonly string $connectionDriver,

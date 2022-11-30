@@ -5,6 +5,11 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 use Illuminate\Support\Facades\DB;
 
 class LarabearDatabaseForeignKeyService {
+    /**
+     * @param string $connection
+     * @param int $limit
+     * @return array<array<string, mixed>>
+     */
     public static function getSoftDeletedForeignKeyConstraints(string $connection, int $limit = 30): array {
         $dbInfo = LarabearDatabaseBaseInformation::getInstance(connectionName: $connection);
         $table_names = $dbInfo->getAllTableNames();
