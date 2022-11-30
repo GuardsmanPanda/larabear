@@ -11,11 +11,11 @@ class Number extends Component {
         public string          $label = '',
     ) {
         if ($this->label === '') {
-            $this->label = ucwords(str_replace('_', ' ', $this->id));
+            $this->label = ucwords(string: str_replace(search: '_', replace: ' ', subject: $this->id));
         }
     }
 
     public function render(): View {
-        return view(view: 'bear::form.text');
+        return view(view: 'bear::form.number');
     }
 }

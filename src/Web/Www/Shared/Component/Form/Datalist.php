@@ -12,7 +12,7 @@ class Datalist extends Component {
         public readonly string|null $hxTrigger = null,
     ) {
         if ($this->label === '') {
-            $this->label = ucwords(str_replace('_', ' ', $this->id));
+            $this->label = ucwords(string: str_replace(search: '_', replace: ' ', subject: $this->id));
         }
     }
 

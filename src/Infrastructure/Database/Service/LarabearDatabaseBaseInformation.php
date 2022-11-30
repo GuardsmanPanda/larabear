@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Dto\LarabearDatabaseColumnDto;
 use Illuminate\Support\Facades\Config;
 use RuntimeException;
+use stdClass;
 
 abstract class LarabearDatabaseBaseInformation {
     public static function getInstance(string $connectionName): LarabearDatabaseBaseInformation {
@@ -25,7 +26,15 @@ abstract class LarabearDatabaseBaseInformation {
      * @return array<LarabearDatabaseColumnDto>
      */
     abstract public function getColumnsForTable(string $tableName): array;
+
+    /**
+     * @return array<stdClass>
+     */
     abstract public function getAllPrimaryKeys(): array;
+
+    /**
+     * @return array<stdClass>
+     */
     abstract public function getAllForeignKeys(): array;
     abstract public function getDateFormat(): string;
     abstract public function databaseTypeToPhpType(string $databaseType): string;
