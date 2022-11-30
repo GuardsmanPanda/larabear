@@ -5,10 +5,10 @@ namespace GuardsmanPanda\Larabear\Web\Www\Shared\Component\Form;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Email extends Component {
+class Number extends Component {
     public function __construct(
         public readonly string $id,
-        public string $label = '',
+        public string          $label = '',
     ) {
         if ($this->label === '') {
             $this->label = ucwords(str_replace('_', ' ', $this->id));
@@ -16,6 +16,6 @@ class Email extends Component {
     }
 
     public function render(): View {
-        return view(view: 'bear::form.email');
+        return view(view: 'bear::form.text');
     }
 }

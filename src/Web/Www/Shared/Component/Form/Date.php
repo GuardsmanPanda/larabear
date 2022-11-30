@@ -9,7 +9,6 @@ class Date extends Component {
     public function __construct(
         public readonly string $id,
         public string $label = '',
-        public readonly string $placeholder = '',
     ) {
         if ($this->label === '') {
             $this->label = ucwords(str_replace('_', ' ', $this->id));

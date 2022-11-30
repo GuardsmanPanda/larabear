@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 
+use GuardsmanPanda\Larabear\Infrastructure\Database\Dto\LarabearDatabaseColumnDto;
 use Illuminate\Support\Facades\Config;
 use RuntimeException;
 
@@ -14,7 +15,15 @@ abstract class LarabearDatabaseBaseInformation {
         };
     }
 
+    /**
+     * @return array<string>
+     */
     abstract public function getAllTableNames(): array;
+
+    /**
+     * @param string $tableName
+     * @return array<LarabearDatabaseColumnDto>
+     */
     abstract public function getColumnsForTable(string $tableName): array;
     abstract public function getAllPrimaryKeys(): array;
     abstract public function getAllForeignKeys(): array;
