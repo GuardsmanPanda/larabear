@@ -54,7 +54,6 @@ class BearLogConsoleEvent extends Model {
     use LarabearFixDateFormatTrait;
 
     protected $table = 'bear_log_console_event';
-    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
 
     /** @var array<string, string> $casts */

@@ -55,7 +55,6 @@ class BearCountry extends Model {
     protected $table = 'bear_country';
     protected $primaryKey = 'country_iso2_code';
     protected $keyType = 'string';
-    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
 
     /** @var array<string, string> $casts */

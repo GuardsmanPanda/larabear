@@ -60,7 +60,6 @@ class BearAccessTokenApp extends Model {
     protected $table = 'bear_access_token_app';
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $dateFormat = 'Y-m-d H:i:sO';
     /** @var array<string> $log_exclude_columns */
     public array $log_exclude_columns = ['last_usage_at'];
 

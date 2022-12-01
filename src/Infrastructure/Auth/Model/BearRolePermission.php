@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -49,15 +50,13 @@ use RuntimeException;
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 class BearRolePermission extends Model {
-    use BearLogDatabaseChanges;
+    use BearLogDatabaseChanges, LarabearFixDateFormatTrait;
 
-    protected $connection = 'pgsql';
     protected $table = 'bear_role_permission';
     /** @var array<string> primaryKeyArray */
     private array $primaryKeyArray = ['role_slug', 'permission_slug'];
     protected $keyType = 'array';
     public $incrementing = false;
-    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
 
     public function role(): BelongsTo {

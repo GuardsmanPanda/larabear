@@ -50,7 +50,6 @@ use RuntimeException;
 class BearAccessTokenUser extends Model {
     protected $table = 'bear_access_token_user';
     protected $keyType = 'string';
-    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
 
     /** @var array<string, string> $casts */

@@ -65,7 +65,6 @@ class BearLogResponseError extends Model {
     use LarabearFixDateFormatTrait;
 
     protected $table = 'bear_log_response_error';
-    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
 
     /** @var array<string, string> $casts */

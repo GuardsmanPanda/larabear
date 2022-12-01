@@ -73,7 +73,6 @@ class BearUser extends Model implements Authenticatable {
     protected $table = 'bear_user';
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $dateFormat = 'Y-m-d H:i:sO';
 
     /** @var array<string, string> $casts */
     protected $casts = [

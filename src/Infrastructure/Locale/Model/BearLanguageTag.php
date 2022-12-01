@@ -54,7 +54,6 @@ class BearLanguageTag extends Model {
     protected $table = 'bear_language_tag';
     protected $primaryKey = 'language_tag';
     protected $keyType = 'string';
-    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
 
     /** @var array<string, string> $casts */

@@ -71,7 +71,6 @@ class BearOauth2User extends Model {
     protected $table = 'bear_oauth2_user';
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $dateFormat = 'Y-m-d H:i:sO';
     /** @var array<string> $log_exclude_columns */
     public array $log_exclude_columns = ['user_access_token_expires_at', 'encrypted_user_access_token', 'encrypted_user_refresh_token'];
 

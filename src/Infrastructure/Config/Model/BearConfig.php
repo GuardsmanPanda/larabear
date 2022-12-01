@@ -60,7 +60,6 @@ class BearConfig extends Model {
     protected $primaryKey = 'config_key';
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $dateFormat = 'Y-m-d H:i:sO';
 
     /** @var array<string, string> $casts */
     protected $casts = [

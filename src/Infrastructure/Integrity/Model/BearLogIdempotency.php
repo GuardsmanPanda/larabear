@@ -52,7 +52,6 @@ class BearLogIdempotency extends Model {
     protected $primaryKey = 'idempotency_key';
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
 
     protected $guarded = ['idempotency_key', 'updated_at', 'created_at', 'deleted_at'];

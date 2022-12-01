@@ -52,7 +52,6 @@ class BearPermission extends Model {
     protected $table = 'bear_permission';
     protected $primaryKey = 'permission_slug';
     protected $keyType = 'string';
-    protected $dateFormat = 'Y-m-d H:i:sO';
 
     protected $guarded = ['permission_slug', 'updated_at', 'created_at', 'deleted_at'];
 }

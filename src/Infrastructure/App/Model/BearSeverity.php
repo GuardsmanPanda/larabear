@@ -50,7 +50,6 @@ class BearSeverity extends Model {
     protected $primaryKey = 'slug';
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
 
     protected $guarded = ['slug', 'updated_at', 'created_at', 'deleted_at'];

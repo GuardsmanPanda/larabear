@@ -11,7 +11,7 @@ use RuntimeException;
 class LarabearDatabaseModelService {
     /**
      * @param string $connectionName
-     * @param array<string, array<string, string>> $tableConfig
+     * @param array<string, array<string, mixed>> $tableConfig
      * @return array<string, LarabearDatabaseModelDto>
      */
     public static function buildAll(string $connectionName, array $tableConfig): array {
@@ -67,6 +67,10 @@ class LarabearDatabaseModelService {
         return $models;
     }
 
+    /**
+     * @param array<string, array<string, mixed>> $tableConfig
+     * @param array<string> $dbTables
+     */
     private static function checkNoDefinedTablesMissingFromDB(array $tableConfig, array $dbTables): void {
         foreach ($tableConfig as $table_name => $table_config) {
             if (!in_array(needle: $table_name, haystack: $dbTables, strict: true)) {
@@ -75,6 +79,10 @@ class LarabearDatabaseModelService {
         }
     }
 
+    /**
+     * @param Model $model
+     * @return array<string, mixed>
+     */
     public static function extractAuditColumns(Model $model): array {
         $ignore_columns = property_exists(object_or_class: $model, property: 'log_exclude_columns') ? $model->log_exclude_columns : [];
         $arr = $model->toArray();
@@ -89,6 +97,10 @@ class LarabearDatabaseModelService {
         return $arr;
     }
 
+    /**
+     * @param Model $model
+     * @return array{int|null, string|null, mixed}
+     */
     public static function extractPrimaryKeyArray(Model $model): array {
         $primary_key_value = $model->getKey();
         $res = [null, null, null];

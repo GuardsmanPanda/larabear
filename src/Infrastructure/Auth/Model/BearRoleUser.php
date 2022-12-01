@@ -2,17 +2,13 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 
-use Carbon\CarbonInterface;
 use Closure;
-use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Query\Builder;
 use RuntimeException;
 
 /**
@@ -25,66 +21,53 @@ use RuntimeException;
  * @method static BearRoleUser firstOrNew(array $filter, array $values)
  * @method static BearRoleUser|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method static Collection|BearRoleUser all(array $columns = ['*'])
+ * @method static Collection|BearRoleUser get(array $columns = ['*'])
  * @method static Collection|BearRoleUser fromQuery(string $query, array $bindings = [])
  * @method static BearRoleUser lockForUpdate()
  * @method static BearRoleUser select(array $columns = ['*'])
- * @method static BearRoleUser with(array  $relations)
+ * @method static BearRoleUser with(array $relations)
  * @method static BearRoleUser leftJoin(string $table, string $first, string $operator = null, string $second = null)
  * @method static BearRoleUser where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method static BearRoleUser whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
  * @method static BearRoleUser whereNotExists(Closure $callback, string $boolean = 'and')
- * @method static BearRoleUser whereHas(string $relation, Closure $callback, string $operator = '>=', int $count = 1)
+ * @method static BearRoleUser whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static BearRoleUser whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static BearRoleUser withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
  * @method static BearRoleUser whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
  * @method static BearRoleUser whereNull(string|array $columns, string $boolean = 'and')
  * @method static BearRoleUser whereNotNull(string|array $columns, string $boolean = 'and')
  * @method static BearRoleUser whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearRoleUser orderBy(string $column, string $direction = 'asc')
+ * @method static int count(array $columns = ['*'])
  *
  * @property string $user_id
  * @property string $role_slug
- * @property CarbonInterface $created_at
+ * @property string $created_at
  *
+ * @property BearUser $user
  * @property BearRole $role
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 class BearRoleUser extends Model {
-    use BearLogDatabaseChanges;
+    use BearLogDatabaseChanges, LarabearFixDateFormatTrait;
 
-    protected $connection = 'pgsql';
     protected $table = 'bear_role_user';
     /** @var array<string> primaryKeyArray */
     private array $primaryKeyArray = ['role_slug', 'user_id'];
     protected $keyType = 'array';
     public $incrementing = false;
-    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
 
-    /** @var array<string, string> $casts */
-    protected $casts = [
-        'created_at' => 'immutable_datetime',
-    ];
+    public function user(): BelongsTo {
+        return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
+    }
 
     public function role(): BelongsTo {
         return $this->belongsTo(related: BearRole::class, foreignKey: 'role_slug', ownerKey: 'role_slug');
     }
 
     protected $guarded = ['role_slug', 'user_id', 'updated_at', 'created_at', 'deleted_at'];
-
-    public function getAttribute($key) {
-        $resp =  parent::getAttribute($key);
-        if ($resp !== null || array_key_exists(key: $key, array: $this->attributes) || array_key_exists(key: $key, array: $this->relations)) {
-            return $resp;
-        }
-        BearLogErrorCreator::create(
-            message: "Attribute $key not loaded on " . static::class,
-            namespace: "larabear",
-            key: "attribute_not_loaded",
-            severity: BearSeverityEnum::CRITICAL,
-            remedy: "Make sure to include used attributes in the SELECT statement",
-        );
-        throw new RuntimeException(message: "Attribute $key not loaded on " . static::class);
-    }
 
 
     /** @return Mixed[] */
@@ -118,7 +101,7 @@ class BearRoleUser extends Model {
      */
     public static function findOrFail(array $ids, array $columns = ['*']): BearRoleUser {
         $result = self::find(ids: $ids, columns: $columns);
-        return $result ?? throw (new ModelNotFoundException())->setModel(model: __CLASS__, ids: array_values($ids));
+        return $result ?? throw new RuntimeException(message: "No result found for " . self::class . " with ids " . json_encode($ids, JSON_THROW_ON_ERROR));
     }
 
     protected function setKeysForSaveQuery($query): EloquentBuilder {

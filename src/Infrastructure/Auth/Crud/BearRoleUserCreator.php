@@ -2,21 +2,21 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearRoleUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearRole;
 
-class BearRoleCreator {
+class BearRoleUserCreator {
     public static function create(
         string $role_slug,
-        string $role_description = null
-    ): BearRole {
+        string $user_id
+    ): BearRoleUser {
         BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);
 
-        $model = new BearRole();
+        $model = new BearRoleUser();
 
         $model->role_slug = $role_slug;
-        $model->role_description = $role_description;
+        $model->user_id = $user_id;
 
         $model->save();
         return $model;

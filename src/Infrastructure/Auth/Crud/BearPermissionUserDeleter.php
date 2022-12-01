@@ -2,17 +2,13 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearRole;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearPermissionUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
-class BearRoleDeleter {
-    public static function delete(BearRole $model): void {
+class BearPermissionUserDeleter {
+    public static function delete(BearPermissionUser $model): void {
         BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['DELETE']);
         $model->delete();
-    }
-
-    public static function deleteFromRoleSlug(string $role_slug): void {
-        self::delete(model: BearRole::findOrFail(id: $role_slug));
     }
 }

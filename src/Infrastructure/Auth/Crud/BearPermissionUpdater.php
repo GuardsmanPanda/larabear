@@ -3,28 +3,25 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearPermission;
-use RuntimeException;
 
 class BearPermissionUpdater {
     public function __construct(private readonly BearPermission $model) {
         BearDatabaseService::mustBeInTransaction();
-        if (!Req::isWriteRequest()) {
-            throw new RuntimeException(message: 'Database write operations should not be performed in read-only [GET, HEAD, OPTIONS] requests.');
-        }
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);
     }
 
-    public static function fromPermissionSlug(string $permission_slug): BearPermissionUpdater {
-        return new BearPermissionUpdater(model: BearPermission::where(column: 'permission_slug', operator:'=', value: $permission_slug)->sole());
+    public static function fromPermissionSlug(string $permission_slug): self {
+        return new self(model: BearPermission::findOrFail(id: $permission_slug));
     }
 
 
-    public function setPermissionDescription(string|null $permission_description): void {
+    public function setPermissionDescription(string|null $permission_description): self {
         $this->model->permission_description = $permission_description;
+        return $this;
     }
 
-    public function save(): BearPermission {
+    public function update(): BearPermission {
         $this->model->save();
         return $this->model;
     }

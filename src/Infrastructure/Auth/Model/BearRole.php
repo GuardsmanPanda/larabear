@@ -52,7 +52,6 @@ class BearRole extends Model {
     protected $table = 'bear_role';
     protected $primaryKey = 'role_slug';
     protected $keyType = 'string';
-    protected $dateFormat = 'Y-m-d H:i:sO';
 
     protected $guarded = ['role_slug', 'updated_at', 'created_at', 'deleted_at'];
 }

@@ -63,7 +63,6 @@ class BearOauth2Client extends Model {
     protected $primaryKey = 'oauth2_client_id';
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $dateFormat = 'Y-m-d H:i:sO';
     /** @var array<string> $log_exclude_columns */
     public array $log_exclude_columns = ['oauth2_client_access_token_expires_at', 'encrypted_oauth2_client_access_token'];
 

@@ -72,7 +72,6 @@ class BearLogDatabaseChange extends Model {
     use LarabearFixDateFormatTrait;
 
     protected $table = 'bear_log_database_change';
-    protected $dateFormat = 'Y-m-d H:i:sO';
     public $timestamps = false;
 
     /** @var array<string, string> $casts */
