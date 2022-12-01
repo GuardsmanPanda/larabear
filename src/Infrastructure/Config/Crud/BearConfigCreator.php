@@ -2,15 +2,25 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Config\Crud;
 
+use ArrayObject;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
-use Illuminate\Support\Facades\App;
-use RuntimeException;
-use stdClass;
 
 class BearConfigCreator {
+    /**
+     * @param string $config_key
+     * @param string $config_description
+     * @param string $config_data_type
+     * @param string|null $config_string
+     * @param string|null $encrypted_config_string
+     * @param bool|null $config_boolean
+     * @param int|null $config_integer
+     * @param CarbonInterface|null $config_date
+     * @param CarbonInterface|null $config_timestamp
+     * @param ArrayObject<string, mixed> $config_json
+     * @return BearConfig
+     */
     public static function create(
         string $config_key,
         string $config_description,
@@ -21,7 +31,7 @@ class BearConfigCreator {
         int $config_integer = null,
         CarbonInterface $config_date = null,
         CarbonInterface $config_timestamp = null,
-        stdClass $config_json = new stdClass()
+        ArrayObject $config_json = new ArrayObject()
     ): BearConfig {
         BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);

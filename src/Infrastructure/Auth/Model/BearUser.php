@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 
+use ArrayObject;
 use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
@@ -13,7 +14,6 @@ use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use stdClass;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -57,7 +57,7 @@ use stdClass;
  * @property string|null $password_reset_token
  * @property string|null $user_country_iso2_code
  * @property string|null $user_language_iso2_code
- * @property stdClass $user_metadata_json
+ * @property ArrayObject $user_metadata_json
  * @property CarbonInterface|null $last_login_at
  * @property CarbonInterface|null $email_verified_at
  * @property CarbonInterface|null $password_reset_expires_at

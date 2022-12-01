@@ -2,10 +2,10 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Config\Crud;
 
+use ArrayObject;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use stdClass;
 
 class BearConfigUpdater {
     public function __construct(private readonly BearConfig $model) {
@@ -31,7 +31,11 @@ class BearConfigUpdater {
         return $this;
     }
 
-    public function setConfigJson(stdClass $config_json): self {
+    /**
+     * @param ArrayObject<string, mixed> $config_json
+     * @return $this
+     */
+    public function setConfigJson(ArrayObject $config_json): self {
         $this->model->config_json = $config_json;
         return $this;
     }

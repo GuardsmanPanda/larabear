@@ -2,11 +2,10 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Config\Service;
 
+use ArrayObject;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
-use Illuminate\Support\Facades\DB;
 use RuntimeException;
-use stdClass;
 
 class BearConfigService {
 
@@ -26,7 +25,11 @@ class BearConfigService {
         return  BearConfig::findOrFail(id: $config_key)->encrypted_config_string ?? throw new RuntimeException(message: "Config key $config_key is not an encrypted string");
     }
 
-    public static function getJson(string $config_key): stdClass {
+    /**
+     * @param string $config_key
+     * @return ArrayObject<string, mixed>
+     */
+    public static function getJson(string $config_key): ArrayObject {
         return  BearConfig::findOrFail(id: $config_key)->config_json ?? throw new RuntimeException(message: "Config key $config_key is not a json");
     }
 

@@ -2,15 +2,13 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
+use ArrayObject;
 use Carbon\Carbon;
 use Carbon\CarbonInterface;
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
-use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use Illuminate\Support\Str;
-use stdClass;
 
 class BearOauth2UserCreator {
     public static function create(
@@ -39,7 +37,7 @@ class BearOauth2UserCreator {
         $model->encrypted_user_refresh_token = $encrypted_user_refresh_token;
 
         $model->oauth2_scope = $oauth2_scope;
-        $model->oauth2_scope_json = new StdClass();
+        $model->oauth2_scope_json = new ArrayObject();
         $dateString = Carbon::now()->toDateString();
         foreach (explode(' ', $oauth2_scope) as $scope) {
             $model->oauth2_scope_json->$scope = $dateString;

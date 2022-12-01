@@ -2,11 +2,11 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Error\Model;
 
+use ArrayObject;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
-use stdClass;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -54,7 +54,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $app_action_name
  * @property string|null $request_http_path
  * @property string|null $request_country_code
- * @property stdClass|null $request_http_query_json
+ * @property ArrayObject|null $request_http_query_json
  *
  * @property BearUser|null $user
  *

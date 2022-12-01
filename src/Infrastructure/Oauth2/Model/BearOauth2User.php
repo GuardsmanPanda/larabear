@@ -2,11 +2,12 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model;
 
+use ArrayObject;
 use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
-use stdClass;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -55,7 +56,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $encrypted_user_access_token
  * @property string|null $encrypted_user_refresh_token
  * @property string|null $user_access_token_error_message
- * @property stdClass $oauth2_scope_json
+ * @property ArrayObject $oauth2_scope_json
  * @property CarbonInterface|null $user_access_token_expires_at
  * @property CarbonInterface|null $user_access_token_first_error_at
  *

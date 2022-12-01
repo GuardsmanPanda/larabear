@@ -80,7 +80,7 @@ class LarabearLarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInfor
             'char', 'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum' => 'string',
             'tinyint', 'smallint', 'mediumint', 'int', 'bigint' => 'int',
             'decimal', 'double' => 'float',
-            'json' => 'stdClass',
+            'json' => 'ArrayObject',
             default => throw new RuntimeException(message: "Unknown type: $databaseType")
         };
     }
@@ -102,7 +102,7 @@ class LarabearLarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInfor
 
     private function mysqlTypeToPhpHeader(string $mysql_type): string {
         return match ($mysql_type) {
-            'json' => 'use Illuminate\\Database\\Eloquent\\Casts\\AsArrayObject;' . PHP_EOL . 'use stdClass;',
+            'json' => 'use ArrayObject;',
             'char', 'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum', 'tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'double' => '',
             'date', 'datetime', 'timestamp' => 'use Carbon\\CarbonInterface;',
             default => throw new RuntimeException(message: "Unknown type: $mysql_type")

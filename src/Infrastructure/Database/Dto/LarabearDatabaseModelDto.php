@@ -10,7 +10,7 @@ use Ramsey\Collection\Set;
 class LarabearDatabaseModelDto {
     /** @var array<string> $primaryKeyColumns */
     private array $primaryKeyColumns = [];
-    /** @var array<array<string>> $foreignKeyColumns */
+    /** @var array<array<string|bool>> $foreignKeyColumns */
     private array $foreignKeyColumns = [];
     private string $primaryKeyType;
     private bool $timestamps = false;
@@ -74,6 +74,9 @@ class LarabearDatabaseModelDto {
         return count($this->primaryKeyColumns) > 1;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getPrimaryKeyColumns(): array {
         return $this->primaryKeyColumns;
     }
@@ -88,7 +91,7 @@ class LarabearDatabaseModelDto {
     }
 
     public function setForeignKeyInformation(string $columnName, string $foreignColumnName, string $foreignModelName, string $foreignNamespace): void {
-        $methodName = Str::camel(preg_replace(pattern: '/_(id|uuid|slug)$/', replacement: '', subject: $columnName));
+        $methodName = Str::camel(value: preg_replace(pattern: '/_(id|uuid|slug)$/', replacement: '', subject: $columnName) ?? $columnName);
         foreach ($this->foreignKeyColumns as $foreignKeyColumn) {
             if ($foreignKeyColumn['methodName'] === $methodName) {
                 $methodName = Str::camel($columnName);
@@ -117,6 +120,9 @@ class LarabearDatabaseModelDto {
             $column->requiredHeader = '';
             $column->sortOrder = 6;
         }
+        if ($column->requiredHeader === 'use ArrayObject;') {
+            $this->headers->add(element: 'use Illuminate\\Database\\Eloquent\\Casts\\AsArrayObject;');
+        }
         $this->headers->add(element: $column->requiredHeader);
         $this->columns[$column->columnName] = $column;
     }
@@ -128,6 +134,9 @@ class LarabearDatabaseModelDto {
         return $this->columns;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getCasts(): array {
         $casts = [];
         foreach ($this->columns as $column) {

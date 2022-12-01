@@ -84,7 +84,7 @@ class LarabearLarabearDatabasePostgresInformation extends LarabearDatabaseBaseIn
             'text', 'inet', 'cidr', 'uuid' => 'string',
             'integer', 'bigint', 'smallint' => 'int',
             'double precision' => 'float',
-            'jsonb' => 'stdClass',
+            'jsonb' => 'ArrayObject',
             'boolean' => 'bool',
             default => throw new RuntimeException(message: "Unknown type: $databaseType")
         };
@@ -105,7 +105,7 @@ class LarabearLarabearDatabasePostgresInformation extends LarabearDatabaseBaseIn
 
     private function postgresTypeToPhpHeader(string $postgres_type): string {
         return match ($postgres_type) {
-            'jsonb' => 'use Illuminate\\Database\\Eloquent\\Casts\\AsArrayObject;' . PHP_EOL . 'use stdClass;',
+            'jsonb' => 'use ArrayObject;',
             'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean' => '',
             'date', 'timestamp with time zone' => 'use Carbon\\CarbonInterface;',
             default => throw new RuntimeException(message: "Unknown type: $postgres_type")

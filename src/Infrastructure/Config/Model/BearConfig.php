@@ -2,11 +2,11 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Config\Model;
 
+use ArrayObject;
 use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
-use stdClass;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -47,7 +47,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $config_description
  * @property string|null $config_string
  * @property string|null $encrypted_config_string
- * @property stdClass $config_json
+ * @property ArrayObject $config_json
  * @property CarbonInterface|null $config_date
  * @property CarbonInterface|null $config_timestamp
  *

@@ -2,11 +2,11 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
+use ArrayObject;
 use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
-use stdClass;
 
 class BearOauth2UserUpdater {
     public function __construct(private readonly BearOauth2User $model) {
@@ -23,11 +23,12 @@ class BearOauth2UserUpdater {
 
     public function setOauth2Scope(string $oauth2_scope): self {
         $this->model->oauth2_scope = $oauth2_scope;
-        $this->model->oauth2_scope_json = new StdClass();
         $dateString = Carbon::now()->toDateString();
-        foreach (explode(' ', $oauth2_scope) as $scope) {
-            $this->model->oauth2_scope_json->$scope = $dateString;
+        $tmp = [];
+        foreach (explode(separator: ' ', string: $oauth2_scope) as $scope) {
+            $tmp[$scope] = $dateString;
         }
+        $this->model->oauth2_scope_json = new ArrayObject(array: $tmp);
         return $this;
     }
 
