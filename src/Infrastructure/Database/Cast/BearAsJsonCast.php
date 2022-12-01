@@ -7,7 +7,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use stdClass;
 
 class BearAsJsonCast implements CastsAttributes {
-    public function get($model, string $key, mixed $value, array$attributes): stdClass|ArrayObject {
+    public function get($model, string $key, mixed $value, array $attributes): stdClass|ArrayObject {
         if ($value === null) {
             return new stdClass();
         }

@@ -5,7 +5,6 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model;
 use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use stdClass;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
@@ -75,14 +74,14 @@ class BearOauth2User extends Model {
     public array $log_exclude_columns = ['user_access_token_expires_at', 'encrypted_user_access_token', 'encrypted_user_refresh_token'];
 
     /** @var array<string, string> $casts */
-    protected $casts = [
+    protected $casts = array(
         'encrypted_user_access_token' => 'encrypted',
         'encrypted_user_refresh_token' => 'encrypted',
-        'oauth2_scope_json' => BearAsJsonCast::class,
+        'oauth2_scope_json' => AsArrayObject::class,
         'token_refresh_error_at' => 'immutable_datetime',
         'user_access_token_expires_at' => 'immutable_datetime',
         'user_access_token_first_error_at' => 'immutable_datetime',
-    ];
+    );
 
     public function user(): BelongsTo|null {
         return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');

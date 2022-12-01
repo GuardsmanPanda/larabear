@@ -4,8 +4,8 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Config\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use stdClass;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use Illuminate\Database\Eloquent\Collection;
@@ -64,7 +64,7 @@ class BearConfig extends Model {
     /** @var array<string, string> $casts */
     protected $casts = [
         'config_date' => 'immutable_date',
-        'config_json' => BearAsJsonCast::class,
+        'config_json' => AsArrayObject::class,
         'config_timestamp' => 'immutable_datetime',
         'encrypted_config_string' => 'encrypted',
     ];

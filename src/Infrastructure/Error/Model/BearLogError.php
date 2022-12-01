@@ -5,13 +5,12 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Error\Model;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Model\BearSeverity;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use stdClass;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Query\Builder;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -77,7 +76,7 @@ class BearLogError extends Model {
 
     /** @var array<string, string> $casts */
     protected $casts = [
-        'request_http_query_json' => BearAsJsonCast::class,
+        'request_http_query_json' => AsArrayObject::class,
     ];
 
     public function user(): BelongsTo|null {

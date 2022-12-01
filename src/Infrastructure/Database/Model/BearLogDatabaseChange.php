@@ -4,8 +4,8 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Model;
 
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use stdClass;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -76,7 +76,7 @@ class BearLogDatabaseChange extends Model {
 
     /** @var array<string, string> $casts */
     protected $casts = [
-        'record_json' => BearAsJsonCast::class,
+        'record_json' => AsArrayObject::class,
     ];
 
     public function user(): BelongsTo|null {

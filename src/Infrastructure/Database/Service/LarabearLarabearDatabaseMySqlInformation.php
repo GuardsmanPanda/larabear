@@ -102,7 +102,7 @@ class LarabearLarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInfor
 
     private function mysqlTypeToPhpHeader(string $mysql_type): string {
         return match ($mysql_type) {
-            'json' => 'use GuardsmanPanda\Larabear\Infrastructure\Database\Cast\BearAsJsonCast;' . PHP_EOL . 'use stdClass;',
+            'json' => 'use Illuminate\\Database\\Eloquent\\Casts\\AsArrayObject;' . PHP_EOL . 'use stdClass;',
             'char', 'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum', 'tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'double' => '',
             'date', 'datetime', 'timestamp' => 'use Carbon\\CarbonInterface;',
             default => throw new RuntimeException(message: "Unknown type: $mysql_type")
@@ -117,7 +117,7 @@ class LarabearLarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInfor
         return match ($mysql_type) {
             'char', 'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum', 'tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'double' => null,
             'datetime', 'timestamp' => "'immutable_datetime'",
-            'json' => "BearAsJsonCast::class",
+            'json' => "AsArrayObject::class",
             'date' => "'immutable_date'",
             default => throw new RuntimeException(message: "Unknown type: $mysql_type")
         };
