@@ -53,7 +53,7 @@ class LarabearAuthController extends Controller {
                 redirectUri: $redirectUri, createBearUser: $createUserIfNotExists
             );
             if ($user->user_id !== null && Session::get(key: 'oauth2_login_user', default: false) === true) {
-                BearUserUpdater::fromId(id: $user->user_id)->setLastLoginNow()->save();
+                BearUserUpdater::fromId(id: $user->user_id)->setLastLoginNow()->update();
                 Session::migrate(destroy: true);
                 Session::put(key: 'bear_user_id', value: $user->user_id);
             }

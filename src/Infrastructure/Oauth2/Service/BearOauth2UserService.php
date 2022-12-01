@@ -52,10 +52,10 @@ class BearOauth2UserService {
                 $updater->setEncryptedUserAccessToken(
                     encrypted_user_access_token: $json['access_token'],
                     user_access_token_expires_at: Carbon::now()->addSeconds($json['expires_in'])
-                )->save();
+                )->update();
 
             } else {
-                $updater->setUserAccessTokenErrorMessage(user_access_token_error_message: $resp->body())->save();
+                $updater->setUserAccessTokenErrorMessage(user_access_token_error_message: $resp->body())->update();
             }
             DB::commit();
             return $updater->getEncryptedUserAccessToken();

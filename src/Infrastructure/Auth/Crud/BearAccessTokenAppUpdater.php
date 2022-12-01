@@ -63,7 +63,7 @@ class BearAccessTokenAppUpdater {
         return $this;
     }
 
-    public function save(): BearAccessTokenApp {
+    public function update(): BearAccessTokenApp {
         $this->model->save();
         return $this->model;
     }

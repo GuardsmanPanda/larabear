@@ -67,7 +67,7 @@ class BearUserUpdater {
         return $this;
     }
 
-    public function save(): BearUser {
+    public function update(): BearUser {
         $this->model->save();
         return $this->model;
     }

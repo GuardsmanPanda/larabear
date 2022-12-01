@@ -53,7 +53,7 @@ class LarabearConfigController extends Controller {
         $updater->setConfigInteger(config_integer: Req::getInt(key: 'config_integer'));
         $updater->setConfigDate(config_date: Req::getDate(key: 'config_date'));
         $updater->setConfigTimestamp(config_timestamp: Req::getDateTime(key: 'config_timestamp'));
-        $updater->save();
+        $updater->update();
         return $this->index();
     }
 

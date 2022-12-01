@@ -46,7 +46,7 @@ class BearShortCodeService {
 
         // join the array back into a string
         $value = implode(separator: '', array: array_reverse(array: $value_array));
-        $updater->setConfigString(config_string: $value)->save();
+        $updater->setConfigString(config_string: $value)->update();
         return $value;
     }
 }

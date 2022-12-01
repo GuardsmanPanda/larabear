@@ -85,7 +85,7 @@ class BearOauth2ClientService {
         if ($updater->getUserId() === null) {
             $updater->setUserId(user_id: $bearUser?->id);
         }
-        return $updater->save();
+        return $updater->update();
     }
 
     public static function exchangeCode(string $code, BearOauth2Client $client, string $redirect_uri = null): Response {
@@ -139,9 +139,9 @@ class BearOauth2ClientService {
                 $updater->setEncryptedOauth2ClientAccessToken(
                     encrypted_oauth2_client_access_token: $json['access_token'],
                     oauth2_client_access_token_expires_at: Carbon::now()->addSeconds($json['expires_in']),
-                )->save();
+                )->update();
             } else {
-                $updater->setClientAccessTokenErrorMessage(client_access_token_error_message: $resp->body())->save();
+                $updater->setClientAccessTokenErrorMessage(client_access_token_error_message: $resp->body())->update();
             }
             DB::commit();
             return $updater->getEncryptedOauth2ClientAccessToken();

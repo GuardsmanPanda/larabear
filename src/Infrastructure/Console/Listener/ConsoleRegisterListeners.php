@@ -81,7 +81,7 @@ class ConsoleRegisterListeners {
                 } else {
                     $updater->setConsoleEventFailedAt(Carbon::now());
                 }
-                $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1_000_000))->save();
+                $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1_000_000))->update();
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();
@@ -112,9 +112,9 @@ class ConsoleRegisterListeners {
                     if (!is_string($data)) {
                         throw new RuntimeException(message: 'Could not read scheduled task output');
                     }
-                    $updater->setConsoleEventOutput(console_event_output: $data )->save();
+                    $updater->setConsoleEventOutput(console_event_output: $data )->update();
                 } catch (Throwable $t) {
-                    $updater->setConsoleEventOutput(console_event_output: "# Command output not available [{$t->getMessage()}]")->save();
+                    $updater->setConsoleEventOutput(console_event_output: "# Command output not available [{$t->getMessage()}]")->update();
                 }
                 DB::commit();
             } catch (Throwable $t) {

@@ -85,7 +85,7 @@ class BearOauth2UserUpdater {
         return $this->model->user_id;
     }
 
-    public function save(): BearOauth2User {
+    public function update(): BearOauth2User {
         $this->model->save();
         return $this->model;
     }

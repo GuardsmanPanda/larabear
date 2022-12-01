@@ -74,7 +74,7 @@ class BearConfigUpdater {
         return $this->model->config_string;
     }
 
-    public function save(): BearConfig {
+    public function update(): BearConfig {
         $this->model->save();
         return $this->model;
     }

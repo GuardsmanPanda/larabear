@@ -40,9 +40,9 @@ class LarabearDatabaseModelDto {
         private readonly array  $logExcludeColumns = [],
     ) {
         $this->headers = new Set(setType: 'string');
-        $this->headers->add('use Closure;');
-        $this->headers->add('use Illuminate\Database\Eloquent\Model;');
-        $this->headers->add('use Illuminate\Database\Eloquent\Collection;');
+        $this->headers->add(element: 'use Closure;');
+        $this->headers->add(element: 'use Illuminate\Database\Eloquent\Model;');
+        $this->headers->add(element: 'use Illuminate\Database\Eloquent\Collection;');
     }
 
     public function getTableName(): string {
@@ -89,7 +89,7 @@ class LarabearDatabaseModelDto {
 
     public function setForeignKeyInformation(string $columnName, string $foreignColumnName, string $foreignModelName, string $foreignNamespace): void {
         $methodName = Str::camel(preg_replace(pattern: '/_(id|uuid|slug)$/', replacement: '', subject: $columnName));
-        foreach ($this->foreignKeyColumns as $key => $foreignKeyColumn) {
+        foreach ($this->foreignKeyColumns as $foreignKeyColumn) {
             if ($foreignKeyColumn['methodName'] === $methodName) {
                 $methodName = Str::camel($columnName);
             }
@@ -106,7 +106,7 @@ class LarabearDatabaseModelDto {
 
     public function addColumn(LarabearDatabaseColumnDto $column): void {
         if ($column->columnName === 'delete_at') {
-            $this->headers->add('use Illuminate\Database\Eloquent\SoftDeletes;');
+            $this->headers->add(element: 'use Illuminate\Database\Eloquent\SoftDeletes;');
         }
         if ($column->columnName === 'updated_at') {
             $this->timestamps = true;
@@ -117,7 +117,7 @@ class LarabearDatabaseModelDto {
             $column->requiredHeader = '';
             $column->sortOrder = 6;
         }
-        $this->headers->add($column->requiredHeader);
+        $this->headers->add(element: $column->requiredHeader);
         $this->columns[$column->columnName] = $column;
     }
 
@@ -146,7 +146,7 @@ class LarabearDatabaseModelDto {
 
         if (count($this->modelTraits) > 0) {
             foreach ($this->modelTraits as $trait) {
-                $content .= "    use " . BearRegexService::extractFirst('~.*\\\\([^\\\\]+)$~', $trait) . ';' . PHP_EOL;
+                $content .= "    use " . BearRegexService::extractFirst(regex: '~.*\\\\([^\\\\]+)$~', subject: $trait) . ';' . PHP_EOL;
             }
             $content .= PHP_EOL;
         }
@@ -219,32 +219,31 @@ class LarabearDatabaseModelDto {
     private function getTopOfClass(): string {
         $content = "<?php" . PHP_EOL . PHP_EOL . 'namespace ' . $this->getNameSpace() . ';' . PHP_EOL . PHP_EOL;
         if ($this->hasCompositePrimaryKey()) {
-            $this->headers->add('use Illuminate\Database\Eloquent\ModelNotFoundException;');
-            $this->headers->add('use Illuminate\Database\Eloquent\Builder as EloquentBuilder;');
-            $this->headers->add('use RuntimeException;');
+            $this->headers->add(element: 'use Illuminate\Database\Eloquent\Builder as EloquentBuilder;');
+            $this->headers->add(element: 'use RuntimeException;');
         }
 
         if (count($this->foreignKeyColumns) > 0) {
-            $this->headers->add('use Illuminate\Database\Eloquent\Relations\BelongsTo;');
+            $this->headers->add(element: 'use Illuminate\Database\Eloquent\Relations\BelongsTo;');
             foreach ($this->foreignKeyColumns as $column) {
                 $namespace = $column['foreignNamespace'];
                 if ($namespace !== $this->getNameSpace()) {
-                    $this->headers->add('use ' . $namespace . '\\' . $column['foreignModelName'] . ';');
+                    $this->headers->add(element: 'use ' . $namespace . '\\' . $column['foreignModelName'] . ';');
                 }
             }
         }
 
         if (count($this->modelTraits) > 0) {
             foreach ($this->modelTraits as $trait) {
-                $this->headers->add('use ' . $trait . ';');
+                $this->headers->add(element: 'use ' . $trait . ';');
             }
         }
 
         $hh = $this->headers->toArray();
-        sort($hh);
-        $hh = array_unique(array_map(static function ($ele) {
-            return trim($ele);
-        }, $hh));
+        sort(array: $hh);
+        $hh = array_unique(array: array_map(callback: static function ($ele) {
+            return trim(string: $ele);
+        }, array: $hh));
         foreach ($hh as $header) {
             if ($header === '') {
                 continue;
@@ -300,7 +299,7 @@ class LarabearDatabaseModelDto {
             $content .= " $" . $column->columnName . PHP_EOL;
         }
 
-        if (count($this->foreignKeyColumns) > 0) {
+        if (count(value: $this->foreignKeyColumns) > 0) {
             $content .= " *" . PHP_EOL;
             foreach ($this->foreignKeyColumns as $column) {
                 $content .= " * @property " . $column['foreignModelName'];
@@ -354,7 +353,7 @@ class LarabearDatabaseModelDto {
         $content .= "     */" . PHP_EOL;
         $content .= "    public static function findOrFail(array \$ids, array \$columns = ['*']): $this->modelClassName {" . PHP_EOL;
         $content .= "        \$result = self::find(ids: \$ids, columns: \$columns);" . PHP_EOL;
-        $content .= "        return \$result ?? throw (new ModelNotFoundException())->setModel(model: __CLASS__, ids: array_values(\$ids));" . PHP_EOL;
+        $content .= "        return \$result ?? throw new RuntimeException(message: \"No result found for \" . self::class . \" with ids \" . json_encode(\$ids, JSON_THROW_ON_ERROR));" . PHP_EOL;
         $content .= "    }" . PHP_EOL . PHP_EOL;
 
 

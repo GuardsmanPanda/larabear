@@ -70,7 +70,7 @@ class BearLogConsoleEventUpdater {
         return $this;
     }
 
-    public function save(): BearLogConsoleEvent {
+    public function update(): BearLogConsoleEvent {
         $this->model->save();
         return $this->model;
     }

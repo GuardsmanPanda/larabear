@@ -99,7 +99,7 @@ class BearOauth2ClientUpdater {
         return $this->model->encrypted_oauth2_client_access_token ?? '';
     }
 
-    public function save(): BearOauth2Client {
+    public function update(): BearOauth2Client {
         $this->model->save();
         return $this->model;
     }
