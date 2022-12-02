@@ -141,8 +141,7 @@ class Req {
     }
 
     public static function content(): string {
-        $value = self::request()->getContent();
-        return is_string($value) ? $value : throw new BadRequestHttpException(message: 'No Content or Content is not text');
+        return self::request()->getContent();
     }
 
 
@@ -265,9 +264,9 @@ class Req {
     /**
      * @param string $key
      * @param bool $nullIfMissing
-     * @return stdClass|null
+     * @return array<mixed>|null
      */
-    public static function getJson(string $key, bool $nullIfMissing = false): stdClass|null {
+    public static function getJson(string $key, bool $nullIfMissing = false): array|null {
         if (!self::has(key: $key)) {
             return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
         }
@@ -275,13 +274,20 @@ class Req {
         if ($val === null) {
             return null;
         }
-        if (is_array($val)) {
-            return (object)ValidateAndParseValue::parseJsonToArray(value: $val);
+        return ValidateAndParseValue::parseJsonToArray(value: $val);
+    }
+
+    /**
+     * @param string $key
+     * @param array<mixed> $default
+     * @return array<mixed>
+     */
+    public static function getJsonOrDefault(string $key, array $default = null): array {
+        $value = self::request()->input(key: $key);
+        if ($value === null) {
+            return $default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
-        if (is_string($val)) {
-            return ValidateAndParseValue::parseJsonToStdClass(value: $val);
-        }
-        throw new BadRequestHttpException(message: "Input field named: $key, is not a json string or json array");
+        return ValidateAndParseValue::parseJsonToArray(value: $value);
     }
 
 
