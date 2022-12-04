@@ -158,19 +158,13 @@ class BearOauth2ClientService {
         }
     }
 
-    private static function buildScopeString(BearOauth2Client $client, string $scopeString): string {
+    private static function buildScopeString(BearOauth2Client $client, string $scopeString = null): string {
         $scopes = new Set(setType: 'string');
-
-        if (str_contains(haystack: $scopeString, needle: ' ')) {
-            foreach (explode(separator: ' ', string: $scopeString) as $scope) {
+        if ($scopeString !== null) {
+            $separator = str_contains(haystack: $scopeString, needle: ' ') ? ' ' : '+';
+            foreach (explode(separator: $separator, string: $scopeString) as $scope) {
                 $scopes->add(element: $scope);
             }
-        } else if (str_contains(haystack: $scopeString, needle: '+')) {
-            foreach (explode(separator: '+', string: $scopeString) as $scope) {
-                $scopes->add(element: $scope);
-            }
-        } else {
-            $scopes->add(element: $scopeString);
         }
 
         switch ($client->oauth2_client_type) {
