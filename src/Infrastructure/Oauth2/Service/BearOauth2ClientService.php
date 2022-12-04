@@ -185,6 +185,10 @@ class BearOauth2ClientService {
                 $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.email');
                 $scopes->add(element: 'openid');
                 break;
+            case 'TWITCH':
+                $scopes->add(element: 'user:read:email');
+                $scopes->add(element: 'openid');
+                break;
             case 'OTHER':
                 break;
             default:
