@@ -39,6 +39,10 @@ class BearOauth2ClientService {
         $overwriteRedirectUri ??= "/bear/auth/oauth2-client/$client->oauth2_client_id/callback";
         $query_data .= '&redirect_uri=' . urlencode(string: config(key: 'app.url') . $overwriteRedirectUri);
 
+        if ($client->oauth2_client_type === 'TWITCH') {
+            $query_data .= '&claims=' . urlencode(string: json_encode(['id_token' => ['email' => null, 'email_verified' => null, 'preferred_username' => null]], JSON_THROW_ON_ERROR));
+        }
+
         if ($accountPrompt) {
             $query_data .= match ($client->oauth2_client_type) {
                 'MICROSOFT', 'GOOGLE' => '&prompt=select_account',
