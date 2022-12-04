@@ -70,7 +70,7 @@ class BearOauth2ClientService {
             return BearOauth2UserCreator::create(
                 oauth2_client_id: $token->issuedToClientId,
                 oauth2_user_identifier: $token->userIdentifier,
-                oauth2_scope: $data['scope'],
+                oauth2_scope: is_array($data['scope']) ? implode(separator: ' ', array: $data['scope']) : $data['scope'],
                 oauth2_user_email: $token->email,
                 oauth2_user_name: $token->name,
                 user_access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']),
