@@ -2,9 +2,9 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Config\Service;
 
-use ArrayObject;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use RuntimeException;
 
 class BearConfigService {

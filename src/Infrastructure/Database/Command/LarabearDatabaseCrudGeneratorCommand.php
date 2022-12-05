@@ -225,7 +225,7 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
         $headers->add("use GuardsmanPanda\\Larabear\\Infrastructure\\Http\\Service\\Req;");
         $headers->add("use {$model->getNameSpace()}\\{$model->getModelClassName()};");
 
-        $content = '<?php' . PHP_EOL . PHP_EOL;
+        $content = '<?php declare(strict_types=1);' . PHP_EOL . PHP_EOL;
 
         // HEADERS
         $hh = $headers->toArray();
@@ -266,7 +266,7 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
         }
 
         $namespace = BearRegexService::extractFirst('~(.*)\\\\[^\\\\]+$~', $model->getNameSpace()) . '\\Crud';
-        $content = '<?php' . PHP_EOL . PHP_EOL;
+        $content = '<?php declare(strict_types=1);' . PHP_EOL . PHP_EOL;
         $content .= 'namespace ' . $namespace . ';' . PHP_EOL . PHP_EOL;
         $hh = $headers->toArray();
         sort($hh);

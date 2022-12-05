@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 use Carbon\CarbonImmutable;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Route;
@@ -288,6 +289,36 @@ class Req {
             return $default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         return ValidateAndParseValue::parseJsonToArray(value: $value);
+    }
+
+
+    /**
+     * @param string $key
+     * @param bool $nullIfMissing
+     * @return ArrayObject<mixed>|null
+     */
+    public static function getArrayObject(string $key, bool $nullIfMissing = false): ArrayObject|null {
+        if (!self::has(key: $key)) {
+            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+        }
+        $val = self::request()->input(key: $key);
+        if ($val === null) {
+            return null;
+        }
+        return ValidateAndParseValue::parseJsonToArrayObject(value: $val);
+    }
+
+    /**
+     * @param string $key
+     * @param ArrayObject<mixed> $default
+     * @return ArrayObject<mixed>
+     */
+    public static function getArrayObjectOrDefault(string $key, ArrayObject $default = null): ArrayObject {
+        $value = self::request()->input(key: $key);
+        if ($value === null) {
+            return $default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
+        }
+        return ValidateAndParseValue::parseJsonToArrayObject(value: $value);
     }
 
 

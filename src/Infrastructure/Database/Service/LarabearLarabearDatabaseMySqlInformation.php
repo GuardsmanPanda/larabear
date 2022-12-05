@@ -102,7 +102,7 @@ class LarabearLarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInfor
 
     private function mysqlTypeToPhpHeader(string $mysql_type): string {
         return match ($mysql_type) {
-            'json' => 'use ArrayObject;',
+            'json' => 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;',
             'char', 'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum', 'tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'double' => '',
             'date', 'datetime', 'timestamp' => 'use Carbon\\CarbonInterface;',
             default => throw new RuntimeException(message: "Unknown type: $mysql_type")

@@ -2,7 +2,6 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 
-use ArrayObject;
 use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
@@ -10,6 +9,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormat
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Model\BearCountry;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Model\BearLanguage;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;

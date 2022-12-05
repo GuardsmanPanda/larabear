@@ -2,11 +2,11 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Error\Model;
 
-use ArrayObject;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Model\BearSeverity;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;

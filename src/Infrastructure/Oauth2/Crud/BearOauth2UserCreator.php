@@ -2,12 +2,12 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
-use ArrayObject;
 use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Support\Str;
 
 class BearOauth2UserCreator {

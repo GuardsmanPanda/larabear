@@ -2,10 +2,10 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Config\Model;
 
-use ArrayObject;
 use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use Illuminate\Database\Eloquent\Collection;

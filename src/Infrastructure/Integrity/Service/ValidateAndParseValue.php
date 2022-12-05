@@ -1,8 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Integrity\Service;
 
 use Carbon\CarbonImmutable;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use InvalidArgumentException;
 use stdClass;
 use Throwable;
@@ -35,11 +36,11 @@ class ValidateAndParseValue {
     }
 
     /**
-     * @param string|array<mixed> $value
+     * @param array<mixed>|string $value
      * @param string|null $errorMessage
      * @return array<mixed>
      */
-    public static function parseJsonToArray(string|array $value, string $errorMessage = null): array {
+    public static function parseJsonToArray(array|string $value, string $errorMessage = null): array {
         if (is_array($value)) {
             return $value;
         }
@@ -49,6 +50,18 @@ class ValidateAndParseValue {
             $msg = "Invalid JSON: " . $e->getMessage();
             throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
         }
+    }
+
+    /**
+     * @param ArrayObject<mixed>|array<mixed>|string $value
+     * @param string|null $errorMessage
+     * @return ArrayObject<mixed>
+     */
+    public static function parseJsonToArrayObject(ArrayObject|array|string $value, string $errorMessage = null): ArrayObject {
+        if (is_string($value)) {
+            $value = self::parseJsonToArray($value, $errorMessage);
+        }
+        return $value instanceof ArrayObject ? $value : new ArrayObject($value);
     }
 
     public static function parseJsonToStdClass(string $value, string $errorMessage = null): stdClass {

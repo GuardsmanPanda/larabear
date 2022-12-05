@@ -120,7 +120,7 @@ class LarabearDatabaseModelDto {
             $column->requiredHeader = '';
             $column->sortOrder = 6;
         }
-        if ($column->requiredHeader === 'use ArrayObject;') {
+        if ($column->requiredHeader === 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;') {
             $this->headers->add(element: 'use Illuminate\\Database\\Eloquent\\Casts\\AsArrayObject;');
         }
         $this->headers->add(element: $column->requiredHeader);

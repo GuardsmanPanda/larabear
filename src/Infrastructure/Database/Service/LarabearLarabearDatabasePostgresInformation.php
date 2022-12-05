@@ -105,7 +105,7 @@ class LarabearLarabearDatabasePostgresInformation extends LarabearDatabaseBaseIn
 
     private function postgresTypeToPhpHeader(string $postgres_type): string {
         return match ($postgres_type) {
-            'jsonb' => 'use ArrayObject;',
+            'jsonb' => 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;',
             'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean' => '',
             'date', 'timestamp with time zone' => 'use Carbon\\CarbonInterface;',
             default => throw new RuntimeException(message: "Unknown type: $postgres_type")

@@ -1,11 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Config\Crud;
 
-use ArrayObject;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
 
 class BearConfigCreator {
     /**
