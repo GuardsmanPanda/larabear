@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use GuardsmanPanda\Larabear\Web\Www\Oauth2\Controller\Oauth2ClientController;
 use Illuminate\Support\Facades\Route;

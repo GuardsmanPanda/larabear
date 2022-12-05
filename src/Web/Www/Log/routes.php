@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use GuardsmanPanda\Larabear\Web\Www\Log\Controller\LarabearLogErrorController;
 use GuardsmanPanda\Larabear\Web\Www\Log\Controller\LarabearLogResponseErrorController;
