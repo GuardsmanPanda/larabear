@@ -9,16 +9,13 @@ use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogResponseErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Crud\BearLogRouteUsageCrud;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
 class BearInitiateMiddleware {
@@ -26,39 +23,13 @@ class BearInitiateMiddleware {
     public static array $headers = ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
     private Encrypter $encrypt;
 
-    public function __construct(private readonly Application $app) {
+    public function __construct() {
         $key = ValidateAndParseValue::parseString(value: Config::get(key: 'bear.cookie.session_key'), errorMessage: 'bear.cookie.session_key must be set to  a string');
         $this->encrypt = new Encrypter(key: base64_decode($key), cipher: Config::get(key: 'app.cipher'));
     }
 
     public function handle(Request $request, Closure $next): Response {
         BearGlobalStateService::clearState();
-        //----------------------------------------------------------------------------------------------------------
-        //  Handle maintenance mode
-        //----------------------------------------------------------------------------------------------------------
-        if ($this->app->isDownForMaintenance()) {
-            try {
-                $data = file_get_contents(filename: $this->app->storagePath() . '/framework/down');
-                if (is_string($data)) {
-                    $json = json_decode(json: $data, associative: true, depth: 256, flags: JSON_THROW_ON_ERROR);
-                    if (isset($json['redirect'])) {
-                        $path = $json['redirect'] === '/' ? $json['redirect'] : trim($json['redirect'], '/');
-                        if ($request->path() !== $path) {
-                            return new RedirectResponse($path, status: 307);
-                        }
-                        $hh = isset($json['retry']) ? ['Retry-After' => $json['retry']] : [];
-                        if (isset($json['refresh'])) {
-                            $hh['Refresh'] = $json['refresh'];
-                        }
-                        return new Response(content: $json['template'] ?? 'Service Unavailable', status: $json['status'] ?? 503, headers: $hh);
-                    }
-                }
-            } catch (Throwable $t) {
-                throw new HttpException(statusCode: 500, message: 'The down file is not valid JSON.', previous: $t);
-            }
-            throw new HttpException(statusCode: 500, message: 'The down file error.');
-        }
-
         //----------------------------------------------------------------------------------------------------------
         //  Init the Req class and set headers to ensure browser does not store data if endpoint is auth secured.
         //----------------------------------------------------------------------------------------------------------
