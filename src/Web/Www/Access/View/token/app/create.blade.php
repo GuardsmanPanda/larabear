@@ -2,7 +2,7 @@
     <div class="grid grid-cols-2 gap-4">
         <x-bear::form.text id="access_token" required pattern="token/[a-zA-Z0-9_.~+/-]+" placeholder="token/[a-zA-Z0-9_.~+/-]+"></x-bear::form.text>
         <x-bear::form.text id="api_primary_key" placeholder="Available In BearGlobalStateService::getApiPrimaryKey()"></x-bear::form.text>
-        <x-bear::form.text id="access_token_purpose" required pattern="[a-z0-9_]+" placeholder="Describe the usage of the token.." class="col-span-2"></x-bear::form.text>
+        <x-bear::form.text id="access_token_purpose" required placeholder="Describe the usage of the token.." class="col-span-2"></x-bear::form.text>
         <x-bear::form.text id="route_prefix_restriction" required>/</x-bear::form.text>
         <x-bear::form.text id="server_hostname_restriction"></x-bear::form.text>
         <x-bear::form.text id="request_ip_restriction" required>0.0.0.0/0</x-bear::form.text>

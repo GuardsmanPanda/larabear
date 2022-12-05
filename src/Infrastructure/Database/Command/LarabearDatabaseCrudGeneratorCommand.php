@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Command;
 
@@ -216,8 +216,7 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
     private function generateServiceCrud(LarabearDatabaseModelDto $model): void {
         $filename = $model->getModelClassName() . 'Crud.php';
         $location = BearRegexService::extractFirst(regex: '~(.*?)/.+$~', subject:$model->getModelLocation()) . '/Crud';
-        $location = preg_replace(pattern: '~'.Config::get(key:'bear.data_access_layer_folder') . '~', replacement: Config::get(key:'bear.application_layer_folder'), subject: $location, limit: 1);
-        if (!is_string($location) || File::exists($location)) {
+        if (File::exists($location)) {
             ConsoleService::printTestResult(testName: '', warningMessage: "File: [$filename] already exists.  [$location]");
             return;
         }

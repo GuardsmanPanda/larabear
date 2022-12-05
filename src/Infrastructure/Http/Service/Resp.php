@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearInitiateMiddleware;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Console\Listener;
 
@@ -8,7 +8,6 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearLogConsoleEventCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearLogConsoleEventUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
-use http\Exception\RuntimeException;
 use Illuminate\Console\Events\CommandFinished;
 use Illuminate\Console\Events\CommandStarting;
 use Illuminate\Console\Events\ScheduledTaskFinished;
@@ -16,6 +15,7 @@ use Illuminate\Console\Events\ScheduledTaskStarting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
+use RuntimeException;
 use Throwable;
 
 class ConsoleRegisterListeners {

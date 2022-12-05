@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use GuardsmanPanda\Larabear\Web\Api\Error\Controller\LarabearApiErrorController;
 use Illuminate\Support\Facades\Route;

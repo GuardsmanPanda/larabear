@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use GuardsmanPanda\Larabear\Web\Www\Access\Controller\LarabearAccessTokenAppController;
 use GuardsmanPanda\Larabear\Web\Www\Access\Controller\LarabearPermissionController;
