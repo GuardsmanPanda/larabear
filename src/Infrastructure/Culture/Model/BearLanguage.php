@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace GuardsmanPanda\Larabear\Culture\Model;
+namespace GuardsmanPanda\Larabear\Infrastructure\Culture\Model;
 
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;

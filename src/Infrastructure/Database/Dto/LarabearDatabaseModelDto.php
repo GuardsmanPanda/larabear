@@ -226,7 +226,7 @@ class LarabearDatabaseModelDto {
 
 
     private function getTopOfClass(): string {
-        $content = "<?php" . PHP_EOL . PHP_EOL . 'namespace ' . $this->getNameSpace() . ';' . PHP_EOL . PHP_EOL;
+        $content = "<?php declare(strict_types=1);" . PHP_EOL . PHP_EOL . 'namespace ' . $this->getNameSpace() . ';' . PHP_EOL . PHP_EOL;
         if ($this->hasCompositePrimaryKey()) {
             $this->headers->add(element: 'use Illuminate\Database\Eloquent\Builder as EloquentBuilder;');
             $this->headers->add(element: 'use RuntimeException;');
