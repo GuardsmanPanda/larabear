@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
-class LarabearLarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInformation {
+class LarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInformation {
     private readonly string $databaseName;
 
     public function __construct(private readonly string $connectionName) {
@@ -31,7 +31,7 @@ class LarabearLarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInfor
             $tmp[] = new LarabearDatabaseColumnDto(
                 columnName: $row->column_name,
                 nativeDataType: $row->data_type,
-                isNullable: $row->is_nullable,
+                isNullable: (bool)$row->is_nullable,
                 phpDataType: $this->databaseTypeToPhpType(databaseType: $row->data_type),
                 sortOrder: $this->mysqlTypeSortOrder($row->data_type) + ($row->is_nullable ? 1 : 0),
                 requiredHeader: $this->mysqlTypeToPhpHeader($row->data_type),

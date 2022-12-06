@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
-class LarabearLarabearDatabasePostgresInformation extends LarabearDatabaseBaseInformation {
+class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInformation {
     private readonly string $databaseName;
     private readonly string $schemaName;
 

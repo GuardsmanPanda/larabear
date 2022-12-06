@@ -10,8 +10,8 @@ use stdClass;
 abstract class LarabearDatabaseBaseInformation {
     public static function getInstance(string $connectionName): LarabearDatabaseBaseInformation {
         return match (Config::get(key: "database.connections.$connectionName.driver")) {
-            'pgsql' => new LarabearLarabearDatabasePostgresInformation($connectionName),
-            'mysql' => new LarabearLarabearDatabaseMySqlInformation($connectionName),
+            'pgsql' => new LarabearDatabasePostgresInformation($connectionName),
+            'mysql' => new LarabearDatabaseMySqlInformation($connectionName),
             default => throw new RuntimeException(message: 'Unsupported database driver for: ' . $connectionName)
         };
     }
