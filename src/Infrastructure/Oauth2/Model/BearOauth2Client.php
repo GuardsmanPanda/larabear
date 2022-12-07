@@ -40,7 +40,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $updated_at
  * @property string $oauth2_client_id
  * @property string $oauth2_token_uri
- * @property string $oauth2_client_slug
  * @property string $oauth2_user_scope
  * @property string $oauth2_client_type
  * @property string $oauth2_authorize_uri

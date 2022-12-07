@@ -19,7 +19,6 @@
     @foreach($clients as $client)
         <tr class="hover:bg-sky-50">
             <x-bear::table.cell.uuid>{{$client->oauth2_client_id}}</x-bear::table.cell.uuid>
-            <td class="px-2.5 py-2.5">{{$client->oauth2_client_slug}}</td>
             <td class="px-2.5 py-2.5">{{$client->oauth2_client_type}}</td>
             <td class="px-2.5 py-2.5">{{$client->oauth2_client_description}}</td>
             <x-bear::table.cell.relative>{{$client->created_at}}</x-bear::table.cell.relative>

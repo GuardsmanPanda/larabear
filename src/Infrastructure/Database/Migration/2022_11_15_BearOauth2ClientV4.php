@@ -13,7 +13,6 @@ return new class extends Migration {
         Schema::create(table: 'bear_oauth2_client', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'oauth2_client_id')->primary();
-                $table->text(column: 'oauth2_client_slug');
                 $table->text(column: 'oauth2_client_description');
                 $table->text(column: 'oauth2_client_type');
                 $table->text(column: 'oauth2_client_base_url')->nullable();
@@ -25,7 +24,6 @@ return new class extends Migration {
                 $table->text(column: 'oauth2_client_redirect_path')->nullable();
             } else {
                 $table->string(column: 'oauth2_client_id')->primary();
-                $table->string(column: 'oauth2_client_slug');
                 $table->string(column: 'oauth2_client_description');
                 $table->string(column: 'oauth2_client_type');
                 $table->string(column: 'oauth2_client_base_url')->nullable();

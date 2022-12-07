@@ -14,7 +14,7 @@ class Oauth2ClientController extends Controller {
 
     public function index(): View {
         return view(view: 'larabear-oauth2::client.index', data: [
-            'clients' => DB::select(query: "SELECT * FROM bear_oauth2_client ORDER BY oauth2_client_slug"),
+            'clients' => DB::select(query: "SELECT * FROM bear_oauth2_client ORDER BY created_at DESC"),
         ]);
     }
 
@@ -25,7 +25,6 @@ class Oauth2ClientController extends Controller {
     public function create(): View {
         BearOauth2ClientCreator::create(
             oauth2_client_id: Req::getStringOrDefault(key: 'oauth2_client_id'),
-            oauth2_client_slug: Req::getStringOrDefault(key: 'oauth2_client_slug'),
             oauth2_client_description: Req::getStringOrDefault(key: 'oauth2_client_description'),
             oauth2_client_type: Req::getStringOrDefault(key: 'oauth2_client_type'),
             oauth2_authorize_uri: Req::getStringOrDefault(key: 'oauth2_authorize_uri'),

@@ -18,12 +18,6 @@ class BearOauth2ClientUpdater {
         return new BearOauth2ClientUpdater(model: BearOauth2Client::findOrFail(id: $oauth2_client_id));
     }
 
-
-    public function setOauth2ClientSlug(string $oauth2_client_slug): self {
-        $this->model->oauth2_client_slug = $oauth2_client_slug;
-        return $this;
-    }
-
     public function setOauth2ClientDescription(string $oauth2_client_description): self {
         $this->model->oauth2_client_description = $oauth2_client_description;
         return $this;

@@ -1,7 +1,6 @@
 <x-bear::dialog.crud type="create" submitText="Create" title="New API Access Token" endpoint="/bear/oauth2/client" class="w-[50rem]">
     <div class="grid grid-cols-3 gap-4">
         <x-bear::form.text id="oauth2_client_id" required></x-bear::form.text>
-        <x-bear::form.text id="oauth2_client_slug" required></x-bear::form.text>
         <x-bear::form.select id="oauth2_client_type" required>
             <option value="MICROSOFT">MICROSOFT</option>
             <option value="GOOGLE">GOOGLE</option>

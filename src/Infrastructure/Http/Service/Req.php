@@ -110,21 +110,6 @@ class Req {
         return $value;
     }
 
-    public static function allObjectData(): stdClass {
-        try {
-            $content = self::request()->getContent();
-            if (is_string(value: $content)) {
-                $value = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                if ($value instanceof stdClass) {
-                    return $value;
-                }
-            }
-        } catch (Throwable $t) {
-            throw new BadRequestHttpException(message: 'Invalid Json Data', previous: $t);
-        }
-        throw new BadRequestHttpException(message: 'Data is not a Json Object');
-    }
-
     /**
      * @return array<string, string>
      */

@@ -8,7 +8,6 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 class BearOauth2ClientCreator {
     public static function create(
         string $oauth2_client_id,
-        string $oauth2_client_slug,
         string $oauth2_client_description,
         string $oauth2_client_type,
         string $oauth2_authorize_uri,
@@ -25,7 +24,6 @@ class BearOauth2ClientCreator {
         $model = new BearOauth2Client();
 
         $model->oauth2_client_id = $oauth2_client_id;
-        $model->oauth2_client_slug = $oauth2_client_slug;
         $model->oauth2_client_description = $oauth2_client_description;
         $model->oauth2_client_type = $oauth2_client_type;
         $model->oauth2_authorize_uri = $oauth2_authorize_uri;
