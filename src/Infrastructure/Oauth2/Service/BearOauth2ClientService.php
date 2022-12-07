@@ -46,6 +46,7 @@ class BearOauth2ClientService {
         if ($accountPrompt) {
             $query_data .= match ($client->oauth2_client_type) {
                 'MICROSOFT', 'GOOGLE' => '&prompt=select_account',
+                'OTHER', 'HELP_SCOUT' => '',
                 default => throw new RuntimeException(message: "User prompt not supported for client type $client->oauth2_client_type"),
             };
         }
@@ -187,6 +188,7 @@ class BearOauth2ClientService {
                 $scopes->add(element: 'user:read:email');
                 $scopes->add(element: 'openid');
                 break;
+            case 'HELP_SCOUT':
             case 'OTHER':
                 break;
             default:
