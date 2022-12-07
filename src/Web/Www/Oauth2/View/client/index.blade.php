@@ -10,7 +10,6 @@
 <x-bear::table.layout.standard>
     <x-slot name="tableHead">
         <th scope="col" class="px-2.5 py-3">Id</th>
-        <th scope="col" class="px-2.5 py-3">Slug</th>
         <th scope="col" class="px-2.5 py-3">Type</th>
         <th scope="col" class="whitespace-nowrap px-2.5 py-3">Description</th>
         <th scope="col" class="px-2.5 py-3">Created</th>
