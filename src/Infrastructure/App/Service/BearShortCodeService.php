@@ -11,7 +11,7 @@ class BearShortCodeService {
     public static function generateNextCode(): string {
         $updater = BearConfigUpdater::fromConfigKey(config_key: 'larabear.last_unique_short_code', lockForUpdate: true);
         $value = $updater->getConfigString();
-        if (!is_string($value)) {
+        if (!is_string(value: $value)) {
             throw new RuntimeException(message: 'The last_unique_short_code config value is not a string.');
         }
 

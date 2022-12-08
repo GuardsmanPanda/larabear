@@ -79,11 +79,8 @@ class LarabearDatabaseModelService {
         }
     }
 
-    /**
-     * @param Model $model
-     * @return array<string, mixed>
-     */
-    public static function extractAuditColumns(Model $model): array {
+
+    public static function extractAuditColumns(Model $model): string {
         $ignore_columns = property_exists(object_or_class: $model, property: 'log_exclude_columns') ? $model->log_exclude_columns : [];
         $arr = $model->toArray();
         foreach ($arr as $key => $value) {
@@ -94,7 +91,7 @@ class LarabearDatabaseModelService {
                 unset($arr[$key]);
             }
         }
-        return $arr;
+        return json_encode($arr, JSON_THROW_ON_ERROR);
     }
 
     /**

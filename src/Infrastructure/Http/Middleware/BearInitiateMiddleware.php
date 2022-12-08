@@ -76,7 +76,7 @@ class BearInitiateMiddleware {
         }
         foreach ($bags as $bag) {
             foreach ($bag->getIterator() as $key => $value) {
-                if (!is_string($value)) {
+                if (!is_string(value: $value)) {
                     continue;
                 }
                 $value = trim($value);

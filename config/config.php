@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
 return [
-    'cookie' => [
-        'session_key' => env(key: 'LARABEAR_SESSION_KEY'),
-    ],
-    'log_database_connection' => null,
+    'cookie.session_key' => env(key: 'LARABEAR_SESSION_KEY'),
+    'dev_emails' => ['dev@example.com'],
     'log_database_change_channel' => null,
+    'log_database_connection' => null,
+    'postmark_from_email' => 'dev@example.com',
     'postmark_token' => env(key: 'POSTMARK_TOKEN'),
     'response_error_log' => [
         'enabled' => true,
