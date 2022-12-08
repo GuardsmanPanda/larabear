@@ -6,6 +6,7 @@ return [
     ],
     'log_database_connection' => null,
     'log_database_change_channel' => null,
+    'postmark_token' => env(key: 'POSTMARK_TOKEN'),
     'response_error_log' => [
         'enabled' => true,
         'ignore_response_codes' => [401, 403],
@@ -14,10 +15,6 @@ return [
         'enabled' => true,
         'log_one_in_every' => 1,
     ],
-    'uptime_kuma' => [
-        'base_url' => env(key: 'LARABEAR_UPTIME_KUMA_BASE_URL'),
-    ],
-
     //------------------------------------------------------------------------------------------------------------------
     // Config for generating eloquent models, the "eloquent-models" array has en entry for each connection that wants models generated,as defined in config/database.php
     //------------------------------------------------------------------------------------------------------------------

@@ -17,7 +17,6 @@ class LarabearValidateConfigurationCommand extends Command {
             return;
         }
         $this->validateSessionSettings();
-        $this->validateUptimeKumaSettings();
         $this->validateResponseErrorLogSettings();
         $this->validateRouteUsageLogSettings();
         $this->output->writeln(messages: '');
@@ -88,23 +87,6 @@ class LarabearValidateConfigurationCommand extends Command {
         ConsoleService::printTestResult(
             testName: "Session Only Encryption Key Should Be Set",
             errorMessage: Config::get('bear.cookie.session_key') === null ? "Missing session encryption key, generate with 'php artisan bear:generate-session-key' and check 'cookie' => 'session_key' config/bear.php" : null
-        );
-    }
-
-
-    private function validateUptimeKumaSettings(): void {
-        ConsoleService::printH2(headline: 'Validating uptime kuma settings');
-        $config = Config::get('bear.uptime_kuma');
-        if ($config === null) {
-            ConsoleService::printTestResult(
-                testName: 'Uptime Kuma Settings Are Not Set',
-                warningMessage: 'Missing uptime kuma settings, add "uptime_kuma" to config/bear.php'
-            );
-            return;
-        }
-        ConsoleService::printTestResult(
-            testName: 'Uptime Kuma Should Be In Config',
-            errorMessage: array_key_exists(key: 'base_url', array: $config) ? null : "Missing uptime kuma base url, add 'base_url' to 'uptime_kuma' in config/bear.php"
         );
     }
 }
