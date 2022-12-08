@@ -10,7 +10,7 @@ use Throwable;
 
 class ValidateAndParseValue {
     public static function parseInt(mixed $value, string $errorMessage = null): int {
-        if (is_int($value) || (is_string($value) && ctype_digit($value))) {
+        if (is_int($value) || (is_string($value) && preg_match(pattern: '/^-?\d+$/', subject: $value))) {
             return (int)$value;
         }
         $msg = "$value is not an integer, type: " . gettype($value);
