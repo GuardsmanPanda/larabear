@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Integration\Api\Client;
 
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2ClientService;
@@ -43,14 +44,13 @@ class BearApiClient {
 
     /**
      * @param string $path
-     * @param string $method
      * @param array<string, string> $headers
-     * @param array<string, string> $body
-     * @param array<string, string> $query
+     * @param array<string, mixed> $additionalBodyContent
+     * @param array<string, string> $additionalQuery
      * @return JsonResponse
      */
-    public function requestToJsonResponse(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = []): JsonResponse {
-        $resp = $this->request(path: $path, method: $method, headers: $headers, body: $body, query: $query);
+    public function requestToJsonResponse(string $path,  array $headers = [], array $additionalBodyContent = [], array $additionalQuery = []): JsonResponse {
+        $resp = $this->request(path: $path, method: Req::method(), headers: $headers, body: Req::allJsonData(allowEmpty: true) + $additionalBodyContent, query: Req::allQueryData() + $additionalQuery);
         return new JsonResponse(data: $resp->body(), status: $resp->status(), json: true);
     }
 
@@ -58,11 +58,11 @@ class BearApiClient {
      * @param string $path
      * @param string $method
      * @param array<string, string> $headers
-     * @param array<string, string> $body
+     * @param array<string, mixed> $body
      * @param array<string, string> $query
      * @return array<string, mixed>
      */
-    public function requestToArray(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = []): array {
+    public function toArray(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = []): array {
         return $this->request(path: $path, method: $method, headers: $headers, body: $body, query: $query)->json();
     }
 
@@ -73,7 +73,7 @@ class BearApiClient {
      * @param array<string, string> $query
      * @return array<string, mixed>
      */
-    public function pagedGetRequestToArray(string $path, array $headers = [], array $query = [], string $dataKey = 'value'): array {
+    public function pagedGetToArray(string $path, array $headers = [], array $query = [], string $dataKey = 'value'): array {
         $json = $this->request(path: $path, headers: $headers, query: $query)->json();
         $value = $json[$dataKey] ?? [];
         while (array_key_exists('@odata.nextLink', $json)) {

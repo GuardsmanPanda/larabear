@@ -12,20 +12,17 @@ class PostmarkClient {
     public static function sendMessage(
         string $to,
         string $subject,
-        string $from = null,
         string $htmlBody = null,
         string $textBody = null,
         string $tag = null,
         string $replyTo = null,
         string $cc = null,
-        string $bcc = null,
-        array $attachments = null,
-        array $metadata = null
+        string $bcc = null
     ): string|null {
         $client = new MailClient(serverToken: Config::get(key: 'bear.postmark_token') ?? throw new RuntimeException(message: 'Missing encrypted_api_token'));
         try {
             $result = $client->sendEmail(
-                from: $from ?? Config::get(key: 'bear.postmark_from_email') ?? throw new RuntimeException(message: 'Missing email_from'),
+                from: Config::get(key: 'bear.postmark_from_email') ?? throw new RuntimeException(message: 'Missing email_from'),
                 to: $to,
                 subject: $subject,
                 htmlBody: $htmlBody,
@@ -33,9 +30,7 @@ class PostmarkClient {
                 tag: $tag,
                 replyTo: $replyTo,
                 cc: $cc,
-                bcc: $bcc,
-                attachments: $attachments,
-                metadata: $metadata
+                bcc: $bcc
             );
             return $result->messageId ?? throw new RuntimeException(message: 'No messageId returned');
         } catch (Throwable $t) {
