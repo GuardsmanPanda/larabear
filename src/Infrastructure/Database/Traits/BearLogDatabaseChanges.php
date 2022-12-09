@@ -44,7 +44,7 @@ trait BearLogDatabaseChanges {
                 if (is_bool($new_value)) {
                     $new_value = $new_value ? 'true' : 'false';
                 }
-                BearLogDatabaseChangeCreator::create(model: $model, changeType: 'UPDATE', columnName: $column_name, oldValue: $old_value, newValue: $new_value);
+                BearLogDatabaseChangeCreator::create(model: $model, changeType: 'UPDATE', columnName: $column_name, oldValue: (string)$old_value, newValue: (string)$new_value);
             }
         });
     }
