@@ -85,7 +85,7 @@ class BearOauth2ClientService {
             ->setEncryptedUserAccessToken(encrypted_user_access_token: $data['access_token'], user_access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']))
             ->setOauth2UserName(oauth2_user_name: $token->name)
             ->setOauth2UserEmail(oauth2_user_email: $token->email)
-            ->setOauth2Scope(oauth2_scope: $data['scope']);
+            ->setOauth2Scope(oauth2_scope: is_array($data['scope']) ? implode(separator: ' ', array: $data['scope']) : $data['scope']);
 
         if ($updater->getUserId() === null) {
             $updater->setUserId(user_id: $bearUser?->id);
