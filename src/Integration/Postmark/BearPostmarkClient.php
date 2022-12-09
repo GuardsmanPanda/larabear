@@ -8,7 +8,7 @@ use Postmark\PostmarkClient as MailClient;
 use RuntimeException;
 use Throwable;
 
-class PostmarkClient {
+class BearPostmarkClient {
     public static function sendMessage(
         string $to,
         string $subject,
