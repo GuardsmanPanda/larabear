@@ -7,6 +7,7 @@ return [
     'log_database_connection' => null,
     'postmark_from_email' => 'dev@example.com',
     'postmark_token' => env(key: 'POSTMARK_TOKEN'),
+    'postmark_sandbox_token' => env(key: 'POSTMARK_SANDBOX_TOKEN'),
     'response_error_log' => [
         'enabled' => true,
         'ignore_response_codes' => [401, 403],

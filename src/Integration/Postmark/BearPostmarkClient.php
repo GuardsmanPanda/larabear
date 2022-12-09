@@ -17,9 +17,11 @@ class BearPostmarkClient {
         string $tag = null,
         string $replyTo = null,
         string $cc = null,
-        string $bcc = null
+        string $bcc = null,
+        bool $sandbox = false
     ): string|null {
-        $client = new MailClient(serverToken: Config::get(key: 'bear.postmark_token') ?? throw new RuntimeException(message: 'Missing encrypted_api_token'));
+        $token = $sandbox ? (Config::get(key: 'bear.postmark_sandbox_token') ?? throw new RuntimeException(message: 'Missing postmark_sandbox_token')) : (Config::get(key: 'bear.postmark_token') ?? throw new RuntimeException(message: 'Missing postmark_token'));
+        $client = new MailClient(serverToken: $token);
         try {
             $result = $client->sendEmail(
                 from: Config::get(key: 'bear.postmark_from_email') ?? throw new RuntimeException(message: 'Missing email_from'),
