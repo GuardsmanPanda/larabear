@@ -62,7 +62,6 @@
                     <x-bear::sidebar.link path="/bear/access/token/app" icon="key" >API Tokens</x-bear::sidebar.link>
                     <x-bear::sidebar.link path="/bear/access/permission" icon="lock-closed" >Permissions</x-bear::sidebar.link>
                     <x-bear::sidebar.link path="/bear/access/role" icon="clipboard-document" >Roles</x-bear::sidebar.link>
-                    <x-bear::sidebar.link path="/bear/access/role-permission" icon="clipboard-document-check" >Role Permissions</x-bear::sidebar.link>
                     <x-bear::sidebar.divider>Config</x-bear::sidebar.divider>
                     <x-bear::sidebar.link path="/bear/config" icon="wrench" >Config</x-bear::sidebar.link>
                     <x-bear::sidebar.divider>Oauth2</x-bear::sidebar.divider>
@@ -142,7 +141,7 @@
         if (event.detail.successful) {
             if (event.detail.target.id === 'dialog-content') {
                 document.getElementById('dialog').showModal();
-            } else if (event.detail.requestConfig.headers['hx-dialog'] === 'close') {
+            } else if (event.detail.elt.hasAttribute('hx-dialog-close')) {
                 document.getElementById('dialog').close();
             }
         } else {

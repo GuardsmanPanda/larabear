@@ -1,6 +1,4 @@
-<div class="py-4 px-6">
-    {!!$slot!!}
-</div>
+{!!$slot!!}
 @if($includeButton === true)
     <div class="border-t flex gap-2 py-3  px-4 flex-row-reverse">
         <form method="dialog">

@@ -1,4 +1,4 @@
-<form id="dialog-form" {!! $action !!} autocomplete="off" {{ $attributes->merge(['class' => 'py-4 px-6']) }} hx-dialog-close>
+<form id="dialog-form" {!! $action !!} autocomplete="off" {{ $attributes }} hx-dialog-close>
     <x-bear::form.csrf/>
     {!!$slot!!}
 </form>

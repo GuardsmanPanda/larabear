@@ -22,6 +22,7 @@
             <x-bear::table.cell.relative>{{$role->created_at}}</x-bear::table.cell.relative>
             <x-bear::table.cell.relative>{{$role->updated_at}}</x-bear::table.cell.relative>
             <td class="px-2.5">
+                <x-bear::buttonOutline icon="lock-closed" size="tiny" hx-get='{{"/bear/access/role/$role->role_slug/permission"}}' hx-target="#dialog-content">{{$role->permission_count}} Permissions</x-bear::buttonOutline>
                 <x-bear::buttonOutline icon="pencil" size="tiny" hx-get='{{"/bear/access/role/$role->role_slug/update"}}' hx-target="#dialog-content">Edit</x-bear::buttonOutline>
                 <x-bear::buttonOutline color="red" class="ml-1" icon="trash" size="tiny" hx-delete='{{"/bear/access/role/$role->role_slug"}}' hx-target="closest tr">Delete</x-bear::buttonOutline>
             </td>
