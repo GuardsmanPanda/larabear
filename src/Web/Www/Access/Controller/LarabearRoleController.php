@@ -2,6 +2,9 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Access\Controller;
 
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRolePermissionCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRolePermissionDeleter;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearRolePermission;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRoleCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRoleDeleter;
@@ -30,19 +33,32 @@ class LarabearRoleController extends Controller {
         return $this->index();
     }
 
-    public function permissionDialog(string $slug): View {
+    public function permissionDialog(string $role_slug): View {
         return view(view: 'larabear-access::role.role-permission', data: [
-            'slug' => $slug,
+            'slug' => $role_slug,
             'permissions' => DB::select(query: "
                 SELECT
                     p.*,
                     EXISTS(SELECT * FROM bear_role_permission WHERE role_slug = ? AND permission_slug = p.permission_slug) AS has_permission
                 FROM bear_permission p
-            ", bindings: [$slug]),
+            ", bindings: [$role_slug]),
         ]);
     }
 
-    public function delete(string $slug): void {
-        BearRoleDeleter::deleteFromRoleSlug(role_slug: $slug);
+    public function addPermissionToRole(string $role_slug, string $permission_slug): view {
+        BearRolePermissionCreator::create(role_slug: $role_slug, permission_slug: $permission_slug);
+        return $this->permissionDialog(role_slug: $role_slug);
+    }
+
+    public function deletePermissionFromRole(string $role_slug, string $permission_slug): view {
+        BearRolePermissionDeleter::delete(model: BearRolePermission::findOrFail([
+            'role_slug' => $role_slug,
+            'permission_slug' => $permission_slug,
+        ]));
+        return $this->permissionDialog(role_slug: $role_slug);
+    }
+
+    public function delete(string $role_slug): void {
+        BearRoleDeleter::deleteFromRoleSlug(role_slug: $role_slug);
     }
 }

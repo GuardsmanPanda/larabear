@@ -2,7 +2,7 @@
     <x-bear::form.csrf/>
     {!!$slot!!}
 </form>
-<div class="border-t flex gap-2 py-3  px-4 flex-row-reverse">
+<div class="border-t flex gap-2 pt-3 mt-3 flex-row-reverse">
     <form method="dialog"><x-bear::button type="submit">{{$cancelText}}</x-bear::button></form>
     <x-bear::button-dark form="dialog-form" type="submit" >{{$submitText}}</x-bear::button-dark>
 </div>

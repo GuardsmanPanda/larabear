@@ -19,8 +19,10 @@ Route::prefix('role')->group(function (): void {
     Route::get(uri: '', action: [LarabearRoleController::class, 'index']);
     Route::post(uri: '', action: [LarabearRoleController::class, 'create']);
     Route::get(uri: 'create', action: [LarabearRoleController::class, 'createDialog']);
-    Route::get(uri: '{slug}/permission', action: [LarabearRoleController::class, 'permissionDialog']);
-    Route::delete(uri: '{slug}', action: [LarabearRoleController::class, 'delete']);
+    Route::get(uri: '{role_slug}/permission', action: [LarabearRoleController::class, 'permissionDialog']);
+    Route::post(uri: '{role_slug}/permission/{permission_slug}', action: [LarabearRoleController::class, 'addPermissionToRole']);
+    Route::delete(uri: '{role_slug}/permission/{permission_slug}', action: [LarabearRoleController::class, 'deletePermissionFromRole']);
+    Route::delete(uri: '{role_slug}', action: [LarabearRoleController::class, 'delete']);
 });
 
 Route::prefix('permission')->group(function (): void {

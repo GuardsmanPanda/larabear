@@ -1,8 +1,8 @@
 {!!$slot!!}
 @if($includeButton === true)
-    <div class="border-t flex gap-2 py-3  px-4 flex-row-reverse">
+    <div class="border-t flex pt-3 mt-3 flex-row-reverse">
         <form method="dialog">
-            <x-bear::button-dark type="submit">{{$closeText}}</x-bear::button-dark>
+            <x-bear::button type="submit">{{$closeText}}</x-bear::button>
         </form>
     </div>
 @endif
