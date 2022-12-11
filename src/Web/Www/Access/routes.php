@@ -35,4 +35,5 @@ Route::prefix('permission')->group(function (): void {
 
 Route::prefix('user')->group(function (): void {
     Route::get(uri: '', action: [LarabearUserController::class, 'index']);
+    Route::get(uri: '{user_id}', action: [LarabearUserController::class, 'roleAndPermissionDialog']);
 });

@@ -62,11 +62,11 @@
                     <x-bear::sidebar.link path="/bear/access/token/app" icon="key" >API Tokens</x-bear::sidebar.link>
                     <x-bear::sidebar.link path="/bear/access/permission" icon="lock-closed" >Permissions</x-bear::sidebar.link>
                     <x-bear::sidebar.link path="/bear/access/role" icon="clipboard-document" >Roles</x-bear::sidebar.link>
-                    <x-bear::sidebar.link path="/bear/access/user" icon="clipboard-document" >User</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/access/user" icon="users" >User</x-bear::sidebar.link>
                     <x-bear::sidebar.divider>Config</x-bear::sidebar.divider>
                     <x-bear::sidebar.link path="/bear/config" icon="wrench" >Config</x-bear::sidebar.link>
                     <x-bear::sidebar.divider>Oauth2</x-bear::sidebar.divider>
-                    <x-bear::sidebar.link path="/bear/credential/oauth2/client" icon="user" >Oauth2 Clients</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/credential/oauth2/client" icon="rectangle-group" >Oauth2 Clients</x-bear::sidebar.link>
                     <x-bear::sidebar.divider>Logs</x-bear::sidebar.divider>
                     <x-bear::sidebar.link path="/bear/log/database-change" icon="circle-stack" >Database Changes</x-bear::sidebar.link>
                     <x-bear::sidebar.link path="/bear/log/error" icon="exclamation-triangle" >Errors</x-bear::sidebar.link>

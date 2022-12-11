@@ -1,1 +1,1 @@
-<td class="px-2.5 py-2.5 cursor-pointer" @if((string)$slot !== '') tippy="{{$slot}}" copy="{{$slot}}" @endif>{{substr($slot, 0, 8)}}</td>
+<td {{ $attributes->merge(['class' => 'px-2.5 py-2.5 cursor-pointer']) }} @if((string)$slot !== '') tippy="{{$slot}}" copy="{{$slot}}" @endif>{{substr($slot, 0, 8)}}</td>
