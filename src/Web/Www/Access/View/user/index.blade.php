@@ -20,8 +20,8 @@
     </x-slot>
     @foreach($users as $user)
         <tr class="hover:bg-sky-50">
-            <x-bear::table.cell.uuid>{{$user->id}}</x-bear::table.cell.uuid>
-            <x-bear::table.cell.flag :countryCode="$user->user_country_iso2_code" :countryName="$user->user_country_iso2_cod"/>
+            <x-bear::table.cell.uuid class="font-medium">{{$user->id}}</x-bear::table.cell.uuid>
+            <x-bear::table.cell.flag :countryCode="$user->user_country_iso2_code" :countryName="$user->user_country_iso2_code"/>
             <td class="px-2.5 py-2.5">{{$user->user_display_name}}</td>
             <td class="px-2.5 py-2.5">{{$user->user_display_name}}</td>
             <td class="px-2.5 py-2.5">{{$user->is_user_activated ? 'True' : ''}}</td>

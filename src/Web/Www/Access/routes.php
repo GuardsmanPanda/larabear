@@ -35,5 +35,9 @@ Route::prefix('permission')->group(function (): void {
 
 Route::prefix('user')->group(function (): void {
     Route::get(uri: '', action: [LarabearUserController::class, 'index']);
-    Route::get(uri: '{user_id}', action: [LarabearUserController::class, 'roleAndPermissionDialog']);
+    Route::get(uri: '{user_id}/role-and-permission', action: [LarabearUserController::class, 'roleAndPermissionDialog']);
+    Route::post(uri: '{user_id}/role/{role_slug}', action: [LarabearUserController::class, 'addRoleToUser']);
+    Route::delete(uri: '{user_id}/role/{role_slug}', action: [LarabearUserController::class, 'deleteRoleFromUser']);
+    Route::post(uri: '{user_id}/permission/{permission_slug}', action: [LarabearUserController::class, 'addPermissionToUser']);
+    Route::delete(uri: '{user_id}/permission/{permission_slug}', action: [LarabearUserController::class, 'deletePermissionFromUser']);
 });
