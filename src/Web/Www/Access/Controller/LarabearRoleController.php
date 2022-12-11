@@ -35,7 +35,7 @@ class LarabearRoleController extends Controller {
 
     public function permissionDialog(string $role_slug): View {
         return view(view: 'larabear-access::role.role-permission', data: [
-            'slug' => $role_slug,
+            'role_slug' => $role_slug,
             'permissions' => DB::select(query: "
                 SELECT
                     p.*,
