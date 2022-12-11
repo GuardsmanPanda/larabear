@@ -37,7 +37,7 @@ class LarabearUserController extends Controller {
                     EXISTS(SELECT * FROM bear_permission_user WHERE user_id = ? AND permission_slug = p.permission_slug) AS has_permission,
                     EXISTS(SELECT * FROM bear_role_user bru INNER JOIN bear_role_permission brp ON bru.role_slug = brp.role_slug WHERE bru.user_id = ? AND brp.permission_slug = p.permission_slug) AS has_permission_from_role
                 FROM bear_permission p
-            ", bindings: [$user_id]),
+            ", bindings: [$user_id, $user_id]),
             ]);
     }
 
@@ -46,7 +46,7 @@ class LarabearUserController extends Controller {
         return $this->roleAndPermissionDialog(user_id: $user_id);
     }
 
-    public function removeRoleFromUser(string $user_id, string $role_slug): View {
+    public function deleteRoleFromUser(string $user_id, string $role_slug): View {
         BearRoleUserDeleter::delete(model: BearRoleUser::findOrFail(ids: ['user_id' => $user_id, 'role_slug' => $role_slug]));
         return $this->roleAndPermissionDialog(user_id: $user_id);
     }
@@ -56,7 +56,7 @@ class LarabearUserController extends Controller {
         return $this->roleAndPermissionDialog(user_id: $user_id);
     }
 
-    public function removePermissionFromUser(string $user_id, string $permission_slug): View {
+    public function deletePermissionFromUser(string $user_id, string $permission_slug): View {
         BearPermissionUserDeleter::delete(model: BearPermissionUser::findOrFail(ids: ['user_id' => $user_id, 'permission_slug' => $permission_slug]));
         return $this->roleAndPermissionDialog(user_id: $user_id);
     }
