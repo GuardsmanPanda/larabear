@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace GuardsmanPanda\Larabear\Web\Www\Oauth2\Controller;
+namespace GuardsmanPanda\Larabear\Web\Www\Credential\Controller;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientCreator;
@@ -10,16 +10,16 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class Oauth2ClientController extends Controller {
+class LarabearOauth2ClientController extends Controller {
 
     public function index(): View {
-        return view(view: 'larabear-oauth2::client.index', data: [
+        return view(view: 'larabear-credential::oauth2.client.index', data: [
             'clients' => DB::select(query: "SELECT * FROM bear_oauth2_client ORDER BY created_at DESC"),
         ]);
     }
 
     public function createDialog(): View {
-        return view(view: 'larabear-oauth2::client.create');
+        return view(view: 'larabear-credential::oauth2.client.create');
     }
 
     public function create(): View {
@@ -39,7 +39,7 @@ class Oauth2ClientController extends Controller {
     }
 
     public function updateDialog(string $oauth2_client_id): View {
-        return view(view: 'larabear-oauth2::client.update', data: [
+        return view(view: 'larabear-credential::oauth2.client.update', data: [
             'client' => BearOauth2Client::findOrFail(id: $oauth2_client_id),
         ]);
     }
@@ -53,6 +53,6 @@ class Oauth2ClientController extends Controller {
     }
 
     public function addUserDialog(string $oauth2_client_id): View {
-        return view(view: 'larabear-oauth2::client.add-user', data: ['oauth2_client_id' => $oauth2_client_id]);
+        return view(view: 'larabear-credential::oauth2.client.add-user', data: ['oauth2_client_id' => $oauth2_client_id]);
     }
 }

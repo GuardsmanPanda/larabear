@@ -23,7 +23,7 @@
     </x-slot>
     @foreach($access_tokens as $token)
         <tr class="hover:bg-sky-50">
-            <x-bear::table.cell.uuid>{{$token->id}}</x-bear::table.cell.uuid>
+            <x-bear::table.cell.uuid class="font-medium">{{$token->id}}</x-bear::table.cell.uuid>
             <td class="px-2.5 py-2.5">{{$token->api_primary_key}}</td>
             <td class="px-2.5 py-2.5">{{$token->route_prefix_restriction}}</td>
             <td class="px-2.5 py-2.5">{{$token->request_ip_restriction}}</td>

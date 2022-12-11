@@ -17,7 +17,7 @@
     </x-slot>
     @foreach($permissions as $permission)
         <tr class="hover:bg-sky-50">
-            <td class="px-2.5 py-2.5">{{$permission->permission_slug}}</td>
+            <td class="px-2.5 py-2.5 font-medium">{{$permission->permission_slug}}</td>
             <td class="px-2.5 py-2.5">{{$permission->permission_description}}</td>
             <x-bear::table.cell.relative>{{$permission->created_at}}</x-bear::table.cell.relative>
             <x-bear::table.cell.relative>{{$permission->updated_at}}</x-bear::table.cell.relative>

@@ -27,11 +27,11 @@ class BearServiceProvider extends ServiceProvider {
     public function boot(): void {
         if (!($this->app instanceof CachesRoutes && $this->app->routesAreCached())) {
             Route::prefix('bear')->middleware([BearSessionAuthMiddleware::class, BearHtmxMiddleware::class, BearTransactionMiddleware::class, 'permission:larabear-ui'])->group(function () {
-                Route::prefix('access')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Access/routes.php'));
-                Route::prefix('config')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Config/routes.php'));
                 Route::prefix('')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Dashboard/routes.php'));
+                Route::prefix('access')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Access/routes.php'));
+                Route::prefix('credential')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Oauth2/routes.php'));
+                Route::prefix('config')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Config/routes.php'));
                 Route::prefix('log')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Log/routes.php'));
-                Route::prefix('oauth2')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Oauth2/routes.php'));
             });
             Route::prefix('bear/api')->group(function () {
                 Route::prefix('error')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Api/Error/routes.php'));
@@ -70,10 +70,10 @@ class BearServiceProvider extends ServiceProvider {
             });
         } else {
             $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Access/View'), namespace: 'larabear-access');
+            $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Credential/View'), namespace: 'larabear-credential');
             $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Config/View'), namespace: 'larabear-config');
             $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Dashboard/View'), namespace: 'larabear-dashboard');
             $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Log/View'), namespace: 'larabear-log');
-            $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Oauth2/View'), namespace: 'larabear-oauth2');
             $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Internal/View'), namespace: 'larabear');
         }
         Blade::componentNamespace('GuardsmanPanda\\Larabear\\Web\\Www\\Shared\\Component', 'bear');

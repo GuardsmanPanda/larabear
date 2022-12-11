@@ -19,7 +19,7 @@
     </x-slot>
     @foreach($configs as $config)
         <tr class="hover:bg-sky-50">
-            <td class="px-2.5 py-2.5">{{$config->config_key}}</td>
+            <td class="px-2.5 py-2.5 font-medium">{{$config->config_key}}</td>
             <td class="px-2.5 py-2.5">{{$config->config_description}}</td>
             <td class="px-2.5 py-2.5">{{$config->config_data_type}}</td>
             <td class="px-2.5 py-2.5">

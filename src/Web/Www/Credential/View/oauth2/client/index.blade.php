@@ -4,7 +4,7 @@
         <p class="mt-2 text-sm text-gray-600">All oauth2 clients, here you can edit clients or list and add users for each client.</p>
     </div>
     <div class="mt-2 sm:mt-0 sm:ml-16 sm:flex-none">
-        <x-bear::buttonDark icon="rectangle-group" hx-get="/bear/oauth2/client/create" hx-target="#dialog-content">New Client</x-bear::buttonDark>
+        <x-bear::buttonDark icon="rectangle-group" hx-get="/bear/credential/oauth2/client/create" hx-target="#dialog-content">New Client</x-bear::buttonDark>
     </div>
 </div>
 <x-bear::table.layout.standard>
@@ -17,13 +17,13 @@
     </x-slot>
     @foreach($clients as $client)
         <tr class="hover:bg-sky-50">
-            <x-bear::table.cell.uuid>{{$client->oauth2_client_id}}</x-bear::table.cell.uuid>
+            <x-bear::table.cell.uuid class="font-medium">{{$client->oauth2_client_id}}</x-bear::table.cell.uuid>
             <td class="px-2.5 py-2.5">{{$client->oauth2_client_type}}</td>
             <td class="px-2.5 py-2.5">{{$client->oauth2_client_description}}</td>
             <x-bear::table.cell.relative>{{$client->created_at}}</x-bear::table.cell.relative>
             <td class="px-2.5">
-                <x-bear::buttonDark icon="user-plus" size="tiny" hx-get='{{"/bear/oauth2/client/$client->oauth2_client_id/add-user"}}' hx-target="#dialog-content">Add User</x-bear::buttonDark>
-                <x-bear::buttonOutline icon="pencil" size="tiny" hx-get='{{"/bear/oauth2/client/$client->oauth2_client_id/update"}}' hx-target="#dialog-content">Edit</x-bear::buttonOutline>
+                <x-bear::buttonDark icon="user-plus" size="tiny" hx-get='{{"/bear/credential/oauth2/client/$client->oauth2_client_id/add-user"}}' hx-target="#dialog-content">Add User</x-bear::buttonDark>
+                <x-bear::buttonOutline icon="pencil" size="tiny" hx-get='{{"/bear/credential/oauth2/client/$client->oauth2_client_id/update"}}' hx-target="#dialog-content">Edit</x-bear::buttonOutline>
             </td>
         </tr>
     @endforeach

@@ -17,7 +17,7 @@
     </x-slot>
     @foreach($roles as $role)
         <tr class="hover:bg-sky-50">
-            <td class="px-2.5 py-2.5">{{$role->role_slug}}</td>
+            <td class="px-2.5 py-2.5 font-medium">{{$role->role_slug}}</td>
             <td class="px-2.5 py-2.5">{{$role->role_description}}</td>
             <x-bear::table.cell.relative>{{$role->created_at}}</x-bear::table.cell.relative>
             <x-bear::table.cell.relative>{{$role->updated_at}}</x-bear::table.cell.relative>
