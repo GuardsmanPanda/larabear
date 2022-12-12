@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\BearOauth2ClientTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 
 class BearOauth2ClientUpdater {
@@ -23,7 +24,7 @@ class BearOauth2ClientUpdater {
         return $this;
     }
 
-    public function setOauth2ClientType(string $oauth2_client_type): self {
+    public function setOauth2ClientType(BearOauth2ClientTypeEnum $oauth2_client_type): self {
         $this->model->oauth2_client_type = $oauth2_client_type;
         return $this;
     }

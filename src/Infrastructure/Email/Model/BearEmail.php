@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearEmail orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
  *
+ * @property bool $sandbox
  * @property string $id
  * @property string $email_to
  * @property string $created_at
@@ -61,7 +62,10 @@ class BearEmail extends Model {
 
     protected $table = 'bear_email';
     protected $keyType = 'string';
+    public $incrementing = false;
     protected $dateFormat = 'Y-m-d H:i:sO';
+    /** @var array<string> $log_exclude_columns */
+    public array $log_exclude_columns = ['encrypted_text_body', 'encrypted_html_body'];
 
     /** @var array<string, string> $casts */
     protected $casts = [

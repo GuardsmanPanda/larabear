@@ -13,7 +13,7 @@ use InvalidArgumentException;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class BearApiClient {
+class BearExternalApiClient {
     private static int $API_REQUEST_TIMEOUT = 90;
 
     /**

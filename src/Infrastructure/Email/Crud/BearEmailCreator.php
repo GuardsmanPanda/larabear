@@ -18,7 +18,8 @@ class BearEmailCreator {
         CarbonInterface $email_sent_at = null,
         string $email_external_id = null,
         string $encrypted_text_body = null,
-        string $encrypted_html_body = null
+        string $encrypted_html_body = null,
+        bool $sandbox = false
     ): BearEmail {
         BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);
@@ -36,6 +37,7 @@ class BearEmailCreator {
         $model->email_external_id = $email_external_id;
         $model->encrypted_text_body = $encrypted_text_body;
         $model->encrypted_html_body = $encrypted_html_body;
+        $model->sandbox = $sandbox;
 
         $model->save();
         return $model;

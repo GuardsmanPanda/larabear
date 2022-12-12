@@ -6,6 +6,7 @@ use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\BearOauth2ClientTypeEnum;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -41,7 +42,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $oauth2_client_id
  * @property string $oauth2_token_uri
  * @property string $oauth2_user_scope
- * @property string $oauth2_client_type
  * @property string $oauth2_authorize_uri
  * @property string $oauth2_client_description
  * @property string $encrypted_oauth2_client_secret
@@ -52,6 +52,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $encrypted_oauth2_client_access_token
  * @property CarbonInterface|null $client_access_token_first_error_at
  * @property CarbonInterface|null $oauth2_client_access_token_expires_at
+ * @property BearOauth2ClientTypeEnum $oauth2_client_type
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -71,6 +72,7 @@ class BearOauth2Client extends Model {
         'encrypted_oauth2_client_access_token' => 'encrypted',
         'encrypted_oauth2_client_secret' => 'encrypted',
         'oauth2_client_access_token_expires_at' => 'immutable_datetime',
+        'oauth2_client_type' => BearOauth2ClientTypeEnum::class,
     ];
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];

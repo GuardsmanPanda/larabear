@@ -3,13 +3,14 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\BearOauth2ClientTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 
 class BearOauth2ClientCreator {
     public static function create(
         string $oauth2_client_id,
         string $oauth2_client_description,
-        string $oauth2_client_type,
+        BearOauth2ClientTypeEnum $oauth2_client_type,
         string $oauth2_authorize_uri,
         string $oauth2_token_uri,
         string $encrypted_oauth2_client_secret,

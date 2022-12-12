@@ -10,6 +10,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2UserCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2UserUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Dto\OidcToken;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\BearOauth2ClientTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use Illuminate\Http\Client\Response;
@@ -39,15 +40,15 @@ class BearOauth2ClientService {
         $overwriteRedirectUri ??= "/bear/auth/oauth2-client/$client->oauth2_client_id/callback";
         $query_data .= '&redirect_uri=' . urlencode(string: config(key: 'app.url') . $overwriteRedirectUri);
 
-        if ($client->oauth2_client_type === 'TWITCH') {
+        if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::TWITCH) {
             $query_data .= '&claims=' . urlencode(string: json_encode(['id_token' => ['email' => null, 'email_verified' => null, 'preferred_username' => null]], JSON_THROW_ON_ERROR));
         }
 
         if ($accountPrompt) {
             $query_data .= match ($client->oauth2_client_type) {
-                'MICROSOFT', 'GOOGLE' => '&prompt=select_account',
-                'OTHER', 'HELP_SCOUT' => '',
-                default => throw new RuntimeException(message: "User prompt not supported for client type $client->oauth2_client_type"),
+                BearOauth2ClientTypeEnum::MICROSOFT, BearOauth2ClientTypeEnum::GOOGLE => '&prompt=select_account',
+                BearOauth2ClientTypeEnum::HELP_SCOUT, BearOauth2ClientTypeEnum::OTHER => '',
+                default => throw new RuntimeException(message: "User prompt not supported for client type" . $client->oauth2_client_type->value),
             };
         }
 
@@ -173,26 +174,24 @@ class BearOauth2ClientService {
         }
 
         switch ($client->oauth2_client_type) {
-            case 'MICROSOFT':
+            case BearOauth2ClientTypeEnum::MICROSOFT:
                 $scopes->add(element: 'offline_access');
                 $scopes->add(element: 'openid');
                 $scopes->add(element: 'profile');
                 $scopes->add(element: 'email');
                 break;
-            case 'GOOGLE':
+            case BearOauth2ClientTypeEnum::GOOGLE:
                 $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.profile');
                 $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.email');
                 $scopes->add(element: 'openid');
                 break;
-            case 'TWITCH':
+            case BearOauth2ClientTypeEnum::TWITCH:
                 $scopes->add(element: 'user:read:email');
                 $scopes->add(element: 'openid');
                 break;
-            case 'HELP_SCOUT':
-            case 'OTHER':
+            case BearOauth2ClientTypeEnum::HELP_SCOUT:
+            case BearOauth2ClientTypeEnum::OTHER:
                 break;
-            default:
-                throw new RuntimeException(message: "Unknown oauth2 client type: $client->oauth2_client_type");
         }
         return urlencode(implode(separator: ' ', array: $scopes->toArray()));
     }

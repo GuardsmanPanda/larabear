@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace GuardsmanPanda\Larabear\Integration\Postmark;
+namespace GuardsmanPanda\Larabear\Integration\Postmark\Client;
 
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use Illuminate\Support\Facades\Config;
