@@ -28,11 +28,11 @@ return new class extends Migration {
             $table->jsonb(column: 'external_api_metadata_json')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->useCurrentOnUpdate();
-            $table->foreign('oauth2_user_id')->references('id')->on('oauth2_user');
+            $table->foreign('oauth2_user_id')->references('id')->on('bear_oauth2_user');
         });
     }
 
     public function down(): void {
-        Schema::dropIfExists('bear_email');
+        Schema::dropIfExists(table: 'bear_external_api');
     }
 };
