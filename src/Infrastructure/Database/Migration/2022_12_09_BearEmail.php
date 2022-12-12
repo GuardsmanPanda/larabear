@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Database\Migrations\Migration;
@@ -26,6 +26,7 @@ return new class extends Migration {
                 $table->string(column: 'email_subject');
                 $table->string(column: 'email_reply_to')->nullable();
             }
+            $table->boolean(column: 'sandbox')->default(false);
             $table->timestampTz(column: 'email_sent_at')->nullable();
             $table->uuid(column: 'email_external_id')->nullable();
             $table->text(column: 'encrypted_text_body')->nullable();

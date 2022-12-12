@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;

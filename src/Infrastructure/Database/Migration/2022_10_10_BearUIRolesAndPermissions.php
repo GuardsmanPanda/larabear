@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearPermissionCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRoleCreator;

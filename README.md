@@ -54,7 +54,7 @@ class HttpKernel extends Kernel {
  To filter console output from "php artisan" changed main artisan file to:
 ```php
 #!/usr/bin/env php
-<?php
+<?php declare(strict_types=1);
 
 use GuardsmanPanda\Larabear\Infrastructure\Console\Service\ConsoleOutputFilter;
 
