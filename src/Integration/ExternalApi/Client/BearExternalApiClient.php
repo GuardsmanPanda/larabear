@@ -2,11 +2,14 @@
 
 namespace GuardsmanPanda\Larabear\Integration\ExternalApi\Client;
 
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2ClientService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2UserService;
+use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiTypeEnum;
+use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use InvalidArgumentException;
@@ -40,6 +43,14 @@ class BearExternalApiClient {
             baseUrl: $baseUrl ?? $user->oauth2Client->oauth2_client_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
             baseHeaders: ['Authorization' => 'Bearer ' . BearOauth2UserService::getAccessToken(user: $user)] + $baseHeaders
         );
+    }
+
+    public static function fromGlobal(): self {
+        $api = BearExternalApi::findOrFail(id: BearGlobalStateService::getApiPrimaryKey());
+        if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2) {
+            return self::fromOauth2User(user: $api->oauth2User, baseUrl: $api->external_api_base_url);
+        }
+        return new self(baseUrl: $api->external_api_base_url, baseHeaders: ['X-API-KEY' => $api->encrypted_external_api_token]);
     }
 
     /**

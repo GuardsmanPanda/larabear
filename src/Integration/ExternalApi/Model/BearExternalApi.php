@@ -5,11 +5,13 @@ namespace GuardsmanPanda\Larabear\Integration\ExternalApi\Model;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiTypeEnum;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -52,6 +54,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $encrypted_external_api_token
  * @property ArrayObject|null $external_api_metadata_json
  * @property BearExternalApiTypeEnum $external_api_type
+ * @property BearOauth2User $oauth2User
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -69,6 +72,10 @@ class BearExternalApi extends Model {
         'external_api_metadata_json' => AsArrayObject::class,
         'external_api_type' => BearExternalApiTypeEnum::class,
     ];
+
+    public function oauth2User(): BelongsTo {
+        return $this->belongsTo(related: BearOauth2User::class, foreignKey: 'id', ownerKey: 'oauth2_user_id');
+    }
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];
 }
