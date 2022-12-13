@@ -2,24 +2,29 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Enum\BearUserTokenTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessTokenUser;
-use Illuminate\Support\Str;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 class BearAccessTokenUserCreator {
     public static function create(
-        string          $user_id,
-        string          $access_token,
-        int            $expiry_time_increment_in_minutes = 3600,
+        string $token,
+        string $user_id,
+        CarbonInterface $expires_at,
+        BearUserTokenTypeEnum $user_token_type = BearUserTokenTypeEnum::BEARER,
     ): BearAccessTokenUser {
-        $token = new BearAccessTokenUser();
-        $token->id = Str::uuid()->toString();
-        $token->user_id = $user_id;
-        $token->hashed_access_token = hash(algo: 'xxh128', data: $access_token);
-        $token->expiry_time_increment_in_minutes = $expiry_time_increment_in_minutes;
-        $token->expires_at = Carbon::now()->addSeconds($expiry_time_increment_in_minutes);
-        $token->invalid_at = Carbon::now()->addSeconds($expiry_time_increment_in_minutes);
-        $token->save();
-        return $token;
+        BearDatabaseService::mustBeInTransaction();
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);
+
+        $model = new BearAccessTokenUser();
+
+        $model->hashed_token = hash(algo: 'xxh128', data: $token);
+        $model->user_id = $user_id;
+        $model->expires_at = $expires_at;
+        $model->user_token_type = $user_token_type;
+
+        $model->save();
+        return $model;
     }
 }
