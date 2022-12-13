@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::dropIfExists('bear_log_access_token_usage');
         Schema::dropIfExists('bear_access_token_log');
         Schema::dropIfExists('bear_user_access_token');
         Schema::dropIfExists('bear_access_token_user');
