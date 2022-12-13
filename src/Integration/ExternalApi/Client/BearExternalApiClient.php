@@ -45,16 +45,19 @@ class BearExternalApiClient {
         );
     }
 
-    public static function fromGlobal(string $baseUrl = null): self {
-        $api = BearExternalApi::findOrFail(id: BearGlobalStateService::getApiPrimaryKey());
+    public static function fromExternalApi(BearExternalApi $api, string $baseUrl = null): self {
         $headers = $api->external_api_base_headers_json?->getArrayCopy() ?? [];
         if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2) {
-            return self::fromOauth2User(user: $api->oauth2User, baseUrl: $baseUrl ?? $api->external_api_base_url);
+            return self::fromOauth2User(user: $api->oauth2User, baseUrl: $baseUrl ?? $api->external_api_base_url, baseHeaders: $headers);
         }
         if ($api->external_api_type === BearExternalApiTypeEnum::X_API_KEY) {
             $headers['X-API-Key'] = $api->encrypted_external_api_token;
         }
         return new self(baseUrl: $baseUrl ?? $api->external_api_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'), baseHeaders: $headers);
+    }
+
+    public static function fromGlobal(string $baseUrl = null): self {
+        return self::fromExternalApi(api: BearExternalApi::findOrFail(id: BearGlobalStateService::getApiPrimaryKey()), baseUrl: $baseUrl);
     }
 
     /**
