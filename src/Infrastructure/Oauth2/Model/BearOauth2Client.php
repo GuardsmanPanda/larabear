@@ -21,9 +21,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearOauth2Client firstOrCreate(array $filter, array $values)
  * @method static BearOauth2Client firstOrNew(array $filter, array $values)
  * @method static BearOauth2Client|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearOauth2Client all(array $columns = ['*'])
- * @method static Collection|BearOauth2Client get(array $columns = ['*'])
- * @method static Collection|BearOauth2Client fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearOauth2Client lockForUpdate()
  * @method static BearOauth2Client select(array $columns = ['*'])
  * @method static BearOauth2Client leftJoin(string $table, string $first, string $operator = null, string $second = null)
@@ -36,6 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearOauth2Client whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearOauth2Client orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property string $created_at
  * @property string $updated_at

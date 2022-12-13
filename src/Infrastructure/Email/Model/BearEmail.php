@@ -20,9 +20,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearEmail firstOrCreate(array $filter, array $values)
  * @method static BearEmail firstOrNew(array $filter, array $values)
  * @method static BearEmail|null firstWhere(string $column, string $operator = null, string|float|int|bool $value = null, string $boolean = 'and')
- * @method static Collection|BearEmail all(array $columns = ['*'])
- * @method static Collection|BearEmail get(array $columns = ['*'])
- * @method static Collection|BearEmail fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearEmail lockForUpdate()
  * @method static BearEmail select(array $columns = ['*'])
  * @method static BearEmail with(array $relations)
@@ -39,6 +39,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearEmail whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearEmail orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property bool $sandbox
  * @property string $id

@@ -22,9 +22,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearConfig firstOrCreate(array $filter, array $values)
  * @method static BearConfig firstOrNew(array $filter, array $values)
  * @method static BearConfig|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearConfig all(array $columns = ['*'])
- * @method static Collection|BearConfig get(array $columns = ['*'])
- * @method static Collection|BearConfig fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearConfig lockForUpdate()
  * @method static BearConfig select(array $columns = ['*'])
  * @method static BearConfig leftJoin(string $table, string $first, string $operator = null, string $second = null)
@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearConfig whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearConfig orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property int|null $config_integer
  * @property bool|null $config_boolean

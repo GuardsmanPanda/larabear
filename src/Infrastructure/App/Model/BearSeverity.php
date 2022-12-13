@@ -19,9 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearSeverity firstOrCreate(array $filter, array $values)
  * @method static BearSeverity firstOrNew(array $filter, array $values)
  * @method static BearSeverity|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearSeverity all(array $columns = ['*'])
- * @method static Collection|BearSeverity get(array $columns = ['*'])
- * @method static Collection|BearSeverity fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearSeverity lockForUpdate()
  * @method static BearSeverity select(array $columns = ['*'])
  * @method static BearSeverity leftJoin(string $table, string $first, string $operator = null, string $second = null)
@@ -34,6 +34,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearSeverity whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearSeverity orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property int $severity_level
  * @property string $slug

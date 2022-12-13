@@ -24,9 +24,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearExternalApi firstOrCreate(array $filter, array $values)
  * @method static BearExternalApi firstOrNew(array $filter, array $values)
  * @method static BearExternalApi|null firstWhere(string $column, string $operator = null, string|float|int|bool $value = null, string $boolean = 'and')
- * @method static Collection|BearExternalApi all(array $columns = ['*'])
- * @method static Collection|BearExternalApi get(array $columns = ['*'])
- * @method static Collection|BearExternalApi fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearExternalApi lockForUpdate()
  * @method static BearExternalApi select(array $columns = ['*'])
  * @method static BearExternalApi with(array $relations)
@@ -43,6 +43,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearExternalApi whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearExternalApi orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property string $id
  * @property string $created_at
@@ -53,7 +54,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $external_api_base_url
  * @property string|null $encrypted_external_api_token
  * @property ArrayObject|null $external_api_metadata_json
+ * @property ArrayObject|null $external_api_base_headers_json
  * @property BearExternalApiTypeEnum $external_api_type
+ *
  * @property BearOauth2User $oauth2User
  *
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -70,6 +73,7 @@ class BearExternalApi extends Model {
     protected $casts = [
         'encrypted_external_api_token' => 'encrypted',
         'external_api_metadata_json' => AsArrayObject::class,
+        'external_api_base_headers_json' => AsArrayObject::class,
         'external_api_type' => BearExternalApiTypeEnum::class,
     ];
 

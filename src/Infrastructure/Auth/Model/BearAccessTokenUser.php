@@ -20,9 +20,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearAccessTokenUser firstOrCreate(array $filter, array $values)
  * @method static BearAccessTokenUser firstOrNew(array $filter, array $values)
  * @method static BearAccessTokenUser|null firstWhere(string $column, string $operator = null, string|float|int|bool $value = null, string $boolean = 'and')
- * @method static Collection|BearAccessTokenUser all(array $columns = ['*'])
- * @method static Collection|BearAccessTokenUser get(array $columns = ['*'])
- * @method static Collection|BearAccessTokenUser fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearAccessTokenUser lockForUpdate()
  * @method static BearAccessTokenUser select(array $columns = ['*'])
  * @method static BearAccessTokenUser with(array $relations)
@@ -39,6 +39,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearAccessTokenUser whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearAccessTokenUser orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property string $user_id
  * @property string $created_at

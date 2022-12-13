@@ -20,9 +20,9 @@ use RuntimeException;
  * @method static BearRolePermission firstOrCreate(array $filter, array $values)
  * @method static BearRolePermission firstOrNew(array $filter, array $values)
  * @method static BearRolePermission|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearRolePermission all(array $columns = ['*'])
- * @method static Collection|BearRolePermission get(array $columns = ['*'])
- * @method static Collection|BearRolePermission fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearRolePermission lockForUpdate()
  * @method static BearRolePermission select(array $columns = ['*'])
  * @method static BearRolePermission with(array $relations)
@@ -39,6 +39,7 @@ use RuntimeException;
  * @method static BearRolePermission whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearRolePermission orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property string $role_slug
  * @property string $created_at

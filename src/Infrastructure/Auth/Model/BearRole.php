@@ -19,9 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearRole firstOrCreate(array $filter, array $values)
  * @method static BearRole firstOrNew(array $filter, array $values)
  * @method static BearRole|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearRole all(array $columns = ['*'])
- * @method static Collection|BearRole get(array $columns = ['*'])
- * @method static Collection|BearRole fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearRole lockForUpdate()
  * @method static BearRole select(array $columns = ['*'])
  * @method static BearRole with(array $relations)
@@ -38,6 +38,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearRole whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearRole orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property string $role_slug
  * @property string $created_at

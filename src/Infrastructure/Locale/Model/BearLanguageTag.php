@@ -8,7 +8,6 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChange
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Query\Builder;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -21,22 +20,23 @@ use Illuminate\Database\Query\Builder;
  * @method static BearLanguageTag firstOrCreate(array $filter, array $values)
  * @method static BearLanguageTag firstOrNew(array $filter, array $values)
  * @method static BearLanguageTag|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearLanguageTag all(array $columns = ['*'])
- * @method static Collection|BearLanguageTag fromQuery(string $query, array $bindings = [])
- * @method static Builder|BearLanguageTag lockForUpdate()
- * @method static Builder|BearLanguageTag select(array $columns = ['*'])
- * @method static Builder|BearLanguageTag with(array  $relations)
- * @method static Builder|BearLanguageTag leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static Builder|BearLanguageTag where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Builder|BearLanguageTag whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
- * @method static Builder|BearLanguageTag whereNotExists(Closure $callback, string $boolean = 'and')
- * @method static Builder|BearLanguageTag whereHas(string $relation, Closure $callback, string $operator = '>=', int $count = 1)
- * @method static Builder|BearLanguageTag whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
- * @method static Builder|BearLanguageTag whereNull(string|array $columns, string $boolean = 'and')
- * @method static Builder|BearLanguageTag whereNotNull(string|array $columns, string $boolean = 'and')
- * @method static Builder|BearLanguageTag whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
- * @method static Builder|BearLanguageTag orderBy(string $column, string $direction = 'asc')
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
+ * @method static BearLanguageTag lockForUpdate()
+ * @method static BearLanguageTag select(array $columns = ['*'])
+ * @method static BearLanguageTag with(array  $relations)
+ * @method static BearLanguageTag leftJoin(string $table, string $first, string $operator = null, string $second = null)
+ * @method static BearLanguageTag where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
+ * @method static BearLanguageTag whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
+ * @method static BearLanguageTag whereNotExists(Closure $callback, string $boolean = 'and')
+ * @method static BearLanguageTag whereHas(string $relation, Closure $callback, string $operator = '>=', int $count = 1)
+ * @method static BearLanguageTag whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
+ * @method static BearLanguageTag whereNull(string|array $columns, string $boolean = 'and')
+ * @method static BearLanguageTag whereNotNull(string|array $columns, string $boolean = 'and')
+ * @method static BearLanguageTag whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
+ * @method static BearLanguageTag orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property string $language_tag
  * @property string $country_iso2_code

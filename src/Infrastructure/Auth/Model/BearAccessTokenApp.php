@@ -20,9 +20,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearAccessTokenApp firstOrCreate(array $filter, array $values)
  * @method static BearAccessTokenApp firstOrNew(array $filter, array $values)
  * @method static BearAccessTokenApp|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearAccessTokenApp all(array $columns = ['*'])
- * @method static Collection|BearAccessTokenApp get(array $columns = ['*'])
- * @method static Collection|BearAccessTokenApp fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearAccessTokenApp lockForUpdate()
  * @method static BearAccessTokenApp select(array $columns = ['*'])
  * @method static BearAccessTokenApp with(array $relations)
@@ -39,6 +39,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearAccessTokenApp whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearAccessTokenApp orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property string $id
  * @property string $created_at

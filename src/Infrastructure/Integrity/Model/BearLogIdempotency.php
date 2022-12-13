@@ -18,9 +18,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearLogIdempotency firstOrCreate(array $filter, array $values)
  * @method static BearLogIdempotency firstOrNew(array $filter, array $values)
  * @method static BearLogIdempotency|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearLogIdempotency all(array $columns = ['*'])
- * @method static Collection|BearLogIdempotency get(array $columns = ['*'])
- * @method static Collection|BearLogIdempotency fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearLogIdempotency lockForUpdate()
  * @method static BearLogIdempotency select(array $columns = ['*'])
  * @method static BearLogIdempotency leftJoin(string $table, string $first, string $operator = null, string $second = null)
@@ -33,6 +33,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearLogIdempotency whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearLogIdempotency orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property string $created_at
  * @property string $idempotency_key

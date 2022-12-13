@@ -19,9 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearLogConsoleEvent firstOrCreate(array $filter, array $values)
  * @method static BearLogConsoleEvent firstOrNew(array $filter, array $values)
  * @method static BearLogConsoleEvent|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearLogConsoleEvent all(array $columns = ['*'])
- * @method static Collection|BearLogConsoleEvent get(array $columns = ['*'])
- * @method static Collection|BearLogConsoleEvent fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearLogConsoleEvent lockForUpdate()
  * @method static BearLogConsoleEvent select(array $columns = ['*'])
  * @method static BearLogConsoleEvent leftJoin(string $table, string $first, string $operator = null, string $second = null)
@@ -34,6 +34,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearLogConsoleEvent whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearLogConsoleEvent orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property int $id
  * @property int|null $execution_time_microseconds

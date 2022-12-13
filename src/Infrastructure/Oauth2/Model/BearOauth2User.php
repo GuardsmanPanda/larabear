@@ -24,9 +24,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearOauth2User firstOrCreate(array $filter, array $values)
  * @method static BearOauth2User firstOrNew(array $filter, array $values)
  * @method static BearOauth2User|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearOauth2User all(array $columns = ['*'])
- * @method static Collection|BearOauth2User get(array $columns = ['*'])
- * @method static Collection|BearOauth2User fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearOauth2User lockForUpdate()
  * @method static BearOauth2User select(array $columns = ['*'])
  * @method static BearOauth2User with(array $relations)
@@ -43,6 +43,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearOauth2User whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearOauth2User orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property string $id
  * @property string $created_at

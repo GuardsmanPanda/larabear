@@ -26,9 +26,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearUser firstOrCreate(array $filter, array $values)
  * @method static BearUser firstOrNew(array $filter, array $values)
  * @method static BearUser|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearUser all(array $columns = ['*'])
- * @method static Collection|BearUser get(array $columns = ['*'])
- * @method static Collection|BearUser fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearUser lockForUpdate()
  * @method static BearUser select(array $columns = ['*'])
  * @method static BearUser with(array $relations)
@@ -45,6 +45,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearUser whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearUser orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property bool $is_user_activated
  * @property string $id

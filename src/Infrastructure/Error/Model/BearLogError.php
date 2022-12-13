@@ -23,9 +23,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearLogError firstOrCreate(array $filter, array $values)
  * @method static BearLogError firstOrNew(array $filter, array $values)
  * @method static BearLogError|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearLogError all(array $columns = ['*'])
- * @method static Collection|BearLogError get(array $columns = ['*'])
- * @method static Collection|BearLogError fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearLogError lockForUpdate()
  * @method static BearLogError select(array $columns = ['*'])
  * @method static BearLogError with(array $relations)
@@ -42,6 +42,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearLogError whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearLogError orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property int $id
  * @property string $created_at

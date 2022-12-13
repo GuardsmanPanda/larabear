@@ -16,6 +16,7 @@ class BearExternalApiCreator {
         string $encrypted_external_api_token = null,
         string $external_api_base_url = null,
         string $oauth2_user_id = null,
+        ArrayObject $external_api_base_headers_json = null,
         ArrayObject $external_api_metadata_json = null
     ): BearExternalApi {
         BearDatabaseService::mustBeInTransaction();
@@ -30,6 +31,7 @@ class BearExternalApiCreator {
         $model->encrypted_external_api_token = $encrypted_external_api_token;
         $model->external_api_base_url = $external_api_base_url;
         $model->oauth2_user_id = $oauth2_user_id;
+        $model->external_api_base_headers_json = $external_api_base_headers_json;
         $model->external_api_metadata_json = $external_api_metadata_json;
 
         $model->save();

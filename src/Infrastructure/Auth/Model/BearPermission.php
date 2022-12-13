@@ -19,9 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearPermission firstOrCreate(array $filter, array $values)
  * @method static BearPermission firstOrNew(array $filter, array $values)
  * @method static BearPermission|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearPermission all(array $columns = ['*'])
- * @method static Collection|BearPermission get(array $columns = ['*'])
- * @method static Collection|BearPermission fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearPermission lockForUpdate()
  * @method static BearPermission select(array $columns = ['*'])
  * @method static BearPermission with(array $relations)
@@ -38,6 +38,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearPermission whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearPermission orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property string $created_at
  * @property string $updated_at

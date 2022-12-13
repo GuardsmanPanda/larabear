@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
+        Schema::dropIfExists(table: 'bear_external_api');
         Schema::create(table: 'bear_external_api', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));
@@ -25,6 +26,7 @@ return new class extends Migration {
                 $table->string(column: 'external_api_base_url')->nullable();
             }
             $table->uuid(column: 'oauth2_user_id')->nullable();
+            $table->jsonb(column: 'external_api_base_headers_json')->nullable();
             $table->jsonb(column: 'external_api_metadata_json')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->useCurrentOnUpdate();

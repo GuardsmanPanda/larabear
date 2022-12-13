@@ -273,9 +273,9 @@ class LarabearDatabaseModelDto {
         $content .= " * @method static $this->modelClassName firstOrCreate(array \$filter, array \$values)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName firstOrNew(array \$filter, array \$values)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName|null firstWhere(string \$column, string \$operator = null, string|float|int|bool \$value = null, string \$boolean = 'and')" . PHP_EOL;
-        $content .= " * @method static Collection|$this->modelClassName all(array \$columns = ['*'])" . PHP_EOL;
-        $content .= " * @method static Collection|$this->modelClassName get(array \$columns = ['*'])" . PHP_EOL;
-        $content .= " * @method static Collection|$this->modelClassName fromQuery(string \$query, array \$bindings = [])" . PHP_EOL;
+        $content .= " * @method static Collection all(array \$columns = ['*'])" . PHP_EOL;
+        $content .= " * @method static Collection get(array \$columns = ['*'])" . PHP_EOL;
+        $content .= " * @method static Collection fromQuery(string \$query, array \$bindings = [])" . PHP_EOL;
         $content .= " * @method static $this->modelClassName lockForUpdate()" . PHP_EOL;
         $content .= " * @method static $this->modelClassName select(array \$columns = ['*'])" . PHP_EOL;
         $content .= " * @method static $this->modelClassName with(array \$relations)" . PHP_EOL;
@@ -292,6 +292,7 @@ class LarabearDatabaseModelDto {
         $content .= " * @method static $this->modelClassName whereRaw(string \$sql, array \$bindings = [], string \$boolean = 'and')" . PHP_EOL;
         $content .= " * @method static $this->modelClassName orderBy(string \$column, string \$direction = 'asc')" . PHP_EOL;
         $content .= " * @method static int count(array \$columns = ['*'])" . PHP_EOL;
+        $content .= " * @method static bool exists()" . PHP_EOL;
         $content .= " *" . PHP_EOL;
 
         usort(array: $this->columns, callback: static function ($a, $b) {

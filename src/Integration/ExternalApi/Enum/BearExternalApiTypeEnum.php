@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Integration\ExternalApi\Enum;
 
-enum BearExternalApiTypeEnum: string {
+enum  BearExternalApiTypeEnum: string {
     case OAUTH2 = 'OAUTH2';
     case X_API_KEY = 'X_API_KEY';
 }

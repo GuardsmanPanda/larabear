@@ -22,9 +22,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearLogDatabaseChange firstOrCreate(array $filter, array $values)
  * @method static BearLogDatabaseChange firstOrNew(array $filter, array $values)
  * @method static BearLogDatabaseChange|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearLogDatabaseChange all(array $columns = ['*'])
- * @method static Collection|BearLogDatabaseChange get(array $columns = ['*'])
- * @method static Collection|BearLogDatabaseChange fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearLogDatabaseChange lockForUpdate()
  * @method static BearLogDatabaseChange select(array $columns = ['*'])
  * @method static BearLogDatabaseChange with(array $relations)
@@ -41,6 +41,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearLogDatabaseChange whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearLogDatabaseChange orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property int $id
  * @property int|null $record_id

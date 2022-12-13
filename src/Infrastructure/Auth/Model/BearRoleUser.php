@@ -20,9 +20,9 @@ use RuntimeException;
  * @method static BearRoleUser firstOrCreate(array $filter, array $values)
  * @method static BearRoleUser firstOrNew(array $filter, array $values)
  * @method static BearRoleUser|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearRoleUser all(array $columns = ['*'])
- * @method static Collection|BearRoleUser get(array $columns = ['*'])
- * @method static Collection|BearRoleUser fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearRoleUser lockForUpdate()
  * @method static BearRoleUser select(array $columns = ['*'])
  * @method static BearRoleUser with(array $relations)
@@ -39,6 +39,7 @@ use RuntimeException;
  * @method static BearRoleUser whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearRoleUser orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property string $user_id
  * @property string $role_slug

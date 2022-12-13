@@ -7,7 +7,6 @@ use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -20,22 +19,23 @@ use Illuminate\Database\Query\Builder;
  * @method static BearCountry firstOrCreate(array $filter, array $values)
  * @method static BearCountry firstOrNew(array $filter, array $values)
  * @method static BearCountry|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearCountry all(array $columns = ['*'])
- * @method static Collection|BearCountry fromQuery(string $query, array $bindings = [])
- * @method static Builder|BearCountry lockForUpdate()
- * @method static Builder|BearCountry select(array $columns = ['*'])
- * @method static Builder|BearCountry with(array  $relations)
- * @method static Builder|BearCountry leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static Builder|BearCountry where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Builder|BearCountry whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
- * @method static Builder|BearCountry whereNotExists(Closure $callback, string $boolean = 'and')
- * @method static Builder|BearCountry whereHas(string $relation, Closure $callback, string $operator = '>=', int $count = 1)
- * @method static Builder|BearCountry whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
- * @method static Builder|BearCountry whereNull(string|array $columns, string $boolean = 'and')
- * @method static Builder|BearCountry whereNotNull(string|array $columns, string $boolean = 'and')
- * @method static Builder|BearCountry whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
- * @method static Builder|BearCountry orderBy(string $column, string $direction = 'asc')
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
+ * @method static BearCountry lockForUpdate()
+ * @method static BearCountry select(array $columns = ['*'])
+ * @method static BearCountry with(array  $relations)
+ * @method static BearCountry leftJoin(string $table, string $first, string $operator = null, string $second = null)
+ * @method static BearCountry where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
+ * @method static BearCountry whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
+ * @method static BearCountry whereNotExists(Closure $callback, string $boolean = 'and')
+ * @method static BearCountry whereHas(string $relation, Closure $callback, string $operator = '>=', int $count = 1)
+ * @method static BearCountry whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
+ * @method static BearCountry whereNull(string|array $columns, string $boolean = 'and')
+ * @method static BearCountry whereNotNull(string|array $columns, string $boolean = 'and')
+ * @method static BearCountry whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
+ * @method static BearCountry orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property bool $is_country_independent
  * @property string $country_tld

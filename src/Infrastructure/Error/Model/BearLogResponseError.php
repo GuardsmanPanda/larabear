@@ -22,9 +22,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearLogResponseError firstOrCreate(array $filter, array $values)
  * @method static BearLogResponseError firstOrNew(array $filter, array $values)
  * @method static BearLogResponseError|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection|BearLogResponseError all(array $columns = ['*'])
- * @method static Collection|BearLogResponseError get(array $columns = ['*'])
- * @method static Collection|BearLogResponseError fromQuery(string $query, array $bindings = [])
+ * @method static Collection all(array $columns = ['*'])
+ * @method static Collection get(array $columns = ['*'])
+ * @method static Collection fromQuery(string $query, array $bindings = [])
  * @method static BearLogResponseError lockForUpdate()
  * @method static BearLogResponseError select(array $columns = ['*'])
  * @method static BearLogResponseError with(array $relations)
@@ -41,6 +41,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearLogResponseError whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearLogResponseError orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
+ * @method static bool exists()
  *
  * @property int $id
  * @property int $response_status_code
