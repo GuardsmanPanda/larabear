@@ -52,8 +52,8 @@ class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInformatio
                 kcu.column_name
             FROM information_schema.key_column_usage kcu
             LEFT JOIN information_schema.table_constraints tc ON kcu.constraint_name = tc.constraint_name
-            WHERE kcu.table_catalog = ? AND kcu.table_schema = ? AND tc.constraint_type = 'PRIMARY KEY'
-        ", bindings: [$this->databaseName, $this->schemaName]);
+            WHERE kcu.table_catalog = ? AND kcu.table_schema = ? AND tc.constraint_type = 'PRIMARY KEY' AND tc.table_schema = ?
+        ", bindings: [$this->databaseName, $this->schemaName, $this->schemaName]);
     }
 
     public function getAllForeignKeys(): array {

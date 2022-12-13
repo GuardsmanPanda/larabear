@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace GuardsmanPanda\Larabear\Integration\Api\Client;
+namespace GuardsmanPanda\Larabear\Integration\ExternalApi\Client;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
