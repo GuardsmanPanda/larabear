@@ -78,7 +78,7 @@ class BearExternalApi extends Model {
     ];
 
     public function oauth2User(): BelongsTo {
-        return $this->belongsTo(related: BearOauth2User::class, foreignKey: 'id', ownerKey: 'oauth2_user_id');
+        return $this->belongsTo(related: BearOauth2User::class, foreignKey: 'oauth2_user_id', ownerKey: 'id');
     }
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];
