@@ -43,19 +43,6 @@ return new class extends Migration {
                 $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             });
         }
-        try {
-            DB::beginTransaction();
-            BearConfigCreator::create(config_key: 'larabear.version', config_description: 'Version of the larabear package.', config_data_type: 'STRING', config_string: '0.6.0');
-            BearConfigCreator::create(config_key: 'larabear.last_unique_short_code', config_description: 'Used for generating unique short codes. (BearShortCodeService.php)', config_data_type: 'STRING', config_string: '1');
-            BearConfigCreator::create(config_key: 'larabear.delete_log_console_event_days', config_description: 'How many days to store console errors.', config_data_type: 'INTEGER', config_integer: 90);
-            BearConfigCreator::create(config_key: 'larabear.delete_log_response_error_days', config_description: 'How many days to store response errors.', config_data_type: 'INTEGER', config_integer: 90);
-            BearConfigCreator::create(config_key: 'larabear.delete_log_access_token_days', config_description: 'How many days to store access token logs.', config_data_type: 'INTEGER', config_integer: 90);
-            BearConfigCreator::create(config_key: 'larabear.delete_log_database_change_days', config_description: 'How many days to store database change logs.', config_data_type: 'INTEGER', config_integer: 9000);
-            DB::commit();
-        } catch (Throwable $t) {
-            DB::rollBack();
-            throw $t;
-        }
     }
 
     public function down(): void {
