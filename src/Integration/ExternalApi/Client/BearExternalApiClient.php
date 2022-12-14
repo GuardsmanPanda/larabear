@@ -32,6 +32,10 @@ class BearExternalApiClient {
         );
     }
 
+    public static function fromOauth2ClientId(string $clientId): self {
+        return self::fromOauth2Client(client: BearOauth2Client::findOrFail(id: $clientId));
+    }
+
     /**
      * @param BearOauth2User $user
      * @param string|null $baseUrl
