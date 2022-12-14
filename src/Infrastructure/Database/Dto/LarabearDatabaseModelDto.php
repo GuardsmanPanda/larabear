@@ -291,6 +291,7 @@ class LarabearDatabaseModelDto {
         $content .= " * @method static $this->modelClassName whereNotNull(string|array \$columns, string \$boolean = 'and')" . PHP_EOL;
         $content .= " * @method static $this->modelClassName whereRaw(string \$sql, array \$bindings = [], string \$boolean = 'and')" . PHP_EOL;
         $content .= " * @method static $this->modelClassName orderBy(string \$column, string \$direction = 'asc')" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName orderByDesc(string \$column)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName limit(int \$value)" . PHP_EOL;
         $content .= " * @method static int count(array \$columns = ['*'])" . PHP_EOL;
         $content .= " * @method static mixed sum(string \$column)" . PHP_EOL;

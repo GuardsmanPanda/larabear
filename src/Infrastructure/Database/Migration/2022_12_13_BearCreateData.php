@@ -65,9 +65,7 @@ return new class extends Migration {
                     config_description: $config['config_description'],
                     config_data_type: $config['config_data_type'],
                     config_string: $config['config_string'] ?? null,
-                    config_boolean: $config['config_boolean'] ?? null,
                     config_integer: $config['config_integer'] ?? null,
-                    config_json: $config['config_json'] ?? null,
                 );
                 DB::commit();
             } catch (Throwable $t) {
