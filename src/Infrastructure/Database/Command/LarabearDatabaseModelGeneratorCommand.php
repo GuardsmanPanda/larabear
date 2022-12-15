@@ -12,7 +12,7 @@ class LarabearDatabaseModelGeneratorCommand extends Command {
     protected $description = 'Generate Eloquent Models';
 
     public function handle(): void {
-        $connections = Config::get('bear.eloquent-model-generator');
+        $connections = Config::get(key: 'bear.eloquent-model-generator');
         if (empty($connections)) {
             throw new RuntimeException(message: 'No database connections defined in config/bear.php => [eloquent-model-generator]');
         }
@@ -22,10 +22,10 @@ class LarabearDatabaseModelGeneratorCommand extends Command {
             foreach ($models as $model) {
                 $this->info(string: "  Generating Eloquent Model for table: " . $model->getTableName());
                 $dir = $model->getModelDirectory();
-                if (!is_dir($dir)) {
+                if (!is_dir(filename: $dir)) {
                     $this->info(string: "    Creating directory: $dir");
-                    if (!mkdir($dir) && !is_dir($dir)) {
-                        throw new RuntimeException(sprintf('Directory "%s" was not created', $dir));
+                    if (!mkdir(directory: $dir) && !is_dir(filename: $dir)) {
+                        throw new RuntimeException(message: sprintf('Directory "%s" was not created', $dir));
                     }
                 }
                 file_put_contents(filename: $model->getModelPath(), data: $model->getClassContent());

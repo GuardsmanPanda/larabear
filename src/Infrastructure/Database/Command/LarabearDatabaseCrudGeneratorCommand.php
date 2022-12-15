@@ -95,7 +95,7 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
                 $content .= "        $column->phpDataType \$$column->columnName," . PHP_EOL;
             }
         }
-        $content = substr($content, 0, -2);
+        $content = substr(string: $content, offset: 0, length: -2);
         $content .= PHP_EOL;
         $content .= "    ): {$model->getModelClassName()} {" . PHP_EOL;
         $content .= "        BearDatabaseService::mustBeInTransaction();" . PHP_EOL;
@@ -221,16 +221,16 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
             return;
         }
         $headers = new Set(setType: 'string');
-        $headers->add("use GuardsmanPanda\\Larabear\\Infrastructure\\Http\\Service\\Req;");
-        $headers->add("use {$model->getNameSpace()}\\{$model->getModelClassName()};");
+        $headers->add(element: "use GuardsmanPanda\\Larabear\\Infrastructure\\Http\\Service\\Req;");
+        $headers->add(element: "use {$model->getNameSpace()}\\{$model->getModelClassName()};");
 
         $content = '<?php declare(strict_types=1);' . PHP_EOL . PHP_EOL;
 
         // HEADERS
         $hh = $headers->toArray();
-        sort($hh);
-        $hh = array_unique(array_map(static function ($ele) {
-            return trim($ele);
+        sort(array: $hh);
+        $hh = array_unique(array: array_map(static function ($ele) {
+            return trim(string: $ele);
         }, $hh));
         foreach ($hh as $header) {
             if ($header === '') {
@@ -264,13 +264,13 @@ class LarabearDatabaseCrudGeneratorCommand extends Command {
             }
         }
 
-        $namespace = BearRegexService::extractFirst('~(.*)\\\\[^\\\\]+$~', $model->getNameSpace()) . '\\Crud';
+        $namespace = BearRegexService::extractFirst(regex: '~(.*)\\\\[^\\\\]+$~', subject: $model->getNameSpace()) . '\\Crud';
         $content = '<?php declare(strict_types=1);' . PHP_EOL . PHP_EOL;
         $content .= 'namespace ' . $namespace . ';' . PHP_EOL . PHP_EOL;
         $hh = $headers->toArray();
-        sort($hh);
+        sort(array: $hh);
         $hh = array_unique(array_map(static function ($ele) {
-            return trim($ele);
+            return trim(string: $ele);
         }, $hh));
         foreach ($hh as $header) {
             if ($header === '') {
