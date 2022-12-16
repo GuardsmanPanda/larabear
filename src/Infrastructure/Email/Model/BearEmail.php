@@ -54,11 +54,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $email_cc
  * @property string|null $email_bcc
  * @property string|null $email_tag
+ * @property string|null $email_text
+ * @property string|null $email_html
  * @property string|null $email_reply_to
  * @property string|null $email_from_name
  * @property string|null $email_postmark_id
- * @property string|null $encrypted_html_body
- * @property string|null $encrypted_text_body
  * @property CarbonInterface|null $email_sent_at
  *
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -71,13 +71,11 @@ class BearEmail extends Model {
     public $incrementing = false;
     protected $dateFormat = 'Y-m-d H:i:sO';
     /** @var array<string> $log_exclude_columns */
-    public array $log_exclude_columns = ['encrypted_text_body', 'encrypted_html_body'];
+    public array $log_exclude_columns = ['email_text', 'email_html'];
 
     /** @var array<string, string> $casts */
     protected $casts = [
         'email_sent_at' => 'immutable_datetime',
-        'encrypted_html_body' => 'encrypted',
-        'encrypted_text_body' => 'encrypted',
     ];
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];

@@ -34,8 +34,8 @@ return new class extends Migration {
             $table->boolean(column: 'is_sandboxed')->default(false);
             $table->timestampTz(column: 'email_sent_at')->nullable();
             $table->uuid(column: 'email_postmark_id')->nullable();
-            $table->text(column: 'encrypted_text_body')->nullable();
-            $table->text(column: 'encrypted_html_body')->nullable();
+            $table->text(column: 'email_text')->nullable();
+            $table->text(column: 'email_html')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->useCurrentOnUpdate();
         });

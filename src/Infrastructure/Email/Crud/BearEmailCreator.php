@@ -18,8 +18,8 @@ class BearEmailCreator {
         string $email_tag = null,
         string $email_reply_to = null,
         CarbonInterface $email_sent_at = null,
-        string $encrypted_text_body = null,
-        string $encrypted_html_body = null,
+        string $email_text = null,
+        string $email_html = null,
         bool $sandbox = false
     ): BearEmail {
         BearDatabaseService::mustBeInTransaction();
@@ -37,8 +37,8 @@ class BearEmailCreator {
         $model->email_tag = $email_tag;
         $model->email_reply_to = $email_reply_to;
         $model->email_sent_at = $email_sent_at;
-        $model->encrypted_text_body = $encrypted_text_body;
-        $model->encrypted_html_body = $encrypted_html_body;
+        $model->email_text = $email_text;
+        $model->email_html = $email_html;
         $model->is_sandboxed = $sandbox;
 
         $model->save();
