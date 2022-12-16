@@ -2,8 +2,11 @@
 
 namespace GuardsmanPanda\Larabear\Integration\Postmark\Client;
 
+use GuardsmanPanda\Larabear\Infrastructure\Email\Crud\BearEmailUpdater;
+use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Postmark\PostmarkClient as MailClient;
 use RuntimeException;
 use Throwable;
@@ -42,5 +45,19 @@ class BearPostmarkClient {
             );
         }
         return null;
+    }
+
+
+    public static function sendEmailFromId(string $bearEmailId): void {
+        try {
+            DB::beginTransaction();
+            $updater = BearEmailUpdater::fromId(id: $bearEmailId, lockForUpdate: true);
+            if ($updater->getEmailSentAt() !== null) {
+                throw new RuntimeException(message: 'Email already sent');
+            }
+            DB::commit();
+        } catch (Throwable $t) {
+            DB::rollBack();
+        }
     }
 }

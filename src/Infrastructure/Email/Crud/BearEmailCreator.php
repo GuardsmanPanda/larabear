@@ -23,7 +23,6 @@ class BearEmailCreator {
         bool $sandbox = false
     ): BearEmail {
         BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);
 
         $model = new BearEmail();
         $model->id = Str::uuid()->toString();

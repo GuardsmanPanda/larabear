@@ -7,12 +7,12 @@ use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 class BearEmailUpdater {
-    public function __construct(private readonly BearEmail $model) {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);
-    }
+    public function __construct(private readonly BearEmail $model) {}
 
-    public static function fromId(string $id): self {
+    public static function fromId(string $id, bool $lockForUpdate = false): self {
+        if ($lockForUpdate) {
+            return new self(model: BearEmail::lockForUpdate()->findOrFail(id: $id));
+        }
         return new self(model: BearEmail::findOrFail(id: $id));
     }
 
@@ -28,6 +28,10 @@ class BearEmailUpdater {
     public function setEmailPostmarkId(string|null $email_postmark_id): self {
         $this->model->email_postmark_id = $email_postmark_id;
         return $this;
+    }
+
+    public function getEmailSentAt(): CarbonInterface|null {
+        return $this->model->email_sent_at;
     }
 
     public function update(): BearEmail {

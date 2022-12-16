@@ -34,6 +34,8 @@ return new class extends Migration {
             $table->boolean(column: 'is_sandboxed')->default(false);
             $table->timestampTz(column: 'email_sent_at')->nullable()->index();
             $table->timestampTz(column: 'email_error_at')->nullable()->index();
+            $table->integer(column: 'email_error_code')->nullable();
+            $table->text(column: 'email_error_message')->nullable();
             $table->uuid(column: 'email_postmark_id')->nullable();
             $table->text(column: 'email_text')->nullable();
             $table->text(column: 'email_html')->nullable();
