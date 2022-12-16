@@ -38,20 +38,25 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearEmail whereNotNull(string|array $columns, string $boolean = 'and')
  * @method static BearEmail whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
  * @method static BearEmail orderBy(string $column, string $direction = 'asc')
+ * @method static BearEmail orderByDesc(string $column)
+ * @method static BearEmail limit(int $value)
  * @method static int count(array $columns = ['*'])
+ * @method static mixed sum(string $column)
  * @method static bool exists()
  *
- * @property bool $sandbox
+ * @property bool $is_sandboxed
  * @property string $id
  * @property string $email_to
  * @property string $created_at
+ * @property string $email_from
  * @property string $updated_at
  * @property string $email_subject
  * @property string|null $email_cc
  * @property string|null $email_bcc
  * @property string|null $email_tag
  * @property string|null $email_reply_to
- * @property string|null $email_external_id
+ * @property string|null $email_from_name
+ * @property string|null $email_postmark_id
  * @property string|null $encrypted_html_body
  * @property string|null $encrypted_text_body
  * @property CarbonInterface|null $email_sent_at

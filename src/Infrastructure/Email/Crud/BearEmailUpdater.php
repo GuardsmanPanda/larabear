@@ -17,36 +17,6 @@ class BearEmailUpdater {
     }
 
 
-    public function setEmailTo(string $email_to): self {
-        $this->model->email_to = $email_to;
-        return $this;
-    }
-
-    public function setEmailSubject(string $email_subject): self {
-        $this->model->email_subject = $email_subject;
-        return $this;
-    }
-
-    public function setEmailCc(string|null $email_cc): self {
-        $this->model->email_cc = $email_cc;
-        return $this;
-    }
-
-    public function setEmailBcc(string|null $email_bcc): self {
-        $this->model->email_bcc = $email_bcc;
-        return $this;
-    }
-
-    public function setEmailTag(string|null $email_tag): self {
-        $this->model->email_tag = $email_tag;
-        return $this;
-    }
-
-    public function setEmailReplyTo(string|null $email_reply_to): self {
-        $this->model->email_reply_to = $email_reply_to;
-        return $this;
-    }
-
     public function setEmailSentAt(CarbonInterface|null $email_sent_at): self {
         if ($email_sent_at?->toIso8601String() === $this->model->email_sent_at?->toIso8601String()) {
             return $this;
@@ -55,18 +25,8 @@ class BearEmailUpdater {
         return $this;
     }
 
-    public function setEmailExternalId(string|null $email_external_id): self {
-        $this->model->email_external_id = $email_external_id;
-        return $this;
-    }
-
-    public function setEncryptedTextBody(string|null $encrypted_text_body): self {
-        $this->model->encrypted_text_body = $encrypted_text_body;
-        return $this;
-    }
-
-    public function setEncryptedHtmlBody(string|null $encrypted_html_body): self {
-        $this->model->encrypted_html_body = $encrypted_html_body;
+    public function setEmailPostmarkId(string|null $email_postmark_id): self {
+        $this->model->email_postmark_id = $email_postmark_id;
         return $this;
     }
 

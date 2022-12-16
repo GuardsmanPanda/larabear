@@ -11,12 +11,13 @@ class BearEmailCreator {
     public static function create(
         string $email_to,
         string $email_subject,
+        string $email_from = null,
+        string $email_from_name = null,
         string $email_cc = null,
         string $email_bcc = null,
         string $email_tag = null,
         string $email_reply_to = null,
         CarbonInterface $email_sent_at = null,
-        string $email_external_id = null,
         string $encrypted_text_body = null,
         string $encrypted_html_body = null,
         bool $sandbox = false
@@ -29,15 +30,16 @@ class BearEmailCreator {
 
         $model->email_to = $email_to;
         $model->email_subject = $email_subject;
+        $model->email_from = $email_from ?? config(key: 'postmark_from_email');
+        $model->email_from_name = $email_from_name;
         $model->email_cc = $email_cc;
         $model->email_bcc = $email_bcc;
         $model->email_tag = $email_tag;
         $model->email_reply_to = $email_reply_to;
         $model->email_sent_at = $email_sent_at;
-        $model->email_external_id = $email_external_id;
         $model->encrypted_text_body = $encrypted_text_body;
         $model->encrypted_html_body = $encrypted_html_body;
-        $model->sandbox = $sandbox;
+        $model->is_sandboxed = $sandbox;
 
         $model->save();
         return $model;
