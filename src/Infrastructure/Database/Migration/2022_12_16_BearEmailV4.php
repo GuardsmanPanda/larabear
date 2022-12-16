@@ -17,7 +17,7 @@ return new class extends Migration {
                 $table->text(column: 'email_from_name')->nullable();
                 $table->text(column: 'email_cc')->nullable();
                 $table->text(column: 'email_bcc')->nullable();
-                $table->text(column: 'email_tag')->nullable();
+                $table->text(column: 'email_tag')->nullable()->index();
                 $table->text(column: 'email_subject');
                 $table->text(column: 'email_reply_to')->nullable();
             } else {
@@ -27,12 +27,13 @@ return new class extends Migration {
                 $table->string(column: 'email_from_name')->nullable();
                 $table->string(column: 'email_cc')->nullable();
                 $table->string(column: 'email_bcc')->nullable();
-                $table->string(column: 'email_tag')->nullable();
+                $table->string(column: 'email_tag')->nullable()->index();
                 $table->string(column: 'email_subject');
                 $table->string(column: 'email_reply_to')->nullable();
             }
             $table->boolean(column: 'is_sandboxed')->default(false);
-            $table->timestampTz(column: 'email_sent_at')->nullable();
+            $table->timestampTz(column: 'email_sent_at')->nullable()->index();
+            $table->timestampTz(column: 'email_error_at')->nullable()->index();
             $table->uuid(column: 'email_postmark_id')->nullable();
             $table->text(column: 'email_text')->nullable();
             $table->text(column: 'email_html')->nullable();
