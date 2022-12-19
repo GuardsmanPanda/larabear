@@ -19,6 +19,8 @@ class BearEmailUpdater {
 
     public function setEmailSentAt(CarbonInterface|null $email_sent_at): self {
         $this->model->email_sent_at = $email_sent_at;
+        $this->model->email_error_message = null;
+        $this->model->email_error_code = null;
         return $this;
     }
 
@@ -27,18 +29,15 @@ class BearEmailUpdater {
         return $this;
     }
 
-    public function setEmailErrorAt(CarbonInterface|null $email_error_at): self {
-        $this->model->email_error_at = $email_error_at;
-        return $this;
-    }
-
-    public function setEmailErrorCode(int|null $email_error_code): self {
+    public function setEmailError(int $email_error_code, string $email_error_message): self {
+        $this->model->email_error_message = $email_error_message;
         $this->model->email_error_code = $email_error_code;
         return $this;
     }
 
-    public function setEmailErrorMessage(string|null $email_error_message): self {
-        $this->model->email_error_message = $email_error_message;
+    public function clearEmailError(): self {
+        $this->model->email_error_message = null;
+        $this->model->email_error_code = null;
         return $this;
     }
 

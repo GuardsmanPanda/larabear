@@ -14,7 +14,6 @@ return new class extends Migration {
                 $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));
                 $table->text(column: 'email_to')->index();
                 $table->text(column: 'email_from');
-                $table->text(column: 'email_from_name')->nullable();
                 $table->text(column: 'email_cc')->nullable();
                 $table->text(column: 'email_bcc')->nullable();
                 $table->text(column: 'email_tag')->nullable()->index();
@@ -24,7 +23,6 @@ return new class extends Migration {
                 $table->uuid(column: 'id')->primary();
                 $table->string(column: 'email_to')->index();
                 $table->string(column: 'email_from');
-                $table->string(column: 'email_from_name')->nullable();
                 $table->string(column: 'email_cc')->nullable();
                 $table->string(column: 'email_bcc')->nullable();
                 $table->string(column: 'email_tag')->nullable()->index();
@@ -33,7 +31,6 @@ return new class extends Migration {
             }
             $table->boolean(column: 'is_sandboxed')->default(false);
             $table->timestampTz(column: 'email_sent_at')->nullable()->index();
-            $table->timestampTz(column: 'email_error_at')->nullable()->index();
             $table->integer(column: 'email_error_code')->nullable();
             $table->text(column: 'email_error_message')->nullable();
             $table->uuid(column: 'email_postmark_id')->nullable();
