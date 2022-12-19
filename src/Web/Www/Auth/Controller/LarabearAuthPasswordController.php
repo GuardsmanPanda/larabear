@@ -17,12 +17,11 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class LarabearAuthPasswordController extends Controller {
     public function authenticateWithPasswordFromWeb(): RedirectResponse {
         $user = BearUser::where(column: 'user_email', operator: '=', value: Req::getStringOrDefault(key: 'email'))->first();
-        if ($user === null || $user->is_user_activated !== true) {
+        if ($user === null || $user->is_user_activated !== true || $user->password === null) {
             return Resp::redirectWithMessage(url: BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_if_not_logged_in'), message: 'Invalid or deactivated user.');
         }
 
-        $password = Req::getStringOrDefault(key: 'password');
-        if (!password_verify(password: $password, hash: $user->password)) {
+        if (!password_verify(password: Req::getStringOrDefault(key: 'password'), hash: $user->password)) {
             return Resp::redirectWithMessage(url: BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_if_not_logged_in'), message: 'Invalid password');
         }
 
@@ -35,12 +34,10 @@ class LarabearAuthPasswordController extends Controller {
 
     public function authenticateWithPasswordFromApp(): JsonResponse {
         $user = BearUser::where(column: 'user_email', operator: '=', value: Req::getStringOrDefault(key: 'email'))->first();
-        if ($user === null || $user->is_user_activated !== true) {
+        if ($user === null || $user->is_user_activated !== true || $user->password === null) {
             return new JsonResponse(data: ['Error' => 'Invalid or deactivated user.'], status: 400);
         }
-
-        $password = Req::getStringOrDefault(key: 'password');
-        if (!password_verify(password: $password, hash: $user->password)) {
+        if (!password_verify(password: Req::getStringOrDefault(key: 'password'), hash: $user->password)) {
             return new JsonResponse(data: ['Error' => 'Invalid password'], status: 400);
         }
 

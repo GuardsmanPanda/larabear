@@ -28,7 +28,7 @@ class BearEmailCreator {
 
         $model->email_to = $email_to;
         $model->email_subject = $email_subject;
-        $model->email_from = $email_from ?? config(key: 'postmark_from_email');
+        $model->email_from = $email_from ?? config(key: 'bear.postmark_from_email');
         $model->email_cc = $email_cc;
         $model->email_bcc = $email_bcc;
         $model->email_tag = $email_tag;
