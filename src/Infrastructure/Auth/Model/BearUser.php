@@ -58,7 +58,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $password_reset_token
  * @property string|null $user_country_iso2_code
  * @property string|null $user_language_iso2_code
- * @property ArrayObject $user_metadata_json
+ * @property ArrayObject $user_data_json
  * @property CarbonInterface|null $last_login_at
  * @property CarbonInterface|null $email_verified_at
  * @property CarbonInterface|null $password_reset_expires_at
@@ -80,7 +80,7 @@ class BearUser extends Model implements Authenticatable {
         'email_verified_at' => 'immutable_datetime',
         'last_login_at' => 'immutable_datetime',
         'password_reset_expires_at' => 'immutable_datetime',
-        'user_metadata_json' => AsArrayObject::class,
+        'user_data_json' => AsArrayObject::class,
     ];
 
     public function userLanguageIso2Code(): BelongsTo|null {

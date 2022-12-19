@@ -17,7 +17,7 @@ use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Throwable;
 
-class LarabearAuthController extends Controller {
+class LarabearAuthOauth2Controller extends Controller {
     public function showSignInForm(): View {
         return view(view: 'Auth::sign-in-form', data: [
             'oauth2_clients' => DB::select(query: 'SELECT oauth2_client_id, oauth2_client_type FROM bear_oauth2_client'),
@@ -50,7 +50,8 @@ class LarabearAuthController extends Controller {
             $user = BearOauth2ClientService::getUserFromCallback(
                 client: BearOauth2Client::findOrFail(id: $oauth2_client_id),
                 code: Req::getStringOrDefault(key: 'code'),
-                redirectUri: $redirectUri, createBearUser: $createUserIfNotExists
+                redirectUri: $redirectUri,
+                createBearUser: $createUserIfNotExists
             );
             if ($user->user_id !== null && Session::get(key: 'oauth2_login_user', default: false) === true) {
                 BearUserUpdater::fromId(id: $user->user_id)->setLastLoginNow()->update();

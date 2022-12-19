@@ -18,15 +18,27 @@ class BearEmailUpdater {
 
 
     public function setEmailSentAt(CarbonInterface|null $email_sent_at): self {
-        if ($email_sent_at?->toIso8601String() === $this->model->email_sent_at?->toIso8601String()) {
-            return $this;
-        }
         $this->model->email_sent_at = $email_sent_at;
         return $this;
     }
 
     public function setEmailPostmarkId(string|null $email_postmark_id): self {
         $this->model->email_postmark_id = $email_postmark_id;
+        return $this;
+    }
+
+    public function setEmailErrorAt(CarbonInterface|null $email_error_at): self {
+        $this->model->email_error_at = $email_error_at;
+        return $this;
+    }
+
+    public function setEmailErrorCode(int|null $email_error_code): self {
+        $this->model->email_error_code = $email_error_code;
+        return $this;
+    }
+
+    public function setEmailErrorMessage(string|null $email_error_message): self {
+        $this->model->email_error_message = $email_error_message;
         return $this;
     }
 

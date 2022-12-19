@@ -44,6 +44,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static mixed sum(string $column)
  * @method static bool exists()
  *
+ * @property int|null $email_error_code
  * @property bool $is_sandboxed
  * @property string $id
  * @property string $email_to
@@ -54,12 +55,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $email_cc
  * @property string|null $email_bcc
  * @property string|null $email_tag
- * @property string|null $email_text
  * @property string|null $email_html
+ * @property string|null $email_text
  * @property string|null $email_reply_to
  * @property string|null $email_from_name
  * @property string|null $email_postmark_id
+ * @property string|null $email_error_message
  * @property CarbonInterface|null $email_sent_at
+ * @property CarbonInterface|null $email_error_at
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -75,6 +78,7 @@ class BearEmail extends Model {
 
     /** @var array<string, string> $casts */
     protected $casts = [
+        'email_error_at' => 'immutable_datetime',
         'email_sent_at' => 'immutable_datetime',
     ];
 

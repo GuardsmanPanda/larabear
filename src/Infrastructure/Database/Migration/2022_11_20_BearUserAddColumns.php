@@ -10,23 +10,23 @@ return new class extends Migration {
     public function up(): void {
         Schema::table('bear_user', static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
-                $table->boolean('is_user_activated')->default(true);
-                $table->text('password')->nullable();
-                $table->text('remember_token')->nullable()->unique();
-                $table->text('password_reset_token')->nullable()->unique();
+                $table->boolean(column: 'is_user_activated')->default(true);
+                $table->text(column: 'password')->nullable();
+                $table->text(column: 'remember_token')->nullable()->unique();
+                $table->text(column: 'password_reset_token')->nullable()->unique();
             } else {
-                $table->boolean('is_user_activated')->default(1);
-                $table->string('password')->nullable();
-                $table->string('remember_token', 100)->nullable()->unique();
-                $table->string('password_reset_token')->nullable()->unique();
+                $table->boolean(column: 'is_user_activated')->default(1);
+                $table->string(column: 'password')->nullable();
+                $table->string(column: 'remember_token', length: 100)->nullable()->unique();
+                $table->string(column: 'password_reset_token')->nullable()->unique();
             }
-            $table->timestampTz('password_reset_expires_at')->nullable();
-            $table->timestampTz('email_verified_at')->nullable();
-            $table->timestampTz('last_login_at')->nullable();
+            $table->timestampTz(column: 'password_reset_expires_at')->nullable();
+            $table->timestampTz(column: 'email_verified_at')->nullable();
+            $table->timestampTz(column: 'last_login_at')->nullable();
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
-                $table->jsonb('user_metadata_json')->default(DB::raw("'{}'::jsonb"));
+                $table->jsonb(column: 'user_metadata_json')->default(DB::raw("'{}'::jsonb"));
             } else {
-                $table->jsonb('user_metadata_json')->default(DB::raw('(json_object())'));
+                $table->jsonb(column: 'user_metadata_json')->default(DB::raw('(json_object())'));
             }
         });
     }

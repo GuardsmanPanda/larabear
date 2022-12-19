@@ -5,4 +5,6 @@ parameters:
         - src
         - config
     ignoreErrors:
-        - '#should return Illuminate\\View\\View but returns Illuminate\\Contracts\\View\\Factory|Illuminate\\Contracts\\View\\View.#'
+        - '#Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View.#'
+        - '#undefined method GuzzleHttp\\Promise\\PromiseInterface\|Illuminate\\Http\\Client\\Response#'
+        - '#should return Illuminate\\Http\\Client\\Response but returns GuzzleHttp\\Promise\\PromiseInterface\|Illuminate\\Http\\Client\\Response#'

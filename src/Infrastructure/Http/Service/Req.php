@@ -24,6 +24,10 @@ class Req {
         return self::$r;
     }
 
+    public static function acceptsJson(): bool {
+        return self::request()->acceptsJson();
+    }
+
     public static function hasHeader(string $key): bool {
         return self::$r?->hasHeader(key: $key) ?? false;
     }
