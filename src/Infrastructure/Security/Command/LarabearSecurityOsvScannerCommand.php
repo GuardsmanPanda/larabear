@@ -11,6 +11,6 @@ class LarabearSecurityOsvScannerCommand extends Command {
     public function handle(): void {
         $this->info('Scanning the repository with the OSV tool...');
         exec(command: 'go version', output: $res, result_code: $code);
-        $dd($res, $code);
+        dd($res, $code);
     }
 }

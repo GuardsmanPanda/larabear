@@ -108,7 +108,7 @@ class LarabearDatabaseModelDto {
     }
 
     public function addColumn(LarabearDatabaseColumnDto $column): void {
-        if ($column->columnName === 'delete_at') {
+        if ($column->columnName === 'deleted_at') {
             $this->headers->add(element: 'use Illuminate\Database\Eloquent\SoftDeletes;');
         }
         if ($column->columnName === 'updated_at') {
