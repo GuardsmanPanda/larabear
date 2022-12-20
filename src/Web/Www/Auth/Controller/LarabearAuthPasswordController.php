@@ -49,11 +49,12 @@ class LarabearAuthPasswordController extends Controller {
             'user_data_json' => $user->user_data_json,
             'roles' => DB::select(query: "SELECT role_slug FROM bear_role_user WHERE user_id = ?", bindings: [$user->id]),
             'permissions' => DB::select(query: "
-                SELECT
-                    p.permission_slug,
-                    EXISTS(SELECT * FROM bear_permission_user WHERE user_id = ? AND permission_slug = p.permission_slug) AS has_permission,
-                    EXISTS(SELECT * FROM bear_role_user bru INNER JOIN bear_role_permission brp ON bru.role_slug = brp.role_slug WHERE bru.user_id = ? AND brp.permission_slug = p.permission_slug) AS has_permission_from_role
+                SELECT DISTINCT 
+                    p.permission_slug
                 FROM bear_permission p
+                WHERE 
+                    EXISTS(SELECT * FROM bear_role_user bru INNER JOIN bear_role_permission brp ON bru.role_slug = brp.role_slug WHERE bru.user_id = ? AND brp.permission_slug = p.permission_slug)
+                    OR EXISTS(SELECT * FROM bear_permission_user WHERE user_id = ? AND permission_slug = p.permission_slug)
             ", bindings: [$user->id, $user->id]),
             'message' => 'Logged in successfully.',
             'token' => BearAccessTokenUserCreator::create(user: $user, expires_at: now()->addHours(value: 25)),
