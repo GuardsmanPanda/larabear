@@ -37,13 +37,13 @@ class BearServiceProvider extends ServiceProvider {
                 Route::prefix('config')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Config/routes.php'));
                 Route::prefix('log')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Log/routes.php'));
             });
-            Route::prefix('bear/api')->group(function () {
+            Route::prefix('bear/api')->middleware([BearTransactionMiddleware::class])->group(function () {
                 Route::prefix('error')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Api/Error/routes.php'));
             });
-            Route::prefix('bear')->middleware(['session:allow-guest'])->group(function () {
+            Route::prefix('bear')->middleware(['session:allow-guest', BearTransactionMiddleware::class])->group(function () {
                 Route::prefix('auth')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Auth/routes.php'));
             });
-            Route::post(uri: 'bear/auth/sign-in/app', action: [LarabearAuthPasswordController::class, 'authenticateWithPasswordFromApp']);
+            Route::post(uri: 'bear/auth/sign-in/app', action: [LarabearAuthPasswordController::class, 'authenticateWithPasswordFromApp'])->middleware([BearTransactionMiddleware::class]);
         }
 
         if (method_exists(object_or_class: Model::class, method: 'preventsAccessingMissingAttributes')) {
