@@ -15,6 +15,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearPermissionMiddlew
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearRoleMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearSessionAuthMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearHtmxMiddleware;
+use GuardsmanPanda\Larabear\Infrastructure\Security\Command\LarabearSecurityOsvScannerCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Contracts\Foundation\CachesRoutes;
 use Illuminate\Database\Eloquent\Model;
@@ -58,6 +59,7 @@ class BearServiceProvider extends ServiceProvider {
                 LarabearDatabaseCrudGeneratorCommand::class,
                 LarabearDatabaseModelGeneratorCommand::class,
                 LarabearPhpStanCommand::class,
+                LarabearSecurityOsvScannerCommand::class,
             ]);
 
             $this->publishes(paths: [__DIR__ . '/../../config/config.php' => $this->app->configPath(path: 'bear.php'),], groups: 'bear');

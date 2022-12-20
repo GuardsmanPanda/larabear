@@ -8,25 +8,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
+        Schema::dropIfExists(table: 'bear_email');
         Schema::create(table: 'bear_email', callback: static function (Blueprint $table) {
-            Schema::dropIfExists(table: 'bear_email');
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));
                 $table->text(column: 'email_to')->index();
-                $table->text(column: 'email_from');
                 $table->text(column: 'email_cc')->nullable();
                 $table->text(column: 'email_bcc')->nullable();
                 $table->text(column: 'email_tag')->nullable()->index();
                 $table->text(column: 'email_subject');
+                $table->text(column: 'email_from');
                 $table->text(column: 'email_reply_to')->nullable();
             } else {
                 $table->uuid(column: 'id')->primary();
                 $table->string(column: 'email_to')->index();
-                $table->string(column: 'email_from');
                 $table->string(column: 'email_cc')->nullable();
                 $table->string(column: 'email_bcc')->nullable();
                 $table->string(column: 'email_tag')->nullable()->index();
                 $table->string(column: 'email_subject');
+                $table->string(column: 'email_from');
                 $table->string(column: 'email_reply_to')->nullable();
             }
             $table->boolean(column: 'is_sandboxed')->default(false);

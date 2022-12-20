@@ -1,5 +1,5 @@
 <table class="min-w-full divide-y divide-gray-300 border shadow">
-    <thead class="bg-gray-50 text-left text-sm font-semibold text-gray-800">
+    <thead class="bg-gray-100 text-left text-sm font-semibold text-gray-800">
     <tr>
         {{$tableHead}}
     </tr>
