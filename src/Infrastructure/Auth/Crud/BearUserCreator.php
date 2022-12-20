@@ -10,10 +10,13 @@ use Illuminate\Support\Str;
 class BearUserCreator {
     public static function create(
         string $id = null,
+        string $user_first_name = null,
+        string $user_last_name = null,
         string $user_display_name = null,
         string $user_email = null,
         string $user_country_iso2_code = null,
         string $user_language_iso2_code = null,
+        string $user_city = null,
         CarbonInterface $email_verified_at = null
     ): BearUser {
         BearDatabaseService::mustBeInTransaction();
@@ -21,10 +24,13 @@ class BearUserCreator {
         $model = new BearUser();
         $model->id = $id ?? Str::uuid()->toString();
 
-        $model->user_display_name = $user_display_name;
-        $model->user_email = $user_email;
+        $model->user_first_name = $user_first_name !== null ? trim($user_first_name) : null;
+        $model->user_last_name = $user_last_name !== null ? trim($user_last_name) : null;
+        $model->user_display_name = $user_display_name !== null ? trim($user_display_name) : null;
+        $model->user_email = $user_email !== null ? trim($user_email) : null;
         $model->user_country_iso2_code = $user_country_iso2_code;
         $model->user_language_iso2_code = $user_language_iso2_code;
+        $model->user_city = $user_city !== null ? trim($user_city) : null;
         $model->email_verified_at = $email_verified_at;
 
         $model->save();

@@ -52,7 +52,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $created_at
  * @property string $updated_at
  * @property string|null $password
+ * @property string|null $user_city
  * @property string|null $user_email
+ * @property string|null $user_last_name
+ * @property string|null $user_first_name
  * @property string|null $remember_token
  * @property string|null $user_display_name
  * @property string|null $password_reset_token
