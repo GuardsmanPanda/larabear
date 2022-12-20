@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
 use Carbon\CarbonInterface;
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Support\Facades\Hash;
@@ -17,17 +18,14 @@ class BearUserUpdater {
     }
 
 
-    public function setUserDisplayName(string|null $user_display_name): self {
-        if ($user_display_name !== null) {
-            $user_display_name = trim($user_display_name);
-        }
-        $this->model->user_display_name = $user_display_name;
+    public function setUserDisplayName(string $user_display_name): self {
+        $this->model->user_display_name = BearRegexService::superTrim($user_display_name);
         return $this;
     }
 
     public function setUserFirstName(string|null $user_first_name): self {
         if ($user_first_name !== null) {
-            $user_first_name = trim($user_first_name);
+            $user_first_name = BearRegexService::superTrim($user_first_name);
         }
         $this->model->user_first_name = $user_first_name;
         return $this;
@@ -35,7 +33,7 @@ class BearUserUpdater {
 
     public function setUserLastName(string|null $user_last_name): self {
         if ($user_last_name !== null) {
-            $user_last_name = trim($user_last_name);
+            $user_last_name = BearRegexService::superTrim($user_last_name);
         }
         $this->model->user_last_name = $user_last_name;
         return $this;
@@ -43,7 +41,7 @@ class BearUserUpdater {
 
     public function setUserCity(string|null $user_city): self {
         if ($user_city !== null) {
-            $user_city = trim($user_city);
+            $user_city = BearRegexService::superTrim($user_city);
         }
         $this->model->user_city = $user_city;
         return $this;

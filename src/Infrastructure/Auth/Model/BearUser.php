@@ -51,13 +51,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $id
  * @property string $created_at
  * @property string $updated_at
+ * @property string $user_display_name
  * @property string|null $password
  * @property string|null $user_city
  * @property string|null $user_email
  * @property string|null $user_last_name
  * @property string|null $user_first_name
  * @property string|null $remember_token
- * @property string|null $user_display_name
  * @property string|null $password_reset_token
  * @property string|null $user_country_iso2_code
  * @property string|null $user_language_iso2_code

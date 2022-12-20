@@ -9,10 +9,12 @@ return new class extends Migration {
     public function up(): void {
         Schema::table('bear_user', static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
+                $table->text(column: 'user_display_name')->nullable(false)->change();
                 $table->text(column: 'user_first_name')->nullable();
                 $table->text(column: 'user_last_name')->nullable();
                 $table->text(column: 'user_city')->nullable();
             } else {
+                $table->string(column: 'user_display_name')->nullable(false)->change();
                 $table->string(column: 'user_first_name')->nullable();
                 $table->string(column: 'user_last_name')->nullable();
                 $table->string(column: 'user_city')->nullable();
@@ -21,10 +23,6 @@ return new class extends Migration {
     }
 
     public function down(): void {
-        Schema::table('bear_user', static function (Blueprint $table) {
-            $table->dropColumn('user_first_name');
-            $table->dropColumn('user_last_name');
-            $table->dropColumn('user_city');
-        });
+        throw new RuntimeException(message: 'Cannot reverse this migration.');
     }
 };
