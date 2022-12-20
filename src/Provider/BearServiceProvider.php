@@ -17,6 +17,8 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearSessionAuthMiddle
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearHtmxMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Command\LarabearOauth2CheckAccessCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Security\Command\LarabearSecurityOsvScannerCommand;
+use GuardsmanPanda\Larabear\Web\Www\Auth\Controller\LarabearAuthOauth2Controller;
+use GuardsmanPanda\Larabear\Web\Www\Auth\Controller\LarabearAuthPasswordController;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Contracts\Foundation\CachesRoutes;
 use Illuminate\Database\Eloquent\Model;
@@ -41,6 +43,7 @@ class BearServiceProvider extends ServiceProvider {
             Route::prefix('bear')->middleware(['session:allow-guest'])->group(function () {
                 Route::prefix('auth')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Auth/routes.php'));
             });
+            Route::post(uri: 'bear/auth/sign-in/app', action: [LarabearAuthPasswordController::class, 'authenticateWithPasswordFromWeb']);
         }
 
         if (method_exists(object_or_class: Model::class, method: 'preventsAccessingMissingAttributes')) {
