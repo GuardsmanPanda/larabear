@@ -25,7 +25,6 @@ class BearOauth2UserService {
     private static function updateAccessToken(BearOauth2User $user): string {
         try {
             DB::beginTransaction();
-            //lock the user row to avoid concurrent refresh attempts.
             $updater = BearOauth2UserUpdater::fromId(id: $user->id, lockForUpdate: true);
 
             // In case multiple request happens at the same time we may be queued here multiple times
@@ -53,7 +52,6 @@ class BearOauth2UserService {
                     encrypted_user_access_token: $json['access_token'],
                     user_access_token_expires_at: Carbon::now()->addSeconds($json['expires_in'])
                 )->update();
-
             } else {
                 $updater->setUserAccessTokenErrorMessage(user_access_token_error_message: $resp->body())->update();
             }

@@ -15,6 +15,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearPermissionMiddlew
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearRoleMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearSessionAuthMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearHtmxMiddleware;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Command\LarabearOauth2CheckAccessCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Security\Command\LarabearSecurityOsvScannerCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Contracts\Foundation\CachesRoutes;
@@ -60,15 +61,17 @@ class BearServiceProvider extends ServiceProvider {
                 LarabearDatabaseModelGeneratorCommand::class,
                 LarabearPhpStanCommand::class,
                 LarabearSecurityOsvScannerCommand::class,
+                LarabearOauth2CheckAccessCommand::class,
             ]);
 
-            $this->publishes(paths: [__DIR__ . '/../../config/config.php' => $this->app->configPath(path: 'bear.php'),], groups: 'bear');
-            $this->publishes(paths: [__DIR__ . '/../../assets/public' => $this->app->basePath(path: 'public'),], groups: 'bear-flags');
+            $this->publishes(paths: [__DIR__ . '/../../config/config.php' => $this->app->configPath(path: 'bear.php')], groups: 'bear');
+            $this->publishes(paths: [__DIR__ . '/../../assets/public' => $this->app->basePath(path: 'public')], groups: 'bear-flags');
             $this->loadMigrationsFrom(paths: [__DIR__ . '/../Infrastructure/Database/Migration']);
 
             $this->app->booted(function () {
-                $schedule = $this->app->make(Schedule::class);
-                $schedule->command('larabear:clean-log-tables')->dailyAt(time: '01:45');
+                $schedule = $this->app->make(abstract: Schedule::class);
+                $schedule->command(LarabearCleanLogTablesCommand::class)->dailyAt(time: '01:45');
+                $schedule->command(LarabearOauth2CheckAccessCommand::class)->dailyAt(time: '02:07');
             });
         } else {
             $this->loadViewsFrom(path: base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Access/View'), namespace: 'larabear-access');
