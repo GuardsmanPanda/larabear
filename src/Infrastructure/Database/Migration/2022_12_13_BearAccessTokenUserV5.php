@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
+        Schema::dropIfExists('bear_log_access_token_usage');
         Schema::dropIfExists('bear_access_token_user');
         Schema::create(table: 'bear_access_token_user', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {

@@ -12,13 +12,13 @@ return new class extends Migration {
         Schema::create(table: 'bear_user', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));
-                $table->text(column: 'user_display_name')->nullable();
+                $table->text(column: 'user_display_name');
                 $table->text(column: 'user_email')->nullable()->unique();
                 $table->text(column: 'user_country_iso2_code')->nullable();
                 $table->text(column: 'user_language_iso2_code')->nullable();
             } else {
                 $table->uuid(column: 'id')->primary();
-                $table->string(column: 'user_display_name')->nullable();
+                $table->string(column: 'user_display_name');
                 $table->string(column: 'user_email')->nullable()->unique();
                 $table->string(column: 'user_country_iso2_code')->nullable();
                 $table->string(column: 'user_language_iso2_code')->nullable();

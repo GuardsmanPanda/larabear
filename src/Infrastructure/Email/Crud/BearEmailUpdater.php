@@ -16,7 +16,7 @@ class BearEmailUpdater {
         return new self(model: BearEmail::findOrFail(id: $id));
     }
 
-    public function setEmailPostmarkId(string $email_postmark_id): self {
+    public function setEmailSendData(string $email_postmark_id): self {
         $this->model->email_postmark_id = $email_postmark_id;
         $this->model->email_error_message = null;
         $this->model->email_error_code = null;

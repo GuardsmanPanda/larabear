@@ -19,7 +19,7 @@ class BearUserUpdater {
 
 
     public function setUserDisplayName(string $user_display_name): self {
-        $this->model->user_display_name = BearRegexService::superTrim($user_display_name);
+        $this->model->user_display_name = trim($user_display_name);
         return $this;
     }
 

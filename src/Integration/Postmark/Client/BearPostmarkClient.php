@@ -40,7 +40,7 @@ class BearPostmarkClient {
             return $result->MessageID ?? throw new RuntimeException(message: "Postmark error: $code - $message");
         } catch (Throwable $t) {
             BearLogErrorCreator::create(
-                message: "Exception, Message [{$t->getMessage()}]",
+                message: "Exception when sending email, Message [{$t->getMessage()}]",
                 namespace: 'larabear', key: 'postmark-direct',
                 exception: $t
             );
@@ -74,7 +74,7 @@ class BearPostmarkClient {
         if ($code !== 0) {
             $updater->setEmailError(email_error_code: $code, email_error_message: $message)->update();
         } else {
-            $updater->setEmailPostmarkId(email_postmark_id: $result->MessageID ?? throw new RuntimeException(message: 'No email id found'))->update();
+            $updater->setEmailSendData(email_postmark_id: $result->MessageID ?? throw new RuntimeException(message: 'No email id found'))->update();
         }
     }
 

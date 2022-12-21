@@ -15,15 +15,6 @@ use JsonException;
 use Throwable;
 
 class BearLogDatabaseChangeCreator {
-    /**
-     * @param Model $model
-     * @param string $changeType
-     * @param string|null $columnName
-     * @param string|null $oldValue
-     * @param string|null $newValue
-     * @return void
-     * @throws JsonException
-     */
     public static function create(
         Model $model,
         string $changeType,

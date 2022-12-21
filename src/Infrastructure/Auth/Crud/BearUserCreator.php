@@ -27,7 +27,7 @@ class BearUserCreator {
 
         $model->user_first_name = $user_first_name !== null ? BearRegexService::superTrim($user_first_name) : null;
         $model->user_last_name = $user_last_name !== null ? BearRegexService::superTrim($user_last_name) : null;
-        $model->user_display_name = BearRegexService::superTrim($user_display_name);
+        $model->user_display_name = trim($user_display_name);
         $model->user_email = $user_email !== null ? BearRegexService::superTrim($user_email) : null;
         $model->user_country_iso2_code = $user_country_iso2_code;
         $model->user_language_iso2_code = $user_language_iso2_code;

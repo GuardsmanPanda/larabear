@@ -43,7 +43,10 @@ class LarabearAuthPasswordController extends Controller {
         return new JsonResponse(data: [
             'id' => $user->id,
             'user_email' => $user->user_email,
+            'user_first_name' => $user->user_first_name,
+            'user_last_name' => $user->user_last_name,
             'user_display_name' => $user->user_display_name,
+            'user_city' => $user->user_city,
             'user_country_iso2_code' => $user->user_country_iso2_code,
             'user_language_iso2_code' => $user->user_language_iso2_code,
             'user_data_json' => $user->user_data_json,
