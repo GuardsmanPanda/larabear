@@ -36,7 +36,7 @@ class LarabearDatabaseModelDto {
         private readonly string $modelClassName,
         private readonly string $modelLocation,
         private readonly string $dateFormat,
-        private readonly array  $modelTraits = [],
+        private array  $modelTraits = [],
         private readonly array  $logExcludeColumns = [],
     ) {
         $this->headers = new Set(setType: 'string');
@@ -110,6 +110,7 @@ class LarabearDatabaseModelDto {
     public function addColumn(LarabearDatabaseColumnDto $column): void {
         if ($column->columnName === 'deleted_at') {
             $this->headers->add(element: 'use Illuminate\Database\Eloquent\SoftDeletes;');
+            $this->modelTraits[] = 'SoftDeletes';
         }
         if ($column->columnName === 'updated_at') {
             $this->timestamps = true;
