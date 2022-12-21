@@ -110,12 +110,12 @@ class LarabearDatabaseModelDto {
     public function addColumn(LarabearDatabaseColumnDto $column): void {
         if ($column->columnName === 'deleted_at') {
             $this->headers->add(element: 'use Illuminate\Database\Eloquent\SoftDeletes;');
-            $this->modelTraits[] = 'SoftDeletes';
+            $this->modelTraits[] = "\\SoftDeletes";
         }
         if ($column->columnName === 'updated_at') {
             $this->timestamps = true;
         }
-        if (in_array($column->columnName, ['created_at', 'updated_at', 'deleted_at'], true)) {
+        if (in_array(needle: $column->columnName, haystack: ['created_at', 'updated_at', 'deleted_at'], strict: true)) {
             $column->eloquentCast = null;
             $column->phpDataType = 'string';
             $column->requiredHeader = '';
