@@ -72,7 +72,7 @@ class BearExternalApiClient {
      * @return JsonResponse
      */
     public function requestToJsonResponse(string $path,  array $headers = [], array $additionalBodyContent = [], array $additionalQuery = []): JsonResponse {
-        $resp = $this->request(path: $path, method: Req::method(), headers: $headers, body: Req::allJsonData(allowEmpty: true) + $additionalBodyContent, query: Req::allQueryData() + $additionalQuery);
+        $resp = $this->request(path: $path, method: Req::method(), headers: $headers, body: $additionalBodyContent + Req::allJsonData(allowEmpty: true), query: $additionalQuery + Req::allQueryData());
         return new JsonResponse(data: $resp->body(), status: $resp->status(), json: true);
     }
 

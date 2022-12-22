@@ -11,6 +11,10 @@ class LarabearSecurityOsvScannerCommand extends Command {
     public function handle(): void {
         $this->info('Scanning the repository with the OSV tool...');
         exec(command: 'go version', output: $res, result_code: $code);
-        dd($res, $code);
+        if ($code !== 0) {
+            $this->error(string: 'Go is not installed. Please install Go and try again. https://golang.org/doc/install');
+            return;
+        }
+        exec(command: 'go get github.com/ossf/osv/cmd/osv@latest', output: $res, result_code: $code);
     }
 }
