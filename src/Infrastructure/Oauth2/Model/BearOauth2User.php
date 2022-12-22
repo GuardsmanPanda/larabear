@@ -58,6 +58,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $encrypted_user_refresh_token
  * @property string|null $user_access_token_error_message
  * @property ArrayObject $oauth2_scope_json
+ * @property ArrayObject $oauth2_user_data_json
  * @property CarbonInterface|null $user_access_token_expires_at
  * @property CarbonInterface|null $user_access_token_first_error_at
  *
@@ -80,6 +81,7 @@ class BearOauth2User extends Model {
         'encrypted_user_access_token' => 'encrypted',
         'encrypted_user_refresh_token' => 'encrypted',
         'oauth2_scope_json' => AsArrayObject::class,
+        'oauth2_user_data_json' => AsArrayObject::class,
         'token_refresh_error_at' => 'immutable_datetime',
         'user_access_token_expires_at' => 'immutable_datetime',
         'user_access_token_first_error_at' => 'immutable_datetime',
