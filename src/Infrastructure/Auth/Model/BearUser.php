@@ -77,6 +77,8 @@ class BearUser extends Model implements Authenticatable {
     protected $table = 'bear_user';
     protected $keyType = 'string';
     public $incrementing = false;
+    /** @var array<string> $log_exclude_columns */
+    public array $log_exclude_columns = ['password', 'remember_token', 'password_reset_token', 'last_login_at'];
 
     /** @var array<string, string> $casts */
     protected $casts = [
