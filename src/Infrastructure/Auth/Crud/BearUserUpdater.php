@@ -95,6 +95,11 @@ class BearUserUpdater {
         return $this;
     }
 
+    public function setIsUserActivated(bool $is_user_activated): self {
+        $this->model->is_user_activated = $is_user_activated;
+        return $this;
+    }
+
     public function update(): BearUser {
         $this->model->save();
         return $this->model;
