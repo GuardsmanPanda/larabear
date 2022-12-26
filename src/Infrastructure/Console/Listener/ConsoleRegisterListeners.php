@@ -3,7 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Console\Listener;
 
 use Carbon\Carbon;
-use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
+use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearLogConsoleEventCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearLogConsoleEventUpdater;

@@ -2,14 +2,14 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Auth\Controller;
 
-use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
+use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
-use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2ClientService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2ClientService;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -27,10 +27,10 @@ class LarabearAuthOauth2Controller extends Controller {
     public function oauth2Redirect(string $oauth2_client_id): RedirectResponse {
         return BearOauth2ClientService::getAuthorizeRedirectResponse(
             client: BearOauth2Client::findOrFail(id: $oauth2_client_id),
-            afterSignInRedirectPath: Req::getString(key: 'redirect-path', nullIfMissing: true),
+            afterSignInRedirectPath: Req::getString(key: 'redirect-path', defaultIfMissing: null),
             loginUser: Req::getBoolOrDefault(key: 'login-user', default: true),
             overwriteRedirectUri: "/bear/auth/oauth2-client/$oauth2_client_id/callback",
-            specialScope: Req::getString(key: 'special-scope', nullIfMissing: true),
+            specialScope: Req::getString(key: 'special-scope', defaultIfMissing: null),
             accountPrompt: Req::getBoolOrDefault(key: 'account-prompt', default: false),
         );
     }

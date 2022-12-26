@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace GuardsmanPanda\Larabear\Enum;
+namespace GuardsmanPanda\Larabear\Infrastructure\App\Enum;
 
 enum BearSeverityEnum: string {
     case BASELINE = 'BASELINE';

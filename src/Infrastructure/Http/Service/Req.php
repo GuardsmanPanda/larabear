@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
 use Carbon\CarbonImmutable;
+use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
@@ -10,9 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Route;
 use RuntimeException;
-use stdClass;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Throwable;
 
 class Req {
     public static Request|null $r = null;
@@ -150,9 +149,12 @@ class Req {
     }
 
 
-    public static function getString(string $key, bool $nullIfMissing = false): string|null {
+    public static function getString(string $key, BearTypeEnum|string|null $defaultIfMissing = BearTypeEnum::UNDEFINED): string|null {
         if (!self::has(key: $key)) {
-            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+            if ($defaultIfMissing === null || is_string($defaultIfMissing)) {
+                return $defaultIfMissing;
+            }
+            throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseString(value: $val);
@@ -164,9 +166,12 @@ class Req {
     }
 
 
-    public static function getInt(string $key, bool $nullIfMissing = false): int|null {
+    public static function getInt(string $key, BearTypeEnum|int|null $defaultIfMissing = BearTypeEnum::UNDEFINED): int|null {
         if (!self::has(key: $key)) {
-            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+            if ($defaultIfMissing === null || is_int($defaultIfMissing)) {
+                return $defaultIfMissing;
+            }
+            throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseInt(value: $val);
@@ -178,9 +183,12 @@ class Req {
     }
 
 
-    public static function getFloat(string $key, bool $nullIfMissing = false): float|null {
+    public static function getFloat(string $key, BearTypeEnum|float|null $defaultIfMissing = BearTypeEnum::UNDEFINED): float|null {
         if (!self::has(key: $key)) {
-            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+            if ($defaultIfMissing === null || is_float($defaultIfMissing)) {
+                return $defaultIfMissing;
+            }
+            throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseFloat(value: $val);
@@ -192,9 +200,12 @@ class Req {
     }
 
 
-    public static function getBool(string $key, bool $nullIfMissing = false): bool|null {
+    public static function getBool(string $key, BearTypeEnum|bool|null $defaultIfMissing = BearTypeEnum::UNDEFINED): bool|null {
         if (!self::has(key: $key)) {
-            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+            if ($defaultIfMissing === null || is_bool($defaultIfMissing)) {
+                return $defaultIfMissing;
+            }
+            throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseBool(value: $val);
@@ -206,9 +217,15 @@ class Req {
     }
 
 
-    public static function getDate(string $key, bool $nullIfMissing = false): CarbonImmutable|null {
+    public static function getDate(string $key, BearTypeEnum|CarbonImmutable|string|null $defaultIfMissing = BearTypeEnum::UNDEFINED): CarbonImmutable|null {
         if (!self::has(key: $key)) {
-            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+            if ($defaultIfMissing === null || $defaultIfMissing instanceof CarbonImmutable) {
+                return $defaultIfMissing;
+            }
+            if (is_string($defaultIfMissing)) {
+                return ValidateAndParseValue::parseDate(value: $defaultIfMissing);
+            }
+            throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseDate(value: $val);
@@ -220,12 +237,18 @@ class Req {
     }
 
 
-    public static function getDateTime(string $key, bool $nullIfMissing = false): CarbonImmutable|null {
+    public static function getDateTime(string $key, BearTypeEnum|CarbonImmutable|string|null $defaultIfMissing = BearTypeEnum::UNDEFINED): CarbonImmutable|null {
         if (!self::has(key: $key)) {
-            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+            if ($defaultIfMissing === null || $defaultIfMissing instanceof CarbonImmutable) {
+                return $defaultIfMissing;
+            }
+            if (is_string($defaultIfMissing)) {
+                return ValidateAndParseValue::parseDateTime(value: $defaultIfMissing);
+            }
+            throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: self::getString(key: $key . "_timezone", nullIfMissing: true), errorMessage: 'You may need to include timezone as form_field_name_timezone');
+        return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: self::getString(key: $key . "_timezone", defaultIfMissing: null), errorMessage: 'You may need to include timezone as form_field_name_timezone');
     }
 
     public static function getDateTimeOrDefault(string $key, CarbonImmutable $default = null): CarbonImmutable {
@@ -233,18 +256,21 @@ class Req {
         if ($value === null) {
             return $default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
-        return ValidateAndParseValue::parseDateTime(value: $value, timezone: self::getString(key: $key . "_timezone", nullIfMissing: true), errorMessage: 'You may need to include timezone as form_field_name_timezone');
+        return ValidateAndParseValue::parseDateTime(value: $value, timezone: self::getString(key: $key . "_timezone", defaultIfMissing: null), errorMessage: 'You may need to include timezone as form_field_name_timezone');
     }
 
 
     /**
      * @param string $key
-     * @param bool $nullIfMissing
+     * @param BearTypeEnum|array<mixed>|null $defaultIfMissing
      * @return array<string, mixed>|null
      */
-    public static function getArray(string $key, bool $nullIfMissing = false): array|null {
+    public static function getArray(string $key, BearTypeEnum|array|null $defaultIfMissing = BearTypeEnum::UNDEFINED): array|null {
         if (!self::has(key: $key)) {
-            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+            if ($defaultIfMissing === null || is_array($defaultIfMissing)) {
+                return $defaultIfMissing;
+            }
+            throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
         return $val === null ? null : ValidateAndParseValue::parseArray(value: $val);
@@ -253,12 +279,15 @@ class Req {
 
     /**
      * @param string $key
-     * @param bool $nullIfMissing
+     * @param BearTypeEnum|array<mixed>|null $defaultIfMissing
      * @return array<mixed>|null
      */
-    public static function getJson(string $key, bool $nullIfMissing = false): array|null {
+    public static function getJson(string $key, BearTypeEnum|array|null $defaultIfMissing = BearTypeEnum::UNDEFINED): array|null {
         if (!self::has(key: $key)) {
-            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+            if ($defaultIfMissing === null || is_array($defaultIfMissing)) {
+                return $defaultIfMissing;
+            }
+            throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
         if ($val === null) {
@@ -283,12 +312,15 @@ class Req {
 
     /**
      * @param string $key
-     * @param bool $nullIfMissing
+     * @param BearTypeEnum|ArrayObject<mixed>|null $defaultIfMissing
      * @return ArrayObject<mixed>|null
      */
-    public static function getArrayObject(string $key, bool $nullIfMissing = false): ArrayObject|null {
+    public static function getArrayObject(string $key, BearTypeEnum|ArrayObject|null $defaultIfMissing = BearTypeEnum::UNDEFINED): ArrayObject|null {
         if (!self::has(key: $key)) {
-            return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+            if ($defaultIfMissing === null || $defaultIfMissing instanceof ArrayObject) {
+                return $defaultIfMissing;
+            }
+            throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
         if ($val === null) {
@@ -311,12 +343,12 @@ class Req {
     }
 
 
-    public static function getFile(string $key, bool $nullIfMissing = false): UploadedFile|null {
+    public static function getFile(string $key, BearTypeEnum|null $defaultIfMissing = BearTypeEnum::UNDEFINED): UploadedFile|null {
         foreach (self::request()->allFiles() as $name => $file) {
             if ($name === $key) {
                 return $file;
             }
         }
-        return $nullIfMissing ? null : throw new BadRequestHttpException(message: "No input field named: $key");
+        return $defaultIfMissing === null ? null : throw new BadRequestHttpException(message: "No input field named: $key");
     }
 }

@@ -17,12 +17,13 @@ composer require guardsmanpanda/larabear
 
 ### Step 2
 Add the Service provider to config/app.php:
+
 ```php
     'providers' => [
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         ...
-        \GuardsmanPanda\Larabear\Provider\BearServiceProvider::class,
+        \GuardsmanPanda\Larabear\Infrastructure\Laravel\Provider\BearServiceProvider::class,
     ],
 ```
 

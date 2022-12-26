@@ -22,10 +22,10 @@ class LarabearLogErrorController extends Controller {
 
     public function delete(): View {
         BearLogErrorDeleter::delete(
-            id: Req::getInt(key: 'id', nullIfMissing: true),
-            error_namespace: Req::getString(key: 'error_namespace', nullIfMissing: true),
-            error_key: Req::getString(key: 'error_key', nullIfMissing: true),
-            app_action_name: Req::getString(key: 'app_action_name', nullIfMissing: true),
+            id: Req::getInt(key: 'id', defaultIfMissing: null),
+            error_namespace: Req::getString(key: 'error_namespace', defaultIfMissing: null),
+            error_key: Req::getString(key: 'error_key', defaultIfMissing: null),
+            app_action_name: Req::getString(key: 'app_action_name', defaultIfMissing: null),
         );
         return  $this->index();
     }

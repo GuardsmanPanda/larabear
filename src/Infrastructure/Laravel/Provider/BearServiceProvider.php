@@ -1,23 +1,22 @@
 <?php declare(strict_types=1);
 
-namespace GuardsmanPanda\Larabear\Provider;
+namespace GuardsmanPanda\Larabear\Infrastructure\Laravel\Provider;
 
-use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearValidateConfigurationCommand;
 use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearCleanLogTablesCommand;
+use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearValidateConfigurationCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Listener\ConsoleRegisterListeners;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCheckForeignKeysOnSoftDeletesCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCrudGeneratorCommand;
-use GuardsmanPanda\Larabear\Infrastructure\Http\Command\LarabearGenerateSessionKeyCommand;
-use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearTransactionMiddleware;
-use GuardsmanPanda\Larabear\Infrastructure\Integrity\Command\LarabearPhpStanCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseModelGeneratorCommand;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Command\LarabearGenerateSessionKeyCommand;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearHtmxMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearPermissionMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearRoleMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearSessionAuthMiddleware;
-use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearHtmxMiddleware;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearTransactionMiddleware;
+use GuardsmanPanda\Larabear\Infrastructure\Integrity\Command\LarabearPhpStanCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Command\LarabearOauth2CheckAccessCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Security\Command\LarabearSecurityOsvScannerCommand;
-use GuardsmanPanda\Larabear\Web\Www\Auth\Controller\LarabearAuthOauth2Controller;
 use GuardsmanPanda\Larabear\Web\Www\Auth\Controller\LarabearAuthPasswordController;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Contracts\Foundation\CachesRoutes;

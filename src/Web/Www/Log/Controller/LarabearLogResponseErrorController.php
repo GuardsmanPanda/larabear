@@ -23,10 +23,10 @@ class LarabearLogResponseErrorController extends Controller {
 
     public function delete(): View {
         BearLogResponseErrorDeleter::delete(
-            id: Req::getInt(key: 'id', nullIfMissing: true),
-            response_status_code: Req::getInt(key: 'response_status_code', nullIfMissing: true),
-            request_http_path: Req::getString(key: 'request_http_path', nullIfMissing: true),
-            app_action_name: Req::getString(key: 'app_action_name', nullIfMissing: true),
+            id: Req::getInt(key: 'id', defaultIfMissing: null),
+            response_status_code: Req::getInt(key: 'response_status_code', defaultIfMissing: null),
+            request_http_path: Req::getString(key: 'request_http_path', defaultIfMissing: null),
+            app_action_name: Req::getString(key: 'app_action_name', defaultIfMissing: null),
         );
         return  $this->index();
     }

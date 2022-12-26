@@ -3,10 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 
 use Closure;
-use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;

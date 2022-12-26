@@ -3,9 +3,9 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 
 use Closure;
-use GuardsmanPanda\Larabear\Enum\BearSeverityEnum;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Service\BearAuthService;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
