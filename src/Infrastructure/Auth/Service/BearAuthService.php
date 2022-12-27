@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Service;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use Illuminate\Support\Facades\DB;
+use RuntimeException;
 
 class BearAuthService {
     private static string $globalId = '';
@@ -21,12 +22,12 @@ class BearAuthService {
         return BearGlobalStateService::getUserId();
     }
 
-    public static function getUser(): BearUser|null {
+    public static function getUser(): BearUser {
         self::cacheCheck();
         if (self::$user === null && BearGlobalStateService::getUserId() !== null) {
             self::$user = BearUser::find(id: BearGlobalStateService::getUserId());
         }
-        return self::$user;
+        return self::$user ?? throw new RuntimeException(message: 'User not found');
     }
 
     /**

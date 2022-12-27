@@ -100,6 +100,16 @@ class BearUserUpdater {
         return $this;
     }
 
+    public function setUserDataJsonValue(string $key, mixed $value): self {
+        $this->model->user_data_json[$key] = $value;
+        return $this;
+    }
+
+    public function deleteUserDataJsonValue(string $key): self {
+        unset($this->model->user_data_json[$key]);
+        return $this;
+    }
+
     public function update(): BearUser {
         $this->model->save();
         return $this->model;
