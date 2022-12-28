@@ -42,6 +42,7 @@ class BearServiceProvider extends ServiceProvider {
             Route::prefix('bear')->middleware(['session:allow-guest', BearTransactionMiddleware::class])->group(function () {
                 Route::prefix('auth')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Auth/routes.php'));
             });
+            Route::post(uri: 'bear/auth/sign-in/web', action: [LarabearAuthPasswordController::class, 'authenticateWithPasswordFromWeb'])->middleware([BearTransactionMiddleware::class, 'session:allow-guest']);
             Route::post(uri: 'bear/auth/sign-in/app', action: [LarabearAuthPasswordController::class, 'authenticateWithPasswordFromApp'])->middleware([BearTransactionMiddleware::class]);
         }
 
