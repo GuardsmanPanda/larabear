@@ -58,6 +58,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $user_last_name
  * @property string|null $user_first_name
  * @property string|null $remember_token
+ * @property string|null $user_profile_image
  * @property string|null $password_reset_token
  * @property string|null $user_country_iso2_code
  * @property string|null $user_language_iso2_code

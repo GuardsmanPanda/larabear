@@ -19,6 +19,7 @@ class BearUserCreator {
         string $user_country_iso2_code = null,
         string $user_language_iso2_code = null,
         string $user_city = null,
+        string $user_profile_image = null,
         CarbonInterface $email_verified_at = null,
     ): BearUser {
         BearDatabaseService::mustBeInTransaction();
@@ -33,6 +34,7 @@ class BearUserCreator {
         $model->user_country_iso2_code = $user_country_iso2_code;
         $model->user_language_iso2_code = $user_language_iso2_code;
         $model->user_city = $user_city !== null ? BearRegexService::superTrim($user_city) : null;
+        $model->user_profile_image = $user_profile_image;
         $model->email_verified_at = $email_verified_at;
         $model->user_data_json = new ArrayObject();
 

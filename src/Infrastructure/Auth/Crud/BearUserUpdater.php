@@ -100,6 +100,11 @@ class BearUserUpdater {
         return $this;
     }
 
+    public function setUserProfileImage(string|null $user_profile_image): self {
+        $this->model->user_profile_image = $user_profile_image;
+        return $this;
+    }
+
     public function setUserDataJsonValue(string $key, mixed $value): self {
         $this->model->user_data_json[$key] = $value;
         return $this;
