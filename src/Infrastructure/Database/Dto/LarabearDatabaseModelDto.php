@@ -93,11 +93,11 @@ class LarabearDatabaseModelDto {
     public function setForeignKeyInformation(string $columnName, string $foreignColumnName, string $foreignModelName, string $foreignNamespace): void {
         $methodName = Str::camel(value: preg_replace(pattern: '/_(id|uuid|slug)$/', replacement: '', subject: $columnName) ?? $columnName);
         foreach ($this->foreignKeyColumns as $foreignKeyColumn) {
-            if ($foreignKeyColumn['methodName'] === $methodName) {
-                $methodName = Str::camel($columnName);
+            if ($foreignKeyColumn['methodName'] === $methodName && str_ends_with(haystack: $foreignKeyColumn['columnName'], needle: 'id')) {
+                return;
             }
         }
-        $this->foreignKeyColumns[$columnName] = [
+        $this->foreignKeyColumns[$methodName] = [
             'columnName' => $columnName,
             'methodName' => $methodName,
             'foreignColumnName' => $foreignColumnName,
@@ -275,6 +275,7 @@ class LarabearDatabaseModelDto {
         $content .= " * @method static $this->modelClassName|null firstWhere(string \$column, string \$operator = null, string|float|int|bool \$value = null, string \$boolean = 'and')" . PHP_EOL;
         $content .= " * @method static Collection all(array \$columns = ['*'])" . PHP_EOL;
         $content .= " * @method static Collection get(array \$columns = ['*'])" . PHP_EOL;
+        $content .= " * @method static Collection pluck(\$column, \$key = null)" . PHP_EOL;
         $content .= " * @method static Collection fromQuery(string \$query, array \$bindings = [])" . PHP_EOL;
         $content .= " * @method static $this->modelClassName lockForUpdate()" . PHP_EOL;
         $content .= " * @method static $this->modelClassName select(array \$columns = ['*'])" . PHP_EOL;
@@ -290,6 +291,7 @@ class LarabearDatabaseModelDto {
         $content .= " * @method static $this->modelClassName whereNull(string|array \$columns, string \$boolean = 'and')" . PHP_EOL;
         $content .= " * @method static $this->modelClassName whereNotNull(string|array \$columns, string \$boolean = 'and')" . PHP_EOL;
         $content .= " * @method static $this->modelClassName whereRaw(string \$sql, array \$bindings = [], string \$boolean = 'and')" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName groupBy(string \$groupBy)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName orderBy(string \$column, string \$direction = 'asc')" . PHP_EOL;
         $content .= " * @method static $this->modelClassName orderByDesc(string \$column)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName limit(int \$value)" . PHP_EOL;
