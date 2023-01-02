@@ -45,14 +45,4 @@ class Resp {
         $res = view(view: $view, data: $data);
         return $res instanceof View ? $res : throw new RuntimeException(message: 'Unexpect View Type');
     }
-
-    /**
-     * @param string $view
-     * @param array<string, mixed> $data
-     * @return string
-     */
-    public static function viewAsHtml(string $view, array $data): string {
-        $res = view(view: $view, data: $data);
-        return $res instanceof View ? $res->toHtml() : throw new RuntimeException(message: 'Unexpect View Type');
-    }
 }
