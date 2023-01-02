@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
 class BearAuthService {
-    private static string $globalId = '';
+    private static string $globalId = '-';
     private static BearUser|null $user = null;
 
     /** @var array<string, array<string>> $userPermissions */
@@ -28,6 +28,14 @@ class BearAuthService {
             self::$user = BearUser::find(id: BearGlobalStateService::getUserId());
         }
         return self::$user ?? throw new RuntimeException(message: 'User not found');
+    }
+
+    public static function getUserOrNull(): BearUser|null {
+        self::cacheCheck();
+        if (self::$user === null && BearGlobalStateService::getUserId() !== null) {
+            self::$user = BearUser::find(id: BearGlobalStateService::getUserId());
+        }
+        return self::$user;
     }
 
     /**

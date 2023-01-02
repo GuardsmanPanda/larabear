@@ -4,6 +4,8 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearInitiateMiddleware;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
+use RuntimeException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -32,5 +34,25 @@ class Resp {
 
     public static function redirectWithMessage(string $url, string $message, int $status = 303): RedirectResponse {
         return new RedirectResponse(url: "$url?message=" . urlencode($message), status: $status);
+    }
+
+    /**
+     * @param string $view
+     * @param array<string, mixed> $data
+     * @return View
+     */
+    public static function view(string $view, array $data): View {
+        $res = view(view: $view, data: $data);
+        return $res instanceof View ? $res : throw new RuntimeException(message: 'Unexpect View Type');
+    }
+
+    /**
+     * @param string $view
+     * @param array<string, mixed> $data
+     * @return string
+     */
+    public static function viewAsHtml(string $view, array $data): string {
+        $res = view(view: $view, data: $data);
+        return $res instanceof View ? $res->toHtml() : throw new RuntimeException(message: 'Unexpect View Type');
     }
 }
