@@ -41,7 +41,7 @@ class Resp {
      * @param array<string, mixed> $data
      * @return View
      */
-    public static function view(string $view, array $data): View {
+    public static function view(string $view, array $data = []): View {
         $res = view(view: $view, data: $data);
         return $res instanceof View ? $res : throw new RuntimeException(message: 'Unexpect View Type');
     }
