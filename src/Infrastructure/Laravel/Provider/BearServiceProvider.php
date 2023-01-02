@@ -9,6 +9,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseChec
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCrudGeneratorCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseModelGeneratorCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Command\LarabearGenerateSessionKeyCommand;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearAccessTokenUserMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearHtmxMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearPermissionMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearRoleMiddleware;
@@ -29,6 +30,9 @@ class BearServiceProvider extends ServiceProvider {
 
     public function boot(): void {
         if (!($this->app instanceof CachesRoutes && $this->app->routesAreCached())) {
+            Route::post(uri: 'bear/auth/sign-in', action: [LarabearAuthPasswordController::class, 'authenticateWithPasswordFromWeb'])->middleware([BearTransactionMiddleware::class, 'session:allow-guest']);
+            Route::post(uri: 'bear/user-api/auth/sign-in', action: [LarabearAuthPasswordController::class, 'authenticateWithPasswordFromApp'])->middleware([BearTransactionMiddleware::class]);
+
             Route::prefix('bear')->middleware([BearSessionAuthMiddleware::class, BearHtmxMiddleware::class, BearTransactionMiddleware::class, 'permission:larabear-ui'])->group(function () {
                 Route::prefix('')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Dashboard/routes.php'));
                 Route::prefix('access')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Access/routes.php'));
@@ -39,11 +43,12 @@ class BearServiceProvider extends ServiceProvider {
             Route::prefix('bear/api')->middleware([BearTransactionMiddleware::class])->group(function () {
                 Route::prefix('error')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Api/Error/routes.php'));
             });
+            Route::prefix('bear/user-api')->middleware([BearAccessTokenUserMiddleware::class, BearTransactionMiddleware::class])->group(function () {
+                Route::prefix('user')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/User-Api/User/routes.php'));
+            });
             Route::prefix('bear')->middleware(['session:allow-guest', BearTransactionMiddleware::class])->group(function () {
                 Route::prefix('auth')->group(base_path(path: '/vendor/guardsmanpanda/larabear/src/Web/Www/Auth/routes.php'));
             });
-            Route::post(uri: 'bear/auth/sign-in/web', action: [LarabearAuthPasswordController::class, 'authenticateWithPasswordFromWeb'])->middleware([BearTransactionMiddleware::class, 'session:allow-guest']);
-            Route::post(uri: 'bear/auth/sign-in/app', action: [LarabearAuthPasswordController::class, 'authenticateWithPasswordFromApp'])->middleware([BearTransactionMiddleware::class]);
         }
 
         if (method_exists(object_or_class: Model::class, method: 'preventsAccessingMissingAttributes')) {

@@ -17,6 +17,8 @@ class BearAccessTokenUserCreator {
         BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);
 
+        (new BearUserUpdater($user))->setLastLoginNow()->update();
+
         $model = new BearAccessTokenUser();
         $token = bin2hex(string: random_bytes(length: 32));
 
