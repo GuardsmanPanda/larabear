@@ -25,5 +25,4 @@ class LarabearAuthController extends Controller {
         Session::put(key: 'bear_user_id', value: $user->id);
         return new RedirectResponse(url: BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_if_logged_in'));
     }
-
 }

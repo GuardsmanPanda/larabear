@@ -25,7 +25,7 @@ class BearAccessTokenUserMiddleware {
         if ($access === null || $access->user_id === null) {
             throw new AccessDeniedHttpException(message: "The supplied access token is not valid.");
         }
-        BearGlobalStateService::setUserId($access->user_id);
+        BearGlobalStateService::setUserId(userId: $access->user_id);
         return $next($request);
     }
 }
