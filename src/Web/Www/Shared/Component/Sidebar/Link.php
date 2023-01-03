@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Web\Www\Shared\Component\Sidebar;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -16,6 +17,6 @@ class Link extends Component {
     }
 
     public function render(): View {
-        return view(view: 'bear::sidebar.link');
+        return Resp::view(view: 'bear::sidebar.link');
     }
 }

@@ -5,13 +5,14 @@ namespace GuardsmanPanda\Larabear\Web\Www\Access\Controller;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearAccessTokenAppCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearAccessTokenAppDeleter;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class LarabearAccessTokenAppController extends Controller {
     public function index(): View {
-        return view(view: 'larabear-access::token.app.index', data: [
+        return Resp::view(view: 'larabear-access::token.app.index', data: [
             'access_tokens' => DB::select(query: "
                 SELECT 
                     id, api_primary_key,
@@ -24,7 +25,7 @@ class LarabearAccessTokenAppController extends Controller {
     }
 
     public function createDialog(): View {
-        return view(view: 'larabear-access::token.app.create');
+        return Resp::view(view: 'larabear-access::token.app.create');
     }
 
     public function create(): View {
@@ -45,7 +46,7 @@ class LarabearAccessTokenAppController extends Controller {
     }
 
     public function updateDialog(string $id): View {
-        return view(view: 'larabear-access::token.app.update', data: [
+        return Resp::view(view: 'larabear-access::token.app.update', data: [
             'access_token' => DB::selectOne(query: "
                 SELECT 
                     id, api_primary_key,

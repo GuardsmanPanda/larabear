@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Shared\Component\Dialog;
 
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use RuntimeException;
@@ -16,7 +17,7 @@ class Crud  extends Component {
     ) {}
 
     public function render(): View {
-        return view(view: 'bear::dialog.crud', data: [
+        return Resp::view(view: 'bear::dialog.crud', data: [
             'action' => match ($this->type) {
                 'create' => "hx-post='$this->endpoint'",
                 'update' => "hx-patch='$this->endpoint'",

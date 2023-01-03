@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Shared\Component\Form;
 
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -13,6 +14,6 @@ class Url extends Component {
     }
 
     public function render(): View {
-        return view(view: 'bear::form.url');
+        return Resp::view(view: 'bear::form.url');
     }
 }

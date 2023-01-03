@@ -18,7 +18,8 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearTransactionMiddle
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Command\LarabearPhpStanCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Command\LarabearOauth2CheckAccessCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Security\Command\LarabearSecurityOsvScannerCommand;
-use GuardsmanPanda\Larabear\Web\Www\Auth\Controller\LarabearAuthPasswordController;
+use GuardsmanPanda\Larabear\Web\UserApi\Auth\LarabearUserApiAuthController;
+use GuardsmanPanda\Larabear\Web\Www\Auth\Controller\LarabearAuthController;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Contracts\Foundation\CachesRoutes;
 use Illuminate\Database\Eloquent\Model;
@@ -30,8 +31,9 @@ class BearServiceProvider extends ServiceProvider {
 
     public function boot(): void {
         if (!($this->app instanceof CachesRoutes && $this->app->routesAreCached())) {
-            Route::post(uri: 'bear/auth/sign-in', action: [LarabearAuthPasswordController::class, 'authenticateWithPasswordFromWeb'])->middleware([BearTransactionMiddleware::class, 'session:allow-guest']);
-            Route::post(uri: 'bear/user-api/auth/sign-in', action: [LarabearAuthPasswordController::class, 'authenticateWithPasswordFromApp'])->middleware([BearTransactionMiddleware::class]);
+            Route::post(uri: 'bear/auth/sign-in', action: [LarabearAuthController::class, 'signIn'])->middleware([BearTransactionMiddleware::class, 'session:allow-guest']);
+            Route::post(uri: 'bear/user-api/auth/sign-in', action: [LarabearUserApiAuthController::class, 'signIn'])->middleware([BearTransactionMiddleware::class]);
+            Route::post(uri: 'bear/user-api/auth/sign-out', action: [LarabearUserApiAuthController::class, 'signOut'])->middleware([BearTransactionMiddleware::class]);
 
             Route::prefix('bear')->middleware([BearSessionAuthMiddleware::class, BearHtmxMiddleware::class, BearTransactionMiddleware::class, 'permission:larabear-ui'])->group(function () {
                 Route::prefix('')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Dashboard/routes.php'));

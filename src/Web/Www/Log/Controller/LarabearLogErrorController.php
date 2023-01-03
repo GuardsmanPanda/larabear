@@ -4,13 +4,14 @@ namespace GuardsmanPanda\Larabear\Web\Www\Log\Controller;
 
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorDeleter;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class LarabearLogErrorController extends Controller {
     public function index(): View {
-        return view(view: 'larabear-log::error.index', data: [
+        return Resp::view(view: 'larabear-log::error.index', data: [
             'errors' => DB::select(query: "
                 SELECT *
                 FROM bear_log_error le

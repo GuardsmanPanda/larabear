@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Shared\Component\Table\Layout;
 
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -9,6 +10,6 @@ class Standard extends Component {
     public function __construct() {}
 
     public function render(): View {
-        return view(view: 'bear::table.layout.standard');
+        return Resp::view(view: 'bear::table.layout.standard');
     }
 }

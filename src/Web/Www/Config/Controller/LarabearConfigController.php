@@ -6,19 +6,20 @@ use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigDeleter;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class LarabearConfigController extends Controller {
     public function index(): View {
-        return view(view: 'larabear-config::index', data: [
+        return Resp::view(view: 'larabear-config::index', data: [
             'configs' => DB::select(query: "SELECT * FROM bear_config ORDER BY config_key"),
         ]);
     }
 
     public function createDialog(): View {
-        return view(view: 'larabear-config::create');
+        return Resp::view(view: 'larabear-config::create');
     }
 
     public function create(): View {
@@ -38,7 +39,7 @@ class LarabearConfigController extends Controller {
 
 
     public function updateDialog(string $key): View {
-        return view(view: 'larabear-config::update', data: [
+        return Resp::view(view: 'larabear-config::update', data: [
             'config_data' => DB::selectOne(query: "SELECT * FROM bear_config WHERE config_key = ?", bindings: [$key]),
         ]);
     }

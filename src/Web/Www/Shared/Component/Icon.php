@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Shared\Component;
 
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use GuardsmanPanda\Larabear\Web\Www\Shared\Service\HeroIconService;
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -10,10 +11,7 @@ use RuntimeException;
 class Icon extends Component {
     public string $classes = '';
 
-    public function __construct(
-        public readonly string $name,
-        public readonly string $size = '6',
-    ) {
+    public function __construct(public readonly string $name, public readonly string $size = '6') {
         $this->classes .= match ($this->size) {
             '8' => ' h-8 w-8',
             '7' => ' h-7 w-7',
@@ -26,7 +24,7 @@ class Icon extends Component {
     }
 
     public function render(): View {
-        return view(view: 'bear::icon', data: [
+        return Resp::view(view: 'bear::icon', data: [
             'path' => HeroIconService::getIconPath(icon: $this->name),
         ]);
     }

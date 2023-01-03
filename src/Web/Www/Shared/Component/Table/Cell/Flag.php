@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Shared\Component\Table\Cell;
 
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -13,6 +14,6 @@ class Flag extends Component {
     ) {}
 
     public function render(): View {
-        return view(view: 'bear::table.cell.flag');
+        return Resp::view(view: 'bear::table.cell.flag');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Shared\Component;
 
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use RuntimeException;
@@ -34,7 +35,7 @@ class ButtonOutline extends Component {
             'tiny' => '-ml-1 mr-1',
             default => throw new RuntimeException(message: 'Unknown size: ' . $this->size),
         };
-        return view(view: 'bear::button', data: [
+        return Resp::view(view: 'bear::button', data: [
             'icon_size' => match ($this->size) {
                 'default' => "6",
                 'small' => "5",

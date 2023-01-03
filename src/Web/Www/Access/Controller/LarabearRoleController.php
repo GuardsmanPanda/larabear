@@ -8,13 +8,14 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearRolePermission;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRoleCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRoleDeleter;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class LarabearRoleController extends Controller {
     public function index(): View {
-        return view(view: 'larabear-access::role.index', data: [
+        return Resp::view(view: 'larabear-access::role.index', data: [
             'roles' => DB::select(query: "
                 SELECT 
                     r.*,
@@ -25,7 +26,7 @@ class LarabearRoleController extends Controller {
     }
 
     public function createDialog(): View {
-        return view(view: 'larabear-access::role.create');
+        return Resp::view(view: 'larabear-access::role.create');
     }
 
     public function create(): View {
@@ -34,7 +35,7 @@ class LarabearRoleController extends Controller {
     }
 
     public function permissionDialog(string $role_slug): View {
-        return view(view: 'larabear-access::role.role-permission', data: [
+        return Resp::view(view: 'larabear-access::role.role-permission', data: [
             'role_slug' => $role_slug,
             'permissions' => DB::select(query: "
                 SELECT

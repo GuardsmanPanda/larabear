@@ -1,3 +1,6 @@
+includes:
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
 parameters:
     tmpDir: storage/phpstan
     level: 8
@@ -5,6 +8,5 @@ parameters:
         - src
         - config
     ignoreErrors:
-        - '#Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View.#'
         - '#undefined method GuzzleHttp\\Promise\\PromiseInterface\|Illuminate\\Http\\Client\\Response#'
         - '#should return Illuminate\\Http\\Client\\Response but returns GuzzleHttp\\Promise\\PromiseInterface\|Illuminate\\Http\\Client\\Response#'

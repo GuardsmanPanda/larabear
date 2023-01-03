@@ -19,7 +19,7 @@ use Throwable;
 
 class LarabearAuthOauth2Controller extends Controller {
     public function showSignInForm(): View {
-        return view(view: 'Auth::sign-in-form', data: [
+        return Resp::view(view: 'Auth::sign-in-form', data: [
             'oauth2_clients' => DB::select(query: 'SELECT oauth2_client_id, oauth2_client_type FROM bear_oauth2_client'),
         ]);
     }

@@ -9,13 +9,14 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRoleUserDeleter;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearPermissionUser;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearRoleUser;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class LarabearUserController extends Controller {
     public function index(): View {
-        return view(view: 'larabear-access::user.index', data: [
+        return Resp::view(view: 'larabear-access::user.index', data: [
             'users' => DB::select(query: "
                 SELECT u.* FROM bear_user u ORDER BY u.user_display_name
             "),
@@ -23,7 +24,7 @@ class LarabearUserController extends Controller {
     }
 
     public function roleAndPermissionDialog(string $user_id): View {
-        return view(view: 'larabear-access::user.user-role-permission', data: [
+        return Resp::view(view: 'larabear-access::user.user-role-permission', data: [
             'user' => BearUser::findOrFail(id: $user_id),
             'roles' => DB::select(query: "
                 SELECT
