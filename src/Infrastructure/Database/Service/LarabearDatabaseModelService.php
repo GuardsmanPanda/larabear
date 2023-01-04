@@ -68,6 +68,7 @@ class LarabearDatabaseModelService {
                     foreignModelName: Str::studly(value: $constraint->foreign_table),
                     foreignNamespace: self::getBearTableNameSpace($constraint->foreign_table)
                 );
+                continue;
             }
             if (!array_key_exists(key: $constraint->foreign_table, array: $models)) {
                 continue;

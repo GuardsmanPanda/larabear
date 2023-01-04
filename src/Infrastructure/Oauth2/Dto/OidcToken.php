@@ -43,7 +43,7 @@ class OidcToken {
                 key: 'oidc-error',
                 severity: BearSeverityEnum::CRITICAL,
             );
-            throw new RuntimeException(message: "Token incorrectly formatted or already used.");
+            throw new RuntimeException(message: "Token incorrectly formatted or already used.", previous: $t);
         }
 
         if ((property_exists($token, property: 'email_verified') && $token->email_verified === false)) {

@@ -48,7 +48,7 @@ class ValidateAndParseValue {
             return json_decode(json: $value, associative: true, depth: 256, flags: JSON_THROW_ON_ERROR);
         } catch (Throwable $e) {
             $msg = "Invalid JSON: " . $e->getMessage();
-            throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
+            throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]", previous: $e);
         }
     }
 
@@ -69,7 +69,7 @@ class ValidateAndParseValue {
             return json_decode(json: $value, associative: false, depth: 256, flags: JSON_THROW_ON_ERROR);
         } catch (Throwable $e) {
             $msg = "Invalid JSON: " . $e->getMessage();
-            throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
+            throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]", previous: $e);
         }
     }
 

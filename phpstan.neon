@@ -1,4 +1,5 @@
 includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-deprecation-rules/rules.neon
     - vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
 parameters:
@@ -8,5 +9,6 @@ parameters:
         - src
         - config
     ignoreErrors:
-        - '#undefined method GuzzleHttp\\Promise\\PromiseInterface\|Illuminate\\Http\\Client\\Response#'
-        - '#should return Illuminate\\Http\\Client\\Response but returns GuzzleHttp\\Promise\\PromiseInterface\|Illuminate\\Http\\Client\\Response#'
+        - '#Variable property access on #'
+        - '#Dynamic call to static method #'
+        - '#must be rethrown. Either catch a more specific exception or add a "throw" clause in the "catch" block to propagate the exception#'
