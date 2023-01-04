@@ -78,7 +78,7 @@ class LarabearValidateConfigurationCommand extends Command {
         );
         ConsoleService::printTestResult(
             testName: 'Same Site Should Be Strict or Lax',
-            errorMessage: in_array(needle: Config::get('session.same_site'), haystack: ['lax', 'strict']) ? null : "'same_site'  in config/session.php should be null .. Current setting: " . Config::get('session.same_site')
+            errorMessage: in_array(needle: Config::get('session.same_site'), haystack: ['lax', 'strict'], strict: true) ? null : "'same_site'  in config/session.php should be null .. Current setting: " . Config::get('session.same_site')
         );
         ConsoleService::printTestResult(
             testName: "Cookie Name Should Start With '__host-'",
