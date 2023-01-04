@@ -6,6 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Dto\LarabearDatabaseModelDto
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
+use JsonException;
 use RuntimeException;
 
 class LarabearDatabaseModelService {
@@ -56,10 +57,21 @@ class LarabearDatabaseModelService {
         }
 
         foreach ($dbInfo->getAllForeignKeys() as $constraint) {
-            if (!array_key_exists($constraint->table_name, $models) || !array_key_exists($constraint->foreign_table, $models)) {
+            if (!array_key_exists(key: $constraint->table_name, array: $models)) {
                 continue;
             }
             $dto = $models[$constraint->table_name];
+            if (str_starts_with(haystack: $constraint->foreign_table, needle: 'bear_')) {
+                $dto->setForeignKeyInformation(
+                    columnName: $constraint->column_name,
+                    foreignColumnName: $constraint->foreign_key,
+                    foreignModelName: Str::studly(value: $constraint->foreign_table),
+                    foreignNamespace: self::getBearTableNameSpace($constraint->foreign_table)
+                );
+            }
+            if (!array_key_exists(key: $constraint->foreign_table, array: $models)) {
+                continue;
+            }
             $other = $models[$constraint->foreign_table];
             $dto->setForeignKeyInformation(columnName: $constraint->column_name, foreignColumnName: $constraint->foreign_key, foreignModelName: $other->getModelClassName(), foreignNamespace: $other->getNameSpace());
         }
@@ -112,5 +124,13 @@ class LarabearDatabaseModelService {
             $res[2] = $primary_key_value;
         }
         return $res;
+    }
+
+    private static function getBearTableNameSpace(string $tableName): string {
+        return match ($tableName) {
+            'bear_user' => "GuardsmanPanda\\Larabear\\Infrastructure\\Auth\\Model",
+            'bear_country', 'bear_language', 'bear_language_tag' => "GuardsmanPanda\\Larabear\\Infrastructure\\Locale\\Model",
+            default => throw new RuntimeException(message: "No namespace defined for table [$tableName]"),
+        };
     }
 }
