@@ -47,7 +47,7 @@ class BearSessionAuthMiddleware {
         $response->headers->setCookie(new Cookie(
             name: $this->config['cookie'],
             value: $session->getId(),
-            expire: $this->config['expire_on_close'] ? 0 : (new Carbon())->addMinutes($this->config['lifetime']),
+            expire: (new Carbon())->addMinutes($this->config['lifetime']),
             path: $this->config['path'],
             domain: $this->config['domain'],
             secure: $this->config['secure'],

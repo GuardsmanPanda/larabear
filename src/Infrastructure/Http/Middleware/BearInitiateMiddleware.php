@@ -21,12 +21,8 @@ use Throwable;
 class BearInitiateMiddleware {
     /** @var array<string> $headers */
     public static array $headers = ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
-    private Encrypter $encrypt;
+    private Encrypter|null $encrypt = null;
 
-    public function __construct() {
-        $key = ValidateAndParseValue::parseString(value: Config::get(key: 'bear.cookie.session_key'), errorMessage: 'bear.cookie.session_key must be set to  a string');
-        $this->encrypt = new Encrypter(key: base64_decode($key), cipher: Config::get(key: 'app.cipher'));
-    }
 
     public function handle(Request $request, Closure $next): Response {
         BearGlobalStateService::clearState();
@@ -102,7 +98,7 @@ class BearInitiateMiddleware {
             $response->headers->removeCookie(name: $name, path: $cookie->getPath(), domain: $cookie->getDomain()); //TODO: Consider throwing error on insecure cookie parameters, instead of silently fixing.
             $response->headers->setCookie(new Cookie(
                 name: $name,
-                value: $this->encrypt->encrypt(hash_hmac('sha256', $name, $this->encrypt->getKey()) . '|' . $cookie->getValue()),
+                value: $this->getEncrypt()->encrypt(hash_hmac('sha256', $name, $this->getEncrypt()->getKey()) . '|' . $cookie->getValue()),
                 expire: $cookie->getExpiresTime(),
                 path: '/',
                 secure: true,
@@ -121,8 +117,8 @@ class BearInitiateMiddleware {
                 $request->cookies->remove($key);
                 continue;
             }
-            $value = $this->encrypt->decrypt($cookie);
-            $expected_prefix = hash_hmac('sha256', $key, $this->encrypt->getKey()) . '|';
+            $value = $this->getEncrypt()->decrypt($cookie);
+            $expected_prefix = hash_hmac('sha256', $key, $this->getEncrypt()->getKey()) . '|';
             if (!str_starts_with(haystack: $value, needle: $expected_prefix)) {
                 throw new InvalidArgumentException(message: 'Cookie value does not pass integrity check.. name: ' . $key);
             }
@@ -153,5 +149,18 @@ class BearInitiateMiddleware {
             );
             Log::error(message: 'Bear middleware terminate error: ' . $e->getMessage(), context: ['exception' => $e]);
         }
+    }
+
+
+    private function getEncrypt(): Encrypter {
+        if ($this->encrypt === null) {
+            $key = ValidateAndParseValue::parseString(value: Config::get(key: 'bear.cookie.session_key'), errorMessage: 'bear.cookie.session_key must be set to  a string');
+            $key = base64_decode($key, strict: true);
+            if ($key === false) {
+                throw new InvalidArgumentException(message: 'bear.cookie.session_key must be a valid base64 encoded string');
+            }
+            $this->encrypt = new Encrypter(key: $key, cipher: Config::get(key: 'app.cipher'));
+        }
+        return $this->encrypt;
     }
 }

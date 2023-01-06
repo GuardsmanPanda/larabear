@@ -22,7 +22,17 @@ class OidcToken {
 
     public static function fromJwt(string $jwt, BearOauth2Client $client): self {
         try {
-            $token = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $jwt)[1]))), false, 512, JSON_THROW_ON_ERROR);
+            $jwt = base64_decode(string: str_replace('_', '/', str_replace('-', '+', explode('.', $jwt)[1])), strict: true);
+            if ($jwt === false) {
+                BearLogErrorCreator::create(
+                    message: "Failed to decode JWT",
+                    namespace: 'larabear-auth',
+                    key: 'oidc',
+                    severity: BearSeverityEnum::CRITICAL,
+                );
+                throw new RuntimeException(message: 'JWT could not be decoded');
+            }
+            $token = json_decode($jwt, false, 512, JSON_THROW_ON_ERROR);
             if ($client->oauth2_client_id !== $token->aud) {
                 BearLogErrorCreator::create(
                     message: "The application id in the JWT is not the same as the application id on the server. JWT: $token->aud, Server: $client->oauth2_client_id",

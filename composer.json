@@ -20,8 +20,9 @@
     "ext-pdo": "*",
     "doctrine/dbal": "^3.5",
     "guzzlehttp/guzzle": "^7.5",
-    "laravel/framework": "^v8.83.12 || ^9.44",
-    "wildbit/postmark-php": "^4.0"
+    "laravel/framework": "^v8.83.12 || ^9.46",
+    "wildbit/postmark-php": "^4.0",
+    "ext-zend-opcache": "*"
   },
   "autoload": {
     "psr-4": {
