@@ -6,7 +6,7 @@ use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessTokenApp;
 
-class BearAccessTokenAppUpdater {
+final class BearAccessTokenAppUpdater {
     public function __construct(private readonly BearAccessTokenApp $model) {
         BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);

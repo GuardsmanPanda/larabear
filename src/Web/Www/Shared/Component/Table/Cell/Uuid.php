@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Uuid extends Component {
+final class Uuid extends Component {
     public function __construct() {}
 
     public function render(): View {

@@ -1,3 +1,4 @@
+<?php declare(strict_types=1); ?>
 <x-bear::dialog.basic title="{{$user->user_display_name}}">
     <div>Edit roles and permissions for <span class="font-medium">{{$user->user_display_name}}</span></div>
     <div>A green ring around the permission means the user already has the permission from a role.</div>

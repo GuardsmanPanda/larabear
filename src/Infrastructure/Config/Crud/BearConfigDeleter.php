@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Config\Crud;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
-class BearConfigDeleter {
+final class BearConfigDeleter {
     public static function delete(BearConfig $model): void {
         BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['DELETE']);

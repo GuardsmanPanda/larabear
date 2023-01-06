@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 
 use Illuminate\Support\Facades\DB;
 
-class LarabearDatabaseForeignKeyService {
+final class LarabearDatabaseForeignKeyService {
     /**
      * @param string $connection
      * @param int $limit

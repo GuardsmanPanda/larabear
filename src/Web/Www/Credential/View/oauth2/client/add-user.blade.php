@@ -1,3 +1,4 @@
+<?php declare(strict_types=1); ?>
 <form id="dialog-form" action="/bear/auth/oauth2-client/{{$oauth2_client_id}}/redirect" class ="py-4 px-6">
     <input type="hidden" name="redirect-patch" value="{{urlencode('/bear/credential/oauth2/client')}}">
     <input type="hidden" name="login-user" value="false">

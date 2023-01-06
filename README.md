@@ -43,7 +43,7 @@ php artisan bear
 To enable the majority of the functionality make sure that the "BearInitiateMiddleware" is enabled on all routes
 
 ```php
-class HttpKernel extends Kernel {
+final class HttpKernel extends Kernel {
     // These middlewares are run during every request to your application.
     protected $middleware = [
         \GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearInitiateMiddleware::class,
@@ -74,7 +74,7 @@ exit($status);
 ## Usage
 You can get proper type check data from the request by using the "Req" class:
 ```php
-class MyController extends Controller {
+final class MyController extends Controller {
     public function myMethod(): JsonResponse {
         $data = Req::getString('data');
 ```

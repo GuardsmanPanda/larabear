@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\BearOauth2ClientTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 
-class BearOauth2ClientCreator {
+final class BearOauth2ClientCreator {
     public static function create(
         string $oauth2_client_id,
         string $oauth2_client_description,

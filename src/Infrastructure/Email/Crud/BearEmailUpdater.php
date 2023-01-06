@@ -6,7 +6,7 @@ use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
-class BearEmailUpdater {
+final class BearEmailUpdater {
     public function __construct(private readonly BearEmail $model) {}
 
     public static function fromId(string $id, bool $lockForUpdate = false): self {

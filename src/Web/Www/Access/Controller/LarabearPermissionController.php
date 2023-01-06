@@ -10,7 +10,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class LarabearPermissionController extends Controller {
+final class LarabearPermissionController extends Controller {
     public function index(): View {
         return Resp::view(view: 'larabear-access::permission.index', data: [
             'permissions' => DB::select(query: "SELECT * FROM bear_permission ORDER BY permission_slug")

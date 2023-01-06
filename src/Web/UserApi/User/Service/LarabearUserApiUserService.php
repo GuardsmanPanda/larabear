@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class LarabearUserApiUserService {
+final class LarabearUserApiUserService {
     public static function getUserResponse(BearUser $user, string $token = null): JsonResponse {
         return new JsonResponse(data: [
             'id' => $user->id,

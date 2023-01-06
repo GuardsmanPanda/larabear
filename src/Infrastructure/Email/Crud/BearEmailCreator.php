@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Support\Str;
 
-class BearEmailCreator {
+final class BearEmailCreator {
     public static function create(
         string $email_to,
         string $email_subject,

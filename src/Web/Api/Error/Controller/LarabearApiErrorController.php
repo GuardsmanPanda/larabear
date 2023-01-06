@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class LarabearApiErrorController extends Controller {
+final class LarabearApiErrorController extends Controller {
     public function kumaAlert(): JsonResponse {
         BearGlobalStateService::setLogResponseError(value: false);
         $error_count = DB::selectOne(query: "

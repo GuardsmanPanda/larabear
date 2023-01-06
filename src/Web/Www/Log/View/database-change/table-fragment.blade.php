@@ -1,3 +1,4 @@
+<?php declare(strict_types=1); ?>
 <x-bear::table.layout.standard>
     <x-slot name="tableHead">
         <th scope="col" class="px-2.5 py-3">Table Name</th>

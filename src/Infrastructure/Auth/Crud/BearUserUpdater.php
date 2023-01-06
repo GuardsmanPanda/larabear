@@ -8,7 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Support\Facades\Hash;
 
-class BearUserUpdater {
+final class BearUserUpdater {
     public function __construct(private readonly BearUser $model) {
         BearDatabaseService::mustBeInTransaction();
     }

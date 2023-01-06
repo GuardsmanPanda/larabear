@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Integration\ExternalApi\Crud;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 
-class BearExternalApiDeleter {
+final class BearExternalApiDeleter {
     public static function delete(BearExternalApi $model): void {
         BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['DELETE']);

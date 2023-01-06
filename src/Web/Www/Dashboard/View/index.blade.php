@@ -1,4 +1,5 @@
+<?php declare(strict_types=1); ?>
 bear test
 
-<div>{{$opcache}}</div>
-<div>{{$opcache_config}}</div>
+<div>{{$opcache_json}}</div>
+<div>{{$opcache_config_json}}</div>

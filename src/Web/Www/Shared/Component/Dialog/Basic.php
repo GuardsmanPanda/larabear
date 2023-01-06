@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Basic  extends Component {
+final class Basic  extends Component {
     public function __construct(
         public readonly string $title,
         public readonly string $closeText = 'Close',

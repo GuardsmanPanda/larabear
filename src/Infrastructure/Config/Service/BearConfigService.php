@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use RuntimeException;
 
-class BearConfigService {
+final class BearConfigService {
 
     public static function getBoolean(string $config_key): bool {
         return  BearConfig::findOrFail(id: $config_key)->config_boolean ?? throw new RuntimeException(message: "Config key $config_key is not a boolean");

@@ -8,7 +8,7 @@ use InvalidArgumentException;
 use stdClass;
 use Throwable;
 
-class ValidateAndParseValue {
+final class ValidateAndParseValue {
     public static function parseInt(mixed $value, string $errorMessage = null): int {
         if (is_int($value) || (is_string(value: $value) && preg_match(pattern: '/^-?\d+$/', subject: $value))) {
             return (int)$value;

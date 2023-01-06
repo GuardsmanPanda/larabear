@@ -61,7 +61,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
-class BearExternalApi extends Model {
+final class BearExternalApi extends Model {
     use BearLogDatabaseChanges, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_external_api';

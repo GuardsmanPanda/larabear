@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Ramsey\Collection\Set;
 
-class LarabearDatabaseCrudGeneratorCommand extends Command {
+final class LarabearDatabaseCrudGeneratorCommand extends Command {
     protected $signature = 'bear:crud {table_name} {--service}';
     protected $description = 'Generate Crud Classes';
 

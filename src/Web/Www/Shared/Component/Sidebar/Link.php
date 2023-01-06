@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Link extends Component {
+final class Link extends Component {
     public string $classes = 'flex items-center px-2 py-2 font-medium rounded text-gray-500 hover:text-gray-500 hover:bg-gray-100';
 
     public function __construct(public readonly string $path, public readonly string|null $icon = null) {

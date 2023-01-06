@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Http;
 use RuntimeException;
 use Throwable;
 
-class BearOauth2UserService {
+final class BearOauth2UserService {
     private const SAFETY_BUFFER_MINUTES = 10;
 
     public static function getAccessToken(BearOauth2User $user): string {

@@ -12,7 +12,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class LarabearOauth2ClientController extends Controller {
+final class LarabearOauth2ClientController extends Controller {
 
     public function index(): View {
         return Resp::view(view: 'larabear-credential::oauth2.client.index', data: [

@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use RuntimeException;
 
-class Crud  extends Component {
+final class Crud  extends Component {
     public function __construct(
         public readonly string $title,
         public readonly string $endpoint,

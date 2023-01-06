@@ -69,7 +69,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
-class BearLogError extends Model {
+final class BearLogError extends Model {
     use LarabearFixDateFormatTrait;
 
     protected $table = 'bear_log_error';

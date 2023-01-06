@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class BearLogErrorCreator {
+final class BearLogErrorCreator {
     /**
      * @param string $message The error message, should be short and concise
      * @param string $namespace The namespace that the error belongs to, used to disambiguate errors.

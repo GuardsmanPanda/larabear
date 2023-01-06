@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-class BearRoleMiddleware {
+final class BearRoleMiddleware {
     public function handle(Request $request, Closure $next, string $role): Response {
         $result = BearAuthService::hasRole(role: $role);
         if ($result !== true) {

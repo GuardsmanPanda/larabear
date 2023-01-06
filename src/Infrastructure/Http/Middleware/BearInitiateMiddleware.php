@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
-class BearInitiateMiddleware {
+final class BearInitiateMiddleware {
     /** @var array<string> $headers */
     public static array $headers = ['X-Clacks-Overhead' => 'GNU Terry Pratchett'];
     private Encrypter|null $encrypt = null;

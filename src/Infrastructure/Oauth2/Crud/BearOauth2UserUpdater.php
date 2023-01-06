@@ -8,7 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 
-class BearOauth2UserUpdater {
+final class BearOauth2UserUpdater {
     public function __construct(private readonly BearOauth2User $model) {
         BearDatabaseService::mustBeInTransaction();
     }

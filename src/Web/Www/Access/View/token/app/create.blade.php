@@ -1,3 +1,4 @@
+<?php declare(strict_types=1); ?>
 <x-bear::dialog.crud type="create" submitText="Create" title="New API Access Token" endpoint="/bear/access/token/app" class="w-[50rem]">
     <div class="grid grid-cols-2 gap-4">
         <x-bear::form.text id="access_token" required pattern="token/[a-zA-Z0-9_.~+/-]+" placeholder="token/[a-zA-Z0-9_.~+/-]+"></x-bear::form.text>

@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
 
-class BearExceptionHandler extends Handler {
+final class BearExceptionHandler extends Handler {
     public function render($request, Throwable $e): Response {
         if (BearGlobalStateService::getLogUnhandledException()) {
             $key = match (true) {

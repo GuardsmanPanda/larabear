@@ -44,7 +44,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
-class BearLanguage extends Model {
+final class BearLanguage extends Model {
     use BearLogDatabaseChanges;
 
     protected $table = 'bear_language';

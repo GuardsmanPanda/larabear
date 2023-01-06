@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Console\Service;
 
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-class ConsoleService {
+final class ConsoleService {
     private static ConsoleOutput|null $output = null;
 
     public static function printH1(string $headline): void {

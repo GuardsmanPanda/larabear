@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use JsonException;
 use RuntimeException;
 
-class LarabearDatabaseModelService {
+final class LarabearDatabaseModelService {
     /**
      * @param string $connectionName
      * @param array<string, array<string, mixed>> $tableConfig

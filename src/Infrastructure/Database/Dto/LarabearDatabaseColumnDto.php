@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Dto;
 
-class LarabearDatabaseColumnDto {
+final class LarabearDatabaseColumnDto {
 
     public function __construct(
         public readonly string      $columnName,

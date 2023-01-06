@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 
-class BearConfigCreator {
+final class BearConfigCreator {
     /**
      * @param string $config_key
      * @param string $config_description

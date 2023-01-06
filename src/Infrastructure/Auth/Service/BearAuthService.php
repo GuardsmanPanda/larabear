@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
-class BearAuthService {
+final class BearAuthService {
     private static string $globalId = '-';
     private static BearUser|null $user = null;
 

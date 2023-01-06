@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Console\Service\ConsoleService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 
-class LarabearValidateConfigurationCommand extends Command {
+final class LarabearValidateConfigurationCommand extends Command {
     protected $signature = 'bear';
     protected $description = 'Validate the configuration for larabear';
 

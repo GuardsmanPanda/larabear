@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Support\Facades\DB;
 
-class BearLogRouteUsageCrud {
+final class BearLogRouteUsageCrud {
     public static function createOrUpdate(int $multiply = 1): void {
         $method = Req::method();
         $route = Req::routePath();

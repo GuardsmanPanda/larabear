@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Ramsey\Collection\Set;
 
-class LarabearDatabaseModelDto {
+final class LarabearDatabaseModelDto {
     /** @var array<string> $primaryKeyColumns */
     private array $primaryKeyColumns = [];
     /** @var array<array<string|bool>> $foreignKeyColumns */

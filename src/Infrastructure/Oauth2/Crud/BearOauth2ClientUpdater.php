@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\BearOauth2ClientTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 
-class BearOauth2ClientUpdater {
+final class BearOauth2ClientUpdater {
     public function __construct(private readonly BearOauth2Client $model) {
         BearDatabaseService::mustBeInTransaction();
     }

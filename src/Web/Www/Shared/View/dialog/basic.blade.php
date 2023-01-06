@@ -1,3 +1,4 @@
+<?php declare(strict_types=1); ?>
 {!!$slot!!}
 @if($includeButton === true)
     <div class="border-t flex pt-3 mt-3 flex-row-reverse">

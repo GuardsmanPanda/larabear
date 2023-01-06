@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use RuntimeException;
 
-class ButtonOutline extends Component {
+final class ButtonOutline extends Component {
     public string $classes = 'whitespace-nowrap font-medium inline-flex rounded border transition-all hover:scale-105 items-center shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2';
 
     public function __construct(

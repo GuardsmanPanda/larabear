@@ -24,7 +24,7 @@ use RuntimeException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Throwable;
 
-class BearOauth2ClientService {
+final class BearOauth2ClientService {
     private const SAFETY_BUFFER_MINUTES = 10;
 
     public static function getAuthorizeRedirectResponse(BearOauth2Client $client, string $afterSignInRedirectPath = null, bool $loginUser = true, string $overwriteRedirectUri = null, string $specialScope = null, bool $accountPrompt = false): RedirectResponse {

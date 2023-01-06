@@ -2,14 +2,28 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-deprecation-rules/rules.neon
     - vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
+    - vendor/ergebnis/phpstan-rules/rules.neon
 parameters:
     tmpDir: storage/phpstan
     level: 8
     paths:
         - src
         - config
+    ergebnis:
+    	classesAllowedToBeExtended:
+    		- Illuminate\Console\Command
+    		- Illuminate\Database\Eloquent\Model
+    		- Illuminate\Database\Migrations\Migration
+    		- Illuminate\Routing\Controller
+    		- Illuminate\Support\ServiceProvider
+    		- Illuminate\View\Component
+    		- GuardsmanPanda\Larabear\Infrastructure\Database\Service\LarabearDatabaseBaseInformation
+    		- Illuminate\Foundation\Application
+    		- Symfony\Component\Console\Output\ConsoleOutput
+    		- Illuminate\Foundation\Exceptions\Handler
     ignoreErrors:
         - '#Variable property access on #'
         - '#Dynamic call to static method #'
+        - '#has parameter .*? with( null as)? default value.#'
         - '#is not the same as PHPDoc type array of overridden property Illuminate\\Database\\Eloquent\\Model::\$casts#'
         - '#must be rethrown. Either catch a more specific exception or add a "throw" clause in the "catch" block to propagate the exception#'

@@ -8,7 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessTokenUser;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
-class BearAccessTokenUserCreator {
+final class BearAccessTokenUserCreator {
     public static function create(
         BearUser $user,
         CarbonInterface $expires_at,

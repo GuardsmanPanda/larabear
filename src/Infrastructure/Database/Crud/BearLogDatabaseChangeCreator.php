@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class BearLogDatabaseChangeCreator {
+final class BearLogDatabaseChangeCreator {
     public static function create(
         Model $model,
         string $changeType,

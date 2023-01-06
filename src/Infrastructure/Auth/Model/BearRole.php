@@ -47,7 +47,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
-class BearRole extends Model {
+final class BearRole extends Model {
     use BearLogDatabaseChanges, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_role';

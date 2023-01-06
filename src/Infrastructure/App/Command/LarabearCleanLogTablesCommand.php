@@ -8,7 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Model\BearLogDatabaseChange;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Model\BearLogResponseError;
 use Illuminate\Console\Command;
 
-class LarabearCleanLogTablesCommand extends Command {
+final class LarabearCleanLogTablesCommand extends Command {
     protected $signature = 'larabear:clean-log-tables';
     protected $description = 'Clean the log tables';
 

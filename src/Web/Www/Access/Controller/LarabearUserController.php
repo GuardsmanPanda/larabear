@@ -14,7 +14,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class LarabearUserController extends Controller {
+final class LarabearUserController extends Controller {
     public function index(): View {
         return Resp::view(view: 'larabear-access::user.index', data: [
             'users' => DB::select(query: "

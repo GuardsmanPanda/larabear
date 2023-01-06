@@ -1,3 +1,4 @@
+<?php declare(strict_types=1); ?>
 <x-bear::dialog.crud title="Update" endpoint='{!! "/bear/access/token/app/$access_token->id"!!}' class="w-[50rem]">
     <div class="grid grid-cols-2 gap-4">
         <x-bear::form.text id="api_primary_key" label="API Primary Key" placeholder="Available In BearGlobalStateService::getApiPrimaryKey()" class="col-span-2">{{$access_token->api_primary_key}}</x-bear::form.text>

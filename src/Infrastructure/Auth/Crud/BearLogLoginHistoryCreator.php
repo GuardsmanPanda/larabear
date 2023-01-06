@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Support\Facades\DB;
 
-class BearLogLoginHistoryCreator {
+final class BearLogLoginHistoryCreator {
     public static function create(
         bool $was_successful,
         string|null $user_id = null,

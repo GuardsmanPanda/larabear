@@ -48,7 +48,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
-class BearLanguageTag extends Model {
+final class BearLanguageTag extends Model {
     use BearLogDatabaseChanges;
 
     protected $table = 'bear_language_tag';

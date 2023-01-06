@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use RuntimeException;
 
-class Divider extends Component {
+final class Divider extends Component {
     public function __construct(public readonly string $color = 'white') {}
 
     public function render(): View {

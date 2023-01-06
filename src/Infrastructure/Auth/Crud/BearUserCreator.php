@@ -9,7 +9,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Support\Str;
 
-class BearUserCreator {
+final class BearUserCreator {
     public static function create(
         string $user_display_name,
         string $id = null,

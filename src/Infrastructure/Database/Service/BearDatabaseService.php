@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
-class BearDatabaseService {
+final class BearDatabaseService {
     public static function mustBeInTransaction(): void {
         if (App::runningUnitTests() || DB::transactionLevel() > 0) {
             return;

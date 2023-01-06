@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Flag extends Component {
+final class Flag extends Component {
     public function __construct(
         public readonly string|null $countryCode,
         public readonly string|null $countryName = null,

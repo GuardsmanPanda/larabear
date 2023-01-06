@@ -10,7 +10,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Support\Str;
 
-class BearOauth2UserCreator {
+final class BearOauth2UserCreator {
     public static function create(
         string $oauth2_client_id,
         string $oauth2_user_identifier,

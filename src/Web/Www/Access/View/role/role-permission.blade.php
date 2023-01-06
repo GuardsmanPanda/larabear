@@ -1,3 +1,4 @@
+<?php declare(strict_types=1); ?>
 <x-bear::dialog.basic title="Edit Permissions For Role: {{$role_slug}}">
     <div class="flex flex-col gap-2" hx-target="#dialog-content">
         @foreach($permissions as $permission)

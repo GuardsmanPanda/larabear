@@ -11,7 +11,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class LarabearAuthController extends Controller {
+final class LarabearAuthController extends Controller {
     public function signIn(): RedirectResponse {
         $user = BearUser::where(column: 'user_email', operator: '=', value: Req::getStringOrDefault(key: 'email'))->first();
         if ($user === null || $user->is_user_activated !== true || $user->password === null) {

@@ -46,7 +46,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
-class BearLogIdempotency extends Model {
+final class BearLogIdempotency extends Model {
     use LarabearFixDateFormatTrait;
 
     protected $table = 'bear_log_idempotency';

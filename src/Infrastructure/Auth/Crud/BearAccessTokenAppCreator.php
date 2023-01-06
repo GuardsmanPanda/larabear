@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessTokenApp;
 use Illuminate\Support\Str;
 
-class BearAccessTokenAppCreator {
+final class BearAccessTokenAppCreator {
     public static function create(
         string $route_prefix_restriction,
         string $access_token_purpose,

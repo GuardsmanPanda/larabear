@@ -10,7 +10,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class LarabearAccessTokenAppController extends Controller {
+final class LarabearAccessTokenAppController extends Controller {
     public function index(): View {
         return Resp::view(view: 'larabear-access::token.app.index', data: [
             'access_tokens' => DB::select(query: "

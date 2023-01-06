@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class BearSessionAuthMiddleware {
+final class BearSessionAuthMiddleware {
     /** @var array<string, mixed> $config */
     private array $config;
 

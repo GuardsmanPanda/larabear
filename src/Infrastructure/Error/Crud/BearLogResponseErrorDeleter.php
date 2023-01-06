@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Error\Crud;
 
 use Illuminate\Support\Facades\DB;
 
-class BearLogResponseErrorDeleter {
+final class BearLogResponseErrorDeleter {
     public static function delete(
         int $id = null,
         int $response_status_code = null,

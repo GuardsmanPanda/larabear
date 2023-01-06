@@ -17,7 +17,7 @@ use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Throwable;
 
-class LarabearAuthOauth2Controller extends Controller {
+final class LarabearAuthOauth2Controller extends Controller {
     public function showSignInForm(): View {
         return Resp::view(view: 'Auth::sign-in-form', data: [
             'oauth2_clients' => DB::select(query: 'SELECT oauth2_client_id, oauth2_client_type FROM bear_oauth2_client'),

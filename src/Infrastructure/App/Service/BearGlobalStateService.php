@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use RuntimeException;
 
-class BearGlobalStateService {
+final class BearGlobalStateService {
     private static bool $logUnhandledException = true;
     private static string|null $apiPrimaryKey = null;
     private static string|null $accessTokenId = null;

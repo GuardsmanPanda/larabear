@@ -10,7 +10,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use RuntimeException;
 use Throwable;
 
-class OidcToken {
+final class OidcToken {
     public function __construct(
         public readonly string $userIdentifier,
         public readonly string|null $name,

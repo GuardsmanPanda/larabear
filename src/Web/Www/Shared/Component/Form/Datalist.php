@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Datalist extends Component {
+final class Datalist extends Component {
     public function __construct(
         public readonly string $id,
         public string $label = '',

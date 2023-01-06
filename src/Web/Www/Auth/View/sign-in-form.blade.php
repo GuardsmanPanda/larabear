@@ -1,3 +1,4 @@
+<?php declare(strict_types=1); ?>
 <div>
     @foreach($oauth2_clients as $client)
         <a href="/bear/auth/redirect/{{$client->id}}" class="items-center shadow-md">

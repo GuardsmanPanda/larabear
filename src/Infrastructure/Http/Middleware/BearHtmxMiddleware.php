@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Symfony\Component\HttpFoundation\Response;
 
-class BearHtmxMiddleware {
+final class BearHtmxMiddleware {
     public function handle(Request $request, Closure $next): Response {
         $res = $next($request);
         if (Req::method() === 'GET' && Req::header(key: 'hx-request', nullIfMissing: true) === null && str_contains(haystack: Req::header(key: 'accept', nullIfMissing: true) ?? '', needle: 'html')) {

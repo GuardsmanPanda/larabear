@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiTypeEnum
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 
-class BearExternalApiUpdater {
+final class BearExternalApiUpdater {
     public function __construct(private readonly BearExternalApi $model) {
         BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);

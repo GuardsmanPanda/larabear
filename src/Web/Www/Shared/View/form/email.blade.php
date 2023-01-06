@@ -1,3 +1,4 @@
+<?php declare(strict_types=1); ?>
 <div {{ $attributes->whereStartsWith('class') }}>
     @if($attributes->has('required'))
         <div class="flex justify-between">

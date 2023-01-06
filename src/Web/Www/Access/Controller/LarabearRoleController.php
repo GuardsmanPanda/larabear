@@ -13,7 +13,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class LarabearRoleController extends Controller {
+final class LarabearRoleController extends Controller {
     public function index(): View {
         return Resp::view(view: 'larabear-access::role.index', data: [
             'roles' => DB::select(query: "

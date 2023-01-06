@@ -49,7 +49,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
-class BearCountry extends Model {
+final class BearCountry extends Model {
     use BearLogDatabaseChanges;
 
     protected $table = 'bear_country';

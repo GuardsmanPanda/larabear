@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearRolePermission;
 
-class BearRolePermissionCreator {
+final class BearRolePermissionCreator {
     public static function create(
         string $role_slug,
         string $permission_slug

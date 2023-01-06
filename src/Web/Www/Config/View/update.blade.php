@@ -1,3 +1,4 @@
+<?php declare(strict_types=1); ?>
 <x-bear::dialog.crud title="Update {{$config_data->config_key}}" endpoint='{{ "/bear/config/$config_data->config_key" }}' class="w-[50rem]">
     <div class="grid grid-cols-2 gap-4">
         <x-bear::form.text id="config_key" pattern="\S+[.]\S+" required>{{$config_data->config_key}}</x-bear::form.text>

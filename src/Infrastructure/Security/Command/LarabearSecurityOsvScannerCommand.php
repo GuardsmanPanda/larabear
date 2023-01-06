@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Security\Command;
 
 use Illuminate\Console\Command;
 
-class LarabearSecurityOsvScannerCommand extends Command {
+final class LarabearSecurityOsvScannerCommand extends Command {
     protected $signature = 'bear:osv';
     protected $description = 'Scans the repository with the OSV tool.';
 

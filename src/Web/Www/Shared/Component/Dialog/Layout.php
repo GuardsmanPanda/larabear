@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Layout extends Component {
+final class Layout extends Component {
     public function render(): View {
         return Resp::view(view: 'bear::dialog.layout');
     }

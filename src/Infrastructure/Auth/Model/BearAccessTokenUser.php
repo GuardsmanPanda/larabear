@@ -49,7 +49,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
-class BearAccessTokenUser extends Model {
+final class BearAccessTokenUser extends Model {
     use LarabearFixDateFormatTrait;
 
     protected $table = 'bear_access_token_user';

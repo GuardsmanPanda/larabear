@@ -13,7 +13,7 @@ use Illuminate\Routing\Route;
 use RuntimeException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
-class Req {
+final class Req {
     public static Request|null $r = null;
 
     public static function request(): Request {

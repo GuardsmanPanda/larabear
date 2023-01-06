@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
 use RuntimeException;
 use Throwable;
 
-class ConsoleRegisterListeners {
+final class ConsoleRegisterListeners {
     /** @var array<string> $ignoreCommands */
     private static array $ignoreCommands = [
         '',

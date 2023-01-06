@@ -12,7 +12,7 @@ use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
-class BearTransactionMiddleware {
+final class BearTransactionMiddleware {
     public function handle(Request $request, Closure $next): Response {
         if (!Req::isWriteRequest()) {
             return $next($request);

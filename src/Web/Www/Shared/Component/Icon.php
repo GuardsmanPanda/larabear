@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use RuntimeException;
 
-class Icon extends Component {
+final class Icon extends Component {
     public string $classes = '';
 
     public function __construct(public readonly string $name, public readonly string $size = '6') {

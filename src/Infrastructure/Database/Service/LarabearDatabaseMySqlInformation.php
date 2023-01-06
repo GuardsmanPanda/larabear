@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
-class LarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInformation {
+final class LarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInformation {
     private readonly string $databaseName;
 
     public function __construct(private readonly string $connectionName) {

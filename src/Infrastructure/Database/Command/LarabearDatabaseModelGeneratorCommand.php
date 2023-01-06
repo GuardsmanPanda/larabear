@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 use RuntimeException;
 
-class LarabearDatabaseModelGeneratorCommand extends Command {
+final class LarabearDatabaseModelGeneratorCommand extends Command {
     protected $signature = 'bear:db';
     protected $description = 'Generate Eloquent Models';
 

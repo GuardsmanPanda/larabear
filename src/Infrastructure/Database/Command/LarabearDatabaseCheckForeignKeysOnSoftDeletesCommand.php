@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Console\Service\ConsoleService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\LarabearDatabaseForeignKeyService;
 use Illuminate\Console\Command;
 
-class LarabearDatabaseCheckForeignKeysOnSoftDeletesCommand extends Command {
+final class LarabearDatabaseCheckForeignKeysOnSoftDeletesCommand extends Command {
     protected $signature = 'bear:cfk';
     protected $description = 'Check Foreign Keys Against Soft Deletes.';
 

@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class Htmx {
+final class Htmx {
     public static function refresh(): Response {
         Resp::header(key: 'HX-Refresh', value: 'true');
         return new Response();

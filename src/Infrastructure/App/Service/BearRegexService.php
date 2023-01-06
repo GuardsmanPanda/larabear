@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 use RuntimeException;
 
-class BearRegexService {
+final class BearRegexService {
     public static function extractFirst(string $regex, string $subject, bool $nullIfNoMatch = false): string|null {
         $matches = [];
         preg_match(pattern: $regex, subject: $subject, matches: $matches);

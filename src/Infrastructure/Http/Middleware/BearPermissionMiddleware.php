@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-class BearPermissionMiddleware {
+final class BearPermissionMiddleware {
     public function handle(Request $request, Closure $next, string $permission): Response {
         $result = BearAuthService::hasPermission(permission: $permission);
         if ($result !== true) {

@@ -11,7 +11,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class LarabearConfigController extends Controller {
+final class LarabearConfigController extends Controller {
     public function index(): View {
         return Resp::view(view: 'larabear-config::index', data: [
             'configs' => DB::select(query: "SELECT * FROM bear_config ORDER BY config_key"),

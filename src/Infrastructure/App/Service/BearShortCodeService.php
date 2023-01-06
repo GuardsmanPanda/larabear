@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
 use RuntimeException;
 
-class BearShortCodeService {
+final class BearShortCodeService {
     private const CHARS = '25679bcdfghjkmnpqrstvwxz';
 
     public static function generateNextCode(): string {

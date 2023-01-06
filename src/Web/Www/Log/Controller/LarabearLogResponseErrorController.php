@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class LarabearLogResponseErrorController extends Controller {
+final class LarabearLogResponseErrorController extends Controller {
     public function index(): View {
         return Resp::view(view: 'larabear-log::response-error.index', data: [
             'errors' => DB::select(query: "

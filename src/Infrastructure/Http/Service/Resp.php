@@ -9,7 +9,7 @@ use RuntimeException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class Resp {
+final class Resp {
     /**
      * @param string $sql
      * @param array<mixed> $data

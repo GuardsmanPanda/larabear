@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Console\Service;
 
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-class ConsoleOutputFilter extends ConsoleOutput {
+final class ConsoleOutputFilter extends ConsoleOutput {
     private static bool $remove_next_line = false;
 
     /** @var array<string> $filtered */

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class BearLogResponseErrorCreator {
+final class BearLogResponseErrorCreator {
     public static function create(
         int    $statusCode,
         string $responseBody,

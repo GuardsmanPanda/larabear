@@ -10,7 +10,7 @@ use GuardsmanPanda\Larabear\Web\UserApi\User\Service\LarabearUserApiUserService;
 use Illuminate\Routing\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class LarabearUserApiAuthController extends Controller {
+final class LarabearUserApiAuthController extends Controller {
     public function signIn(): JsonResponse {
         $user = BearUser::where(column: 'user_email', operator: '=', value: Req::getStringOrDefault(key: 'email'))->first();
         if ($user === null || $user->is_user_activated !== true || $user->password === null) {

@@ -1,3 +1,4 @@
+<?php declare(strict_types=1); ?>
 <div class="mb-4 sm:flex sm:items-end">
     <h1 class="text-2xl font-semibold text-gray-800">Application Error Log</h1>
 </div>

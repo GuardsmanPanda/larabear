@@ -8,7 +8,7 @@ use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Support\Str;
 
-class BearExternalApiCreator {
+final class BearExternalApiCreator {
     public static function create(
         string $external_api_slug,
         string $external_api_description,

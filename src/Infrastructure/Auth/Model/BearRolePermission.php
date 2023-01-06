@@ -50,7 +50,7 @@ use RuntimeException;
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
-class BearRolePermission extends Model {
+final class BearRolePermission extends Model {
     use BearLogDatabaseChanges, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_role_permission';

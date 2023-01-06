@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
-class LarabearEmailProcessCommand extends Command {
+final class LarabearEmailProcessCommand extends Command {
     protected $signature = 'larabear:email-process';
     protected $description = 'Process emails';
 

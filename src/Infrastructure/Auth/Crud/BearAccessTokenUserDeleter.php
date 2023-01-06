@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessTokenUser;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 
-class BearAccessTokenUserDeleter {
+final class BearAccessTokenUserDeleter {
     public static function delete(BearAccessTokenUser $model): void {
         $model->delete();
     }

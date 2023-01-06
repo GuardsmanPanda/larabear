@@ -13,7 +13,7 @@ use PDO;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-class BearAccessTokenAppMiddleware {
+final class BearAccessTokenAppMiddleware {
     public function handle(Request $request, Closure $next): Response {
         if ($request->bearerToken() === null) {
             throw new AccessDeniedHttpException(message: 'The request must include a bearer token.');

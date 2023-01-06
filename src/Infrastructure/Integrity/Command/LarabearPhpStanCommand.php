@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Integrity\Command;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
 
-class LarabearPhpStanCommand extends Command {
+final class LarabearPhpStanCommand extends Command {
     protected $signature = 'stan';
     protected $description = 'Run PHPStan on the application';
 

@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
-class BearServiceProvider extends ServiceProvider {
+final class BearServiceProvider extends ServiceProvider {
 
     public function boot(): void {
         if (!($this->app instanceof CachesRoutes && $this->app->routesAreCached())) {

@@ -8,7 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Model\BearLogConsoleEvent;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
-class BearLogConsoleEventCreator {
+final class BearLogConsoleEventCreator {
     public static function create(
         string $console_event_type,
         string $console_command,
