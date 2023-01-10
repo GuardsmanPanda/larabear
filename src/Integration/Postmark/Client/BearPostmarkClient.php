@@ -49,7 +49,7 @@ final class BearPostmarkClient {
     }
 
 
-    public static function sendEmail(BearEmail $email): void {
+    public static function sendEmail(BearEmail $email): BearEmail {
         $updater = BearEmailUpdater::fromId(id: $email->id, lockForUpdate: true);
         if ($updater->getEmailSentAt() !== null) {
             throw new RuntimeException(message: 'Email already sent');
@@ -72,10 +72,9 @@ final class BearPostmarkClient {
         $code = $result->ErrorCode ?? -1;
         $message = $result->Message ?? 'Unknown error';
         if ($code !== 0) {
-            $updater->setEmailError(email_error_code: $code, email_error_message: $message)->update();
-        } else {
-            $updater->setEmailSendData(email_postmark_id: $result->MessageID ?? throw new RuntimeException(message: 'No email id found'))->update();
+            return $updater->setEmailError(email_error_code: $code, email_error_message: $message)->update();
         }
+        return $updater->setEmailSendData(email_postmark_id: $result->MessageID ?? throw new RuntimeException(message: 'No email id found'))->update();
     }
 
 

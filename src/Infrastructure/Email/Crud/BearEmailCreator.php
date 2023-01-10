@@ -5,7 +5,11 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Email\Crud;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Integration\Postmark\Client\BearPostmarkClient;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Throwable;
 
 final class BearEmailCreator {
     public static function create(
@@ -39,6 +43,20 @@ final class BearEmailCreator {
         $model->is_sandboxed = $sandbox;
 
         $model->save();
+
+        try {
+            DB::beginTransaction();
+             $model = BearPostmarkClient::sendEmail(email: $model);
+            DB::commit();
+        } catch (Throwable $t) {
+            DB::rollBack();
+            BearLogErrorCreator::create(
+                message: "Failure to send email [{$t->getMessage()}]",
+                namespace: 'larabear', key: 'email-send-command',
+                exception: $t
+            );
+        }
+
         return $model;
     }
 }

@@ -84,6 +84,7 @@ final class BearServiceProvider extends ServiceProvider {
                 $schedule = $this->app->make(abstract: Schedule::class);
                 $schedule->command(LarabearCleanLogTablesCommand::class)->dailyAt(time: '01:45');
                 $schedule->command(LarabearOauth2CheckAccessCommand::class)->dailyAt(time: '02:07');
+                $schedule->command(LarabearEmailProcessCommand::class)->everyTenMinutes();
             });
         } else {
             $this->loadViewsFrom(path: base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Access/View'), namespace: 'larabear-access');
