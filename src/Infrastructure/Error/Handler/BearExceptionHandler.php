@@ -28,8 +28,8 @@ final class BearExceptionHandler extends Handler {
                 exception: $e
             );
         }
-        if (config('app.debug')) {
-            return parent::render($request, $e);
+        if (is_bool(value: config(key: 'app.debug')) && config(key: 'app.debug')) {
+            return parent::render(request: $request, e: $e);
         }
         $e = $this->prepareException($e);
         return $e instanceof  HttpExceptionInterface ? new Response($e->getMessage(), $e->getStatusCode(), $e->getHeaders()) : new Response($e->getMessage(), 500);

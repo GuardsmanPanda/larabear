@@ -10,7 +10,7 @@ use Ramsey\Collection\Set;
 final class LarabearDatabaseModelDto {
     /** @var array<string> $primaryKeyColumns */
     private array $primaryKeyColumns = [];
-    /** @var array<array<string|bool>> $foreignKeyColumns */
+    /** @var array<LarabearDatabaseForeignColumnDto> $foreignKeyColumns */
     private array $foreignKeyColumns = [];
     private string $primaryKeyType;
     private bool $timestamps = false;
@@ -93,18 +93,18 @@ final class LarabearDatabaseModelDto {
     public function setForeignKeyInformation(string $columnName, string $foreignColumnName, string $foreignModelName, string $foreignNamespace): void {
         $methodName = Str::camel(value: preg_replace(pattern: '/_(id|uuid|slug)$/', replacement: '', subject: $columnName) ?? $columnName);
         foreach ($this->foreignKeyColumns as $foreignKeyColumn) {
-            if ($foreignKeyColumn['methodName'] === $methodName && str_ends_with(haystack: $foreignKeyColumn['columnName'], needle: 'id')) {
+            if ($foreignKeyColumn->methodName === $methodName && str_ends_with(haystack: $foreignKeyColumn->columnName, needle: 'id')) {
                 return;
             }
         }
-        $this->foreignKeyColumns[$methodName] = [
-            'columnName' => $columnName,
-            'methodName' => $methodName,
-            'foreignColumnName' => $foreignColumnName,
-            'foreignModelName' => $foreignModelName,
-            'foreignNamespace' => $foreignNamespace,
-            'isNullable' => $this->columns[$columnName]->isNullable,
-        ];
+        $this->foreignKeyColumns[$methodName] = new LarabearDatabaseForeignColumnDto(
+            columnName: $columnName,
+            methodName: $methodName,
+            foreignColumnName: $foreignColumnName,
+            foreignModelName: $foreignModelName,
+            foreignNamespace: $foreignNamespace,
+            isNullable: $this->columns[$columnName]->isNullable,
+        );
     }
 
     public function addColumn(LarabearDatabaseColumnDto $column): void {
@@ -204,12 +204,12 @@ final class LarabearDatabaseModelDto {
 
         if (count(value: $this->foreignKeyColumns) > 0) {
             foreach ($this->foreignKeyColumns as $column) {
-                $content .= "    public function " . $column['methodName'] . "(): BelongsTo";
-                if ($column['isNullable']) {
+                $content .= "    public function " . $column->methodName . "(): BelongsTo";
+                if ($column->isNullable) {
                     $content .= "|null";
                 }
                 $content .= " {" . PHP_EOL;
-                $content .= "        return \$this->belongsTo(related: {$column['foreignModelName']}::class, foreignKey: '" . $column['columnName'] . "', ownerKey: '" . $column['foreignColumnName'] . "');" . PHP_EOL;
+                $content .= "        return \$this->belongsTo(related: $column->foreignModelName::class, foreignKey: '$column->columnName', ownerKey: '$column->foreignColumnName');" . PHP_EOL;
                 $content .= "    }" . PHP_EOL . PHP_EOL;
             }
         }
@@ -235,9 +235,9 @@ final class LarabearDatabaseModelDto {
         if (count($this->foreignKeyColumns) > 0) {
             $this->headers->add(element: 'use Illuminate\Database\Eloquent\Relations\BelongsTo;');
             foreach ($this->foreignKeyColumns as $column) {
-                $namespace = $column['foreignNamespace'];
+                $namespace = $column->foreignNamespace;
                 if ($namespace !== $this->getNameSpace()) {
-                    $this->headers->add(element: 'use ' . $namespace . '\\' . $column['foreignModelName'] . ';');
+                    $this->headers->add(element: 'use ' . $namespace . '\\' . $column->foreignModelName . ';');
                 }
             }
         }
@@ -317,11 +317,11 @@ final class LarabearDatabaseModelDto {
         if (count(value: $this->foreignKeyColumns) > 0) {
             $content .= " *" . PHP_EOL;
             foreach ($this->foreignKeyColumns as $column) {
-                $content .= " * @property " . $column['foreignModelName'];
-                if ($column['isNullable']) {
+                $content .= " * @property " . $column->foreignModelName;
+                if ($column->isNullable) {
                     $content .= "|null";
                 }
-                $content .= " $" . $column['methodName'] . PHP_EOL;
+                $content .= " $" . $column->methodName . PHP_EOL;
             }
         }
 
