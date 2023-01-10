@@ -8,6 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Console\Listener\ConsoleRegisterListe
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCheckForeignKeysOnSoftDeletesCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCrudGeneratorCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseModelGeneratorCommand;
+use GuardsmanPanda\Larabear\Infrastructure\Email\Command\LarabearEmailProcessCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Command\LarabearGenerateSessionKeyCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearAccessTokenUserMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearHtmxMiddleware;
@@ -72,6 +73,7 @@ final class BearServiceProvider extends ServiceProvider {
                 LarabearPhpStanCommand::class,
                 LarabearSecurityOsvScannerCommand::class,
                 LarabearOauth2CheckAccessCommand::class,
+                LarabearEmailProcessCommand::class,
             ]);
 
             $this->publishes(paths: [base_path(path: 'vendor/guardsmanpanda/larabear/config/config.php') => $this->app->configPath(path: 'bear.php')], groups: 'bear');

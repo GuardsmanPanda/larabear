@@ -172,26 +172,21 @@ final class BearOauth2ClientService {
                 $scopes->add(element: $scope);
             }
         }
+        if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::MICROSOFT) {
+            $scopes->add(element: 'offline_access');
+            $scopes->add(element: 'openid');
+            $scopes->add(element: 'profile');
+            $scopes->add(element: 'email');
+        }
+        if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::GOOGLE) {
+            $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.profile');
+            $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.email');
+            $scopes->add(element: 'openid');
+        }
 
-        switch ($client->oauth2_client_type) {
-            case BearOauth2ClientTypeEnum::MICROSOFT:
-                $scopes->add(element: 'offline_access');
-                $scopes->add(element: 'openid');
-                $scopes->add(element: 'profile');
-                $scopes->add(element: 'email');
-                break;
-            case BearOauth2ClientTypeEnum::GOOGLE:
-                $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.profile');
-                $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.email');
-                $scopes->add(element: 'openid');
-                break;
-            case BearOauth2ClientTypeEnum::TWITCH:
-                $scopes->add(element: 'user:read:email');
-                $scopes->add(element: 'openid');
-                break;
-            case BearOauth2ClientTypeEnum::HELP_SCOUT:
-            case BearOauth2ClientTypeEnum::OTHER:
-                break;
+        if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::TWITCH) {
+            $scopes->add(element: 'user:read:email');
+            $scopes->add(element: 'openid');
         }
         return urlencode(implode(separator: ' ', array: $scopes->toArray()));
     }
