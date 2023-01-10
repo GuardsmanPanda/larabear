@@ -45,7 +45,7 @@ final class BearOauth2UserService {
 
             if ($resp->ok()) {
                 $json = $resp->json();
-                if (isset($json['refresh_token'])) {
+                if (array_key_exists(key: 'refresh_token', array: $json)) {
                     $updater->setEncryptedUserRefreshToken(encrypted_user_refresh_token: $json['refresh_token']);
                 }
                 $updater->setEncryptedUserAccessToken(

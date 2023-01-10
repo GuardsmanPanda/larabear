@@ -107,21 +107,13 @@ final class BearPermissionUser extends Model {
 
     protected function setKeysForSaveQuery($query): EloquentBuilder {
         foreach ($this->primaryKeyArray as $key) {
-            if (isset($this->$key)) {
-                $query->where(column: $key, operator: '=', value: $this->$key);
-            } else {
-                throw new RuntimeException(message: "Missing primary key value for $key");
-            }
+            $query->where(column: $key, operator: '=', value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));
         }
         return $query;
     }
     protected function setKeysForSelectQuery($query): EloquentBuilder {
         foreach ($this->primaryKeyArray as $key) {
-            if (isset($this->$key)) {
-                $query->where(column: $key, operator: '=', value: $this->$key);
-            } else {
-                throw new RuntimeException(message: "Missing primary key value for $key");
-            }
+            $query->where(column: $key, operator: '=', value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));
         }
         return $query;
     }

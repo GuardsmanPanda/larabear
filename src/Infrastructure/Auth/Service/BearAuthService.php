@@ -49,7 +49,7 @@ final class BearAuthService {
             return false;
         }
         self::cacheCheck();
-        if (!isset(self::$userPermissions[$userId])) {
+        if (!array_key_exists(key: $userId, array: self::$userPermissions)) {
             $perms = DB::select(query: "
                 SELECT DISTINCT p.permission_slug
                 FROM bear_permission_user pu
@@ -87,7 +87,7 @@ final class BearAuthService {
             return false;
         }
         self::cacheCheck();
-        if (!isset(self::$userRoles[$userId])) {
+        if (!array_key_exists(key: $userId, array: self::$userRoles)) {
             $tmp = DB::select(query: "
                     SELECT r.role_slug
                     FROM bear_role r

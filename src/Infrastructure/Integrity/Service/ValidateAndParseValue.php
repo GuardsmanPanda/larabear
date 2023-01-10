@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Integrity\Service;
 
 use Carbon\CarbonImmutable;
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use InvalidArgumentException;
 use stdClass;
@@ -10,7 +11,7 @@ use Throwable;
 
 final class ValidateAndParseValue {
     public static function parseInt(mixed $value, string $errorMessage = null): int {
-        if (is_int($value) || (is_string(value: $value) && preg_match(pattern: '/^-?\d+$/', subject: $value))) {
+        if (is_int($value) || (is_string(value: $value) && BearRegexService::isMatch(regex: '/^-?\d+$/', string: $value))) {
             return (int)$value;
         }
         $msg = "$value is not an integer, type: " . gettype(value: $value);
@@ -126,7 +127,7 @@ final class ValidateAndParseValue {
         }
 
         if ($timezone !== null) {
-            if (!preg_match(pattern: '/^\d{4}-\d\d-\d\dT\d\d:\d\d(:\d\d)?$/', subject: $value)) {
+            if (!BearRegexService::isMatch(regex: '/^\d{4}-\d\d-\d\dT\d\d:\d\d(:\d\d)?$/', string: $value)) {
                 $msg = "Invalid date time: $value (must be ISO 8601 without timezone when timezone included), example: YYYY-MM-DDTHH:MM(:SS)";
                 throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
             }

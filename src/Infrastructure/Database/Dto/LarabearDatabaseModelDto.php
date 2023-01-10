@@ -151,7 +151,7 @@ final class LarabearDatabaseModelDto {
 
     public function getClassContent(): string {
         $content = $this->getTopOfClass();
-        $content .= "class " . $this->getModelClassName() . " extends Model {" . PHP_EOL;
+        $content .= "final class " . $this->getModelClassName() . " extends Model {" . PHP_EOL;
 
         if (count($this->modelTraits) > 0) {
             foreach ($this->modelTraits as $trait) {
@@ -381,11 +381,7 @@ final class LarabearDatabaseModelDto {
 
     private function setPrimaryKeyQuery(string $content): string {
         $content .= "        foreach (\$this->primaryKeyArray as \$key) {" . PHP_EOL;
-        $content .= "            if (isset(\$this->\$key)) {" . PHP_EOL;
-        $content .= "                \$query->where(column: \$key, operator: '=', value: \$this->\$key);" . PHP_EOL;
-        $content .= "            } else {" . PHP_EOL;
-        $content .= "                throw new RuntimeException(message: \"Missing primary key value for \$key\");" . PHP_EOL;
-        $content .= "            }" . PHP_EOL;
+        $content .= '            $query->where(column: $key, operator: "=", value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));' . PHP_EOL;
         $content .= "        }" . PHP_EOL;
         $content .= "        return \$query;" . PHP_EOL;
         $content .= "    }" . PHP_EOL;

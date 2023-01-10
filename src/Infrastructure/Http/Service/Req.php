@@ -104,7 +104,7 @@ final class Req {
      */
     public static function allJsonData(bool $allowEmpty = false): array {
         $value = self::request()->json()?->all();
-        if (empty($value)) {
+        if (count($value) === 0) {
             return $allowEmpty ? [] : throw new BadRequestHttpException(message: 'Request JSON is empty');
         }
         if (!is_array(value: $value) || !self::request()->isJson()) {
@@ -118,7 +118,7 @@ final class Req {
      */
     public static function allFormData(bool $allowEmpty = false): array {
         $tmp = self::request()->all();
-        return empty($tmp) && !$allowEmpty ? throw new BadRequestHttpException(message: 'No Form Data') : $tmp;
+        return count($tmp) === 0 && !$allowEmpty ? throw new BadRequestHttpException(message: 'No Form Data') : $tmp;
     }
 
     /**

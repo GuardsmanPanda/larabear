@@ -2,11 +2,11 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Dto\LarabearDatabaseModelDto;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
-use JsonException;
 use RuntimeException;
 
 final class LarabearDatabaseModelService {
@@ -22,12 +22,12 @@ final class LarabearDatabaseModelService {
 
         $models = [];
         foreach ($table_names as $table_name) {
-            if (!isset($tableConfig[$table_name])) {
+            if (!array_key_exists(key: $table_name, array: $tableConfig)) {
                 continue; //skip tables not in the config
             }
             $info = $tableConfig[$table_name];
             $traits = $info['traits'] ?? [];
-            if (isset($info['log_change']) && $info['log_change']) {
+            if (array_key_exists(key: 'log_change', array: $info) && is_bool($info['log_change']) && $info['log_change']) {
                 $traits[] = 'GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges';
             }
             $dto = new LarabearDatabaseModelDto(
@@ -117,7 +117,7 @@ final class LarabearDatabaseModelService {
         // Test the key to find out what type it is.
         if (is_int($primary_key_value)) {
             $res[0] = $primary_key_value;
-        } else if (is_string($primary_key_value) && preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i', $primary_key_value)) {
+        } else if (is_string($primary_key_value) && BearRegexService::isMatch(regex: '/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i', string: $primary_key_value)) {
             $res[1] = $primary_key_value;
         } else if (is_array($primary_key_value)) {
             $res[2] = json_encode(value: $primary_key_value, flags: JSON_THROW_ON_ERROR);

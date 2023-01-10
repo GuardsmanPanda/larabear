@@ -13,7 +13,7 @@ final class LarabearDatabaseModelGeneratorCommand extends Command {
 
     public function handle(): void {
         $connections = Config::get(key: 'bear.eloquent-model-generator');
-        if (empty($connections)) {
+        if (count($connections) === 0) {
             throw new RuntimeException(message: 'No database connections defined in config/bear.php => [eloquent-model-generator]');
         }
         foreach ($connections as $connection_name => $table_config) {
