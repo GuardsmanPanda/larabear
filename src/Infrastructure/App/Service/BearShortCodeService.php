@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
 use RuntimeException;
 
 final class BearShortCodeService {
-    private const CHARS = '25679bcdfghjkmnpqrstvwxz';
+    private const CHARS = '25679BCDFGHJKLMNPQRSTVWXZbcdfghjkmnpqrstvwxz';
 
     public static function generateNextCode(): string {
         $updater = BearConfigUpdater::fromConfigKey(config_key: 'larabear.last_unique_short_code', lockForUpdate: true);
@@ -20,7 +20,8 @@ final class BearShortCodeService {
 
         // Map each character to the index in the chars string
         $value_array = array_map(callback: static function($char) {
-            return str_contains(self::CHARS, $char) ? strpos(haystack: self::CHARS, needle: $char) : -1;
+            $pos = strpos(haystack: self::CHARS, needle: $char);
+            return is_int(value: $pos) ? $pos : throw new RuntimeException(message: 'Invalid character in short code');
         }, array: $value_array);
 
         // Reverse the value array
@@ -31,7 +32,7 @@ final class BearShortCodeService {
         foreach ($value_array as $i => $iValue) {
             if ($iValue >= strlen(string: self::CHARS)) {
                 $value_array[$i] = 0;
-                if (isset($value_array[$i + 1])) {
+                if (array_key_exists(key: $i + 1, array: $value_array)) {
                     $value_array[$i + 1]++;
                 } else {
                     $value_array[$i + 1] = 0;

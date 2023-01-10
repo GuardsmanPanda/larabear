@@ -61,13 +61,6 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
         $this->generateCreator(model: $model, directory: $location);
         $this->generateUpdater(model: $model, directory: $location);
         $this->generateDeleter(model: $model, directory: $location);
-
-        ConsoleService::printH2(headline: 'Generating Service Crud..');
-        if ($this->option(key: 'service')) {
-            $this->generateServiceCrud(model: $model);
-        } else {
-            ConsoleService::printTestResult(testName: '', warningMessage: '--service option not set.');
-        }
     }
 
 
@@ -212,37 +205,6 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
         ConsoleService::printTestResult(testName: "File [$filename] created.");
     }
 
-
-    private function generateServiceCrud(LarabearDatabaseModelDto $model): void {
-        $filename = $model->getModelClassName() . 'Crud.php';
-        $location = BearRegexService::extractFirst(regex: '~(.*?)/.+$~', subject:$model->getModelLocation()) . '/Crud';
-        if (File::exists($location)) {
-            ConsoleService::printTestResult(testName: '', warningMessage: "File: [$filename] already exists.  [$location]");
-            return;
-        }
-        $headers = new Set(setType: 'string');
-        $headers->add(element: "use GuardsmanPanda\\Larabear\\Infrastructure\\Http\\Service\\Req;");
-        $headers->add(element: "use {$model->getNameSpace()}\\{$model->getModelClassName()};");
-
-        $content = '<?php declare(strict_types=1);' . PHP_EOL . PHP_EOL;
-
-        // HEADERS
-        $hh = $headers->toArray();
-        sort(array: $hh);
-        $hh = array_unique(array: array_map(static function ($ele) {
-            return trim(string: $ele);
-        }, $hh));
-        foreach ($hh as $header) {
-            if ($header === '') {
-                continue;
-            }
-            $content .= $header . PHP_EOL;
-        }
-
-        // CREATE FROM REQUEST
-        File::put($location, $content);
-        ConsoleService::printTestResult(testName: "File [$filename] created.");
-    }
 
     /**
      * @param LarabearDatabaseModelDto $model

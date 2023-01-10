@@ -4,7 +4,6 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Email\Crud;
 
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 final class BearEmailUpdater {
     public function __construct(private readonly BearEmail $model) {}

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use RuntimeException;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -107,12 +108,12 @@ final class BearUser extends Model implements Authenticatable {
         return $this->id;
     }
 
-    public function getAuthPassword(): string|null {
-        return $this->password;
+    public function getAuthPassword(): string {
+        return $this->password ?? throw new RuntimeException(message: 'Password is not set');
     }
 
-    public function getRememberToken(): string|null {
-        return $this->remember_token;
+    public function getRememberToken(): string {
+        return $this->remember_token ?? throw new RuntimeException(message: 'Remember token is not set');
     }
 
     public function setRememberToken($value): void {

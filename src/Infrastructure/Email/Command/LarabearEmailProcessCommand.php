@@ -14,7 +14,7 @@ final class LarabearEmailProcessCommand extends Command {
     protected $description = 'Process emails';
 
     public function handle(): void {
-        $emails = BearEmail::fromQuery(query: "SELECT * FROM email WHERE email_sent_at IS NULL AND email_error_code IS NULL ORDER BY id LIMIT 30");
+        $emails = BearEmail::fromQuery(query: "SELECT * FROM bear_email WHERE email_sent_at IS NULL AND email_error_code IS NULL ORDER BY created_at LIMIT 30");
         foreach ($emails as $email) {
             try {
                 DB::beginTransaction();
