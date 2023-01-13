@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Config\Enum\BearConfigType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
@@ -33,7 +34,7 @@ return new class extends Migration {
                 BearConfigCreator::create(
                     config_key: $config['config_key'],
                     config_description: $config['config_description'],
-                    config_data_type: $config['config_data_type'],
+                    config_data_type: BearConfigType::from($config['config_data_type']),
                     config_string: $config['config_string'] ?? null,
                     config_boolean: $config['config_boolean'] ?? null
                 );

@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Config\Crud;
 
 use Carbon\CarbonInterface;
+use GuardsmanPanda\Larabear\Infrastructure\Config\Enum\BearConfigType;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
@@ -26,8 +27,8 @@ final class BearConfigUpdater {
         return $this;
     }
 
-    public function setConfigDataType(string $config_data_type): self {
-        $this->model->config_data_type = $config_data_type;
+    public function setConfigDataType(BearConfigType $config_data_type): self {
+        $this->model->config_data_type = $config_data_type->value;
         return $this;
     }
 
