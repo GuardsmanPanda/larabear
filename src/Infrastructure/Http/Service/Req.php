@@ -237,26 +237,28 @@ final class Req {
     }
 
 
-    public static function getDateTime(string $key, BearTypeEnum|CarbonImmutable|string|null $defaultIfMissing = BearTypeEnum::UNDEFINED): CarbonImmutable|null {
+    public static function getDateTime(string $key, BearTypeEnum|CarbonImmutable|null $defaultIfMissing = BearTypeEnum::UNDEFINED, string $defaultTimezone = null): CarbonImmutable|null {
         if (!self::has(key: $key)) {
             if ($defaultIfMissing === null || $defaultIfMissing instanceof CarbonImmutable) {
                 return $defaultIfMissing;
             }
-            if (is_string($defaultIfMissing)) {
+            if ($defaultIfMissing !== BearTypeEnum::UNDEFINED) {
                 return ValidateAndParseValue::parseDateTime(value: $defaultIfMissing);
             }
             throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: self::getString(key: $key . "_timezone", defaultIfMissing: null), errorMessage: 'You may need to include timezone as form_field_name_timezone');
+        $timezone = self::getString(key: $key . "_timezone", defaultIfMissing: null) ?? $defaultTimezone;
+        return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone or supply it in the Req::getDateTime() defaultTimezone parameter');
     }
 
-    public static function getDateTimeOrDefault(string $key, CarbonImmutable $default = null): CarbonImmutable {
+    public static function getDateTimeOrDefault(string $key, CarbonImmutable $default = null, string $defaultTimezone = null): CarbonImmutable {
         $value = self::request()->input(key: $key);
         if ($value === null) {
             return $default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
-        return ValidateAndParseValue::parseDateTime(value: $value, timezone: self::getString(key: $key . "_timezone", defaultIfMissing: null), errorMessage: 'You may need to include timezone as form_field_name_timezone');
+        $timezone = self::getString(key: $key . "_timezone", defaultIfMissing: null) ?? $defaultTimezone;
+        return ValidateAndParseValue::parseDateTime(value: $value, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone or supply it in the Req::getDateTimeOrDefault() defaultTimezone parameter');
     }
 
 

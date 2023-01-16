@@ -19,6 +19,11 @@ final class LarabearApiErrorController extends Controller {
         return new JsonResponse(data: ['error_count' => $error_count], status: $error_count > 0 ? 500 : 200);
     }
 
+    public function noFailedJobs(): JsonResponse {
+        BearGlobalStateService::setLogResponseError(value: false);
+        return new JsonResponse(data: ['failed_jobs_count' => $failed_jobs_count], status: $failed_jobs_count > 0 ? 500 : 200);
+    }
+
     public function dbSoftDeleteErrors(): JsonResponse {
         BearGlobalStateService::setLogResponseError(value: false);
         $connection = config(key: 'database.default');
