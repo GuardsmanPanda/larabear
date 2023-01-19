@@ -67,7 +67,7 @@ final class BearExternalApi extends Model {
     protected $table = 'bear_external_api';
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $dateFormat = 'Y-m-d H:i:sO';
+    protected $dateFormat = 'Y-m-d\TH:i:sP';
 
     /** @var array<string, string> $casts */
     protected $casts = [

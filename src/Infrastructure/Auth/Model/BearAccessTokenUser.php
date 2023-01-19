@@ -56,7 +56,7 @@ final class BearAccessTokenUser extends Model {
     protected $primaryKey = 'hashed_token';
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $dateFormat = 'Y-m-d H:i:sO';
+    protected $dateFormat = 'Y-m-d\TH:i:sP';
     public $timestamps = false;
 
     /** @var array<string, string> $casts */

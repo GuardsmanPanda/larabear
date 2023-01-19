@@ -34,7 +34,7 @@ final class BearSessionAuthMiddleware {
         //  If we cannot find a userId in the session then only progress if explicitly allowed.
         //----------------------------------------------------------------------------------------------------------
         if ($bearUserId === null && $extra !== 'allow-guest') {
-            $target = BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_if_not_logged_in');
+            $target = BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in');
             if ($request->acceptsHtml()) {
                 return new RedirectResponse(url: $target, headers: ['HX-Redirect' => $target]);
             }

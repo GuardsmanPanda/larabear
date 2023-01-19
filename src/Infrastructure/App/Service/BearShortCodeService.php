@@ -9,10 +9,10 @@ final class BearShortCodeService {
     private const CHARS = '25679BCDFGHJKLMNPQRSTVWXZbcdfghjkmnpqrstvwxz';
 
     public static function generateNextCode(): string {
-        $updater = BearConfigUpdater::fromConfigKey(config_key: 'larabear.last_unique_short_code', lockForUpdate: true);
+        $updater = BearConfigUpdater::fromConfigKey(config_key: 'larabear::last-unique-short-code', lockForUpdate: true);
         $value = $updater->getConfigString();
         if (!is_string(value: $value)) {
-            throw new RuntimeException(message: 'The last_unique_short_code config value is not a string.');
+            throw new RuntimeException(message: 'The last-unique-short-code config value is not a string.');
         }
 
         // Change value string into array of characters

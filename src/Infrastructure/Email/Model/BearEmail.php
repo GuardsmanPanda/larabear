@@ -70,7 +70,7 @@ final class BearEmail extends Model {
     protected $table = 'bear_email';
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $dateFormat = 'Y-m-d H:i:sO';
+    protected $dateFormat = 'Y-m-d\TH:i:sP';
     /** @var array<string> $log_exclude_columns */
     public array $log_exclude_columns = ['email_text', 'email_html'];
 

@@ -74,7 +74,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
     }
 
     public function getDateFormat(): string {
-        return 'Y-m-d H:i:sO';
+        return 'Y-m-d\TH:i:sP';
     }
 
 

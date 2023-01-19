@@ -6,6 +6,6 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 trait LarabearFixDateFormatTrait {
     public function getDateFormat(): string {
-        return BearDatabaseService::defaultConnectionDriver() === 'mysql' ? 'Y-m-d H:i:s' : 'Y-m-d H:i:sO';
+        return BearDatabaseService::defaultConnectionDriver() === 'mysql' ? 'Y-m-d H:i:s' : 'Y-m-d\TH:i:sP';
     }
 }
