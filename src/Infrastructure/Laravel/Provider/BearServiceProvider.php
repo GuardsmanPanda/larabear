@@ -25,12 +25,15 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Contracts\Foundation\CachesRoutes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 final class BearServiceProvider extends ServiceProvider {
 
     public function boot(): void {
+        Config::set(key: 'database.connections.larabear_transaction_free', value: Config::get(key: 'database.connections.' . Config::get(key: 'database.default')));
+
         if (!($this->app instanceof CachesRoutes && $this->app->routesAreCached())) {
             Route::post(uri: 'bear/auth/sign-in', action: [LarabearAuthController::class, 'signIn'])->middleware([BearTransactionMiddleware::class, 'session:allow-guest']);
             Route::post(uri: 'bear/user-api/auth/sign-in', action: [LarabearUserApiAuthController::class, 'signIn'])->middleware([BearTransactionMiddleware::class]);

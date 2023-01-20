@@ -2,9 +2,7 @@
 
 return [
     'cookie.session_key' => env(key: 'LARABEAR_SESSION_KEY'),
-    'dev_emails' => ['dev@example.com'],
     'log_database_change_channel' => null,
-    'log_database_connection' => null,
     'postmark_from_email' => 'Full Name <dev@example.com>',
     'postmark_token' => env(key: 'POSTMARK_TOKEN'),
     'postmark_sandbox_token' => env(key: 'POSTMARK_SANDBOX_TOKEN'),
