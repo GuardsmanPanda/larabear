@@ -8,7 +8,6 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 final class BearOauth2UserDeleter {
     public static function delete(BearOauth2User $model): void {
         BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['DELETE']);
         $model->delete();
     }
 

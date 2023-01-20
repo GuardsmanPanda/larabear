@@ -7,8 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearPermission;
 
 final class BearPermissionUpdater {
     public function __construct(private readonly BearPermission $model) {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
     }
 
     public static function fromPermissionSlug(string $permission_slug): self {

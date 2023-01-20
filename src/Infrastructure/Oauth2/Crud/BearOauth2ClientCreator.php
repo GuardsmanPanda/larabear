@@ -19,8 +19,7 @@ final class BearOauth2ClientCreator {
         string $oauth2_client_redirect_path = null,
         string $oauth2_user_scope = null,
     ): BearOauth2Client {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearOauth2Client();
 

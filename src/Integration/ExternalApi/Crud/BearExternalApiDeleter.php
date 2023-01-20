@@ -7,8 +7,7 @@ use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 
 final class BearExternalApiDeleter {
     public static function delete(BearExternalApi $model): void {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['DELETE']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
         $model->delete();
     }
 

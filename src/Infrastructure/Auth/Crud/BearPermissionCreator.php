@@ -10,8 +10,7 @@ final class BearPermissionCreator {
         string $permission_slug,
         string $permission_description = null
     ): BearPermission {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearPermission();
 

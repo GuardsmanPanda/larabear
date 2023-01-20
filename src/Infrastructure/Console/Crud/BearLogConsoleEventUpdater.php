@@ -8,8 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 final class BearLogConsoleEventUpdater {
     public function __construct(private readonly BearLogConsoleEvent $model) {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
     }
 
     public static function fromConsoleEventId(string $consoleEventId): BearLogConsoleEventUpdater {

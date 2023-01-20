@@ -18,8 +18,7 @@ final class BearAccessTokenAppCreator {
         CarbonInterface $expires_at = null,
         CarbonInterface $last_usage_at = null
     ): BearAccessTokenApp {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearAccessTokenApp();
         $model->id = Str::uuid()->toString();

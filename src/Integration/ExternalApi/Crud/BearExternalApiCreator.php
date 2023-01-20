@@ -19,8 +19,7 @@ final class BearExternalApiCreator {
         ArrayObject $external_api_base_headers_json = null,
         ArrayObject $external_api_metadata_json = null
     ): BearExternalApi {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearExternalApi();
         $model->id = Str::uuid()->toString();

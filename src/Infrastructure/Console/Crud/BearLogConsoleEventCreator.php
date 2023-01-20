@@ -19,8 +19,7 @@ final class BearLogConsoleEventCreator {
         int $execution_time_microseconds = null,
         string $console_event_output = null
     ): BearLogConsoleEvent {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearLogConsoleEvent();
 

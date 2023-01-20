@@ -7,8 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearPermission;
 
 final class BearPermissionDeleter {
     public static function delete(BearPermission $model): void {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['DELETE']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
         $model->delete();
     }
 

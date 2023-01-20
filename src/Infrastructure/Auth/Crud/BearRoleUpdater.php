@@ -7,8 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearRole;
 
 final class BearRoleUpdater {
     public function __construct(private readonly BearRole $model) {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
     }
 
     public static function fromRoleSlug(string $role_slug): self {

@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Casts\ArrayObject;
 
 final class BearExternalApiUpdater {
     public function __construct(private readonly BearExternalApi $model) {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
     }
 
     public static function fromId(string $id): self {

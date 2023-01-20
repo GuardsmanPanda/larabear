@@ -10,8 +10,7 @@ use Illuminate\Database\Eloquent\Casts\ArrayObject;
 
 final class BearConfigUpdater {
     public function __construct(private readonly BearConfig $model) {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
     }
 
     public static function fromConfigKey(string $config_key, bool $lockForUpdate = false): self {

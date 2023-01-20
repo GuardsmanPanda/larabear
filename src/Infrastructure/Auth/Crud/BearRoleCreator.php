@@ -10,8 +10,7 @@ final class BearRoleCreator {
         string $role_slug,
         string $role_description = null
     ): BearRole {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearRole();
 

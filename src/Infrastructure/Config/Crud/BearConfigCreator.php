@@ -34,8 +34,7 @@ final class BearConfigCreator {
         CarbonInterface $config_timestamp = null,
         ArrayObject $config_json = new ArrayObject()
     ): BearConfig {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearConfig();
 

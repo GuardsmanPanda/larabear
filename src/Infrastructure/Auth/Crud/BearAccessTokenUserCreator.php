@@ -14,8 +14,7 @@ final class BearAccessTokenUserCreator {
         CarbonInterface $expires_at,
         BearUserTokenTypeEnum $user_token_type = BearUserTokenTypeEnum::BEARER,
     ): String {
-        BearDatabaseService::mustBeInTransaction();
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         (new BearUserUpdater($user))->setLastLoginNow()->update();
 
