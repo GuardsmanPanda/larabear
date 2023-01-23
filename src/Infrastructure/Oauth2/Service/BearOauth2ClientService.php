@@ -44,6 +44,10 @@ final class BearOauth2ClientService {
             $query_data .= '&claims=' . urlencode(string: json_encode(['id_token' => ['email' => null, 'email_verified' => null, 'preferred_username' => null]], JSON_THROW_ON_ERROR));
         }
 
+        if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::GOOGLE) {
+            $query_data .= '&include_granted_scopes=true';
+        }
+
         if ($accountPrompt) {
             $query_data .= match ($client->oauth2_client_type) {
                 BearOauth2ClientTypeEnum::MICROSOFT, BearOauth2ClientTypeEnum::GOOGLE => '&prompt=select_account',

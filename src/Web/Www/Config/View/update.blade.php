@@ -1,7 +1,7 @@
 <?php declare(strict_types=1); ?>
 <x-bear::dialog.crud title="Update {{$config_data->config_key}}" endpoint='{{ "/bear/config/$config_data->config_key" }}' class="w-[50rem]">
     <div class="grid grid-cols-2 gap-4">
-        <x-bear::form.text id="config_key" pattern="\S+[.]\S+" required>{{$config_data->config_key}}</x-bear::form.text>
+        <x-bear::form.text id="config_key" pattern="\S+::\S+" required>{{$config_data->config_key}}</x-bear::form.text>
         <x-bear::form.select id="config_data_type" required>
             @foreach(['STRING', 'ENCRYPTED_STRING', 'INTEGER', 'BOOLEAN', 'DATE', 'TIMESTAMP', 'JSON', 'MULTI_VALUE'] as $type)
                 <option value="{{$type}}" @if($config_data->config_data_type === $type) selected @endif>{{$type}}</option>

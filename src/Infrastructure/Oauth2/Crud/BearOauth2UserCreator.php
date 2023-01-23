@@ -39,7 +39,7 @@ final class BearOauth2UserCreator {
         $model->oauth2_scope = $oauth2_scope;
         $model->oauth2_scope_json = new ArrayObject();
         $dateString = Carbon::now()->toDateString();
-        foreach (explode(' ', $oauth2_scope) as $scope) {
+        foreach (explode(separator: ' ', string: $oauth2_scope) as $scope) {
             $model->oauth2_scope_json->$scope = $dateString;
         }
 

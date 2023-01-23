@@ -5,13 +5,10 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Support\Facades\Hash;
 
 final class BearUserUpdater {
-    public function __construct(private readonly BearUser $model) {
-        BearDatabaseService::mustBeInTransaction();
-    }
+    public function __construct(private readonly BearUser $model) {}
 
     public static function fromId(string $id): BearUserUpdater {
         return new BearUserUpdater(model: BearUser::findOrFail(id: $id));
