@@ -3,7 +3,7 @@
 namespace GuardsmanPanda\Larabear\Web\Www\Shared\Component;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
-use Illuminate\Contracts\View\View;
+use Illuminate\View\View;
 use Illuminate\View\Component;
 use RuntimeException;
 

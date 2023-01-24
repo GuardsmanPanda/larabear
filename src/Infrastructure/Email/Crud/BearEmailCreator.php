@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Email\Crud;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
+use GuardsmanPanda\Larabear\Infrastructure\Email\Service\BearEmailService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use GuardsmanPanda\Larabear\Integration\Postmark\Client\BearPostmarkClient;
 use Illuminate\Support\Facades\DB;
@@ -46,7 +47,7 @@ final class BearEmailCreator {
 
         try {
             DB::beginTransaction();
-             $model = BearPostmarkClient::sendEmail(email: $model);
+             $model = BearEmailService::sendEmail(email: $model);
             DB::commit();
         } catch (Throwable $t) {
             DB::rollBack();

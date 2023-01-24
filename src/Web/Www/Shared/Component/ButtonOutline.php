@@ -3,16 +3,16 @@
 namespace GuardsmanPanda\Larabear\Web\Www\Shared\Component;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\View\View;
 use RuntimeException;
 
 final class ButtonOutline extends Component {
     public string $classes = 'whitespace-nowrap font-medium inline-flex rounded border transition-all hover:scale-105 items-center shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2';
 
     public function __construct(
-        public readonly string      $color = 'gray',
-        public readonly string      $size = 'default',
+        public readonly string $color = 'gray',
+        public readonly string $size = 'default',
         public readonly string|null $icon = null
     ) {
         $this->classes .= match ($this->size) {

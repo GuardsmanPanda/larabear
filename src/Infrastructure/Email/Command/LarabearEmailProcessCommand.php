@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Email\Command;
 
 use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
+use GuardsmanPanda\Larabear\Infrastructure\Email\Service\BearEmailService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
 use GuardsmanPanda\Larabear\Integration\Postmark\Client\BearPostmarkClient;
 use Illuminate\Console\Command;
@@ -18,7 +19,7 @@ final class LarabearEmailProcessCommand extends Command {
         foreach ($emails as $email) {
             try {
                 DB::beginTransaction();
-                BearPostmarkClient::sendEmail(email: $email);
+                BearEmailService::sendEmail(email: $email);
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();

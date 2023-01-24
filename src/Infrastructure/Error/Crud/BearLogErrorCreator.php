@@ -14,19 +14,21 @@ final class BearLogErrorCreator {
     /**
      * @param string $message The error message, should be short and concise
      * @param string $namespace The namespace that the error belongs to, used to disambiguate errors.
-     * @param string|null $key The key that the error belongs to, used to disambiguate errors.
+     * @param string $key The key that the error belongs to, used to disambiguate errors.
      * @param BearSeverityEnum $severity The severity of the error, use high or greater for errors which *must* be handled.
      * @param string|null $remedy How to resolve the error, if known.
      * @param Throwable|null $exception The exception that caused the error, if any.
+     * @param string|null $mailTo if set, an email will be sent to this address with the error details.
      * @return void
      */
     public static function create(
-        string           $message,
-        string           $namespace = 'default',
-        string           $key = null,
+        string $message,
+        string $namespace = 'default',
+        string $key = 'default',
         BearSeverityEnum $severity = BearSeverityEnum::LOW,
-        string           $remedy = null,
-        Throwable        $exception = null
+        string $remedy = null,
+        Throwable $exception = null,
+        string $mailTo = null,
     ): void {
         try {
             $query_json = BearGlobalStateService::getRequestId() === null ? null : json_encode(value: Req::allQueryData(), flags: JSON_THROW_ON_ERROR, depth: 128);
@@ -36,6 +38,10 @@ final class BearLogErrorCreator {
         ", bindings: [$severity->name, $namespace, $key, $message, $remedy, $exception?->getMessage(), $exception?->getTraceAsString(), BearGlobalStateService::getUserId(), Req::ip(), Req::ipCountry(), Req::method(), Req::path(), $query_json, Req::actionName(), Req::hostname(), BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleIdOrNull()]);
         } catch (Throwable $e) {
             Log::error(message: 'Failed log error: ' . $e->getMessage());
+        }
+
+        if ($mailTo !== null) {
+
         }
     }
 }
