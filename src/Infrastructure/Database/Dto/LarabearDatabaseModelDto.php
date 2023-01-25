@@ -123,6 +123,9 @@ final class LarabearDatabaseModelDto {
         if ($column->requiredHeader === 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;') {
             $this->headers->add(element: 'use Illuminate\\Database\\Eloquent\\Casts\\AsArrayObject;');
         }
+        if ($column->phpDataType === 'CarbonInterface') {
+            $this->headers->add(element: 'use Carbon\\CarbonInterface;');
+        }
         $this->headers->add(element: $column->requiredHeader);
         $this->columns[$column->columnName] = $column;
     }
