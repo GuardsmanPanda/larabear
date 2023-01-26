@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-    <div id="primary" class="max-w-full min-w-full px-4 lg:px-6 pt-4">{!! $content !!}</div>
+    <div id="primary" class="max-w-full min-w-full px-4 lg:px-6 pt-2">{!! $content !!}</div>
 </div>
 <x-bear::dialog.layout />
 <script>

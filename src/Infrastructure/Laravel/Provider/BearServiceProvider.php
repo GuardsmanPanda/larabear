@@ -57,9 +57,7 @@ final class BearServiceProvider extends ServiceProvider {
             });
         }
 
-        if (method_exists(object_or_class: Model::class, method: 'preventsAccessingMissingAttributes')) {
-            Model::preventAccessingMissingAttributes();
-        }
+        Model::preventAccessingMissingAttributes();
         app(abstract: 'router')->aliasMiddleware('permission', BearPermissionMiddleware::class);
         app(abstract: 'router')->aliasMiddleware('role', BearRoleMiddleware::class);
         app(abstract: 'router')->aliasMiddleware('session', BearSessionAuthMiddleware::class);

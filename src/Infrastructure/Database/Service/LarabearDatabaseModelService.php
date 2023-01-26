@@ -43,7 +43,7 @@ final class LarabearDatabaseModelService {
 
             $columns = $dbInfo->getColumnsForTable(tableName: $table_name);
             foreach ($columns as $column) {
-                if (array_key_exists(key: 'dataTypeCast', array: $info) && array_key_exists(key: $column->nativeDataType, array: $info['data_type_cast'])) {
+                if (array_key_exists(key: 'data_type_cast', array: $info) && array_key_exists(key: $column->nativeDataType, array: $info['data_type_cast'])) {
                     $cast = $info['data_type_cast'][$column->nativeDataType];
                     $column->requiredHeader = "use $cast;";
                     $column->eloquentCast = BearRegexService::extractFirst(regex: '~.*\\\\([^\\\\]+)$~', subject: $cast) . '::class';
