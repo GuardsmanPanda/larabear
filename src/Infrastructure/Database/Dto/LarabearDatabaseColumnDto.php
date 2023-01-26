@@ -12,5 +12,6 @@ final class LarabearDatabaseColumnDto {
         public int $sortOrder,
         public string $requiredHeader,
         public string|null $eloquentCast,
+        public string|null $columnDefault = null,
     ) {}
 }

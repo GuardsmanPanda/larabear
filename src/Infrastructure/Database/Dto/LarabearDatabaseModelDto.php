@@ -174,7 +174,7 @@ final class LarabearDatabaseModelDto {
             if ($this->primaryKeyType !== 'int') {
                 $content .= "    protected \$keyType = '$this->primaryKeyType';" . PHP_EOL;
             }
-            if ($this->connectionDriver !== 'pgsql' && ($this->primaryKeyType !== 'int' || $primaryKeyColumn !== 'id')) {
+            if ($this->connectionDriver !== 'pgsql' && $this->primaryKeyType !== 'int' && $this->columns[$primaryKeyColumn]->columnDefault !== 'AUTO_INCREMENT') {
                 $content .= "    public \$incrementing = false;" . PHP_EOL;
             }
         } else {

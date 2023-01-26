@@ -21,7 +21,7 @@ final class LarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInforma
 
     public function getColumnsForTable(string $tableName): array {
         $res = DB::connection(name: $this->connectionName)->select(query: "
-            SELECT column_name as column_name, data_type as data_type, is_nullable = 'YES' AS is_nullable
+            SELECT column_name as column_name, data_type as data_type, is_nullable = 'YES' AS is_nullable, column_default as column_default
             FROM information_schema.columns
             WHERE table_schema = ? AND table_name = ?
             ORDER BY ordinal_position
@@ -35,7 +35,8 @@ final class LarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInforma
                 phpDataType: $this->databaseTypeToPhpType(databaseType: $row->data_type),
                 sortOrder: $this->mysqlTypeSortOrder($row->data_type) + ($row->is_nullable ? 1 : 0),
                 requiredHeader: $this->mysqlTypeToPhpHeader($row->data_type),
-                eloquentCast: $this->mysqlTypeToEloquentCast($row->column_name, $row->data_type)
+                eloquentCast: $this->mysqlTypeToEloquentCast($row->column_name, $row->data_type),
+                columnDefault: $row->column_default
             );
         }
         return $tmp;
