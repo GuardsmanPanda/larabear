@@ -303,13 +303,14 @@ final class LarabearDatabaseModelDto {
         $content .= " * @method static bool exists()" . PHP_EOL;
         $content .= " *" . PHP_EOL;
 
-        usort(array: $this->columns, callback: static function ($a, $b) {
+        $sortedColumns =  $this->columns;
+        usort(array: $sortedColumns, callback: static function ($a, $b) {
             if ($a->sortOrder === $b->sortOrder) {
                 return strlen(string: $a->columnName) - strlen(string: $b->columnName) === 0 ? strcmp(string1: $a->columnName, string2: $b->columnName) : strlen(string: $a->columnName) - strlen(string: $b->columnName);
             }
             return $a->sortOrder - $b->sortOrder;
         });
-        foreach ($this->columns as $column) {
+        foreach ($sortedColumns as $column) {
             $content .= " * @property " . $column->phpDataType;
             if ($column->isNullable) {
                 $content .= "|null";
