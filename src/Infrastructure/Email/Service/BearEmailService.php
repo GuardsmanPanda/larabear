@@ -4,9 +4,9 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Email\Service;
 
 use GuardsmanPanda\Larabear\Infrastructure\Email\Crud\BearEmailUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use GuardsmanPanda\Larabear\Integration\Postmark\Client\BearPostmarkClient;
 use GuardsmanPanda\Larabear\Integration\Postmark\Data\BearPostMarkClientResponse;
-use Illuminate\Support\Facades\View;
 use RuntimeException;
 
 final class BearEmailService {
@@ -61,7 +61,7 @@ final class BearEmailService {
         return BearPostmarkClient::sendMessage(
             to: $to,
             subject: $subject,
-            htmlBody: View::make(view: $view, data: $data)->render(),
+            htmlBody: Resp::view(view: $view, data: $data)->toHtml(),
             tag: $tag,
             replyTo: $replyTo,
             cc: $cc,

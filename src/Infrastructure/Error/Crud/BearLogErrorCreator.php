@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Error\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
+use GuardsmanPanda\Larabear\Infrastructure\Email\Service\BearEmailService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -41,7 +42,24 @@ final class BearLogErrorCreator {
         }
 
         if ($mailTo !== null) {
-
+            try {
+                BearEmailService::sendView(
+                    to: $mailTo,
+                    subject: '[Error - ' . $severity->value . '] ' . $message,
+                    view: 'larabear-error::larabear-log-error-email',
+                    data: [
+                        'message' => $message,
+                        'namespace' => $namespace,
+                        'key' => $key,
+                        'severity' => $severity,
+                        'remedy' => $remedy,
+                        'exception' => $exception
+                    ],
+                    tag: 'larabear-error'
+                );
+            } catch (Throwable $e) {
+                Log::error(message: 'Failed email error: ' . $e->getMessage());
+            }
         }
     }
 }

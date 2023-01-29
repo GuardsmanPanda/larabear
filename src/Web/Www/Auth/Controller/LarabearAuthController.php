@@ -15,10 +15,10 @@ final class LarabearAuthController extends Controller {
     public function signIn(): RedirectResponse {
         $user = BearUser::where(column: 'user_email', operator: '=', value: Req::getStringOrDefault(key: 'email'))->first();
         if ($user === null || $user->is_user_activated !== true || $user->password === null) {
-            return Resp::redirectWithMessage(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: 'Invalid or deactivated user.');
+            return Resp::redirectWithQueryMessage(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: 'Invalid or deactivated user.');
         }
         if (!password_verify(password: Req::getStringOrDefault(key: 'password'), hash: $user->password)) {
-            return Resp::redirectWithMessage(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: 'Invalid password');
+            return Resp::redirectWithQueryMessage(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: 'Invalid password');
         }
         (new BearUserUpdater($user))->setLastLoginNow()->update();
         Session::migrate(destroy: true);

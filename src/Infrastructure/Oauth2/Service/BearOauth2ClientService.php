@@ -27,18 +27,20 @@ use Throwable;
 final class BearOauth2ClientService {
     private const SAFETY_BUFFER_MINUTES = 10;
 
-    public static function getAuthorizeRedirectResponse(BearOauth2Client $client, string $afterSignInRedirectPath = null, bool $loginUser = true, string $overwriteRedirectUri = null, string $specialScope = null, bool $accountPrompt = false): RedirectResponse {
+    public static function getAuthorizeRedirectResponse(BearOauth2Client $client, string $afterSignInRedirectPath = null, bool $loginUser = true, string $specialScope = null, bool $accountPrompt = false, bool $internalRedirect = false): RedirectResponse {
         $state = Str::random(length: 24);
         Session::put(key: 'oauth2_state', value: $state);
         Session::put(key: 'oauth2_redirect_path', value: $afterSignInRedirectPath);
         Session::put(key: 'oauth2_login_user', value: $loginUser);
 
         $query_data = "client_id=$client->oauth2_client_id&response_type=code&state=$state";
-        $query_data .= '&scope=' . self::buildScopeString(client: $client, scopeString: $specialScope ?? $client->oauth2_user_scope);
+        $query_data .= '&scope=' . self::buildScopeString(client: $client, scopeString: $specialScope ?? $client->oauth2_user_scope) . '&redirect_uri=';
 
-        $overwriteRedirectUri ??= $client->oauth2_client_redirect_path;
-        $overwriteRedirectUri ??= "/bear/auth/oauth2-client/$client->oauth2_client_id/callback";
-        $query_data .= '&redirect_uri=' . urlencode(string: config(key: 'app.url') . $overwriteRedirectUri);
+        if ($internalRedirect === false && $client->oauth2_client_redirect_path !== null) {
+            $query_data .= urlencode(string: config(key: 'app.url') . $client->oauth2_client_redirect_path);
+        } else {
+            $query_data .= urlencode(string: config(key: 'app.url') . "/bear/auth/oauth2-client/$client->oauth2_client_id/callback");
+        }
 
         if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::TWITCH) {
             $query_data .= '&claims=' . urlencode(string: json_encode(['id_token' => ['email' => null, 'email_verified' => null, 'preferred_username' => null]], JSON_THROW_ON_ERROR));

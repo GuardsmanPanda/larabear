@@ -94,6 +94,7 @@ final class BearServiceProvider extends ServiceProvider {
             $this->loadViewsFrom(path: base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Dashboard/View'), namespace: 'larabear-dashboard');
             $this->loadViewsFrom(path: base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Log/View'), namespace: 'larabear-log');
             $this->loadViewsFrom(path: base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Internal/View'), namespace: 'larabear');
+            $this->loadViewsFrom(path: base_path(path: 'vendor/guardsmanpanda/larabear/src/Infrastructure/Error/View'), namespace: 'larabear-error');
         }
         Blade::componentNamespace('GuardsmanPanda\\Larabear\\Web\\Www\\Shared\\Component', 'bear');
         $this->loadViewsFrom(path: base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Shared/View'), namespace: 'bear');

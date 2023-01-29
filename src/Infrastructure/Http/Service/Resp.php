@@ -32,7 +32,7 @@ final class Resp {
         BearInitiateMiddleware::$headers[$key] = $value;
     }
 
-    public static function redirectWithMessage(string $url, string $message, int $status = 303): RedirectResponse {
+    public static function redirectWithQueryMessage(string $url, string $message, int $status = 303): RedirectResponse {
         return new RedirectResponse(url: "$url?message=" . urlencode($message), status: $status);
     }
 

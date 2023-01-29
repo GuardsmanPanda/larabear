@@ -27,21 +27,21 @@ final class LarabearAuthOauth2Controller extends Controller {
     public function oauth2Redirect(string $oauth2_client_id): RedirectResponse {
         return BearOauth2ClientService::getAuthorizeRedirectResponse(
             client: BearOauth2Client::findOrFail(id: $oauth2_client_id),
-            afterSignInRedirectPath: Req::getString(key: 'redirect-path', defaultIfMissing: null),
-            loginUser: Req::getBoolOrDefault(key: 'login-user', default: true),
-            overwriteRedirectUri: "/bear/auth/oauth2-client/$oauth2_client_id/callback",
-            specialScope: Req::getString(key: 'special-scope', defaultIfMissing: null),
-            accountPrompt: Req::getBoolOrDefault(key: 'account-prompt', default: false),
+            afterSignInRedirectPath: Req::getString(key: 'redirect_path', defaultIfMissing: null),
+            loginUser: Req::getBoolOrDefault(key: 'login_user', default: true),
+            specialScope: Req::getString(key: 'special_scope', defaultIfMissing: null),
+            accountPrompt: Req::getBoolOrDefault(key: 'account_prompt', default: false),
+            internalRedirect: Req::getBoolOrDefault(key: 'internal_redirect', default: false),
         );
     }
 
     public static function oauth2Callback(string $oauth2_client_id): RedirectResponse {
         if (Req::getStringOrDefault(key: 'state', default: '-----') !== Session::get(key: 'oauth2_state')) {
-            return Resp::redirectWithMessage(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: 'Invalid state');
+            return Resp::redirectWithQueryMessage(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: 'Invalid state');
         }
         try {
             DB::beginTransaction();
-            $afterLoginRedirect = Session::get(key: 'oauth2_redirect_url') ?? BearConfigService::getString(config_key: 'larabear::path-to-redirect-after-login');
+            $afterLoginRedirect = Session::get(key: 'oauth2_redirect_path') ?? BearConfigService::getString(config_key: 'larabear::path-to-redirect-after-login');
             $redirectUri = config(key: 'app.url') . "/bear/auth/oauth2-client/$oauth2_client_id/callback";
             $createUserIfNotExists = BearConfigService::getBoolean(config_key: 'larabear::oauth2-create-user-if-not-exists');
             if (Session::get(key: 'oauth2_login_user', default: false) !== true) {
@@ -68,7 +68,7 @@ final class LarabearAuthOauth2Controller extends Controller {
                 severity: BearSeverityEnum::CRITICAL,
                 exception: $t
             );
-            return Resp::redirectWithMessage(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: $t->getMessage());
+            return Resp::redirectWithQueryMessage(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: $t->getMessage());
         }
     }
 }
