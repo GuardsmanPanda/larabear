@@ -20,24 +20,24 @@ final class BearAccessTokenAppMiddleware {
         }
         $hashed_access_token = hash(algo: 'xxh128', data: $request->bearerToken());
 
-        if (DB::getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql') {
-            $access = DB::selectOne("
+        if (DB::getPdo()->getAttribute(attribute: PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+            $access = DB::selectOne(query: "
             SELECT at.id, at.api_primary_key, at.expires_at
             FROM bear_access_token_app at
             WHERE
                 at.hashed_access_token = ? AND ? <<= at.request_ip_restriction
                 AND (at.server_hostname_restriction IS NULL OR at.server_hostname_restriction = ?) 
                 AND starts_with(?, at.route_prefix_restriction)
-        ", [$hashed_access_token, Req::ip(), Req::hostname(), Req::path()]);
+        ", bindings: [$hashed_access_token, Req::ip(), Req::hostname(), Req::path()]);
         } else {
-            $access = DB::selectOne("
+            $access = DB::selectOne(query: "
             SELECT at.id, at.api_primary_key, at.expires_at
             FROM bear_access_token_app at
             WHERE
                 at.hashed_access_token = ? AND (at.request_ip_restriction = '0.0.0.0/0' OR at.request_ip_restriction = ?)
                 AND (at.server_hostname_restriction IS NULL OR at.server_hostname_restriction = ?) 
                 AND (? LIKE CONCAT(at.route_prefix_restriction , '%'))
-            ", [$hashed_access_token, Req::ip(), Req::hostname(), Req::path()]);
+            ", bindings: [$hashed_access_token, Req::ip(), Req::hostname(), Req::path()]);
         }
 
         // If access token is not valid, abort

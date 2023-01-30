@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Http\Request;
@@ -35,6 +36,9 @@ final class BearSessionAuthMiddleware {
         //----------------------------------------------------------------------------------------------------------
         if ($bearUserId === null && $extra !== 'allow-guest') {
             $target = BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in');
+            if (Req::path() !== null && strlen(Req::path()) > 1) {
+                $target .= "?redirect=/" . Req::path();
+            }
             if ($request->acceptsHtml()) {
                 return new RedirectResponse(url: $target, headers: ['HX-Redirect' => $target]);
             }

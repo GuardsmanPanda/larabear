@@ -28,6 +28,9 @@ final class BearOauth2ClientService {
     private const SAFETY_BUFFER_MINUTES = 10;
 
     public static function getAuthorizeRedirectResponse(BearOauth2Client $client, string $afterSignInRedirectPath = null, bool $loginUser = true, string $specialScope = null, bool $accountPrompt = false, bool $internalRedirect = false): RedirectResponse {
+        if ($afterSignInRedirectPath !== null && !str_starts_with(haystack: $afterSignInRedirectPath, needle: '/')) {
+            throw new RuntimeException(message: 'The redirect path must start with a slash.');
+        }
         $state = Str::random(length: 24);
         Session::put(key: 'oauth2_state', value: $state);
         Session::put(key: 'oauth2_redirect_path', value: $afterSignInRedirectPath);
