@@ -23,6 +23,6 @@ final class LarabearAuthController extends Controller {
         (new BearUserUpdater($user))->setLastLoginNow()->update();
         Session::migrate(destroy: true);
         Session::put(key: 'bear_user_id', value: $user->id);
-        return new RedirectResponse(url: BearConfigService::getString(config_key: 'larabear-auth.path_to_redirect_if_logged_in'));
+        return new RedirectResponse(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-after-login'));
     }
 }
