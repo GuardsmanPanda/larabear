@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 
 final class LarabearOauth2CheckAccessCommand extends Command {
     protected $signature = 'larabear:oauth2-check-access';
-    protected $description = 'Clean the log tables';
+    protected $description = 'Check that oauth2 tokens still work.';
 
     public function handle(): void {
         $this->info(string: 'Checking access for all users...');

@@ -47,11 +47,19 @@ final class BearExternalApiUpdater {
         return $this;
     }
 
+    /**
+     * @param ArrayObject<string, string>|null $external_api_base_headers_json
+     * @return $this
+     */
     public function setExternalApiBaseHeadersJson(ArrayObject|null $external_api_base_headers_json): self {
         $this->model->external_api_base_headers_json = $external_api_base_headers_json;
         return $this;
     }
 
+    /**
+     * @param ArrayObject<string|int, mixed>|null $external_api_metadata_json
+     * @return $this
+     */
     public function setExternalApiMetadataJson(ArrayObject|null $external_api_metadata_json): self {
         $this->model->external_api_metadata_json = $external_api_metadata_json;
         return $this;

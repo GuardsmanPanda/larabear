@@ -54,9 +54,9 @@ final class ValidateAndParseValue {
     }
 
     /**
-     * @param ArrayObject<mixed>|array<mixed>|string $value
+     * @param ArrayObject<string|int, mixed>|array<mixed>|string $value
      * @param string|null $errorMessage
-     * @return ArrayObject<mixed>
+     * @return ArrayObject<string|int, mixed>
      */
     public static function parseJsonToArrayObject(ArrayObject|array|string $value, string $errorMessage = null): ArrayObject {
         if (is_string(value: $value)) {

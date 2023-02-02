@@ -9,6 +9,17 @@ use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Support\Str;
 
 final class BearExternalApiCreator {
+    /**
+     * @param string $external_api_slug
+     * @param string $external_api_description
+     * @param BearExternalApiTypeEnum $external_api_type
+     * @param string|null $encrypted_external_api_token
+     * @param string|null $external_api_base_url
+     * @param string|null $oauth2_user_id
+     * @param ArrayObject<string, string>|null $external_api_base_headers_json
+     * @param ArrayObject<string|int, mixed>|null $external_api_metadata_json
+     * @return BearExternalApi
+     */
     public static function create(
         string $external_api_slug,
         string $external_api_description,

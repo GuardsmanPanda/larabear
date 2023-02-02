@@ -314,8 +314,8 @@ final class Req {
 
     /**
      * @param string $key
-     * @param BearTypeEnum|ArrayObject<mixed>|null $defaultIfMissing
-     * @return ArrayObject<mixed>|null
+     * @param BearTypeEnum|ArrayObject<string|int, mixed>|null $defaultIfMissing
+     * @return ArrayObject<string|int, mixed>|null
      */
     public static function getArrayObject(string $key, BearTypeEnum|ArrayObject|null $defaultIfMissing = BearTypeEnum::UNDEFINED): ArrayObject|null {
         if (!self::has(key: $key)) {
@@ -333,8 +333,8 @@ final class Req {
 
     /**
      * @param string $key
-     * @param ArrayObject<mixed> $default
-     * @return ArrayObject<mixed>
+     * @param ArrayObject<string|int, mixed> $default
+     * @return ArrayObject<string|int, mixed>
      */
     public static function getArrayObjectOrDefault(string $key, ArrayObject $default = null): ArrayObject {
         $value = self::request()->input(key: $key);
