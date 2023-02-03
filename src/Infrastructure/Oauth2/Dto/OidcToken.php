@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Dto;
 
 use Carbon\Carbon;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Crud\BearIdempotencyCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use RuntimeException;
@@ -24,7 +24,7 @@ final class OidcToken {
         try {
             $jwt = base64_decode(string: str_replace('_', '/', str_replace('-', '+', explode('.', $jwt)[1])), strict: true);
             if ($jwt === false) {
-                BearLogErrorCreator::create(
+                BearErrorCreator::create(
                     message: "Failed to decode JWT",
                     namespace: 'larabear-auth',
                     key: 'oidc',
@@ -34,7 +34,7 @@ final class OidcToken {
             }
             $token = json_decode($jwt, false, 512, JSON_THROW_ON_ERROR);
             if ($client->oauth2_client_id !== $token->aud) {
-                BearLogErrorCreator::create(
+                BearErrorCreator::create(
                     message: "The application id in the JWT is not the same as the application id on the server. JWT: $token->aud, Server: $client->oauth2_client_id",
                     namespace: 'larabear-auth',
                     key: 'oidc',
@@ -47,7 +47,7 @@ final class OidcToken {
                     BearIdempotencyCreator::create(idempotency_key: $token->aud . ':' . $uniq);
             }
         } catch (Throwable $t) { //TODO Better error log.
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: "Error message: {$t->getMessage()}",
                 namespace: 'larabear-auth',
                 key: 'oidc-error',
@@ -57,7 +57,7 @@ final class OidcToken {
         }
 
         if ((property_exists($token, property: 'email_verified') && $token->email_verified === false)) {
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: "The email address in the JWT is not verified.",
                 namespace: 'larabear-auth',
                 key: 'oidc',
@@ -68,7 +68,7 @@ final class OidcToken {
 
         $ts = Carbon::now()->timestamp;
         if ((property_exists($token, property: 'nbf') && $token->nbf) > $ts || $token->exp < $ts) {
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: "The timestamp in the JWT is not valid. JWT: nbf: $token->nbf, exp: $token->exp, ts: $ts",
                 namespace: 'larabear-auth',
                 key: 'oidc',

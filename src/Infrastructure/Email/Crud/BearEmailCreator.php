@@ -6,7 +6,7 @@ use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Email\Service\BearEmailService;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Integration\Postmark\Client\BearPostmarkClient;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -51,7 +51,7 @@ final class BearEmailCreator {
             DB::commit();
         } catch (Throwable $t) {
             DB::rollBack();
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: "Failure to send email [{$t->getMessage()}]",
                 namespace: 'larabear', key: 'email-send-command',
                 exception: $t

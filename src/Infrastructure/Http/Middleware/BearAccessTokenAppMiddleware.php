@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +43,7 @@ final class BearAccessTokenAppMiddleware {
         // If access token is not valid, abort
         if ($access === null || $access->id === null) {
             $message = 'The supplied access token is not valid.. ip: ' . Req::ip() . ', country: ' . Req::ipCountry() . ', path: ' . Req::path() . ', hostname: '. Req::hostname() . ', hashed_token: ' . $hashed_access_token;
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: $message,
                 namespace: 'larabear-auth',
                 key: 'invalid-access-token-app',

@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Error\Handler;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler;
@@ -17,11 +17,11 @@ final class BearExceptionHandler extends Handler {
     public function render($request, Throwable $e): Response {
         if (BearGlobalStateService::getLogUnhandledException()) {
             $key = match (true) {
-                $e instanceof ModelNotFoundException => 'unhandled_db_find_or_fail_exception',
-                $e instanceof RecordsNotFoundException => 'unhandled_db_sole_exception',
-                default => 'unhandled_exception',
+                $e instanceof ModelNotFoundException => 'unhandled-db-find-or-fail-exception',
+                $e instanceof RecordsNotFoundException => 'unhandled-db-sole-exception',
+                default => 'unhandled-exception',
             };
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: $e->getMessage(),
                 namespace: 'larabear', key: $key,
                 severity: BearSeverityEnum::MEDIUM,

@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Web\Www\Auth\Controller;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
@@ -62,7 +62,7 @@ final class LarabearAuthOauth2Controller extends Controller {
             return new RedirectResponse(url: $afterLoginRedirect);
         } catch (Throwable $t) {
             DB::rollBack();
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: "Error while getting user from callback",
                 namespace: 'larabear', key: 'oauth2-user-callback',
                 severity: BearSeverityEnum::CRITICAL,

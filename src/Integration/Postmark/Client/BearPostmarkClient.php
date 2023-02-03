@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Integration\Postmark\Client;
 
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Integration\Postmark\Data\BearPostMarkClientResponse;
 use Illuminate\Support\Facades\Config;
 use Postmark\PostmarkClient as MailClient;
@@ -36,7 +36,7 @@ final class BearPostmarkClient {
             );
             return new BearPostMarkClientResponse(message: $result->Message ?? "Success", code: $result->ErrorCode ?? 0, messageId: $result->MessageID ?? null);
         } catch (Throwable $t) {
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: "Exception when sending email, Message [{$t->getMessage()}]",
                 namespace: 'larabear', key: 'postmark-direct',
                 exception: $t

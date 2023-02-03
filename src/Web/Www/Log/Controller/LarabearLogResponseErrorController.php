@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Log\Controller;
 
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogResponseErrorDeleter;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearResponseErrorDeleter;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Routing\Controller;
@@ -23,7 +23,7 @@ final class LarabearLogResponseErrorController extends Controller {
     }
 
     public function delete(): View {
-        BearLogResponseErrorDeleter::delete(
+        BearResponseErrorDeleter::delete(
             id: Req::getInt(key: 'id', defaultIfMissing: null),
             response_status_code: Req::getInt(key: 'response_status_code', defaultIfMissing: null),
             request_http_path: Req::getString(key: 'request_http_path', defaultIfMissing: null),

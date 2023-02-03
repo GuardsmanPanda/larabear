@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Email\Command;
 
 use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
 use GuardsmanPanda\Larabear\Infrastructure\Email\Service\BearEmailService;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Integration\Postmark\Client\BearPostmarkClient;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +23,7 @@ final class LarabearEmailProcessCommand extends Command {
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();
-                BearLogErrorCreator::create(
+                BearErrorCreator::create(
                     message: "Failure to send email [{$t->getMessage()}]",
                     namespace: 'larabear', key: 'email-send-command',
                     exception: $t

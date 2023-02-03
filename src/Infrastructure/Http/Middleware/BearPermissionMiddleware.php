@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Service\BearAuthService;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -14,7 +14,7 @@ final class BearPermissionMiddleware {
     public function handle(Request $request, Closure $next, string $permission): Response {
         $result = BearAuthService::hasPermission(permission: $permission);
         if ($result !== true) {
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: 'User tried to access a resource that requires a permission that the user does not have.',
                 namespace: 'larabear-auth',
                 key: 'permission-middleware',

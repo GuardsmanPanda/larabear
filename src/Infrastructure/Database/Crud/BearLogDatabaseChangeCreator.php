@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Crud;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\LarabearDatabaseModelService;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
@@ -49,7 +49,7 @@ final class BearLogDatabaseChangeCreator {
                 BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleIdOrNull()
             ]);
         } catch (Throwable $t) {
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: "Failed to log database change, table: $table, change_type: $changeType, column_name: $columnName, old_value: $oldValue, new_value: $newValue",
                 namespace: 'larabear', key: 'database_log_change_error',
                 severity: BearSeverityEnum::CRITICAL,
@@ -68,7 +68,7 @@ final class BearLogDatabaseChangeCreator {
                      Log::channel(channel: $channel)->info(message: "UPDATE in [$table -> $columnName] - ID: " . implode(separator: ',', array: $keys) . " Change: $oldValue -> $newValue", context: ['user_id' => BearGlobalStateService::getUserId()]);
                  }
              } catch (Throwable $throwable) {
-                 BearLogErrorCreator::create(
+                 BearErrorCreator::create(
                      message: "Failed to log database change to channel [$channel]",
                      namespace: 'larabear',
                      key: 'database_change_log_channel_failed',

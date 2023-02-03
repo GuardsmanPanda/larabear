@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service;
 
 use Carbon\Carbon;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2UserUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use Illuminate\Support\Facades\DB;
@@ -59,7 +59,7 @@ final class BearOauth2UserService {
             return $updater->getEncryptedUserAccessToken();
         } catch (Throwable $t) {
             DB::rollBack();
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: "Failed to update access token for user $user->id",
                 namespace: 'larabear-auth',
                 key: 'oauth2-update-user-access-token',

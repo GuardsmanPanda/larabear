@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Error\Crud;
 
 use Illuminate\Support\Facades\DB;
 
-final class BearLogErrorDeleter {
+final class BearErrorDeleter {
     public static function delete(
         int $id = null,
         string $error_namespace = null,

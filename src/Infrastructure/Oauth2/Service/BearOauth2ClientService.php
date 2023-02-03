@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2UserCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2UserUpdater;
@@ -112,7 +112,7 @@ final class BearOauth2ClientService {
             'redirect_uri' => $redirect_uri ?? config(key: 'app.url') . $client->oauth2_client_redirect_path,
         ]);
         if ($resp->failed()) {
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: "Failed to exchange code for access token, client: $client->oauth2_client_id, message: {$resp->body()}",
                 namespace: 'larabear-auth',
                 key: 'oauth2-client-service-exchange-code',
@@ -162,7 +162,7 @@ final class BearOauth2ClientService {
             return $updater->getEncryptedOauth2ClientAccessToken();
         } catch (Throwable $t) {
             DB::rollBack();
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: "Failed to update access token for client $client->oauth2_client_id",
                 namespace: 'larabear-auth',
                 key: 'oauth2-client-access-token-update-failed',

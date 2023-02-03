@@ -5,8 +5,8 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogResponseErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearResponseErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Crud\BearLogRouteUsageCrud;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
 use Illuminate\Encryption\Encrypter;
@@ -54,7 +54,7 @@ final class BearInitiateMiddleware {
                 $resp->headers->set($key, $value);
             }
         } else {
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: 'Response is not an instance of Response, instead is ' . get_class($resp),
                 namespace: 'larabear', key: 'initiate_middleware', severity: BearSeverityEnum::BASELINE
             );
@@ -131,7 +131,7 @@ final class BearInitiateMiddleware {
         try {
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 400 && Config::get(key: 'bear.response_error_log.enabled') === true && BearGlobalStateService::getLogResponseError() && !in_array(needle: $statusCode, haystack: Config::get(key: 'bear.response_error_log.ignore_response_codes', default: []), strict: true)) {
-                BearLogResponseErrorCreator::create(statusCode: $response->getStatusCode(), responseBody: is_string($response->getContent()) ? $response->getContent() : '');
+                BearResponseErrorCreator::create(statusCode: $response->getStatusCode(), responseBody: is_string($response->getContent()) ? $response->getContent() : '');
             }
             if ($response->getStatusCode() < 400 && Config::get(key: 'bear.route_usage_log.enabled') === true) {
                 $multiply = Config::get(key: 'bear.route_usage_log.log_one_in_every', default: 1);
@@ -140,7 +140,7 @@ final class BearInitiateMiddleware {
                 }
             }
         } catch (Throwable $e) {
-            BearLogErrorCreator::create(
+            BearErrorCreator::create(
                 message: 'Bear middleware terminate error: ' . $e->getMessage(),
                 namespace: "larabear",
                 key: "initiate-middleware-terminate",

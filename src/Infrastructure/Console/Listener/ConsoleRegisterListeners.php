@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearLogConsoleEventCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearLogConsoleEventUpdater;
-use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearLogErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use Illuminate\Console\Events\CommandFinished;
 use Illuminate\Console\Events\CommandStarting;
 use Illuminate\Console\Events\ScheduledTaskFinished;
@@ -45,7 +45,7 @@ final class ConsoleRegisterListeners {
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();
-                BearLogErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-command-starting', severity: BearSeverityEnum::MEDIUM, exception: $t);
+                BearErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-command-starting', severity: BearSeverityEnum::MEDIUM, exception: $t);
             }
         });
 
@@ -64,7 +64,7 @@ final class ConsoleRegisterListeners {
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();
-                BearLogErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-scheduled-task-starting', severity: BearSeverityEnum::MEDIUM, exception: $t);
+                BearErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-scheduled-task-starting', severity: BearSeverityEnum::MEDIUM, exception: $t);
             }
         });
 
@@ -85,7 +85,7 @@ final class ConsoleRegisterListeners {
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();
-                BearLogErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-command-finished', severity: BearSeverityEnum::MEDIUM, exception: $t);
+                BearErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-command-finished', severity: BearSeverityEnum::MEDIUM, exception: $t);
             }
         });
 
@@ -99,7 +99,7 @@ final class ConsoleRegisterListeners {
                 } else {
                     $updater->setConsoleEventFailedAt(Carbon::now());
                     $command = $event->task->command;
-                    BearLogErrorCreator::create(
+                    BearErrorCreator::create(
                         message: "Scheduled task [$command] failed",
                         namespace: 'larabear',
                         key: 'scheduled-task-failed',
@@ -119,7 +119,7 @@ final class ConsoleRegisterListeners {
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();
-                BearLogErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-scheduled-task-finished', severity: BearSeverityEnum::MEDIUM, exception: $t);
+                BearErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-scheduled-task-finished', severity: BearSeverityEnum::MEDIUM, exception: $t);
             }
         });
     }
