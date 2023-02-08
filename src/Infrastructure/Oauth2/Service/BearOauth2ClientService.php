@@ -118,7 +118,12 @@ final class BearOauth2ClientService {
                 key: 'oauth2-client-service-exchange-code',
                 severity: BearSeverityEnum::CRITICAL,
             );
-            throw new RuntimeException(message: $resp->body());
+            try {
+                $data = $resp->json();
+                throw new RuntimeException(message: $data['message'] ?? $data['error'] ?? $resp->body());
+            } catch (Throwable $e) {
+                throw new RuntimeException(message: $resp->body());
+            }
         }
         return $resp;
     }
