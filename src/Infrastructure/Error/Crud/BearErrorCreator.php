@@ -9,6 +9,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use RuntimeException;
 use Throwable;
 
 final class BearErrorCreator {
@@ -30,6 +31,7 @@ final class BearErrorCreator {
         string $remedy = null,
         Throwable $exception = null,
         string $mailTo = null,
+        bool $throw = false
     ): void {
         try {
             $query_json = BearGlobalStateService::getRequestId() === null ? null : json_encode(value: Req::allQueryData(), flags: JSON_THROW_ON_ERROR, depth: 128);
@@ -60,6 +62,10 @@ final class BearErrorCreator {
             } catch (Throwable $e) {
                 Log::error(message: 'Failed email error: ' . $e->getMessage());
             }
+        }
+
+        if ($throw) {
+            throw new RuntimeException(message: $message, previous: $exception);
         }
     }
 }

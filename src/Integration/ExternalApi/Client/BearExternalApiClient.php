@@ -2,7 +2,9 @@
 
 namespace GuardsmanPanda\Larabear\Integration\ExternalApi\Client;
 
+use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
@@ -97,9 +99,21 @@ final class BearExternalApiClient {
      */
     public function pagedGetToArray(string $path, array $headers = [], array $query = [], string $dataKey = 'value'): array {
         $json = $this->request(path: $path, headers: $headers, query: $query)->json();
+        if (!array_key_exists($dataKey, $json)) {
+            BearErrorCreator::create(
+                message: 'Invalid response from API, data [' . $dataKey . '] not found in data [' . json_encode(value: $json) . ']',
+                namespace: 'larabear', key: 'invalid_api_response', severity: BearSeverityEnum::MEDIUM
+            );
+        }
         $value = $json[$dataKey] ?? [];
         while (array_key_exists('@odata.nextLink', $json)) {
             $json =Http::timeout(self::$API_REQUEST_TIMEOUT)->withHeaders($headers + $this->baseHeaders)->get($json['@odata.nextLink'])->json();
+            if (!array_key_exists($dataKey, $json)) {
+                BearErrorCreator::create(
+                    message: 'Invalid response from API, data [' . $dataKey . '] not found in data [' . json_encode(value: $json) . ']',
+                    namespace: 'larabear', key: 'invalid_api_response', severity: BearSeverityEnum::MEDIUM
+                );
+            }
             foreach ($json[$dataKey] as $val) {
                 $value[] = $val;
             }
@@ -107,6 +121,12 @@ final class BearExternalApiClient {
         while (array_key_exists('nextPageToken', $json) && $json['nextPageToken'] !== null && $json['nextPageToken'] !== '') {
             $query['pageToken'] = $json['nextPageToken'];
             $json = $this->request(path: $path, headers: $headers, query: $query)->json();
+            if (!array_key_exists($dataKey, $json)) {
+                BearErrorCreator::create(
+                    message: 'Invalid response from API, data [' . $dataKey . '] not found in data [' . json_encode(value: $json) . ']',
+                    namespace: 'larabear', key: 'invalid_api_response', severity: BearSeverityEnum::MEDIUM
+                );
+            }
             foreach ($json[$dataKey] as $val) {
                 $value[] = $val;
             }

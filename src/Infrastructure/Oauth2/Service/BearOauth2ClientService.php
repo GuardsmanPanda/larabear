@@ -122,7 +122,7 @@ final class BearOauth2ClientService {
                 $data = $resp->json();
                 throw new RuntimeException(message: $data['message'] ?? $data['error'] ?? $resp->body());
             } catch (Throwable $e) {
-                throw new RuntimeException(message: $resp->body());
+                throw new RuntimeException(message: $resp->body(), previous: $e);
             }
         }
         return $resp;
@@ -197,7 +197,6 @@ final class BearOauth2ClientService {
             $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.email');
             $scopes->add(element: 'openid');
         }
-
         if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::TWITCH) {
             $scopes->add(element: 'user:read:email');
             $scopes->add(element: 'openid');

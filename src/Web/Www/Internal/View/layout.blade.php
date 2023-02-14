@@ -13,7 +13,7 @@
         <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     @endif
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="https://unpkg.com/htmx.org@1.8.1" integrity="sha384-DXaTz/CiqGNRLEu025rPC9D2gEK8Imn+w1e1QtdYD0Bap7LIcHOYjUZAO96YDCX3" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.5/dist/htmx.min.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <style>
