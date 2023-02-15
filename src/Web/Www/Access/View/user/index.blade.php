@@ -1,13 +1,9 @@
 <?php declare(strict_types=1); ?>
-<div class="mb-4 sm:flex sm:items-end">
-    <div class="sm:flex-auto">
-        <h1 class="text-2xl font-semibold text-gray-800">Application Users</h1>
-        <p class="mt-2 text-sm text-gray-600">A list of all users in the system, manage users, roles and permissions.</p>
-    </div>
-    <div class="mt-2 sm:mt-0 sm:ml-16 sm:flex-none">
+<x-bear::heading.h1 subtitle="A list of all users in the system, manage users, roles and permissions.">Application Users
+    <x-slot name="extra">
         <x-bear::buttonDark icon="user" hx-get="/bear/access/user/create" hx-target="#dialog-content">New user</x-bear::buttonDark>
-    </div>
-</div>
+    </x-slot>
+</x-bear::heading.h1>
 <x-bear::table.layout.standard>
     <x-slot name="tableHead">
         <th scope="col" class="px-2.5 py-3">User Id</th>

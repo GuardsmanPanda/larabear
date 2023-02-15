@@ -1,13 +1,9 @@
 <?php declare(strict_types=1); ?>
-<div class="mb-4 sm:flex sm:items-end">
-    <div class="sm:flex-auto">
-        <h1 class="text-2xl font-semibold text-gray-800">Application Access Tokens</h1>
-        <p class="mt-2 text-sm text-gray-600">A list of all application (API) access tokens.</p>
-    </div>
-    <div class="mt-2 sm:mt-0 sm:ml-16 sm:flex-none">
+<x-bear::heading.h1 subtitle="A list of all application (API) access tokens.">Application Access Tokens
+    <x-slot name="extra">
         <x-bear::buttonDark icon="key" hx-get="/bear/access/token/app/create" hx-target="#dialog-content">New Token</x-bear::buttonDark>
-    </div>
-</div>
+    </x-slot>
+</x-bear::heading.h1>
 <x-bear::table.layout.standard>
     <x-slot name="tableHead">
         <th scope="col" class="px-2.5 py-3">ID</th>

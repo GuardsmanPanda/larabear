@@ -1,13 +1,9 @@
 <?php declare(strict_types=1); ?>
-<div class="mb-4 sm:flex sm:items-end">
-    <div class="sm:flex-auto">
-        <h1 class="text-2xl font-semibold text-gray-800">Application Roles</h1>
-        <p class="mt-2 text-sm text-gray-600">A list of all roles in the system.</p>
-    </div>
-    <div class="mt-2 sm:mt-0 sm:ml-16 sm:flex-none">
-        <x-bear::buttonDark icon="clipboard-document" hx-get="/bear/access/role/create" hx-target="#dialog-content">New role</x-bear::buttonDark>
-    </div>
-</div>
+<x-bear::heading.h1 subtitle="A list of all roles in the system.">Application Roles
+    <x-slot name="extra">
+        <x-bear::buttonDark icon="lock-closed" hx-get="/bear/access/role/create" hx-target="#dialog-content">New Role</x-bear::buttonDark>
+    </x-slot>
+</x-bear::heading.h1>
 <x-bear::table.layout.standard>
     <x-slot name="tableHead">
         <th scope="col" class="px-2.5 py-3">Role Slug</th>
