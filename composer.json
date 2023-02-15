@@ -19,9 +19,9 @@
     "php": "^8.1",
     "ext-pdo": "*",
     "ext-zend-opcache": "*",
-    "doctrine/dbal": "^3.5",
+    "doctrine/dbal": "^3.6",
     "guzzlehttp/guzzle": "^7.5",
-    "laravel/framework": "^9.51",
+    "laravel/framework": "^9.52 || ^10.0",
     "ramsey/collection": "^2.0",
     "wildbit/postmark-php": "^4.0"
   },
