@@ -3,7 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Dto\LarabearDatabaseModelDto;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Data\LarabearDatabaseModelData;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
@@ -13,7 +13,7 @@ final class LarabearDatabaseModelService {
     /**
      * @param string $connectionName
      * @param array<string, array<string, mixed>> $tableConfig
-     * @return array<string, LarabearDatabaseModelDto>
+     * @return array<string, LarabearDatabaseModelData>
      */
     public static function buildAll(string $connectionName, array $tableConfig): array {
         $dbInfo = LarabearDatabaseBaseInformation::getInstance(connectionName: $connectionName);
@@ -30,7 +30,7 @@ final class LarabearDatabaseModelService {
             if (array_key_exists(key: 'log_change', array: $info) && is_bool($info['log_change']) && $info['log_change']) {
                 $traits[] = 'GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges';
             }
-            $dto = new LarabearDatabaseModelDto(
+            $dto = new LarabearDatabaseModelData(
                 connectionName: $connectionName,
                 connectionDriver: Config::get(key: "database.connections.$connectionName.driver"),
                 tableName: $table_name,

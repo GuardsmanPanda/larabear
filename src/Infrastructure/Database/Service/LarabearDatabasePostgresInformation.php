@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 
-use GuardsmanPanda\Larabear\Infrastructure\Database\Dto\LarabearDatabaseColumnDto;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Data\LarabearDatabaseColumnData;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
@@ -32,7 +32,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
         ", bindings: [$this->databaseName, $tableName]);
         $tmp = [];
         foreach ($res as $row) {
-            $tmp[] = new LarabearDatabaseColumnDto(
+            $tmp[] = new LarabearDatabaseColumnData(
                 columnName: $row->column_name,
                 nativeDataType: $row->data_type,
                 isNullable: $row->is_nullable,

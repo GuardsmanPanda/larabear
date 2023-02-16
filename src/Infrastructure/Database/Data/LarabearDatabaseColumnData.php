@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace GuardsmanPanda\Larabear\Infrastructure\Database\Dto;
+namespace GuardsmanPanda\Larabear\Infrastructure\Database\Data;
 
-final class LarabearDatabaseColumnDto {
+final class LarabearDatabaseColumnData {
 
     public function __construct(
         public readonly string $columnName,

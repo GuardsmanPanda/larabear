@@ -1,22 +1,22 @@
 <?php declare(strict_types=1);
 
-namespace GuardsmanPanda\Larabear\Infrastructure\Database\Dto;
+namespace GuardsmanPanda\Larabear\Infrastructure\Database\Data;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Ramsey\Collection\Set;
 
-final class LarabearDatabaseModelDto {
+final class LarabearDatabaseModelData {
     /** @var array<string> $primaryKeyColumns */
     private array $primaryKeyColumns = [];
-    /** @var array<LarabearDatabaseForeignColumnDto> $foreignKeyColumns */
+    /** @var array<LarabearDatabaseForeignColumnData> $foreignKeyColumns */
     private array $foreignKeyColumns = [];
     private string $primaryKeyType;
     private bool $timestamps = false;
     /** @var Set<string> $headers */
     private Set $headers;
-    /** @var array<string, LarabearDatabaseColumnDto> $columns */
+    /** @var array<string, LarabearDatabaseColumnData> $columns */
     private array $columns = [];
 
     /**
@@ -38,6 +38,7 @@ final class LarabearDatabaseModelDto {
         private readonly string $dateFormat,
         private array  $modelTraits = [],
         private readonly array  $logExcludeColumns = [],
+        private bool $softDeletes = false,
     ) {
         $this->headers = new Set(setType: 'string');
         $this->headers->add(element: 'use Closure;');
@@ -97,7 +98,7 @@ final class LarabearDatabaseModelDto {
                 return;
             }
         }
-        $this->foreignKeyColumns[$methodName] = new LarabearDatabaseForeignColumnDto(
+        $this->foreignKeyColumns[$methodName] = new LarabearDatabaseForeignColumnData(
             columnName: $columnName,
             methodName: $methodName,
             foreignColumnName: $foreignColumnName,
@@ -107,9 +108,10 @@ final class LarabearDatabaseModelDto {
         );
     }
 
-    public function addColumn(LarabearDatabaseColumnDto $column): void {
+    public function addColumn(LarabearDatabaseColumnData $column): void {
         if ($column->columnName === 'deleted_at') {
             $this->modelTraits[] = "Illuminate\\Database\\Eloquent\\SoftDeletes";
+            $this->softDeletes = true;
         }
         if ($column->columnName === 'updated_at') {
             $this->timestamps = true;
@@ -131,7 +133,7 @@ final class LarabearDatabaseModelDto {
     }
 
     /**
-     * @return array<string, LarabearDatabaseColumnDto>
+     * @return array<string, LarabearDatabaseColumnData>
      */
     public function getColumns(): array {
         return $this->columns;
@@ -283,6 +285,10 @@ final class LarabearDatabaseModelDto {
         $content .= " * @method static $this->modelClassName lockForUpdate()" . PHP_EOL;
         $content .= " * @method static $this->modelClassName select(array \$columns = ['*'])" . PHP_EOL;
         $content .= " * @method static $this->modelClassName with(array \$relations)" . PHP_EOL;
+        if ($this->softDeletes) {
+            $content .= " * @method static $this->modelClassName onlyTrashed()" . PHP_EOL;
+            $content .= " * @method static $this->modelClassName withTrashed()" . PHP_EOL;
+        }
         $content .= " * @method static $this->modelClassName leftJoin(string \$table, string \$first, string \$operator = null, string \$second = null)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName where(string \$column, string \$operator = null, string|float|int|bool \$value = null, string \$boolean = 'and')" . PHP_EOL;
         $content .= " * @method static $this->modelClassName whereExists(Closure \$callback, string \$boolean = 'and', bool \$not = false)" . PHP_EOL;

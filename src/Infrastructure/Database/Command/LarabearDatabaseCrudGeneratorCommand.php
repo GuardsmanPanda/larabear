@@ -4,8 +4,8 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Command;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Service\ConsoleService;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Dto\LarabearDatabaseColumnDto;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Dto\LarabearDatabaseModelDto;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Data\LarabearDatabaseColumnData;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Data\LarabearDatabaseModelData;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\LarabearDatabaseModelService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
@@ -64,7 +64,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
     }
 
 
-    private function generateCreator(LarabearDatabaseModelDto $model, string $directory): void {
+    private function generateCreator(LarabearDatabaseModelData $model, string $directory): void {
         $filename = $model->getModelClassName() . 'Creator.php';
         $filepath = $directory . '/' . $filename;
         if (File::exists($filepath)) {
@@ -114,7 +114,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
     }
 
 
-    private function generateUpdater(LarabearDatabaseModelDto $model, string $directory): void {
+    private function generateUpdater(LarabearDatabaseModelData $model, string $directory): void {
         $className = $model->getModelClassName() . 'Updater';
         $modelClass = $model->getModelClassName();
         $filename = "$className.php";
@@ -175,7 +175,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
     }
 
 
-    private function generateDeleter(LarabearDatabaseModelDto $model, string $directory): void {
+    private function generateDeleter(LarabearDatabaseModelData $model, string $directory): void {
         $modelClass = $model->getModelClassName();
         $filename = $model->getModelClassName() . 'Deleter.php';
         $filepath = $directory . '/' . $filename;
@@ -207,12 +207,12 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
 
 
     /**
-     * @param LarabearDatabaseModelDto $model
+     * @param LarabearDatabaseModelData $model
      * @param Set<string> $headers
      * @param bool $addColumnHeaders
      * @return string
      */
-    private function classHeader(LarabearDatabaseModelDto $model, Set $headers, bool $addColumnHeaders = false): string {
+    private function classHeader(LarabearDatabaseModelData $model, Set $headers, bool $addColumnHeaders = false): string {
         $headers->add("use GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Service\\BearDatabaseService;");
         $headers->add("use {$model->getNameSpace()}\\{$model->getModelClassName()};");
 
@@ -245,11 +245,11 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
 
 
     /**
-     * @param LarabearDatabaseModelDto $model
+     * @param LarabearDatabaseModelData $model
      * @param bool $forCreator
-     * @return array<LarabearDatabaseColumnDto>
+     * @return array<LarabearDatabaseColumnData>
      */
-    private function getModifiableColumnArray(LarabearDatabaseModelDto $model, bool $forCreator = false): array {
+    private function getModifiableColumnArray(LarabearDatabaseModelData $model, bool $forCreator = false): array {
         $skipColumns = ['id', 'created_at', 'updated_at', 'deleted_at'];
         if (!$forCreator) {
             foreach ($model->getPrimaryKeyColumns() as $col) {
