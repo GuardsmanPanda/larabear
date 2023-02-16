@@ -7,6 +7,8 @@
                 <div class="mt-0.5 text-sm text-gray-500">{!! $subtitle !!}</div>
             @endif
         </div>
-        <div {{ $extra?->attributes ?? '' }}>{{$extra ?? ''}}</div>
+        @if(($extra ?? null) !== null)
+            <div {{ $extra?->attributes ?? '' }}>{{$extra ?? ''}}</div>
+        @endif
     </div>
 </div>
