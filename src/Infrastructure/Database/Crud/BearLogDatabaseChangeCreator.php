@@ -51,7 +51,7 @@ final class BearLogDatabaseChangeCreator {
         } catch (Throwable $t) {
             BearErrorCreator::create(
                 message: "Failed to log database change, table: $table, change_type: $changeType, column_name: $columnName, old_value: $oldValue, new_value: $newValue",
-                namespace: 'larabear', key: 'database_log_change_error',
+                key: 'larabear::database_log_change_error',
                 severity: BearSeverityEnum::CRITICAL,
                 remedy: 'Contact Bjørn', exception: $t,
             );
@@ -70,8 +70,7 @@ final class BearLogDatabaseChangeCreator {
              } catch (Throwable $throwable) {
                  BearErrorCreator::create(
                      message: "Failed to log database change to channel [$channel]",
-                     namespace: 'larabear',
-                     key: 'database_change_log_channel_failed',
+                     key: 'larabear::database_change_log_channel_failed',
                      severity: BearSeverityEnum::MEDIUM,
                      remedy: 'Check the database change log channel is configured correctly',
                      exception: $throwable

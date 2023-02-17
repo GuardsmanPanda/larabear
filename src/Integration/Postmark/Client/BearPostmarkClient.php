@@ -38,7 +38,7 @@ final class BearPostmarkClient {
         } catch (Throwable $t) {
             BearErrorCreator::create(
                 message: "Exception when sending email, Message [{$t->getMessage()}]",
-                namespace: 'larabear', key: 'postmark-direct',
+                key: 'larabear::postmark-direct',
                 exception: $t
             );
             return new BearPostMarkClientResponse(message: "Exception when sending email, Message [{$t->getMessage()}]", code: -1, messageId: null);

@@ -26,8 +26,7 @@ final class BearTransactionMiddleware {
                 DB::rollBack();
                 BearErrorCreator::create(
                     message: 'Transaction rolled back due to HTTP status code ' . $res->getStatusCode(),
-                    namespace: 'larabear',
-                    key: 'transaction_rolled_back',
+                    key: 'larabear::transaction_rolled_back',
                     severity: BearSeverityEnum::HIGH,
                 );
             }
@@ -36,8 +35,7 @@ final class BearTransactionMiddleware {
             DB::rollBack();
             BearErrorCreator::create(
                 message: 'Transaction rolled back due to exception: ' . $t->getMessage(),
-                namespace: 'larabear',
-                key: 'transaction_rolled_back_exception',
+                key: 'larabear::transaction_rolled_back_exception',
                 severity: BearSeverityEnum::HIGH,
             );
             throw new RuntimeException(message: "Transaction failed: [{$t->getMessage()}]", code: $t->getCode(), previous: $t);

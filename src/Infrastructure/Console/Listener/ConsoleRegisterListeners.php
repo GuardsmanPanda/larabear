@@ -45,7 +45,7 @@ final class ConsoleRegisterListeners {
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();
-                BearErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-command-starting', severity: BearSeverityEnum::MEDIUM, exception: $t);
+                BearErrorCreator::create(message: $t->getMessage(), key: 'larabear::log-console-command-starting', severity: BearSeverityEnum::MEDIUM, exception: $t);
             }
         });
 
@@ -64,7 +64,7 @@ final class ConsoleRegisterListeners {
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();
-                BearErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-scheduled-task-starting', severity: BearSeverityEnum::MEDIUM, exception: $t);
+                BearErrorCreator::create(message: $t->getMessage(), key: 'larabear::log-console-scheduled-task-starting', severity: BearSeverityEnum::MEDIUM, exception: $t);
             }
         });
 
@@ -85,7 +85,7 @@ final class ConsoleRegisterListeners {
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();
-                BearErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-command-finished', severity: BearSeverityEnum::MEDIUM, exception: $t);
+                BearErrorCreator::create(message: $t->getMessage(), key: 'larabear::log-console-command-finished', severity: BearSeverityEnum::MEDIUM, exception: $t);
             }
         });
 
@@ -101,8 +101,7 @@ final class ConsoleRegisterListeners {
                     $command = $event->task->command;
                     BearErrorCreator::create(
                         message: "Scheduled task [$command] failed",
-                        namespace: 'larabear',
-                        key: 'scheduled-task-failed',
+                        key: 'larabear::scheduled-task-failed',
                         severity: BearSeverityEnum::HIGH,
                     );
                 }
@@ -119,7 +118,7 @@ final class ConsoleRegisterListeners {
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();
-                BearErrorCreator::create(message: $t->getMessage(), namespace: 'larabear', key: 'log-console-scheduled-task-finished', severity: BearSeverityEnum::MEDIUM, exception: $t);
+                BearErrorCreator::create(message: $t->getMessage(), key: 'larabear::log-console-scheduled-task-finished', severity: BearSeverityEnum::MEDIUM, exception: $t);
             }
         });
     }

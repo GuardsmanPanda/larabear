@@ -16,8 +16,7 @@ final class BearPermissionMiddleware {
         if ($result !== true) {
             BearErrorCreator::create(
                 message: 'User tried to access a resource that requires a permission that the user does not have.',
-                namespace: 'larabear-auth',
-                key: 'permission-middleware',
+                key: 'larabear::permission-middleware',
                 severity: BearSeverityEnum::MEDIUM,
                 remedy: 'You either need to add the permission to the user or remove the permission from the resource. (But only if  the user is supposed to access this resource.)',
             );

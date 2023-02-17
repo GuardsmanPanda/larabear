@@ -7,16 +7,12 @@ use Illuminate\Support\Facades\DB;
 final class BearErrorDeleter {
     public static function delete(
         int $id = null,
-        string $error_namespace = null,
         string $error_key = null,
         string $app_action_name = null,
     ): void {
         $filters = [];
         if ($id !== null) {
             $filters['id'] = $id;
-        }
-        if ($error_namespace !== null) {
-            $filters['error_namespace'] = $error_namespace;
         }
         if ($error_key !== null) {
             $filters['error_key'] = $error_key;

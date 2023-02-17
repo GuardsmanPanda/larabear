@@ -45,8 +45,7 @@ final class BearAccessTokenAppMiddleware {
             $message = 'The supplied access token is not valid.. ip: ' . Req::ip() . ', country: ' . Req::ipCountry() . ', path: ' . Req::path() . ', hostname: '. Req::hostname() . ', hashed_token: ' . $hashed_access_token;
             BearErrorCreator::create(
                 message: $message,
-                namespace: 'larabear-auth',
-                key: 'invalid-access-token-app',
+                key: 'larabear::invalid-access-token-app',
                 severity: BearSeverityEnum::HIGH,
                 remedy: 'Check the system making the call, if it is not under your control then consider blacklisting the IP address.',
             );

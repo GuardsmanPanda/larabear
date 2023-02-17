@@ -64,7 +64,7 @@ final class LarabearAuthOauth2Controller extends Controller {
             DB::rollBack();
             BearErrorCreator::create(
                 message: "Error while getting user from callback",
-                namespace: 'larabear', key: 'oauth2-user-callback',
+                key: 'larabear::oauth2-user-callback',
                 severity: BearSeverityEnum::CRITICAL,
                 exception: $t
             );

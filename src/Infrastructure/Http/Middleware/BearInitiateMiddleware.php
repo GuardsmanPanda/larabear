@@ -56,7 +56,7 @@ final class BearInitiateMiddleware {
         } else {
             BearErrorCreator::create(
                 message: 'Response is not an instance of Response, instead is ' . get_class($resp),
-                namespace: 'larabear', key: 'initiate_middleware', severity: BearSeverityEnum::BASELINE
+                key: 'larabear::initiate_middleware', severity: BearSeverityEnum::BASELINE
             );
         }
         return $resp;
@@ -142,8 +142,7 @@ final class BearInitiateMiddleware {
         } catch (Throwable $e) {
             BearErrorCreator::create(
                 message: 'Bear middleware terminate error: ' . $e->getMessage(),
-                namespace: "larabear",
-                key: "initiate-middleware-terminate",
+                key: "larabear::initiate-middleware-terminate",
                 severity: BearSeverityEnum::HIGH,
                 exception: $e
             );

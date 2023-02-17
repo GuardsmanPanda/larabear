@@ -20,7 +20,7 @@ final class BearBroadcastService {
         } catch (Throwable $t) {
             BearErrorCreator::create(
                 message: "Broadcast Error [{$t->getMessage()}]",
-                namespace: 'larabear', key: 'broadcast-now-error',
+                key: 'larabear::broadcast-now-error',
                 severity: BearSeverityEnum::MEDIUM, exception: $t
             );
         }

@@ -53,7 +53,7 @@ final class BearEmailCreator {
             DB::rollBack();
             BearErrorCreator::create(
                 message: "Failure to send email [{$t->getMessage()}]",
-                namespace: 'larabear', key: 'email-send-command',
+                key: 'larabear::email-send-command',
                 exception: $t
             );
         }

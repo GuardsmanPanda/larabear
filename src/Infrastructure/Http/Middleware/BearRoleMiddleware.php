@@ -16,8 +16,7 @@ final class BearRoleMiddleware {
         if ($result !== true) {
             BearErrorCreator::create(
                 message: 'User tried to access a resource that requires a role that the user does not have.',
-                namespace: 'larabear-auth',
-                key: 'role-middleware',
+                key: 'larabear::role-middleware',
                 severity: BearSeverityEnum::MEDIUM,
                 remedy: 'You either need to add the role to the user or remove the role from the resource. (But only if  the user is supposed to access this resource.)',
             );

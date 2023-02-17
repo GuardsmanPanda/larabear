@@ -23,7 +23,7 @@ final class BearExceptionHandler extends Handler {
             };
             BearErrorCreator::create(
                 message: $e->getMessage(),
-                namespace: 'larabear', key: $key,
+                key: "larabear::$key",
                 severity: BearSeverityEnum::MEDIUM,
                 exception: $e
             );

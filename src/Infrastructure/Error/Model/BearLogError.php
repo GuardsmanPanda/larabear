@@ -47,7 +47,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property string $created_at
  * @property string $error_severity
- * @property string $error_namespace
  * @property string $request_http_method
  * @property string|null $user_id
  * @property string|null $error_key
