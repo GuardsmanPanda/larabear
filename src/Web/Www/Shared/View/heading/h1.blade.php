@@ -1,5 +1,5 @@
 <?php declare(strict_types=1); ?>
-<div {{ $attributes->merge(['class' => 'mb-4 pb-0.5 border-b-2 border-gray-300']) }}>
+<div {{ $attributes->merge(['class' => 'mb-4 pb-0.5 border-b-2 border-gray-200']) }}>
     <div class="flex items-center">
         <div class="flex-auto">
             <h1 class="text-3xl font-semibold text-gray-900">{{$slot}}</h1>
