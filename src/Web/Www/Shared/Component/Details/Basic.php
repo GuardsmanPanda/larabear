@@ -8,8 +8,8 @@ use Illuminate\View\View;
 use RuntimeException;
 
 final class Basic  extends Component {
-    public string $classes = "rounded-b shadow";
-    public string$summaryClasses = "select-none  text-lg font-semibold cursor-pointer py-2 px-4 shadow-sm";
+    public string $classes = "rounded-b shadow border";
+    public string$summaryClasses = "select-none text-lg font-semibold cursor-pointer py-2 px-4 shadow-sm";
 
     public function __construct(public readonly string $summary, public readonly  string $color = 'gray', public readonly bool $outline = false) {
         $this->classes .= match ($this->color) {
