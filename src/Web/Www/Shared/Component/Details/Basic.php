@@ -9,17 +9,19 @@ use RuntimeException;
 
 final class Basic  extends Component {
     public string $classes = "rounded-b shadow";
-    public string$summaryClasses = "select-none  text-lg font-semibold cursor-pointer py-2 px-4 rounded-t shadow";
+    public string$summaryClasses = "select-none  text-lg font-semibold cursor-pointer py-2 px-4 shadow-sm";
 
-    public function __construct(public readonly string $summary, public readonly  string $color = 'gray') {
+    public function __construct(public readonly string $summary, public readonly  string $color = 'gray', public readonly bool $outline = false) {
         $this->classes .= match ($this->color) {
-            'gray' => ' bg-gray-50 shadow-gray-200',
-            'emerald' => ' bg-emerald-50 shadow-emerald-200',
+            'gray' => ' shadow-gray-200 border-gray-200' . ($this->outline ? ' bg-white' : ' bg-gray-50'),
+            'emerald' => ' shadow-emerald-200 border-emerald-200' . ($this->outline ? ' bg-white' : ' bg-emerald-50'),
+            'green' => ' shadow-green-200 border-green-200' . ($this->outline ? ' bg-white' : ' bg-green-50'),
             default => throw new RuntimeException(message: 'Unknown color: ' . $this->color),
         };
         $this->summaryClasses .= match ($this->color) {
-            'gray' => ' bg-gray-100 text-gray-900 shadow-gray-200',
-            'emerald' => ' bg-emerald-100 text-emerald-900 shadow-emerald-200',
+            'gray' => ' bg-gray-200 shadow-gray-300',
+            'emerald' => ' bg-emerald-200 shadow-emerald-300',
+            'green' => ' bg-green-200 shadow-green-300',
             default => throw new RuntimeException(message: 'Unknown color: ' . $this->color),
         };
     }
