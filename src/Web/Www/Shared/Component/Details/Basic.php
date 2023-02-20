@@ -8,13 +8,13 @@ use Illuminate\View\View;
 use RuntimeException;
 
 final class Basic  extends Component {
-    public string $classes = "rounded-b";
+    public string $classes = "rounded-b shadow";
     public string$summaryClasses = "select-none  text-lg font-semibold cursor-pointer py-2 px-4 rounded-t shadow";
 
     public function __construct(public readonly string $summary, public readonly  string $color = 'gray') {
         $this->classes .= match ($this->color) {
-            'gray' => ' bg-gray-50',
-            'emerald' => ' bg-emerald-50',
+            'gray' => ' bg-gray-50 shadow-gray-200',
+            'emerald' => ' bg-emerald-50 shadow-emerald-200',
             default => throw new RuntimeException(message: 'Unknown color: ' . $this->color),
         };
         $this->summaryClasses .= match ($this->color) {
