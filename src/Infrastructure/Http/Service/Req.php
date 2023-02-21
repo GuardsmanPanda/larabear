@@ -242,9 +242,6 @@ final class Req {
             if ($defaultIfMissing === null || $defaultIfMissing instanceof CarbonInterface) {
                 return $defaultIfMissing;
             }
-            if ($defaultIfMissing !== BearTypeEnum::UNDEFINED) {
-                return ValidateAndParseValue::parseDateTime(value: $defaultIfMissing);
-            }
             throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
