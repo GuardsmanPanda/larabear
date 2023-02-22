@@ -9,7 +9,7 @@ use RuntimeException;
 
 final class Basic  extends Component {
     public string $classes = "rounded-b shadow border";
-    public string$summaryClasses = "select-none text-lg font-semibold cursor-pointer py-2 px-4 shadow-sm";
+    public string$summaryClasses = "select-none font-semibold cursor-pointer py-1.5 px-3 shadow-sm";
 
     public function __construct(public readonly string $summary, public readonly  string $color = 'gray', public readonly bool $outline = false) {
         $this->classes .= match ($this->color) {
