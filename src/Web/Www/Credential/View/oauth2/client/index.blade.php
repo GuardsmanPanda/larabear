@@ -10,19 +10,19 @@
 </div>
 <x-bear::table.layout.standard>
     <x-slot name="tableHead">
-        <th scope="col" class="px-2.5 py-3">Id</th>
-        <th scope="col" class="px-2.5 py-3">Type</th>
-        <th scope="col" class="whitespace-nowrap px-2.5 py-3">Description</th>
-        <th scope="col" class="px-2.5 py-3">Created</th>
-        <th scope="col" class="px-2.5 py-3 ">Actions</th>
+        <th scope="col" class="px-2 py-2">Id</th>
+        <th scope="col" class="px-2 py-2">Type</th>
+        <th scope="col" class="whitespace-nowrap px-2 py-2">Description</th>
+        <th scope="col" class="px-2 py-2">Created</th>
+        <th scope="col" class="px-2 py-2 ">Actions</th>
     </x-slot>
     @foreach($clients as $client)
         <tr class="hover:bg-sky-50">
             <x-bear::table.cell.uuid class="font-medium">{{$client->oauth2_client_id}}</x-bear::table.cell.uuid>
-            <td class="px-2.5 py-2.5">{{$client->oauth2_client_type}}</td>
-            <td class="px-2.5 py-2.5">{{$client->oauth2_client_description}}</td>
+            <td class="px-2 py-2">{{$client->oauth2_client_type}}</td>
+            <td class="px-2 py-2">{{$client->oauth2_client_description}}</td>
             <x-bear::table.cell.relative>{{$client->created_at}}</x-bear::table.cell.relative>
-            <td class="px-2.5">
+            <td class="px-2">
                 <x-bear::buttonDark icon="user-plus" size="tiny" hx-get='{{"/bear/credential/oauth2/client/$client->oauth2_client_id/add-user"}}' hx-target="#dialog-content">Add User</x-bear::buttonDark>
                 <x-bear::buttonOutline icon="pencil" size="tiny" hx-get='{{"/bear/credential/oauth2/client/$client->oauth2_client_id/update"}}' hx-target="#dialog-content">Edit</x-bear::buttonOutline>
             </td>
