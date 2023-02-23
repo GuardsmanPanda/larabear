@@ -1,5 +1,5 @@
 <?php declare(strict_types=1); ?>
-<table class="min-w-full divide-y divide-gray-300 border shadow">
+<table class="min-w-full border shadow border-gray-300">
     <thead class="bg-gray-300 text-left text-sm font-semibold">
     <tr>
         {{$tableHead}}
