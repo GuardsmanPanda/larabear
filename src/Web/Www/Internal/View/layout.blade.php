@@ -38,6 +38,9 @@
             opacity: 0.4;
             padding: 0 5px;
         }
+        th {
+            font-weight: 500;
+        }
     </style>
 </head>
 <body class="min-h-screen" style="display: grid; grid-template-rows: 3rem auto" hx-target="#primary">

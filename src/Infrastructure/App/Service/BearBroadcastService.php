@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
+use GuardsmanPanda\Larabear\Infrastructure\App\Event\BearBroadcastNowEvent;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use Illuminate\Support\Facades\Broadcast;
 use Throwable;
@@ -16,7 +17,8 @@ final class BearBroadcastService {
      */
     public static function broadcastNow(string $channel, string $event = 'default', array $data = []): void {
         try {
-            Broadcast::broadcast(channels: [$channel], event: $event, payload: $data);
+            $event =  new BearBroadcastNowEvent($channel, $event, $data);
+            Broadcast::event($event);
         } catch (Throwable $t) {
             BearErrorCreator::create(
                 message: "Broadcast Error [{$t->getMessage()}]",
