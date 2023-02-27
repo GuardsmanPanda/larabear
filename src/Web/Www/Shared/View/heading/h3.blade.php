@@ -4,7 +4,7 @@
         <div class="flex-auto">
             <h3 class="text-xl font-semibold text-gray-700">{{$slot}}</h3>
             @if($subtitle !== '')
-                <div class="mt-0.5 text-sm text-gray-500">{!! $subtitle !!}</div>
+                <div class="text-sm text-gray-500">{!! $subtitle !!}</div>
             @endif
         </div>
         @if(($extra ?? null) !== null)
