@@ -4,7 +4,7 @@
     {!!$slot!!}
 </form>
 <div class="border-t flex gap-2 pt-3 mt-3 flex-row-reverse">
-    <form method="dialog"><x-bear::button type="submit">{{$cancelText}}</x-bear::button></form>
+    <form method="dialog"><x-bear::button.light type="submit">{{$cancelText}}</x-bear::button.light></form>
     <x-bear::button-dark form="dialog-form" type="submit" >{{$submitText}}</x-bear::button-dark>
 </div>
 <div id="dialog-title" hx-swap-oob="true">{{$title}}</div>

@@ -5,7 +5,7 @@
         <p class="mt-2 text-sm text-gray-600">A list of all responses with status code >= 400.</p>
     </div>
     <div class="mt-2 sm:mt-0 sm:ml-16 sm:flex-none">
-        <x-bear::buttonOutline icon="trash" hx-delete="/bear/log/response-error?response_status_code=404">Delete All 404</x-bear::buttonOutline>
+        <x-bear::button.outline icon="trash" hx-delete="/bear/log/response-error?response_status_code=404">Delete All 404</x-bear::button.outline>
     </div>
 </div>
 <x-bear::table.layout.standard>
@@ -27,9 +27,9 @@
             <td class="px-2 py-2">{{$error->app_action_name ?? $error->request_http_path}}</td>
             <x-bear::table.cell.relative>{{$error->created_at}}</x-bear::table.cell.relative>
             <td class="px-2">
-                <x-bear::buttonOutline color="red" icon="trash" size="tiny" hx-delete='{{"/bear/log/response-error?id=$error->id"}}'>Delete</x-bear::buttonOutline>
-                <x-bear::buttonOutline color="red" icon="trash" size="tiny" hx-delete='{{"/bear/log/response-error?app_action_name=$error->app_action_name"}}' tippy="Delete all errors with same App Action">Action</x-bear::buttonOutline>
-                <x-bear::buttonOutline color="red" icon="trash" size="tiny" hx-delete='{{"/bear/log/response-error?request_http_path=$error->request_http_path"}}' tippy="Delete all errors with same Path">Path</x-bear::buttonOutline>
+                <x-bear::button.outline color="red" icon="trash" size="tiny" hx-delete='{{"/bear/log/response-error?id=$error->id"}}'>Delete</x-bear::button.outline>
+                <x-bear::button.outline color="red" icon="trash" size="tiny" hx-delete='{{"/bear/log/response-error?app_action_name=$error->app_action_name"}}' tippy="Delete all errors with same App Action">Action</x-bear::button.outline>
+                <x-bear::button.outline color="red" icon="trash" size="tiny" hx-delete='{{"/bear/log/response-error?request_http_path=$error->request_http_path"}}' tippy="Delete all errors with same Path">Path</x-bear::button.outline>
             </td>
         </tr>
     @endforeach

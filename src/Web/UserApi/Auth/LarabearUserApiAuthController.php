@@ -19,7 +19,8 @@ final class LarabearUserApiAuthController extends Controller {
         if (!password_verify(password: Req::getStringOrDefault(key: 'password'), hash: $user->password)) {
             return new JsonResponse(data: ['error' => 'Invalid password.'], status: 401);
         }
-        return LarabearUserApiUserService::getUserResponse(user: $user, token: BearAccessTokenUserCreator::create(user: $user, expires_at: now()->addHours(value: 25)));
+        $duration = (Req::getBoolOrDefault(key: 'remember_me', default: false) ? 35 : 1) * 24 + 1;
+        return LarabearUserApiUserService::getUserResponse(user: $user, token: BearAccessTokenUserCreator::create(user: $user, expires_at: now()->addHours(value: $duration)));
     }
 
     public function signOut(): JsonResponse {

@@ -32,10 +32,10 @@
             <td class="px-2 py-2">{{$error->app_action_name ?? $error->request_http_path}}</td>
             <x-bear::table.cell.relative>{{$error->created_at}}</x-bear::table.cell.relative>
             <td class="px-2">
-                <x-bear::buttonOutline color="red" icon="trash" size="tiny" hx-delete='{{"/bear/log/error?id=$error->id"}}'>Delete</x-bear::buttonOutline>
-                <x-bear::buttonOutline color="red" icon="trash" size="tiny" class="pl-2" hx-delete='{{"/bear/log/error?error_key=$error->error_key"}}' tippy="Delete all errors with same Key">Key
-                </x-bear::buttonOutline>
-                <x-bear::buttonOutline color="red" icon="trash" size="tiny" class="pl-2" hx-delete='{{"/bear/log/error?app_action_name=$error->app_action_name"}}' tippy="Delete all errors with same App Action">Action</x-bear::buttonOutline>
+                <x-bear::button.outline color="red" icon="trash" size="tiny" hx-delete='{{"/bear/log/error?id=$error->id"}}'>Delete</x-bear::button.outline>
+                <x-bear::button.outline color="red" icon="trash" size="tiny" class="pl-2" hx-delete='{{"/bear/log/error?error_key=$error->error_key"}}' tippy="Delete all errors with same Key">Key
+                </x-bear::button.outline>
+                <x-bear::button.outline color="red" icon="trash" size="tiny" class="pl-2" hx-delete='{{"/bear/log/error?app_action_name=$error->app_action_name"}}' tippy="Delete all errors with same App Action">Action</x-bear::button.outline>
             </td>
         </tr>
     @endforeach

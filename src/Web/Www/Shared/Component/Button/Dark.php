@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace GuardsmanPanda\Larabear\Web\Www\Shared\Component;
+namespace GuardsmanPanda\Larabear\Web\Www\Shared\Component\Button;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
-use Illuminate\View\View;
 use Illuminate\View\Component;
+use Illuminate\View\View;
 use RuntimeException;
 
-final class ButtonDark extends Component {
+final class Dark extends Component {
     public string $classes = 'whitespace-nowrap font-medium inline-flex rounded transition-all hover:scale-105 items-center shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 border';
 
     public function __construct(
@@ -36,7 +36,7 @@ final class ButtonDark extends Component {
             'tiny' => '-ml-1 mr-1',
             default => throw new RuntimeException(message: 'Unknown size: ' . $this->size),
         };
-        return Resp::view(view: 'bear::button', data: [
+        return Resp::view(view: 'bear::button.basic', data: [
             'icon_classes' => $icon_classes . match ($this->color) {
                     'indigo' => ' text-indigo-50',
                     'emerald' => ' text-emerald-50',

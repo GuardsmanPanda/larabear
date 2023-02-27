@@ -21,7 +21,7 @@
     "ext-zend-opcache": "*",
     "doctrine/dbal": "^3.6",
     "guzzlehttp/guzzle": "^7.5",
-    "laravel/framework": "^9.52 || ^10.0",
+    "laravel/framework": "^9.52 || ^10.1",
     "ramsey/collection": "^2.0",
     "wildbit/postmark-php": "^4.0"
   },
@@ -35,9 +35,9 @@
   },
   "require-dev": {
     "ergebnis/phpstan-rules": "^1.0",
-    "phpstan/phpstan": "^1.9",
+    "phpstan/phpstan": "^1.10",
     "phpstan/phpstan-deprecation-rules": "^1.1",
-    "phpstan/phpstan-strict-rules": "^1.4",
+    "phpstan/phpstan-strict-rules": "^1.5",
     "thecodingmachine/phpstan-strict-rules": "^1.0"
   }
 }
