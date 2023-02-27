@@ -23,8 +23,8 @@ final class Outline extends Component {
         };
         $this->classes .= match ($this->color) {
             'gray' => ' text-gray-600 border-gray-300 hover:text-gray-700 hover:bg-gray-100 focus:ring-gray-300',
-            'red' => ' text-red-600 border-red-300 hover:text-red-700 hover:bg-red-100 shadow-red-200 hover:shadow-red-300 focus:ring-red-300',
-            'green' => ' text-green-600 border-green-300 hover:text-green-700 hover:bg-green-100 shadow-green-200 hover:shadow-green-300 focus:ring-green-300',
+            'red' => ' text-red-600 border-red-300 hover:text-red-700 hover:bg-red-100 shadow-red-300 hover:shadow-red-400 focus:ring-red-300',
+            'green' => ' text-green-600 border-green-400 hover:text-green-700 hover:bg-green-100 shadow-green-400 hover:shadow-green-500 focus:ring-green-400',
             default => throw new RuntimeException(message: 'Unknown color: ' . $this->color),
         };
     }
