@@ -5,12 +5,18 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 use Illuminate\Database\Eloquent\Collection;
 
 final class BearCollectionService {
-    public static function moveItems(Collection $from, Collection $to, callable $filter): void {
-        $from->each(function ($item) use ($to, $filter) {
+    /**
+     * @param Collection<string|int, mixed> $from
+     * @param Collection<string|int, mixed> $to
+     * @param callable $filter
+     * @return void
+     */
+    public static function moveItems(Collection &$from, Collection $to, callable $filter): void {
+        foreach ($from as $item) {
             if ($filter($item)) {
                 $to->add($item);
             }
-        });
-        $from->diff($to);
+        }
+        $from = $from->diff($to);
     }
 }
