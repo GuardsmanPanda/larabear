@@ -8,6 +8,6 @@
 </form>
 <div class="border-t flex gap-2 py-3  px-4 flex-row-reverse">
     <form method="dialog"><x-bear::button.light type="submit">Close</x-bear::button.light></form>
-    <x-bear::button-dark form="dialog-form" type="submit">Add User</x-bear::button-dark>
+    <x-bear::button.dark form="dialog-form" type="submit">Add User</x-bear::button.dark>
 </div>
 <div id="dialog-title" hx-swap-oob="true">Add User To Client</div>
