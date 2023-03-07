@@ -3,10 +3,12 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
 use Carbon\CarbonInterface;
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Enum\BearUserTokenTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessTokenUser;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 
 final class BearAccessTokenUserCreator {
     public static function create(
@@ -16,6 +18,7 @@ final class BearAccessTokenUserCreator {
     ): String {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
+        BearLogLoginHistoryCreator::create(user_id: $user->id, login_from_country_code: Req::ipCountry());
         (new BearUserUpdater($user))->setLastLoginNow()->update();
 
         $model = new BearAccessTokenUser();

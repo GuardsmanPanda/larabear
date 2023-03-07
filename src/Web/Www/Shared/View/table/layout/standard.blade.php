@@ -1,6 +1,6 @@
 <?php declare(strict_types=1); ?>
 <table class="min-w-full shadow">
-    <thead class="border-b-2 bg-gray-50 font-semibold text-left">
+    <thead class="border-b-2 bg-gray-100 font-semibold text-left">
     <tr>
         {{$tableHead}}
     </tr>

@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 final class BearUserUpdater {
@@ -94,6 +95,9 @@ final class BearUserUpdater {
 
     public function setIsUserActivated(bool $is_user_activated): self {
         $this->model->is_user_activated = $is_user_activated;
+        if ($is_user_activated === false) {
+            DB::update(query: "UPDATE bear_access_token_user SET expires_at = now() WHERE expires_at > now() AND user_id = ?", bindings: [$this->model->id]);
+        }
         return $this;
     }
 

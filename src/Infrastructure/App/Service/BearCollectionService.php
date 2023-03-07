@@ -3,11 +3,15 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 final class BearCollectionService {
     /**
-     * @param Collection<string|int, mixed> $from
-     * @param Collection<string|int, mixed> $to
+     * @template TKey of string|int
+     * @template TModel of Model
+     *
+     * @param Collection<TKey, TModel> $from
+     * @param Collection<TKey, TModel> $to
      * @param callable $filter
      * @return void
      */
