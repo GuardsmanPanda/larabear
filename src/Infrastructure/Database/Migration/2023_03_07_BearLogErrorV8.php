@@ -23,6 +23,7 @@ return new class extends Migration {
             $table->text(column: 'error_message')->nullable();
             $table->text(column: 'error_remedy')->nullable();
             $table->text(column: 'exception_message')->nullable();
+            $table->text(column: 'exception_class')->nullable();
             $table->text(column: 'exception_trace')->nullable();
             $table->uuid(column: 'user_id')->nullable()->index();
             $table->ipAddress(column: 'request_ip')->nullable()->index();
