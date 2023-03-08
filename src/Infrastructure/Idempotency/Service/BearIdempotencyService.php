@@ -13,7 +13,7 @@ final class BearIdempotencyService {
         if ($old !== null && $old->expires_at > now()) {
             return false;
         }
-        $old?->delete();
+        $old?->deleteQuietly();
         BearIdempotencyCreator::create(idempotency_key: $idempotencyKey, expires_at: $expiresAt);
         return true;
     }
