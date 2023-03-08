@@ -8,7 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Idempotency\Crud\BearIdempotencyCreat
 use GuardsmanPanda\Larabear\Infrastructure\Idempotency\Model\BearIdempotency;
 
 final class BearIdempotencyService {
-    public function tryKey(string $idempotencyKey, CarbonInterface $expiresAt): bool {
+    public static function tryKey(string $idempotencyKey, CarbonInterface $expiresAt): bool {
         $old = BearIdempotency::find(id: $idempotencyKey);
         if ($old !== null && $old->expires_at > now()) {
             return false;
