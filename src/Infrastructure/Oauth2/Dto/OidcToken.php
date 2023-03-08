@@ -5,7 +5,6 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Dto;
 use Carbon\Carbon;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Integrity\Crud\BearIdempotencyCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use RuntimeException;
 use Throwable;
@@ -42,7 +41,7 @@ final class OidcToken {
             }
             $uniq = $token->jti ?? $token->uti ?? null;
             if ($uniq !== null) {
-                    BearIdempotencyCreator::create(idempotency_key: $token->aud . ':' . $uniq);
+                    //BearIdempotencyCreator::create(idempotency_key: $token->aud . ':' . $uniq);
             }
         } catch (Throwable $t) { //TODO Better error log.
             BearErrorCreator::create(
