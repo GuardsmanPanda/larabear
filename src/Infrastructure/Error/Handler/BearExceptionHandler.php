@@ -21,12 +21,14 @@ final class BearExceptionHandler extends Handler {
                 $e instanceof RecordsNotFoundException => 'unhandled-db-sole-exception',
                 default => 'unhandled-exception',
             };
-            BearErrorCreator::create(
-                message: $e->getMessage(),
-                key: "larabear::$key",
-                severity: BearSeverityEnum::MEDIUM,
-                exception: $e
-            );
+            if ($e::class !== 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException') {
+                BearErrorCreator::create(
+                    message: $e->getMessage(),
+                    key: "larabear::$key",
+                    severity: BearSeverityEnum::MEDIUM,
+                    exception: $e
+                );
+            }
         }
         if (is_bool(value: config(key: 'app.debug')) && config(key: 'app.debug')) {
             return parent::render(request: $request, e: $e);

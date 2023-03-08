@@ -102,7 +102,7 @@ final class ConsoleRegisterListeners {
                     BearErrorCreator::create(
                         message: "Scheduled task [$command] failed",
                         key: 'larabear::scheduled-task-failed',
-                        severity: BearSeverityEnum::HIGH,
+                        severity: BearSeverityEnum::MEDIUM,
                     );
                 }
                 $updater->setExecutionTimeMicroseconds((int)($event->runtime * 1_000_000));
