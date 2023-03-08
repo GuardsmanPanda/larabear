@@ -13,11 +13,9 @@ return new class extends Migration {
             $table->id();
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'error_severity')->index();
-                $table->text(column: 'error_namespace')->index();
                 $table->text(column: 'error_key')->nullable()->index();
             } else {
                 $table->string(column: 'error_severity')->index();
-                $table->string(column: 'error_namespace')->index();
                 $table->string(column: 'error_key')->nullable()->index();
             }
             $table->text(column: 'error_message')->nullable();
@@ -42,9 +40,11 @@ return new class extends Migration {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_http_hostname')->nullable();
                 $table->text(column: 'request_id')->nullable();
+                $table->text(column: 'email_status_text')->nullable();
             } else {
                 $table->string(column: 'request_http_hostname')->nullable();
                 $table->string(column: 'request_id')->nullable();
+                $table->string(column: 'email_status_text')->nullable();
             }
             $table->uuid(column: 'console_id')->nullable();
             $table->foreign('error_severity', 'error_severity_foreign')->references('slug')->on('bear_severity');
