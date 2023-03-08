@@ -78,7 +78,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
         }
 
         $content = $this->classHeader(model: $model, headers: $headers, addColumnHeaders: true);
-        $content .= 'class ' . $model->getModelClassName() . 'Creator {' . PHP_EOL;
+        $content .= 'final class ' . $model->getModelClassName() . 'Creator {' . PHP_EOL;
         $content .= "    public static function create(" . PHP_EOL;
 
         foreach ($this->getModifiableColumnArray(model: $model, forCreator: true) as $column) {
@@ -125,7 +125,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
         }
         $headers = new Set(setType: 'string');
         $content = $this->classHeader(model: $model, headers: $headers, addColumnHeaders: true);
-        $content .= "class $className {" . PHP_EOL;
+        $content .= "final class $className {" . PHP_EOL;
         $content .= "    public function __construct(private readonly {$model->getModelClassName()} \$model) {" . PHP_EOL;
         $content .= "        BearDatabaseService::mustBeInTransaction();" . PHP_EOL;
         $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);" . PHP_EOL;
@@ -185,7 +185,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
         }
         $headers = new Set(setType: 'string');
         $content = $this->classHeader(model: $model, headers: $headers);
-        $content .= 'class ' . $model->getModelClassName() . 'Deleter {' . PHP_EOL;
+        $content .= 'final class ' . $model->getModelClassName() . 'Deleter {' . PHP_EOL;
         $content .= "    public static function delete({$model->getModelClassName()} \$model): void {" . PHP_EOL;
         $content .= "        BearDatabaseService::mustBeInTransaction();" . PHP_EOL;
         $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);" . PHP_EOL;
