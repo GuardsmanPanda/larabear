@@ -61,7 +61,7 @@ return new class extends Migration {
             DB::commit();
         } catch (Throwable $e) {
             DB::rollBack();
-            throw $e;
+            throw new RuntimeException(message: 'Failed to create bear config.', previous: $e);
         }
     }
 

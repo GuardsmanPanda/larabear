@@ -24,6 +24,6 @@ final class BearResponseErrorDeleter {
         if ($app_action_name !== null) {
             $filters['app_action_name'] = $app_action_name;
         }
-        DB::delete("DELETE FROM bear_log_response_error WHERE " . implode(separator: ' AND ', array: array_map(static fn ($key) => "$key = ?", array_keys($filters))), array_values($filters));
+        DB::delete("DELETE FROM bear_error_response WHERE " . implode(separator: ' AND ', array: array_map(static fn ($key) => "$key = ?", array_keys($filters))), array_values($filters));
     }
 }

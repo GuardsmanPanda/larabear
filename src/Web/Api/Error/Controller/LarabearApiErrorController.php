@@ -13,7 +13,7 @@ final class LarabearApiErrorController extends Controller {
         BearGlobalStateService::setLogResponseError(value: false);
         $error_count = DB::selectOne(query: "
             SELECT COUNT(*) AS error_count
-            FROM bear_log_error
+            FROM bear_error
             WHERE error_severity IN ('HIGH', 'CRITICAL', 'EMERGENCY')
         ")->error_count;
         return new JsonResponse(data: ['error_count' => $error_count], status: $error_count > 0 ? 500 : 200);

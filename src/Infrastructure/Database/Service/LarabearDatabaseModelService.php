@@ -138,7 +138,7 @@ final class LarabearDatabaseModelService {
             'bear_country', 'bear_language', 'bear_language_tag' => "GuardsmanPanda\\Larabear\\Infrastructure\\Locale\\Model",
             'bear_oauth2_client', 'bear_oauth2_user' => "GuardsmanPanda\\Larabear\\Infrastructure\\Oauth2\\Model",
             'bear_idempotency' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Integrity\\Model',
-            'bear_log_error', 'bear_log_response_error' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Error\\Model',
+            'bear_error', 'bear_error_response' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Error\\Model',
             'bear_email_template' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Email\\Model',
             'bear_log_database_change' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Model',
             'bear_log_console_event' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Console\\Model',

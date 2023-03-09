@@ -14,7 +14,7 @@ final class LarabearLogErrorController extends Controller {
         return Resp::view(view: 'larabear-log::error.index', data: [
             'errors' => DB::select(query: "
                 SELECT *
-                FROM bear_log_error le
+                FROM bear_error le
                 ORDER BY le.created_at DESC
                 LIMIT 1000
             "),

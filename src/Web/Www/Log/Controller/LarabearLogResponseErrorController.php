@@ -14,7 +14,7 @@ final class LarabearLogResponseErrorController extends Controller {
         return Resp::view(view: 'larabear-log::response-error.index', data: [
             'errors' => DB::select(query: "
                 SELECT le.*, bc.country_name
-                FROM bear_log_response_error le
+                FROM bear_error_response le
                 LEFT JOIN bear_country bc ON bc.country_iso2_code = le.request_country_code
                 ORDER BY le.created_at DESC
                 LIMIT 1000

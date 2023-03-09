@@ -17,7 +17,7 @@ final class BearResponseErrorCreator {
             $query = Req::allQueryData();
             $query_json = count($query) === 0 ? null : json_encode(value: $query, flags: JSON_THROW_ON_ERROR);
             DB::insert("
-            INSERT INTO bear_log_response_error
+            INSERT INTO bear_error_response
             (request_ip, user_id, request_country_code, response_status_code, request_http_method, request_http_path, request_http_query_json, request_http_hostname, app_action_name, response_body, request_id)
             VALUES (?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?)",
                 [Req::ip(), BearGlobalStateService::getUserId(), Req::ipCountry(), $statusCode, Req::method(), Req::path(), $query_json, Req::hostname(), Req::actionName(), $responseBody, BearGlobalStateService::getRequestId()]);

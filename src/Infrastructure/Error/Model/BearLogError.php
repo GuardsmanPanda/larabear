@@ -71,7 +71,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 final class BearLogError extends Model {
     use LarabearFixDateFormatTrait;
 
-    protected $table = 'bear_log_error';
+    protected $table = 'bear_error';
     public $timestamps = false;
 
     /** @var array<string, string> $casts */
