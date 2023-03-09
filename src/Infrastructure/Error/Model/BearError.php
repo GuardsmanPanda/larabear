@@ -15,32 +15,32 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
  *
- * @method static BearLogError|null find(int $id, array $columns = ['*'])
- * @method static BearLogError findOrFail(int $id, array $columns = ['*'])
- * @method static BearLogError sole(array $columns = ['*'])
- * @method static BearLogError|null first(array $columns = ['*'])
- * @method static BearLogError firstOrFail(array $columns = ['*'])
- * @method static BearLogError firstOrCreate(array $filter, array $values)
- * @method static BearLogError firstOrNew(array $filter, array $values)
- * @method static BearLogError|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
+ * @method static BearError|null find(int $id, array $columns = ['*'])
+ * @method static BearError findOrFail(int $id, array $columns = ['*'])
+ * @method static BearError sole(array $columns = ['*'])
+ * @method static BearError|null first(array $columns = ['*'])
+ * @method static BearError firstOrFail(array $columns = ['*'])
+ * @method static BearError firstOrCreate(array $filter, array $values)
+ * @method static BearError firstOrNew(array $filter, array $values)
+ * @method static BearError|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method static Collection all(array $columns = ['*'])
  * @method static Collection get(array $columns = ['*'])
  * @method static Collection fromQuery(string $query, array $bindings = [])
- * @method static BearLogError lockForUpdate()
- * @method static BearLogError select(array $columns = ['*'])
- * @method static BearLogError with(array $relations)
- * @method static BearLogError leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static BearLogError where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static BearLogError whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
- * @method static BearLogError whereNotExists(Closure $callback, string $boolean = 'and')
- * @method static BearLogError whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearLogError whereDoesntHave(string $relation, Closure $callback = null)
- * @method static BearLogError withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearLogError whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
- * @method static BearLogError whereNull(string|array $columns, string $boolean = 'and')
- * @method static BearLogError whereNotNull(string|array $columns, string $boolean = 'and')
- * @method static BearLogError whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
- * @method static BearLogError orderBy(string $column, string $direction = 'asc')
+ * @method static BearError lockForUpdate()
+ * @method static BearError select(array $columns = ['*'])
+ * @method static BearError with(array $relations)
+ * @method static BearError leftJoin(string $table, string $first, string $operator = null, string $second = null)
+ * @method static BearError where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
+ * @method static BearError whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
+ * @method static BearError whereNotExists(Closure $callback, string $boolean = 'and')
+ * @method static BearError whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static BearError whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static BearError withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static BearError whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
+ * @method static BearError whereNull(string|array $columns, string $boolean = 'and')
+ * @method static BearError whereNotNull(string|array $columns, string $boolean = 'and')
+ * @method static BearError whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
+ * @method static BearError orderBy(string $column, string $direction = 'asc')
  * @method static int count(array $columns = ['*'])
  * @method static bool exists()
  *
@@ -68,7 +68,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
-final class BearLogError extends Model {
+final class BearError extends Model {
     use LarabearFixDateFormatTrait;
 
     protected $table = 'bear_error';
