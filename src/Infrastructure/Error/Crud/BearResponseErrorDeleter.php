@@ -8,7 +8,7 @@ final class BearResponseErrorDeleter {
     public static function delete(
         int $id = null,
         int $response_status_code = null,
-        string $request_http_path = null,
+        string $request_path = null,
         string $app_action_name = null,
     ): void {
         $filters = [];
@@ -18,8 +18,8 @@ final class BearResponseErrorDeleter {
         if ($response_status_code !== null) {
             $filters['response_status_code'] = $response_status_code;
         }
-        if ($request_http_path !== null) {
-            $filters['request_http_path'] = $request_http_path;
+        if ($request_path !== null) {
+            $filters['request_path'] = $request_path;
         }
         if ($app_action_name !== null) {
             $filters['app_action_name'] = $app_action_name;

@@ -48,14 +48,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $created_at
  * @property string $request_ip
  * @property string $response_body
- * @property string $request_http_method
- * @property string $request_http_hostname
+ * @property string $request_method
+ * @property string $request_hostname
  * @property string|null $user_id
  * @property string|null $request_id
  * @property string|null $app_action_name
- * @property string|null $request_http_path
+ * @property string|null $request_path
  * @property string|null $request_country_code
- * @property ArrayObject|null $request_http_query_json
+ * @property ArrayObject|null $request_query_json
  *
  * @property BearUser|null $user
  *
@@ -69,7 +69,7 @@ final class BearErrorResponse extends Model {
 
     /** @var array<string, string> $casts */
     protected $casts = [
-        'request_http_query_json' => AsArrayObject::class,
+        'request_query_json' => AsArrayObject::class,
     ];
 
     public function user(): BelongsTo|null {

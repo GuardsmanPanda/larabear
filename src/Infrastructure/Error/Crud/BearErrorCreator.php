@@ -38,7 +38,7 @@ final class BearErrorCreator {
             }
             $exception_class = $exception === null ? null : $exception::class;
             DB::connection(name: 'larabear_transaction_free')->insert(query: "
-            INSERT INTO bear_error (error_severity, error_key, error_message, error_remedy, exception_message, exception_class, exception_trace, user_id, request_ip, request_country_code, request_http_method, request_http_path, request_http_query_json, app_action_name, request_http_hostname, request_id, console_id)
+            INSERT INTO bear_error (error_severity, error_key, error_message, error_remedy, exception_message, exception_class, exception_trace, user_id, request_ip, request_country_code, request_method, request_path, request_query_json, app_action_name, request_hostname, request_id, console_id)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ", bindings: [$severity->name, $key, $message, $remedy, $exception?->getMessage(), $exception_class, $exception?->getTraceAsString(), BearGlobalStateService::getUserId(), Req::ip(), Req::ipCountry(), Req::method(), Req::path(), $query_json, Req::actionName(), Req::hostname(), BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleIdOrNull()]);
         } catch (Throwable $e) {

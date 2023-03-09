@@ -47,7 +47,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property string $created_at
  * @property string $error_severity
- * @property string $request_http_method
+ * @property string $request_method
  * @property string|null $user_id
  * @property string|null $error_key
  * @property string|null $console_id
@@ -58,10 +58,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $app_action_name
  * @property string|null $exception_trace
  * @property string|null $exception_message
- * @property string|null $request_http_path
+ * @property string|null $request_path
  * @property string|null $request_country_code
- * @property string|null $request_http_hostname
- * @property ArrayObject|null $request_http_query_json
+ * @property string|null $request_hostname
+ * @property ArrayObject|null $request_query_json
  *
  * @property BearUser|null $user
  * @property BearSeverity $errorSeverity
@@ -76,7 +76,7 @@ final class BearError extends Model {
 
     /** @var array<string, string> $casts */
     protected $casts = [
-        'request_http_query_json' => AsArrayObject::class,
+        'request_query_json' => AsArrayObject::class,
     ];
 
     public function user(): BelongsTo|null {

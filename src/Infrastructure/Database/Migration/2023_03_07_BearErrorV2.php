@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void {
         Schema::dropIfExists(table: 'bear_log_error');
+        Schema::dropIfExists(table: 'bear_error');
         Schema::create(table: 'bear_error', callback: static function (Blueprint $table): void {
             $table->id();
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
@@ -27,22 +28,22 @@ return new class extends Migration {
             $table->ipAddress(column: 'request_ip')->nullable()->index();
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_country_code')->nullable();
-                $table->text(column: 'request_http_method');
-                $table->text(column: 'request_http_path')->nullable();
+                $table->text(column: 'request_method');
+                $table->text(column: 'request_path')->nullable();
             } else {
                 $table->string(column: 'request_country_code')->nullable();
-                $table->string(column: 'request_http_method');
-                $table->string(column: 'request_http_path', length: 2048)->nullable();
+                $table->string(column: 'request_method');
+                $table->string(column: 'request_path', length: 2048)->nullable();
             }
-            $table->jsonb(column: 'request_http_query_json')->nullable();
+            $table->jsonb(column: 'request_query_json')->nullable();
             $table->text(column: 'app_action_name')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
-                $table->text(column: 'request_http_hostname')->nullable();
+                $table->text(column: 'request_hostname')->nullable();
                 $table->text(column: 'request_id')->nullable();
                 $table->text(column: 'email_status_text')->nullable();
             } else {
-                $table->string(column: 'request_http_hostname')->nullable();
+                $table->string(column: 'request_hostname')->nullable();
                 $table->string(column: 'request_id')->nullable();
                 $table->string(column: 'email_status_text')->nullable();
             }

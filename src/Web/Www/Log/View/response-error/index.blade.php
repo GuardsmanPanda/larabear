@@ -23,13 +23,13 @@
             <td class="px-2 py-2 @if($error->response_status_code >= 500) font-medium text-red-700 @endif">{{$error->response_status_code}}</td>
             <x-bear::table.cell.uuid>{{$error->user_id}}</x-bear::table.cell.uuid>
             <x-bear::table.cell.flag :countryCode="$error->request_country_code" :countryName="$error->request_country_code" :ip="$error->request_ip"/>
-            <td class="px-2 py-2">{{$error->request_http_method}}</td>
-            <td class="px-2 py-2">{{$error->app_action_name ?? $error->request_http_path}}</td>
+            <td class="px-2 py-2">{{$error->request_method}}</td>
+            <td class="px-2 py-2">{{$error->app_action_name ?? $error->request_path}}</td>
             <x-bear::table.cell.relative>{{$error->created_at}}</x-bear::table.cell.relative>
             <td class="px-2">
                 <x-bear::button.outline color="red" icon="trash" size="tiny" hx-delete='{{"/bear/log/response-error?id=$error->id"}}'>Delete</x-bear::button.outline>
                 <x-bear::button.outline color="red" icon="trash" size="tiny" hx-delete='{{"/bear/log/response-error?app_action_name=$error->app_action_name"}}' tippy="Delete all errors with same App Action">Action</x-bear::button.outline>
-                <x-bear::button.outline color="red" icon="trash" size="tiny" hx-delete='{{"/bear/log/response-error?request_http_path=$error->request_http_path"}}' tippy="Delete all errors with same Path">Path</x-bear::button.outline>
+                <x-bear::button.outline color="red" icon="trash" size="tiny" hx-delete='{{"/bear/log/response-error?request_path=$error->request_path"}}' tippy="Delete all errors with same Path">Path</x-bear::button.outline>
             </td>
         </tr>
     @endforeach
