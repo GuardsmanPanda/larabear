@@ -19,7 +19,7 @@ final class BearAccessTokenUserCreator {
     ): String {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
-        BearLogLoginHistoryCreator::create(user_id: $user->id, login_type: BearUserLoginTypeEnum::USER_API);
+        BearUserLoginHistoryCreator::create(user_id: $user->id, login_type: BearUserLoginTypeEnum::USER_API);
         (new BearUserUpdater($user))->setLastLoginNow()->update();
 
         $model = new BearAccessTokenUser();

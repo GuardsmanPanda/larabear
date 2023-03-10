@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void {
         Schema::dropIfExists(table: 'bear_log_console_event');
-        Schema::create(table: 'bear_log_console_event', callback: static function (Blueprint $table): void {
+        Schema::create(table: 'bear_console_event', callback: static function (Blueprint $table): void {
             $table->id();
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'console_event_type');
@@ -26,13 +26,13 @@ return new class extends Migration {
             $table->timestampTz(column: 'console_event_finished_at')->nullable();
             $table->timestampTz(column: 'console_event_failed_at')->nullable();
             $table->bigInteger(column: 'execution_time_microseconds')->nullable();
-            $table->text(column: 'console_event_output')->nullable();
+            $table->mediumText(column: 'console_event_output')->nullable();
             $table->uuid(column: 'console_id')->index();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
     public function down(): void {
-        Schema::dropIfExists(table: 'bear_log_console_event');
+        Schema::dropIfExists(table: 'bear_console_event');
     }
 };

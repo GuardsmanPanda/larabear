@@ -141,7 +141,7 @@ final class LarabearDatabaseModelService {
             'bear_error', 'bear_error_response' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Error\\Model',
             'bear_email_template' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Email\\Model',
             'bear_log_database_change' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Model',
-            'bear_log_console_event' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Console\\Model',
+            'bear_console_event' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Console\\Model',
             'bear_config' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Config\\Model',
             'bear_severity' => 'GuardsmanPanda\\Larabear\\Infrastructure\\App\\Model',
             default => throw new RuntimeException(message: "No namespace defined for table [$tableName]"),

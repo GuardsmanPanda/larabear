@@ -5,8 +5,8 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Console\Listener;
 use Carbon\Carbon;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
-use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearLogConsoleEventCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearLogConsoleEventUpdater;
+use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearConsoleEventCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Console\Crud\BearConsoleEventUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use Illuminate\Console\Events\CommandFinished;
 use Illuminate\Console\Events\CommandStarting;
@@ -38,7 +38,7 @@ final class ConsoleRegisterListeners {
             }
             try {
                 DB::beginTransaction();
-                BearLogConsoleEventCreator::create(
+                BearConsoleEventCreator::create(
                     console_event_type: 'command',
                     console_command: $event->input->__toString(),
                 );
@@ -55,7 +55,7 @@ final class ConsoleRegisterListeners {
             try {
                 DB::beginTransaction();
                 $event->task->storeOutput();
-                BearLogConsoleEventCreator::create(
+                BearConsoleEventCreator::create(
                     console_event_type: 'scheduled_task',
                     console_command: $event->task->command ?? $event->task->getSummaryForDisplay(),
                     cron_schedule_expression: $event->task->expression,
@@ -75,7 +75,7 @@ final class ConsoleRegisterListeners {
             }
             try {
                 DB::beginTransaction();
-                $updater = BearLogConsoleEventUpdater::fromConsoleEventId(consoleEventId: BearGlobalStateService::getConsoleId());
+                $updater = BearConsoleEventUpdater::fromConsoleEventId(consoleEventId: BearGlobalStateService::getConsoleId());
                 if ($event->exitCode === 0) {
                     $updater->setConsoleEventFinishedAt(Carbon::now());
                 } else {
@@ -93,7 +93,7 @@ final class ConsoleRegisterListeners {
         Event::listen(events: ScheduledTaskFinished::class, listener: static function ($event) {
             try {
                 DB::beginTransaction();
-                $updater = BearLogConsoleEventUpdater::fromConsoleEventId(consoleEventId: BearGlobalStateService::getConsoleId());
+                $updater = BearConsoleEventUpdater::fromConsoleEventId(consoleEventId: BearGlobalStateService::getConsoleId());
                 if ($event->task->exitCode === 0) {
                     $updater->setConsoleEventFinishedAt(Carbon::now());
                 } else {

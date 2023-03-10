@@ -3,16 +3,16 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Console\Crud;
 
 use Carbon\CarbonInterface;
-use GuardsmanPanda\Larabear\Infrastructure\Console\Model\BearLogConsoleEvent;
+use GuardsmanPanda\Larabear\Infrastructure\Console\Model\BearConsoleEvent;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
-final class BearLogConsoleEventUpdater {
-    public function __construct(private readonly BearLogConsoleEvent $model) {
+final class BearConsoleEventUpdater {
+    public function __construct(private readonly BearConsoleEvent $model) {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
     }
 
-    public static function fromConsoleEventId(string $consoleEventId): BearLogConsoleEventUpdater {
-        return new BearLogConsoleEventUpdater(model: BearLogConsoleEvent::where(column: 'console_id', operator: '=', value: $consoleEventId)->sole());
+    public static function fromConsoleEventId(string $consoleEventId): BearConsoleEventUpdater {
+        return new BearConsoleEventUpdater(model: BearConsoleEvent::where(column: 'console_id', operator: '=', value: $consoleEventId)->sole());
     }
 
     public function setConsoleCommand(string $console_command): self {
@@ -69,7 +69,7 @@ final class BearLogConsoleEventUpdater {
         return $this;
     }
 
-    public function update(): BearLogConsoleEvent {
+    public function update(): BearConsoleEvent {
         $this->model->save();
         return $this->model;
     }
