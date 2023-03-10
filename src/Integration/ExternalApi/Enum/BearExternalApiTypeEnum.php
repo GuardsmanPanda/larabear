@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Integration\ExternalApi\Enum;
 
 enum  BearExternalApiTypeEnum: string {
+    case BASIC_AUTH = 'BASIC_AUTH';
     case BEARER_TOKEN = 'BEARER_TOKEN';
     case OAUTH2 = 'OAUTH2';
     case X_API_KEY = 'X_API_KEY';

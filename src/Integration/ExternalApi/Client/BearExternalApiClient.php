@@ -62,6 +62,9 @@ final class BearExternalApiClient {
         if ($api->external_api_type === BearExternalApiTypeEnum::BEARER_TOKEN) {
             $headers['Authorization'] = "Bearer $api->encrypted_external_api_token";
         }
+        if ($api->external_api_type === BearExternalApiTypeEnum::BASIC_AUTH) {
+            $headers['Authorization'] = "Basic $api->encrypted_external_api_token";
+        }
         return new self(baseUrl: $baseUrl ?? $api->external_api_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'), baseHeaders: $headers);
     }
 
