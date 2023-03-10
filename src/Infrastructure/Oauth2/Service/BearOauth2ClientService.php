@@ -90,17 +90,12 @@ final class BearOauth2ClientService {
                 user: $bearUser
             );
         }
-        $updater = new BearOauth2UserUpdater($bearOauth2User);
-        $updater->setEncryptedUserRefreshToken(encrypted_user_refresh_token: $data['refresh_token'] ?? $bearOauth2User->encrypted_user_refresh_token)
+        return (new BearOauth2UserUpdater($bearOauth2User))->setEncryptedUserRefreshToken(encrypted_user_refresh_token: $data['refresh_token'] ?? $bearOauth2User->encrypted_user_refresh_token)
             ->setEncryptedUserAccessToken(encrypted_user_access_token: $data['access_token'], user_access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']))
             ->setOauth2UserName(oauth2_user_name: $token->name)
             ->setOauth2UserEmail(oauth2_user_email: $token->email)
-            ->setOauth2Scope(oauth2_scope: is_array($data['scope']) ? implode(separator: ' ', array: $data['scope']) : $data['scope']);
-
-        if ($updater->getUserId() === null) {
-            $updater->setUserId(user_id: $bearUser?->id);
-        }
-        return $updater->update();
+            ->setOauth2Scope(oauth2_scope: is_array($data['scope']) ? implode(separator: ' ', array: $data['scope']) : $data['scope'])
+            ->setUserId(user_id: $bearUser?->id)->update();
     }
 
     public static function exchangeCode(string $code, BearOauth2Client $client, string $redirect_uri = null): Response {

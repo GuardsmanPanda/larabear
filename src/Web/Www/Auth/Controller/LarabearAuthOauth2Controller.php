@@ -3,7 +3,9 @@
 namespace GuardsmanPanda\Larabear\Web\Www\Auth\Controller;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearLogLoginHistoryCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserUpdater;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Enum\BearUserLoginTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
@@ -54,6 +56,7 @@ final class LarabearAuthOauth2Controller extends Controller {
                 createBearUser: $createUserIfNotExists
             );
             if ($user->user_id !== null && Session::get(key: 'oauth2_login_user', default: false) === true) {
+                BearLogLoginHistoryCreator::create(user_id: $user->user_id, login_type: BearUserLoginTypeEnum::OAUTH2);
                 BearUserUpdater::fromId(id: $user->user_id)->setLastLoginNow()->update();
                 Session::migrate(destroy: true);
                 Session::put(key: 'bear_user_id', value: $user->user_id);

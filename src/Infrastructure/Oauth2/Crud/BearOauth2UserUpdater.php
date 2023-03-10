@@ -82,9 +82,6 @@ final class BearOauth2UserUpdater {
         return $this->model->oauth2_user_email;
     }
 
-    public function getUserId(): string|null {
-        return $this->model->user_id;
-    }
 
     public function update(): BearOauth2User {
         $this->model->save();
