@@ -81,7 +81,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
     public function databaseTypeToPhpType(string $databaseType): string {
         return match ($databaseType) {
             'date', 'timestamp with time zone' => 'CarbonInterface',
-            'text', 'inet', 'cidr', 'uuid' => 'string',
+            'text', 'character varying', 'inet', 'cidr', 'uuid' => 'string',
             'integer', 'bigint', 'smallint' => 'int',
             'double precision' => 'float',
             'jsonb' => 'ArrayObject',
@@ -95,7 +95,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
             'integer', 'bigint', 'smallint' => 0,
             'timestamp with time zone' => 12,
             'date', => 10,
-            'text', 'inet', 'cidr', 'uuid' => 6,
+            'text', 'character varying', 'inet', 'cidr', 'uuid' => 6,
             'double precision' => 4,
             'jsonb' => 8,
             'boolean' => 2,
@@ -106,7 +106,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
     private function postgresTypeToPhpHeader(string $postgres_type): string {
         return match ($postgres_type) {
             'jsonb' => 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;',
-            'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean' => '',
+            'text', 'character varying', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean' => '',
             'date', 'timestamp with time zone' => 'use Carbon\\CarbonInterface;',
             default => throw new RuntimeException(message: "Unknown type: $postgres_type")
         };
@@ -117,7 +117,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
             return "'encrypted'";
         }
         return match ($postgres_type) {
-            'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean' => null,
+            'text', 'character varying', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean' => null,
             'timestamp with time zone' => "'immutable_datetime'",
             'jsonb' => "AsArrayObject::class",
             'date' => "'immutable_date'",
