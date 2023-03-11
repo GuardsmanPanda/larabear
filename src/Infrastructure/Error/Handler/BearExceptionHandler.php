@@ -39,8 +39,8 @@ final class BearExceptionHandler extends Handler {
 
     protected function prepareException(Throwable $e): Throwable {
         return match (true) {
-            $e instanceof ModelNotFoundException => new BadRequestHttpException(message: "The findOrFail... failed [{$e->getMessage()}]", previous: $e),
-            $e instanceof RecordsNotFoundException => new BadRequestHttpException(message: "The call to sole() did not return exactly one record [{$e->getMessage()}]", previous: $e),
+            $e instanceof ModelNotFoundException => new BadRequestHttpException(message: "The findOrFail... failed", previous: $e),
+            $e instanceof RecordsNotFoundException => new BadRequestHttpException(message: "The call to sole() did not return exactly one record", previous: $e),
             default => parent::prepareException($e)
         };
     }
