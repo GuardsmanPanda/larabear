@@ -15,14 +15,18 @@ final class BearShortCodeService {
             throw new RuntimeException(message: 'The last-unique-short-code config value is not a string.');
         }
 
-        // Change value string into array of characters
-        $value_array = str_split(string: $value);
+        if ($value === '1') {
+            $value_array = [-1];
+        } else {
+            // Change value string into array of characters
+            $value_array = str_split(string: $value);
 
-        // Map each character to the index in the chars string
-        $value_array = array_map(callback: static function($char) {
-            $pos = strpos(haystack: self::CHARS, needle: $char);
-            return is_int(value: $pos) ? $pos : throw new RuntimeException(message: 'Invalid character in short code');
-        }, array: $value_array);
+            // Map each character to the index in the chars string
+            $value_array = array_map(callback: static function($char) {
+                $pos = strpos(haystack: self::CHARS, needle: $char);
+                return is_int(value: $pos) ? $pos : throw new RuntimeException(message: 'Invalid character in short code');
+            }, array: $value_array);
+        }
 
         // Reverse the value array
         $value_array = array_reverse(array: $value_array);
