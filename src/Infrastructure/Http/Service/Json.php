@@ -10,6 +10,14 @@ final class Json {
         return new JsonResponse(data: null, status: 204);
     }
 
+    public static function clientError(string $message): JsonResponse {
+        return new JsonResponse(data: ['message' => $message], status: 400);
+    }
+
+    public static function serverError(string $message): JsonResponse {
+        return new JsonResponse(data: ['message' => $message], status: 500);
+    }
+
     /**
      * @param string $sql
      * @param array<mixed> $data

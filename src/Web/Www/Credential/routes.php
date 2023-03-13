@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+use GuardsmanPanda\Larabear\Web\Www\Credential\Controller\LarabearExternalApiController;
 use GuardsmanPanda\Larabear\Web\Www\Credential\Controller\LarabearOauth2ClientController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,4 +12,10 @@ Route::prefix('oauth2/client')->group(function () {
     Route::get(uri: '{oauth2_client_id}/add-user', action: [LarabearOauth2ClientController::class, 'addUserDialog']);
     Route::patch(uri: '{oauth2_client_id}', action: [LarabearOauth2ClientController::class, 'update']);
     Route::delete(uri: '{oauth2_client_id}', action: [LarabearOauth2ClientController::class, 'delete']);
+});
+
+Route::prefix('external')->group(function () {
+    Route::get(uri: '', action: [LarabearExternalApiController::class, 'index']);
+    Route::post(uri: '', action: [LarabearExternalApiController::class, 'create']);
+    Route::get(uri: 'create', action: [LarabearExternalApiController::class, 'createDialog']);
 });

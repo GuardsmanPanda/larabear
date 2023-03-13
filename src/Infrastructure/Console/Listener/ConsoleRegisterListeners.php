@@ -23,7 +23,7 @@ final class ConsoleRegisterListeners {
     private static array $ignoreCommands = [
         '',
         'about',
-        'migrate',
+        'migrate:status',
         'optimize',
         'optimize:clear',
         'package:discover',
