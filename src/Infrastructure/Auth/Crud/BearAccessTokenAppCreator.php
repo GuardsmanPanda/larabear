@@ -14,23 +14,19 @@ final class BearAccessTokenAppCreator {
         string $access_token,
         string $request_ip_restriction = '0.0.0.0/0',
         string $api_primary_key = null,
-        string $server_hostname_restriction = null,
         CarbonInterface $expires_at = null,
-        CarbonInterface $last_usage_at = null
     ): BearAccessTokenApp {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearAccessTokenApp();
         $model->id = Str::uuid()->toString();
 
-        $model->route_prefix_restriction = $route_prefix_restriction;
+        $model->route_prefix_restriction = trim(string: $route_prefix_restriction, characters: '/ ');
         $model->request_ip_restriction = $request_ip_restriction;
-        $model->access_token_purpose = $access_token_purpose;
+        $model->access_token_purpose = trim($access_token_purpose);
         $model->hashed_access_token = hash(algo: 'xxh128', data: $access_token);
         $model->api_primary_key = $api_primary_key;
-        $model->server_hostname_restriction = $server_hostname_restriction;
         $model->expires_at = $expires_at;
-        $model->last_usage_at = $last_usage_at;
 
         $model->save();
         return $model;

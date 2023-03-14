@@ -16,7 +16,7 @@ final class LarabearAccessTokenAppController extends Controller {
             'access_tokens' => DB::select(query: "
                 SELECT 
                     id, api_primary_key,
-                    route_prefix_restriction, server_hostname_restriction, request_ip_restriction,
+                    route_prefix_restriction, request_ip_restriction,
                     access_token_purpose, expires_at, last_usage_at, created_at, updated_at
                 FROM bear_access_token_app
                 ORDER BY request_ip_restriction, created_at DESC
@@ -39,7 +39,6 @@ final class LarabearAccessTokenAppController extends Controller {
             access_token: Req::getStringOrDefault(key: 'access_token'),
             request_ip_restriction: Req::getStringOrDefault(key: 'request_ip_restriction', default: '0.0.0.0/0'),
             api_primary_key: Req::getString(key: 'api_primary_key'),
-            server_hostname_restriction: Req::getString(key: 'server_hostname_restriction'),
             expires_at: Req::getDateTime(key: 'expires_at'),
         );
         return $this->index();
@@ -50,7 +49,7 @@ final class LarabearAccessTokenAppController extends Controller {
             'access_token' => DB::selectOne(query: "
                 SELECT 
                     id, api_primary_key,
-                    route_prefix_restriction, server_hostname_restriction, request_ip_restriction,
+                    route_prefix_restriction, request_ip_restriction,
                     access_token_purpose, expires_at, last_usage_at
                 FROM bear_access_token_app
                 WHERE id = ?

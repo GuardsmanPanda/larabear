@@ -41,10 +41,6 @@ final class BearAccessTokenAppUpdater {
         return $this;
     }
 
-    public function setServerHostnameRestriction(string|null $server_hostname_restriction): self {
-        $this->model->server_hostname_restriction = $server_hostname_restriction;
-        return $this;
-    }
 
     public function setExpiresAt(CarbonInterface|null $expires_at): self {
         if ($expires_at?->toIso8601String() === $this->model->expires_at?->toIso8601String()) {
@@ -54,11 +50,11 @@ final class BearAccessTokenAppUpdater {
         return $this;
     }
 
-    public function setLastUsageAt(CarbonInterface|null $last_usage_at): self {
-        if ($last_usage_at?->toIso8601String() === $this->model->last_usage_at?->toIso8601String()) {
+    public function setLastUsageDate(CarbonInterface|null $last_usage_date): self {
+        if ($last_usage_date?->toDateString() === $this->model->last_usage_date?->toDateString()) {
             return $this;
         }
-        $this->model->last_usage_at = $last_usage_at;
+        $this->model->last_usage_date = $last_usage_date;
         return $this;
     }
 

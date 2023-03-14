@@ -69,8 +69,9 @@
                     <x-bear::sidebar.link path="/bear/access/user" icon="users" >User</x-bear::sidebar.link>
                     <x-bear::sidebar.divider>Config</x-bear::sidebar.divider>
                     <x-bear::sidebar.link path="/bear/config" icon="wrench" >Config</x-bear::sidebar.link>
-                    <x-bear::sidebar.divider>Oauth2</x-bear::sidebar.divider>
+                    <x-bear::sidebar.divider>Credentials</x-bear::sidebar.divider>
                     <x-bear::sidebar.link path="/bear/credential/oauth2/client" icon="rectangle-group" >Oauth2 Clients</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/credential/external" icon="rectangle-group" >External Api's</x-bear::sidebar.link>
                     <x-bear::sidebar.divider>Logs</x-bear::sidebar.divider>
                     <x-bear::sidebar.link path="/bear/log/database-change" icon="circle-stack" >Database Changes</x-bear::sidebar.link>
                     <x-bear::sidebar.link path="/bear/log/error" icon="exclamation-triangle" >Errors</x-bear::sidebar.link>

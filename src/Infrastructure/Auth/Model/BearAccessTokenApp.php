@@ -49,9 +49,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $request_ip_restriction
  * @property string $route_prefix_restriction
  * @property string|null $api_primary_key
- * @property string|null $server_hostname_restriction
  * @property CarbonInterface|null $expires_at
- * @property CarbonInterface|null $last_usage_at
+ * @property CarbonInterface|null $last_usage_date
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -62,12 +61,12 @@ final class BearAccessTokenApp extends Model {
     protected $keyType = 'string';
     public $incrementing = false;
     /** @var array<string> $log_exclude_columns */
-    public array $log_exclude_columns = ['last_usage_at'];
+    public array $log_exclude_columns = ['last_usage_date'];
 
     /** @var array<string, string> $casts */
     protected $casts = [
         'expires_at' => 'immutable_datetime',
-        'last_usage_at' => 'immutable_datetime',
+        'last_usage_date' => 'immutable_datetime',
     ];
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];
