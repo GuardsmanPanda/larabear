@@ -9,8 +9,8 @@
             </x-slot>
             @foreach($php_info as $info)
                 <tr class="hover:bg-sky-50">
-                    <td class="px-2 py-2 font-medium">{{$info->name}}</td>
-                    <td class="px-2 py-2">{{$info->value}}</td>
+                    <td class="px-2 py-2 font-medium">{{$info['name']}}</td>
+                    <td class="px-2 py-2">{{$info['value']}}</td>
                     <td class="px-2 py-2">
                         @foreach($info->info as $key => $info_item)
                             <div>{{$key}}, {{$info_item}}</div>
