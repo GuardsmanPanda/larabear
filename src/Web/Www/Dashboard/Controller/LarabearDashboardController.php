@@ -8,12 +8,29 @@ use Illuminate\View\View;
 
 final class LarabearDashboardController extends Controller {
     public function index(): View {
-
         return Resp::view(view: 'larabear-dashboard::index', data: [
-            'opcache' => opcache_get_status(),
-            'opcache_config' => opcache_get_configuration(),
-            'opcache_json' => json_encode(opcache_get_status(), JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT),
-            'opcache_config_json' => json_encode(opcache_get_configuration(), JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT),
+            'php_info' => $this->collectPhpInfo(),
         ]);
+    }
+
+    /**
+     * @return array<string, array{name: string, value: mixed, info: array<string, string>}>
+     */
+    private function collectPhpInfo(): array {
+        $phpInfo = [];
+        $phpInfo['php_version'] = ['name' => 'php_version', 'value' => PHP_VERSION, 'info' => []];
+        $opCache = opcache_get_configuration();
+        if (!is_array($opCache)) {
+            return $phpInfo;
+        }
+        $opcacheConfigs = $opCache['directives'];
+
+        $phpInfo['opcache_enabled'] = ['name' => 'opcache_enabled', 'value' => $opcacheConfigs['opcache.enable'], 'info' => []];
+        if ($opcacheConfigs['opcache.enable']) {
+            $phpInfo['opcache_enabled']['info']['success'] = 'OPCache is enabled';
+        } else {
+            $phpInfo['opcache_enabled']['info']['error'] = 'OPCache is disabled';
+        }
+        return $phpInfo;
     }
 }

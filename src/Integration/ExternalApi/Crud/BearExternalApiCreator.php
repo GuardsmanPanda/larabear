@@ -7,6 +7,7 @@ use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiTypeEnum
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 
 final class BearExternalApiCreator {
     /**
@@ -38,7 +39,11 @@ final class BearExternalApiCreator {
         $model->external_api_slug = $external_api_slug;
         $model->external_api_description = $external_api_description;
         $model->external_api_type = $external_api_type;
-        $model->encrypted_external_api_token = $encrypted_external_api_token;
+        if ($external_api_type === BearExternalApiTypeEnum::BASIC_AUTH) {
+            $model->encrypted_external_api_token = base64_encode($encrypted_external_api_token ?? throw new InvalidArgumentException(message: 'Basic Auth requires a username:password'));
+        } else {
+            $model->encrypted_external_api_token = $encrypted_external_api_token;
+        }
         $model->external_api_base_url = $external_api_base_url;
         $model->oauth2_user_id = $oauth2_user_id;
         $model->external_api_base_headers_json = $external_api_base_headers_json;
