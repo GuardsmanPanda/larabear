@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearLogDatabaseChange select(array $columns = ['*'])
  * @method static BearLogDatabaseChange with(array $relations)
  * @method static BearLogDatabaseChange leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static BearLogDatabaseChange where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
+ * @method static BearLogDatabaseChange where(string $column, string $operator = null, string $value = null)
  * @method static BearLogDatabaseChange whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
  * @method static BearLogDatabaseChange whereNotExists(Closure $callback, string $boolean = 'and')
  * @method static BearLogDatabaseChange whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)

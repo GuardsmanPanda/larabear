@@ -42,6 +42,7 @@ final class LarabearDatabaseModelData {
     ) {
         $this->headers = new Set(setType: 'string');
         $this->headers->add(element: 'use Closure;');
+        $this->headers->add(element: 'use Carbon\CarbonInterface;');
         $this->headers->add(element: 'use Illuminate\Database\Eloquent\Model;');
         $this->headers->add(element: 'use Illuminate\Database\Eloquent\Collection;');
     }
@@ -277,32 +278,35 @@ final class LarabearDatabaseModelData {
         $content .= " * @method static $this->modelClassName firstOrFail(array \$columns = ['*'])" . PHP_EOL;
         $content .= " * @method static $this->modelClassName firstOrCreate(array \$filter, array \$values)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName firstOrNew(array \$filter, array \$values)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName|null firstWhere(string \$column, string \$operator = null, string|float|int|bool \$value = null, string \$boolean = 'and')" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName|null firstWhere(string \$column, string \$operator = null, string|float|int|bool \$value = null)" . PHP_EOL;
         $content .= " * @method static Collection all(array \$columns = ['*'])" . PHP_EOL;
         $content .= " * @method static Collection get(array \$columns = ['*'])" . PHP_EOL;
         $content .= " * @method static Collection pluck(\$column, \$key = null)" . PHP_EOL;
         $content .= " * @method static Collection fromQuery(string \$query, array \$bindings = [])" . PHP_EOL;
         $content .= " * @method static $this->modelClassName lockForUpdate()" . PHP_EOL;
         $content .= " * @method static $this->modelClassName select(array \$columns = ['*'])" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName selectRaw(string \$expression, array \$bindings = [])" . PHP_EOL;
         $content .= " * @method static $this->modelClassName with(array \$relations)" . PHP_EOL;
         if ($this->softDeletes) {
             $content .= " * @method static $this->modelClassName onlyTrashed()" . PHP_EOL;
             $content .= " * @method static $this->modelClassName withTrashed()" . PHP_EOL;
         }
         $content .= " * @method static $this->modelClassName leftJoin(string \$table, string \$first, string \$operator = null, string \$second = null)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName where(string \$column, string \$operator = null, string|float|int|bool \$value = null, string \$boolean = 'and')" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereExists(Closure \$callback, string \$boolean = 'and', bool \$not = false)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereNotExists(Closure \$callback, string \$boolean = 'and')" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName where(string \$column, string \$operator = null, string|float|int|bool \$value = null)" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName whereExists(Closure \$callback)" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName whereNotExists(Closure \$callback)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName whereHas(string \$relation, Closure \$callback = null, string \$operator = '>=', int \$count = 1)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName whereDoesntHave(string \$relation, Closure \$callback = null)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName withWhereHas(string \$relation, Closure \$callback = null, string \$operator = '>=', int \$count = 1)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereIn(string \$column, array \$values, string \$boolean = 'and', bool \$not = false)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereNull(string|array \$columns, string \$boolean = 'and')" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereNotNull(string|array \$columns, string \$boolean = 'and')" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereRaw(string \$sql, array \$bindings = [], string \$boolean = 'and')" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName whereIn(string \$column, array \$values)" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName whereNull(string|array \$columns)" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName whereNotNull(string|array \$columns)" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName whereYear(string \$column, string \$operator = null, CarbonInterface|string|int \$value = null)" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName whereRaw(string \$sql, array \$bindings = [])" . PHP_EOL;
         $content .= " * @method static $this->modelClassName groupBy(string \$groupBy)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName orderBy(string \$column, string \$direction = 'asc')" . PHP_EOL;
         $content .= " * @method static $this->modelClassName orderByDesc(string \$column)" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName orderByRaw(string \$sql, array \$bindings = [])" . PHP_EOL;
         $content .= " * @method static $this->modelClassName limit(int \$value)" . PHP_EOL;
         $content .= " * @method static int count(array \$columns = ['*'])" . PHP_EOL;
         $content .= " * @method static mixed sum(string \$column)" . PHP_EOL;
