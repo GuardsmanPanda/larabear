@@ -157,12 +157,12 @@ final class Req {
             throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseString(value: $val);
+        return $val === null ? null : ValidateAndParseValue::parseString(value: $val, errorMessage: "Input field '$key' error");
     }
 
     public static function getStringOrDefault(string $key, string $default = null): string {
         $value = self::request()->input(key: $key);
-        return $value !== null ? ValidateAndParseValue::parseString(value: $value) : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
+        return $value !== null ? ValidateAndParseValue::parseString(value: $value, errorMessage: "Input field '$key' error") : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
     }
 
 
@@ -174,12 +174,12 @@ final class Req {
             throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseInt(value: $val);
+        return $val === null ? null : ValidateAndParseValue::parseInt(value: $val, errorMessage: "Input field '$key' error");
     }
 
     public static function getIntOrDefault(string $key, int $default = null): int {
         $value = self::request()->input(key: $key);
-        return $value !== null ? ValidateAndParseValue::parseInt(value: $value) : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
+        return $value !== null ? ValidateAndParseValue::parseInt(value: $value, errorMessage: "Input field '$key' error") : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
     }
 
 
@@ -191,12 +191,12 @@ final class Req {
             throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseFloat(value: $val);
+        return $val === null ? null : ValidateAndParseValue::parseFloat(value: $val, errorMessage: "Input field '$key' error");
     }
 
     public static function getFloatOrDefault(string $key, float $default = null): float {
         $value = self::request()->input(key: $key);
-        return $value !== null ? ValidateAndParseValue::parseFloat(value: $value) : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
+        return $value !== null ? ValidateAndParseValue::parseFloat(value: $value, errorMessage: "Input field '$key' error") : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
     }
 
 
@@ -208,12 +208,12 @@ final class Req {
             throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseBool(value: $val);
+        return $val === null ? null : ValidateAndParseValue::parseBool(value: $val, errorMessage: "Input field '$key' error");
     }
 
     public static function getBoolOrDefault(string $key, bool $default = null): bool {
         $value = self::request()->input(key: $key);
-        return $value !== null ? ValidateAndParseValue::parseBool(value: $value) : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
+        return $value !== null ? ValidateAndParseValue::parseBool(value: $value, errorMessage: "Input field '$key' error") : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
     }
 
 
@@ -223,17 +223,17 @@ final class Req {
                 return $defaultIfMissing;
             }
             if (is_string($defaultIfMissing)) {
-                return ValidateAndParseValue::parseDate(value: $defaultIfMissing);
+                return ValidateAndParseValue::parseDate(value: $defaultIfMissing, errorMessage: "Input field '$key' error");
             }
             throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseDate(value: $val);
+        return $val === null ? null : ValidateAndParseValue::parseDate(value: $val, errorMessage: "Input field '$key' error");
     }
 
     public static function getDateOrDefault(string $key, CarbonInterface $default = null): CarbonInterface {
         $value = self::request()->input(key: $key);
-        return $value !== null ? ValidateAndParseValue::parseDate(value: $value) : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
+        return $value !== null ? ValidateAndParseValue::parseDate(value: $value, errorMessage: "Input field '$key' error") : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
     }
 
 
@@ -272,7 +272,7 @@ final class Req {
             throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
         $val = self::request()->input(key: $key);
-        return $val === null ? null : ValidateAndParseValue::parseArray(value: $val);
+        return $val === null ? null : ValidateAndParseValue::parseArray(value: $val, errorMessage: "Input field '$key' error");
     }
 
 
@@ -292,12 +292,12 @@ final class Req {
         if ($val === null) {
             return null;
         }
-        return ValidateAndParseValue::parseJsonToArray(value: $val);
+        return ValidateAndParseValue::parseJsonToArray(value: $val, errorMessage: "Input field '$key' error");
     }
 
     /**
      * @param string $key
-     * @param array<mixed> $default
+     * @param array<mixed>|null $default
      * @return array<mixed>
      */
     public static function getJsonOrDefault(string $key, array $default = null): array {
@@ -305,7 +305,7 @@ final class Req {
         if ($value === null) {
             return $default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
-        return ValidateAndParseValue::parseJsonToArray(value: $value);
+        return ValidateAndParseValue::parseJsonToArray(value: $value, errorMessage: "Input field '$key' error");
     }
 
 
@@ -325,12 +325,12 @@ final class Req {
         if ($val === null) {
             return null;
         }
-        return ValidateAndParseValue::parseJsonToArrayObject(value: $val);
+        return ValidateAndParseValue::parseJsonToArrayObject(value: $val, errorMessage: "Input field '$key' error");
     }
 
     /**
      * @param string $key
-     * @param ArrayObject<string|int, mixed> $default
+     * @param ArrayObject<string|int, mixed>|null $default
      * @return ArrayObject<string|int, mixed>
      */
     public static function getArrayObjectOrDefault(string $key, ArrayObject $default = null): ArrayObject {
@@ -338,7 +338,7 @@ final class Req {
         if ($value === null) {
             return $default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
-        return ValidateAndParseValue::parseJsonToArrayObject(value: $value);
+        return ValidateAndParseValue::parseJsonToArrayObject(value: $value, errorMessage: "Input field '$key' error");
     }
 
 
