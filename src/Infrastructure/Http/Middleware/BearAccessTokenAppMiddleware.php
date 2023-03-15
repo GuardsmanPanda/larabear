@@ -27,7 +27,7 @@ final class BearAccessTokenAppMiddleware {
             WHERE
                 at.hashed_access_token = ? AND ? <<= at.request_ip_restriction
                 AND starts_with(?, at.route_prefix_restriction)
-        ", bindings: [$hashed_access_token, Req::ip(), Req::hostname(), Req::path()]);
+        ", bindings: [$hashed_access_token, Req::ip(), Req::path()]);
         } else {
             $access = DB::selectOne(query: "
             SELECT at.id, at.api_primary_key, at.expires_at
@@ -35,7 +35,7 @@ final class BearAccessTokenAppMiddleware {
             WHERE
                 at.hashed_access_token = ? AND (at.request_ip_restriction = '0.0.0.0/0' OR at.request_ip_restriction = ?)
                 AND (? LIKE CONCAT(at.route_prefix_restriction , '%'))
-            ", bindings: [$hashed_access_token, Req::ip(), Req::hostname(), Req::path()]);
+            ", bindings: [$hashed_access_token, Req::ip(), Req::path()]);
         }
 
         // If access token is not valid, abort
