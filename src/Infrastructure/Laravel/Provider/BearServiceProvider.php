@@ -44,6 +44,7 @@ final class BearServiceProvider extends ServiceProvider {
                 Route::prefix('access')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Access/routes.php'));
                 Route::prefix('credential')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Credential/routes.php'));
                 Route::prefix('config')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Config/routes.php'));
+                Route::prefix('email')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Email/routes.php'));
                 Route::prefix('log')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Log/routes.php'));
             });
             Route::prefix('bear/api')->middleware([BearTransactionMiddleware::class])->group(function () {
