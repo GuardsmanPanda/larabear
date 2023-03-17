@@ -302,6 +302,7 @@ final class LarabearDatabaseModelData {
         $content .= " * @method static $this->modelClassName whereNull(string|array \$columns)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName whereNotNull(string|array \$columns)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName whereYear(string \$column, string \$operator = null, CarbonInterface|string|int \$value = null)" . PHP_EOL;
+        $content .= " * @method static $this->modelClassName whereMonth(string \$column, string \$operator = null, CarbonInterface|string|int \$value = null)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName whereRaw(string \$sql, array \$bindings = [])" . PHP_EOL;
         $content .= " * @method static $this->modelClassName groupBy(string \$groupBy)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName orderBy(string \$column, string \$direction = 'asc')" . PHP_EOL;

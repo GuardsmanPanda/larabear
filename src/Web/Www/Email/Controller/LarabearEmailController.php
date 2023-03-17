@@ -6,7 +6,8 @@ use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
 use Illuminate\Routing\Controller;
 
 final class LarabearEmailController extends Controller {
-    public function emailContent(BearEmail $email): string {
+    public function emailContent(string $email_id): string {
+        $email = BearEmail::findOrFail(id: $email_id);
         return $email->email_html ?? $email->email_text ?? 'No email content found.';
     }
 }

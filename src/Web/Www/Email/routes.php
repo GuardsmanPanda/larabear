@@ -3,4 +3,4 @@
 use GuardsmanPanda\Larabear\Web\Www\Email\Controller\LarabearEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::get(uri: 'email-content/{email}', action: [LarabearEmailController::class, 'emailContent']);
+Route::get(uri: 'email-content/{email_id}', action: [LarabearEmailController::class, 'emailContent']);
