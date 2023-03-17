@@ -14,12 +14,12 @@ final class Standard extends Component {
 
     public function __construct(public readonly string $color = 'gray') {
         $this->classes .= match ($color) {
-            'gray' => ' shadow-gray-200',
+            'gray' => '',
             'yellow' => ' shadow-yellow-300',
             default => throw new RuntimeException(message: 'Unknown color: ' . $color),
         };
         $this->headerClasses .= match ($color) {
-            'gray' => ' border-gray-200 bg-gray-100',
+            'gray' => ' border-gray-200 bg-gray-50',
             'yellow' => ' border-yellow-400 bg-yellow-300',
             default => throw new RuntimeException(message: 'Unknown color: ' . $color),
         };

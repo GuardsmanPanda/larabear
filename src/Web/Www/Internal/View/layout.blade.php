@@ -1,12 +1,13 @@
 <?php declare(strict_types=1); ?>
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Secret UI">
     <meta name="referrer" content="no-referrer"/>
     <title>Larabear UI</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/themes/material.min.css" integrity="sha512-R8oUfFYCO11afzYKUhovrP+cajy9JF0iRRHbuk16gPYstVj9McxsE/D8wnH2l0aBKuhnkAd6VMLiTFV1Bp+zKA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/themes/material.min.css" integrity="sha512-R8oUfFYCO11afzYKUhovrP+cajy9JF0iRRHbuk16gPYstVj9McxsE/D8wnH2l0aBKuhnkAd6VMLiTFV1Bp+zKA==" crossorigin="anonymous"
+          referrerpolicy="no-referrer"/>
     @if(config('bear.ui.app_css') !== null)
         <link rel="stylesheet" href="{!! config('bear.ui.app_css') !!}">
     @else
@@ -18,9 +19,10 @@
     <script src="https://unpkg.com/tippy.js@6"></script>
     <style>
         .sidebar-active {
-            background-color: #e0f2fe !important;
-            color: #0369a1 !important;
+            background-color: rgb(229 231 235) !important;
+            color: rgb(55 65 81) !important;
         }
+
         .toastify {
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -28,9 +30,11 @@
             right: 15px;
             z-index: 100;
         }
+
         .toastify.on {
             opacity: 0.95;
         }
+
         .toast-close {
             background: 0 0;
             border: 0;
@@ -38,12 +42,13 @@
             opacity: 0.4;
             padding: 0 5px;
         }
+
         th {
             font-weight: 500;
         }
     </style>
 </head>
-<body class="min-h-screen" style="display: grid; grid-template-rows: 3rem auto" hx-target="#primary">
+<body class="h-screen w-screen max-h-screen bg-gray-100 flex flex-col" style="display: grid; grid-template-rows: 3rem auto" hx-target="#primary">
 <nav class="font-bold w-full flex items-center px-4  shadow bg-gray-900 shadow-gray-800/50 z-20">
     <a href="/bear" class="flex py-2 gap-2 items-center text-sky-500 text-lg">
         <svg class="h-6 w-6 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -56,34 +61,34 @@
     </div>
     <div class="text-gray-400">Back</div>
 </nav>
-<div style="display: grid; grid-template-columns: 16rem auto;">
+<div style="display: grid; grid-template-columns: 16rem auto;" class="flex-grow flex-shrink">
     <div class="flex md:w-64 flex-col shadow-lg">
         <div class="flex flex-col flex-grow pt-2 overflow-y-auto">
             <div class="flex-grow flex flex-col">
                 <nav class="flex-1 px-2 pb-4">
-                    <x-bear::sidebar.link path="/bear" icon="home" >Dashboard</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear" icon="home">Dashboard</x-bear::sidebar.link>
                     <x-bear::sidebar.divider>Access</x-bear::sidebar.divider>
-                    <x-bear::sidebar.link path="/bear/access/token/app" icon="key" >API Tokens</x-bear::sidebar.link>
-                    <x-bear::sidebar.link path="/bear/access/permission" icon="lock-closed" >Permissions</x-bear::sidebar.link>
-                    <x-bear::sidebar.link path="/bear/access/role" icon="clipboard-document" >Roles</x-bear::sidebar.link>
-                    <x-bear::sidebar.link path="/bear/access/user" icon="users" >User</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/access/token/app" icon="key">API Tokens</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/access/permission" icon="lock-closed">Permissions</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/access/role" icon="clipboard-document">Roles</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/access/user" icon="users">User</x-bear::sidebar.link>
                     <x-bear::sidebar.divider>Config</x-bear::sidebar.divider>
-                    <x-bear::sidebar.link path="/bear/config" icon="wrench" >Config</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/config" icon="wrench">Config</x-bear::sidebar.link>
                     <x-bear::sidebar.divider>Credentials</x-bear::sidebar.divider>
-                    <x-bear::sidebar.link path="/bear/credential/oauth2/client" icon="rectangle-group" >Oauth2 Clients</x-bear::sidebar.link>
-                    <x-bear::sidebar.link path="/bear/credential/external" icon="rectangle-group" >External Api's</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/credential/oauth2/client" icon="rectangle-group">Oauth2 Clients</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/credential/external" icon="rectangle-group">External Api's</x-bear::sidebar.link>
                     <x-bear::sidebar.divider>Logs</x-bear::sidebar.divider>
-                    <x-bear::sidebar.link path="/bear/log/database-change" icon="circle-stack" >Database Changes</x-bear::sidebar.link>
-                    <x-bear::sidebar.link path="/bear/log/error" icon="exclamation-triangle" >Errors</x-bear::sidebar.link>
-                    <x-bear::sidebar.link path="/bear/log/response-error" icon="shield-exclamation" >Response Errors</x-bear::sidebar.link>
-                    <x-bear::sidebar.link path="/bear/log/console" icon="command-line" >Console</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/log/database-change" icon="circle-stack">Database Changes</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/log/error" icon="exclamation-triangle">Errors</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/log/response-error" icon="shield-exclamation">Response Errors</x-bear::sidebar.link>
+                    <x-bear::sidebar.link path="/bear/log/console" icon="command-line">Console</x-bear::sidebar.link>
                 </nav>
             </div>
         </div>
     </div>
     <div id="primary" class="max-w-full min-w-full px-4 lg:px-6 pt-2">{!! $content !!}</div>
 </div>
-<x-bear::dialog.layout />
+<x-bear::dialog.layout/>
 <script>
     const toast = (type, message) => {
         let classes = 'rounded font-medium shadow text-sm py-3 px-5 before:top-0 before:left-0 before:absolute fixed before:h-full  before:w-2.5 '
@@ -117,7 +122,7 @@
                 }
             }
         });
-        el.addEventListener('click', e =>  e.preventDefault());
+        el.addEventListener('click', e => e.preventDefault());
     }
 
     const tippyFunction = function (el) {
