@@ -15,8 +15,8 @@
     <script src="https://unpkg.com/tippy.js@6"></script>
     <style>
         .sidebar-active {
-            background-color: rgb(243 244 246) !important;
-            color: rgb(55 65 81) !important;
+            background-color: rgb(17 24 39) !important;
+            color: rgb(220 220 220) !important;
         }
 
         .toastify {
@@ -44,36 +44,24 @@
         }
     </style>
 </head>
-<body class="h-screen w-screen max-h-screen bg-gray-100 flex flex-col" style="display: grid; grid-template-rows: 3rem auto" hx-target="#primary">
-<nav class="font-bold w-full flex items-center px-4  shadow bg-gray-900 shadow-gray-800/50 z-20">
-    <a href="/bear" class="flex py-2 gap-2 items-center text-sky-500 text-lg">
-        <svg class="h-6 w-6 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l-9 5 9 5 9-5-9-5z"/>
-        </svg>
-        <div>Larabear UI</div>
-    </a>
-    <div class="flex flex-1 pl-6 items-center" hx-target="#primary">
-    </div>
-    <div class="text-gray-400">Back</div>
-</nav>
+<body class="h-screen w-screen max-h-screen bg-gray-100" hx-target="#primary">
 <div style="display: grid; grid-template-columns: 16rem auto;" class="flex-grow flex-shrink">
-    <div class="flex md:w-64 flex-col shadow-lg">
+    <div class="flex md:w-64 flex-col shadow bg-gray-800">
         <div class="flex flex-col flex-grow pt-2 overflow-y-auto">
             <div class="flex-grow flex flex-col">
                 <nav class="flex-1 px-2 pb-4">
                     <x-bear::sidebar.link path="/bear" icon="home">Dashboard</x-bear::sidebar.link>
-                    <x-bear::sidebar.divider>Access</x-bear::sidebar.divider>
+                    <x-bear::sidebar.divider color="gray-800">Access</x-bear::sidebar.divider>
                     <x-bear::sidebar.link path="/bear/access/token/app" icon="key">API Tokens</x-bear::sidebar.link>
                     <x-bear::sidebar.link path="/bear/access/permission" icon="lock-closed">Permissions</x-bear::sidebar.link>
                     <x-bear::sidebar.link path="/bear/access/role" icon="clipboard-document">Roles</x-bear::sidebar.link>
                     <x-bear::sidebar.link path="/bear/access/user" icon="users">User</x-bear::sidebar.link>
-                    <x-bear::sidebar.divider>Config</x-bear::sidebar.divider>
+                    <x-bear::sidebar.divider color="gray-800">Config</x-bear::sidebar.divider>
                     <x-bear::sidebar.link path="/bear/config" icon="wrench">Config</x-bear::sidebar.link>
-                    <x-bear::sidebar.divider>Credentials</x-bear::sidebar.divider>
+                    <x-bear::sidebar.divider color="gray-800">Credentials</x-bear::sidebar.divider>
                     <x-bear::sidebar.link path="/bear/credential/oauth2/client" icon="rectangle-group">Oauth2 Clients</x-bear::sidebar.link>
                     <x-bear::sidebar.link path="/bear/credential/external" icon="rectangle-group">External Api's</x-bear::sidebar.link>
-                    <x-bear::sidebar.divider>Logs</x-bear::sidebar.divider>
+                    <x-bear::sidebar.divider color="gray-800">Logs</x-bear::sidebar.divider>
                     <x-bear::sidebar.link path="/bear/log/database-change" icon="circle-stack">Database Changes</x-bear::sidebar.link>
                     <x-bear::sidebar.link path="/bear/log/error" icon="exclamation-triangle">Errors</x-bear::sidebar.link>
                     <x-bear::sidebar.link path="/bear/log/response-error" icon="shield-exclamation">Response Errors</x-bear::sidebar.link>
