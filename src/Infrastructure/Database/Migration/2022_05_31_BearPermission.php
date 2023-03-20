@@ -11,11 +11,9 @@ return new class extends Migration {
         Schema::create(table: 'bear_permission', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'permission_slug')->primary();
-                $table->text(column: 'permission_name');
                 $table->text(column: 'permission_description')->nullable();
             } else {
                 $table->string(column: 'permission_slug')->primary();
-                $table->string(column: 'permission_name');
                 $table->string(column: 'permission_description')->nullable();
             }
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

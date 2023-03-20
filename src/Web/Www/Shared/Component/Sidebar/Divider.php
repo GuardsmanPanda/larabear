@@ -8,13 +8,13 @@ use Illuminate\View\View;
 use RuntimeException;
 
 final class Divider extends Component {
-    public function __construct(public readonly string $color = 'gray') {}
+    public function __construct(public readonly string $color = 'white') {}
 
     public function render(): View {
         return Resp::view(view: 'bear::sidebar.divider', data: [
             'divider_classes' => match ($this->color) {
-                'white' => 'w-full border-t border-gray-300 mx-2',
-                'gray' => 'w-full border-t border-gray-400 mx-2',
+                'white' => 'w-full border-t border-gray-200 border-dashed mx-2',
+                'gray' => 'w-full border-t border-gray-300 border-dashed mx-2',
                 default => throw new RuntimeException(message: 'Unknown color: ' . $this->color),
             },
             'text_classes' => match ($this->color) {

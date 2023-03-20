@@ -8,18 +8,14 @@
     <title>Larabear UI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/themes/material.min.css" integrity="sha512-R8oUfFYCO11afzYKUhovrP+cajy9JF0iRRHbuk16gPYstVj9McxsE/D8wnH2l0aBKuhnkAd6VMLiTFV1Bp+zKA==" crossorigin="anonymous"
           referrerpolicy="no-referrer"/>
-    @if(config('bear.ui.app_css') !== null)
-        <link rel="stylesheet" href="{!! config('bear.ui.app_css') !!}">
-    @else
-        <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    @endif
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://unpkg.com/htmx.org@1.8.5/dist/htmx.min.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <style>
         .sidebar-active {
-            background-color: rgb(229 231 235) !important;
+            background-color: rgb(243 244 246) !important;
             color: rgb(55 65 81) !important;
         }
 

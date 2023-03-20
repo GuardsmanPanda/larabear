@@ -30,10 +30,7 @@ return new class extends Migration {
             } else {
                 $table->string(column: 'hashed_access_token')->index();
             }
-            $table->integer(column: 'usage_count')->default(0);
             $table->timestampTz(column: 'last_usage_at')->nullable();
-            $table->integer(column: 'delete_get_request_log_after_days')->default(30);
-            $table->integer(column: 'delete_all_request_log_after_days')->default(180);
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->useCurrentOnUpdate();
         });
