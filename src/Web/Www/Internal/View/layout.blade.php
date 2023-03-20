@@ -17,6 +17,7 @@
         .sidebar-active {
             background-color: rgb(17 24 39) !important;
             color: rgb(220 220 220) !important;
+            font-weight: 500 !important;
         }
 
         .toastify {
@@ -45,7 +46,7 @@
     </style>
 </head>
 <body class="h-screen w-screen max-h-screen bg-gray-100" hx-target="#primary">
-<div style="display: grid; grid-template-columns: 16rem auto;" class="flex-grow flex-shrink">
+<div style="display: grid; grid-template-columns: 16rem auto;" class="h-full">
     <div class="flex md:w-64 flex-col shadow bg-gray-800">
         <div class="flex flex-col flex-grow pt-2 overflow-y-auto">
             <div class="flex-grow flex flex-col">

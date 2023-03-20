@@ -1,9 +1,9 @@
 <?php declare(strict_types=1); ?>
-<x-bear::heading.h1 subtitle="A list of all permissions in the system.">Application Permissions
+<x-bear::heading.h1-section subtitle="A list of all permissions in the system.">Application Permissions
     <x-slot name="extra">
         <x-bear::button.dark icon="lock-closed" hx-get="/bear/access/permission/create" hx-target="#dialog-content">New Permission</x-bear::button.dark>
     </x-slot>
-</x-bear::heading.h1>
+</x-bear::heading.h1-section>
 <x-bear::table.layout.standard>
     <x-slot name="tableHead">
         <th scope="col" class="px-2 py-2">Permission Slug</th>
