@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 
 final class Link extends Component {
-    public string $classes = 'flex items-center px-2 py-1.5 hover:font-medium rounded text-gray-400 hover:text-gray-300';
+    public string $classes = 'flex items-center px-2 py-1 hover:font-medium rounded text-gray-400 hover:text-gray-300';
 
     public function __construct(public readonly string $path, public readonly string|null $icon = null, public readonly string $color = 'gray-800') {
         if ($this->path === '/bear' || str_starts_with(haystack: '/' . Req::path(), needle: $this->path)) {

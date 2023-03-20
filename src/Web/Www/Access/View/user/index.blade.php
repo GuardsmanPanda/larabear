@@ -1,9 +1,9 @@
 <?php declare(strict_types=1); ?>
-<x-bear::heading.h1 subtitle="A list of all users in the system, manage users, roles and permissions.">Application Users
+<x-bear::heading.h1-seciton subtitle="A list of all users in the system, manage users, roles and permissions.">Application Users
     <x-slot name="extra">
         <x-bear::button.dark icon="user" hx-get="/bear/access/user/create" hx-target="#dialog-content">New user</x-bear::button.dark>
     </x-slot>
-</x-bear::heading.h1>
+</x-bear::heading.h1-section>
 <x-bear::table.layout.standard>
     <x-slot name="tableHead">
         <th scope="col" class="px-2 py-2">User Id</th>
