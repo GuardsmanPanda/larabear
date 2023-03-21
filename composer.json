@@ -21,7 +21,7 @@
     "ext-zend-opcache": "*",
     "doctrine/dbal": "^3.6",
     "guzzlehttp/guzzle": "^7.5",
-    "laravel/framework": "^9.52 || ^10.4",
+    "laravel/framework": "^9.52 || ^10.3",
     "ramsey/collection": "^2.0",
     "wildbit/postmark-php": "^4.0"
   },
