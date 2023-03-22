@@ -1,5 +1,5 @@
 <?php declare(strict_types=1); ?>
-<x-bear::dialog.crud title="Update {{$config_data->config_key}}" endpoint='{{ "/bear/config/$config_data->config_key" }}' class="w-[50rem]">
+<x-bear::dialog.update title="Update {{$config_data->config_key}}" hx-patch='{{ "/bear/config/$config_data->config_key" }}' class="w-[50rem]">
     <div class="grid grid-cols-2 gap-4">
         <x-bear::form.text id="config_key" pattern="\S+::\S+" required>{{$config_data->config_key}}</x-bear::form.text>
         <x-bear::form.select id="config_data_type" required>
@@ -19,4 +19,4 @@
         <x-bear::form.date id="config_date">{{$config_data->config_date}}</x-bear::form.date>
         <x-bear::form.datetime-local id="config_timestamp">{{$config_data->config_timestamp}}</x-bear::form.datetime-local>
     </div>
-</x-bear::dialog.crud>
+</x-bear::dialog.update>

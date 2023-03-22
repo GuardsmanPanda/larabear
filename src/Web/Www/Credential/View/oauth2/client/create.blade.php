@@ -1,5 +1,5 @@
 <?php declare(strict_types=1); ?>
-<x-bear::dialog.crud type="create" submitText="Create" title="New API Access Token" endpoint="/bear/credential/oauth2/client" class="w-[50rem]">
+<x-bear::dialog.create title="New API Access Token" hx-post="/bear/credential/oauth2/client" class="w-[50rem]">
     <div class="grid grid-cols-3 gap-4">
         <x-bear::form.text id="oauth2_client_id" required></x-bear::form.text>
         <x-bear::form.select id="oauth2_client_type" required>
@@ -20,4 +20,4 @@
         <x-bear::form.text id="oauth2_user_scope"></x-bear::form.text>
         <x-bear::form.text id="oauth2_client_redirect_path"></x-bear::form.text>
     </div>
-</x-bear::dialog.crud>
+</x-bear::dialog.create>

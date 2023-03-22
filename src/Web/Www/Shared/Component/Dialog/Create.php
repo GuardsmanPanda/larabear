@@ -8,7 +8,7 @@ use Illuminate\View\View;
 
 final class Create  extends Component {
     public function __construct(
-        public readonly string $title,
+        public readonly string $title = 'Create',
         public readonly string $submitText = 'Create',
         public readonly string $cancelText = 'Cancel',
     ) {}

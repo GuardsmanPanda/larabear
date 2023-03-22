@@ -1,5 +1,5 @@
 <?php declare(strict_types=1); ?>
-<x-bear::dialog.crud type="create" submitText="Create" title="New API Access Token" endpoint="/bear/config" class="w-[50rem]">
+<x-bear::dialog.create title="New API Access Token" hx-post="/bear/config" class="w-[50rem]">
     <div class="grid grid-cols-2 gap-4">
         <x-bear::form.text id="config_key" pattern="\S+::\S+" required placeholder="namespace::key"></x-bear::form.text>
         <x-bear::form.select id="config_data_type" required>
@@ -24,4 +24,4 @@
         <x-bear::form.date id="config_date"></x-bear::form.date>
         <x-bear::form.datetime-local id="config_timestamp"></x-bear::form.datetime-local>
     </div>
-</x-bear::dialog.crud>
+</x-bear::dialog.create>
