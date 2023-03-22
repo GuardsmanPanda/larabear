@@ -1,5 +1,5 @@
 <?php declare(strict_types=1); ?>
-<form id="dialog-form" {!! $action !!} autocomplete="off" {{ $attributes }} hx-dialog-close>
+<form id="dialog-form" autocomplete="off" {{ $attributes }} hx-dialog-close>
     <x-bear::form.csrf/>
     {!!$slot!!}
 </form>

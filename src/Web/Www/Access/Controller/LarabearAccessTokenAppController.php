@@ -17,7 +17,7 @@ final class LarabearAccessTokenAppController extends Controller {
                 SELECT 
                     id, api_primary_key,
                     route_prefix_restriction, request_ip_restriction,
-                    access_token_purpose, expires_at, last_usage_at, created_at, updated_at
+                    access_token_purpose, expires_at, last_usage_date, created_at, updated_at
                 FROM bear_access_token_app
                 ORDER BY request_ip_restriction, created_at DESC
             ")
@@ -28,20 +28,20 @@ final class LarabearAccessTokenAppController extends Controller {
         return Resp::view(view: 'larabear-access::token.app.create');
     }
 
-    public function create(): View {
+    public function create(): string {
         $prefix = Req::getStringOrDefault(key: 'route_prefix_restriction');
         if (str_starts_with(haystack: '/', needle: $prefix)) {
             $prefix = substr(string: $prefix, offset: 1);
         }
-        BearAccessTokenAppCreator::create(
+        $token = BearAccessTokenAppCreator::create(
             route_prefix_restriction:$prefix,
             access_token_purpose: Req::getStringOrDefault(key: 'access_token_purpose'),
-            access_token: Req::getStringOrDefault(key: 'access_token'),
+            access_token: Req::getString(key: 'access_token'),
             request_ip_restriction: Req::getStringOrDefault(key: 'request_ip_restriction', default: '0.0.0.0/0'),
             api_primary_key: Req::getString(key: 'api_primary_key'),
             expires_at: Req::getDateTime(key: 'expires_at'),
         );
-        return $this->index();
+        return $token;
     }
 
     public function updateDialog(string $id): View {
@@ -50,7 +50,7 @@ final class LarabearAccessTokenAppController extends Controller {
                 SELECT 
                     id, api_primary_key,
                     route_prefix_restriction, request_ip_restriction,
-                    access_token_purpose, expires_at, last_usage_at
+                    access_token_purpose, expires_at, last_usage_date
                 FROM bear_access_token_app
                 WHERE id = ?
             ", bindings: [$id])

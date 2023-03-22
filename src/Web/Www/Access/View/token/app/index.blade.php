@@ -25,7 +25,7 @@
             <td class="px-2 py-2">{{$token->request_ip_restriction}}</td>
             <x-bear::table.cell.relative>{{$token->expires_at}}</x-bear::table.cell.relative>
             <td class="px-2 py-2" tippy="{{$token->access_token_purpose}}">{{$token->access_token_purpose}}</td>
-            <x-bear::table.cell.relative>{{$token->last_usage_at}}</x-bear::table.cell.relative>
+            <x-bear::table.cell.relative>{{$token->last_usage_date}}</x-bear::table.cell.relative>
             <x-bear::table.cell.relative>{{$token->created_at}}</x-bear::table.cell.relative>
             <x-bear::table.cell.relative>{{$token->updated_at}}</x-bear::table.cell.relative>
             <td class="px-2">
