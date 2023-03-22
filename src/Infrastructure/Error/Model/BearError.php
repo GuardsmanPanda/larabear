@@ -3,7 +3,6 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Error\Model;
 
 use Closure;
-use GuardsmanPanda\Larabear\Infrastructure\App\Model\BearSeverity;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
@@ -64,7 +63,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property ArrayObject|null $request_query_json
  *
  * @property BearUser|null $user
- * @property BearSeverity $errorSeverity
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -81,10 +79,6 @@ final class BearError extends Model {
 
     public function user(): BelongsTo|null {
         return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
-    }
-
-    public function errorSeverity(): BelongsTo {
-        return $this->belongsTo(related: BearSeverity::class, foreignKey: 'error_severity', ownerKey: 'slug');
     }
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];

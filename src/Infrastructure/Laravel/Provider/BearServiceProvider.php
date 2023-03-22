@@ -10,6 +10,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCrud
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseModelGeneratorCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Email\Command\LarabearEmailProcessCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Command\LarabearGenerateSessionKeyCommand;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearAccessTokenAppMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearAccessTokenUserMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearHtmxMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearPermissionMiddleware;
@@ -39,6 +40,7 @@ final class BearServiceProvider extends ServiceProvider {
             Route::post(uri: 'bear/user-api/auth/sign-in', action: [LarabearUserApiAuthController::class, 'signIn'])->middleware([BearTransactionMiddleware::class]);
             Route::post(uri: 'bear/user-api/auth/sign-out', action: [LarabearUserApiAuthController::class, 'signOut'])->middleware([BearTransactionMiddleware::class]);
 
+            // Web Authentication Routes, mostly for the control panel.
             Route::prefix('bear')->middleware([BearSessionAuthMiddleware::class, BearHtmxMiddleware::class, BearTransactionMiddleware::class, 'permission:larabear-ui'])->group(function () {
                 Route::prefix('')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Dashboard/routes.php'));
                 Route::prefix('access')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Access/routes.php'));
@@ -47,12 +49,19 @@ final class BearServiceProvider extends ServiceProvider {
                 Route::prefix('email')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Email/routes.php'));
                 Route::prefix('log')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Log/routes.php'));
             });
-            Route::prefix('bear/api')->middleware([BearTransactionMiddleware::class])->group(function () {
+
+            // Api Routes, requires proper token.
+            Route::prefix('bear/api')->middleware([BearAccessTokenAppMiddleware::class, BearTransactionMiddleware::class])->group(function () {
                 Route::prefix('error')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Api/Error/routes.php'));
+                Route::prefix('monitoring')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Api/Monitoring/routes.php'));
             });
+
+            // User Api Routes, requires proper user token.
             Route::prefix('bear/user-api')->middleware([BearAccessTokenUserMiddleware::class, BearTransactionMiddleware::class])->group(function () {
                 Route::prefix('user')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/UserApi/User/routes.php'));
             });
+
+            // Routes with no authentication required.
             Route::prefix('bear')->middleware(['session:allow-guest', BearTransactionMiddleware::class])->group(function () {
                 Route::prefix('auth')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Auth/routes.php'));
             });
