@@ -5,5 +5,7 @@
 <div>
     <x-bear::section.basic title="Laravel">laravel stuff</x-bear::section.basic>
     <div>php stuff</div>
+    <x-bear::section.basic title="Laravel">laravel stuff</x-bear::section.basic>
+    <x-bear::section.basic title="🖥️ System">{{$hostname}}</x-bear::section.basic>
 </div>
 </div>

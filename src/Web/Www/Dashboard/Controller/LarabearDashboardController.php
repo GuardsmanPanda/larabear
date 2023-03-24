@@ -4,12 +4,14 @@ namespace GuardsmanPanda\Larabear\Web\Www\Dashboard\Controller;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Process;
 use Illuminate\View\View;
 
 final class LarabearDashboardController extends Controller {
     public function index(): View {
         return Resp::view(view: 'larabear-dashboard::index', data: [
             'php_info' => $this->collectPhpInfo(),
+            'hostname' => Process::command(command: 'hostname')->run()->output(),
         ]);
     }
 
