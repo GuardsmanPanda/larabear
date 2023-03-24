@@ -27,15 +27,15 @@ final class BearExternalApiClient {
      */
     public function __construct(private readonly string $baseUrl, private readonly array $baseHeaders = []) {}
 
-    public static function fromOauth2Client(BearOauth2Client $client, string $baseUrl = null): self {
+    public static function fromOauth2Client(BearOauth2Client $client, string $baseUrl = null, array $baseHeaders = []): self {
         return new self(
             baseUrl: $baseUrl ?? $client->oauth2_client_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
             baseHeaders: ['Authorization' => 'Bearer ' . BearOauth2ClientService::getAccessToken(client: $client)]
         );
     }
 
-    public static function fromOauth2ClientId(string $clientId): self {
-        return self::fromOauth2Client(client: BearOauth2Client::findOrFail(id: $clientId));
+    public static function fromOauth2ClientId(string $clientId, string $baseUrl = null, array $baseHeaders = []): self {
+        return self::fromOauth2Client(client: BearOauth2Client::findOrFail(id: $clientId), baseUrl: $baseUrl, baseHeaders: $baseHeaders);
     }
 
     /**
@@ -53,19 +53,19 @@ final class BearExternalApiClient {
 
     public static function fromExternalApi(BearExternalApi $api, string $baseUrl = null): self {
         $headers = $api->external_api_base_headers_json?->getArrayCopy() ?? [];
-        //if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2_CLIENT) {
-        //    return self::fromOauth2ClientId(clientId: $api->, baseHeaders: $headers);
-        //}
-        if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2) {
+        if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2_CLIENT->value) {
+            return self::fromOauth2ClientId(clientId: $api->oauth2_client_id, baseUrl: $baseUrl ?? $api->external_api_base_url, baseHeaders: $headers);
+        }
+        if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2->value) {
             return self::fromOauth2User(user: $api->oauth2User, baseUrl: $baseUrl ?? $api->external_api_base_url, baseHeaders: $headers);
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::X_API_KEY) {
+        if ($api->external_api_type === BearExternalApiTypeEnum::X_API_KEY->value) {
             $headers['X-API-Key'] = $api->encrypted_external_api_token;
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::BEARER_TOKEN) {
+        if ($api->external_api_type === BearExternalApiTypeEnum::BEARER_TOKEN->value) {
             $headers['Authorization'] = "Bearer $api->encrypted_external_api_token";
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::BASIC_AUTH) {
+        if ($api->external_api_type === BearExternalApiTypeEnum::BASIC_AUTH->value) {
             $headers['Authorization'] = "Basic $api->encrypted_external_api_token";
         }
 
