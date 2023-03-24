@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 
 final class Basic extends Component {
-    public string $classes = "rounded-b shadow px-4 py-2";
+    public string $classes = "rounded-b shadow px-4 py-2 bg-white";
 
     public function __construct(public readonly string $title) {}
 

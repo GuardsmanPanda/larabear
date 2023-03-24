@@ -3,7 +3,7 @@
 <div class="grid grid-cols-3" xmlns:x-bear="http://www.w3.org/1999/html">
 <div class="col-span-2">data</div>
 <div>
-    <div>laravel stuff</div>
+    <x-bear::section.basic title="Laravel">laravel stuff</x-bear::section.basic>
     <div>php stuff</div>
 </div>
 </div>

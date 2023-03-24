@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void {
         Schema::table(table: 'bear_external_api', callback: static function (Blueprint $table) {
             $table->uuid(column: 'oauth2_client_id')->nullable();
-            $table->foreign('oauth2_client_id')->references('id')->on('bear_oauth2_client');
+            $table->foreign('oauth2_client_id')->references('oauth2_client_id')->on('bear_oauth2_client');
         });
     }
 
