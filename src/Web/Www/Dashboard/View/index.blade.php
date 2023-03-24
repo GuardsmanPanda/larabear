@@ -1,24 +1,9 @@
 <?php declare(strict_types=1); ?>
-<div class="grid grid-cols-2" xmlns:x-bear="http://www.w3.org/1999/html">
-    <div>
-        <x-bear::table.layout.standard>
-            <x-slot name="tableHead">
-                <th scope="col" class="px-2 py-2">Name</th>
-                <th scope="col" class="px-2 py-2">Value</th>
-                <th scope="col" class="px-2 py-2">Info</th>
-            </x-slot>
-            @foreach($php_info as $info)
-                <tr class="hover:bg-sky-50">
-                    <td class="px-2 py-2 font-medium">{{$info['name']}}</td>
-                    <td class="px-2 py-2">{{$info['value']}}</td>
-                    <td class="px-2 py-2">
-                        @foreach($info['info'] as $key => $info_item)
-                            <div>{{$key}}, {{$info_item}}</div>
-                        @endforeach
-                    </td>
-                </tr>
-            @endforeach
-        </x-bear::table.layout.standard>
-    </div>
-    <div></div>
+<x-bear::heading.h1-section subtitle="A brief overview of the system state.">Larabear Dashboard</x-bear::heading.h1-section>
+<div class="grid grid-cols-3" xmlns:x-bear="http://www.w3.org/1999/html">
+<div class="col-span-2">data</div>
+<div>
+    <div>laravel stuff</div>
+    <div>php stuff</div>
+</div>
 </div>

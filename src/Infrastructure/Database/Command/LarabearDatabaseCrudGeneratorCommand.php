@@ -92,7 +92,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
         $content .= PHP_EOL;
         $content .= "    ): {$model->getModelClassName()} {" . PHP_EOL;
         $content .= "        BearDatabaseService::mustBeInTransaction();" . PHP_EOL;
-        $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);" . PHP_EOL . PHP_EOL;
+        $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);" . PHP_EOL . PHP_EOL;
         $content .= "        \$model = new {$model->getModelClassName()}();" . PHP_EOL;
 
         if (!$model->hasCompositePrimaryKey() && $model->getColumns()[$model->getPrimaryKeyColumns()[0]]->nativeDataType === 'uuid') {
@@ -128,7 +128,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
         $content .= "final class $className {" . PHP_EOL;
         $content .= "    public function __construct(private readonly {$model->getModelClassName()} \$model) {" . PHP_EOL;
         $content .= "        BearDatabaseService::mustBeInTransaction();" . PHP_EOL;
-        $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);" . PHP_EOL;
+        $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);" . PHP_EOL;
         $content .= '    }' . PHP_EOL . PHP_EOL;
 
 
@@ -188,7 +188,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
         $content .= 'final class ' . $model->getModelClassName() . 'Deleter {' . PHP_EOL;
         $content .= "    public static function delete({$model->getModelClassName()} \$model): void {" . PHP_EOL;
         $content .= "        BearDatabaseService::mustBeInTransaction();" . PHP_EOL;
-        $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);" . PHP_EOL;
+        $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['DELETE']);" . PHP_EOL;
         $content .= "        \$model->delete();" . PHP_EOL;
         $content .= '    }' . PHP_EOL;
 
