@@ -53,6 +53,9 @@ final class BearExternalApiClient {
 
     public static function fromExternalApi(BearExternalApi $api, string $baseUrl = null): self {
         $headers = $api->external_api_base_headers_json?->getArrayCopy() ?? [];
+        //if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2_CLIENT) {
+        //    return self::fromOauth2ClientId(clientId: $api->, baseHeaders: $headers);
+        //}
         if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2) {
             return self::fromOauth2User(user: $api->oauth2User, baseUrl: $baseUrl ?? $api->external_api_base_url, baseHeaders: $headers);
         }
@@ -65,6 +68,7 @@ final class BearExternalApiClient {
         if ($api->external_api_type === BearExternalApiTypeEnum::BASIC_AUTH) {
             $headers['Authorization'] = "Basic $api->encrypted_external_api_token";
         }
+
         return new self(baseUrl: $baseUrl ?? $api->external_api_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'), baseHeaders: $headers);
     }
 
