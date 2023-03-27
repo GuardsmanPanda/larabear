@@ -5,6 +5,15 @@
 <div class="grid gap-4">
     <x-bear::section.basic title="Laravel">laravel stuff</x-bear::section.basic>
     <x-bear::section.basic title="PHP">PHP Stuff</x-bear::section.basic>
-    <x-bear::section.basic title="🖥️ {{$hostname}}"></x-bear::section.basic>
+    <x-bear::section.basic title="🖥️ {{$system['host']['Static hostname']}}}">
+        <div class="grid grid-cols-2 gap-4">
+            <div>Operating System</div>
+            <div>{{$system['host']['Operating System']}}</div>
+            <div>Kernel</div>
+            <div>{{$system['host']['Kernel']}}</div>
+            <div>Architecture</div>
+            <div>{{$system['host']['Architecture']}}</div>
+        </div>
+    </x-bear::section.basic>
 </div>
 </div>

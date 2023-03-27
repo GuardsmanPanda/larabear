@@ -12,7 +12,7 @@ final class LarabearDashboardController extends Controller {
     public function index(): View {
         return Resp::view(view: 'larabear-dashboard::index', data: [
             'php_info' => $this->collectPhpInformation(),
-            'system_info' => $this->collectSystemInformation(),
+            'system' => $this->collectSystemInformation(),
         ]);
     }
 
@@ -50,12 +50,12 @@ final class LarabearDashboardController extends Controller {
         return $phpInfo;
     }
 
+    /**
+     * @return array<string, string>
+     */
     private function collectSystemInformation(): array {
-        $hostnameCtl  = BearArrayService::stringToKeyValue(Process::command(command: 'hostnamectl')->run()->output(), separator: ': ');
-        dd($hostnameCtl);
-
         return [
-
+            'host' => BearArrayService::stringToKeyValue(Process::command(command: 'hostnamectl')->run()->output(), separator: ': '),
         ];
     }
 }

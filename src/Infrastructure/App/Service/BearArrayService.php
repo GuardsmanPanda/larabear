@@ -50,7 +50,9 @@ final class BearArrayService {
         foreach (explode(separator: $eol, string: $string) as $line) {
             $idx = strpos(haystack: $line, needle: $separator);
             if ($idx === false) {
-                throw new InvalidArgumentException(message: "Invalid line: $line");
+                if ($line !== '') {
+                    throw new InvalidArgumentException(message: "Invalid line: $line, no separator [$separator] found");
+                }
             } else {
                 $result[substr(string: $line, offset: 0, length: $idx)] = substr(string: $line, offset: $idx + 1);
             }
