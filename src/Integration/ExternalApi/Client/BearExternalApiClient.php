@@ -27,6 +27,12 @@ final class BearExternalApiClient {
      */
     public function __construct(private readonly string $baseUrl, private readonly array $baseHeaders = []) {}
 
+    /**
+     * @param BearOauth2Client $client
+     * @param string|null $baseUrl
+     * @param array<string, string> $baseHeaders
+     * @return BearExternalApiClient
+     */
     public static function fromOauth2Client(BearOauth2Client $client, string $baseUrl = null, array $baseHeaders = []): self {
         return new self(
             baseUrl: $baseUrl ?? $client->oauth2_client_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
@@ -34,6 +40,12 @@ final class BearExternalApiClient {
         );
     }
 
+    /**
+     * @param string $clientId
+     * @param string|null $baseUrl
+     * @param array<string, string> $baseHeaders
+     * @return self
+     */
     public static function fromOauth2ClientId(string $clientId, string $baseUrl = null, array $baseHeaders = []): self {
         return self::fromOauth2Client(client: BearOauth2Client::findOrFail(id: $clientId), baseUrl: $baseUrl, baseHeaders: $baseHeaders);
     }
@@ -53,19 +65,19 @@ final class BearExternalApiClient {
 
     public static function fromExternalApi(BearExternalApi $api, string $baseUrl = null): self {
         $headers = $api->external_api_base_headers_json?->getArrayCopy() ?? [];
-        if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2_CLIENT->value) {
-            return self::fromOauth2ClientId(clientId: $api->oauth2_client_id, baseUrl: $baseUrl ?? $api->external_api_base_url, baseHeaders: $headers);
+        if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2_CLIENT) {
+            return self::fromOauth2ClientId(clientId: $api->oauth2_client_id ?? throw new RuntimeException(message: 'OAUTH2_CLIENT API type must reference bear_oauth2_client'), baseUrl: $baseUrl ?? $api->external_api_base_url, baseHeaders: $headers);
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2->value) {
-            return self::fromOauth2User(user: $api->oauth2User, baseUrl: $baseUrl ?? $api->external_api_base_url, baseHeaders: $headers);
+        if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2) {
+            return self::fromOauth2User(user: $api->oauth2User ?? throw new RuntimeException(message: 'OAUTH2 API type must reference bear_oauth2_user'), baseUrl: $baseUrl ?? $api->external_api_base_url, baseHeaders: $headers);
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::X_API_KEY->value) {
+        if ($api->external_api_type === BearExternalApiTypeEnum::X_API_KEY) {
             $headers['X-API-Key'] = $api->encrypted_external_api_token;
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::BEARER_TOKEN->value) {
+        if ($api->external_api_type === BearExternalApiTypeEnum::BEARER_TOKEN) {
             $headers['Authorization'] = "Bearer $api->encrypted_external_api_token";
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::BASIC_AUTH->value) {
+        if ($api->external_api_type === BearExternalApiTypeEnum::BASIC_AUTH) {
             $headers['Authorization'] = "Basic $api->encrypted_external_api_token";
         }
 
@@ -161,7 +173,7 @@ final class BearExternalApiClient {
             'PUT' => $pending->put($final_url, $body),
             'PATCH' => $pending->patch($final_url, $body),
             'DELETE' => $pending->delete($final_url, $body),
-            default => throw new RuntimeException('Invalid HTTP method')
+            default => throw new RuntimeException(message: 'Invalid HTTP method')
         };
     }
 }

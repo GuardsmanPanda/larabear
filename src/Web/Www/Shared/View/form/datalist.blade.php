@@ -13,6 +13,9 @@
         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded placeholder-gray-400">
         <datalist id="{{ $id }}_list">
             {{ $slot }}
+            @foreach($options as $key => $value)
+                <option value="{{$key}}">{{$value}}</option>
+            @endforeach
         </datalist>
     </div>
 </div>

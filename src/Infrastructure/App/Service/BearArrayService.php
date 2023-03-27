@@ -2,6 +2,8 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
+
 final class BearArrayService {
     /**
      * @param array<mixed> $array

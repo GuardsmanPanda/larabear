@@ -61,7 +61,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $created_at
  * @property string $updated_at
  * @property string $external_api_slug
- * @property string $external_api_type
  * @property string $external_api_description
  * @property string|null $oauth2_user_id
  * @property string|null $oauth2_client_id
@@ -69,6 +68,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $encrypted_external_api_token
  * @property ArrayObject|null $external_api_metadata_json
  * @property ArrayObject|null $external_api_base_headers_json
+ * @property BearExternalApiTypeEnum $external_api_type
  *
  * @property BearOauth2User|null $oauth2User
  * @property BearOauth2Client|null $oauth2Client
