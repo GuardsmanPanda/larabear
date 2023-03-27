@@ -23,7 +23,14 @@ final class LarabearExternalApiController extends Controller {
         return Resp::view(view: 'larabear-credential::external.create', data: [
             'external_api_types' => BearArrayService::enumCasesToKeyValueArray(BearExternalApiTypeEnum::cases()),
             'oauth2_clients' => Sql::toKeyValueArray(sql: "SELECT oauth2_client_id as key, oauth2_client_slug as value FROM bear_oauth2_client ORDER BY oauth2_client_id"),
-            'oauth2_users' => Sql::toKeyValueArray(sql: "SELECT oauth2_client_id as key, oauth2_client_slug as value FROM bear_oauth2_client ORDER BY oauth2_client_id"),
+            'oauth2_users' => Sql::toKeyValueArray(sql: "
+                SELECT
+                    ou.id, CONCAT(ou.id, ' - ', oc.oauth2_client_slug, '[' , u.user_display_name, ']') as value
+                FROM bear_oauth2_user ou
+                LEFT JOIN bear_oauth2_client oc ON oc.oauth2_client_id = ou.oauth2_client_id
+                LEFT JOIN bear_user u ON u.id = ou.user_id
+                ORDER BY oauth2_client_id
+            "),
         ]);
     }
 
