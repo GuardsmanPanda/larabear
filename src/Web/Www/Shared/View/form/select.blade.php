@@ -12,6 +12,9 @@
         <select name="{{ $id }}" id="{{ $id }}" aria-describedby="{{ $label }}" {{ $attributes->whereDoesntStartWith('class') }}
         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded placeholder-gray-400">
             {{ $slot }}
+            @foreach($options as $key => $value)
+                <option value="{{$key}}" {{$key === $selected ? 'selected' : ''}}>{{$value}}</option>
+            @endforeach
         </select>
     </div>
 </div>

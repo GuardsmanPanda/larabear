@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Credential\Controller;
 
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearArrayService;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\Sql;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
@@ -20,6 +21,7 @@ final class LarabearExternalApiController extends Controller {
 
     public function createDialog(): View {
         return Resp::view(view: 'larabear-credential::external.create', data: [
+            'external_api_types' => BearArrayService::enumCasesToKeyValueArray(BearExternalApiTypeEnum::cases()),
             'oauth2_clients' => Sql::toKeyValueArray(sql: "SELECT oauth2_client_id as key, oauth2_client_slug as value FROM bear_oauth2_client ORDER BY oauth2_client_id"),
             'oauth2_users' => Sql::toKeyValueArray(sql: "SELECT oauth2_client_id as key, oauth2_client_slug as value FROM bear_oauth2_client ORDER BY oauth2_client_id"),
         ]);

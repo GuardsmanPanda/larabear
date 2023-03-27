@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 use Illuminate\Support\Facades\DB;
+use PDO;
 
 final class Sql {
     /**
@@ -11,8 +12,10 @@ final class Sql {
      * @return array<mixed>
      */
     public static function toValueArray(String $sql, array $bindings = []): array {
-        $res = DB::select(query: $sql, bindings: $bindings);
-        return array_map(fn($item) => $item->value, $res);
+        $res = DB::getReadPdo()->prepare($sql);
+        $res->setFetchMode(PDO::FETCH_NUM);
+        $res->execute($bindings);
+        return array_map(fn($item) => $item[0], $res->fetchAll());
     }
 
     /**
@@ -21,7 +24,13 @@ final class Sql {
      * @return array<string|int, mixed>
      */
     public static function toKeyValueArray(String $sql, array $bindings = []): array {
-        $res = DB::select(query: $sql, bindings: $bindings);
-        return array_map(fn($item) => [$item->key => $item->value], $res);
+        $res = DB::getReadPdo()->prepare($sql);
+        $res->setFetchMode(PDO::FETCH_NUM);
+        $res->execute($bindings);
+        $result = [];
+        foreach ($res->fetchAll() as $item) {
+            $result[$item[0]] = $item[1];
+        }
+        return $result;
     }
 }

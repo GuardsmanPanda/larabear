@@ -8,7 +8,7 @@
             @endforeach
         </x-bear::form.select>
         <x-bear::form.text class="col-span-2" id="external_api_description" required placeholder="What is the external api for.."></x-bear::form.text>
-        <x-bear::form.datalist id="oauth2_client_id" options="$oauth2_clients"></x-bear::form.datalist>
-        <x-bear::form.datalist id="oauth2_user_id" options="$oauth2_users"></x-bear::form.datalist>
+        <x-bear::form.datalist id="oauth2_client_id" :options="$oauth2_clients"></x-bear::form.datalist>
+        <x-bear::form.datalist id="oauth2_user_id" :options="$oauth2_users"></x-bear::form.datalist>
     </div>
 </x-bear::dialog.create>

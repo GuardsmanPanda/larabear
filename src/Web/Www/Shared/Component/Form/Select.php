@@ -7,7 +7,13 @@ use Illuminate\View\View;
 use Illuminate\View\Component;
 
 final class Select extends Component {
-    public function __construct(public readonly string $id, public string $label = '', public readonly string|null $hxTrigger = null) {
+    /**
+     * @param string $id
+     * @param string $label
+     * @param array<string|int, string> $options
+     * @param string|int $selected
+     */
+    public function __construct(public readonly string $id, public string $label = '', public readonly array $options = [], public readonly string|int $selected = '') {
         if ($this->label === '') {
             $this->label = ucwords(string: str_replace(search: '_', replace: ' ', subject: $this->id));
         }

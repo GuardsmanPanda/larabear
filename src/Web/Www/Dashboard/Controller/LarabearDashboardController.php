@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Dashboard\Controller;
 
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearArrayService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Process;
@@ -10,15 +11,15 @@ use Illuminate\View\View;
 final class LarabearDashboardController extends Controller {
     public function index(): View {
         return Resp::view(view: 'larabear-dashboard::index', data: [
-            'php_info' => $this->collectPhpInfo(),
-            'hostname' => Process::command(command: 'hostname')->run()->output(),
+            'php_info' => $this->collectPhpInformation(),
+            'system_info' => $this->collectSystemInformation(),
         ]);
     }
 
     /**
      * @return array<string, array<string, string>>
      */
-    private function collectPhpInfo(): array {
+    private function collectPhpInformation(): array {
         $phpInfo = [];
         //phpInfo(INFO_GENERAL);
 
@@ -47,5 +48,14 @@ final class LarabearDashboardController extends Controller {
         }
 
         return $phpInfo;
+    }
+
+    private function collectSystemInformation(): array {
+        $hostnameCtl  = BearArrayService::stringToKeyValue(Process::command(command: 'hostnamectl')->run()->output(), separator: ': ');
+        dd($hostnameCtl);
+
+        return [
+
+        ];
     }
 }
