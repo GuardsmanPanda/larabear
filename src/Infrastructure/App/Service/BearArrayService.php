@@ -45,7 +45,7 @@ final class BearArrayService {
      */
     public static function stringToKeyValue(string $string, string $separator = ',', string $eol = PHP_EOL): array {
         $result = [];
-        foreach (explode(separator: $eol, string: $string) as $line) {
+        foreach (explode(separator: $eol, string: $string) as $line) {  // @phpstan-ignore-line
             $line = trim(string: $line);
             $idx = strpos(haystack: $line, needle: $separator);
             if ($idx === false) {

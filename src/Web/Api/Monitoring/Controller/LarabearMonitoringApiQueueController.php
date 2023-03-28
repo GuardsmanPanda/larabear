@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class LarabearMonitoringQueueController extends Controller {
+final class LarabearMonitoringApiQueueController extends Controller {
     public function failedJobsCount(): JsonResponse {
         BearGlobalStateService::setLogResponseError(value: false);
         $failed_jobs_count = DB::table(table: config(key: 'queue.failed.table'))->count();

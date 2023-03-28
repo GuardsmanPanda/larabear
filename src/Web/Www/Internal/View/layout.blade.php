@@ -14,6 +14,18 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-family: system-ui, sans-serif;
+        }
+
         .sidebar-active {
             background-color: rgb(17 24 39) !important;
             color: rgb(220 220 220) !important;

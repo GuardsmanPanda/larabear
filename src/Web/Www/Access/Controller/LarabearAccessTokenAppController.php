@@ -27,8 +27,8 @@ final class LarabearAccessTokenAppController extends Controller {
     public function createDialog(): View {
         $type = Req::getStringOrDefault(key: 'type', default: '');
         return Resp::view(view: 'larabear-access::token.app.create', data: [
-            'access_token_purpose' => $type === 'Monitoring' ? 'Token for monitoring endpoints' : '',
-            'route_prefix_restriction' => $type === 'Monitoring' ? '/bear/api/monitoring' : '/',
+            'access_token_purpose' => $type === 'monitoring' ? 'Token for monitoring endpoints' : '',
+            'route_prefix_restriction' => $type === 'monitoring' ? '/bear/api/monitoring' : '/',
         ]);
     }
 
