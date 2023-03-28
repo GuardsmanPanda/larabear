@@ -71,6 +71,7 @@ final class BearExternalApiClient {
         if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2) {
             return self::fromOauth2User(user: $api->oauth2User ?? throw new RuntimeException(message: 'OAUTH2 API type must reference bear_oauth2_user'), baseUrl: $baseUrl ?? $api->external_api_base_url, baseHeaders: $headers);
         }
+
         if ($api->external_api_type === BearExternalApiTypeEnum::X_API_KEY) {
             $headers['X-API-Key'] = $api->encrypted_external_api_token;
         }
@@ -80,8 +81,11 @@ final class BearExternalApiClient {
         if ($api->external_api_type === BearExternalApiTypeEnum::BASIC_AUTH) {
             $headers['Authorization'] = "Basic $api->encrypted_external_api_token";
         }
-
         return new self(baseUrl: $baseUrl ?? $api->external_api_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'), baseHeaders: $headers);
+    }
+
+    public static function fromSlug(string $slug, string $baseUrl = null): self {
+        return self::fromExternalApi(api: BearExternalApi::where(column: 'external_api_slug', value: $slug)->sole(), baseUrl: $baseUrl);
     }
 
     public static function fromGlobal(string $baseUrl = null): self {

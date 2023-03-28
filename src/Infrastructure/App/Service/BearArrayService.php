@@ -2,9 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
-use IntBackedEnum;
 use InvalidArgumentException;
-use StringBackedEnum;
 use UnitEnum;
 
 final class BearArrayService {
@@ -48,6 +46,7 @@ final class BearArrayService {
     public static function stringToKeyValue(string $string, string $separator = ',', string $eol = PHP_EOL): array {
         $result = [];
         foreach (explode(separator: $eol, string: $string) as $line) {
+            $line = trim(string: $line);
             $idx = strpos(haystack: $line, needle: $separator);
             if ($idx === false) {
                 if ($line !== '') {

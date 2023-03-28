@@ -22,25 +22,27 @@ final class BearAccessTokenAppMiddleware {
 
         if (DB::getPdo()->getAttribute(attribute: PDO::ATTR_DRIVER_NAME) === 'pgsql') {
             $access = DB::selectOne(query: "
-            SELECT at.id, at.api_primary_key, at.expires_at
+            SELECT at.id, at.api_primary_key, at.last_usage_date
             FROM bear_access_token_app at
             WHERE
                 at.hashed_access_token = ? AND ? <<= at.request_ip_restriction
                 AND starts_with(?, at.route_prefix_restriction)
+                AND (at.expires_at IS NULL OR at.expires_at > now())
         ", bindings: [$hashed_access_token, Req::ip(), Req::path()]);
         } else {
             $access = DB::selectOne(query: "
-            SELECT at.id, at.api_primary_key, at.expires_at
+            SELECT at.id, at.api_primary_key, at.last_usage_date
             FROM bear_access_token_app at
             WHERE
                 at.hashed_access_token = ? AND (at.request_ip_restriction = '0.0.0.0/0' OR at.request_ip_restriction = ?)
                 AND (? LIKE CONCAT(at.route_prefix_restriction , '%'))
+                AND (at.expires_at IS NULL OR at.expires_at > now())
             ", bindings: [$hashed_access_token, Req::ip(), Req::path()]);
         }
 
         // If access token is not valid, abort
         if ($access === null || $access->id === null) {
-            $message = 'The supplied access token is not valid.. ip: ' . Req::ip() . ', country: ' . Req::ipCountry() . ', path: ' . Req::path() . ', hostname: '. Req::hostname() . ', hashed_token: ' . $hashed_access_token;
+            $message = 'The supplied access token is not valid.. ip: ' . Req::ip() . ', country: ' . Req::ipCountry() . ', path: ' . Req::path() . ', hostname: ' . Req::hostname() . ', hashed_token: ' . $hashed_access_token;
             BearErrorCreator::create(
                 message: $message,
                 key: 'larabear::invalid-access-token-app',
@@ -49,10 +51,21 @@ final class BearAccessTokenAppMiddleware {
             );
             throw new AccessDeniedHttpException(message: $message);
         }
+
+        //Update last usage date
+        if ($access->last_usage_date === null || $access->last_usage_date !== now()->toDateString()) {
+            DB::update(query: "
+                UPDATE bear_access_token_app
+                SET last_usage_date = now()
+                WHERE id = ?
+            ", bindings: [$access->id]);
+        }
+
         BearGlobalStateService::setApiPrimaryKey($access->api_primary_key);
         BearGlobalStateService::setAccessTokenId($access->id);
         return $next($request);
     }
+
 
     public function terminate(Request $request, Response $response): void {
         $status_code = $response->getStatusCode();

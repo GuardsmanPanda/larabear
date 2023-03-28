@@ -279,10 +279,10 @@ final class LarabearDatabaseModelData {
         $content .= " * @method static $this->modelClassName firstOrCreate(array \$filter, array \$values)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName firstOrNew(array \$filter, array \$values)" . PHP_EOL;
         $content .= " * @method static $this->modelClassName|null firstWhere(string \$column, string \$operator, string|float|int|bool \$value)" . PHP_EOL;
-        $content .= " * @method static Collection all(array \$columns = ['*'])" . PHP_EOL;
-        $content .= " * @method static Collection get(array \$columns = ['*'])" . PHP_EOL;
-        $content .= " * @method static Collection pluck(\$column, \$key = null)" . PHP_EOL;
-        $content .= " * @method static Collection fromQuery(string \$query, array \$bindings = [])" . PHP_EOL;
+        $content .= " * @method static Collection all<$this->modelClassName>(array \$columns = ['*'])" . PHP_EOL;
+        $content .= " * @method static Collection get<$this->modelClassName>(array \$columns = ['*'])" . PHP_EOL;
+        $content .= " * @method static Collection pluck<$this->modelClassName>(\$column, \$key = null)" . PHP_EOL;
+        $content .= " * @method static Collection fromQuery<$this->modelClassName>(string \$query, array \$bindings = [])" . PHP_EOL;
         $content .= " * @method static $this->modelClassName lockForUpdate()" . PHP_EOL;
         $content .= " * @method static $this->modelClassName select(array \$columns = ['*'])" . PHP_EOL;
         $content .= " * @method static $this->modelClassName selectRaw(string \$expression, array \$bindings = [])" . PHP_EOL;

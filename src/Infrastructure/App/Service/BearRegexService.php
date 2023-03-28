@@ -19,5 +19,4 @@ final class BearRegexService {
         $res = $string === null ? null : preg_replace(pattern: '/\s+/', replacement: ' ', subject: trim(string: $string));
         return !is_string(value: $res) || $res === '' ? null : $res;
     }
-
 }
