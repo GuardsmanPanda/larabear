@@ -8,7 +8,6 @@ use GuardsmanPanda\Larabear\Infrastructure\Console\Listener\ConsoleRegisterListe
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCheckForeignKeysOnSoftDeletesCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCrudGeneratorCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseModelGeneratorCommand;
-use GuardsmanPanda\Larabear\Infrastructure\Email\Command\LarabearEmailProcessCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Command\LarabearGenerateSessionKeyCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearAccessTokenAppMiddleware;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearAccessTokenUserMiddleware;
@@ -84,7 +83,6 @@ final class BearServiceProvider extends ServiceProvider {
                 LarabearPhpStanCommand::class,
                 LarabearSecurityOsvScannerCommand::class,
                 LarabearOauth2CheckAccessCommand::class,
-                LarabearEmailProcessCommand::class,
             ]);
 
             $this->publishes(paths: [base_path(path: 'vendor/guardsmanpanda/larabear/config/config.php') => $this->app->configPath(path: 'bear.php')], groups: 'bear');
@@ -95,7 +93,6 @@ final class BearServiceProvider extends ServiceProvider {
                 $schedule = $this->app->make(abstract: Schedule::class);
                 $schedule->command(LarabearCleanLogTablesCommand::class)->dailyAt(time: '01:45');
                 $schedule->command(LarabearOauth2CheckAccessCommand::class)->dailyAt(time: '02:07');
-                $schedule->command(LarabearEmailProcessCommand::class)->everyTenMinutes();
             });
         } else {
             $this->loadViewsFrom(path: base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Access/View'), namespace: 'larabear-access');

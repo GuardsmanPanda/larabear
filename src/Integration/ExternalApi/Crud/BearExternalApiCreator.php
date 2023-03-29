@@ -17,6 +17,7 @@ final class BearExternalApiCreator {
      * @param string|null $encrypted_external_api_token
      * @param string|null $external_api_base_url
      * @param string|null $oauth2_user_id
+     * @param string|null $oauth2_client_id
      * @param ArrayObject<string, string>|null $external_api_base_headers_json
      * @param ArrayObject<string|int, mixed>|null $external_api_metadata_json
      * @return BearExternalApi
@@ -28,6 +29,7 @@ final class BearExternalApiCreator {
         string $encrypted_external_api_token = null,
         string $external_api_base_url = null,
         string $oauth2_user_id = null,
+        string $oauth2_client_id = null,
         ArrayObject $external_api_base_headers_json = null,
         ArrayObject $external_api_metadata_json = null
     ): BearExternalApi {
@@ -46,6 +48,7 @@ final class BearExternalApiCreator {
         }
         $model->external_api_base_url = $external_api_base_url;
         $model->oauth2_user_id = $oauth2_user_id;
+        $model->oauth2_client_id = $oauth2_client_id;
         $model->external_api_base_headers_json = $external_api_base_headers_json;
         $model->external_api_metadata_json = $external_api_metadata_json;
 

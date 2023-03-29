@@ -15,12 +15,14 @@ final class LarabearCleanLogTablesCommand extends Command {
         $res = DB::delete(query: "DELETE FROM bear_log_database_change WHERE created_at < ?", bindings: [now()->subDays($days_to_store_database_changes)->toDateString()]);
         $this->info(string: "Deleted $res rows from bear_log_database_change");
 
-        $days_to_store_database_changes = BearConfigService::getInteger(config_key: 'larabear::log-console-event-store-for-days');
-        $res = DB::delete(query: "DELETE FROM bear_console_event WHERE created_at < ?", bindings: [now()->subDays($days_to_store_database_changes)->toDateString()]);
+        $days_to_store_logs = BearConfigService::getInteger(config_key: 'larabear::log-store-for-days');
+        $res = DB::delete(query: "DELETE FROM bear_console_event WHERE created_at < ?", bindings: [now()->subDays($days_to_store_logs)->toDateString()]);
         $this->info(string: "Deleted $res rows from bear_console_event");
-
-        $days_to_store_database_changes = BearConfigService::getInteger(config_key: 'larabear::log-response-error-store-for-days');
-        $res = DB::delete(query: "DELETE FROM bear_error_response WHERE created_at < ?", bindings: [now()->subDays($days_to_store_database_changes)->toDateString()]);
+        $res = DB::delete(query: "DELETE FROM bear_error WHERE created_at < ?", bindings: [now()->subDays($days_to_store_logs)->toDateString()]);
         $this->info(string: "Deleted $res rows from bear_error_response");
+        $res = DB::delete(query: "DELETE FROM bear_error_response WHERE created_at < ?", bindings: [now()->subDays($days_to_store_logs)->toDateString()]);
+        $this->info(string: "Deleted $res rows from bear_error");
+        $res = DB::delete(query: "DELETE FROM bear_access_token_usage WHERE created_at < ?", bindings: [now()->subDays($days_to_store_logs)->toDateString()]);
+        $this->info(string: "Deleted $res rows from bear_access_token_usage");
     }
 }

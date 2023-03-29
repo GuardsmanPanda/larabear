@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::dropIfExists('bear_role_user');
+        Schema::dropIfExists(table: 'bear_role_user');
         Schema::create(table: 'bear_role_user', callback: static function (Blueprint $table): void {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'role_slug');
@@ -24,6 +24,6 @@ return new class extends Migration {
     }
 
     public function down(): void {
-        Schema::dropIfExists('bear_role_user');
+        Schema::dropIfExists(table: 'bear_role_user');
     }
 };

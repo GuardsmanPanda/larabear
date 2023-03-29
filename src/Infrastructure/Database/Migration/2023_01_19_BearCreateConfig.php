@@ -35,24 +35,6 @@ return new class extends Migration {
                 config_boolean: true
             );
             BearConfigCreator::create(
-                config_key: 'larabear::log-console-event-store-for-days',
-                config_description: 'How many days to store console errors.',
-                config_data_type: BearConfigType::INTEGER,
-                config_integer: 90
-            );
-            BearConfigCreator::create(
-                config_key: 'larabear::log-response-error-store-for-days',
-                config_description: 'How many days to store response errors.',
-                config_data_type: BearConfigType::INTEGER,
-                config_integer: 90
-            );
-            BearConfigCreator::create(
-                config_key: 'larabear::log-access-token-store-for-days',
-                config_description: 'How many days to store access token logs.',
-                config_data_type: BearConfigType::INTEGER,
-                config_integer: 90
-            );
-            BearConfigCreator::create(
                 config_key: 'larabear::log-database-change-store-for-days',
                 config_description: 'How many days to store database change logs.',
                 config_data_type: BearConfigType::INTEGER,
