@@ -6,6 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigDeleter;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Enum\BearConfigType;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Htmx;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Routing\Controller;
@@ -20,7 +21,7 @@ final class LarabearConfigController extends Controller {
     }
 
     public function createDialog(): View {
-        return Resp::view(view: 'larabear-config::create');
+        return Htmx::dialogView(view: 'larabear-config::create', title: 'Create Config');
     }
 
     public function create(): View {
@@ -40,7 +41,7 @@ final class LarabearConfigController extends Controller {
 
 
     public function updateDialog(string $key): View {
-        return Resp::view(view: 'larabear-config::update', data: [
+        return Htmx::dialogView(view: 'larabear-config::update', title: "Update Config - $key",data: [
             'config_data' => DB::selectOne(query: "SELECT * FROM bear_config WHERE config_key = ?", bindings: [$key]),
         ]);
     }

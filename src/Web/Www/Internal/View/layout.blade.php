@@ -147,9 +147,7 @@
 
     htmx.on("htmx:afterRequest", event => {
         if (event.detail.successful) {
-            if (event.detail.target.id === 'dialog-content') {
-                //document.getElementById('dialog').showModal();
-            } else if (event.detail.elt.hasAttribute('hx-dialog-close')) {
+            if (event.detail.elt.hasAttribute('hx-dialog-close')) {
                 document.getElementById('dialog').close();
             }
         } else {

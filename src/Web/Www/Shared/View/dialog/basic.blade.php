@@ -7,4 +7,3 @@
         </form>
     </div>
 @endif
-<div id="dialog-title" hx-swap-oob="true">{{$title}}</div>

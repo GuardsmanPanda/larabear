@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Credential\Controller;
 
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Htmx;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientCreator;
@@ -21,7 +22,7 @@ final class LarabearOauth2ClientController extends Controller {
     }
 
     public function createDialog(): View {
-        return Resp::view(view: 'larabear-credential::oauth2.client.create');
+        return Htmx::dialogView(view: 'larabear-credential::oauth2.client.create', title: "Create A New Oauth2 Client");
     }
 
     public function create(): View {
@@ -41,7 +42,7 @@ final class LarabearOauth2ClientController extends Controller {
     }
 
     public function updateDialog(string $oauth2_client_id): View {
-        return Resp::view(view: 'larabear-credential::oauth2.client.update', data: [
+        return Htmx::dialogView(view: 'larabear-credential::oauth2.client.update', title: "Update Client - $oauth2_client_id", data: [
             'client' => BearOauth2Client::findOrFail(id: $oauth2_client_id),
         ]);
     }
@@ -55,6 +56,6 @@ final class LarabearOauth2ClientController extends Controller {
     }
 
     public function addUserDialog(string $oauth2_client_id): View {
-        return Resp::view(view: 'larabear-credential::oauth2.client.add-user', data: ['oauth2_client_id' => $oauth2_client_id]);
+        return Htmx::dialogView(view: 'larabear-credential::oauth2.client.add-user', title: "Add User To Client - $oauth2_client_id",  data: ['oauth2_client_id' => $oauth2_client_id]);
     }
 }

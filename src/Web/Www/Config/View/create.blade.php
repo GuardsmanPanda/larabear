@@ -1,5 +1,5 @@
 <?php declare(strict_types=1); ?>
-<x-bear::dialog.create title="New API Access Token" hx-post="/bear/config" class="w-[50rem]">
+<x-bear::dialog.create hx-post="/bear/config" class="w-[50rem]">
     <div class="grid grid-cols-2 gap-4">
         <x-bear::form.text id="config_key" pattern="\S+::\S+" required placeholder="namespace::key"></x-bear::form.text>
         <x-bear::form.select id="config_data_type" required>

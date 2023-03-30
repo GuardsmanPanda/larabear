@@ -8,7 +8,6 @@ use Illuminate\View\View;
 
 final class Basic  extends Component {
     public function __construct(
-        public readonly string $title,
         public readonly string $closeText = 'Close',
         public readonly bool $includeButton = true
     ) {}

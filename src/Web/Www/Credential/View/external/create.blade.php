@@ -1,5 +1,5 @@
 <?php declare(strict_types=1); ?>
-<x-bear::dialog.create title="New External Api" hx-post="/bear/credential/external" class="w-[50rem]">
+<x-bear::dialog.create hx-post="/bear/credential/external" class="w-[50rem]">
     <div class="grid grid-cols-2 gap-4">
         <x-bear::form.text id="external_api_slug" required></x-bear::form.text>
         <x-bear::form.text id="external_api_description" required placeholder="What is the external api for.."></x-bear::form.text>

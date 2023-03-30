@@ -1,7 +1,7 @@
 <?php declare(strict_types=1); ?>
 <x-bear::dialog.create hx-post="/bear/access/token/app" class="w-[50rem]">
     <x-bear::section.basic title="Quick Actions" color="indigo-100" size="small" class="mb-4">
-        <x-bear::button.dark icon="eye" size="small" hx-get="/bear/access/token/app/create?type=monitoring" hx-target="#dialog-content">Monitoring Token</x-bear::button.dark>
+        <x-bear::button.dark icon="eye" size="small" hx-get="/bear/access/token/app/create?type=monitoring">Monitoring Token</x-bear::button.dark>
     </x-bear::section.basic>
     <div class="grid grid-cols-2 gap-4">
         <x-bear::form.text id="access_token" pattern="token/[a-zA-Z0-9_.~+/-]+|" placeholder="token/[a-zA-Z0-9_.~+/-]+ (Leave blank to auto generate)"></x-bear::form.text>

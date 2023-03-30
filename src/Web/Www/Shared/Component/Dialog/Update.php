@@ -8,7 +8,6 @@ use Illuminate\View\View;
 
 final class Update  extends Component {
     public function __construct(
-        public readonly string $title = 'Update',
         public readonly string $submitText = 'Update',
         public readonly string $cancelText = 'Cancel',
     ) {}

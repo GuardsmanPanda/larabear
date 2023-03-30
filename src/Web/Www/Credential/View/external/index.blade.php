@@ -1,7 +1,7 @@
 <?php declare(strict_types=1); ?>
 <x-bear::heading.h1-section subtitle="A list of all roles in the system.">External Api Credentials
     <x-slot name="extra">
-        <x-bear::button.dark icon="lock-closed" hx-get="/bear/credential/external/create" hx-target="#dialog-content">New External Api Credential</x-bear::button.dark>
+        <x-bear::button.dark icon="lock-closed" hx-get="/bear/credential/external/create">New External Api Credential</x-bear::button.dark>
     </x-slot>
 </x-bear::heading.h1-section>
 <x-bear::table.layout.standard>
