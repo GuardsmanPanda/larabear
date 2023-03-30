@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Access\Controller;
 
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Htmx;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearAccessTokenAppCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearAccessTokenAppDeleter;
@@ -26,18 +27,18 @@ final class LarabearAccessTokenAppController extends Controller {
 
     public function createDialog(): View {
         $type = Req::getStringOrDefault(key: 'type', default: '');
-        return Resp::view(view: 'larabear-access::token.app.create', data: [
+        return Htmx::dialogView(view: 'larabear-access::token.app.create', title: "New Application Access Token", data: [
             'access_token_purpose' => $type === 'monitoring' ? 'Token for monitoring endpoints' : '',
             'route_prefix_restriction' => $type === 'monitoring' ? '/bear/api/monitoring' : '/',
         ]);
     }
 
-    public function create(): string {
+    public function create(): View {
         $prefix = Req::getStringOrDefault(key: 'route_prefix_restriction');
         if (str_starts_with(haystack: '/', needle: $prefix)) {
             $prefix = substr(string: $prefix, offset: 1);
         }
-        $token = BearAccessTokenAppCreator::create(
+        $res = BearAccessTokenAppCreator::create(
             route_prefix_restriction:$prefix,
             access_token_purpose: Req::getStringOrDefault(key: 'access_token_purpose'),
             access_token: Req::getString(key: 'access_token'),
@@ -45,7 +46,10 @@ final class LarabearAccessTokenAppController extends Controller {
             api_primary_key: Req::getString(key: 'api_primary_key'),
             expires_at: Req::getDateTime(key: 'expires_at'),
         );
-        return $token;
+        return Htmx::dialogView(view: 'larabear-access::token.app.created', data: [
+            'token' => $res[0],
+            'secret' => $res[1],
+        ]);
     }
 
     public function updateDialog(string $id): View {

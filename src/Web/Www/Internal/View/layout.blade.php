@@ -148,7 +148,7 @@
     htmx.on("htmx:afterRequest", event => {
         if (event.detail.successful) {
             if (event.detail.target.id === 'dialog-content') {
-                document.getElementById('dialog').showModal();
+                //document.getElementById('dialog').showModal();
             } else if (event.detail.elt.hasAttribute('hx-dialog-close')) {
                 document.getElementById('dialog').close();
             }
@@ -157,6 +157,16 @@
         }
         if ('hx-toast' in event.detail.requestConfig.headers) {
             toast('success', event.detail.requestConfig.headers['hx-toast']);
+        }
+    });
+
+    document.body.addEventListener('dialog:open', function (evt) {
+        const title = document.getElementById('dialog-title');
+        title.innerHTML = evt.detail.value ?? 'Dialog';
+
+        const el = document.getElementById('dialog');
+        if (!el.hasAttribute('open')) {
+            el.showModal();
         }
     });
 </script>

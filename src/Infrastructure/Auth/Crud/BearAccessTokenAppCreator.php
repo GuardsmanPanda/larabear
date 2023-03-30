@@ -8,6 +8,15 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessTokenApp;
 use Illuminate\Support\Str;
 
 final class BearAccessTokenAppCreator {
+    /**
+     * @param string $route_prefix_restriction
+     * @param string $access_token_purpose
+     * @param string|null $access_token
+     * @param string $request_ip_restriction
+     * @param string|null $api_primary_key
+     * @param CarbonInterface|null $expires_at
+     * @return array{BearAccessTokenApp, string}
+     */
     public static function create(
         string $route_prefix_restriction,
         string $access_token_purpose,
@@ -15,7 +24,7 @@ final class BearAccessTokenAppCreator {
         string $request_ip_restriction = '0.0.0.0/0',
         string $api_primary_key = null,
         CarbonInterface $expires_at = null,
-    ): string {
+    ): array {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearAccessTokenApp();
@@ -34,6 +43,6 @@ final class BearAccessTokenAppCreator {
         $model->hashed_access_token = hash(algo: 'xxh128', data: $access_token);
 
         $model->save();
-        return $access_token;
+        return [$model, $access_token];
     }
 }

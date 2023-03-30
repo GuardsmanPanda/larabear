@@ -7,4 +7,3 @@
     <form method="dialog"><x-bear::button.light type="submit">{{$cancelText}}</x-bear::button.light></form>
     <x-bear::button.dark form="dialog-form" type="submit" >{{$submitText}}</x-bear::button.dark>
 </div>
-<div id="dialog-title" hx-swap-oob="true">{{$title}}</div>

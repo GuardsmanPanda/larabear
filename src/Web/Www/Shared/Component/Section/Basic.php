@@ -9,7 +9,7 @@ use InvalidArgumentException;
 
 final class Basic extends Component {
     public string $classes = "rounded-b shadow p-4";
-    public string $headerClasses = "mb-2 border-b -mt-2";
+    public string $headerClasses = "mb-2 border-b -mt-2 border-dotted";
 
     public function __construct(public readonly string $title, public readonly string $color = 'white', public readonly string $size = 'normal') {
         $this->classes .= match ($this->color) {
@@ -19,8 +19,8 @@ final class Basic extends Component {
         };
 
         $this->headerClasses .= match ($this->color) {
-            'white' => '',
-            'indigo-100' => ' border-indigo-300',
+            'white' => 'text-gray-900',
+            'indigo-100' => ' border-indigo-300 text-indigo-950',
             default => throw new InvalidArgumentException(message: "Invalid color: $this->color"),
         };
         $this->headerClasses .= match ($this->size) {
