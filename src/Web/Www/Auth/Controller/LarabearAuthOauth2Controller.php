@@ -15,16 +15,10 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2ClientServic
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Throwable;
 
 final class LarabearAuthOauth2Controller extends Controller {
-    public function showSignInForm(): View {
-        return Resp::view(view: 'Auth::sign-in-form', data: [
-            'oauth2_clients' => DB::select(query: 'SELECT oauth2_client_id, oauth2_client_type FROM bear_oauth2_client'),
-        ]);
-    }
 
     public function oauth2Redirect(string $oauth2_client_id): RedirectResponse {
         return BearOauth2ClientService::getAuthorizeRedirectResponse(

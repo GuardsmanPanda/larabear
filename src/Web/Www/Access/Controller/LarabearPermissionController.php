@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Access\Controller;
 
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Htmx;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearPermissionCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearPermissionDeleter;
@@ -18,7 +19,7 @@ final class LarabearPermissionController extends Controller {
     }
 
     public function createDialog(): View {
-        return Resp::view(view: 'larabear-access::permission.create');
+        return Htmx::dialogView(view: 'larabear-access::permission.create', title: "Create Permission");
     }
 
     public function create(): View {

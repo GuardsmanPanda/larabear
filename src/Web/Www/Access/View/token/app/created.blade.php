@@ -1,5 +1,5 @@
 <?php declare(strict_types=1); ?>
-<x-bear::dialog.basic title="Bearer Token - {{$token->id}}">
+<x-bear::dialog.basic>
     <div>Here your access token, please store securely, you will not be able to see this token again.</div>
     <div>Token ID: {{$token->id}}</div>
     <div>Token Secret: {{$secret}}</div>

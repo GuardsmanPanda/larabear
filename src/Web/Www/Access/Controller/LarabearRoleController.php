@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Web\Www\Access\Controller;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRolePermissionCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRolePermissionDeleter;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearRolePermission;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Htmx;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRoleCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRoleDeleter;
@@ -26,7 +27,7 @@ final class LarabearRoleController extends Controller {
     }
 
     public function createDialog(): View {
-        return Resp::view(view: 'larabear-access::role.create');
+        return Htmx::dialogView(view: 'larabear-access::role.create', title: "Create Role");
     }
 
     public function create(): View {
@@ -35,7 +36,7 @@ final class LarabearRoleController extends Controller {
     }
 
     public function permissionDialog(string $role_slug): View {
-        return Resp::view(view: 'larabear-access::role.role-permission', data: [
+        return Htmx::dialogView(view: 'larabear-access::role.role-permission', title: "Add / Remove Permissions From $role_slug", data: [
             'role_slug' => $role_slug,
             'permissions' => DB::select(query: "
                 SELECT

@@ -46,14 +46,14 @@ final class LarabearAccessTokenAppController extends Controller {
             api_primary_key: Req::getString(key: 'api_primary_key'),
             expires_at: Req::getDateTime(key: 'expires_at'),
         );
-        return Htmx::dialogView(view: 'larabear-access::token.app.created', data: [
+        return Htmx::dialogView(view: 'larabear-access::token.app.created', title: "Access Token", data: [
             'token' => $res[0],
             'secret' => $res[1],
         ]);
     }
 
     public function updateDialog(string $id): View {
-        return Resp::view(view: 'larabear-access::token.app.update', data: [
+        return Htmx::dialogView(view: 'larabear-access::token.app.update', title: "Update Access Token - $id", data: [
             'access_token' => DB::selectOne(query: "
                 SELECT 
                     id, api_primary_key,
