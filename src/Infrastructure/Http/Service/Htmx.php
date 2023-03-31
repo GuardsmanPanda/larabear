@@ -16,6 +16,12 @@ final class Htmx {
         return Resp::noContent();
     }
 
+    /**
+     * @param string $view
+     * @param string $title
+     * @param array<string, mixed> $data
+     * @return View
+     */
     public static function dialogView(string $view, string $title = 'Dialog', array $data = []): View {
         Resp::header(key: 'HX-Trigger-After-Swap', value: '{"dialog:open" : "' . $title . '"}');
         Resp::header(key: 'HX-Retarget', value: '#dialog-content');

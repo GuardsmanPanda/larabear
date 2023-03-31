@@ -8,5 +8,5 @@
             </button>
         </form>
     </div>
-    <div id="dialog-content" class="py-3 px-4"></div>
+    <div id="dialog-content" class="py-3 px-5"></div>
 </dialog>
