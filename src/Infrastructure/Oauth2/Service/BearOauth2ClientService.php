@@ -176,7 +176,9 @@ final class BearOauth2ClientService {
         if ($scopeString !== null) {
             $separator = str_contains(haystack: $scopeString, needle: ' ') ? ' ' : '+';
             foreach (explode(separator: $separator, string: $scopeString) as $scope) {
-                $scopes->add(element: $scope);
+                if (trim(string: $scope) !== '') {
+                    $scopes->add(element: $scope);
+                }
             }
         }
         if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::MICROSOFT) {
