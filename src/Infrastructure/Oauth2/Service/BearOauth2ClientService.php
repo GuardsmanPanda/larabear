@@ -6,6 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2UserCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2UserUpdater;
@@ -64,7 +65,8 @@ final class BearOauth2ClientService {
         return new RedirectResponse(url: "$client->oauth2_authorize_uri?$query_data");
     }
 
-    public static function getUserFromCallback(BearOauth2Client $client, string $code, string $redirectUri, bool $createBearUser = false): BearOauth2User {
+    public static function getUserFromCallback(BearOauth2Client $client, string $code, string $redirectUri = null, bool $createBearUser = false): BearOauth2User {
+        $redirectUri ??= trim(string: config(key: 'app.url'), characters: '/ ') . '/' . Req::path();
         $data = self::exchangeCode(code: $code, client: $client, redirect_uri: $redirectUri)->json();
         $token = OidcToken::fromJwt(jwt: $data['id_token'], client: $client);
 
