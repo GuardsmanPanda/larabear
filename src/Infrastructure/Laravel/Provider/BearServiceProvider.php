@@ -35,7 +35,6 @@ final class BearServiceProvider extends ServiceProvider {
         Config::set(key: 'database.connections.larabear_transaction_free', value: Config::get(key: 'database.connections.' . Config::get(key: 'database.default')));
 
         if (!($this->app instanceof CachesRoutes && $this->app->routesAreCached())) {
-            Route::post(uri: 'bear/auth/sign-in', action: [LarabearAuthController::class, 'signIn'])->middleware([BearTransactionMiddleware::class, 'session:allow-guest']);
             Route::post(uri: 'bear/user-api/auth/sign-in', action: [LarabearUserApiAuthController::class, 'signIn'])->middleware([BearTransactionMiddleware::class]);
             Route::post(uri: 'bear/user-api/auth/sign-out', action: [LarabearUserApiAuthController::class, 'signOut'])->middleware([BearTransactionMiddleware::class]);
 

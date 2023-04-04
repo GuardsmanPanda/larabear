@@ -28,4 +28,9 @@ final class LarabearAuthController extends Controller {
         Session::put(key: 'bear_user_id', value: $user->id);
         return new RedirectResponse(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-after-login'));
     }
+
+    public function signOut(): RedirectResponse {
+        Session::flush();
+        return new RedirectResponse(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'));
+    }
 }

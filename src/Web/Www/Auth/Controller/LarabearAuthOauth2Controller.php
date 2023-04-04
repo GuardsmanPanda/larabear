@@ -4,10 +4,7 @@ namespace GuardsmanPanda\Larabear\Web\Www\Auth\Controller;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Action\BearAuthCookieLoginAction;
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserLoginHistoryCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Enum\BearUserLoginTypeEnum;
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
