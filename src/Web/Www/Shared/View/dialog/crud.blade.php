@@ -5,5 +5,5 @@
 </form>
 <div class="border-t flex gap-2 pt-3 mt-3 flex-row-reverse">
     <form method="dialog"><x-bear::button.light type="submit">{{$cancelText}}</x-bear::button.light></form>
-    <x-bear::button.dark form="dialog-form" type="submit" >{{$submitText}}</x-bear::button.dark>
+    <x-bear::button.dark form="dialog-form" type="submit">{{$submitText}}</x-bear::button.dark>
 </div>

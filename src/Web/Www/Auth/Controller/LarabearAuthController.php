@@ -30,7 +30,7 @@ final class LarabearAuthController extends Controller {
     }
 
     public function signOut(): RedirectResponse {
-        Session::flush();
+        Session::invalidate();
         return new RedirectResponse(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'));
     }
 }
