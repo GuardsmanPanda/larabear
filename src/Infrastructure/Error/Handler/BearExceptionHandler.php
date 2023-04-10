@@ -30,11 +30,7 @@ final class BearExceptionHandler extends Handler {
                 );
             }
         }
-        if (is_bool(value: config(key: 'app.debug')) && config(key: 'app.debug')) {
-            return parent::render(request: $request, e: $e);
-        }
-        $e = $this->prepareException($e);
-        return $e instanceof  HttpExceptionInterface ? new Response($e->getMessage(), $e->getStatusCode(), $e->getHeaders()) : new Response($e->getMessage(), 500);
+        return parent::render(request: $request, e: $e);
     }
 
     protected function prepareException(Throwable $e): Throwable {
