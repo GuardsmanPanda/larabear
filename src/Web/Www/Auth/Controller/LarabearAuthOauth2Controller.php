@@ -32,7 +32,7 @@ final class LarabearAuthOauth2Controller extends Controller {
 
     public static function oauth2Callback(string $oauth2_client_id): RedirectResponse {
         if (Req::getStringOrDefault(key: 'state', default: '-----') !== Session::get(key: 'oauth2_state')) {
-            return Resp::redirectWithQueryMessage(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: 'Invalid state');
+            return Resp::redirect(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: 'Invalid state');
         }
         try {
             DB::beginTransaction();
@@ -61,7 +61,7 @@ final class LarabearAuthOauth2Controller extends Controller {
                 severity: BearSeverityEnum::CRITICAL,
                 exception: $t
             );
-            return Resp::redirectWithQueryMessage(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: $t->getMessage());
+            return Resp::redirect(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: $t->getMessage());
         }
     }
 }

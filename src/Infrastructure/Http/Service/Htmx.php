@@ -11,7 +11,10 @@ final class Htmx {
         return Resp::noContent();
     }
 
-    public static function redirect(string $url): Response {
+    public static function redirect(string $url, string $message = null): Response {
+        if ($message !== null) {
+            session()->flash(key: 'message', value: $message);
+        }
         Resp::header(key: 'HX-Redirect', value: $url);
         return Resp::noContent();
     }

@@ -29,9 +29,11 @@ final class Resp {
         return new Response(status: 204);
     }
 
-
-    public static function redirectWithQueryMessage(string $url, string $message, int $status = 303): RedirectResponse {
-        return new RedirectResponse(url: "$url?message=" . urlencode($message), status: $status);
+    public static function redirect(string $url, string $message = null, int $status = 303): RedirectResponse {
+        if ($message !== null) {
+            session()->flash(key: 'message', value: $message);
+        }
+        return new RedirectResponse(url: $url, status: $status);
     }
 
     /**
