@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Service\BearAuthService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Model\BearCountry;
@@ -122,5 +123,13 @@ final class BearUser extends Model implements Authenticatable {
 
     public function getRememberTokenName(): string {
         return 'remember_token';
+    }
+
+    public function hasPermission(string $permission): bool {
+        return BearAuthService::hasPermission(permission: $permission);
+    }
+
+    public function hasRole(string $role): bool {
+        return BearAuthService::hasRole(role: $role);
     }
 }

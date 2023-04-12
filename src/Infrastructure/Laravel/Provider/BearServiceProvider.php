@@ -20,7 +20,6 @@ use GuardsmanPanda\Larabear\Infrastructure\Integrity\Command\LarabearPhpStanComm
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Command\LarabearOauth2CheckAccessCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Security\Command\LarabearSecurityOsvScannerCommand;
 use GuardsmanPanda\Larabear\Web\UserApi\Auth\LarabearUserApiAuthController;
-use GuardsmanPanda\Larabear\Web\Www\Auth\Controller\LarabearAuthController;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Contracts\Foundation\CachesRoutes;
 use Illuminate\Database\Eloquent\Model;
