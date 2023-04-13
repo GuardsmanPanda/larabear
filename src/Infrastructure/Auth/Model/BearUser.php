@@ -28,9 +28,9 @@ use RuntimeException;
  * @method static BearUser firstOrCreate(array $filter, array $values)
  * @method static BearUser firstOrNew(array $filter, array $values)
  * @method static BearUser|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection all(array $columns = ['*'])
- * @method static Collection get(array $columns = ['*'])
- * @method static Collection fromQuery(string $query, array $bindings = [])
+ * @method static Collection<BearUser> all(array $columns = ['*'])
+ * @method static Collection<BearUser> get(array $columns = ['*'])
+ * @method static Collection<BearUser> fromQuery(string $query, array $bindings = [])
  * @method static BearUser lockForUpdate()
  * @method static BearUser select(array $columns = ['*'])
  * @method static BearUser with(array $relations)
@@ -126,10 +126,10 @@ final class BearUser extends Model implements Authenticatable {
     }
 
     public function hasPermission(string $permission): bool {
-        return BearAuthService::hasPermission(permission: $permission);
+        return BearAuthService::hasPermission(permission: $permission, userId: $this->id);
     }
 
     public function hasRole(string $role): bool {
-        return BearAuthService::hasRole(role: $role);
+        return BearAuthService::hasRole(role: $role, userId: $this->id);
     }
 }
