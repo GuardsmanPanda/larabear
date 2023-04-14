@@ -32,26 +32,6 @@
             font-weight: 500 !important;
         }
 
-        .toastify {
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-            cursor: pointer;
-            right: 15px;
-            z-index: 100;
-        }
-
-        .toastify.on {
-            opacity: 0.95;
-        }
-
-        .toast-close {
-            background: 0 0;
-            border: 0;
-            color: #fff;
-            opacity: 0.4;
-            padding: 0 5px;
-        }
-
         th {
             font-weight: 500;
         }
@@ -85,88 +65,6 @@
     </div>
     <div id="primary" class="max-w-full min-w-full px-4 lg:px-6 pt-2">{!! $content !!}</div>
 </div>
-<x-bear::dialog.layout/>
-<script>
-    const toast = (type, message) => {
-        let classes = 'rounded font-medium shadow text-sm py-3 px-5 before:top-0 before:left-0 before:absolute fixed before:h-full  before:w-2.5 '
-        Toastify({
-            text: message,
-            className: classes + (type === 'success' ? 'text-green-50 bg-green-600 shadow-green-600/40 before:bg-green-700' : 'bg-red-600 text-red-50 shadow-red-600/40 before:bg-red-800'),
-            onClick: function () {
-            }
-        }).showToast();
-    }
-
-    const copyFunction = el => el.addEventListener('click', () => {
-        const copyText = el.getAttribute('copy')
-        navigator.clipboard.writeText(copyText).then(() => {
-            toast('success', `Copied: ${copyText}`)
-        }, () => {
-            toast('error', 'Failed to copy to the clipboard')
-        })
-    })
-
-    const fastNavFunction = function (el) {
-        el.addEventListener('mousedown', function (e) {
-            if (e.button === 0) {
-                htmx.ajax('GET', el.getAttribute('href'), el.getAttribute('hx-target') ?? '#primary');
-                history.pushState({}, 'we', el.getAttribute('href'))
-                if (typeof el.getAttribute('hx-fastnav') === 'string' && el.getAttribute('hx-fastnav') !== '') {
-                    document.querySelectorAll('.' + el.getAttribute('hx-fastnav')).forEach(function (el2) {
-                        el2.classList.toggle(el.getAttribute('hx-fastnav'));
-                    });
-                    el.classList.toggle(el.getAttribute('hx-fastnav'));
-                }
-            }
-        });
-        el.addEventListener('click', e => e.preventDefault());
-    }
-
-    const tippyFunction = function (el) {
-        tippy(el, {
-            content: el.getAttribute('tippy'),
-            appendTo: 'parent',
-            duration: [250, 250],
-            hideOnClick: false,
-            inertia: true,
-            theme: 'material',
-        });
-    }
-
-    window.onload = () => {
-        document.querySelectorAll("[hx-fastnav]").forEach(fastNavFunction);
-        document.querySelectorAll('[tippy]').forEach(tippyFunction);
-        document.querySelectorAll('[copy]').forEach(copyFunction);
-    }
-    htmx.on('htmx:afterProcessNode', event => {
-        event.target.querySelectorAll('[hx-fastnav]').forEach(fastNavFunction);
-        event.target.querySelectorAll('[tippy]').forEach(tippyFunction);
-        event.target.querySelectorAll('[copy]').forEach(copyFunction);
-    });
-
-
-    htmx.on("htmx:afterRequest", event => {
-        if (event.detail.successful) {
-            if (event.detail.elt.hasAttribute('hx-dialog-close')) {
-                document.getElementById('dialog').close();
-            }
-        } else {
-            toast('error', 'Something went wrong');
-        }
-        if ('hx-toast' in event.detail.requestConfig.headers) {
-            toast('success', event.detail.requestConfig.headers['hx-toast']);
-        }
-    });
-
-    document.body.addEventListener('dialog:open', function (evt) {
-        const title = document.getElementById('dialog-title');
-        title.innerHTML = evt.detail.value ?? 'Dialog';
-
-        const el = document.getElementById('dialog');
-        if (!el.hasAttribute('open')) {
-            el.showModal();
-        }
-    });
-</script>
+<script src="https://www.unpkg.com/larabear" defer></script>
 </body>
 </html>

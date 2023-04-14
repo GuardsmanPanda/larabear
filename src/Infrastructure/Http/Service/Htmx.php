@@ -26,7 +26,8 @@ final class Htmx {
      * @return View
      */
     public static function dialogView(string $view, string $title = 'Dialog', array $data = []): View {
-        Resp::header(key: 'HX-Trigger-After-Swap', value: '{"dialog:open" : "' . $title . '"}');
+        $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+        Resp::header(key: 'HX-Trigger-After-Swap', value: '{"dialog:open" : "' . strtr(rawurlencode($title), $revert) . '"}');
         Resp::header(key: 'HX-Retarget', value: '#dialog-content');
         return Resp::view(view: $view, data: $data);
     }
