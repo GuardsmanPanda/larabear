@@ -6,13 +6,8 @@
     <meta name="description" content="Secret UI">
     <meta name="referrer" content="no-referrer"/>
     <title>Larabear UI</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/themes/material.min.css" integrity="sha512-R8oUfFYCO11afzYKUhovrP+cajy9JF0iRRHbuk16gPYstVj9McxsE/D8wnH2l0aBKuhnkAd6VMLiTFV1Bp+zKA==" crossorigin="anonymous"
-          referrerpolicy="no-referrer"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="https://unpkg.com/htmx.org@1.8.5/dist/htmx.min.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="https://www.unpkg.com/larabear"></script>
     <style>
         html {
             box-sizing: border-box;
@@ -30,10 +25,6 @@
             background-color: rgb(17 24 39) !important;
             color: rgb(220 220 220) !important;
             font-weight: 500 !important;
-        }
-
-        th {
-            font-weight: 500;
         }
     </style>
 </head>
@@ -65,6 +56,5 @@
     </div>
     <div id="primary" class="max-w-full min-w-full px-4 lg:px-6 pt-2">{!! $content !!}</div>
 </div>
-<script src="https://www.unpkg.com/larabear" defer></script>
 </body>
 </html>

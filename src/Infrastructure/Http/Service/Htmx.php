@@ -31,4 +31,11 @@ final class Htmx {
         Resp::header(key: 'HX-Retarget', value: '#dialog-content');
         return Resp::view(view: $view, data: $data);
     }
+
+    public static function dialog(string $title, string $content): Response {
+        $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+        Resp::header(key: 'HX-Trigger-After-Swap', value: '{"dialog:open" : "' . strtr(rawurlencode($title), $revert) . '"}');
+        Resp::header(key: 'HX-Retarget', value: '#dialog-content');
+        return Resp::ok(content: $content);
+    }
 }

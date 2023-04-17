@@ -13,8 +13,8 @@ final class Resp {
         BearInitiateMiddleware::$headers[$key] = $value;
     }
 
-    public static function ok(): Response {
-        return new Response(status: 200);
+    public static function ok(string $content = null): Response {
+        return new Response(content: $content, status: 200);
     }
 
     public static function created(string $content = ''): Response {
