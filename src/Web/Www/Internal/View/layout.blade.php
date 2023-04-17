@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-    <div id="primary" class="max-w-full min-w-full px-4 lg:px-6 pt-2">{!! $content !!}</div>
+    <div id="primary" class="max-w-full min-w-full px-2 md:px-4 pt-2">{!! $content !!}</div>
 </div>
 </body>
 </html>

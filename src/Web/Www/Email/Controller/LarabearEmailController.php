@@ -20,7 +20,7 @@ final class LarabearEmailController extends Controller {
             $bindings[] = Req::getStringOrDefault(key: 'email_tag');
         }
         $bindings[] = Req::getIntOrDefault(key: 'limit', default: 20);
-        return Resp::view(view: 'larabear-email::client.template.email-table', data: [
+        return Resp::view(view: 'larabear-email::email-table', data: [
             'emails' => DB::select(query: "
                 SELECT
                     be.id, be.email_to, be.email_cc, be.email_subject, be.email_error_message, be.email_sent_at, be.is_sandboxed, be.created_at

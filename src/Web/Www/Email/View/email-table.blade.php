@@ -1,5 +1,5 @@
 <?php declare(strict_types=1); ?>
-<x-bear::table.layout.standard class="mt-6">
+<x-bear::table.layout.standard>
     <x-slot name="tableHead">
         <th scope="col" class="px-2 py-2">Email To</th>
         <th scope="col" class="px-2 py-2">Email CC</th>

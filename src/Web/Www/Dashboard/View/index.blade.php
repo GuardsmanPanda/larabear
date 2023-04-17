@@ -1,9 +1,9 @@
 <?php declare(strict_types=1); ?>
 <x-bear::heading.h1-section subtitle="A brief overview of the system state.">Larabear Dashboard</x-bear::heading.h1-section>
-<div class="grid grid-cols-3" xmlns:x-bear="http://www.w3.org/1999/html">
+<div class="grid grid-cols-3 gap-4" xmlns:x-bear="http://www.w3.org/1999/html">
     <div class="col-span-2">
         <x-bear::section.basic title="Emails">
-            <div id="email-table" hx-get="/bear/email/table?limit=10"></div>
+            <div id="email-table" hx-get="/bear/email/table?limit=10" hx-trigger="load,every 15s" hx-target="this"></div>
         </x-bear::section.basic>
     </div>
     <div class="grid gap-4">

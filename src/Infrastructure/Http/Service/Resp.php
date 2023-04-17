@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearInitiateMiddleware;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
