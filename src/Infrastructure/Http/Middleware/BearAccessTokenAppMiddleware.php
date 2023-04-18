@@ -74,9 +74,9 @@ final class BearAccessTokenAppMiddleware {
             $time = (int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1_000_000);
         }
         DB::insert(query: "
-            INSERT INTO bear_access_token_usage (request_ip, request_country_code, request_method, request_path, response_status_code, response_time_in_microseconds, access_token_app_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?)",
-            bindings: [Req::ip(), Req::ipCountry(), Req::method(), Req::path(), $status_code, $time, BearGlobalStateService::getAccessTokenId()]
+            INSERT INTO bear_access_token_usage (request_ip, request_country_code, request_method, request_path, response_status_code, response_time_in_microseconds, access_token_app_id, request_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            bindings: [Req::ip(), Req::ipCountry(), Req::method(), Req::path(), $status_code, $time, BearGlobalStateService::getAccessTokenId(), BearGlobalStateService::getRequestId()]
         );
     }
 }
