@@ -49,7 +49,6 @@ final class BearServiceProvider extends ServiceProvider {
 
             // Api Routes, requires proper token.
             Route::prefix('bear/api')->middleware([BearAccessTokenAppMiddleware::class, BearTransactionMiddleware::class])->group(function () {
-                Route::prefix('error')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Api/Error/routes.php'));
                 Route::prefix('monitoring')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Api/Monitoring/routes.php'));
             });
 

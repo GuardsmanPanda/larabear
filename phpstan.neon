@@ -11,19 +11,22 @@ parameters:
         - config
     ergebnis:
     	classesAllowedToBeExtended:
+    		- GuardsmanPanda\Larabear\Infrastructure\Database\Service\LarabearDatabaseBaseInformation
+    		- GuardsmanPanda\Larabear\Infrastructure\Http\Exception\BearException
     		- Illuminate\Console\Command
     		- Illuminate\Database\Eloquent\Model
     		- Illuminate\Database\Migrations\Migration
+    		- Illuminate\Foundation\Application
+    		- Illuminate\Foundation\Exceptions\Handler
+    		- Illuminate\Http\Exceptions\HttpResponseException
     		- Illuminate\Routing\Controller
     		- Illuminate\Support\ServiceProvider
     		- Illuminate\View\Component
-    		- GuardsmanPanda\Larabear\Infrastructure\Database\Service\LarabearDatabaseBaseInformation
-    		- Illuminate\Foundation\Application
     		- Symfony\Component\Console\Output\ConsoleOutput
-    		- Illuminate\Foundation\Exceptions\Handler
     ignoreErrors:
         - '#Variable property access on #'
         - '#Dynamic call to static method #'
         - '#has parameter [^ ]* with( null as)? default value.#'
         - '#is not the same as PHPDoc type array of overridden property Illuminate\\Database\\Eloquent\\Model::\$casts#'
+        - '#Class GuardsmanPanda\\Larabear\\Infrastructure\\Http\\Exception\\BearException is neither abstract nor final.#'
         - '#must be rethrown. Either catch a more specific exception or add a "throw" clause in the "catch" block to propagate the exception#'
