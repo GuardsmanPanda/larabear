@@ -34,8 +34,8 @@ final class BearEmailCreator {
         $model->email_to = $email_to;
         $model->email_subject = $email_subject;
         $model->email_from = $email_from ?? config(key: 'bear.postmark_from_email');
-        $model->email_cc = $email_cc;
-        $model->email_bcc = $email_bcc;
+        $model->email_cc = $email_cc === null ? null : trim(string: $email_cc, characters: ', ');
+        $model->email_bcc = $email_bcc === null ? null : trim(string: $email_bcc, characters: ', ');
         $model->email_tag = $email_tag;
         $model->email_reply_to = $email_reply_to;
         $model->email_sent_at = $email_sent_at;

@@ -9,16 +9,17 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
 
 final class BearExceptionHandler extends Handler {
     public function render($request, Throwable $e): Response {
-        if (BearGlobalStateService::getLogUnhandledException()) {
+        if (BearGlobalStateService::getLogUnhandledException() && !$e instanceof HttpResponseException) {
             $key = match (true) {
-                $e instanceof ModelNotFoundException => 'unhandled-db-find-or-fail-exception',
-                $e instanceof RecordsNotFoundException => 'unhandled-db-sole-exception',
+                $e instanceof ModelNotFoundException => 'unhandled-db-model-not-found',
+                $e instanceof RecordsNotFoundException => 'unhandled-db-records-not-found',
                 default => 'unhandled-exception',
             };
             if ($e::class !== 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException') {
