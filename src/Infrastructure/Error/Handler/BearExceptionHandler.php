@@ -5,12 +5,12 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Error\Handler;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
 
 final class BearExceptionHandler extends Handler {
@@ -29,6 +29,9 @@ final class BearExceptionHandler extends Handler {
                     exception: $e
                 );
             }
+        }
+        if (!Req::hasHeader('Accept') || Req::header('hx-request')) {
+            $request->headers->set('Accept', 'application/json');
         }
         return parent::render(request: $request, e: $e);
     }

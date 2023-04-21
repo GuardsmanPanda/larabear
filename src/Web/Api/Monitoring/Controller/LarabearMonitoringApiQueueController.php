@@ -3,7 +3,6 @@
 namespace GuardsmanPanda\Larabear\Web\Api\Monitoring\Controller;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
-use GuardsmanPanda\Larabear\Infrastructure\Http\Exception\BearException;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Json;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Web\Api\Monitoring\Exception\LarabearMonitoringException;
