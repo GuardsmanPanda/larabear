@@ -31,7 +31,7 @@ final class BearExceptionHandler extends Handler {
                 );
             }
         }
-        if (!Req::hasHeader('Accept') || Req::header('hx-request')) {
+        if (!Req::hasHeader(key: 'Accept') || Req::header(key: 'hx-request', nullIfMissing: true) !== true) {
             $request->headers->set('Accept', 'application/json');
         }
         return parent::render(request: $request, e: $e);
