@@ -30,7 +30,7 @@ final class Light extends Component {
 
     public function render(): View {
         $icon_classes = match ($this->size) {
-            'default' => '-ml-3 mr-1.5',
+            'default' => '-ml-2.5 mr-1.5',
             'small' => '-ml-2 mr-1.5',
             'tiny' => '-ml-1 mr-1',
             default => throw new RuntimeException(message: 'Unknown size: ' . $this->size),
@@ -42,8 +42,8 @@ final class Light extends Component {
                     default => '',
                 },
             'icon_size' => match ($this->size) {
-                'default' => "6",
-                'small' => "5",
+                'default' => "5",
+                'small' => "4",
                 'tiny' => "3.5",
                 default => throw new RuntimeException(message: 'Unknown size: ' . $this->size),
             }

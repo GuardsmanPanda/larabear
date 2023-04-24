@@ -31,24 +31,24 @@ final class Outline extends Component {
 
     public function render(): View {
         $icon_classes = match ($this->size) {
-            'default' => '-ml-3 mr-1.5',
+            'default' => '-ml-2.5 mr-1.5',
             'small' => '-ml-2 mr-1.5',
             'tiny' => '-ml-1 mr-1',
             default => throw new RuntimeException(message: 'Unknown size: ' . $this->size),
         };
         return Resp::view(view: 'bear::button.basic', data: [
-            'icon_size' => match ($this->size) {
-                'default' => "6",
-                'small' => "5",
-                'tiny' => "3.5",
-                default => throw new RuntimeException(message: 'Unknown size: ' . $this->size),
-            },
             'icon_classes' => $icon_classes . match ($this->color) {
                     'gray' => ' text-gray-500',
                     'red' => ' text-red-500',
                     'green' => ' text-green-500',
                     default => '',
                 },
+            'icon_size' => match ($this->size) {
+                'default' => "5",
+                'small' => "4",
+                'tiny' => "3.5",
+                default => throw new RuntimeException(message: 'Unknown size: ' . $this->size),
+            },
         ]);
     }
 }
