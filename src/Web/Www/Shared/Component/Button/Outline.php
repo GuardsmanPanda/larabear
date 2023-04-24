@@ -31,8 +31,8 @@ final class Outline extends Component {
 
     public function render(): View {
         $icon_classes = match ($this->size) {
-            'default' => '-ml-1 mr-2',
-            'small' => '-ml-1 mr-1.5',
+            'default' => '-ml-3 mr-1.5',
+            'small' => '-ml-2 mr-1.5',
             'tiny' => '-ml-1 mr-1',
             default => throw new RuntimeException(message: 'Unknown size: ' . $this->size),
         };

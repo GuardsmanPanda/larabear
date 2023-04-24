@@ -22,17 +22,17 @@ final class Dark extends Component {
             default => throw new RuntimeException(message: 'Unknown size: ' . $this->size),
         };
         $this->classes .= match ($this->color) {
-            'indigo' => ' text-indigo-50 bg-indigo-600 border-indigo-600 hover:bg-indigo-700 shadow-indigo-600/20 hover:shadow-indigo-600/20 focus:ring-indigo-700',
-            'emerald' => ' text-emerald-50 bg-emerald-600 border-emerald-600 hover:bg-emerald-700 shadow-emerald-600/20 hover:shadow-emerald-600/20 focus:ring-emerald-700',
-            'red' => ' text-red-50 bg-red-600 border-red-600 hover:bg-red-700 shadow-red-600/20 hover:shadow-red-600/20 focus:ring-red-700',
+            'indigo' => ' text-indigo-50 bg-indigo-600 border-indigo-600 shadow-indigo-600/20 focus:ring-indigo-700',
+            'emerald' => ' text-emerald-50 bg-emerald-600 border-emerald-600 shadow-emerald-600/20 focus:ring-emerald-700',
+            'red' => ' text-red-50 bg-red-600 border-red-600 shadow-red-600/20 focus:ring-red-700',
             default => throw new RuntimeException(message: 'Unknown color: ' . $this->color),
         };
     }
 
     public function render(): View {
         $icon_classes = match ($this->size) {
-            'default' => '-ml-1 mr-2',
-            'small' => '-ml-1 mr-1.5',
+            'default' => '-ml-3 mr-1.5',
+            'small' => '-ml-2 mr-1.5',
             'tiny' => '-ml-1 mr-1',
             default => throw new RuntimeException(message: 'Unknown size: ' . $this->size),
         };

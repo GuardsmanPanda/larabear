@@ -22,16 +22,16 @@ final class Light extends Component {
             default => throw new RuntimeException(message: 'Unknown size: ' . $this->size),
         };
         $this->classes .= match ($this->color) {
-            'gray' => ' text-gray-600 hover:text-gray-700 bg-gray-200 border-gray-200 hover:bg-gray-300 shadow-gray-500/20 hover:shadow-gray-500/20 focus:ring-gray-300',
-            'red' => ' text-red-600 hover:text-red-700 bg-red-200 border-red-200 hover:bg-red-300 shadow-red-500/20 hover:shadow-red-500/20 focus:ring-red-300',
+            'gray' => ' text-gray-600 hover:text-gray-700 bg-gray-200 border-gray-200 shadow-gray-500/20 focus:ring-gray-300',
+            'red' => ' text-red-600 hover:text-red-700 bg-red-200 border-red-200 shadow-red-500/20 focus:ring-red-300',
             default => throw new RuntimeException(message: 'Unknown color: ' . $this->color),
         };
     }
 
     public function render(): View {
         $icon_classes = match ($this->size) {
-            'default' => '-ml-1 mr-2',
-            'small' => '-ml-1 mr-1.5',
+            'default' => '-ml-3 mr-1.5',
+            'small' => '-ml-2 mr-1.5',
             'tiny' => '-ml-1 mr-1',
             default => throw new RuntimeException(message: 'Unknown size: ' . $this->size),
         };
