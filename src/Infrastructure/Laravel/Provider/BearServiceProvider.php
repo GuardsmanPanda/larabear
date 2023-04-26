@@ -38,7 +38,7 @@ final class BearServiceProvider extends ServiceProvider {
             Route::post(uri: 'bear/user-api/auth/sign-out', action: [LarabearUserApiAuthController::class, 'signOut'])->middleware([BearTransactionMiddleware::class]);
 
             // Web Authentication Routes, mostly for the control panel.
-            Route::prefix('bear')->middleware([BearSessionAuthMiddleware::class, BearHtmxMiddleware::class, BearTransactionMiddleware::class, 'permission:larabear-ui'])->group(function () {
+            Route::prefix('bear')->middleware([BearSessionAuthMiddleware::onlyAuthenticated(), BearHtmxMiddleware::class, BearTransactionMiddleware::class, BearPermissionMiddleware::using(permission: 'larabear-ui')])->group(function () {
                 Route::prefix('')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Dashboard/routes.php'));
                 Route::prefix('access')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Access/routes.php'));
                 Route::prefix('credential')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Credential/routes.php'));
@@ -58,7 +58,7 @@ final class BearServiceProvider extends ServiceProvider {
             });
 
             // Routes with no authentication required.
-            Route::prefix('bear')->middleware(['session:allow-guest', BearTransactionMiddleware::class])->group(function () {
+            Route::prefix('bear')->middleware([BearSessionAuthMiddleware::allowGuests(), BearTransactionMiddleware::class])->group(function () {
                 Route::prefix('auth')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Auth/routes.php'));
             });
         }

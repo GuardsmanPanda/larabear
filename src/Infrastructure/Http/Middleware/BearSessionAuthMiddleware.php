@@ -25,6 +25,15 @@ final class BearSessionAuthMiddleware {
         $this->config = Config::get(key: 'session');
     }
 
+    public static function allowGuests(): string {
+        return BearSessionAuthMiddleware::class . ':allow-guest';
+    }
+
+    public static function onlyAuthenticated(): string {
+        return BearSessionAuthMiddleware::class;
+    }
+
+
     public function handle(Request $request, Closure $next, string $extra = null): Response {
         $session = $this->manager->driver();
         $session->setId($request->cookies->get(key: $this->config['cookie']));
