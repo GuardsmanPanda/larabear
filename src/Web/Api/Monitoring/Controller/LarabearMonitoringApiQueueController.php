@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 final class LarabearMonitoringApiQueueController extends Controller {
     public function failedJobsCount(): JsonResponse {
         BearGlobalStateService::setLogResponseError(value: false);
+        $minutes = Req::getIntOrDefault(key: 'minutes', default: 50000);
         $failed_jobs_count = DB::table(table: config(key: 'queue.failed.table'))->count();
         return $failed_jobs_count === 0 ? Json::empty() : throw new LarabearMonitoringException(detail: "There are $failed_jobs_count failed jobs");
     }

@@ -24,4 +24,9 @@ final class BearBasicAuthMiddleware {
         (new BearUserUpdater($user))->setLastLoginNow()->update();
         return $next($request);
     }
+
+
+    public static function using(string $field = 'user_email'): string {
+        return BearBasicAuthMiddleware::class . ':' . $field;
+    }
 }

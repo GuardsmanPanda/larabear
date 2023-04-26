@@ -24,4 +24,8 @@ final class BearRoleMiddleware {
         }
         return $next($request);
     }
+
+    public static function using(string $role): string {
+        return BearBasicAuthMiddleware::class . ':' .$role;
+    }
 }
