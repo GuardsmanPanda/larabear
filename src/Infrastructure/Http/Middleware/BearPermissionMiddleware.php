@@ -26,6 +26,6 @@ final class BearPermissionMiddleware {
     }
 
     public static function using(string $permission): string {
-        return BearBasicAuthMiddleware::class . ':' . $permission;
+        return BearPermissionMiddleware::class . ':' . $permission;
     }
 }
