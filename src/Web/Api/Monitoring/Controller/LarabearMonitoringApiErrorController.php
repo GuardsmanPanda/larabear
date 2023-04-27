@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LarabearMonitoringApiErrorController extends Controller {
-    public function severeErrors(): JsonResponse {
+    public function noSevereErrors(): JsonResponse {
         BearGlobalStateService::setLogResponseError(value: false);
         $error_count = DB::selectOne(query: "
             SELECT COUNT(*) AS error_count
@@ -21,7 +21,7 @@ final class LarabearMonitoringApiErrorController extends Controller {
         return $error_count === 0 ? Json::empty() : throw new LarabearMonitoringException(detail: "There are $error_count severe errors with severity HIGH, CRITICAL or EMERGENCY");
     }
 
-    public function softDeleteErrors(): JsonResponse {
+    public function noSoftDeleteErrors(): JsonResponse {
         BearGlobalStateService::setLogResponseError(value: false);
         $connection = config(key: 'database.default');
         $error = LarabearDatabaseForeignKeyService::getSoftDeletedForeignKeyConstraints($connection);
