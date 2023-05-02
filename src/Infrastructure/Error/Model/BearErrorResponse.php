@@ -55,6 +55,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $app_action_name
  * @property string|null $request_path
  * @property string|null $request_country_code
+ * @property string|null $request_referer
  * @property ArrayObject|null $request_query_json
  *
  * @property BearUser|null $user

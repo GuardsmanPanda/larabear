@@ -58,6 +58,10 @@ final class Req {
         return self::$r?->getHost() ?? 'CLI';
     }
 
+    public static function referer(): string|null {
+        return self::$r?->headers->get(key: 'referer');
+    }
+
     public static function method(): string {
         return self::$r?->method() ?? 'CLI';
     }

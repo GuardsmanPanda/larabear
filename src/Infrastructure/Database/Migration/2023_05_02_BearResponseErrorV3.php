@@ -27,6 +27,7 @@ return new class extends Migration {
             $table->jsonb(column: 'request_query_json')->nullable();
             $table->mediumText(column: 'request_content')->nullable();
             $table->text(column: 'request_hostname');
+            $table->text(column: 'request_referer')->nullable();
             $table->text(column: 'app_action_name')->nullable();
             $table->text(column: 'response_body');
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

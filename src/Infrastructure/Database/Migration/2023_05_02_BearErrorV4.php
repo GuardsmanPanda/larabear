@@ -40,10 +40,12 @@ return new class extends Migration {
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_hostname')->nullable();
+                $table->text(column: 'request_referer')->nullable();
                 $table->text(column: 'request_id')->nullable();
                 $table->text(column: 'email_status_text')->nullable();
             } else {
                 $table->string(column: 'request_hostname')->nullable();
+                $table->string(column: 'request_referer')->nullable();
                 $table->string(column: 'request_id')->nullable();
                 $table->string(column: 'email_status_text')->nullable();
             }
