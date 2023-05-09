@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Laravel\Provider;
 
-use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearCleanLogTablesCommand;
+use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearCleanTablesCommand;
 use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearValidateConfigurationCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Listener\ConsoleRegisterListeners;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCheckForeignKeysOnSoftDeletesCommand;
@@ -74,7 +74,7 @@ final class BearServiceProvider extends ServiceProvider {
                 LarabearGenerateSessionKeyCommand::class,
                 LarabearValidateConfigurationCommand::class,
                 LarabearDatabaseCheckForeignKeysOnSoftDeletesCommand::class,
-                LarabearCleanLogTablesCommand::class,
+                LarabearCleanTablesCommand::class,
                 LarabearDatabaseCrudGeneratorCommand::class,
                 LarabearDatabaseModelGeneratorCommand::class,
                 LarabearPhpStanCommand::class,
@@ -88,7 +88,7 @@ final class BearServiceProvider extends ServiceProvider {
 
             $this->app->booted(function () {
                 $schedule = $this->app->make(abstract: Schedule::class);
-                $schedule->command(LarabearCleanLogTablesCommand::class)->dailyAt(time: '01:45');
+                $schedule->command(LarabearCleanTablesCommand::class)->dailyAt(time: '01:45');
                 $schedule->command(LarabearOauth2CheckAccessCommand::class)->dailyAt(time: '02:07');
             });
         } else {

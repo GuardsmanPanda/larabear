@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\App;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
@@ -39,8 +40,8 @@ final class BearExceptionHandler extends Handler {
 
     protected function prepareException(Throwable $e): Throwable {
         return match (true) {
-            $e instanceof ModelNotFoundException => new BadRequestHttpException(message: "The findOrFail... failed", previous: $e),
-            $e instanceof RecordsNotFoundException => new BadRequestHttpException(message: "The call to sole() did not return exactly one record", previous: $e),
+            $e instanceof ModelNotFoundException => new BadRequestHttpException(message: "findOrFail() // sole() ... failed" . App::isLocal() ? " [{$e->getMessage()}]" : "", previous: $e),
+            $e instanceof RecordsNotFoundException => new BadRequestHttpException(message: "The call to sole() did not return exactly one record" . App::isLocal() ? " [{$e->getMessage()}]" : "", previous: $e),
             default => parent::prepareException($e)
         };
     }
