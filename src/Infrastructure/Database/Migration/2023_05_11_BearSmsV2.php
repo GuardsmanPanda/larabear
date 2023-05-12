@@ -8,14 +8,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
+        Schema::dropIfExists(table: 'bear_sms');
         Schema::create(table: 'bear_sms', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));
-                $table->text(column: 'phone_number')->index();
+                $table->text(column: 'to_phone_number')->index();
                 $table->text(column: 'sms_tag')->nullable()->index();
             } else {
                 $table->uuid(column: 'id')->primary();
-                $table->string(column: 'phone_number')->index();
+                $table->string(column: 'to_phone_number')->index();
                 $table->string(column: 'sms_tag')->nullable()->index();
             }
             $table->text(column: 'sms_message');
