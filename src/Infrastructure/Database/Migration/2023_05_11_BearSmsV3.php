@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->timestampTz(column: 'sms_sent_at')->nullable()->index();
             $table->integer(column: 'sms_error_code')->nullable();
             $table->text(column: 'sms_error_message')->nullable();
-            $table->uuid(column: 'sms_twilio_id')->nullable();
+            $table->text(column: 'sms_twilio_id')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->useCurrentOnUpdate();
         });
