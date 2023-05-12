@@ -25,13 +25,9 @@ final class BearTwilioClient {
                 'From' => $external->external_api_metadata_json['from_phone_number'] ?? throw new RuntimeException(message: 'Missing from_phone_number in external_api_metadata_json'),
                 'Body' => $message
             ]);
-            if ($response->successful()) {
+            if ($response->successful() || $response->clientError()) {
                 $json = $response->json();
-                if ($json['error_code'] === null) {
-                    return new BearTwilioSmsResponse(error_message: '', code: 0, sid: $json['sid']);
-                }
-                BearErrorCreator::create(message: "Twilio Error: {$json['error_message']}", key: 'larabear::twilio-client-error');
-                return new BearTwilioSmsResponse(error_message: $json['error_message'], code: $json['error_code'], sid: $json['sid']);
+                return new BearTwilioSmsResponse(error_message: $json['error_message'] ?? '', code: $json['error_code'] ?? 0, sid: $json['sid']);
             }
             BearErrorCreator::create(message: "Twilio Error: {$response->body()}", key: 'larabear::twilio-client-exception');
             return new BearTwilioSmsResponse(error_message: "Twilio Error: {$response->body()}");

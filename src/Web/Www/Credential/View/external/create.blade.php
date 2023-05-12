@@ -3,7 +3,7 @@
     <div class="grid grid-cols-2 gap-4">
         <x-bear::form.text id="external_api_slug" required></x-bear::form.text>
         <x-bear::form.text id="external_api_description" required placeholder="What is the external api for.."></x-bear::form.text>
-        <x-bear::form.text id="external_api_base_url " placeholder="Required if not using an oauth2 client" class="col-span-2"></x-bear::form.text>
+        <x-bear::form.text id="external_api_base_url" placeholder="Required if not using an oauth2 client" class="col-span-2"></x-bear::form.text>
         <x-bear::form.select id="external_api_type" required :options="$external_api_types" selected="OAUTH2"></x-bear::form.select>
         <x-bear::form.text id="encrypted_external_api_token" placeholder="username:password for basic auth"></x-bear::form.text>
         <x-bear::form.datalist id="oauth2_client_id" :options="$oauth2_clients"></x-bear::form.datalist>
