@@ -162,15 +162,29 @@ final class BearExternalApiClient {
 
     /**
      * @param string $path
+     * @param array<string, string> $headers
+     * @param array<string, string> $body
+     * @return Response
+     */
+    public function formRequest(String $path, array $headers = [], array $body = []): Response {
+        return $this->request(path: $path, method: 'POST', headers: $headers, body: $body, asForm: true);
+    }
+
+
+    /**
+     * @param string $path
      * @param string $method
      * @param array<string, string> $headers
      * @param array<string, string> $body
      * @param array<string, string> $query
      * @return Response
      */
-    public function request(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = []): Response {
+    private function request(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = [], bool $asForm = false): Response {
         $final_url = str_starts_with(haystack: $path, needle: 'https://') ? $path : $this->baseUrl . $path;
         $pending = Http::withOptions(['query' => $query, 'headers' => $headers + $this->baseHeaders, 'timeout' => self::$API_REQUEST_TIMEOUT]);
+        if ($asForm) {
+            $pending = $pending->asForm();
+        }
         return match ($method) {
             'GET' => $pending->get($final_url),
             'POST' => $pending->post($final_url, $body),
