@@ -15,9 +15,6 @@ final class BearEmailService {
         if ($updater->getEmailSentAt() !== null) {
             throw new RuntimeException(message: 'Email already sent');
         }
-        if ($email->email_to === null || $email->email_subject === null) {
-            throw new RuntimeException(message: 'Email to or subject is null');
-        }
         $result = BearPostmarkClient::sendMessage(
             to: $email->email_to,
             subject: $email->email_subject,

@@ -6,10 +6,6 @@ return [
     'postmark_from_email' => 'Full Name <dev@example.com>',
     'postmark_token' => env(key: 'POSTMARK_TOKEN'),
     'postmark_sandbox_token' => env(key: 'POSTMARK_SANDBOX_TOKEN'),
-    'external_api_ids' =>  [
-        'twilio' => 'UUID',
-        'twilio_sandbox' => 'UUID',
-    ],
     'response_error_log' => [
         'enabled' => true,
         'ignore_response_codes' => [401, 403],

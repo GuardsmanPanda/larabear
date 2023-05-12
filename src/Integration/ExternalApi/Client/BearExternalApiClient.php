@@ -168,7 +168,7 @@ final class BearExternalApiClient {
      * @param array<string, string> $query
      * @return Response
      */
-    private function request(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = []): Response {
+    public function request(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = []): Response {
         $final_url = str_starts_with(haystack: $path, needle: 'https://') ? $path : $this->baseUrl . $path;
         $pending = Http::withOptions(['query' => $query, 'headers' => $headers + $this->baseHeaders, 'timeout' => self::$API_REQUEST_TIMEOUT]);
         return match ($method) {
