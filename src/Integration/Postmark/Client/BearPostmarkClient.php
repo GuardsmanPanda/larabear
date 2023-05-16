@@ -30,8 +30,8 @@ final class BearPostmarkClient {
         }
         $client = BearExternalApiClient::fromExternalApi(api: $external);
         try {
-            $result = $client->request(path: 'email', body: [
-                'From' => $external->external_api_metadata_json['from'] ?? throw new RuntimeException(message: 'Missing email_from'),
+            $result = $client->request(path: 'email', method: 'POST', body: [
+                'From' => $external->external_api_metadata_json['from'] ?? throw new RuntimeException(message: 'Missing from in external_api_metadata_json'),
                 'To' => $to,
                 'subject' => $subject,
                 'HtmlBody' => $htmlBody,

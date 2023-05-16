@@ -195,7 +195,7 @@ final class BearExternalApiClient {
             'PUT' => $pending->put($final_url, $body),
             'PATCH' => $pending->patch($final_url, $body),
             'DELETE' => $pending->delete($final_url, $body),
-            default => throw new RuntimeException(message: 'Invalid HTTP method')
+            default => throw new RuntimeException(message: "Method [$method] not supported")
         };
     }
 }
