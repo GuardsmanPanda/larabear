@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
+        Schema::dropIfExists(table: 'bear_error');
         Schema::dropIfExists(table: 'bear_severity');
     }
 

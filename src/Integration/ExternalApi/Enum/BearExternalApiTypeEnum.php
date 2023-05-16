@@ -8,5 +8,6 @@ enum  BearExternalApiTypeEnum: string {
     case OAUTH2 = 'OAUTH2';
     case OAUTH2_CLIENT = 'OAUTH2_CLIENT';
     case X_API_KEY = 'X_API_KEY';
+    case X_POSTMARK_SERVER_TOKEN = 'X_POSTMARK_SERVER_TOKEN';
     case UNKNOWN = 'UNKNOWN';
 }

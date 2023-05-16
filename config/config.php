@@ -3,9 +3,6 @@
 return [
     'cookie.session_key' => env(key: 'LARABEAR_SESSION_KEY'),
     'log_database_change_channel' => null,
-    'postmark_from_email' => 'Full Name <dev@example.com>',
-    'postmark_token' => env(key: 'POSTMARK_TOKEN'),
-    'postmark_sandbox_token' => env(key: 'POSTMARK_SANDBOX_TOKEN'),
     'response_error_log' => [
         'enabled' => true,
         'ignore_response_codes' => [401, 403],

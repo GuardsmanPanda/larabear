@@ -3,9 +3,10 @@
 namespace GuardsmanPanda\Larabear\Integration\Postmark\Client;
 
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
+use GuardsmanPanda\Larabear\Integration\ExternalApi\Client\BearExternalApiClient;
+use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 use GuardsmanPanda\Larabear\Integration\Postmark\Data\BearPostMarkClientResponse;
 use Illuminate\Support\Facades\Config;
-use Postmark\PostmarkClient as MailClient;
 use RuntimeException;
 use Throwable;
 
@@ -21,20 +22,26 @@ final class BearPostmarkClient {
         string $bcc = null,
         bool $sandbox = false
     ): BearPostMarkClientResponse {
-        $client = new MailClient(serverToken: self::getPostmarkToken(sandbox: $sandbox));
+        $slug = $sandbox ? 'postmark-sandbox' : 'postmark';
+        $external = BearExternalApi::where(column: 'external_api_slug', operator: '=', value: $slug)->first();
+        if ($external === null) {
+            BearErrorCreator::create(message: "Postmark External Api With Slug [$slug], Not Found In bear_external_api Table", key: 'larabear::postmark-client');
+            return new BearPostMarkClientResponse(message: "Postmark external Api Not Found", code: -1, messageId: null);
+        }
+        $client = BearExternalApiClient::fromExternalApi(api: $external);
         try {
-            $result = $client->sendEmail(
-                from: Config::get(key: 'bear.postmark_from_email') ?? throw new RuntimeException(message: 'Missing email_from'),
-                to: $to,
-                subject: $subject,
-                htmlBody: $htmlBody,
-                textBody: $textBody,
-                tag: $tag,
-                replyTo: $replyTo,
-                cc: $cc,
-                bcc: $bcc
-            );
-            return new BearPostMarkClientResponse(message: $result->Message ?? "Success", code: $result->ErrorCode ?? 0, messageId: $result->MessageID ?? null);
+            $result = $client->request(path: 'email', body: [
+                'From' => $external->external_api_metadata_json['from'] ?? throw new RuntimeException(message: 'Missing email_from'),
+                'To' => $to,
+                'subject' => $subject,
+                'HtmlBody' => $htmlBody,
+                'TextBody' => $textBody,
+                'Tag' => $tag,
+                'ReplyTo' => $replyTo,
+                'Cc' => $cc,
+                'Bcc' => $bcc
+            ])->json();
+            return new BearPostMarkClientResponse(message: $result['Message'] ?? "Success", code: $result['ErrorCode'] ?? 0, messageId: $result['MessageID'] ?? null);
         } catch (Throwable $t) {
             BearErrorCreator::create(
                 message: "Exception when sending email, Message [{$t->getMessage()}]",
@@ -43,9 +50,5 @@ final class BearPostmarkClient {
             );
             return new BearPostMarkClientResponse(message: "Exception when sending email, Message [{$t->getMessage()}]", code: -1, messageId: null);
         }
-    }
-
-    private static function getPostmarkToken(bool $sandbox): string {
-        return $sandbox ? (Config::get(key: 'bear.postmark_sandbox_token') ?? throw new RuntimeException(message: 'Missing postmark_sandbox_token')) : (Config::get(key: 'bear.postmark_token') ?? throw new RuntimeException(message: 'Missing postmark_token'));
     }
 }

@@ -75,12 +75,16 @@ final class BearExternalApiClient {
         if ($api->external_api_type === BearExternalApiTypeEnum::X_API_KEY) {
             $headers['X-API-Key'] = $api->encrypted_external_api_token;
         }
+        if ($api->external_api_type === BearExternalApiTypeEnum::X_POSTMARK_SERVER_TOKEN) {
+            $headers['X-Postmark-Server-Token'] = $api->encrypted_external_api_token;
+        }
         if ($api->external_api_type === BearExternalApiTypeEnum::BEARER_TOKEN) {
             $headers['Authorization'] = "Bearer $api->encrypted_external_api_token";
         }
         if ($api->external_api_type === BearExternalApiTypeEnum::BASIC_AUTH) {
             $headers['Authorization'] = "Basic $api->encrypted_external_api_token";
         }
+
         return new self(baseUrl: $baseUrl ?? $api->external_api_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'), baseHeaders: $headers);
     }
 
@@ -179,7 +183,7 @@ final class BearExternalApiClient {
      * @param array<string, string> $query
      * @return Response
      */
-    private function request(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = [], bool $asForm = false): Response {
+    public function request(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = [], bool $asForm = false): Response {
         $final_url = str_starts_with(haystack: $path, needle: 'https://') ? $path : $this->baseUrl . $path;
         $pending = Http::withOptions(['query' => $query, 'headers' => $headers + $this->baseHeaders, 'timeout' => self::$API_REQUEST_TIMEOUT]);
         if ($asForm) {
