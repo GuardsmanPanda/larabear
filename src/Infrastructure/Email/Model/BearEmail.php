@@ -49,7 +49,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $id
  * @property string $email_to
  * @property string $created_at
- * @property string $email_from
  * @property string $updated_at
  * @property string $email_subject
  * @property string|null $email_cc

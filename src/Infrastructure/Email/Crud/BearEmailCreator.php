@@ -7,7 +7,6 @@ use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Email\Service\BearEmailService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
-use GuardsmanPanda\Larabear\Integration\Postmark\Client\BearPostmarkClient;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Throwable;
@@ -16,7 +15,6 @@ final class BearEmailCreator {
     public static function create(
         string $email_to,
         string $email_subject,
-        string $email_from = null,
         string $email_cc = null,
         string $email_bcc = null,
         string $email_tag = null,
@@ -33,7 +31,6 @@ final class BearEmailCreator {
 
         $model->email_to = $email_to;
         $model->email_subject = $email_subject;
-        $model->email_from = $email_from ?? config(key: 'bear.postmark_from_email');
         $model->email_cc = $email_cc === null ? null : trim(string: $email_cc, characters: ', ');
         $model->email_bcc = $email_bcc === null ? null : trim(string: $email_bcc, characters: ', ');
         $model->email_tag = $email_tag;

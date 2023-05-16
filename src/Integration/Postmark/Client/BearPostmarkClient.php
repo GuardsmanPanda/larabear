@@ -6,7 +6,6 @@ use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Client\BearExternalApiClient;
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 use GuardsmanPanda\Larabear\Integration\Postmark\Data\BearPostMarkClientResponse;
-use Illuminate\Support\Facades\Config;
 use RuntimeException;
 use Throwable;
 
