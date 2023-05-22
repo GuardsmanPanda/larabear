@@ -8,9 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\LarabearDatabaseMode
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Throwable;
 
 final class BearLogDatabaseChangeCreator {
@@ -56,26 +54,5 @@ final class BearLogDatabaseChangeCreator {
                 remedy: 'Contact Bjørn', exception: $t,
             );
         }
-
-         $channel = Config::get(key: "bear.log_database_change_channel");
-         if ($channel !== null) {
-             try {
-                 if ($changeType === 'CREATE') {
-                     Log::channel(channel: $channel)->info(message: "CREATE in [$table] ID: " . implode(separator: ',', array: $keys) . ", Data: $recordData", context: ['user_id' => BearGlobalStateService::getUserId()]);
-                 } else if ($changeType === 'DELETE') {
-                     Log::channel(channel: $channel)->info(message: "*DELETE* in [$table] - ID: " . implode(separator: ',', array: $keys), context: ['user_id' => BearGlobalStateService::getUserId()]);
-                 } else {
-                     Log::channel(channel: $channel)->info(message: "UPDATE in [$table -> $columnName] - ID: " . implode(separator: ',', array: $keys) . " Change: $oldValue -> $newValue", context: ['user_id' => BearGlobalStateService::getUserId()]);
-                 }
-             } catch (Throwable $throwable) {
-                 BearErrorCreator::create(
-                     message: "Failed to log database change to channel [$channel]",
-                     key: 'larabear::database_change_log_channel_failed',
-                     severity: BearSeverityEnum::MEDIUM,
-                     remedy: 'Check the database change log channel is configured correctly',
-                     exception: $throwable
-                 );
-             }
-         }
     }
 }
