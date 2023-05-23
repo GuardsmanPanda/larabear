@@ -4,7 +4,7 @@ use GuardsmanPanda\Larabear\Web\Www\Auth\Controller\LarabearAuthController;
 use GuardsmanPanda\Larabear\Web\Www\Auth\Controller\LarabearAuthOauth2Controller;
 use Illuminate\Support\Facades\Route;
 
-Route::get(uri: 'sign-in', action: [LarabearAuthController::class, 'signIn']);
+Route::post(uri: 'sign-in', action: [LarabearAuthController::class, 'signIn']);
 Route::get(uri: 'sign-out', action: [LarabearAuthController::class, 'signOut']);
 Route::get(uri: 'keep-alive', action: [LarabearAuthController::class, 'keepAlive']);
 
