@@ -12,10 +12,10 @@ use Throwable;
 
 final class BearSmsCreator {
     public static function create(
-        string $to_phone_number,
-        string $sms_message,
+        string $phone_number,
+        string $message,
         bool $is_sandboxed,
-        string $sms_tag = null,
+        string $tag = null,
     ): BearSms {
         BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
@@ -23,10 +23,10 @@ final class BearSmsCreator {
         $model = new BearSms();
         $model->id = Str::uuid()->toString();
 
-        $model->to_phone_number = $to_phone_number;
-        $model->sms_message = $sms_message;
+        $model->phone_number = $phone_number;
+        $model->message = $message;
         $model->is_sandboxed = $is_sandboxed;
-        $model->sms_tag = $sms_tag;
+        $model->tag = $tag;
 
         $model->save();
 

@@ -10,7 +10,7 @@ use RuntimeException;
 use Throwable;
 
 final class BearTwilioClient {
-    public static function sendSms(string $to_phone_number, string $message, bool $is_sandboxed = false): BearTwilioSmsResponse {
+    public static function sendSms(string $phone_number, string $message, bool $is_sandboxed = false): BearTwilioSmsResponse {
         $slug = $is_sandboxed ? 'twilio-sandbox' : 'twilio';
         $external = BearExternalApi::where(column: 'external_api_slug', operator: '=', value: $slug)->first();
         if ($external === null) {
@@ -21,7 +21,7 @@ final class BearTwilioClient {
         $client = BearExternalApiClient::fromExternalApi(api: $external);
         try {
             $response = $client->formRequest(path: "Messages.json", body: [
-                'To' => $to_phone_number,
+                'To' => $phone_number,
                 'From' => $external->external_api_metadata_json['from'] ?? throw new RuntimeException(message: 'Missing "from" in external_api_metadata_json'),
                 'Body' => $message
             ]);

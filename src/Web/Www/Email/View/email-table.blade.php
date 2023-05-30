@@ -16,7 +16,7 @@
             <td class="cursor-pointer h-full py-2 px-2" hx-get="/bear/email/{{$email->id}}/content-dialog">{{$email->email_subject}}</td>
             <x-bear::table.cell.relative>{{$email->email_sent_at}}</x-bear::table.cell.relative>
             <td class="px-2 py-2">{{$email->email_error_message}}</td>
-            <td class="px-2 py-2">{{$email->is_sandboxed}}</td>
+            <td class="px-2 py-2">{{$email->is_sandboxed ? '⛱️' : ''}}</td>
             <x-bear::table.cell.relative>{{$email->created_at}}</x-bear::table.cell.relative>
         </tr>
     @endforeach

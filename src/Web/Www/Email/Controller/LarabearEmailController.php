@@ -34,6 +34,7 @@ final class LarabearEmailController extends Controller {
 
     public function emailContentDialog(string $email_id): Response {
         $email = BearEmail::findOrFail(id: $email_id);
-        return Htmx::dialog(title: $email->email_subject, content: $email->email_html ?? $email->email_text ?? 'No email content found.');
+        $content = '<iframe class="mx-auto" height="900" width="1300"  srcdoc="' . e($email->email_html ?? $email->email_text ?? 'No email content found.') . '"></iframe>';
+        return Htmx::dialog(title: $email->email_subject, content: $content);
     }
 }

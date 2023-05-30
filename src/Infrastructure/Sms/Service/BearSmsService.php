@@ -10,13 +10,13 @@ use RuntimeException;
 final class BearSmsService {
     public static function sendSms(BearSms $sms): BearSms {
         $updater = BearSmsUpdater::fromId(id: $sms->id, lockForUpdate: true);
-        if ($updater->getSmsSentAt() !== null) {
+        if ($updater->getSentAt() !== null) {
             throw new RuntimeException(message: "Sms [$sms->id] already sent");
         }
-        $response = BearTwilioClient::sendSms(to_phone_number: $sms->to_phone_number, message: $sms->sms_message, is_sandboxed: $sms->is_sandboxed);
+        $response = BearTwilioClient::sendSms(phone_number: $sms->phone_number, message: $sms->message, is_sandboxed: $sms->is_sandboxed);
         if ($response->code === 0 && $response->sid !== null) {
-            return $updater->setSmsSentData(sms_twilio_id: $response->sid)->update();
+            return $updater->setSentData(twilio_id: $response->sid)->update();
         }
-        return $updater->setSmsError(sms_error_code: $response->code, sms_error_message: $response->error_message)->update();
+        return $updater->setError(error_code: $response->code, error_message: $response->error_message)->update();
     }
 }

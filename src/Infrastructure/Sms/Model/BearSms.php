@@ -51,17 +51,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static mixed sum(string $column)
  * @method static bool exists()
  *
- * @property int|null $sms_error_code
+ * @property int|null $error_code
  * @property bool $is_sandboxed
  * @property string $id
  * @property string $created_at
  * @property string $updated_at
- * @property string $sms_message
- * @property string $to_phone_number
- * @property string|null $sms_tag
- * @property string|null $sms_twilio_id
- * @property string|null $sms_error_message
- * @property CarbonInterface|null $sms_sent_at
+ * @property string $message
+ * @property string $phone_number
+ * @property string|null $tag
+ * @property string|null $twilio_id
+ * @property string|null $error_message
+ * @property CarbonInterface|null $sent_at
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -75,7 +75,7 @@ final class BearSms extends Model {
 
     /** @var array<string, string> $casts */
     protected $casts = [
-        'sms_sent_at' => 'immutable_datetime',
+        'sent_at' => 'immutable_datetime',
     ];
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];

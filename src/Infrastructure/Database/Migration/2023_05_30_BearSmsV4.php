@@ -12,19 +12,19 @@ return new class extends Migration {
         Schema::create(table: 'bear_sms', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));
-                $table->text(column: 'to_phone_number')->index();
-                $table->text(column: 'sms_tag')->nullable()->index();
+                $table->text(column: 'phone_number')->index();
+                $table->text(column: 'tag')->nullable()->index();
             } else {
                 $table->uuid(column: 'id')->primary();
-                $table->string(column: 'to_phone_number')->index();
-                $table->string(column: 'sms_tag')->nullable()->index();
+                $table->string(column: 'phone_number')->index();
+                $table->string(column: 'tag')->nullable()->index();
             }
-            $table->text(column: 'sms_message');
+            $table->text(column: 'message');
             $table->boolean(column: 'is_sandboxed')->default(false);
-            $table->timestampTz(column: 'sms_sent_at')->nullable()->index();
-            $table->integer(column: 'sms_error_code')->nullable();
-            $table->text(column: 'sms_error_message')->nullable();
-            $table->text(column: 'sms_twilio_id')->nullable();
+            $table->timestampTz(column: 'sent_at')->nullable()->index();
+            $table->integer(column: 'error_code')->nullable();
+            $table->text(column: 'error_message')->nullable();
+            $table->text(column: 'twilio_id')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->useCurrentOnUpdate();
         });
