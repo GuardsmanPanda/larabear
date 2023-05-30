@@ -11,18 +11,18 @@ return new class extends Migration {
         Schema::create(table: 'bear_file', callback: static function (Blueprint $table): void {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));
-                $table->text(column: 'original_file_name');
+                $table->text(column: 'original_name');
                 $table->text(column: 'mime_type');
-                $table->text(column: 'local_file_path')->nullable();
-                $table->text(column: 'cloud_file_path')->nullable();
-                $table->jsonb(column: 'file_data_json')->default(DB::raw("'{}'::jsonb"));
+                $table->text(column: 'local_path')->nullable();
+                $table->text(column: 'cloud_path')->nullable();
+                $table->jsonb(column: 'data_json')->default(DB::raw("'{}'::jsonb"));
             } else {
                 $table->uuid(column: 'id')->primary();
-                $table->string(column: 'original_file_name');
+                $table->string(column: 'original_name');
                 $table->string(column: 'mime_type');
-                $table->string(column: 'local_file_path')->nullable();
-                $table->string(column: 'cloud_file_path')->nullable();
-                $table->jsonb(column: 'file_data_json')->default(DB::raw('(json_object())'));
+                $table->string(column: 'local_path')->nullable();
+                $table->string(column: 'cloud_path')->nullable();
+                $table->jsonb(column: 'data_json')->default(DB::raw('(json_object())'));
             }
             $table->uuid(column: 'created_by_user_id')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

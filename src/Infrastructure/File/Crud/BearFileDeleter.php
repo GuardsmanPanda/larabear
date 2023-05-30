@@ -13,8 +13,8 @@ final class BearFileDeleter {
         BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
-        if ($model->local_file_path !== null) {
-            $result = Storage::disk(name: 'local')->delete(paths: $model->local_file_path);
+        if ($model->local_path !== null) {
+            $result = Storage::disk(name: 'local')->delete(paths: $model->local_path);
             if ($result === false) {
                 BearErrorCreator::create(
                     message: 'Failed to delete local file',
@@ -25,8 +25,8 @@ final class BearFileDeleter {
             }
         }
 
-        if ($model->cloud_file_path !== null) {
-            $result = Storage::cloud()->delete(paths: $model->cloud_file_path);
+        if ($model->cloud_path !== null) {
+            $result = Storage::cloud()->delete(paths: $model->cloud_path);
             if ($result === false) {
                 BearErrorCreator::create(
                     message: 'Failed to delete cloud file',

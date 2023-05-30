@@ -17,8 +17,8 @@ final class BearFileUpdater {
     }
 
 
-    public function setOriginalFileName(string $original_file_name): self {
-        $this->model->original_file_name = $original_file_name;
+    public function setOriginalName(string $original_name): self {
+        $this->model->original_name = $original_name;
         return $this;
     }
 
@@ -27,8 +27,12 @@ final class BearFileUpdater {
         return $this;
     }
 
-    public function setFileDataJson(ArrayObject $file_data_json): self {
-        $this->model->file_data_json = $file_data_json;
+    /**
+     * @param ArrayObject<string, string|int|bool> $data_json
+     * @return $this
+     */
+    public function setDataJson(ArrayObject $data_json): self {
+        $this->model->data_json = $data_json;
         return $this;
     }
 

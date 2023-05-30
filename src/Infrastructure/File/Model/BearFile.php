@@ -59,11 +59,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $mime_type
  * @property string $created_at
  * @property string $updated_at
- * @property string $original_file_name
- * @property string|null $cloud_file_path
- * @property string|null $local_file_path
+ * @property string $original_name
+ * @property string|null $cloud_path
+ * @property string|null $local_path
  * @property string|null $created_by_user_id
- * @property ArrayObject $file_data_json
+ * @property ArrayObject $data_json
  *
  * @property BearUser|null $createdByUser
  *
@@ -78,7 +78,7 @@ final class BearFile extends Model {
 
     /** @var array<string, string> $casts */
     protected $casts = [
-        'file_data_json' => AsArrayObject::class,
+        'data_json' => AsArrayObject::class,
     ];
 
     public function createdByUser(): BelongsTo|null {
