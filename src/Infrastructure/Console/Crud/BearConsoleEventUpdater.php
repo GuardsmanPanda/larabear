@@ -15,16 +15,16 @@ final class BearConsoleEventUpdater {
         return new BearConsoleEventUpdater(model: BearConsoleEvent::where(column: 'console_id', operator: '=', value: $consoleEventId)->sole());
     }
 
-    public function setConsoleCommand(string $console_command): self {
-        $this->model->console_command = $console_command;
+    public function setCommand(string $command): self {
+        $this->model->command = $command;
         return $this;
     }
 
-    public function setConsoleEventStartedAt(CarbonInterface $console_event_started_at): self {
-        if ($console_event_started_at->toIso8601String() === $this->model->console_event_started_at->toIso8601String()) {
+    public function setStartedAt(CarbonInterface $started_at): self {
+        if ($started_at->toIso8601String() === $this->model->started_at->toIso8601String()) {
             return $this;
         }
-        $this->model->console_event_started_at = $console_event_started_at;
+        $this->model->started_at = $started_at;
         return $this;
     }
 
@@ -43,19 +43,19 @@ final class BearConsoleEventUpdater {
         return $this;
     }
 
-    public function setConsoleEventFinishedAt(CarbonInterface|null $console_event_finished_at): self {
-        if ($console_event_finished_at?->toIso8601String() === $this->model->console_event_finished_at?->toIso8601String()) {
+    public function setFinishedAt(CarbonInterface|null $finished_at): self {
+        if ($finished_at?->toIso8601String() === $this->model->finished_at?->toIso8601String()) {
             return $this;
         }
-        $this->model->console_event_finished_at = $console_event_finished_at;
+        $this->model->finished_at = $finished_at;
         return $this;
     }
 
-    public function setConsoleEventFailedAt(CarbonInterface|null $console_event_failed_at): self {
-        if ($console_event_failed_at?->toIso8601String() === $this->model->console_event_failed_at?->toIso8601String()) {
+    public function setFailedAt(CarbonInterface|null $failed_at): self {
+        if ($failed_at?->toIso8601String() === $this->model->failed_at?->toIso8601String()) {
             return $this;
         }
-        $this->model->console_event_failed_at = $console_event_failed_at;
+        $this->model->failed_at = $failed_at;
         return $this;
     }
 
@@ -64,8 +64,8 @@ final class BearConsoleEventUpdater {
         return $this;
     }
 
-    public function setConsoleEventOutput(string|null $console_event_output): self {
-        $this->model->console_event_output = $console_event_output;
+    public function setOutput(string|null $output): self {
+        $this->model->output = $output === null || trim($output) === '' ? null : $output;
         return $this;
     }
 

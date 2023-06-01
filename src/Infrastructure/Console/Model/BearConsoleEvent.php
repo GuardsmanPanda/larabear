@@ -40,14 +40,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $execution_time_microseconds
  * @property string $console_id
  * @property string $created_at
- * @property string $console_command
- * @property string $console_event_type
- * @property string|null $console_event_output
+ * @property string $command
+ * @property string $event_type
+ * @property string|null $output
  * @property string|null $cron_schedule_timezone
  * @property string|null $cron_schedule_expression
- * @property CarbonInterface $console_event_started_at
- * @property CarbonInterface|null $console_event_failed_at
- * @property CarbonInterface|null $console_event_finished_at
+ * @property CarbonInterface $started_at
+ * @property CarbonInterface|null $failed_at
+ * @property CarbonInterface|null $finished_at
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -59,9 +59,9 @@ final class BearConsoleEvent extends Model {
 
     /** @var array<string, string> $casts */
     protected $casts = [
-        'console_event_failed_at' => 'immutable_datetime',
-        'console_event_finished_at' => 'immutable_datetime',
-        'console_event_started_at' => 'immutable_datetime',
+        'failed_at' => 'immutable_datetime',
+        'finished_at' => 'immutable_datetime',
+        'started_at' => 'immutable_datetime',
     ];
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];

@@ -39,8 +39,8 @@ final class ConsoleRegisterListeners {
             try {
                 DB::beginTransaction();
                 BearConsoleEventCreator::create(
-                    console_event_type: 'command',
-                    console_command: $event->input->__toString(),
+                    event_type: 'COMMAND',
+                    command: $event->input->__toString(),
                 );
                 DB::commit();
             } catch (Throwable $t) {
@@ -56,8 +56,8 @@ final class ConsoleRegisterListeners {
                 DB::beginTransaction();
                 $event->task->storeOutput();
                 BearConsoleEventCreator::create(
-                    console_event_type: 'scheduled_task',
-                    console_command: $event->task->command ?? $event->task->getSummaryForDisplay(),
+                    event_type: 'SCHEDULED_TASK',
+                    command: $event->task->command ?? $event->task->getSummaryForDisplay(),
                     cron_schedule_expression: $event->task->expression,
                     cron_schedule_timezone: $event->task->timezone,
                 );
@@ -77,9 +77,9 @@ final class ConsoleRegisterListeners {
                 DB::beginTransaction();
                 $updater = BearConsoleEventUpdater::fromConsoleEventId(consoleEventId: BearGlobalStateService::getConsoleId());
                 if ($event->exitCode === 0) {
-                    $updater->setConsoleEventFinishedAt(Carbon::now());
+                    $updater->setFinishedAt(Carbon::now());
                 } else {
-                    $updater->setConsoleEventFailedAt(Carbon::now());
+                    $updater->setFailedAt(Carbon::now());
                 }
                 $updater->setExecutionTimeMicroseconds((int)((microtime(as_float: true) - get_defined_constants()['LARAVEL_START']) * 1_000_000))->update();
                 DB::commit();
@@ -95,9 +95,9 @@ final class ConsoleRegisterListeners {
                 DB::beginTransaction();
                 $updater = BearConsoleEventUpdater::fromConsoleEventId(consoleEventId: BearGlobalStateService::getConsoleId());
                 if ($event->task->exitCode === 0) {
-                    $updater->setConsoleEventFinishedAt(Carbon::now());
+                    $updater->setFinishedAt(Carbon::now());
                 } else {
-                    $updater->setConsoleEventFailedAt(Carbon::now());
+                    $updater->setFailedAt(Carbon::now());
                     $command = $event->task->command;
                     BearErrorCreator::create(
                         message: "Scheduled task [$command] failed",
@@ -111,9 +111,9 @@ final class ConsoleRegisterListeners {
                     if (!is_string($data)) {
                         throw new RuntimeException(message: 'Could not read scheduled task output');
                     }
-                    $updater->setConsoleEventOutput(console_event_output: $data )->update();
+                    $updater->setOutput(output: $data )->update();
                 } catch (Throwable $t) {
-                    $updater->setConsoleEventOutput(console_event_output: "# Command output not available [{$t->getMessage()}]")->update();
+                    $updater->setOutput(output: "# Command output not available [{$t->getMessage()}]")->update();
                 }
                 DB::commit();
             } catch (Throwable $t) {

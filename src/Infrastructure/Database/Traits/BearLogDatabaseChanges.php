@@ -28,6 +28,16 @@ trait BearLogDatabaseChanges {
                     $new_value = 'HIDDEN';
                     $old_value = 'HIDDEN';
                 }
+
+                // if arrays are equal but key positions are different, then we do not need to log this change
+                if (is_array($old_value) && is_array($new_value) && $old_value == $new_value) {
+                    continue;
+                }
+                // Same for array objects
+                if ($old_value instanceof ArrayObject && $new_value instanceof ArrayObject && $old_value->toArray() == $new_value->toArray()) {
+                    continue;
+                }
+
                 // If old_value is array
                 if (is_array($old_value) || $old_value instanceof stdClass || $old_value instanceof ArrayObject) {
                     $old_value = json_encode(value: $old_value, flags: JSON_THROW_ON_ERROR);
