@@ -9,7 +9,7 @@ use RuntimeException;
 
 final class Standard extends Component {
     public string $classes = "min-w-full shadow";
-    public string $headerClasses = "border-b-2 font-semibold text-left";
+    public string $headerClasses = "border-b-2 font-semibold text-left sticky top-0";
     public string $bodyClasses = "divide-y bg-white text-sm text-gray-600";
 
     public function __construct(public readonly string $color = 'gray') {
