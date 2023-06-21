@@ -21,7 +21,7 @@ final class OidcToken {
 
     public static function fromJwt(string $jwt, BearOauth2Client $client): self {
         try {
-            $jwt = base64_decode(string: str_replace('_', '/', str_replace('-', '+', explode('.', $jwt)[1])), strict: true);
+            $jwt = base64_decode(str_replace(search: '_', replace: '/', subject: str_replace(search: '-', replace: '+', subject: explode(separator: '.', string: $jwt)[1])), strict: true);
             if ($jwt === false) {
                 BearErrorCreator::create(
                     message: "Failed to decode JWT",
@@ -38,10 +38,6 @@ final class OidcToken {
                     severity: BearSeverityEnum::CRITICAL,
                 );
                 throw new RuntimeException(message: "Incorrect Application ID.");
-            }
-            $uniq = $token->jti ?? $token->uti ?? null;
-            if ($uniq !== null) {
-                    //BearIdempotencyCreator::create(idempotency_key: $token->aud . ':' . $uniq);
             }
         } catch (Throwable $t) { //TODO Better error log.
             BearErrorCreator::create(
