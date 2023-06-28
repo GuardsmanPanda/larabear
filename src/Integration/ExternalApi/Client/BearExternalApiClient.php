@@ -185,7 +185,7 @@ final class BearExternalApiClient {
      */
     public function request(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = [], bool $asForm = false): Response {
         $final_url = str_starts_with(haystack: $path, needle: 'https://') ? $path : $this->baseUrl . $path;
-        $pending = Http::withOptions(['query' => $query, 'headers' => $headers + $this->baseHeaders, 'timeout' => self::$API_REQUEST_TIMEOUT]);
+        $pending = Http::withOptions(['query' => $query, 'headers' => $headers + $this->baseHeaders])->timeout(seconds: self::$API_REQUEST_TIMEOUT);
         if ($asForm) {
             $pending = $pending->asForm();
         }

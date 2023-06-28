@@ -25,6 +25,22 @@ final class BearArrayService {
 
 
     /**
+     * @param array<string|int, mixed> $from
+     * @param array<string|int, mixed> $to
+     * @param callable $filter
+     * @return void
+     */
+    public static function moveItems(array &$from, array $to, callable $filter): void {
+        foreach ($from as $item) {
+            if ($filter($item)) {
+                $to[] = $item;
+            }
+        }
+        $from = array_diff_key($from, $to);
+    }
+
+
+    /**
      * @param array<UnitEnum> $enumCases
      * @return array<int|string, mixed>
      */
