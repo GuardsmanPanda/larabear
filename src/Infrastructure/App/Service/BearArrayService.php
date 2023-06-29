@@ -30,7 +30,7 @@ final class BearArrayService {
      * @param callable $filter
      * @return void
      */
-    public static function moveItems(array &$from, array $to, callable $filter): void {
+    public static function moveItems(array &$from, array &$to, callable $filter): void {
         foreach ($from as $item) {
             if ($filter($item)) {
                 $to[] = $item;
