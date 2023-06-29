@@ -31,12 +31,15 @@ final class BearArrayService {
      * @return void
      */
     public static function moveItems(array &$from, array &$to, callable $filter): void {
+        $newFrom = [];
         foreach ($from as $item) {
             if ($filter($item)) {
                 $to[] = $item;
+            } else {
+                $newFrom[] = $item;
             }
         }
-        $from = array_diff_key($from, $to);
+        $from = $newFrom;
     }
 
 
