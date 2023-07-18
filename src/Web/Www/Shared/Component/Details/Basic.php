@@ -11,7 +11,7 @@ final class Basic  extends Component {
     public string $classes = "rounded-b shadow border";
     public string$summaryClasses = "select-none font-semibold cursor-pointer py-1.5 px-3 shadow-sm text-sm";
 
-    public function __construct(public readonly string $summary, public readonly  string $color = 'gray', public readonly bool $outline = false) {
+    public function __construct(public readonly string $summary, public readonly string $color = 'gray', public readonly bool $outline = false, public readonly bool $open = true) {
         $this->classes .= match ($this->color) {
             'gray' => ' shadow-gray-200 border-gray-200' . ($this->outline ? ' bg-white' : ' bg-gray-50'),
             'red' => ' shadow-red-300 border-red-300' . ($this->outline ? ' bg-white' : ' bg-red-50'),
