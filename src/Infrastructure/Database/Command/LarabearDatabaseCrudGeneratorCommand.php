@@ -128,7 +128,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
         $content .= "final class $className {" . PHP_EOL;
         $content .= "    public function __construct(private readonly {$model->getModelClassName()} \$model) {" . PHP_EOL;
         $content .= "        BearDatabaseService::mustBeInTransaction();" . PHP_EOL;
-        $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['PATCH']);" . PHP_EOL;
+        $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PATCH']);" . PHP_EOL;
         $content .= '    }' . PHP_EOL . PHP_EOL;
 
 

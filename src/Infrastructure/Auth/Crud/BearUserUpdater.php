@@ -106,8 +106,11 @@ final class BearUserUpdater {
         return $this;
     }
 
-    public function setUserDataJsonValue(string $key, mixed $value): self {
+    public function setUserDataJsonValue(string $key, mixed $value, bool $deleteIfExists = false): self {
         $this->model->user_data_json[$key] = $value;
+        if ($deleteIfExists === true) {
+            unset($this->model->user_data_json[$key]);
+        }
         return $this;
     }
 

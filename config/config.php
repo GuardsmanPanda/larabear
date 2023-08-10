@@ -2,6 +2,7 @@
 
 return [
     'cookie.session_key' => env(key: 'LARABEAR_SESSION_KEY'),
+    'include_exception_message_in_production' => false,
     'response_error_log' => [
         'enabled' => true,
         'ignore_response_codes' => [401, 403],

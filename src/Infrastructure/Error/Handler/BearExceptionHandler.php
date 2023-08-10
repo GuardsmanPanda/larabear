@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Error\Handler;
 
+use ErrorException;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
@@ -11,6 +12,7 @@ use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
@@ -39,9 +41,11 @@ final class BearExceptionHandler extends Handler {
     }
 
     protected function prepareException(Throwable $e): Throwable {
+        $includeMessage = App::isLocal() || Config::get(key: 'bear.include_exception_message_in_production', default: false) === true;
         return match (true) {
-            $e instanceof ModelNotFoundException => new BadRequestHttpException(message: "findOrFail() // sole() ... failed" . (App::isLocal() ? " [{$e->getMessage()}]" : ""), previous: $e),
-            $e instanceof RecordsNotFoundException => new BadRequestHttpException(message: "The call to sole() did not return exactly one record" . (App::isLocal() ? " [{$e->getMessage()}]" : ""), previous: $e),
+            $e instanceof ModelNotFoundException => new BadRequestHttpException(message: "findOrFail() // sole() ... failed" . ($includeMessage ? " [{$e->getMessage()}]" : ""), previous: $e),
+            $e instanceof RecordsNotFoundException => new BadRequestHttpException(message: "The call to sole() did not return exactly one record" . ($includeMessage ? " [{$e->getMessage()}]" : ""), previous: $e),
+            $e instanceof ErrorException => new BadRequestHttpException(message: "ErrorException" . ($includeMessage ? " [{$e->getMessage()}]" : ""), previous: $e),
             default => parent::prepareException($e)
         };
     }
