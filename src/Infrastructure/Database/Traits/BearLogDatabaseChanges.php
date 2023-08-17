@@ -23,7 +23,13 @@ trait BearLogDatabaseChanges {
                 if ($column_name === 'updated_at' || in_array($column_name, $ignore_columns, true)) {
                     continue;
                 }
+
                 $old_value = $model->getOriginal($column_name);
+
+                if ($old_value === null && $new_value === null) {
+                    continue;
+                }
+
                 if (str_starts_with($column_name, 'encrypted_')) {
                     $new_value = 'HIDDEN';
                     $old_value = 'HIDDEN';
