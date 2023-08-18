@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
+use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
@@ -222,10 +223,13 @@ final class Req {
     }
 
 
-    public static function getDate(string $key, BearTypeEnum|CarbonInterface|string|null $defaultIfMissing = BearTypeEnum::UNDEFINED): CarbonInterface|null {
+    public static function getDate(string $key, BearTypeEnum|CarbonInterface|string|null $defaultIfMissing = BearTypeEnum::UNDEFINED): CarbonImmutable|null {
         if (!self::has(key: $key)) {
-            if ($defaultIfMissing === null || $defaultIfMissing instanceof CarbonInterface) {
-                return $defaultIfMissing;
+            if ($defaultIfMissing === null) {
+                return null;
+            }
+            if ($defaultIfMissing instanceof CarbonInterface) {
+                return $defaultIfMissing instanceof CarbonImmutable ? $defaultIfMissing : $defaultIfMissing->toImmutable();
             }
             if (is_string($defaultIfMissing)) {
                 return ValidateAndParseValue::parseDate(value: $defaultIfMissing, errorMessage: "Input field '$key' error");
@@ -236,16 +240,20 @@ final class Req {
         return $val === null ? null : ValidateAndParseValue::parseDate(value: $val, errorMessage: "Input field '$key' error");
     }
 
-    public static function getDateOrDefault(string $key, CarbonInterface $default = null): CarbonInterface {
+
+    public static function getDateOrDefault(string $key, CarbonImmutable $default = null): CarbonImmutable {
         $value = self::request()->input(key: $key);
         return $value !== null ? ValidateAndParseValue::parseDate(value: $value, errorMessage: "Input field '$key' error") : ($default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided"));
     }
 
 
-    public static function getDateTime(string $key, BearTypeEnum|CarbonInterface|null $defaultIfMissing = BearTypeEnum::UNDEFINED, string $defaultTimezone = null): CarbonInterface|null {
+    public static function getDateTime(string $key, BearTypeEnum|CarbonInterface|null $defaultIfMissing = BearTypeEnum::UNDEFINED, string $defaultTimezone = null): CarbonImmutable|null {
         if (!self::has(key: $key)) {
-            if ($defaultIfMissing === null || $defaultIfMissing instanceof CarbonInterface) {
-                return $defaultIfMissing;
+            if ($defaultIfMissing === null) {
+                return null;
+            }
+            if ($defaultIfMissing instanceof CarbonInterface) {
+                return $defaultIfMissing instanceof CarbonImmutable ? $defaultIfMissing : $defaultIfMissing->toImmutable();
             }
             throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");
         }
@@ -254,7 +262,8 @@ final class Req {
         return $val === null ? null : ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone or supply it in the Req::getDateTime() defaultTimezone parameter');
     }
 
-    public static function getDateTimeOrDefault(string $key, CarbonInterface $default = null, string $defaultTimezone = null): CarbonInterface {
+
+    public static function getDateTimeOrDefault(string $key, CarbonImmutable $default = null, string $defaultTimezone = null): CarbonImmutable {
         $value = self::request()->input(key: $key);
         if ($value === null) {
             return $default ?? throw new BadRequestHttpException(message: "No input field named: $key and no default value provided");

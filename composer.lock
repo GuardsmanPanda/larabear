@@ -5742,38 +5742,39 @@
     "packages-dev": [
         {
             "name": "ergebnis/phpstan-rules",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ergebnis/phpstan-rules.git",
-                "reference": "99360283faf07a6d553f384183f3551a054c5aeb"
+                "reference": "119e229c48688946450ccca9f1c57c9ca4fb6f02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ergebnis/phpstan-rules/zipball/99360283faf07a6d553f384183f3551a054c5aeb",
-                "reference": "99360283faf07a6d553f384183f3551a054c5aeb",
+                "url": "https://api.github.com/repos/ergebnis/phpstan-rules/zipball/119e229c48688946450ccca9f1c57c9ca4fb6f02",
+                "reference": "119e229c48688946450ccca9f1c57c9ca4fb6f02",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "nikic/php-parser": "^4.2.3",
-                "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
-                "phpstan/phpstan": "^1.7.15"
+                "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
+                "phpstan/phpstan": "^1.10.21"
             },
             "require-dev": {
-                "doctrine/orm": "^2.14.3",
-                "ergebnis/composer-normalize": "^2.30.2",
+                "doctrine/orm": "^2.16.1",
+                "ergebnis/composer-normalize": "^2.35.0",
                 "ergebnis/license": "^2.1.0",
-                "ergebnis/php-cs-fixer-config": "^5.5.2",
-                "infection/infection": "~0.26.19",
-                "nette/di": "^3.1.2",
-                "phpstan/phpstan-deprecation-rules": "^1.0.0",
+                "ergebnis/php-cs-fixer-config": "^5.13.0",
+                "ergebnis/phpunit-slow-test-detector": "^2.3.0",
+                "infection/infection": "~0.27.0",
+                "nette/di": "^3.1.3",
+                "phpstan/phpstan-deprecation-rules": "^1.1.4",
                 "phpstan/phpstan-strict-rules": "^1.1.0",
-                "phpunit/phpunit": "^9.6.7",
+                "phpunit/phpunit": "^10.3.2",
                 "psalm/plugin-phpunit": "~0.18.4",
                 "psr/container": "^1.1.2",
-                "rector/rector": "~0.15.25",
-                "vimeo/psalm": "^5.9.0"
+                "rector/rector": "~0.17.13",
+                "vimeo/psalm": "^5.14.1"
             },
             "type": "phpstan-extension",
             "extra": {
@@ -5809,7 +5810,7 @@
                 "issues": "https://github.com/ergebnis/phpstan-rules/issues",
                 "source": "https://github.com/ergebnis/phpstan-rules"
             },
-            "time": "2023-05-01T17:59:46+00:00"
+            "time": "2023-08-17T10:28:37+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -6032,12 +6033,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "f93212dfbd5160f97b808a2988bb549ffbd049b5"
+                "reference": "7a0792500b5d9f0b4d81fba229b191e747bd2ef2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/f93212dfbd5160f97b808a2988bb549ffbd049b5",
-                "reference": "f93212dfbd5160f97b808a2988bb549ffbd049b5",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/7a0792500b5d9f0b4d81fba229b191e747bd2ef2",
+                "reference": "7a0792500b5d9f0b4d81fba229b191e747bd2ef2",
                 "shasum": ""
             },
             "conflict": {
@@ -6106,7 +6107,7 @@
                 "centreon/centreon": "<22.10.0.0-beta1",
                 "cesnet/simplesamlphp-module-proxystatistics": "<3.1",
                 "chriskacerguis/codeigniter-restserver": "<=2.7.1",
-                "cockpit-hq/cockpit": "<2.6.3",
+                "cockpit-hq/cockpit": "<=2.6.3",
                 "codeception/codeception": "<3.1.3|>=4,<4.1.22",
                 "codeigniter/framework": "<3.1.9",
                 "codeigniter4/framework": "<4.3.5",
@@ -6683,7 +6684,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-08-17T00:12:49+00:00"
+            "time": "2023-08-17T20:04:28+00:00"
         },
         {
             "name": "thecodingmachine/phpstan-strict-rules",
