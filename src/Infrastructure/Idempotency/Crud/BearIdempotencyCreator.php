@@ -11,8 +11,6 @@ final class BearIdempotencyCreator {
         string $idempotency_key,
         CarbonInterface $expires_at
     ): BearIdempotency {
-        BearDatabaseService::mustBeInTransaction();
-
         $model = new BearIdempotency();
 
         $model->idempotency_key = $idempotency_key;

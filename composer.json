@@ -20,8 +20,8 @@
     "ext-pdo": "*",
     "ext-zend-opcache": "*",
     "doctrine/dbal": "^3.6",
-    "guzzlehttp/guzzle": "^7.6",
-    "laravel/framework": "^9.52 || ^10.17",
+    "guzzlehttp/guzzle": "^7.8",
+    "laravel/framework": "^9.52 || ^10.22",
     "ramsey/collection": "^2.0"
   },
   "autoload": {
@@ -33,7 +33,7 @@
     "sort-packages": true
   },
   "require-dev": {
-    "ergebnis/phpstan-rules": "^2.0",
+    "ergebnis/phpstan-rules": "^2.1",
     "phpstan/phpstan": "^1.10",
     "phpstan/phpstan-deprecation-rules": "^1.1",
     "phpstan/phpstan-strict-rules": "^1.5",
