@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Idempotency\Service;
 
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Idempotency\Crud\BearIdempotencyCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Idempotency\Crud\BearIdempotencyDeleter;
 use GuardsmanPanda\Larabear\Infrastructure\Idempotency\Model\BearIdempotency;
 
 final class BearIdempotencyService {
@@ -13,7 +14,9 @@ final class BearIdempotencyService {
         if ($old !== null && $old->expires_at > now()) {
             return false;
         }
-        $old?->deleteQuietly();
+        if ($old !== null) {
+            BearIdempotencyDeleter::delete(model: $old);
+        }
         BearIdempotencyCreator::create(idempotency_key: $idempotencyKey, expires_at: $expiresAt);
         return true;
     }
