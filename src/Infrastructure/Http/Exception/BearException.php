@@ -16,7 +16,7 @@ class BearException extends HttpResponseException {
      */
     public function __construct(string $title, string $detail, string $type = 'about:blank', string $instance = '', int $status = 500, array $additionalData = []) {
         parent::__construct(new JsonResponse(
-            data: ['type' => $type, 'instance' => $instance, 'title' => $title, 'detail' => $detail] + $additionalData,
+            data: $additionalData + ['type' => $type, 'instance' => $instance, 'title' => $title, 'detail' => $detail],
             status: $status,
             headers: ['Content-Type' => 'application/problem+json'],
         ));
