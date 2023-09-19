@@ -36,7 +36,7 @@ final class BearExternalApiClient {
     public static function fromOauth2Client(BearOauth2Client $client, string $baseUrl = null, array $baseHeaders = []): self {
         return new self(
             baseUrl: $baseUrl ?? $client->oauth2_client_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
-            baseHeaders: ['Authorization' => 'Bearer ' . BearOauth2ClientService::getAccessToken(client: $client)]
+            baseHeaders: ['Authorization' => 'Bearer ' . BearOauth2ClientService::getAccessToken(client: $client)] + $baseHeaders
         );
     }
 

@@ -18,8 +18,8 @@ final class BearExternalApiCreator {
      * @param string|null $external_api_base_url
      * @param string|null $oauth2_user_id
      * @param string|null $oauth2_client_id
-     * @param ArrayObject<string, string>|null $external_api_base_headers_json
-     * @param ArrayObject<string|int, mixed>|null $external_api_metadata_json
+     * @param ArrayObject<string, string> $external_api_base_headers_json
+     * @param ArrayObject<string|int, mixed> $external_api_metadata_json
      * @return BearExternalApi
      */
     public static function create(
@@ -30,8 +30,8 @@ final class BearExternalApiCreator {
         string $external_api_base_url = null,
         string $oauth2_user_id = null,
         string $oauth2_client_id = null,
-        ArrayObject $external_api_base_headers_json = null,
-        ArrayObject $external_api_metadata_json = null
+        ArrayObject $external_api_base_headers_json = new ArrayObject([]),
+        ArrayObject $external_api_metadata_json = new ArrayObject([]),
     ): BearExternalApi {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
