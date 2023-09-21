@@ -7,11 +7,26 @@ use GuardsmanPanda\Larabear\Infrastructure\Email\Model\BearEmail;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Email\Service\BearEmailService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Throwable;
 
 final class BearEmailCreator {
+    /**
+     * @param string $email_to
+     * @param string $email_subject
+     * @param string|null $email_cc
+     * @param string|null $email_bcc
+     * @param string|null $email_tag
+     * @param string|null $email_reply_to
+     * @param CarbonInterface|null $email_sent_at
+     * @param string|null $email_text
+     * @param string|null $email_html
+     * @param bool $sandbox
+     * @param ArrayObject<string, mixed> $additional_data_json
+     * @return BearEmail
+     */
     public static function create(
         string $email_to,
         string $email_subject,
@@ -22,7 +37,8 @@ final class BearEmailCreator {
         CarbonInterface $email_sent_at = null,
         string $email_text = null,
         string $email_html = null,
-        bool $sandbox = false
+        bool $sandbox = false,
+        ArrayObject $additional_data_json = new ArrayObject([]),
     ): BearEmail {
         BearDatabaseService::mustBeInTransaction();
 
@@ -39,6 +55,7 @@ final class BearEmailCreator {
         $model->email_text = $email_text;
         $model->email_html = $email_html;
         $model->is_sandboxed = $sandbox;
+        $model->additional_data_json = $additional_data_json;
 
         $model->save();
 

@@ -6,6 +6,8 @@ use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -59,6 +61,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $email_reply_to
  * @property string|null $email_postmark_id
  * @property string|null $email_error_message
+ * @property ArrayObject $additional_data_json
  * @property CarbonInterface|null $email_sent_at
  *
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -76,6 +79,7 @@ final class BearEmail extends Model {
     /** @var array<string, string> $casts */
     protected $casts = [
         'email_sent_at' => 'immutable_datetime',
+        'additional_data_json' => AsArrayObject::class,
     ];
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];

@@ -24,7 +24,8 @@ final class BearEmailService {
             replyTo: $email->email_reply_to,
             cc: $email->email_cc,
             bcc: $email->email_bcc,
-            sandbox: $email->is_sandboxed
+            sandbox: $email->is_sandboxed,
+            attachments: $email->additional_data_json['attachments'] ?? []
         );
         if ($result->code !== 0) {
             return $updater->setEmailError(email_error_code: $result->code, email_error_message: $result->message)->update();
