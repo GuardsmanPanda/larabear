@@ -131,7 +131,7 @@ final class ValidateAndParseValue {
                 $msg = "Invalid date time: $value (must be ISO 8601 without timezone when timezone included), example: YYYY-MM-DDTHH:MM(:SS)";
                 throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
             }
-            $date = CarbonImmutable::parse(time: $value, tz: $timezone);
+            $date = CarbonImmutable::parse(time: $value, timezone: $timezone);
         }
         return $date;
     }
