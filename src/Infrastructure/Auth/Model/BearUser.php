@@ -132,4 +132,8 @@ final class BearUser extends Model implements Authenticatable {
     public function hasRole(string $role): bool {
         return BearAuthService::hasRole(role: $role, userId: $this->id);
     }
+
+    public function getAuthPasswordName(): string {
+        return 'password';
+    }
 }
