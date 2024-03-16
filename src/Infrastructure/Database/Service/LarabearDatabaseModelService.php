@@ -27,7 +27,7 @@ final class LarabearDatabaseModelService {
             }
             $info = $tableConfig[$table_name];
             $traits = $info['traits'] ?? [];
-            if (array_key_exists(key: 'log_change', array: $info) && is_bool($info['log_change']) && $info['log_change']) {
+            if (!array_key_exists(key: 'log_change', array: $info) || (is_bool($info['log_change']) && $info['log_change'])) {
                 $traits[] = 'GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges';
             }
             $dto = new LarabearDatabaseModelData(

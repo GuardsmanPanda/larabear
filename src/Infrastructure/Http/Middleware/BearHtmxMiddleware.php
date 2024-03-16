@@ -12,7 +12,6 @@ final class BearHtmxMiddleware {
     public function handle(Request $request, Closure $next, String $layout_location = 'layout.layout'): Response {
         $res = $next($request);
         if (Req::method() === 'GET' && Req::header(key: 'hx-request', nullIfMissing: true) === null && str_contains(haystack: Req::header(key: 'accept', nullIfMissing: true) ?? '', needle: 'html')) {
-            //$layout_location = str_starts_with(haystack: Req::path() ?? '', needle: 'bear') ? 'larabear::layout' : 'layout.layout';
             $headers = [];
             if (config(key: 'bear.ui.app_css') !== null) {
                 if (str_starts_with(haystack: Req::path() ?? '', needle: 'bear')) {
