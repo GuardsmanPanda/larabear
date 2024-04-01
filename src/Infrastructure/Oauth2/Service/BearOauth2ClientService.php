@@ -76,7 +76,12 @@ final class BearOauth2ClientService {
         $bearUser = $bearOauth2User?->user;
         $bearUser ??= BearUser::where(column: 'user_email', operator: '=', value: $token->email)->first();
         if ($bearUser === null && $createBearUser) {
-            $bearUser = BearUserCreator::create(user_display_name: $token->name ?? 'Unknown', user_email: $token->email, email_verified_at: Carbon::now());
+            $bearUser = BearUserCreator::create(
+                user_display_name: $token->name ?? 'Unknown',
+                user_email: $token->email,
+                user_country_iso2_code: Req::header(key: "cf-ipcountry", nullIfMissing: true),
+                email_verified_at: Carbon::now(),
+            );
         }
 
         if ($bearOauth2User === null) {

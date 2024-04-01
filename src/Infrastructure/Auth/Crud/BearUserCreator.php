@@ -6,6 +6,7 @@ use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Support\Str;
 
@@ -23,6 +24,14 @@ final class BearUserCreator {
         CarbonInterface $email_verified_at = null,
     ): BearUser {
         BearDatabaseService::mustBeInTransaction();
+
+        if ($user_country_iso2_code !== null) {
+            // Check if the country code is valid, otherwise set it to null
+            if (!BearDatabaseService::exists(sql: "SELECT 1 FROM bear_country WHERE country_iso2_code = ?", bindings: [$user_country_iso2_code])) {
+                BearErrorCreator::create(message: "Invalid country code: $user_country_iso2_code", remedy: "Add the missing country code to the database or fix the user's country code.");
+                $user_country_iso2_code = null;
+            }
+        }
 
         $model = new BearUser();
         $model->id = $id ?? Str::uuid()->toString();
