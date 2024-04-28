@@ -14,6 +14,7 @@ final class BearExternalApiCreator {
      * @param string $external_api_slug
      * @param string $external_api_description
      * @param BearExternalApiTypeEnum $external_api_type
+     * @param string|null $id
      * @param string|null $encrypted_external_api_token
      * @param string|null $external_api_base_url
      * @param string|null $oauth2_user_id
@@ -26,6 +27,7 @@ final class BearExternalApiCreator {
         string $external_api_slug,
         string $external_api_description,
         BearExternalApiTypeEnum $external_api_type,
+        string $id = null,
         string $encrypted_external_api_token = null,
         string $external_api_base_url = null,
         string $oauth2_user_id = null,
@@ -36,7 +38,7 @@ final class BearExternalApiCreator {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearExternalApi();
-        $model->id = Str::uuid()->toString();
+        $model->id ??= Str::uuid()->toString();
 
         $model->external_api_slug = $external_api_slug;
         $model->external_api_description = $external_api_description;
