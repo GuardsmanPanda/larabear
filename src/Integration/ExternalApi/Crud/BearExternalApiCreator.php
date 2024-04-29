@@ -38,7 +38,7 @@ final class BearExternalApiCreator {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearExternalApi();
-        $model->id ??= Str::uuid()->toString();
+        $model->id = $id ?? Str::uuid()->toString();
 
         $model->external_api_slug = $external_api_slug;
         $model->external_api_description = $external_api_description;
