@@ -89,7 +89,7 @@ final class BearExternalApiClient {
     }
 
     public static function fromSlug(string $slug, string $baseUrl = null): self {
-        return self::fromExternalApi(api: BearExternalApi::where(column: 'external_api_slug', value: $slug)->sole(), baseUrl: $baseUrl);
+        return self::fromExternalApi(api: BearExternalApi::where(column: 'external_api_slug', operator: '=', value: $slug)->sole(), baseUrl: $baseUrl);
     }
 
     public static function fromGlobal(string $baseUrl = null): self {
