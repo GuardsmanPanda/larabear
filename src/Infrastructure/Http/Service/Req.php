@@ -30,7 +30,7 @@ final class Req {
     }
 
     public static function hasHeader(string $key): bool {
-        return self::$r?->hasHeader(key: $key) ?? false;
+        return self::header(key: 'HX-Request', nullIfMissing: true) === 'true';
     }
 
     public static function header(string $key, bool $nullIfMissing = false): string|null {
@@ -45,7 +45,7 @@ final class Req {
     }
 
     public static function hxRequest(): bool {
-        return self::header(key: 'HX-Request') === 'true';
+        return self::hasHeader(key: 'HX-Request');
     }
 
     public static function hxTarget(): string|null {
