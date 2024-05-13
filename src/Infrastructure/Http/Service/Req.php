@@ -44,6 +44,14 @@ final class Req {
         return $value;
     }
 
+    public static function hxRequest(): bool {
+        return self::header(key: 'HX-Request') === 'true';
+    }
+
+    public static function hxTarget(): string|null {
+        return self::header(key: 'HX-Target', nullIfMissing: true);
+    }
+
     /**
      * @return array<string, array<string>>
      */

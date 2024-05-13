@@ -19,9 +19,9 @@
     "php": "^8.2",
     "ext-pdo": "*",
     "ext-zend-opcache": "*",
-    "doctrine/dbal": "^4.0.1",
+    "doctrine/dbal": "^4.0.2",
     "guzzlehttp/guzzle": "^7.8",
-    "laravel/framework": "^v11.6",
+    "laravel/framework": "^v11.7",
     "ramsey/collection": "^2.0"
   },
   "autoload": {
@@ -34,9 +34,9 @@
   },
   "require-dev": {
     "ergebnis/phpstan-rules": "^2.2",
-    "phpstan/phpstan": "^1.10",
-    "phpstan/phpstan-deprecation-rules": "^1.1",
-    "phpstan/phpstan-strict-rules": "^1.5",
+    "phpstan/phpstan": "^1.11",
+    "phpstan/phpstan-deprecation-rules": "^1.2",
+    "phpstan/phpstan-strict-rules": "^1.6",
     "roave/security-advisories": "dev-latest",
     "thecodingmachine/phpstan-strict-rules": "^1.0"
   }
