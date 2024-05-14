@@ -30,7 +30,7 @@ final class Req {
     }
 
     public static function hasHeader(string $key): bool {
-        return self::header(key: 'HX-Request', nullIfMissing: true) === 'true';
+        return self::$r?->hasHeader(key: $key) ?? false;
     }
 
     public static function header(string $key, bool $nullIfMissing = false): string|null {
