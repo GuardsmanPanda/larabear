@@ -22,6 +22,10 @@ final class BearAuthService {
         return BearGlobalStateService::getUserId();
     }
 
+    public static function getUserIdOrFail(): string {
+        return BearGlobalStateService::getUserId() ?? throw new RuntimeException(message: 'User not found');
+    }
+
     public static function getUser(): BearUser {
         self::cacheCheck();
         if (self::$user === null && BearGlobalStateService::getUserId() !== null) {
