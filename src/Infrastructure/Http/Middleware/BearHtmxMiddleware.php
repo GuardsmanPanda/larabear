@@ -3,7 +3,9 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 
 use Closure;
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 final class BearHtmxMiddleware {
     public function handle(Request $request, Closure $next, String $layout_location = 'layout.layout'): Response {
         $res = $next($request);
+        Resp::header(key: 'Vary', value: 'hx-request');
         if (Req::method() === 'GET' && Req::header(key: 'hx-request', nullIfMissing: true) === null && str_contains(haystack: Req::header(key: 'accept', nullIfMissing: true) ?? '', needle: 'html')) {
             $headers = [];
             if (config(key: 'bear.ui.app_css') !== null) {
