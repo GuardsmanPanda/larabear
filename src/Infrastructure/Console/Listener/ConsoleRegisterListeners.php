@@ -28,6 +28,7 @@ final class ConsoleRegisterListeners {
         'optimize:clear',
         'package:discover',
         'schedule:run',
+        'queue:work',
     ];
 
     public static function RegisterListeners(): void {
