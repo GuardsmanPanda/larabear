@@ -13,7 +13,12 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
 
     public function __construct(private readonly string $connectionName) {
         $this->databaseName = Config::get(key: "database.connections.$connectionName.database");
-        $this->schemaName = Config::get(key: "database.connections.$connectionName.schema") ?? 'public';
+        $schema = Config::get(key: "database.connections.$connectionName.schema");
+        if ($schema === null) {
+            $searchPath = DB::connection(name: $connectionName)->selectOne(query: "SHOW search_path");
+            $schema = explode(separator: ',', string: $searchPath->search_path)[0];
+        }
+        $this->schemaName = $schema;
     }
 
 
