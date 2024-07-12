@@ -81,6 +81,9 @@ final class BearExternalApiClient {
         if ($api->external_api_type === BearExternalApiTypeEnum::X_GOOG_API_KEY) {
             $headers['X-Goog-Api-Key'] = $api->encrypted_external_api_token;
         }
+        if ($api->external_api_type === BearExternalApiTypeEnum::ACCESS_TOKEN_QUERY) {
+            $baseUrl .= '?access_token=' . $api->encrypted_external_api_token;
+        }
         if ($api->external_api_type === BearExternalApiTypeEnum::BEARER_TOKEN) {
             $headers['Authorization'] = "Bearer $api->encrypted_external_api_token";
         }
