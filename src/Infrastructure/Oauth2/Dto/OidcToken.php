@@ -9,14 +9,14 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use RuntimeException;
 use Throwable;
 
-final class OidcToken {
+final readonly class OidcToken {
     public function __construct(
-        public readonly string $userIdentifier,
-        public readonly string|null $name,
-        public readonly string $email,
-        public readonly string $issuedToClientId,
-        public readonly int|null    $notBefore,
-        public readonly int    $expiresAt,
+        public string      $userIdentifier,
+        public string|null $name,
+        public string      $email,
+        public string      $issuedToClientId,
+        public int|null    $notBefore,
+        public int         $expiresAt,
     ) {}
 
     public static function fromJwt(string $jwt, BearOauth2Client $client): self {

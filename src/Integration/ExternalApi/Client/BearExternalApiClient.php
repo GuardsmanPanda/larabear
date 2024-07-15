@@ -24,8 +24,13 @@ final class BearExternalApiClient {
     /**
      * @param string $baseUrl
      * @param array<string, string> $baseHeaders
+     * @param array<string, string> $baseQuery
      */
-    public function __construct(private readonly string $baseUrl, private readonly array $baseHeaders = []) {}
+    public function __construct(
+        private readonly string $baseUrl,
+        private readonly array $baseHeaders = [],
+        private readonly array $baseQuery = []
+    ) {}
 
     /**
      * @param BearOauth2Client $client
@@ -65,6 +70,7 @@ final class BearExternalApiClient {
 
     public static function fromExternalApi(BearExternalApi $api, string $baseUrl = null): self {
         $headers = $api->external_api_base_headers_json?->getArrayCopy() ?? [];
+        $query = [];
         if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2_CLIENT) {
             return self::fromOauth2ClientId(clientId: $api->oauth2_client_id ?? throw new RuntimeException(message: 'OAUTH2_CLIENT API type must reference bear_oauth2_client'), baseUrl: $baseUrl ?? $api->external_api_base_url, baseHeaders: $headers);
         }
@@ -78,11 +84,11 @@ final class BearExternalApiClient {
         if ($api->external_api_type === BearExternalApiTypeEnum::X_POSTMARK_SERVER_TOKEN) {
             $headers['X-Postmark-Server-Token'] = $api->encrypted_external_api_token;
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::X_GOOG_API_KEY) {
-            $headers['X-Goog-Api-Key'] = $api->encrypted_external_api_token;
+        if ($api->external_api_type === BearExternalApiTypeEnum::KEY_QUERY) {
+            $query['key'] = $api->encrypted_external_api_token ?? throw new InvalidArgumentException(message: 'No API key provided');
         }
         if ($api->external_api_type === BearExternalApiTypeEnum::ACCESS_TOKEN_QUERY) {
-            $baseUrl .= '?access_token=' . $api->encrypted_external_api_token;
+            $query['access_token'] = $api->encrypted_external_api_token ?? throw new InvalidArgumentException(message: 'No access token provided');
         }
         if ($api->external_api_type === BearExternalApiTypeEnum::BEARER_TOKEN) {
             $headers['Authorization'] = "Bearer $api->encrypted_external_api_token";
@@ -91,7 +97,11 @@ final class BearExternalApiClient {
             $headers['Authorization'] = "Basic $api->encrypted_external_api_token";
         }
 
-        return new self(baseUrl: $baseUrl ?? $api->external_api_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'), baseHeaders: $headers);
+        return new self(
+            baseUrl: $baseUrl ?? $api->external_api_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
+            baseHeaders: $headers,
+            baseQuery: $query
+        );
     }
 
     public static function fromSlug(string $slug, string $baseUrl = null): self {
@@ -143,7 +153,7 @@ final class BearExternalApiClient {
         }
         $value = $json[$dataKey] ?? [];
         while (array_key_exists('@odata.nextLink', $json)) {
-            $json =Http::timeout(self::$API_REQUEST_TIMEOUT)->withHeaders($headers + $this->baseHeaders)->get($json['@odata.nextLink'])->json();
+            $json = Http::timeout(self::$API_REQUEST_TIMEOUT)->withHeaders($headers + $this->baseHeaders)->get($json['@odata.nextLink'])->json();
             if (!array_key_exists($dataKey, $json)) {
                 BearErrorCreator::create(
                     message: 'Invalid response from API, data [' . $dataKey . '] not found in data [' . json_encode(value: $json) . ']',
@@ -191,7 +201,7 @@ final class BearExternalApiClient {
      */
     public function request(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = [], bool $asForm = false): Response {
         $final_url = str_starts_with(haystack: $path, needle: 'https://') ? $path : $this->baseUrl . $path;
-        $pending = Http::withOptions(['query' => $query, 'headers' => $headers + $this->baseHeaders])->timeout(seconds: self::$API_REQUEST_TIMEOUT);
+        $pending = Http::withOptions(['query' => $query + $this->baseQuery, 'headers' => $headers + $this->baseHeaders])->timeout(seconds: self::$API_REQUEST_TIMEOUT);
         if ($asForm) {
             $pending = $pending->asForm();
         }
