@@ -38,6 +38,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static int count(array $columns = ['*'])
  * @method static bool exists()
  *
+ * @property bool $allow_user_logins
  * @property string $created_at
  * @property string $updated_at
  * @property string $oauth2_client_id
