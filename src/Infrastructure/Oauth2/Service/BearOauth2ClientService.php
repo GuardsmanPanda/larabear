@@ -28,6 +28,10 @@ use Throwable;
 final class BearOauth2ClientService {
     private const SAFETY_BUFFER_MINUTES = 10;
 
+    public static function oauth2ClientExists(string $clientId): bool {
+        return BearOauth2Client::find(id: $clientId, columns: ['oauth2_client_id']) !== null;
+    }
+
     public static function getAuthorizeRedirectResponse(BearOauth2Client $client, string $afterSignInRedirectPath = null, bool $loginUser = true, string $specialScope = null, bool $accountPrompt = false, bool $internalRedirect = false): RedirectResponse {
         if ($afterSignInRedirectPath !== null && !str_starts_with(haystack: $afterSignInRedirectPath, needle: '/')) {
             throw new RuntimeException(message: 'The redirect path must start with a slash.');
