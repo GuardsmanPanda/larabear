@@ -61,7 +61,7 @@ final class BearOauth2ClientService {
         if ($accountPrompt) {
             $query_data .= match ($client->oauth2_client_type) {
                 BearOauth2ClientTypeEnum::MICROSOFT, BearOauth2ClientTypeEnum::GOOGLE => '&prompt=select_account',
-                BearOauth2ClientTypeEnum::HELP_SCOUT, BearOauth2ClientTypeEnum::OTHER => '',
+                BearOauth2ClientTypeEnum::HELP_SCOUT => '',
                 default => throw new RuntimeException(message: "User prompt not supported for client type" . $client->oauth2_client_type->value),
             };
         }

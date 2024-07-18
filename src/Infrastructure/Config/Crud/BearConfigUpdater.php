@@ -3,10 +3,8 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Config\Crud;
 
 use Carbon\CarbonInterface;
-use GuardsmanPanda\Larabear\Infrastructure\Config\Enum\BearConfigType;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use Illuminate\Database\Eloquent\Casts\ArrayObject;
 
 final class BearConfigUpdater {
     public function __construct(private readonly BearConfig $model) {
@@ -23,20 +21,6 @@ final class BearConfigUpdater {
 
     public function setConfigDescription(string $config_description): self {
         $this->model->config_description = $config_description;
-        return $this;
-    }
-
-    public function setConfigDataType(BearConfigType $config_data_type): self {
-        $this->model->config_data_type = $config_data_type->value;
-        return $this;
-    }
-
-    /**
-     * @param ArrayObject<string, mixed> $config_json
-     * @return $this
-     */
-    public function setConfigJson(ArrayObject $config_json): self {
-        $this->model->config_json = $config_json;
         return $this;
     }
 

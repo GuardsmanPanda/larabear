@@ -6,8 +6,8 @@ use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Model\BearConsoleEvent;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
-final class BearConsoleEventUpdater {
-    public function __construct(private readonly BearConsoleEvent $model) {
+final readonly class BearConsoleEventUpdater {
+    public function __construct(private BearConsoleEvent $model) {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
     }
 

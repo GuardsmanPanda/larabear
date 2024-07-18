@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::dropIfExists(table: 'bear_external_api');
         Schema::create(table: 'bear_external_api', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));

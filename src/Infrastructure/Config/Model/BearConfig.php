@@ -44,7 +44,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $config_key
  * @property string $created_at
  * @property string $updated_at
- * @property string $config_data_type
  * @property string $config_description
  * @property string|null $config_string
  * @property string|null $encrypted_config_string

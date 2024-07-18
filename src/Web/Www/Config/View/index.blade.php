@@ -18,9 +18,8 @@
         <tr class="hover:bg-sky-50">
             <td class="px-2 py-2 font-medium">{{$config->config_key}}</td>
             <td class="px-2 py-2">{{$config->config_description}}</td>
-            <td class="px-2 py-2">{{$config->config_data_type}}</td>
             <td class="px-2 py-2">
-                @if($config->config_data_type === 'ENCRYPTED_STRING')
+                @if($config->encrypted_sctring !== null)
                     HIDDEN
                 @elseif($config->config_boolean !== null)
                     {{$config->config_boolean ? 'TRUE' : 'FALSE'}}

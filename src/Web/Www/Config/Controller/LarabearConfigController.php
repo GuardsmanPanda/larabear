@@ -5,7 +5,6 @@ namespace GuardsmanPanda\Larabear\Web\Www\Config\Controller;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigDeleter;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
-use GuardsmanPanda\Larabear\Infrastructure\Config\Enum\BearConfigType;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Htmx;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
@@ -28,7 +27,6 @@ final class LarabearConfigController extends Controller {
         BearConfigCreator::create(
             config_key: Req::getStringOrDefault(key: 'config_key'),
             config_description: Req::getStringOrDefault(key: 'config_description'),
-            config_data_type: BearConfigType::from(Req::getStringOrDefault(key: 'config_data_type')),
             config_string: Req::getString(key: 'config_string'),
             encrypted_config_string: Req::getString(key: 'encrypted_config_string'),
             config_boolean: Req::getBool(key: 'config_boolean'),
@@ -49,7 +47,6 @@ final class LarabearConfigController extends Controller {
     public function update(string $key): View {
         $updater = BearConfigUpdater::fromConfigKey(config_key: $key);
         $updater->setConfigDescription(config_description: Req::getStringOrDefault(key: 'config_description'));
-        $updater->setConfigDataType(config_data_type: BearConfigType::from(Req::getStringOrDefault(key: 'config_data_type')));
         $updater->setConfigString(config_string: Req::getString(key: 'config_string'));
         $updater->setEncryptedConfigString(encrypted_config_string: Req::getString(key: 'encrypted_config_string'));
         $updater->setConfigBoolean(config_boolean: Req::getBool(key: 'config_boolean'));

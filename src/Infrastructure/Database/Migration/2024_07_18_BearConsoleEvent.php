@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::dropIfExists(table: 'bear_log_console_event');
-        Schema::dropIfExists(table: 'bear_console_event');
         Schema::create(table: 'bear_console_event', callback: static function (Blueprint $table): void {
             $table->id();
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
@@ -32,6 +30,7 @@ return new class extends Migration {
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
+
 
     public function down(): void {
         Schema::dropIfExists(table: 'bear_console_event');

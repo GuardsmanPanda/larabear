@@ -5,9 +5,6 @@
         <x-bear::section.basic title="Database Changes">
             <div id="database-table" hx-get="/bear/log/database-change/table?limit=30" hx-trigger="load,every 15s" hx-target="this"></div>
         </x-bear::section.basic>
-        <x-bear::section.basic title="Emails">
-            <div id="email-table" hx-get="/bear/email/table?limit=10" hx-trigger="load,every 15s" hx-target="this"></div>
-        </x-bear::section.basic>
     </div>
     <div class="flex flex-col gap-4">
         <x-bear::section.basic title="Laravel">laravel stuff</x-bear::section.basic>

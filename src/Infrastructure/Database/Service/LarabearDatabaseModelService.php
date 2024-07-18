@@ -135,13 +135,11 @@ final class LarabearDatabaseModelService {
     private static function getBearTableNameSpace(string $tableName): string {
         return match ($tableName) {
             'bear_user', 'bear_access_token_app', 'bear_access_token_user', 'bear_permission', 'bear_permission_user', 'bear_role', 'bear_role_permission', 'bear_role_user' => "GuardsmanPanda\\Larabear\\Infrastructure\\Auth\\Model",
-            'bear_country', 'bear_language' => "GuardsmanPanda\\Larabear\\Infrastructure\\Locale\\Model",
+            'bear_country' => "GuardsmanPanda\\Larabear\\Infrastructure\\Locale\\Model",
             'bear_config' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Config\\Model',
             'bear_console_event' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Console\\Model',
             'bear_error', 'bear_error_response' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Error\\Model',
-            'bear_email' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Email\\Model',
             'bear_external_api' => 'GuardsmanPanda\\Larabear\\Integration\\ExternalApi\\Model',
-            'bear_file' => 'GuardsmanPanda\\Larabear\\Infrastructure\\File\\Model',
             'bear_idempotency' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Integrity\\Model',
             'bear_oauth2_client', 'bear_oauth2_user' => "GuardsmanPanda\\Larabear\\Infrastructure\\Oauth2\\Model",
             'bear_log_database_change' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Model',

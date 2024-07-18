@@ -15,18 +15,15 @@ return new class extends Migration {
                 $table->text(column: 'user_display_name');
                 $table->text(column: 'user_email')->nullable()->unique();
                 $table->text(column: 'user_country_iso2_code')->nullable();
-                $table->text(column: 'user_language_iso2_code')->nullable();
             } else {
                 $table->uuid(column: 'id')->primary();
                 $table->string(column: 'user_display_name');
                 $table->string(column: 'user_email')->nullable()->unique();
                 $table->string(column: 'user_country_iso2_code')->nullable();
-                $table->string(column: 'user_language_iso2_code')->nullable();
             }
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->useCurrentOnUpdate();
             $table->foreign('user_country_iso2_code')->references('country_iso2_code')->on('bear_country');
-            $table->foreign('user_language_iso2_code')->references('language_iso2_code')->on('bear_language');
         });
     }
 

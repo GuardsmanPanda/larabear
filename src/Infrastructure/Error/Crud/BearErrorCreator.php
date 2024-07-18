@@ -4,7 +4,6 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Error\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
-use GuardsmanPanda\Larabear\Infrastructure\Email\Service\BearEmailService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -18,7 +17,6 @@ final class BearErrorCreator {
      * @param BearSeverityEnum $severity The severity of the error, use high or greater for errors which *must* be handled.
      * @param string|null $remedy How to resolve the error, if known.
      * @param Throwable|null $exception The exception that caused the error, if any.
-     * @param string|null $mailTo if set, an email will be sent to this address with the error details.
      * @param bool $throw If true, the error will be thrown as a RuntimeException after being logged.
      * @return void
      */
@@ -28,7 +26,6 @@ final class BearErrorCreator {
         BearSeverityEnum $severity = BearSeverityEnum::LOW,
         string $remedy = null,
         Throwable $exception = null,
-        string $mailTo = null,
         bool $throw = false
     ): void {
         try {
@@ -43,26 +40,6 @@ final class BearErrorCreator {
             ", bindings: [$severity->name, $key, $message, $remedy, $exception?->getMessage(), $exception_class, $exception?->getTraceAsString(), BearGlobalStateService::getUserId(), Req::ip(), Req::ipCountry(), Req::method(), Req::path(), $query_json, Req::actionName(), Req::hostname(), Req::referer(), BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleIdOrNull()]);
         } catch (Throwable $e) {
             Log::error(message: 'Failed log error: ' . $e->getMessage());
-        }
-
-        if ($mailTo !== null) {
-            try {
-                BearEmailService::sendView(
-                    to: $mailTo,
-                    subject: '[Error - ' . $severity->value . '] ' . $message,
-                    view: 'larabear-error::larabear-log-error-email',
-                    data: [
-                        'message' => $message,
-                        'key' => $key,
-                        'severity' => $severity,
-                        'remedy' => $remedy,
-                        'exception' => $exception
-                    ],
-                    tag: 'larabear-error'
-                );
-            } catch (Throwable $e) {
-                Log::error(message: 'Failed email error: ' . $e->getMessage());
-            }
         }
 
         if ($throw) {

@@ -11,12 +11,6 @@ final class LarabearCleanTablesCommand extends Command {
     protected $description = 'Clean the log tables';
 
     public function handle(): void {
-        $res = DB::delete(query: "DELETE FROM bear_email WHERE created_at < ? AND is_sandboxed", bindings: [now()->subDays(2)->toDateString()]);
-        if ($res > 0) {
-            $this->info(string: "Deleted $res sandboxed emails from bear_email");
-        }
-
-
         $days_to_store_database_changes = BearConfigService::getInteger(config_key: 'larabear::log-database-change-store-for-days');
         $res = DB::delete(query: "DELETE FROM bear_log_database_change WHERE created_at < ?", bindings: [now()->subDays($days_to_store_database_changes)->toDateString()]);
         if ($res > 0) {

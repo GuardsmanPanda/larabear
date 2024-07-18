@@ -3,8 +3,6 @@
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearPermissionCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRoleCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearRolePermissionCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Config\Enum\BearConfigType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
@@ -18,14 +16,6 @@ return new class extends Migration {
         ];
         $role_permissions = [
             ['role_slug' => 'larabear.ui-full-access', 'permission_slug' => 'larabear-ui'],
-        ];
-        $configs = [
-            ['config_key' => 'larabear.version', 'config_description' => 'Version of the larabear package.', 'config_data_type' => 'STRING', 'config_string' => '0.6.0'],
-            ['config_key' => 'larabear.last_unique_short_code', 'config_description' => 'Used for generating unique short codes. (BearShortCodeService.php)', 'config_data_type' => 'STRING', 'config_string' => '1'],
-            ['config_key' => 'larabear.delete_log_console_event_days', 'config_description' => 'How many days to store console errors.', 'config_data_type' => 'INTEGER', 'config_integer' => 90],
-            ['config_key' => 'larabear.delete_log_response_error_days', 'config_description' => 'How many days to store response errors.', 'config_data_type' => 'INTEGER', 'config_integer' => 90],
-            ['config_key' => 'larabear.delete_log_access_token_days', 'config_description' => 'How many days to store access token logs.', 'config_data_type' => 'INTEGER', 'config_integer' => 90],
-            ['config_key' => 'larabear.delete_log_database_change_days', 'config_description' => 'How many days to store database change logs.', 'config_data_type' => 'INTEGER', 'config_integer' => 9000],
         ];
 
         foreach ($roles as $role) {
@@ -52,22 +42,6 @@ return new class extends Migration {
             try {
                 DB::beginTransaction();
                 BearRolePermissionCreator::create(role_slug: $role_permission['role_slug'], permission_slug: $role_permission['permission_slug']);
-                DB::commit();
-            } catch (Throwable $t) {
-                DB::rollBack();
-            }
-        }
-
-        foreach ($configs as $config) {
-            try {
-                DB::beginTransaction();
-                BearConfigCreator::create(
-                    config_key: $config['config_key'],
-                    config_description: $config['config_description'],
-                    config_data_type: BearConfigType::from($config['config_data_type']),
-                    config_string: $config['config_string'] ?? null,
-                    config_integer: $config['config_integer'] ?? null,
-                );
                 DB::commit();
             } catch (Throwable $t) {
                 DB::rollBack();

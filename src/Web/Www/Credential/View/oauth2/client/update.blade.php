@@ -7,7 +7,6 @@
             <option value="GOOGLE" @if($client->oauth2_client_type === 'GOOGLE') selected @endif>GOOGLE</option>
             <option value="META" @if($client->oauth2_client_type === 'META') selected @endif>META</option>
             <option value="HELP_SCOUT" @if($client->oauth2_client_type === 'HELP_SCOUT') selected @endif>HELP_SCOUT</option>
-            <option value="OTHER" @if($client->oauth2_client_type === 'OTHER') selected @endif>OTHER</option>
         </x-bear::form.select>
         <x-bear::form.text id="encrypted_oauth2_client_secret" required>{{$client->encrypted_oauth2_client_secret}}</x-bear::form.text>
     </div>
