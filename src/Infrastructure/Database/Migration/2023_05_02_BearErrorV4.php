@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::dropIfExists(table: 'bear_log_error');
-        Schema::dropIfExists(table: 'bear_error');
         Schema::create(table: 'bear_error', callback: static function (Blueprint $table): void {
             $table->id();
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
@@ -42,12 +40,10 @@ return new class extends Migration {
                 $table->text(column: 'request_hostname')->nullable();
                 $table->text(column: 'request_referer')->nullable();
                 $table->text(column: 'request_id')->nullable();
-                $table->text(column: 'email_status_text')->nullable();
             } else {
                 $table->string(column: 'request_hostname')->nullable();
                 $table->string(column: 'request_referer')->nullable();
                 $table->string(column: 'request_id')->nullable();
-                $table->string(column: 'email_status_text')->nullable();
             }
             $table->uuid(column: 'console_id')->nullable();
             $table->foreign('user_id')->references('id')->on('bear_user');

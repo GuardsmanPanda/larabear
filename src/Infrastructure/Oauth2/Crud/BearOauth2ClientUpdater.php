@@ -60,7 +60,6 @@ final class BearOauth2ClientUpdater {
         $this->model->oauth2_client_access_token_expires_at = $oauth2_client_access_token_expires_at;
         $this->model->encrypted_oauth2_client_access_token = $encrypted_oauth2_client_access_token;
         $this->model->client_access_token_error_message = null;
-        $this->model->client_access_token_first_error_at = null;
         return $this;
     }
 
@@ -76,7 +75,6 @@ final class BearOauth2ClientUpdater {
 
     public function setClientAccessTokenErrorMessage(string|null $client_access_token_error_message): self {
         $this->model->client_access_token_error_message = $client_access_token_error_message;
-        $this->model->client_access_token_first_error_at ??= now();
         $this->model->oauth2_client_access_token_expires_at = null;
         $this->model->encrypted_oauth2_client_access_token = null;
         return $this;

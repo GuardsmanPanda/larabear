@@ -11,15 +11,15 @@ return new class extends Migration {
         Schema::dropIfExists(table: 'bear_role_user');
         Schema::create(table: 'bear_role_user', callback: static function (Blueprint $table): void {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
-                $table->text(column: 'role_slug');
+                $table->text(column: 'role_enum');
             } else {
-                $table->string(column: 'role_slug');
+                $table->string(column: 'role_enum');
             }
             $table->uuid(column: 'user_id')->index();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->primary(columns: ['role_slug', 'user_id']);
-            $table->foreign('role_slug')->references('role_slug')->on('bear_role');
-            $table->foreign('user_id')->references('id')->on('bear_user');
+            $table->primary(columns: ['role_enum', 'user_id']);
+            $table->foreign('role_enum')->references('enum')->on(table: 'bear_role');
+            $table->foreign('user_id')->references('id')->on(table: 'bear_user');
         });
     }
 

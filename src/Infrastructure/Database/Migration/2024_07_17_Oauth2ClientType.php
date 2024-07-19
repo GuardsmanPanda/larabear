@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::create(table: 'oauth', callback: static function (Blueprint $table) {
+        Schema::create(table: 'oauth2_client_type', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
-                $table->text(column: 'enumeration')->primary();
+                $table->text(column: 'enum')->primary();
                 $table->text(column: 'authorize_uri');
                 $table->text(column: 'token_uri');
                 $table->text(column: 'default_Scopes');
             } else {
-                $table->string(column: 'enumeration')->primary();
+                $table->string(column: 'enum')->primary();
                 $table->string(column: 'authorize_uri');
                 $table->string(column: 'token_uri');
                 $table->string(column: 'default_Scopes');

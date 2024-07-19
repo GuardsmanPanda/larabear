@@ -2,9 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Auth\Controller;
 
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserLoginHistoryCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserUpdater;
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Enum\BearUserLoginTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
@@ -23,7 +21,6 @@ final class LarabearAuthController extends Controller {
         if (!password_verify(password: Req::getStringOrDefault(key: 'password'), hash: $user->password)) {
             return Resp::redirect(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: 'Invalid password');
         }
-        BearUserLoginHistoryCreator::create(user_id: $user->id, login_type: BearUserLoginTypeEnum::WEB_FORM);
         (new BearUserUpdater($user))->setLastLoginNow()->update();
         Session::migrate(destroy: true);
         Session::put(key: 'bear_user_id', value: $user->id);

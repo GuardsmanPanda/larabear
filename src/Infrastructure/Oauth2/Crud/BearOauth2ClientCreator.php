@@ -18,7 +18,6 @@ final class BearOauth2ClientCreator {
         string $oauth2_client_scope = null,
         string $oauth2_client_redirect_path = null,
         string $oauth2_user_scope = null,
-        bool $allow_user_logins = false,
     ): BearOauth2Client {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
@@ -34,7 +33,6 @@ final class BearOauth2ClientCreator {
         $model->oauth2_client_scope = $oauth2_client_scope;
         $model->oauth2_client_redirect_path = $oauth2_client_redirect_path;
         $model->oauth2_user_scope = $oauth2_user_scope ?? '';
-        $model->allow_user_logins = $allow_user_logins;
 
         $model->save();
         return $model;

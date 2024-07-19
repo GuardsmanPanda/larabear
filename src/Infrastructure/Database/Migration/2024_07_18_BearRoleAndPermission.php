@@ -15,10 +15,10 @@ return new class extends Migration {
         foreach ($tables as $table) {
             Schema::create(table: $table, callback: static function (Blueprint $table) {
                 if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
-                    $table->text(column: 'enumeration')->primary();
+                    $table->text(column: 'enum')->primary();
                     $table->text(column: 'description')->nullable();
                 } else {
-                    $table->string(column: 'enumeration')->primary();
+                    $table->string(column: 'enum')->primary();
                     $table->string(column: 'description')->nullable();
                 }
                 $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
@@ -36,8 +36,8 @@ return new class extends Migration {
             }
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->primary(columns: ['role_enum', 'permission_enum']);
-            $table->foreign('role_enum')->references('enumeration')->on(table: 'bear_role');
-            $table->foreign('permission_enum')->references('enumeration')->on(table: 'bear_permission');
+            $table->foreign('role_enum')->references('enum')->on(table: 'bear_role');
+            $table->foreign('permission_enum')->references('enum')->on(table: 'bear_permission');
         });
     }
 

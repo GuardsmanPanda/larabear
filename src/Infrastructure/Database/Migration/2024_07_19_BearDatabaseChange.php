@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::dropIfExists(table: 'bear_log_database_changes');
-        Schema::dropIfExists(table: 'bear_log_database_change');
-        Schema::create(table: 'bear_log_database_change', callback: static function (Blueprint $table): void {
+        Schema::create(table: 'bear_database_change', callback: static function (Blueprint $table): void {
             $table->id();
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'table_name')->index();
@@ -36,7 +34,7 @@ return new class extends Migration {
             $table->boolean(column: 'is_soft_deletion')->nullable();
             $table->uuid(column: 'user_id')->nullable()->index();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->ipAddress(column: 'request_ip')->nullable();
+            $table->ipAddress(column: 'ip')->nullable();
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'request_country_code')->nullable();
                 $table->text(column: 'request_http_method');
@@ -56,7 +54,8 @@ return new class extends Migration {
         });
     }
 
+
     public function down(): void {
-        Schema::dropIfExists(table: 'bear_log_database_change');
+        Schema::dropIfExists(table: 'bear_database_change');
     }
 };

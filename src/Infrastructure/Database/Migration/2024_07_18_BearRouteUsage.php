@@ -12,7 +12,7 @@ return new class extends Migration {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'http_method');
                 $table->text(column: 'http_path');
-                $table->text(column: 'app_action_name');
+                $table->text(column: 'action_name');
             } else {
                 $table->string(column: 'http_method');
                 $table->string(column: 'http_path');

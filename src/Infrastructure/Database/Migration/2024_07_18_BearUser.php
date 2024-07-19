@@ -8,24 +8,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::dropIfExists('bear_user');
         Schema::create(table: 'bear_user', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));
-                $table->text(column: 'user_display_name');
-                $table->text(column: 'user_email')->nullable()->unique();
-                $table->text(column: 'user_country_iso2_code')->nullable();
+                $table->text(column: 'display_name');
+                $table->text(column: 'email')->nullable()->unique();
+                $table->text(column: 'country_cca2')->nullable();
             } else {
                 $table->uuid(column: 'id')->primary();
-                $table->string(column: 'user_display_name');
-                $table->string(column: 'user_email')->nullable()->unique();
-                $table->string(column: 'user_country_iso2_code')->nullable();
+                $table->string(column: 'display_name');
+                $table->string(column: 'email')->nullable()->unique();
+                $table->string(column: 'country_cca2')->nullable();
             }
+            $table->timestampTz(column: 'last_login_at')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->useCurrentOnUpdate();
-            $table->foreign('user_country_iso2_code')->references('country_iso2_code')->on('bear_country');
+            $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->foreign('country_cca2')->references('cca2')->on(table: 'bear_country');
         });
     }
+
 
     public function down(): void {
         Schema::dropIfExists('bear_user');
