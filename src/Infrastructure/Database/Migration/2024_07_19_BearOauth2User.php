@@ -14,16 +14,14 @@ return new class extends Migration {
                 $table->text(column: 'oauth2_client_id');
                 $table->text(column: 'identifier')->index();
                 $table->text(column: 'email')->nullable()->index();
-                $table->text(column: 'display_name')->nullable();
-                $table->text(column: 'scope');
             } else {
                 $table->uuid(column: 'id')->primary();
                 $table->string(column: 'oauth2_client_id');
                 $table->string(column: 'identifier')->index();
                 $table->string(column: 'email')->nullable()->index();
-                $table->string(column: 'display_name')->nullable();
-                $table->string(column: 'scope');
             }
+            $table->text(column: 'display_name')->nullable();
+            $table->text(column: 'scope');
             $table->uuid(column: 'user_id')->nullable()->index();
             $table->jsonb(column: 'scope_json');
             $table->timestampTz(column: 'access_token_expires_at')->nullable();

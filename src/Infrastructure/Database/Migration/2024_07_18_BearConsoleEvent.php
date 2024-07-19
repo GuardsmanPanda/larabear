@@ -13,14 +13,12 @@ return new class extends Migration {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'event_type');
                 $table->text(column: 'command')->index();
-                $table->text(column: 'cron_schedule_expression')->nullable();
-                $table->text(column: 'cron_schedule_timezone')->nullable();
             } else {
                 $table->string(column: 'event_type');
                 $table->string(column: 'command')->index();
-                $table->string(column: 'cron_schedule_expression')->nullable();
-                $table->string(column: 'cron_schedule_timezone')->nullable();
             }
+            $table->text(column: 'cron_schedule_expression')->nullable();
+            $table->text(column: 'cron_schedule_timezone')->nullable();
             $table->timestampTz(column: 'started_at');
             $table->timestampTz(column: 'finished_at')->nullable();
             $table->timestampTz(column: 'failed_at')->nullable();

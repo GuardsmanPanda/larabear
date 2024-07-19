@@ -93,14 +93,6 @@ final class BearUserUpdater {
         return $this;
     }
 
-    public function setIsUserActivated(bool $is_user_activated): self {
-        $this->model->is_user_activated = $is_user_activated;
-        if ($is_user_activated === false) {
-            DB::update(query: "UPDATE bear_access_token_user SET expires_at = now() WHERE expires_at > now() AND user_id = ?", bindings: [$this->model->id]);
-        }
-        return $this;
-    }
-
     public function setUserProfileImage(string|null $user_profile_image): self {
         $this->model->user_profile_image = $user_profile_image;
         return $this;

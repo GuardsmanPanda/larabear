@@ -18,13 +18,13 @@ final class BearAuthService {
     private static array $userRoles = [];
 
 
-    public static function getUserId(): string|null {
+    public static function getUserId(): string {
+        return BearGlobalStateService::getUserId() ?? throw new RuntimeException(message: 'User not found');
+    }
+    public static function getUserIdOrNull(): string {
         return BearGlobalStateService::getUserId();
     }
 
-    public static function getUserIdOrFail(): string {
-        return BearGlobalStateService::getUserId() ?? throw new RuntimeException(message: 'User not found');
-    }
 
     public static function getUser(): BearUser {
         self::cacheCheck();
@@ -33,7 +33,6 @@ final class BearAuthService {
         }
         return self::$user ?? throw new RuntimeException(message: 'User not found');
     }
-
     public static function getUserOrNull(): BearUser|null {
         self::cacheCheck();
         if (self::$user === null && BearGlobalStateService::getUserId() !== null) {
@@ -41,6 +40,7 @@ final class BearAuthService {
         }
         return self::$user;
     }
+
 
     /**
      * @param string|array<string> $permission
@@ -79,6 +79,7 @@ final class BearAuthService {
         }
         return false;
     }
+
 
     /**
      * @param string|array<string> $role

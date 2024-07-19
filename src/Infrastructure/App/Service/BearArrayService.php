@@ -44,19 +44,6 @@ final class BearArrayService {
 
 
     /**
-     * @param array<UnitEnum> $enumCases
-     * @return array<int|string, mixed>
-     */
-    public static function enumCasesToKeyValueArray(array $enumCases): array {
-        $result = [];
-        foreach ($enumCases as $case) {
-            $result[$case->value] = $case->name;  /** @phpstan-ignore-line */
-        }
-        return $result;
-    }
-
-
-    /**
      * @param string $string
      * @param string $separator
      * @param string $eol
@@ -78,4 +65,3 @@ final class BearArrayService {
         return $result;
     }
 }
-

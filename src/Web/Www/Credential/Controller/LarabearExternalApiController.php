@@ -23,7 +23,6 @@ final class LarabearExternalApiController extends Controller {
 
     public function createDialog(): View {
         return Htmx::dialogView(view: 'larabear-credential::external.create', title: "New External API", data: [
-            'external_api_types' => BearArrayService::enumCasesToKeyValueArray(BearExternalApiTypeEnum::cases()),
             'oauth2_clients' => Sql::toKeyValueArray(sql: "SELECT oauth2_client_id, oauth2_client_description FROM bear_oauth2_client ORDER BY oauth2_client_id"),
             'oauth2_users' => Sql::toKeyValueArray(sql: "
                 SELECT

@@ -23,7 +23,7 @@ final class BearBroadcastService {
             BearErrorCreator::create(
                 message: "Broadcast Error [{$t->getMessage()}]",
                 key: 'larabear::broadcast-now-error',
-                severity: BearSeverityEnum::MEDIUM, exception: $t
+                severity: BearSeverityEnum::ERROR, exception: $t
             );
         }
     }

@@ -4,10 +4,10 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessTokenApp;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessToken;
 use Illuminate\Support\Str;
 
-final class BearAccessTokenAppCreator {
+final class BearAccessTokenCreator {
     /**
      * @param string $route_prefix_restriction
      * @param string $access_token_purpose
@@ -15,7 +15,7 @@ final class BearAccessTokenAppCreator {
      * @param string $request_ip_restriction
      * @param string|null $api_primary_key
      * @param CarbonInterface|null $expires_at
-     * @return array{BearAccessTokenApp, string}
+     * @return array{BearAccessToken, string}
      */
     public static function create(
         string $route_prefix_restriction,
@@ -27,7 +27,7 @@ final class BearAccessTokenAppCreator {
     ): array {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
-        $model = new BearAccessTokenApp();
+        $model = new BearAccessToken();
         $model->id = Str::uuid()->toString();
 
         $model->route_prefix_restriction = trim(string: $route_prefix_restriction, characters: '/ ');

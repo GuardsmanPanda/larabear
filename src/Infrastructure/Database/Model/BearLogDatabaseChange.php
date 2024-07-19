@@ -80,6 +80,9 @@ final class BearLogDatabaseChange extends Model {
         'record_json' => AsArrayObject::class,
     ];
 
+    /**
+     * @return BelongsTo<BearUser,self>|null
+     */
     public function user(): BelongsTo|null {
         return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
     }

@@ -11,15 +11,12 @@ return new class extends Migration {
         Schema::create(table: 'oauth2_client_type', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'enum')->primary();
-                $table->text(column: 'authorize_uri');
-                $table->text(column: 'token_uri');
-                $table->text(column: 'default_Scopes');
             } else {
                 $table->string(column: 'enum')->primary();
-                $table->string(column: 'authorize_uri');
-                $table->string(column: 'token_uri');
-                $table->string(column: 'default_Scopes');
             }
+            $table->text(column: 'authorize_uri');
+            $table->text(column: 'token_uri');
+            $table->text(column: 'default_Scopes');
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });

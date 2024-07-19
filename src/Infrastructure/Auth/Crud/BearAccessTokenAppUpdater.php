@@ -4,15 +4,15 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessTokenApp;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessToken;
 
 final class BearAccessTokenAppUpdater {
-    public function __construct(private readonly BearAccessTokenApp $model) {
+    public function __construct(private readonly BearAccessToken $model) {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
     }
 
     public static function fromId(string $id): BearAccessTokenAppUpdater {
-        return new BearAccessTokenAppUpdater(model: BearAccessTokenApp::findOrFail(id: $id));
+        return new BearAccessTokenAppUpdater(model: BearAccessToken::findOrFail(id: $id));
     }
 
 
@@ -58,7 +58,7 @@ final class BearAccessTokenAppUpdater {
         return $this;
     }
 
-    public function update(): BearAccessTokenApp {
+    public function update(): BearAccessToken {
         $this->model->save();
         return $this->model;
     }

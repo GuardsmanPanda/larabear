@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Web\Www\Access\Controller;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Htmx;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearAccessTokenAppCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearAccessTokenCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearAccessTokenAppDeleter;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Routing\Controller;
@@ -38,7 +38,7 @@ final class LarabearAccessTokenAppController extends Controller {
         if (str_starts_with(haystack: '/', needle: $prefix)) {
             $prefix = substr(string: $prefix, offset: 1);
         }
-        $res = BearAccessTokenAppCreator::create(
+        $res = BearAccessTokenCreator::create(
             route_prefix_restriction:$prefix,
             access_token_purpose: Req::getStringOrDefault(key: 'access_token_purpose'),
             access_token: Req::getString(key: 'access_token'),

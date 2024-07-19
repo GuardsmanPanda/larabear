@@ -6,7 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
 use RuntimeException;
 
 final class BearShortCodeService {
-    private const CHARS = '25679BCDFGHJKLMNPQRSTVWXZbcdfghjkmnpqrstvwxz';
+    private const string CHARS = '25679BCDFGHJKLMNPQRSTVWXZbcdfghjkmnpqrstvwxz';
 
     public static function generateNextCode(): string {
         $updater = BearConfigUpdater::fromConfigKey(config_key: 'larabear::last-unique-short-code', lockForUpdate: true);

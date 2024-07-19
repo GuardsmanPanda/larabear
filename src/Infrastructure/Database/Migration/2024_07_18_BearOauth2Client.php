@@ -13,21 +13,16 @@ return new class extends Migration {
                 $table->text(column: 'id')->primary();
                 $table->text(column: 'description');
                 $table->text(column: 'oauth2_client_type_enum');
-                $table->text(column: 'user_scope');
-                $table->text(column: 'user_redirect_path');
-                $table->text(column: 'encrypted_secret');
-                $table->text(column: 'client_scope')->nullable();
-                $table->text(column: 'client_base_url')->nullable();
             } else {
                 $table->string(column: 'id')->primary();
                 $table->string(column: 'description');
                 $table->string(column: 'oauth2_client_type_enum');
-                $table->string(column: 'user_scope');
-                $table->string(column: 'user_redirect_path');
-                $table->string(column: 'encrypted_secret');
-                $table->string(column: 'client_scope')->nullable();
-                $table->string(column: 'client_base_url')->nullable();
             }
+            $table->text(column: 'user_scope');
+            $table->text(column: 'user_redirect_path');
+            $table->text(column: 'encrypted_secret');
+            $table->text(column: 'client_scope')->nullable();
+            $table->text(column: 'client_base_url')->nullable();
             $table->timestampTz(column: 'access_token_expires_at')->nullable();
             $table->text(column: 'access_token_error_message')->nullable();
             $table->text(column: 'encrypted_access_token')->nullable();
