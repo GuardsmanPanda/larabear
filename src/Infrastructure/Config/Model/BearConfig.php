@@ -41,13 +41,12 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int|null $config_integer
  * @property bool|null $config_boolean
- * @property string $config_key
+ * @property string $slug
  * @property string $created_at
  * @property string $updated_at
- * @property string $config_description
+ * @property string $description
  * @property string|null $config_string
  * @property string|null $encrypted_config_string
- * @property ArrayObject $config_json
  * @property CarbonInterface|null $config_date
  * @property CarbonInterface|null $config_timestamp
  *
@@ -57,14 +56,13 @@ final class BearConfig extends Model {
     use BearLogDatabaseChanges, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_config';
-    protected $primaryKey = 'config_key';
+    protected $primaryKey = 'slug';
     protected $keyType = 'string';
     public $incrementing = false;
 
     /** @var array<string, string> $casts */
     protected $casts = [
         'config_date' => 'immutable_date',
-        'config_json' => AsArrayObject::class,
         'config_timestamp' => 'immutable_datetime',
         'encrypted_config_string' => 'encrypted',
     ];

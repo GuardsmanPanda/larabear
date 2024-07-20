@@ -25,8 +25,8 @@ final class LarabearConfigController extends Controller {
 
     public function create(): View {
         BearConfigCreator::create(
-            config_key: Req::getStringOrDefault(key: 'config_key'),
-            config_description: Req::getStringOrDefault(key: 'config_description'),
+            slug: Req::getStringOrDefault(key: 'config_key'),
+            description: Req::getStringOrDefault(key: 'config_description'),
             config_string: Req::getString(key: 'config_string'),
             encrypted_config_string: Req::getString(key: 'encrypted_config_string'),
             config_boolean: Req::getBool(key: 'config_boolean'),

@@ -5,39 +5,24 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Config\Crud;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use Illuminate\Database\Eloquent\Casts\ArrayObject;
 
 final class BearConfigCreator {
-    /**
-     * @param string $config_key
-     * @param string $config_description
-     * @param string|null $config_string
-     * @param string|null $encrypted_config_string
-     * @param bool|null $config_boolean
-     * @param int|null $config_integer
-     * @param CarbonInterface|null $config_date
-     * @param CarbonInterface|null $config_timestamp
-     * @param ArrayObject<string, mixed> $config_json
-     * @return BearConfig
-     */
     public static function create(
-        string             $config_key,
-        string             $config_description,
-        string             $config_string = null,
-        string             $encrypted_config_string = null,
-        bool               $config_boolean = null,
-        int                $config_integer = null,
-        CarbonInterface    $config_date = null,
-        CarbonInterface    $config_timestamp = null,
-        ArrayObject        $config_json = new ArrayObject()
+        string          $slug,
+        string          $description,
+        string          $config_string = null,
+        string          $encrypted_config_string = null,
+        bool            $config_boolean = null,
+        int             $config_integer = null,
+        CarbonInterface $config_date = null,
+        CarbonInterface $config_timestamp = null,
     ): BearConfig {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearConfig();
 
-        $model->config_key = $config_key;
-        $model->config_description = $config_description;
-        $model->config_json = $config_json;
+        $model->slug = $slug;
+        $model->description = $description;
         $model->config_string = $config_string;
         $model->encrypted_config_string = $encrypted_config_string;
         $model->config_boolean = $config_boolean;
