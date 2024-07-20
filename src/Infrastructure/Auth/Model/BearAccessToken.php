@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -55,7 +55,7 @@ use Illuminate\Database\Eloquent\Model;
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 final class BearAccessToken extends Model {
-    use BearLogDatabaseChanges, LarabearFixDateFormatTrait;
+    use BearDatabaseChangeTrait, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_access_token_app';
     protected $keyType = 'string';

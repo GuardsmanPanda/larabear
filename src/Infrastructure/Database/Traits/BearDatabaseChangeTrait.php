@@ -2,19 +2,19 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Traits;
 
-use GuardsmanPanda\Larabear\Infrastructure\Database\Crud\BearLogDatabaseChangeCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Crud\BearDatabaseChangeCreator;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Database\Eloquent\Model;
 use stdClass;
 
-trait BearLogDatabaseChanges {
-    public static function bootBearLogDatabaseChanges(): void {
+trait BearDatabaseChangeTrait {
+    public static function bootBearDatabaseChangeWriter(): void {
         static::created(static function (Model $model) {
-            BearLogDatabaseChangeCreator::create(model: $model, changeType: 'CREATE');
+            BearDatabaseChangeCreator::create(model: $model, changeType: 'CREATE');
         });
 
         static::deleted(static function (Model $model) {
-            BearLogDatabaseChangeCreator::create(model: $model, changeType: 'DELETE');
+            BearDatabaseChangeCreator::create(model: $model, changeType: 'DELETE');
         });
 
         static::updated(static function (Model $model) {
@@ -60,7 +60,7 @@ trait BearLogDatabaseChanges {
                 if (is_bool($new_value)) {
                     $new_value = $new_value ? 'true' : 'false';
                 }
-                BearLogDatabaseChangeCreator::create(model: $model, changeType: 'UPDATE', columnName: $column_name, oldValue: is_null($old_value) ? null : (string)$old_value, newValue: is_null($new_value) ? null : (string)$new_value);
+                BearDatabaseChangeCreator::create(model: $model, changeType: 'UPDATE', columnName: $column_name, oldValue: is_null($old_value) ? null : (string)$old_value, newValue: is_null($new_value) ? null : (string)$new_value);
             }
         });
     }

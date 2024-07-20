@@ -3,7 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 
 use Closure;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Collection;
@@ -51,7 +51,7 @@ use RuntimeException;
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 final class BearRoleUser extends Model {
-    use BearLogDatabaseChanges, LarabearFixDateFormatTrait;
+    use BearDatabaseChangeTrait, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_role_user';
     /** @var array<string> primaryKeyArray */

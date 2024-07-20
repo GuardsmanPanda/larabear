@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
-final class BearLogDatabaseChangeCreator {
+final class BearDatabaseChangeCreator {
     public static function create(
         Model $model,
         string $changeType,
@@ -26,14 +26,14 @@ final class BearLogDatabaseChangeCreator {
 
         try {
             DB::connection($model->getConnectionName())->insert(query: "
-            INSERT INTO bear_log_database_change (
+            INSERT INTO bear_database_change (
                 table_name, column_name,
                 record_id, record_uuid, record_identifier,
                 old_value, new_value, record_json,
                 change_type, is_soft_deletion, user_id,
-                request_ip, request_country_code, 
-                request_http_method, request_http_path, app_action_name,
-                request_http_hostname, request_id, console_id                                                  
+                ip, country_code, 
+                http_method, http_path, hostname,
+                action_name, request_id, console_id                                                  
             )
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,?, ?, ?, ?, ?, ?, ?, ?, ?)
         ", bindings: [

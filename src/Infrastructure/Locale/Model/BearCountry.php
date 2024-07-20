@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Locale\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -50,7 +50,7 @@ use Illuminate\Database\Eloquent\Model;
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 final class BearCountry extends Model {
-    use BearLogDatabaseChanges;
+    use BearDatabaseChangeTrait;
 
     protected $table = 'bear_country';
     protected $primaryKey = 'country_iso2_code';

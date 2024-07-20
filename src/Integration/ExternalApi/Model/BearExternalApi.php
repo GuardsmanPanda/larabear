@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Integration\ExternalApi\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
@@ -76,7 +76,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 final class BearExternalApi extends Model {
-    use BearLogDatabaseChanges, LarabearFixDateFormatTrait;
+    use BearDatabaseChangeTrait, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_external_api';
     protected $keyType = 'string';

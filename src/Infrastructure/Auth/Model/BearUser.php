@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Service\BearAuthService;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Model\BearCountry;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Model\BearLanguage;
@@ -75,7 +75,7 @@ use RuntimeException;
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 final class BearUser extends Model implements Authenticatable {
-    use BearLogDatabaseChanges, LarabearFixDateFormatTrait;
+    use BearDatabaseChangeTrait, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_user';
     protected $keyType = 'string';

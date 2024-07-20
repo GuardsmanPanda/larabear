@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Idempotency\Model;
 
 use Carbon\CarbonInterface;
 use Closure;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearLogDatabaseChanges;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -53,7 +53,7 @@ use Illuminate\Database\Eloquent\Model;
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 final class BearIdempotency extends Model {
-    use LarabearFixDateFormatTrait, BearLogDatabaseChanges;
+    use LarabearFixDateFormatTrait, BearDatabaseChangeTrait;
 
     protected $table = 'bear_idempotency';
     protected $primaryKey = 'idempotency_key';

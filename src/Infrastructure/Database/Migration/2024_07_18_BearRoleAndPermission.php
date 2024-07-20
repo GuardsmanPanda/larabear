@@ -19,7 +19,7 @@ return new class extends Migration {
                     $table->text(column: 'description')->nullable();
                 } else {
                     $table->string(column: 'enum')->primary();
-                    $table->string(column: 'description')->nullable();
+                    $table->string(column: 'description');
                 }
                 $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
                 $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
