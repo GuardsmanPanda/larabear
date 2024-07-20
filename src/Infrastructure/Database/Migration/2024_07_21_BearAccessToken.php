@@ -21,15 +21,16 @@ return new class extends Migration {
             $table->ipAddress(column: 'ip_restriction')->default('0.0.0.0/0');
             $table->timestampTz(column: 'expires_at')->nullable();
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
+                $table->text(column: 'external_api_enum')->nullable();
                 $table->text(column: 'hashed_access_token')->index();
             } else {
+                $table->string(column: 'external_api_enum')->nullable();
                 $table->string(column: 'hashed_access_token')->index();
             }
-            $table->uuid(column: 'external_api_enum')->nullable();
             $table->timestampTz(column: 'last_usage_at')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->foreign('external_api_enum')->references( 'enum')->on( table: 'bear_external_api');
+            $table->foreign('external_api_enum')->references('enum')->on(table: 'bear_external_api');
         });
     }
 

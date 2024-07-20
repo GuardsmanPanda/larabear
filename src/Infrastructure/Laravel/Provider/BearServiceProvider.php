@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Laravel\Provider;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearCleanTablesCommand;
+use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearInitCommand;
 use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearValidateConfigurationCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Listener\ConsoleRegisterListeners;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCheckForeignKeysOnSoftDeletesCommand;
@@ -66,6 +67,7 @@ final class BearServiceProvider extends ServiceProvider {
                 LarabearDatabaseCrudGeneratorCommand::class,
                 LarabearDatabaseModelGeneratorCommand::class,
                 LarabearPhpStanCommand::class,
+                LarabearInitCommand::class,
                 LarabearSecurityOsvScannerCommand::class,
                 LarabearOauth2CheckAccessCommand::class,
             ]);

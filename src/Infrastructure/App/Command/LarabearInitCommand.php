@@ -1,14 +1,15 @@
 <?php declare(strict_types=1);
 
-use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
+namespace GuardsmanPanda\Larabear\Infrastructure\App\Command;
 
-return new class extends Migration {
-    public function up(): void {
+use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigCreator;
+use GuardsmanPanda\Larabear\Infrastructure\Console\Service\BearTransactionCommand;
+
+final class LarabearInitCommand extends BearTransactionCommand {
+    protected $signature = 'bear:init';
+    protected $description = 'Initialize the larabear package';
+
+    protected function handleInTransaction(): void {
         BearConfigCreator::create(
             slug: 'larabear::log-store-for-days',
             description: 'How many days to store console errors.',
@@ -40,9 +41,4 @@ return new class extends Migration {
             config_integer: 9000
         );
     }
-
-
-    public function down(): void {
-        Schema::dropIfExists(table: 'bear_config');
-    }
-};
+}
