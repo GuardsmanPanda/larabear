@@ -31,9 +31,9 @@ final readonly class OidcToken {
                 throw new RuntimeException(message: 'JWT could not be decoded');
             }
             $token = json_decode($jwt, false, 512, JSON_THROW_ON_ERROR);
-            if ($client->oauth2_client_id !== $token->aud) {
+            if ($client->id !== $token->aud) {
                 BearErrorCreator::create(
-                    message: "The application id in the JWT is not the same as the application id on the server. JWT: $token->aud, Server: $client->oauth2_client_id",
+                    message: "The application id in the JWT is not the same as the application id on the server. JWT: $token->aud, Server: $client->id",
                     slug: 'larabear::oidc',
                     severity: BearSeverityEnum::CRITICAL,
                 );

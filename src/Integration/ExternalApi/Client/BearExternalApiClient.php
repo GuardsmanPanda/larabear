@@ -40,7 +40,7 @@ final class BearExternalApiClient {
      */
     public static function fromOauth2Client(BearOauth2Client $client, string $baseUrl = null, array $baseHeaders = []): self {
         return new self(
-            baseUrl: $baseUrl ?? $client->oauth2_client_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
+            baseUrl: $baseUrl ?? $client->client_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
             baseHeaders: ['Authorization' => 'Bearer ' . BearOauth2ClientService::getAccessToken(client: $client)] + $baseHeaders
         );
     }
@@ -63,42 +63,43 @@ final class BearExternalApiClient {
      */
     public static function fromOauth2User(BearOauth2User $user, string $baseUrl = null, array $baseHeaders = []): self {
         return new self(
-            baseUrl: $baseUrl ?? $user->oauth2Client->oauth2_client_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
+            baseUrl: $baseUrl ?? $user->oauth2Client->client_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
             baseHeaders: ['Authorization' => 'Bearer ' . BearOauth2UserService::getAccessToken(user: $user)] + $baseHeaders
         );
     }
 
     public static function fromExternalApi(BearExternalApi $api, string $baseUrl = null): self {
-        $headers = $api->external_api_base_headers_json?->getArrayCopy() ?? [];
+        $headers = $api->base_headers_json?->getArrayCopy() ?? [];
         $query = [];
-        if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2_CLIENT) {
-            return self::fromOauth2ClientId(clientId: $api->oauth2_client_id ?? throw new RuntimeException(message: 'OAUTH2_CLIENT API type must reference bear_oauth2_client'), baseUrl: $baseUrl ?? $api->external_api_base_url, baseHeaders: $headers);
+        $api_enum = BearExternalApiTypeEnum::from($api->external_api_type_enum);
+        if ($api_enum === BearExternalApiTypeEnum::OAUTH2_CLIENT) {
+            return self::fromOauth2ClientId(clientId: $api->oauth2_client_id ?? throw new RuntimeException(message: 'OAUTH2_CLIENT API type must reference bear_oauth2_client'), baseUrl: $baseUrl ?? $api->base_url, baseHeaders: $headers);
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::OAUTH2) {
-            return self::fromOauth2User(user: $api->oauth2User ?? throw new RuntimeException(message: 'OAUTH2 API type must reference bear_oauth2_user'), baseUrl: $baseUrl ?? $api->external_api_base_url, baseHeaders: $headers);
+        if ($api_enum === BearExternalApiTypeEnum::OAUTH2) {
+            return self::fromOauth2User(user: $api->oauth2User ?? throw new RuntimeException(message: 'OAUTH2 API type must reference bear_oauth2_user'), baseUrl: $baseUrl ?? $api->base_url, baseHeaders: $headers);
         }
 
-        if ($api->external_api_type === BearExternalApiTypeEnum::X_API_KEY) {
-            $headers['X-API-Key'] = $api->encrypted_external_api_token;
+        if ($api_enum === BearExternalApiTypeEnum::X_API_KEY) {
+            $headers['X-API-Key'] = $api->encrypted_token;
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::X_POSTMARK_SERVER_TOKEN) {
-            $headers['X-Postmark-Server-Token'] = $api->encrypted_external_api_token;
+        if ($api_enum === BearExternalApiTypeEnum::X_POSTMARK_SERVER_TOKEN) {
+            $headers['X-Postmark-Server-Token'] = $api->encrypted_token;
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::KEY_QUERY) {
-            $query['key'] = $api->encrypted_external_api_token ?? throw new InvalidArgumentException(message: 'No API key provided');
+        if ($api_enum === BearExternalApiTypeEnum::KEY_QUERY) {
+            $query['key'] = $api->encrypted_token ?? throw new InvalidArgumentException(message: 'No API key provided');
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::ACCESS_TOKEN_QUERY) {
-            $query['access_token'] = $api->encrypted_external_api_token ?? throw new InvalidArgumentException(message: 'No access token provided');
+        if ($api_enum === BearExternalApiTypeEnum::ACCESS_TOKEN_QUERY) {
+            $query['access_token'] = $api->encrypted_token ?? throw new InvalidArgumentException(message: 'No access token provided');
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::BEARER_TOKEN) {
-            $headers['Authorization'] = "Bearer $api->encrypted_external_api_token";
+        if ($api_enum === BearExternalApiTypeEnum::BEARER_TOKEN) {
+            $headers['Authorization'] = "Bearer $api->encrypted_token";
         }
-        if ($api->external_api_type === BearExternalApiTypeEnum::BASIC_AUTH) {
-            $headers['Authorization'] = "Basic $api->encrypted_external_api_token";
+        if ($api_enum === BearExternalApiTypeEnum::BASIC_AUTH) {
+            $headers['Authorization'] = "Basic $api->encrypted_token";
         }
 
         return new self(
-            baseUrl: $baseUrl ?? $api->external_api_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
+            baseUrl: $baseUrl ?? $api->base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
             baseHeaders: $headers,
             baseQuery: $query
         );

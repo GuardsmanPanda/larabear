@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearResponseErrorCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Http\Crud\BearLogRouteUsageCrud;
+use GuardsmanPanda\Larabear\Infrastructure\Http\Crud\BearRouteUsageCrud;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
@@ -136,7 +136,7 @@ final class BearInitiateMiddleware {
             if ($response->getStatusCode() < 400 && Config::get(key: 'bear.route_usage_log.enabled') === true) {
                 $multiply = Config::get(key: 'bear.route_usage_log.log_one_in_every', default: 1);
                 if (random_int(min: 1, max: $multiply) === 1) {
-                    BearLogRouteUsageCrud::createOrUpdate(multiply: $multiply);
+                    BearRouteUsageCrud::createOrUpdate(multiply: $multiply);
                 }
             }
         } catch (Throwable $e) {

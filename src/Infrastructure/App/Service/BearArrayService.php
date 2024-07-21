@@ -3,7 +3,6 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 use InvalidArgumentException;
-use UnitEnum;
 
 final class BearArrayService {
     /**
@@ -23,7 +22,6 @@ final class BearArrayService {
         return $result;
     }
 
-
     /**
      * @param array<string|int, mixed> $from
      * @param array<string|int, mixed> $to
@@ -41,7 +39,6 @@ final class BearArrayService {
         }
         $from = $newFrom;
     }
-
 
     /**
      * @param string $string

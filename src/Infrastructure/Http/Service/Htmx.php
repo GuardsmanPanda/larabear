@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 final class Htmx {
@@ -15,8 +16,11 @@ final class Htmx {
         if ($message !== null) {
             session()->flash(key: 'message', value: $message);
         }
-        Resp::header(key: 'HX-Redirect', value: $url);
-        return Resp::noContent();
+        if (Req::hasHeader(key: 'HX-Request')) {
+            Resp::header(key: 'HX-Redirect', value: $url);
+            return Resp::noContent();
+        }
+        return new RedirectResponse(url: $url);
     }
 
     /**

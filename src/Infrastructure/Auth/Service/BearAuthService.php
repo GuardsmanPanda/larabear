@@ -21,7 +21,7 @@ final class BearAuthService {
     public static function getUserId(): string {
         return BearGlobalStateService::getUserId() ?? throw new RuntimeException(message: 'User not found');
     }
-    public static function getUserIdOrNull(): string {
+    public static function getUserIdOrNull(): string|null {
         return BearGlobalStateService::getUserId();
     }
 
@@ -55,18 +55,18 @@ final class BearAuthService {
         self::cacheCheck();
         if (!array_key_exists(key: $userId, array: self::$userPermissions)) {
             $perms = DB::select(query: "
-                SELECT DISTINCT p.permission_slug
+                SELECT DISTINCT p.enum
                 FROM bear_permission_user pu
-                LEFT JOIN bear_permission p ON p.permission_slug = pu.permission_slug
+                LEFT JOIN bear_permission p ON p.enum = pu.permission_enum
                 WHERE pu.user_id = ?
                 UNION DISTINCT
-                SELECT DISTINCT p.permission_slug
+                SELECT DISTINCT p.enum
                 FROM bear_role_user ru
-                LEFT JOIN bear_role_permission rp on rp.role_slug = ru.role_slug
-                LEFT JOIN bear_permission p on p.permission_slug = rp.permission_slug
+                LEFT JOIN bear_role_permission rp on rp.role_enum = ru.role_enum
+                LEFT JOIN bear_permission p on p.enum = rp.permission_enum
                 WHERE ru.user_id = ?
             ", bindings: [$userId, $userId]);
-            self::$userPermissions[$userId] = array_column(array: $perms, column_key: 'permission_slug');
+            self::$userPermissions[$userId] = array_column(array: $perms, column_key: 'enum');
         }
 
         if (is_string(value: $permission)) {
@@ -94,12 +94,12 @@ final class BearAuthService {
         self::cacheCheck();
         if (!array_key_exists(key: $userId, array: self::$userRoles)) {
             $tmp = DB::select(query: "
-                    SELECT r.role_slug
+                    SELECT r.enum
                     FROM bear_role r
-                    JOIN bear_role_user ru ON ru.role_slug = r.role_slug
+                    JOIN bear_role_user ru ON ru.role_enum = r.enum
                     WHERE ru.user_id = ?
             ", bindings: [$userId]);
-            self::$userRoles[$userId] = array_column(array: $tmp, column_key: 'role_slug');
+            self::$userRoles[$userId] = array_column(array: $tmp, column_key: 'enum');
         }
 
         if (is_string(value: $role)) {

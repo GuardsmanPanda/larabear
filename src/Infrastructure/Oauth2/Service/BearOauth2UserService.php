@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2UserUpdater;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\BearOauth2ClientTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -13,10 +14,10 @@ use RuntimeException;
 use Throwable;
 
 final class BearOauth2UserService {
-    private const SAFETY_BUFFER_MINUTES = 10;
+    private const int SAFETY_BUFFER_MINUTES = 10;
 
     public static function getAccessToken(BearOauth2User $user): string {
-        if ($user->user_access_token_expires_at > Carbon::now()->addMinutes(self::SAFETY_BUFFER_MINUTES)) {
+        if ($user->access_token_expires_at > Carbon::now()->addMinutes(self::SAFETY_BUFFER_MINUTES)) {
             return $user->encrypted_user_access_token ?? '';
         }
         return self::updateAccessToken($user);
@@ -29,31 +30,32 @@ final class BearOauth2UserService {
 
             // In case multiple request happens at the same time we may be queued here multiple times
             // So we check again to see if we have recently refreshed the token.
-            if ($updater->getUserAccessTokenExpiresAt() > Carbon::now()->addMinutes(self::SAFETY_BUFFER_MINUTES)) {
+            if ($updater->getAccessTokenExpiresAt() > Carbon::now()->addMinutes(self::SAFETY_BUFFER_MINUTES)) {
                 DB::rollBack();
                 return $updater->getEncryptedUserAccessToken();
             }
 
             $client = $user->oauth2Client;
-            $resp = Http::asForm()->post($client->oauth2_token_uri, [
-                'refresh_token' => $user->encrypted_user_refresh_token,
-                'client_secret' => $client->encrypted_oauth2_client_secret,
+            $enum = BearOauth2ClientTypeEnum::from($client->oauth2_client_type_enum);
+            $resp = Http::asForm()->post($enum->getTokenUri(), [
+                'refresh_token' => $user->encrypted_refresh_token,
+                'client_secret' => $client->encrypted_secret,
                 'grant_type' => 'refresh_token',
-                'client_id' => $client->oauth2_client_id,
-                'scope' => $user->oauth2_scope,
+                'client_id' => $client->id,
+                'scope' => $user->scope,
             ]);
 
             if ($resp->ok()) {
                 $json = $resp->json();
                 if (array_key_exists(key: 'refresh_token', array: $json)) {
-                    $updater->setEncryptedUserRefreshToken(encrypted_user_refresh_token: $json['refresh_token']);
+                    $updater->setEncryptedRefreshToken(encrypted_refresh_token: $json['refresh_token']);
                 }
-                $updater->setEncryptedUserAccessToken(
-                    encrypted_user_access_token: $json['access_token'],
-                    user_access_token_expires_at: Carbon::now()->addSeconds($json['expires_in'])
+                $updater->setEncryptedAccessToken(
+                    encrypted_access_token: $json['access_token'],
+                    access_token_expires_at: Carbon::now()->addSeconds($json['expires_in'])
                 )->update();
             } else {
-                $updater->setUserAccessTokenErrorMessage(user_access_token_error_message: $resp->body())->update();
+                $updater->setAccessTokenErrorMessage(access_token_error_message: $resp->body())->update();
             }
             DB::commit();
             return $updater->getEncryptedUserAccessToken();

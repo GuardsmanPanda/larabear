@@ -22,7 +22,7 @@ final class BearTwilioClient {
         try {
             $response = $client->formRequest(path: "Messages.json", body: [
                 'To' => $phone_number,
-                'From' => $external->external_api_metadata_json['from'] ?? throw new RuntimeException(message: 'Missing "from" in external_api_metadata_json'),
+                'From' => $external->metadata_json['from'] ?? throw new RuntimeException(message: 'Missing "from" in external_api_metadata_json'),
                 'Body' => $message
             ]);
             if ($response->successful()) {

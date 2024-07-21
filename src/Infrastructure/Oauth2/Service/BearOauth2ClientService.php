@@ -26,7 +26,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Throwable;
 
 final class BearOauth2ClientService {
-    private const SAFETY_BUFFER_MINUTES = 10;
+    private const int SAFETY_BUFFER_MINUTES = 10;
 
     public static function oauth2ClientExists(string $clientId): bool {
         return BearOauth2Client::find(id: $clientId, columns: ['oauth2_client_id']) !== null;
@@ -41,32 +41,33 @@ final class BearOauth2ClientService {
         Session::put(key: 'oauth2_redirect_path', value: $afterSignInRedirectPath);
         Session::put(key: 'oauth2_login_user', value: $loginUser);
 
-        $query_data = "client_id=$client->oauth2_client_id&response_type=code&state=$state";
-        $query_data .= '&scope=' . self::buildScopeString(client: $client, scopeString: $specialScope ?? $client->oauth2_user_scope) . '&redirect_uri=';
+        $query_data = "client_id=$client->id&response_type=code&state=$state";
+        $query_data .= '&scope=' . self::buildScopeString(client: $client, scopeString: $specialScope ?? $client->user_scope) . '&redirect_uri=';
 
-        if ($internalRedirect === false && $client->oauth2_client_redirect_path !== null) {
-            $query_data .= urlencode(string: config(key: 'app.url') . $client->oauth2_client_redirect_path);
+        if ($internalRedirect === false && $client->user_redirect_path !== null) {
+            $query_data .= urlencode(string: config(key: 'app.url') . $client->user_redirect_path);
         } else {
-            $query_data .= urlencode(string: config(key: 'app.url') . "/bear/auth/oauth2-client/$client->oauth2_client_id/callback");
+            $query_data .= urlencode(string: config(key: 'app.url') . "/bear/auth/oauth2-client/$client->id/callback");
         }
 
-        if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::TWITCH) {
+        $enum = BearOauth2ClientTypeEnum::from(value: $client->oauth2_client_type_enum);
+        if ($enum === BearOauth2ClientTypeEnum::TWITCH) {
             $query_data .= '&claims=' . urlencode(string: json_encode(['id_token' => ['email' => null, 'email_verified' => null, 'preferred_username' => null]], JSON_THROW_ON_ERROR));
         }
 
-        if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::GOOGLE) {
+        if ($enum === BearOauth2ClientTypeEnum::GOOGLE) {
             $query_data .= '&include_granted_scopes=true';
         }
 
         if ($accountPrompt) {
-            $query_data .= match ($client->oauth2_client_type) {
+            $query_data .= match ($enum) {
                 BearOauth2ClientTypeEnum::MICROSOFT, BearOauth2ClientTypeEnum::GOOGLE => '&prompt=select_account',
                 BearOauth2ClientTypeEnum::HELP_SCOUT => '',
-                default => throw new RuntimeException(message: "User prompt not supported for client type" . $client->oauth2_client_type->value),
+                default => throw new RuntimeException(message: "User prompt not supported for client type" . $client->oauth2_client_type_enum),
             };
         }
 
-        return new RedirectResponse(url: "$client->oauth2_authorize_uri?$query_data");
+        return new RedirectResponse(url: "{$enum->getAuthorizeUri()}?$query_data");
     }
 
     public static function getUserFromCallback(BearOauth2Client $client, string $code, string $redirectUri = null, bool $createBearUser = false): BearOauth2User {
@@ -91,35 +92,35 @@ final class BearOauth2ClientService {
         if ($bearOauth2User === null) {
             return BearOauth2UserCreator::create(
                 oauth2_client_id: $token->issuedToClientId,
-                oauth2_user_identifier: $token->userIdentifier,
-                oauth2_scope: is_array($data['scope']) ? implode(separator: ' ', array: $data['scope']) : $data['scope'],
-                oauth2_user_email: $token->email,
-                oauth2_user_name: $token->name,
-                user_access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']),
-                encrypted_user_access_token: $data['access_token'],
-                encrypted_user_refresh_token: $data['refresh_token'],
+                identifier: $token->userIdentifier,
+                scope: is_array($data['scope']) ? implode(separator: ' ', array: $data['scope']) : $data['scope'],
+                email: $token->email,
+                display_name: $token->name,
+                access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']),
+                encrypted_access_token: $data['access_token'],
+                encrypted_refresh_token: $data['refresh_token'],
                 user: $bearUser
             );
         }
-        return (new BearOauth2UserUpdater($bearOauth2User))->setEncryptedUserRefreshToken(encrypted_user_refresh_token: $data['refresh_token'] ?? $bearOauth2User->encrypted_user_refresh_token)
-            ->setEncryptedUserAccessToken(encrypted_user_access_token: $data['access_token'], user_access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']))
-            ->setOauth2UserName(oauth2_user_name: $token->name)
-            ->setOauth2UserEmail(oauth2_user_email: $token->email)
-            ->setOauth2Scope(oauth2_scope: is_array($data['scope']) ? implode(separator: ' ', array: $data['scope']) : $data['scope'])
+        return (new BearOauth2UserUpdater($bearOauth2User))->setEncryptedRefreshToken(encrypted_refresh_token: $data['refresh_token'] ?? $bearOauth2User->encrypted_refresh_token)
+            ->setEncryptedAccessToken(encrypted_access_token: $data['access_token'], access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']))
+            ->setDisplayName(display_name: $token->name)
+            ->setEmail(email: $token->email)
+            ->setScope(scope: is_array($data['scope']) ? implode(separator: ' ', array: $data['scope']) : $data['scope'])
             ->setUserId(user_id: $bearUser?->id)->update();
     }
 
     public static function exchangeCode(string $code, BearOauth2Client $client, string $redirect_uri = null): Response {
         $resp = Http::asForm()->post(url: $client->oauth2_token_uri, data: [
             'code' => $code,
-            'client_secret' => $client->encrypted_oauth2_client_secret,
+            'client_secret' => $client->encrypted_secret,
             'grant_type' => 'authorization_code',
-            'client_id' => $client->oauth2_client_id,
+            'client_id' => $client->id,
             'redirect_uri' => $redirect_uri ?? config(key: 'app.url') . $client->oauth2_client_redirect_path,
         ]);
         if ($resp->failed()) {
             BearErrorCreator::create(
-                message: "Failed to exchange code for access token, client: $client->oauth2_client_id, message: {$resp->body()}",
+                message: "Failed to exchange code for access token, client: $client->id, message: {$resp->body()}",
                 slug: 'larabear::oauth2-client-service-exchange-code',
                 severity: BearSeverityEnum::CRITICAL,
             );
@@ -135,7 +136,7 @@ final class BearOauth2ClientService {
 
 
     public static function getAccessToken(BearOauth2Client $client): string {
-        if ($client->oauth2_client_access_token_expires_at > Carbon::now()->addMinutes(self::SAFETY_BUFFER_MINUTES)) {
+        if ($client->access_token_expires_at > Carbon::now()->addMinutes(self::SAFETY_BUFFER_MINUTES)) {
             return $client->encrypted_oauth2_client_access_token ?? '';
         }
         return self::updateAccessToken($client);
@@ -144,29 +145,29 @@ final class BearOauth2ClientService {
     private static function updateAccessToken(BearOauth2Client $client): string {
         try {
             DB::beginTransaction();
-            $updater = BearOauth2ClientUpdater::fromOauth2ClientId(oauth2_client_id: $client->oauth2_client_id, lockForUpdate: true);
+            $updater = BearOauth2ClientUpdater::fromOauth2ClientId(oauth2_client_id: $client->id, lockForUpdate: true);
             // In case multiple request happens at the same time we may be queued here multiple times
             // So we check again to see if we have recently refreshed the token.
-            if ($updater->getOauth2ClientAccessTokenExpiresAt() > Carbon::now()->addMinutes(self::SAFETY_BUFFER_MINUTES)) {
+            if ($updater->getAccessTokenExpiresAt() > Carbon::now()->addMinutes(self::SAFETY_BUFFER_MINUTES)) {
                 DB::rollBack();
                 return $updater->getEncryptedOauth2ClientAccessToken();
             }
 
             $resp = Http::asForm()->post($client->oauth2_token_uri, [
                 'grant_type' => 'client_credentials',
-                'client_id' => $client->oauth2_client_id,
-                'client_secret' => $client->encrypted_oauth2_client_secret,
-                'scope' => $client->oauth2_client_scope,
+                'client_id' => $client->id,
+                'client_secret' => $client->encrypted_secret,
+                'scope' => $client->client_scope,
             ]);
 
             if ($resp->ok()) {
                 $json = $resp->json();
-                $updater->setEncryptedOauth2ClientAccessToken(
-                    encrypted_oauth2_client_access_token: $json['access_token'],
-                    oauth2_client_access_token_expires_at: Carbon::now()->addSeconds($json['expires_in']),
+                $updater->setEncryptedAccessToken(
+                    encrypted_access_token: $json['access_token'],
+                    access_token_expires_at: Carbon::now()->addSeconds($json['expires_in']),
                 )->update();
             } else {
-                $updater->setClientAccessTokenErrorMessage(client_access_token_error_message: $resp->body())->update();
+                $updater->setAccessTokenErrorMessage(access_token_error_message: $resp->body())->update();
             }
             DB::commit();
             return $updater->getEncryptedOauth2ClientAccessToken();
@@ -192,18 +193,18 @@ final class BearOauth2ClientService {
                 }
             }
         }
-        if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::MICROSOFT) {
+        if ($client->oauth2_client_type_enum === BearOauth2ClientTypeEnum::MICROSOFT->value) {
             $scopes->add(element: 'offline_access');
             $scopes->add(element: 'openid');
             $scopes->add(element: 'profile');
             $scopes->add(element: 'email');
         }
-        if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::GOOGLE) {
+        if ($client->oauth2_client_type_enum === BearOauth2ClientTypeEnum::GOOGLE->value) {
             $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.profile');
             $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.email');
             $scopes->add(element: 'openid');
         }
-        if ($client->oauth2_client_type === BearOauth2ClientTypeEnum::TWITCH) {
+        if ($client->oauth2_client_type_enum === BearOauth2ClientTypeEnum::TWITCH->value) {
             $scopes->add(element: 'user:read:email');
             $scopes->add(element: 'openid');
         }

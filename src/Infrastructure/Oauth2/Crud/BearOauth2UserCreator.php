@@ -12,15 +12,15 @@ use Illuminate\Support\Str;
 
 final class BearOauth2UserCreator {
     public static function create(
-        string $oauth2_client_id,
-        string $oauth2_user_identifier,
-        string $oauth2_scope,
-        string $oauth2_user_email = null,
-        string $oauth2_user_name = null,
-        CarbonInterface $user_access_token_expires_at = null,
-        string $encrypted_user_access_token = null,
-        string $encrypted_user_refresh_token = null,
-        BearUser $user = null,
+        string          $oauth2_client_id,
+        string          $identifier,
+        string          $scope,
+        string          $email = null,
+        string          $display_name = null,
+        CarbonInterface $access_token_expires_at = null,
+        string          $encrypted_access_token = null,
+        string          $encrypted_refresh_token = null,
+        BearUser        $user = null,
     ): BearOauth2User {
         BearDatabaseService::mustBeInTransaction();
 
@@ -28,19 +28,19 @@ final class BearOauth2UserCreator {
         $model->id = Str::uuid()->toString();
 
         $model->oauth2_client_id = $oauth2_client_id;
-        $model->oauth2_user_identifier = $oauth2_user_identifier;
-        $model->oauth2_user_email = $oauth2_user_email;
-        $model->oauth2_user_name = $oauth2_user_name;
+        $model->identifier = $identifier;
+        $model->email = $email;
+        $model->display_name = $display_name;
 
-        $model->user_access_token_expires_at = $user_access_token_expires_at;
-        $model->encrypted_user_access_token = $encrypted_user_access_token;
-        $model->encrypted_user_refresh_token = $encrypted_user_refresh_token;
+        $model->access_token_expires_at = $access_token_expires_at;
+        $model->encrypted_access_token = $encrypted_access_token;
+        $model->encrypted_refresh_token = $encrypted_refresh_token;
 
-        $model->oauth2_scope = $oauth2_scope;
-        $model->oauth2_scope_json = new ArrayObject();
+        $model->scope = $scope;
+        $model->scope_json = new ArrayObject();
         $dateString = Carbon::now()->toDateString();
-        foreach (explode(separator: ' ', string: $oauth2_scope) as $scope) {
-            $model->oauth2_scope_json->$scope = $dateString;
+        foreach (explode(separator: ' ', string: $scope) as $scope2) {
+            $model->scope_json->$scope2 = $dateString;
         }
 
         $model->user_id = $user?->id;

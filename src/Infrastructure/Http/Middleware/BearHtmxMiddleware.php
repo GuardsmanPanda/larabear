@@ -3,7 +3,6 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 
 use Closure;
-use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Http\Request;

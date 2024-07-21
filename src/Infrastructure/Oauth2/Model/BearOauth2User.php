@@ -23,43 +23,52 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearOauth2User firstOrFail(array $columns = ['*'])
  * @method static BearOauth2User firstOrCreate(array $filter, array $values)
  * @method static BearOauth2User firstOrNew(array $filter, array $values)
- * @method static BearOauth2User|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection<BearOauth2User> all(array $columns = ['*'])
- * @method static Collection<BearOauth2User> get(array $columns = ['*'])
- * @method static Collection<BearOauth2User> fromQuery(string $query, array $bindings = [])
+ * @method static BearOauth2User|null firstWhere(string $column, string $operator, string|float|int|bool $value)
+ * @method static Collection<int, BearOauth2User> all(array $columns = ['*'])
+ * @method static Collection<int, BearOauth2User> get(array $columns = ['*'])
+ * @method static Collection<int|string, BearOauth2User> pluck(string $column, string $key = null)
+ * @method static Collection<int, BearOauth2User> fromQuery(string $query, array $bindings = [])
  * @method static BearOauth2User lockForUpdate()
  * @method static BearOauth2User select(array $columns = ['*'])
+ * @method static BearOauth2User selectRaw(string $expression, array $bindings = [])
  * @method static BearOauth2User with(array $relations)
  * @method static BearOauth2User leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static BearOauth2User where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static BearOauth2User whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
- * @method static BearOauth2User whereNotExists(Closure $callback, string $boolean = 'and')
+ * @method static BearOauth2User where(string $column, string $operator = null, string|float|int|bool $value = null)
+ * @method static BearOauth2User whereIn(string $column, array $values)
+ * @method static BearOauth2User whereNull(string|array $columns)
+ * @method static BearOauth2User whereNotNull(string|array $columns)
+ * @method static BearOauth2User whereYear(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static BearOauth2User whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static BearOauth2User whereDate(string $column, string $operator, CarbonInterface|string $value)
+ * @method static BearOauth2User whereExists(Closure $callback)
+ * @method static BearOauth2User whereNotExists(Closure $callback)
  * @method static BearOauth2User whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearOauth2User whereDoesntHave(string $relation, Closure $callback = null)
  * @method static BearOauth2User withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearOauth2User whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
- * @method static BearOauth2User whereNull(string|array $columns, string $boolean = 'and')
- * @method static BearOauth2User whereNotNull(string|array $columns, string $boolean = 'and')
- * @method static BearOauth2User whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
+ * @method static BearOauth2User whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static BearOauth2User whereRaw(string $sql, array $bindings = [])
+ * @method static BearOauth2User groupBy(string $groupBy)
  * @method static BearOauth2User orderBy(string $column, string $direction = 'asc')
+ * @method static BearOauth2User orderByDesc(string $column)
+ * @method static BearOauth2User orderByRaw(string $sql, array $bindings = [])
+ * @method static BearOauth2User limit(int $value)
  * @method static int count(array $columns = ['*'])
+ * @method static mixed sum(string $column)
  * @method static bool exists()
  *
  * @property string $id
+ * @property string $scope
  * @property string $created_at
+ * @property string $identifier
  * @property string $updated_at
- * @property string $oauth2_scope
  * @property string $oauth2_client_id
- * @property string $oauth2_user_identifier
+ * @property string|null $email
  * @property string|null $user_id
- * @property string|null $oauth2_user_name
- * @property string|null $oauth2_user_email
- * @property string|null $encrypted_user_access_token
- * @property string|null $encrypted_user_refresh_token
- * @property string|null $user_access_token_error_message
- * @property ArrayObject $oauth2_scope_json
- * @property CarbonInterface|null $user_access_token_expires_at
- * @property CarbonInterface|null $user_access_token_first_error_at
+ * @property string|null $display_name
+ * @property string|null $encrypted_access_token
+ * @property string|null $encrypted_refresh_token
+ * @property string|null $access_token_error_message
+ * @property ArrayObject $scope_json
+ * @property CarbonInterface|null $access_token_expires_at
  *
  * @property BearUser|null $user
  * @property BearOauth2Client $oauth2Client
@@ -71,26 +80,23 @@ final class BearOauth2User extends Model {
 
     protected $table = 'bear_oauth2_user';
     protected $keyType = 'string';
-    public $incrementing = false;
-    /** @var array<string> $log_exclude_columns */
-    public array $log_exclude_columns = ['user_access_token_expires_at', 'encrypted_user_access_token', 'encrypted_user_refresh_token'];
 
     /** @var array<string, string> $casts */
-    protected $casts = array(
-        'encrypted_user_access_token' => 'encrypted',
-        'encrypted_user_refresh_token' => 'encrypted',
-        'oauth2_scope_json' => AsArrayObject::class,
-        'token_refresh_error_at' => 'immutable_datetime',
-        'user_access_token_expires_at' => 'immutable_datetime',
-        'user_access_token_first_error_at' => 'immutable_datetime',
-    );
+    protected $casts = [
+        'access_token_expires_at' => 'immutable_datetime',
+        'encrypted_access_token' => 'encrypted',
+        'encrypted_refresh_token' => 'encrypted',
+        'scope_json' => AsArrayObject::class,
+    ];
 
+    /** @return BelongsTo<BearUser, self>|null */
     public function user(): BelongsTo|null {
         return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
     }
 
+    /** @return BelongsTo<BearOauth2Client, self> */
     public function oauth2Client(): BelongsTo {
-        return $this->belongsTo(related: BearOauth2Client::class, foreignKey: 'oauth2_client_id', ownerKey: 'oauth2_client_id');
+        return $this->belongsTo(related: BearOauth2Client::class, foreignKey: 'oauth2_client_id', ownerKey: 'id');
     }
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];

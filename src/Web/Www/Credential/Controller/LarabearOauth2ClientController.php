@@ -27,16 +27,16 @@ final class LarabearOauth2ClientController extends Controller {
 
     public function create(): View {
         BearOauth2ClientCreator::create(
-            oauth2_client_id: Req::getStringOrDefault(key: 'oauth2_client_id'),
-            oauth2_client_description: Req::getStringOrDefault(key: 'oauth2_client_description'),
+            id: Req::getStringOrDefault(key: 'oauth2_client_id'),
+            description: Req::getStringOrDefault(key: 'oauth2_client_description'),
             oauth2_client_type: BearOauth2ClientTypeEnum::from(Req::getStringOrDefault(key: 'oauth2_client_type')),
             oauth2_authorize_uri: Req::getStringOrDefault(key: 'oauth2_authorize_uri'),
             oauth2_token_uri: Req::getStringOrDefault(key: 'oauth2_token_uri'),
-            encrypted_oauth2_client_secret: Req::getStringOrDefault(key: 'encrypted_oauth2_client_secret'),
-            oauth2_client_base_url: Req::getString(key: 'oauth2_client_base_url'),
-            oauth2_client_scope: Req::getString(key: 'oauth2_client_scope'),
-            oauth2_client_redirect_path: Req::getString(key: 'oauth2_client_redirect_path'),
-            oauth2_user_scope: Req::getString(key: 'oauth2_user_scope'),
+            encrypted_secret: Req::getStringOrDefault(key: 'encrypted_oauth2_client_secret'),
+            client_base_url: Req::getString(key: 'oauth2_client_base_url'),
+            client_scope: Req::getString(key: 'oauth2_client_scope'),
+            user_redirect_path: Req::getString(key: 'oauth2_client_redirect_path'),
+            user_scope: Req::getString(key: 'oauth2_user_scope'),
         );
         return $this->index();
     }
