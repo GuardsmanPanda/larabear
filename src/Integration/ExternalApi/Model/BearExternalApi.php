@@ -8,7 +8,6 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTra
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
-use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiTypeEnum;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Collection;
@@ -26,10 +25,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearExternalApi firstOrCreate(array $filter, array $values)
  * @method static BearExternalApi firstOrNew(array $filter, array $values)
  * @method static BearExternalApi|null firstWhere(string $column, string $operator, string|float|int|bool $value)
- * @method static Collection all(array $columns = ['*'])
- * @method static Collection get(array $columns = ['*'])
- * @method static Collection pluck($column, $key = null)
- * @method static Collection fromQuery(string $query, array $bindings = [])
+ * @method static Collection<int, BearExternalApi> all(array $columns = ['*'])
+ * @method static Collection<int, BearExternalApi> get(array $columns = ['*'])
+ * @method static Collection<int|string, BearExternalApi> pluck(string $column, string $key = null)
+ * @method static Collection<int, BearExternalApi> fromQuery(string $query, array $bindings = [])
  * @method static BearExternalApi lockForUpdate()
  * @method static BearExternalApi select(array $columns = ['*'])
  * @method static BearExternalApi selectRaw(string $expression, array $bindings = [])
@@ -57,18 +56,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static mixed sum(string $column)
  * @method static bool exists()
  *
- * @property string $id
+ * @property string $enum
  * @property string $created_at
  * @property string $updated_at
- * @property string $external_api_slug
- * @property string $external_api_description
+ * @property string $description
+ * @property string $external_api_type_enum
+ * @property string|null $base_url
  * @property string|null $oauth2_user_id
+ * @property string|null $encrypted_token
  * @property string|null $oauth2_client_id
- * @property string|null $external_api_base_url
- * @property string|null $encrypted_external_api_token
- * @property ArrayObject|null $external_api_metadata_json
- * @property ArrayObject|null $external_api_base_headers_json
- * @property BearExternalApiTypeEnum $external_api_type
+ * @property ArrayObject|null $metadata_json
+ * @property ArrayObject|null $base_headers_json
  *
  * @property BearOauth2User|null $oauth2User
  * @property BearOauth2Client|null $oauth2Client
@@ -79,25 +77,25 @@ final class BearExternalApi extends Model {
     use BearDatabaseChangeTrait, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_external_api';
+    protected $primaryKey = 'enum';
     protected $keyType = 'string';
-    public $incrementing = false;
-    protected $dateFormat = 'Y-m-d\TH:i:sP';
 
     /** @var array<string, string> $casts */
     protected $casts = [
-        'encrypted_external_api_token' => 'encrypted',
-        'external_api_metadata_json' => AsArrayObject::class,
-        'external_api_base_headers_json' => AsArrayObject::class,
-        'external_api_type' => BearExternalApiTypeEnum::class,
+        'base_headers_json' => AsArrayObject::class,
+        'encrypted_token' => 'encrypted',
+        'metadata_json' => AsArrayObject::class,
     ];
 
+    /** @return BelongsTo<BearOauth2User, self>|null */
     public function oauth2User(): BelongsTo|null {
         return $this->belongsTo(related: BearOauth2User::class, foreignKey: 'oauth2_user_id', ownerKey: 'id');
     }
 
+    /** @return BelongsTo<BearOauth2Client, self>|null */
     public function oauth2Client(): BelongsTo|null {
-        return $this->belongsTo(related: BearOauth2Client::class, foreignKey: 'oauth2_client_id', ownerKey: 'oauth2_client_id');
+        return $this->belongsTo(related: BearOauth2Client::class, foreignKey: 'oauth2_client_id', ownerKey: 'id');
     }
 
-    protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];
+    protected $guarded = ['enum', 'updated_at', 'created_at', 'deleted_at'];
 }

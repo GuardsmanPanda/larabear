@@ -25,9 +25,9 @@ final class LarabearErrorResponseController extends Controller {
     public function delete(): View {
         BearResponseErrorDeleter::delete(
             id: Req::getInt(key: 'id', defaultIfMissing: null),
-            response_status_code: Req::getInt(key: 'response_status_code', defaultIfMissing: null),
-            request_path: Req::getString(key: 'request_path', defaultIfMissing: null),
-            app_action_name: Req::getString(key: 'app_action_name', defaultIfMissing: null),
+            status_code: Req::getInt(key: 'response_status_code', defaultIfMissing: null),
+            http_path: Req::getString(key: 'request_path', defaultIfMissing: null),
+            action_name: Req::getString(key: 'app_action_name', defaultIfMissing: null),
         );
         return  $this->index();
     }

@@ -3,5 +3,5 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Interface;
 
 interface DatabaseBackedEnumInterface {
-    public static function syncToDatabase(): self;
+    public static function syncToDatabase(): void;
 }

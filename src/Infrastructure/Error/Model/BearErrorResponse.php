@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Error\Model;
 
+use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
@@ -21,42 +22,53 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearErrorResponse firstOrFail(array $columns = ['*'])
  * @method static BearErrorResponse firstOrCreate(array $filter, array $values)
  * @method static BearErrorResponse firstOrNew(array $filter, array $values)
- * @method static BearErrorResponse|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection all(array $columns = ['*'])
- * @method static Collection get(array $columns = ['*'])
- * @method static Collection fromQuery(string $query, array $bindings = [])
+ * @method static BearErrorResponse|null firstWhere(string $column, string $operator, string|float|int|bool $value)
+ * @method static Collection<int, BearErrorResponse> all(array $columns = ['*'])
+ * @method static Collection<int, BearErrorResponse> get(array $columns = ['*'])
+ * @method static Collection<int|string, BearErrorResponse> pluck(string $column, string $key = null)
+ * @method static Collection<int, BearErrorResponse> fromQuery(string $query, array $bindings = [])
  * @method static BearErrorResponse lockForUpdate()
  * @method static BearErrorResponse select(array $columns = ['*'])
+ * @method static BearErrorResponse selectRaw(string $expression, array $bindings = [])
  * @method static BearErrorResponse with(array $relations)
  * @method static BearErrorResponse leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static BearErrorResponse where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static BearErrorResponse whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
- * @method static BearErrorResponse whereNotExists(Closure $callback, string $boolean = 'and')
+ * @method static BearErrorResponse where(string $column, string $operator = null, string|float|int|bool $value = null)
+ * @method static BearErrorResponse whereIn(string $column, array $values)
+ * @method static BearErrorResponse whereNull(string|array $columns)
+ * @method static BearErrorResponse whereNotNull(string|array $columns)
+ * @method static BearErrorResponse whereYear(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static BearErrorResponse whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static BearErrorResponse whereDate(string $column, string $operator, CarbonInterface|string $value)
+ * @method static BearErrorResponse whereExists(Closure $callback)
+ * @method static BearErrorResponse whereNotExists(Closure $callback)
  * @method static BearErrorResponse whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearErrorResponse whereDoesntHave(string $relation, Closure $callback = null)
  * @method static BearErrorResponse withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearErrorResponse whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
- * @method static BearErrorResponse whereNull(string|array $columns, string $boolean = 'and')
- * @method static BearErrorResponse whereNotNull(string|array $columns, string $boolean = 'and')
- * @method static BearErrorResponse whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
+ * @method static BearErrorResponse whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static BearErrorResponse whereRaw(string $sql, array $bindings = [])
+ * @method static BearErrorResponse groupBy(string $groupBy)
  * @method static BearErrorResponse orderBy(string $column, string $direction = 'asc')
+ * @method static BearErrorResponse orderByDesc(string $column)
+ * @method static BearErrorResponse orderByRaw(string $sql, array $bindings = [])
+ * @method static BearErrorResponse limit(int $value)
  * @method static int count(array $columns = ['*'])
+ * @method static mixed sum(string $column)
  * @method static bool exists()
  *
  * @property int $id
- * @property int $response_status_code
+ * @property int $status_code
+ * @property string $ip
+ * @property string $hostname
+ * @property string $http_path
  * @property string $created_at
- * @property string $request_ip
+ * @property string $http_method
  * @property string $response_body
- * @property string $request_method
- * @property string $request_hostname
+ * @property string|null $content
+ * @property string|null $referer
  * @property string|null $user_id
  * @property string|null $request_id
- * @property string|null $app_action_name
- * @property string|null $request_path
- * @property string|null $request_country_code
- * @property string|null $request_referer
- * @property ArrayObject|null $request_query_json
+ * @property string|null $action_name
+ * @property string|null $country_code
+ * @property ArrayObject|null $query_json
  *
  * @property BearUser|null $user
  *
@@ -70,9 +82,10 @@ final class BearErrorResponse extends Model {
 
     /** @var array<string, string> $casts */
     protected $casts = [
-        'request_query_json' => AsArrayObject::class,
+        'query_json' => AsArrayObject::class,
     ];
 
+    /** @return BelongsTo<BearUser, self>|null */
     public function user(): BelongsTo|null {
         return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
     }

@@ -28,8 +28,4 @@ final class BearPermissionMiddleware {
     public static function using(BearPermissionInterface $permission): string {
         return BearPermissionMiddleware::class . ':' . $permission->getValue();
     }
-
-    public static function usingValue(String $permission): string {
-        return BearPermissionMiddleware::class . ':' . $permission;
-    }
 }

@@ -24,11 +24,12 @@ final class BearResponseErrorCreator {
                 $requestContent = null;
             }
 
-            DB::insert("
-            INSERT INTO bear_error_response
-            (request_ip, user_id, request_country_code, response_status_code, request_method, request_path, request_query_json, request_content, request_hostname, request_referer, app_action_name, response_body, request_id)
-            VALUES (?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                [Req::ip(), BearGlobalStateService::getUserId(), Req::ipCountry(), $statusCode, Req::method(), Req::path(), $query_json, $requestContent, Req::hostname(), Req::referer(), Req::actionName(), $responseBody, BearGlobalStateService::getRequestId()]);
+            DB::insert(query: "
+                INSERT INTO bear_error_response
+                (ip, user_id, country_code, status_code, http_method, http_path, query_json, content, hostname, referer, action_name, response_body, request_id)
+                VALUES (?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                bindings: [Req::ip(), BearGlobalStateService::getUserId(), Req::ipCountry(), $statusCode, Req::method(), Req::path(), $query_json, $requestContent, Req::hostname(), Req::referer(), Req::actionName(), $responseBody, BearGlobalStateService::getRequestId()]
+            );
         } catch (Throwable $e) {
             Log::error(message: 'Failed log error response: ' . $e->getMessage());
         }

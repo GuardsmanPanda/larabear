@@ -6,23 +6,23 @@ use Illuminate\Support\Facades\DB;
 
 final class BearResponseErrorDeleter {
     public static function delete(
-        int $id = null,
-        int $response_status_code = null,
-        string $request_path = null,
-        string $app_action_name = null,
+        int    $id = null,
+        int    $status_code = null,
+        string $http_path = null,
+        string $action_name = null,
     ): void {
         $filters = [];
         if ($id !== null) {
             $filters['id'] = $id;
         }
-        if ($response_status_code !== null) {
-            $filters['response_status_code'] = $response_status_code;
+        if ($status_code !== null) {
+            $filters['status_code'] = $status_code;
         }
-        if ($request_path !== null) {
-            $filters['request_path'] = $request_path;
+        if ($http_path !== null) {
+            $filters['http_path'] = $http_path;
         }
-        if ($app_action_name !== null) {
-            $filters['app_action_name'] = $app_action_name;
+        if ($action_name !== null) {
+            $filters['action_name'] = $action_name;
         }
         DB::delete("DELETE FROM bear_error_response WHERE " . implode(separator: ' AND ', array: array_map(static fn ($key) => "$key = ?", array_keys($filters))), array_values($filters));
     }

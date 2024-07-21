@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Laravel\Provider;
 use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearCleanTablesCommand;
 use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearInitCommand;
 use GuardsmanPanda\Larabear\Infrastructure\App\Command\LarabearValidateConfigurationCommand;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Enum\LarabearPermissionEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Listener\ConsoleRegisterListeners;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCheckForeignKeysOnSoftDeletesCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Command\LarabearDatabaseCrudGeneratorCommand;
@@ -36,7 +37,7 @@ final class BearServiceProvider extends ServiceProvider {
                 BearSessionAuthMiddleware::onlyAuthenticated(),
                 BearHtmxMiddleware::using(layout_location: 'larabear::layout'),
                 BearTransactionMiddleware::class,
-                BearPermissionMiddleware::usingValue(permission: 'larabear')
+                BearPermissionMiddleware::using(permission: LarabearPermissionEnum::LARABEAR_UI)
             ])->group(function () {
                 Route::prefix('')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Dashboard/routes.php'));
                 Route::prefix('access')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Access/routes.php'));

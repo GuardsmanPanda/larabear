@@ -16,6 +16,4 @@ Route::prefix('oauth2/client')->group(function () {
 
 Route::prefix('external')->group(function () {
     Route::get(uri: '', action: [LarabearExternalApiController::class, 'index']);
-    Route::post(uri: '', action: [LarabearExternalApiController::class, 'create']);
-    Route::get(uri: 'create', action: [LarabearExternalApiController::class, 'createDialog']);
 });

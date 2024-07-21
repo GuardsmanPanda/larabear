@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Command;
 
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Enum\LarabearPermissionEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Service\BearTransactionCommand;
 
@@ -10,6 +11,8 @@ final class LarabearInitCommand extends BearTransactionCommand {
     protected $description = 'Initialize the larabear package';
 
     protected function handleInTransaction(): void {
+        LarabearPermissionEnum::syncToDatabase();
+
         BearConfigCreator::create(
             slug: 'larabear::log-store-for-days',
             description: 'How many days to store console errors.',
