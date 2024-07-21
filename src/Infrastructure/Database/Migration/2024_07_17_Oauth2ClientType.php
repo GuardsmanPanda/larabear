@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::create(table: 'oauth2_client_type', callback: static function (Blueprint $table) {
+        Schema::create(table: 'bear_oauth2_client_type', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'enum')->primary();
             } else {
@@ -24,8 +24,6 @@ return new class extends Migration {
 
 
     public function down(): void {
-        Schema::dropIfExists(table: 'bear_role_permission');
-        Schema::dropIfExists(table: 'bear_permission');
-        Schema::dropIfExists(table: 'bear_role');
+        Schema::dropIfExists(table: 'bear_oauth2_client_type');
     }
 };
