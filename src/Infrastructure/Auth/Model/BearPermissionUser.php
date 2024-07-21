@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 
+use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
@@ -19,34 +20,44 @@ use RuntimeException;
  * @method static BearPermissionUser firstOrFail(array $columns = ['*'])
  * @method static BearPermissionUser firstOrCreate(array $filter, array $values)
  * @method static BearPermissionUser firstOrNew(array $filter, array $values)
- * @method static BearPermissionUser|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection all(array $columns = ['*'])
- * @method static Collection get(array $columns = ['*'])
- * @method static Collection fromQuery(string $query, array $bindings = [])
+ * @method static BearPermissionUser|null firstWhere(string $column, string $operator, string|float|int|bool $value)
+ * @method static Collection<int, BearPermissionUser> all(array $columns = ['*'])
+ * @method static Collection<int, BearPermissionUser> get(array $columns = ['*'])
+ * @method static Collection<int|string, BearPermissionUser> pluck(string $column, string $key = null)
+ * @method static Collection<int, BearPermissionUser> fromQuery(string $query, array $bindings = [])
  * @method static BearPermissionUser lockForUpdate()
  * @method static BearPermissionUser select(array $columns = ['*'])
+ * @method static BearPermissionUser selectRaw(string $expression, array $bindings = [])
  * @method static BearPermissionUser with(array $relations)
  * @method static BearPermissionUser leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static BearPermissionUser where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static BearPermissionUser whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
- * @method static BearPermissionUser whereNotExists(Closure $callback, string $boolean = 'and')
+ * @method static BearPermissionUser where(string $column, string $operator = null, string|float|int|bool $value = null)
+ * @method static BearPermissionUser whereIn(string $column, array $values)
+ * @method static BearPermissionUser whereNull(string|array $columns)
+ * @method static BearPermissionUser whereNotNull(string|array $columns)
+ * @method static BearPermissionUser whereYear(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static BearPermissionUser whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static BearPermissionUser whereDate(string $column, string $operator, CarbonInterface|string $value)
+ * @method static BearPermissionUser whereExists(Closure $callback)
+ * @method static BearPermissionUser whereNotExists(Closure $callback)
  * @method static BearPermissionUser whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearPermissionUser whereDoesntHave(string $relation, Closure $callback = null)
  * @method static BearPermissionUser withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearPermissionUser whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
- * @method static BearPermissionUser whereNull(string|array $columns, string $boolean = 'and')
- * @method static BearPermissionUser whereNotNull(string|array $columns, string $boolean = 'and')
- * @method static BearPermissionUser whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
+ * @method static BearPermissionUser whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static BearPermissionUser whereRaw(string $sql, array $bindings = [])
+ * @method static BearPermissionUser groupBy(string $groupBy)
  * @method static BearPermissionUser orderBy(string $column, string $direction = 'asc')
+ * @method static BearPermissionUser orderByDesc(string $column)
+ * @method static BearPermissionUser orderByRaw(string $sql, array $bindings = [])
+ * @method static BearPermissionUser limit(int $value)
  * @method static int count(array $columns = ['*'])
+ * @method static mixed sum(string $column)
  * @method static bool exists()
  *
  * @property string $user_id
  * @property string $created_at
- * @property string $permission_slug
+ * @property string $permission_enum
  *
  * @property BearUser $user
- * @property BearPermission $permission
+ * @property BearPermission $permissionEnum
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -55,20 +66,22 @@ final class BearPermissionUser extends Model {
 
     protected $table = 'bear_permission_user';
     /** @var array<string> primaryKeyArray */
-    private array $primaryKeyArray = ['permission_slug', 'user_id'];
+    private array $primaryKeyArray = ['permission_enum', 'user_id'];
     protected $keyType = 'array';
     public $incrementing = false;
     public $timestamps = false;
 
+    /** @return BelongsTo<BearUser, self> */
     public function user(): BelongsTo {
         return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
     }
 
-    public function permission(): BelongsTo {
-        return $this->belongsTo(related: BearPermission::class, foreignKey: 'permission_slug', ownerKey: 'permission_slug');
+    /** @return BelongsTo<BearPermission, self> */
+    public function permissionEnum(): BelongsTo {
+        return $this->belongsTo(related: BearPermission::class, foreignKey: 'permission_enum', ownerKey: 'enum');
     }
 
-    protected $guarded = ['permission_slug', 'user_id', 'updated_at', 'created_at', 'deleted_at'];
+    protected $guarded = ['permission_enum', 'user_id', 'updated_at', 'created_at', 'deleted_at'];
 
 
     /** @return Mixed[] */
@@ -107,13 +120,13 @@ final class BearPermissionUser extends Model {
 
     protected function setKeysForSaveQuery($query): EloquentBuilder {
         foreach ($this->primaryKeyArray as $key) {
-            $query->where(column: $key, operator: '=', value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));
+            $query->where(column: $key, operator: "=", value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));
         }
         return $query;
     }
     protected function setKeysForSelectQuery($query): EloquentBuilder {
         foreach ($this->primaryKeyArray as $key) {
-            $query->where(column: $key, operator: '=', value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));
+            $query->where(column: $key, operator: "=", value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));
         }
         return $query;
     }

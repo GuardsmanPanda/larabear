@@ -7,38 +7,32 @@ use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiTypeEnum
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 
-final class BearExternalApiUpdater {
-    public function __construct(private readonly BearExternalApi $model) {
+final readonly class BearExternalApiUpdater {
+    public function __construct(private BearExternalApi $model) {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
     }
 
-    public static function fromId(string $id): self {
-        return new self(model: BearExternalApi::findOrFail(id: $id));
+    public static function fromEnum(string $enum): self {
+        return new self(model: BearExternalApi::findOrFail(id: $enum));
     }
 
-
-    public function setExternalApiSlug(string $external_api_slug): self {
-        $this->model->external_api_slug = $external_api_slug;
-        return $this;
-    }
-
-    public function setExternalApiDescription(string $external_api_description): self {
-        $this->model->external_api_description = $external_api_description;
+    public function setDescription(string $description): self {
+        $this->model->description = $description;
         return $this;
     }
 
     public function setExternalApiType(BearExternalApiTypeEnum $external_api_type): self {
-        $this->model->external_api_type = $external_api_type;
+        $this->model->external_api_type_enum = $external_api_type->value;
         return $this;
     }
 
-    public function setEncryptedExternalApiToken(string|null $encrypted_external_api_token): self {
-        $this->model->encrypted_external_api_token = $encrypted_external_api_token;
+    public function setEncryptedToken(string|null $encrypted_token): self {
+        $this->model->encrypted_token = $encrypted_token;
         return $this;
     }
 
-    public function setExternalApiBaseUrl(string|null $external_api_base_url): self {
-        $this->model->external_api_base_url = $external_api_base_url;
+    public function setBaseUrl(string|null $base_url): self {
+        $this->model->base_url = $base_url;
         return $this;
     }
 
@@ -48,20 +42,20 @@ final class BearExternalApiUpdater {
     }
 
     /**
-     * @param ArrayObject<string, string>|null $external_api_base_headers_json
+     * @param ArrayObject<string, string>|null $base_headers_json
      * @return $this
      */
-    public function setExternalApiBaseHeadersJson(ArrayObject|null $external_api_base_headers_json): self {
-        $this->model->external_api_base_headers_json = $external_api_base_headers_json;
+    public function setBaseHeadersJson(ArrayObject|null $base_headers_json): self {
+        $this->model->base_headers_json = $base_headers_json;
         return $this;
     }
 
     /**
-     * @param ArrayObject<string|int, mixed>|null $external_api_metadata_json
+     * @param ArrayObject<string|int, mixed>|null $metadata_json
      * @return $this
      */
-    public function setExternalApiMetadataJson(ArrayObject|null $external_api_metadata_json): self {
-        $this->model->external_api_metadata_json = $external_api_metadata_json;
+    public function setMetadataJson(ArrayObject|null $metadata_json): self {
+        $this->model->metadata_json = $metadata_json;
         return $this;
     }
 

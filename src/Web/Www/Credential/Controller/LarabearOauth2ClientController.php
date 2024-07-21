@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientDeleter;
-use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\BearOauth2ClientTypeEnum;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +29,7 @@ final class LarabearOauth2ClientController extends Controller {
         BearOauth2ClientCreator::create(
             id: Req::getStringOrDefault(key: 'oauth2_client_id'),
             description: Req::getStringOrDefault(key: 'oauth2_client_description'),
-            oauth2_client_type: BearOauth2ClientTypeEnum::from(Req::getStringOrDefault(key: 'oauth2_client_type')),
+            oauth2_client_type: LarabearOauth2ClientTypeEnum::from(Req::getStringOrDefault(key: 'oauth2_client_type')),
             oauth2_authorize_uri: Req::getStringOrDefault(key: 'oauth2_authorize_uri'),
             oauth2_token_uri: Req::getStringOrDefault(key: 'oauth2_token_uri'),
             encrypted_secret: Req::getStringOrDefault(key: 'encrypted_oauth2_client_secret'),

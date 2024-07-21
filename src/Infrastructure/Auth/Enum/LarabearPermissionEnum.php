@@ -2,17 +2,16 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Enum;
 
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearPermissionCreator;
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Interface\BearPermissionInterface;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearPermissionCrud;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Interface\BearPermissionEnumInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearPermission;
 
-enum LarabearPermissionEnum: string implements BearPermissionInterface {
+enum LarabearPermissionEnum: string implements BearPermissionEnumInterface {
     case LARABEAR_UI = 'LARABEAR_UI';
 
     public function getValue(): string {
         return $this->value;
     }
-
 
     public function getDescription(): string {
         return match ($this) {
@@ -20,11 +19,10 @@ enum LarabearPermissionEnum: string implements BearPermissionInterface {
         };
     }
 
-
     public static function syncToDatabase(): void {
         foreach (self::cases() as $permission) {
             if (BearPermission::find(id: $permission->getValue()) !== null) {
-                BearPermissionCreator::create($permission);
+                BearPermissionCrud::create($permission);
             }
         }
     }

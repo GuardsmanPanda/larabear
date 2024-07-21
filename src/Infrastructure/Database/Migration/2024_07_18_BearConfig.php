@@ -11,9 +11,9 @@ return new class extends Migration {
     public function up(): void {
         Schema::create(table: 'bear_config', callback: static function (Blueprint $table): void {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
-                $table->text(column: 'slug')->primary();
+                $table->text(column: 'enum')->primary();
             } else {
-                $table->string(column: 'slug')->primary();
+                $table->string(column: 'enum')->primary();
             }
             $table->text(column: 'description');
             $table->text(column: 'config_string')->nullable();

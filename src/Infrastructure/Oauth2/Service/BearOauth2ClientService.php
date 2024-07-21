@@ -11,7 +11,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2UserCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2UserUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Dto\OidcToken;
-use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\BearOauth2ClientTypeEnum;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use Illuminate\Http\Client\Response;
@@ -50,19 +50,19 @@ final class BearOauth2ClientService {
             $query_data .= urlencode(string: config(key: 'app.url') . "/bear/auth/oauth2-client/$client->id/callback");
         }
 
-        $enum = BearOauth2ClientTypeEnum::from(value: $client->oauth2_client_type_enum);
-        if ($enum === BearOauth2ClientTypeEnum::TWITCH) {
+        $enum = LarabearOauth2ClientTypeEnum::from(value: $client->oauth2_client_type_enum);
+        if ($enum === LarabearOauth2ClientTypeEnum::TWITCH) {
             $query_data .= '&claims=' . urlencode(string: json_encode(['id_token' => ['email' => null, 'email_verified' => null, 'preferred_username' => null]], JSON_THROW_ON_ERROR));
         }
 
-        if ($enum === BearOauth2ClientTypeEnum::GOOGLE) {
+        if ($enum === LarabearOauth2ClientTypeEnum::GOOGLE) {
             $query_data .= '&include_granted_scopes=true';
         }
 
         if ($accountPrompt) {
             $query_data .= match ($enum) {
-                BearOauth2ClientTypeEnum::MICROSOFT, BearOauth2ClientTypeEnum::GOOGLE => '&prompt=select_account',
-                BearOauth2ClientTypeEnum::HELP_SCOUT => '',
+                LarabearOauth2ClientTypeEnum::MICROSOFT, LarabearOauth2ClientTypeEnum::GOOGLE => '&prompt=select_account',
+                LarabearOauth2ClientTypeEnum::HELP_SCOUT => '',
                 default => throw new RuntimeException(message: "User prompt not supported for client type" . $client->oauth2_client_type_enum),
             };
         }
@@ -193,18 +193,18 @@ final class BearOauth2ClientService {
                 }
             }
         }
-        if ($client->oauth2_client_type_enum === BearOauth2ClientTypeEnum::MICROSOFT->value) {
+        if ($client->oauth2_client_type_enum === LarabearOauth2ClientTypeEnum::MICROSOFT->value) {
             $scopes->add(element: 'offline_access');
             $scopes->add(element: 'openid');
             $scopes->add(element: 'profile');
             $scopes->add(element: 'email');
         }
-        if ($client->oauth2_client_type_enum === BearOauth2ClientTypeEnum::GOOGLE->value) {
+        if ($client->oauth2_client_type_enum === LarabearOauth2ClientTypeEnum::GOOGLE->value) {
             $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.profile');
             $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.email');
             $scopes->add(element: 'openid');
         }
-        if ($client->oauth2_client_type_enum === BearOauth2ClientTypeEnum::TWITCH->value) {
+        if ($client->oauth2_client_type_enum === LarabearOauth2ClientTypeEnum::TWITCH->value) {
             $scopes->add(element: 'user:read:email');
             $scopes->add(element: 'openid');
         }

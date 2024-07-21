@@ -28,7 +28,7 @@ return new class extends Migration {
             $table->text(column: 'encrypted_access_token')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->foreign('oauth2_client_type_enum')->references('enum')->on(table: 'oauth2_client_type');
+            $table->foreign('oauth2_client_type_enum')->references('enum')->on(table: 'bear_oauth2_client_type');
         });
     }
 

@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
+use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -58,12 +59,11 @@ use Illuminate\Database\Eloquent\Model;
  * AUTO GENERATED FILE DO NOT MODIFY
  */
 final class BearRole extends Model {
-    use BearDatabaseChangeTrait;
+    use BearDatabaseChangeTrait, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_role';
     protected $primaryKey = 'enum';
     protected $keyType = 'string';
-    protected $dateFormat = 'Y-m-d\TH:i:sP';
 
     protected $guarded = ['enum', 'updated_at', 'created_at', 'deleted_at'];
 }

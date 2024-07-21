@@ -4,7 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
-use GuardsmanPanda\Larabear\Infrastructure\Auth\Interface\BearRoleInterface;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Interface\BearRoleEnumInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Service\BearAuthService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ final class BearRoleMiddleware {
         return $next($request);
     }
 
-    public static function using(BearRoleInterface $role): string {
+    public static function using(BearRoleEnumInterface $role): string {
         return BearRoleMiddleware::class . ':' . $role->getValue();
     }
 }

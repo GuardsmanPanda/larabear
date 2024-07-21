@@ -2,9 +2,9 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Interface;
 
-use GuardsmanPanda\Larabear\Infrastructure\App\Interface\DatabaseBackedEnumInterface;
+use GuardsmanPanda\Larabear\Infrastructure\App\Interface\BearDatabaseBackedEnumInterface;
 
-interface BearRoleInterface extends DatabaseBackedEnumInterface {
+interface BearPermissionEnumInterface extends BearDatabaseBackedEnumInterface {
     public function getValue(): string;
     public function getDescription(): string;
 }

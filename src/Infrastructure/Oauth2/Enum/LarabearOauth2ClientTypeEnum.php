@@ -2,11 +2,19 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum;
 
-enum BearOauth2ClientTypeEnum: string {
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientTypeCrud;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Interface\BearOauth2ClientTypeEnumInterface;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2ClientType;
+
+enum LarabearOauth2ClientTypeEnum: string implements BearOauth2ClientTypeEnumInterface {
     case HELP_SCOUT = 'HELP_SCOUT';
     case GOOGLE = 'GOOGLE';
     case MICROSOFT = 'MICROSOFT';
     case TWITCH = 'TWITCH';
+
+    public function getValue(): string {
+        return $this->value;
+    }
 
     public function getAuthorizeUri(): string {
         return match ($this) {
@@ -26,12 +34,21 @@ enum BearOauth2ClientTypeEnum: string {
         };
     }
 
-    public function getDefaultScopes(): string {
+    public function getDefaultScope(): string {
         return match ($this) {
             self::GOOGLE => 'openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
             self::MICROSOFT => 'openid offline_access profile email ',
             self::TWITCH => 'openid user:read:email',
             self::HELP_SCOUT => '',
         };
+    }
+
+
+    public static function syncToDatabase(): void {
+        foreach (self::cases() as $clientType) {
+            if (BearOauth2ClientType::find(id: $clientType->value) !== null) {
+                BearOauth2ClientTypeCrud::create($clientType);
+            }
+        }
     }
 }

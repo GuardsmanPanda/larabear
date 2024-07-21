@@ -3,19 +3,19 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\BearOauth2ClientTypeEnum;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 
 final class BearOauth2ClientCreator {
     public static function create(
-        string                   $id,
-        string                   $description,
-        BearOauth2ClientTypeEnum $oauth2_client_type,
-        string                   $encrypted_secret,
-        string                   $client_base_url = null,
-        string                   $client_scope = null,
-        string                   $user_redirect_path = null,
-        string                   $user_scope = '',
+        string                       $id,
+        string                       $description,
+        LarabearOauth2ClientTypeEnum $oauth2_client_type,
+        string                       $encrypted_secret,
+        string                       $client_base_url = null,
+        string                       $client_scope = null,
+        string                       $user_redirect_path = null,
+        string                       $user_scope = '',
     ): BearOauth2Client {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 

@@ -55,7 +55,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int|null $config_integer
  * @property bool|null $config_boolean
- * @property string $slug
+ * @property string $enum
  * @property string $created_at
  * @property string $updated_at
  * @property string $description
@@ -70,7 +70,7 @@ final class BearConfig extends Model {
     use BearDatabaseChangeTrait, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_config';
-    protected $primaryKey = 'slug';
+    protected $primaryKey = 'enum';
     protected $keyType = 'string';
 
     /** @var array<string, string> $casts */

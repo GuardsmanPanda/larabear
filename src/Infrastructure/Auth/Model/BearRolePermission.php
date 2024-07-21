@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Model;
 
+use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
@@ -19,34 +20,44 @@ use RuntimeException;
  * @method static BearRolePermission firstOrFail(array $columns = ['*'])
  * @method static BearRolePermission firstOrCreate(array $filter, array $values)
  * @method static BearRolePermission firstOrNew(array $filter, array $values)
- * @method static BearRolePermission|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection all(array $columns = ['*'])
- * @method static Collection get(array $columns = ['*'])
- * @method static Collection fromQuery(string $query, array $bindings = [])
+ * @method static BearRolePermission|null firstWhere(string $column, string $operator, string|float|int|bool $value)
+ * @method static Collection<int, BearRolePermission> all(array $columns = ['*'])
+ * @method static Collection<int, BearRolePermission> get(array $columns = ['*'])
+ * @method static Collection<int|string, BearRolePermission> pluck(string $column, string $key = null)
+ * @method static Collection<int, BearRolePermission> fromQuery(string $query, array $bindings = [])
  * @method static BearRolePermission lockForUpdate()
  * @method static BearRolePermission select(array $columns = ['*'])
+ * @method static BearRolePermission selectRaw(string $expression, array $bindings = [])
  * @method static BearRolePermission with(array $relations)
  * @method static BearRolePermission leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static BearRolePermission where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static BearRolePermission whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
- * @method static BearRolePermission whereNotExists(Closure $callback, string $boolean = 'and')
+ * @method static BearRolePermission where(string $column, string $operator = null, string|float|int|bool $value = null)
+ * @method static BearRolePermission whereIn(string $column, array $values)
+ * @method static BearRolePermission whereNull(string|array $columns)
+ * @method static BearRolePermission whereNotNull(string|array $columns)
+ * @method static BearRolePermission whereYear(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static BearRolePermission whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static BearRolePermission whereDate(string $column, string $operator, CarbonInterface|string $value)
+ * @method static BearRolePermission whereExists(Closure $callback)
+ * @method static BearRolePermission whereNotExists(Closure $callback)
  * @method static BearRolePermission whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearRolePermission whereDoesntHave(string $relation, Closure $callback = null)
  * @method static BearRolePermission withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearRolePermission whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
- * @method static BearRolePermission whereNull(string|array $columns, string $boolean = 'and')
- * @method static BearRolePermission whereNotNull(string|array $columns, string $boolean = 'and')
- * @method static BearRolePermission whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
+ * @method static BearRolePermission whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static BearRolePermission whereRaw(string $sql, array $bindings = [])
+ * @method static BearRolePermission groupBy(string $groupBy)
  * @method static BearRolePermission orderBy(string $column, string $direction = 'asc')
+ * @method static BearRolePermission orderByDesc(string $column)
+ * @method static BearRolePermission orderByRaw(string $sql, array $bindings = [])
+ * @method static BearRolePermission limit(int $value)
  * @method static int count(array $columns = ['*'])
+ * @method static mixed sum(string $column)
  * @method static bool exists()
  *
- * @property string $role_slug
+ * @property string $role_enum
  * @property string $created_at
- * @property string $permission_slug
+ * @property string $permission_enum
  *
- * @property BearRole $role
- * @property BearPermission $permission
+ * @property BearRole $roleEnum
+ * @property BearPermission $permissionEnum
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -55,20 +66,22 @@ final class BearRolePermission extends Model {
 
     protected $table = 'bear_role_permission';
     /** @var array<string> primaryKeyArray */
-    private array $primaryKeyArray = ['role_slug', 'permission_slug'];
+    private array $primaryKeyArray = ['role_enum', 'permission_enum'];
     protected $keyType = 'array';
     public $incrementing = false;
     public $timestamps = false;
 
-    public function role(): BelongsTo {
-        return $this->belongsTo(related: BearRole::class, foreignKey: 'role_slug', ownerKey: 'role_slug');
+    /** @return BelongsTo<BearRole, self> */
+    public function roleEnum(): BelongsTo {
+        return $this->belongsTo(related: BearRole::class, foreignKey: 'role_enum', ownerKey: 'enum');
     }
 
-    public function permission(): BelongsTo {
-        return $this->belongsTo(related: BearPermission::class, foreignKey: 'permission_slug', ownerKey: 'permission_slug');
+    /** @return BelongsTo<BearPermission, self> */
+    public function permissionEnum(): BelongsTo {
+        return $this->belongsTo(related: BearPermission::class, foreignKey: 'permission_enum', ownerKey: 'enum');
     }
 
-    protected $guarded = ['role_slug', 'permission_slug', 'updated_at', 'created_at', 'deleted_at'];
+    protected $guarded = ['role_enum', 'permission_enum', 'updated_at', 'created_at', 'deleted_at'];
 
 
     /** @return Mixed[] */
@@ -107,13 +120,13 @@ final class BearRolePermission extends Model {
 
     protected function setKeysForSaveQuery($query): EloquentBuilder {
         foreach ($this->primaryKeyArray as $key) {
-            $query->where(column: $key, operator: '=', value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));
+            $query->where(column: $key, operator: "=", value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));
         }
         return $query;
     }
     protected function setKeysForSelectQuery($query): EloquentBuilder {
         foreach ($this->primaryKeyArray as $key) {
-            $query->where(column: $key, operator: '=', value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));
+            $query->where(column: $key, operator: "=", value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));
         }
         return $query;
     }
