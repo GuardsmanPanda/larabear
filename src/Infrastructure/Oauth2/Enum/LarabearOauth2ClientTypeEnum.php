@@ -46,7 +46,7 @@ enum LarabearOauth2ClientTypeEnum: string implements BearOauth2ClientTypeEnumInt
 
     public static function syncToDatabase(): void {
         foreach (self::cases() as $clientType) {
-            if (BearOauth2ClientType::find(id: $clientType->value) !== null) {
+            if (BearOauth2ClientType::find(id: $clientType->value) === null) {
                 BearOauth2ClientTypeCrud::create($clientType);
             }
         }

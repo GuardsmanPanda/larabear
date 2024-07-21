@@ -1,8 +1,5 @@
 <?php declare(strict_types=1); ?>
 <x-bear::heading.h1-section subtitle="A list of all roles in the system.">Application Configuration
-    <x-slot name="extra">
-        <x-bear::button.dark icon="wrench" hx-get="/bear/config/create">New Config</x-bear::button.dark>
-    </x-slot>
 </x-bear::heading.h1-section>
 <x-bear::table.layout.standard>
     <x-slot name="tableHead">

@@ -21,7 +21,7 @@ enum LarabearPermissionEnum: string implements BearPermissionEnumInterface {
 
     public static function syncToDatabase(): void {
         foreach (self::cases() as $permission) {
-            if (BearPermission::find(id: $permission->getValue()) !== null) {
+            if (BearPermission::find(id: $permission->getValue()) === null) {
                 BearPermissionCrud::create($permission);
             }
         }

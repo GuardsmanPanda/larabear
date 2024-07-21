@@ -12,8 +12,10 @@ final class LarabearInitCommand extends BearTransactionCommand {
     protected $description = 'Initialize the larabear package';
 
     protected function handleInTransaction(): void {
+        $this->info(string: "Initializing larabear package");
         LarabearOauth2ClientTypeEnum::syncToDatabase();
         LarabearPermissionEnum::syncToDatabase();
         LarabearConfigEnum::syncToDatabase();
+        $this->info(string: "larabear package initialized");
     }
 }

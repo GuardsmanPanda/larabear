@@ -28,10 +28,6 @@ use Throwable;
 final class BearOauth2ClientService {
     private const int SAFETY_BUFFER_MINUTES = 10;
 
-    public static function oauth2ClientExists(string $clientId): bool {
-        return BearOauth2Client::find(id: $clientId, columns: ['id']) !== null;
-    }
-
     public static function getAuthorizeRedirectResponse(BearOauth2Client $client, string $afterSignInRedirectPath = null, bool $loginUser = true, string $specialScope = null, bool $accountPrompt = false, bool $internalRedirect = false): RedirectResponse {
         if ($afterSignInRedirectPath !== null && !str_starts_with(haystack: $afterSignInRedirectPath, needle: '/')) {
             throw new RuntimeException(message: 'The redirect path must start with a slash.');
@@ -82,10 +78,9 @@ final class BearOauth2ClientService {
         $bearUser ??= BearUser::where(column: 'user_email', operator: '=', value: $token->email)->first();
         if ($bearUser === null && $createBearUser) {
             $bearUser = BearUserCreator::create(
-                user_display_name: $token->name ?? 'Unknown',
-                user_email: $token->email,
-                user_country_iso2_code: Req::ipCountry(),
-                email_verified_at: Carbon::now(),
+                display_name: $token->name ?? 'Unknown',
+                email: $token->email,
+                country_cca2: Req::ipCountry(),
             );
         }
 
@@ -116,7 +111,7 @@ final class BearOauth2ClientService {
             'client_secret' => $client->encrypted_secret,
             'grant_type' => 'authorization_code',
             'client_id' => $client->id,
-            'redirect_uri' => $redirect_uri ?? config(key: 'app.url') . $client->oauth2_client_redirect_path,
+            'redirect_uri' => $redirect_uri ?? config(key: 'app.url') . $client->user_redirect_path,
         ]);
         if ($resp->failed()) {
             BearErrorCreator::create(
@@ -137,7 +132,7 @@ final class BearOauth2ClientService {
 
     public static function getAccessToken(BearOauth2Client $client): string {
         if ($client->access_token_expires_at > Carbon::now()->addMinutes(self::SAFETY_BUFFER_MINUTES)) {
-            return $client->encrypted_oauth2_client_access_token ?? '';
+            return $client->encrypted_access_token ?? '';
         }
         return self::updateAccessToken($client);
     }
@@ -174,7 +169,7 @@ final class BearOauth2ClientService {
         } catch (Throwable $t) {
             DB::rollBack();
             BearErrorCreator::create(
-                message: "Failed to update access token for client $client->oauth2_client_id",
+                message: "Failed to update access token for client $client->id",
                 slug: 'larabear::oauth2-client-access-token-update-failed',
                 severity: BearSeverityEnum::CRITICAL,
                 exception: $t

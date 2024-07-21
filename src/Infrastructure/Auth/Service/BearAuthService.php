@@ -3,6 +3,8 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Service;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Interface\BearPermissionEnumInterface;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Interface\BearRoleEnumInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
@@ -42,12 +44,7 @@ final class BearAuthService {
     }
 
 
-    /**
-     * @param string|array<string> $permission
-     * @param string|null $userId
-     * @return bool
-     */
-    public static function hasPermission(string|array $permission, string $userId = null): bool {
+    public static function hasPermission(string $permission, string $userId = null): bool {
         $userId ??= BearGlobalStateService::getUserId();
         if ($userId === null) {
             return false;
@@ -68,25 +65,11 @@ final class BearAuthService {
             ", bindings: [$userId, $userId]);
             self::$userPermissions[$userId] = array_column(array: $perms, column_key: 'enum');
         }
-
-        if (is_string(value: $permission)) {
-            $permission = explode(separator: '|', string: $permission);
-        }
-        foreach ($permission as $perm) {
-            if (in_array(needle: $perm, haystack: self::$userPermissions[$userId], strict: true)) {
-                return true;
-            }
-        }
-        return false;
+        return in_array(needle: $permission, haystack: self::$userPermissions[$userId], strict: true);
     }
 
 
-    /**
-     * @param string|array<string> $role
-     * @param string|null $userId
-     * @return bool
-     */
-    public static function hasRole(string|array $role, string $userId = null): bool {
+    public static function hasRole(string $role, string $userId = null): bool {
         $userId ??= BearGlobalStateService::getUserId();
         if ($userId === null) {
             return false;
@@ -94,23 +77,14 @@ final class BearAuthService {
         self::cacheCheck();
         if (!array_key_exists(key: $userId, array: self::$userRoles)) {
             $tmp = DB::select(query: "
-                    SELECT r.enum
-                    FROM bear_role r
-                    JOIN bear_role_user ru ON ru.role_enum = r.enum
-                    WHERE ru.user_id = ?
+                SELECT r.enum
+                FROM bear_role r
+                JOIN bear_role_user ru ON ru.role_enum = r.enum
+                WHERE ru.user_id = ?
             ", bindings: [$userId]);
             self::$userRoles[$userId] = array_column(array: $tmp, column_key: 'enum');
         }
-
-        if (is_string(value: $role)) {
-            $role = explode(separator: '|', string: $role);
-        }
-        foreach ($role as $r) {
-            if (in_array(needle: $r, haystack: self::$userRoles[$userId], strict: true)) {
-                return true;
-            }
-        }
-        return false;
+        return in_array(needle: $role, haystack: self::$userRoles[$userId], strict: true);
     }
 
 

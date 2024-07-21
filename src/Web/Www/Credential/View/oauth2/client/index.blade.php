@@ -4,9 +4,6 @@
         <h1 class="text-2xl font-semibold text-gray-800">Oauth2 Clients</h1>
         <p class="mt-2 text-sm text-gray-600">All oauth2 clients, here you can edit clients or list and add users for each client.</p>
     </div>
-    <div class="mt-2 sm:mt-0 sm:ml-16 sm:flex-none">
-        <x-bear::button.dark icon="rectangle-group" hx-get="/bear/credential/oauth2/client/create">New Client</x-bear::button.dark>
-    </div>
 </div>
 <x-bear::table.layout.standard>
     <x-slot name="tableHead">

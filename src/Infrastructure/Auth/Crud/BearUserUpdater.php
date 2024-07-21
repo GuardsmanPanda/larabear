@@ -5,61 +5,31 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-final class BearUserUpdater {
-    public function __construct(private readonly BearUser $model) {}
+final readonly class BearUserUpdater {
+    public function __construct(private BearUser $model) {}
 
     public static function fromId(string $id): BearUserUpdater {
         return new BearUserUpdater(model: BearUser::findOrFail(id: $id));
     }
 
 
-    public function setUserDisplayName(string $user_display_name): self {
-        $this->model->user_display_name = trim($user_display_name);
+    public function setDisplayName(string $display_name): self {
+        $this->model->display_name = trim($display_name);
         return $this;
     }
 
-    public function setUserFirstName(string|null $user_first_name): self {
-        if ($user_first_name !== null) {
-            $user_first_name = BearRegexService::superTrim($user_first_name);
+    public function setEmail(string|null $email): self {
+        if ($email !== null) {
+            $email = trim($email);
         }
-        $this->model->user_first_name = $user_first_name;
+        $this->model->email = $email;
         return $this;
     }
 
-    public function setUserLastName(string|null $user_last_name): self {
-        if ($user_last_name !== null) {
-            $user_last_name = BearRegexService::superTrim($user_last_name);
-        }
-        $this->model->user_last_name = $user_last_name;
-        return $this;
-    }
-
-    public function setUserCity(string|null $user_city): self {
-        if ($user_city !== null) {
-            $user_city = BearRegexService::superTrim($user_city);
-        }
-        $this->model->user_city = $user_city;
-        return $this;
-    }
-
-    public function setUserEmail(string|null $user_email): self {
-        if ($user_email !== null) {
-            $user_email = trim($user_email);
-        }
-        $this->model->user_email = $user_email;
-        return $this;
-    }
-
-    public function setUserCountryIso2Code(string|null $user_country_iso2_code): self {
-        $this->model->user_country_iso2_code = $user_country_iso2_code;
-        return $this;
-    }
-
-    public function setUserLanguageIso2Code(string|null $user_language_iso2_code): self {
-        $this->model->user_language_iso2_code = $user_language_iso2_code;
+    public function setCountryCca2(string|null $country_cca2): self {
+        $this->model->country_cca2 = $country_cca2;
         return $this;
     }
 
@@ -73,43 +43,12 @@ final class BearUserUpdater {
         return $this;
     }
 
-    public function setPasswordResetToken(string|null $password_reset_token): self {
-        $this->model->password_reset_token = $password_reset_token;
-        return $this;
-    }
-
-    public function setPasswordResetExpiresAt(CarbonInterface|null $password_reset_expires_at): self {
-        $this->model->password_reset_expires_at = $password_reset_expires_at;
-        return $this;
-    }
-
-    public function setEmailVerifiedNow(): self {
-        $this->model->email_verified_at = now();
-        return $this;
-    }
 
     public function setLastLoginNow(): self {
         $this->model->last_login_at = now();
         return $this;
     }
 
-    public function setUserProfileImage(string|null $user_profile_image): self {
-        $this->model->user_profile_image = $user_profile_image;
-        return $this;
-    }
-
-    public function setUserDataJsonValue(string $key, mixed $value, bool $deleteIfExists = false): self {
-        $this->model->user_data_json[$key] = $value;
-        if ($deleteIfExists === true) {
-            unset($this->model->user_data_json[$key]);
-        }
-        return $this;
-    }
-
-    public function deleteUserDataJsonValue(string $key): self {
-        unset($this->model->user_data_json[$key]);
-        return $this;
-    }
 
     public function update(): BearUser {
         $this->model->save();

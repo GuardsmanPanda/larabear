@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use stdClass;
 
 trait BearDatabaseChangeTrait {
-    public static function bootBearDatabaseChangeWriter(): void {
+    public static function bootBearDatabaseChangeTrait(): void {
         static::created(static function (Model $model) {
             BearDatabaseChangeCreator::create(model: $model, changeType: 'CREATE');
         });

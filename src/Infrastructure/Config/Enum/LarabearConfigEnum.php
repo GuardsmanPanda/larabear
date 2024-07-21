@@ -76,7 +76,7 @@ enum LarabearConfigEnum: string implements BearConfigEnumInterface {
 
     public static function syncToDatabase(): void {
         foreach (self::cases() as $config) {
-            if (BearConfig::find(id: $config->getValue()) !== null) {
+            if (BearConfig::find(id: $config->getValue()) === null) {
                 BearConfigCreator::create(enum: $config);
             }
         }

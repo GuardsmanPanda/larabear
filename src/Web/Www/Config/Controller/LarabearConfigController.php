@@ -2,7 +2,6 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Config\Controller;
 
-use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigDeleter;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Htmx;
@@ -18,25 +17,6 @@ final class LarabearConfigController extends Controller {
             'configs' => DB::select(query: "SELECT * FROM bear_config ORDER BY config_key"),
         ]);
     }
-
-    public function createDialog(): View {
-        return Htmx::dialogView(view: 'larabear-config::create', title: 'Create Config');
-    }
-
-    public function create(): View {
-        BearConfigCreator::create(
-            enum: Req::getStringOrDefault(key: 'config_key'),
-            description: Req::getStringOrDefault(key: 'config_description'),
-            config_string: Req::getString(key: 'config_string'),
-            encrypted_config_string: Req::getString(key: 'encrypted_config_string'),
-            config_boolean: Req::getBool(key: 'config_boolean'),
-            config_integer: Req::getInt(key: 'config_integer'),
-            config_date: Req::getDate(key: 'config_date'),
-            config_timestamp: Req::getDateTime(key: 'config_timestamp'),
-        );
-        return $this->index();
-    }
-
 
     public function updateDialog(string $key): View {
         return Htmx::dialogView(view: 'larabear-config::update', title: "Update Config - $key",data: [

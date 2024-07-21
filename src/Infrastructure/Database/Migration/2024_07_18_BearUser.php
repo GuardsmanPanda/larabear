@@ -13,13 +13,15 @@ return new class extends Migration {
                 $table->uuid(column: 'id')->primary()->default(DB::raw('gen_random_uuid()'));
                 $table->text(column: 'display_name');
                 $table->text(column: 'email')->nullable()->unique();
-                $table->text(column: 'country_cca2');
+                $table->text(column: 'country_cca2')->nullable();
             } else {
                 $table->uuid(column: 'id')->primary();
                 $table->string(column: 'display_name');
                 $table->string(column: 'email')->nullable()->unique();
-                $table->string(column: 'country_cca2');
+                $table->string(column: 'country_cca2')->nullable();
             }
+            $table->text(column: 'password')->nullable();
+            $table->text(column: 'remember_token')->nullable();
             $table->timestampTz(column: 'last_login_at')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
