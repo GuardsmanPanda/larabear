@@ -120,7 +120,7 @@ final class BearOauth2ClientService {
         if ($resp->failed()) {
             BearErrorCreator::create(
                 message: "Failed to exchange code for access token, client: $client->oauth2_client_id, message: {$resp->body()}",
-                key: 'larabear::oauth2-client-service-exchange-code',
+                slug: 'larabear::oauth2-client-service-exchange-code',
                 severity: BearSeverityEnum::CRITICAL,
             );
             try {
@@ -174,7 +174,7 @@ final class BearOauth2ClientService {
             DB::rollBack();
             BearErrorCreator::create(
                 message: "Failed to update access token for client $client->oauth2_client_id",
-                key: 'larabear::oauth2-client-access-token-update-failed',
+                slug: 'larabear::oauth2-client-access-token-update-failed',
                 severity: BearSeverityEnum::CRITICAL,
                 exception: $t
             );

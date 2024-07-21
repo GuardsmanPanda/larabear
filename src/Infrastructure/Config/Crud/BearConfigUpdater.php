@@ -19,8 +19,8 @@ final class BearConfigUpdater {
     }
 
 
-    public function setConfigDescription(string $config_description): self {
-        $this->model->config_description = $config_description;
+    public function setDescription(string $description): self {
+        $this->model->description = $description;
         return $this;
     }
 

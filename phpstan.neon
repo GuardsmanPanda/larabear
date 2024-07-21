@@ -22,6 +22,7 @@ parameters:
             classesAllowedToBeExtended:
                 - GuardsmanPanda\Larabear\Infrastructure\Database\Service\LarabearDatabaseBaseInformation
                 - GuardsmanPanda\Larabear\Infrastructure\Http\Exception\BearException
+                - GuardsmanPanda\Larabear\Infrastructure\Console\Service\BearTransactionCommand
                 - Illuminate\Console\Command
                 - Illuminate\Database\Eloquent\Model
                 - Illuminate\Database\Migrations\Migration

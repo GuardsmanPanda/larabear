@@ -14,7 +14,7 @@ final class BearTwilioClient {
         $slug = $is_sandboxed ? 'twilio-sandbox' : 'twilio';
         $external = BearExternalApi::where(column: 'external_api_slug', operator: '=', value: $slug)->first();
         if ($external === null) {
-            BearErrorCreator::create(message: "Twilio External Api With Slug [$slug], Not Found In bear_external_api Table", key: 'larabear::twilio-client');
+            BearErrorCreator::create(message: "Twilio External Api With Slug [$slug], Not Found In bear_external_api Table", slug: 'larabear::twilio-client');
             return new BearTwilioSmsResponse(error_message: 'Twilio External Api Not Found');
         }
 
@@ -33,7 +33,7 @@ final class BearTwilioClient {
                 $json = $response->json();
                 return new BearTwilioSmsResponse(error_message: $json['message'] ?? 'Unknown Error', code: $json['code'] ?? -1);
             }
-            BearErrorCreator::create(message: "Twilio Error: {$response->body()}", key: 'larabear::twilio-client-exception');
+            BearErrorCreator::create(message: "Twilio Error: {$response->body()}", slug: 'larabear::twilio-client-exception');
             return new BearTwilioSmsResponse(error_message: "Twilio Error: {$response->body()}");
         } catch (Throwable $t) {
             return new BearTwilioSmsResponse(error_message: "Twilio Error: {$t->getMessage()}");

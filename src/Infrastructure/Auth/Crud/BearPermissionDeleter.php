@@ -11,7 +11,7 @@ final class BearPermissionDeleter {
         $model->delete();
     }
 
-    public static function deleteFromPermissionSlug(string $permission_slug): void {
-        self::delete(model: BearPermission::findOrFail(id: $permission_slug));
+    public static function deleteFromPermissionEnum(string $enum): void {
+        self::delete(model: BearPermission::findOrFail(id: $enum));
     }
 }

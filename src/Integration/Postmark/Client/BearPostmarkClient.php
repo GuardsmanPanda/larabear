@@ -38,7 +38,7 @@ final class BearPostmarkClient {
         $slug = $sandbox ? 'postmark-sandbox' : 'postmark';
         $external = BearExternalApi::where(column: 'external_api_slug', operator: '=', value: $slug)->first();
         if ($external === null) {
-            BearErrorCreator::create(message: "Postmark External Api With Slug [$slug], Not Found In bear_external_api Table", key: 'larabear::postmark-client');
+            BearErrorCreator::create(message: "Postmark External Api With Slug [$slug], Not Found In bear_external_api Table", slug: 'larabear::postmark-client');
             return new BearPostMarkClientResponse(message: "Postmark external Api Not Found", code: -1, messageId: null);
         }
         $client = BearExternalApiClient::fromExternalApi(api: $external);
@@ -59,7 +59,7 @@ final class BearPostmarkClient {
         } catch (Throwable $t) {
             BearErrorCreator::create(
                 message: "Exception when sending email, Message [{$t->getMessage()}]",
-                key: 'larabear::postmark-direct',
+                slug: 'larabear::postmark-direct',
                 exception: $t
             );
             return new BearPostMarkClientResponse(message: "Exception when sending email, Message [{$t->getMessage()}]", code: -1, messageId: null);

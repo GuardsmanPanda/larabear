@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 use Illuminate\Support\Facades\DB;
 use PDO;
 
-final class Sql {
+final class BearSqlService {
     /**
      * @param String $sql
      * @param array<mixed> $bindings

@@ -19,11 +19,12 @@ final class LarabearAccessTokenAppController extends Controller {
                     id, api_primary_key,
                     route_prefix_restriction, request_ip_restriction,
                     access_token_purpose, expires_at, last_usage_date, created_at, updated_at
-                FROM bear_access_token_app
+                FROM bear_access_token
                 ORDER BY request_ip_restriction, created_at DESC
             ")
         ]);
     }
+
 
     public function createDialog(): View {
         $type = Req::getStringOrDefault(key: 'type', default: '');
@@ -33,16 +34,17 @@ final class LarabearAccessTokenAppController extends Controller {
         ]);
     }
 
+
     public function create(): View {
         $prefix = Req::getStringOrDefault(key: 'route_prefix_restriction');
         if (str_starts_with(haystack: '/', needle: $prefix)) {
             $prefix = substr(string: $prefix, offset: 1);
         }
         $res = BearAccessTokenCreator::create(
-            route_prefix_restriction:$prefix,
-            access_token_purpose: Req::getStringOrDefault(key: 'access_token_purpose'),
+            path_prefix_restriction:$prefix,
+            description: Req::getStringOrDefault(key: 'access_token_purpose'),
             access_token: Req::getString(key: 'access_token'),
-            request_ip_restriction: Req::getStringOrDefault(key: 'request_ip_restriction', default: '0.0.0.0/0'),
+            ip_restriction: Req::getStringOrDefault(key: 'request_ip_restriction', default: '0.0.0.0/0'),
             api_primary_key: Req::getString(key: 'api_primary_key'),
             expires_at: Req::getDateTime(key: 'expires_at'),
         );
@@ -52,6 +54,7 @@ final class LarabearAccessTokenAppController extends Controller {
         ]);
     }
 
+
     public function updateDialog(string $id): View {
         return Htmx::dialogView(view: 'larabear-access::token.app.update', title: "Update Access Token - $id", data: [
             'access_token' => DB::selectOne(query: "
@@ -59,11 +62,12 @@ final class LarabearAccessTokenAppController extends Controller {
                     id, api_primary_key,
                     route_prefix_restriction, request_ip_restriction,
                     access_token_purpose, expires_at, last_usage_date
-                FROM bear_access_token_app
+                FROM bear_access_token
                 WHERE id = ?
             ", bindings: [$id])
         ]);
     }
+
 
     public function delete(string $id): void {
         BearAccessTokenAppDeleter::deleteFromId(id: $id);

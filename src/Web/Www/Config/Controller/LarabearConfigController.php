@@ -46,7 +46,7 @@ final class LarabearConfigController extends Controller {
 
     public function update(string $key): View {
         $updater = BearConfigUpdater::fromConfigKey(config_key: $key);
-        $updater->setConfigDescription(config_description: Req::getStringOrDefault(key: 'config_description'));
+        $updater->setDescription(description: Req::getStringOrDefault(key: 'config_description'));
         $updater->setConfigString(config_string: Req::getString(key: 'config_string'));
         $updater->setEncryptedConfigString(encrypted_config_string: Req::getString(key: 'encrypted_config_string'));
         $updater->setConfigBoolean(config_boolean: Req::getBool(key: 'config_boolean'));

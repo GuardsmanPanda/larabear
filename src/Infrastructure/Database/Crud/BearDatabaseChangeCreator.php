@@ -49,9 +49,9 @@ final class BearDatabaseChangeCreator {
         } catch (Throwable $t) {
             BearErrorCreator::create(
                 message: "Failed to log database change, table: $table, change_type: $changeType, column_name: $columnName, old_value: $oldValue, new_value: $newValue",
-                key: 'larabear::database_log_change_error',
+                slug: 'larabear::database-log-change-error',
                 severity: BearSeverityEnum::CRITICAL,
-                remedy: 'Contact Bjørn', exception: $t,
+                exception: $t
             );
         }
     }

@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Interface\BearPermissionInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Service\BearAuthService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use Illuminate\Http\Request;
@@ -16,16 +17,19 @@ final class BearPermissionMiddleware {
         if ($result !== true) {
             BearErrorCreator::create(
                 message: 'User tried to access a resource that requires a permission that the user does not have.',
-                key: 'larabear::permission-middleware',
-                severity: BearSeverityEnum::MEDIUM,
-                remedy: 'You either need to add the permission to the user or remove the permission from the resource. (But only if  the user is supposed to access this resource.)',
+                slug: 'larabear::permission-middleware',
+                severity: BearSeverityEnum::WARNING
             );
             throw new AccessDeniedHttpException(message: 'You do not have the required permission.');
         }
         return $next($request);
     }
 
-    public static function using(string $permission): string {
+    public static function using(BearPermissionInterface $permission): string {
+        return BearPermissionMiddleware::class . ':' . $permission->getValue();
+    }
+
+    public static function usingValue(String $permission): string {
         return BearPermissionMiddleware::class . ':' . $permission;
     }
 }

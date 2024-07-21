@@ -28,8 +28,8 @@ final class BearExceptionHandler extends Handler {
             if ($e::class !== 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException') {
                 BearErrorCreator::create(
                     message: $e->getMessage(),
-                    key: "larabear::$key",
-                    severity: BearSeverityEnum::MEDIUM,
+                    slug: "larabear::$key",
+                    severity: BearSeverityEnum::WARNING,
                     exception: $e
                 );
             }

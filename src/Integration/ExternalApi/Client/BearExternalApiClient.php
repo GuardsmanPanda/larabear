@@ -148,7 +148,7 @@ final class BearExternalApiClient {
         if (!array_key_exists($dataKey, $json)) {
             BearErrorCreator::create(
                 message: 'Invalid response from API, data [' . $dataKey . '] not found in data [' . json_encode(value: $json) . ']',
-                key: 'larabear::invalid_api_response', severity: BearSeverityEnum::MEDIUM
+                slug: 'larabear::invalid_api_response', severity: BearSeverityEnum::WARNING
             );
         }
         $value = $json[$dataKey] ?? [];
@@ -157,7 +157,7 @@ final class BearExternalApiClient {
             if (!array_key_exists($dataKey, $json)) {
                 BearErrorCreator::create(
                     message: 'Invalid response from API, data [' . $dataKey . '] not found in data [' . json_encode(value: $json) . ']',
-                    key: 'larabear::invalid_api_response', severity: BearSeverityEnum::MEDIUM
+                    slug: 'larabear::invalid_api_response', severity: BearSeverityEnum::WARNING
                 );
             }
             foreach ($json[$dataKey] as $val) {
@@ -170,7 +170,7 @@ final class BearExternalApiClient {
             if (!array_key_exists($dataKey, $json)) {
                 BearErrorCreator::create(
                     message: 'Invalid response from API, data [' . $dataKey . '] not found in data [' . json_encode(value: $json) . ']',
-                    key: 'larabear::invalid_api_response', severity: BearSeverityEnum::MEDIUM
+                    slug: 'larabear::invalid_api_response', severity: BearSeverityEnum::WARNING
                 );
             }
             foreach ($json[$dataKey] as $val) {

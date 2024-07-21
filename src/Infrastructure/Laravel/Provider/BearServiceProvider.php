@@ -27,7 +27,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 final class BearServiceProvider extends ServiceProvider {
-
     public function boot(): void {
         Config::set(key: 'database.connections.larabear_transaction_free', value: Config::get(key: 'database.connections.' . Config::get(key: 'database.default')));
 
@@ -37,7 +36,7 @@ final class BearServiceProvider extends ServiceProvider {
                 BearSessionAuthMiddleware::onlyAuthenticated(),
                 BearHtmxMiddleware::using(layout_location: 'larabear::layout'),
                 BearTransactionMiddleware::class,
-                BearPermissionMiddleware::using(permission: 'larabear-ui')
+                BearPermissionMiddleware::usingValue(permission: 'larabear')
             ])->group(function () {
                 Route::prefix('')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Dashboard/routes.php'));
                 Route::prefix('access')->group(base_path(path: 'vendor/guardsmanpanda/larabear/src/Web/Www/Access/routes.php'));

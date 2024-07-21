@@ -6,8 +6,8 @@ use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessToken;
 
-final class BearAccessTokenAppUpdater {
-    public function __construct(private readonly BearAccessToken $model) {
+final readonly class BearAccessTokenAppUpdater {
+    public function __construct(private BearAccessToken $model) {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
     }
 
@@ -16,18 +16,18 @@ final class BearAccessTokenAppUpdater {
     }
 
 
-    public function setRoutePrefixRestriction(string $route_prefix_restriction): self {
-        $this->model->route_prefix_restriction = $route_prefix_restriction;
+    public function setPathPrefixRestriction(string $path_prefix_restriction): self {
+        $this->model->path_prefix_restriction = $path_prefix_restriction;
         return $this;
     }
 
-    public function setRequestIpRestriction(string $request_ip_restriction): self {
-        $this->model->request_ip_restriction = $request_ip_restriction;
+    public function setIpRestriction(string $ip_restriction): self {
+        $this->model->ip_restriction = $ip_restriction;
         return $this;
     }
 
-    public function setAccessTokenPurpose(string $access_token_purpose): self {
-        $this->model->access_token_purpose = $access_token_purpose;
+    public function setDescription(string $description): self {
+        $this->model->description = $description;
         return $this;
     }
 
@@ -50,11 +50,11 @@ final class BearAccessTokenAppUpdater {
         return $this;
     }
 
-    public function setLastUsageDate(CarbonInterface|null $last_usage_date): self {
-        if ($last_usage_date?->toDateString() === $this->model->last_usage_date?->toDateString()) {
+    public function setLastUsageAt(CarbonInterface|null $last_usage_at): self {
+        if ($last_usage_at?->toIso8601String() === $this->model->last_usage_at?->toIso8601String()) {
             return $this;
         }
-        $this->model->last_usage_date = $last_usage_date;
+        $this->model->last_usage_at = $last_usage_at;
         return $this;
     }
 

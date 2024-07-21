@@ -21,22 +21,36 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearConfig firstOrFail(array $columns = ['*'])
  * @method static BearConfig firstOrCreate(array $filter, array $values)
  * @method static BearConfig firstOrNew(array $filter, array $values)
- * @method static BearConfig|null firstWhere(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static Collection all(array $columns = ['*'])
- * @method static Collection get(array $columns = ['*'])
- * @method static Collection fromQuery(string $query, array $bindings = [])
+ * @method static BearConfig|null firstWhere(string $column, string $operator, string|float|int|bool $value)
+ * @method static Collection<int, BearConfig> all(array $columns = ['*'])
+ * @method static Collection<int, BearConfig> get(array $columns = ['*'])
+ * @method static Collection<int|string, BearConfig> pluck(string $column, string $key = null)
+ * @method static Collection<int, BearConfig> fromQuery(string $query, array $bindings = [])
  * @method static BearConfig lockForUpdate()
  * @method static BearConfig select(array $columns = ['*'])
+ * @method static BearConfig selectRaw(string $expression, array $bindings = [])
+ * @method static BearConfig with(array $relations)
  * @method static BearConfig leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static BearConfig where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
- * @method static BearConfig whereExists(Closure $callback, string $boolean = 'and', bool $not = false)
- * @method static BearConfig whereNotExists(Closure $callback, string $boolean = 'and')
- * @method static BearConfig whereIn(string $column, array $values, string $boolean = 'and', bool $not = false)
- * @method static BearConfig whereNull(string|array $columns, string $boolean = 'and')
- * @method static BearConfig whereNotNull(string|array $columns, string $boolean = 'and')
- * @method static BearConfig whereRaw(string $sql, array $bindings = [], string $boolean = 'and')
+ * @method static BearConfig where(string $column, string $operator = null, string|float|int|bool $value = null)
+ * @method static BearConfig whereIn(string $column, array $values)
+ * @method static BearConfig whereNull(string|array $columns)
+ * @method static BearConfig whereNotNull(string|array $columns)
+ * @method static BearConfig whereYear(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static BearConfig whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static BearConfig whereDate(string $column, string $operator, CarbonInterface|string $value)
+ * @method static BearConfig whereExists(Closure $callback)
+ * @method static BearConfig whereNotExists(Closure $callback)
+ * @method static BearConfig whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static BearConfig withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static BearConfig whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static BearConfig whereRaw(string $sql, array $bindings = [])
+ * @method static BearConfig groupBy(string $groupBy)
  * @method static BearConfig orderBy(string $column, string $direction = 'asc')
+ * @method static BearConfig orderByDesc(string $column)
+ * @method static BearConfig orderByRaw(string $sql, array $bindings = [])
+ * @method static BearConfig limit(int $value)
  * @method static int count(array $columns = ['*'])
+ * @method static mixed sum(string $column)
  * @method static bool exists()
  *
  * @property int|null $config_integer
@@ -58,7 +72,6 @@ final class BearConfig extends Model {
     protected $table = 'bear_config';
     protected $primaryKey = 'slug';
     protected $keyType = 'string';
-    public $incrementing = false;
 
     /** @var array<string, string> $casts */
     protected $casts = [
@@ -67,5 +80,5 @@ final class BearConfig extends Model {
         'encrypted_config_string' => 'encrypted',
     ];
 
-    protected $guarded = ['config_key', 'updated_at', 'created_at', 'deleted_at'];
+    protected $guarded = ['slug', 'updated_at', 'created_at', 'deleted_at'];
 }

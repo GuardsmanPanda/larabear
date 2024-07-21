@@ -61,7 +61,7 @@ final class BearOauth2UserService {
             DB::rollBack();
             BearErrorCreator::create(
                 message: "Failed to update access token for user $user->id",
-                key: 'larabear::oauth2-update-user-access-token',
+                slug: 'larabear::oauth2-update-user-access-token',
                 severity: BearSeverityEnum::CRITICAL,
                 exception: $t
             );

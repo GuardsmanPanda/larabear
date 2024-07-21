@@ -2,8 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Credential\Controller;
 
-use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearArrayService;
-use GuardsmanPanda\Larabear\Infrastructure\App\Service\Sql;
+use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearSqlService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Htmx;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
@@ -23,8 +22,8 @@ final class LarabearExternalApiController extends Controller {
 
     public function createDialog(): View {
         return Htmx::dialogView(view: 'larabear-credential::external.create', title: "New External API", data: [
-            'oauth2_clients' => Sql::toKeyValueArray(sql: "SELECT oauth2_client_id, oauth2_client_description FROM bear_oauth2_client ORDER BY oauth2_client_id"),
-            'oauth2_users' => Sql::toKeyValueArray(sql: "
+            'oauth2_clients' => BearSqlService::toKeyValueArray(sql: "SELECT oauth2_client_id, oauth2_client_description FROM bear_oauth2_client ORDER BY oauth2_client_id"),
+            'oauth2_users' => BearSqlService::toKeyValueArray(sql: "
                 SELECT
                     ou.id, CONCAT(ou.id, '[' , u.user_display_name, ']')
                 FROM bear_oauth2_user ou

@@ -30,8 +30,8 @@ final class BearTransactionMiddleware {
             DB::rollBack();
             BearErrorCreator::create(
                 message: 'Transaction rolled back due to exception: ' . $t->getMessage(),
-                key: 'larabear::transaction_rolled_back_exception',
-                severity: BearSeverityEnum::HIGH,
+                slug: 'larabear::transaction_rolled_back_exception',
+                severity: BearSeverityEnum::ERROR,
             );
             throw new RuntimeException(message: "Transaction failed: [{$t->getMessage()}]", code: $t->getCode(), previous: $t);
         }

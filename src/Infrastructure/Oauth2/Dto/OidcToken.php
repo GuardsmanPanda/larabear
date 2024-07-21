@@ -25,7 +25,7 @@ final readonly class OidcToken {
             if ($jwt === false) {
                 BearErrorCreator::create(
                     message: "Failed to decode JWT",
-                    key: 'larabear::oidc',
+                    slug: 'larabear::oidc',
                     severity: BearSeverityEnum::CRITICAL,
                 );
                 throw new RuntimeException(message: 'JWT could not be decoded');
@@ -34,7 +34,7 @@ final readonly class OidcToken {
             if ($client->oauth2_client_id !== $token->aud) {
                 BearErrorCreator::create(
                     message: "The application id in the JWT is not the same as the application id on the server. JWT: $token->aud, Server: $client->oauth2_client_id",
-                    key: 'larabear::oidc',
+                    slug: 'larabear::oidc',
                     severity: BearSeverityEnum::CRITICAL,
                 );
                 throw new RuntimeException(message: "Incorrect Application ID.");
@@ -42,7 +42,7 @@ final readonly class OidcToken {
         } catch (Throwable $t) { //TODO Better error log.
             BearErrorCreator::create(
                 message: "Error message: {$t->getMessage()}",
-                key: 'larabear::oidc-error',
+                slug: 'larabear::oidc-error',
                 severity: BearSeverityEnum::CRITICAL,
             );
             throw new RuntimeException(message: "Token incorrectly formatted or already used.", previous: $t);
@@ -51,7 +51,7 @@ final readonly class OidcToken {
         if ((property_exists($token, property: 'email_verified') && $token->email_verified === false)) {
             BearErrorCreator::create(
                 message: "The email address in the JWT is not verified.",
-                key: 'larabear::oidc',
+                slug: 'larabear::oidc',
                 severity: BearSeverityEnum::CRITICAL,
             );
             throw new RuntimeException(message: "Email address not verified.");
@@ -61,7 +61,7 @@ final readonly class OidcToken {
         if ((property_exists($token, property: 'nbf') && $token->nbf) > $ts || $token->exp < $ts) {
             BearErrorCreator::create(
                 message: "The timestamp in the JWT is not valid. JWT: nbf: $token->nbf, exp: $token->exp, ts: $ts",
-                key: 'larabear::oidc',
+                slug: 'larabear::oidc',
                 severity: BearSeverityEnum::CRITICAL,
             );
             throw new RuntimeException(message: "Incorrect Timestamp.");

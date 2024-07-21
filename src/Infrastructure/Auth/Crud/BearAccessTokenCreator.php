@@ -9,20 +9,20 @@ use Illuminate\Support\Str;
 
 final class BearAccessTokenCreator {
     /**
-     * @param string $route_prefix_restriction
-     * @param string $access_token_purpose
+     * @param string $path_prefix_restriction
+     * @param string $description
      * @param string|null $access_token
-     * @param string $request_ip_restriction
+     * @param string $ip_restriction
      * @param string|null $api_primary_key
      * @param CarbonInterface|null $expires_at
      * @return array{BearAccessToken, string}
      */
     public static function create(
-        string $route_prefix_restriction,
-        string $access_token_purpose,
-        string $access_token = null,
-        string $request_ip_restriction = '0.0.0.0/0',
-        string $api_primary_key = null,
+        string          $path_prefix_restriction,
+        string          $description,
+        string          $access_token = null,
+        string          $ip_restriction = '0.0.0.0/0',
+        string          $api_primary_key = null,
         CarbonInterface $expires_at = null,
     ): array {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
@@ -30,14 +30,14 @@ final class BearAccessTokenCreator {
         $model = new BearAccessToken();
         $model->id = Str::uuid()->toString();
 
-        $model->route_prefix_restriction = trim(string: $route_prefix_restriction, characters: '/ ');
-        $model->request_ip_restriction = $request_ip_restriction;
-        $model->access_token_purpose = trim($access_token_purpose);
+        $model->path_prefix_restriction = trim(string: $path_prefix_restriction, characters: '/ ');
+        $model->ip_restriction = $ip_restriction;
+        $model->description = trim($description);
         $model->api_primary_key = $api_primary_key;
         $model->expires_at = $expires_at;
 
         if ($access_token === null || $access_token === '') {
-            $access_token = "token/" . Str::random(length: 32) . "/$model->route_prefix_restriction";
+            $access_token = "token/" . Str::random(length: 32) . "/$model->path_prefix_restriction";
         }
 
         $model->hashed_access_token = hash(algo: 'xxh128', data: $access_token);

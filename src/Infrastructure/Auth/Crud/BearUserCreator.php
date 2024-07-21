@@ -27,8 +27,8 @@ final class BearUserCreator {
 
         if ($user_country_iso2_code !== null) {
             // Check if the country code is valid, otherwise set it to null
-            if (!BearDatabaseService::exists(sql: "SELECT 1 FROM bear_country WHERE country_iso2_code = ?", bindings: [$user_country_iso2_code])) {
-                BearErrorCreator::create(message: "Invalid country code: $user_country_iso2_code", remedy: "Add the missing country code to the database or fix the user's country code.");
+            if (!BearDatabaseService::exists(sql: "SELECT 1 FROM bear_country WHERE cca2 = ?", bindings: [$user_country_iso2_code])) {
+                BearErrorCreator::create(message: "Invalid country code: $user_country_iso2_code");
                 $user_country_iso2_code = null;
             }
         }

@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
+use GuardsmanPanda\Larabear\Infrastructure\Auth\Interface\BearRoleInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Service\BearAuthService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use Illuminate\Http\Request;
@@ -16,16 +17,15 @@ final class BearRoleMiddleware {
         if ($result !== true) {
             BearErrorCreator::create(
                 message: 'User tried to access a resource that requires a role that the user does not have.',
-                key: 'larabear::role-middleware',
-                severity: BearSeverityEnum::MEDIUM,
-                remedy: 'You either need to add the role to the user or remove the role from the resource. (But only if  the user is supposed to access this resource.)',
+                slug: 'larabear::role-middleware',
+                severity: BearSeverityEnum::WARNING,
             );
             throw new AccessDeniedHttpException(message: 'You do not have the required role.');
         }
         return $next($request);
     }
 
-    public static function using(string $role): string {
-        return BearRoleMiddleware::class . ':' .$role;
+    public static function using(BearRoleInterface $role): string {
+        return BearRoleMiddleware::class . ':' . $role->getValue();
     }
 }
