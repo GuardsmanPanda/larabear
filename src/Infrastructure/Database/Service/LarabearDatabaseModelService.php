@@ -4,9 +4,11 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Data\LarabearDatabaseModelData;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
+use Infrastructure\App\Enum\BearOauth2ClientEnum;
 use RuntimeException;
 
 final class LarabearDatabaseModelService {
@@ -65,13 +67,17 @@ final class LarabearDatabaseModelService {
             if (!array_key_exists(key: $constraint->table_name, array: $models)) {
                 continue;
             }
+
             $dto = $models[$constraint->table_name];
+            $enumClass = $tableConfig[$constraint->foreign_table]['enum'] ?? self::getBearEnumClass($constraint->foreign_table);
+
             if (str_starts_with(haystack: $constraint->foreign_table, needle: 'bear_')) {
                 $dto->setForeignKeyInformation(
                     columnName: $constraint->column_name,
                     foreignColumnName: $constraint->foreign_key,
                     foreignModelName: Str::studly(value: $constraint->foreign_table),
-                    foreignNamespace: self::getBearTableNameSpace($constraint->foreign_table)
+                    foreignNamespace: self::getBearTableNameSpace($constraint->foreign_table),
+                    enumClass: $enumClass
                 );
                 continue;
             }
@@ -79,7 +85,13 @@ final class LarabearDatabaseModelService {
                 continue;
             }
             $other = $models[$constraint->foreign_table];
-            $dto->setForeignKeyInformation(columnName: $constraint->column_name, foreignColumnName: $constraint->foreign_key, foreignModelName: $other->getModelClassName(), foreignNamespace: $other->getNameSpace());
+            $dto->setForeignKeyInformation(
+                columnName: $constraint->column_name,
+                foreignColumnName: $constraint->foreign_key,
+                foreignModelName: $other->getModelClassName(),
+                foreignNamespace: $other->getNameSpace(),
+                enumClass: $enumClass
+            );
         }
 
         return $models;
@@ -144,6 +156,13 @@ final class LarabearDatabaseModelService {
             'bear_oauth2_client', 'bear_oauth2_client_type', 'bear_oauth2_user' => "GuardsmanPanda\\Larabear\\Infrastructure\\Oauth2\\Model",
             'bear_database_change' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Model',
             default => throw new RuntimeException(message: "No namespace defined for table [$tableName]"),
+        };
+    }
+
+    private static function getBearEnumClass(string $tableName): string|null {
+        return match ($tableName) {
+            'bear_oauth2_client_type' => LarabearOauth2ClientTypeEnum::class,
+            default => null
         };
     }
 }

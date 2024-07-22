@@ -12,6 +12,8 @@ final class LarabearDatabaseModelData {
     private array $primaryKeyColumns = [];
     /** @var array<LarabearDatabaseForeignColumnData> $foreignKeyColumns */
     private array $foreignKeyColumns = [];
+    /** @var array<string, string> $enumColumns */
+    private array $enumColumns = [];
     private string $primaryKeyType;
     private bool $timestamps = false;
     /** @var Set<string> $headers */
@@ -20,12 +22,6 @@ final class LarabearDatabaseModelData {
     private array $columns = [];
 
     /**
-     * @param string $connectionName
-     * @param string $connectionDriver
-     * @param string $tableName
-     * @param string $modelClassName
-     * @param string $modelLocation
-     * @param string $dateFormat
      * @param array<string> $modelTraits
      * @param array<string> $logExcludeColumns
      */
@@ -92,8 +88,14 @@ final class LarabearDatabaseModelData {
         $this->primaryKeyType = $primaryKeyType;
     }
 
-    public function setForeignKeyInformation(string $columnName, string $foreignColumnName, string $foreignModelName, string $foreignNamespace): void {
-        $methodName = Str::camel(value: preg_replace(pattern: '/_(id|uuid|slug)$/', replacement: '', subject: $columnName) ?? $columnName);
+    public function setForeignKeyInformation(
+        string $columnName,
+        string $foreignColumnName,
+        string $foreignModelName,
+        string $foreignNamespace,
+        string $enumClass = null,
+    ): void {
+        $methodName = Str::camel(value: preg_replace(pattern: '/_(id|uuid|slug|enum)$/', replacement: '', subject: $columnName) ?? $columnName);
         foreach ($this->foreignKeyColumns as $foreignKeyColumn) {
             if ($foreignKeyColumn->methodName === $methodName && str_ends_with(haystack: $foreignKeyColumn->columnName, needle: 'id')) {
                 return;
@@ -107,6 +109,9 @@ final class LarabearDatabaseModelData {
             foreignNamespace: $foreignNamespace,
             isNullable: $this->columns[$columnName]->isNullable,
         );
+        if ($enumClass !== null) {
+            $this->enumColumns[$columnName] = $enumClass;
+        }
     }
 
     public function addColumn(LarabearDatabaseColumnData $column): void {
