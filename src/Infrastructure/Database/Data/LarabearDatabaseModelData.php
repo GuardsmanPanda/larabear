@@ -12,8 +12,6 @@ final class LarabearDatabaseModelData {
     private array $primaryKeyColumns = [];
     /** @var array<LarabearDatabaseForeignColumnData> $foreignKeyColumns */
     private array $foreignKeyColumns = [];
-    /** @var array<string, string> $enumColumns */
-    private array $enumColumns = [];
     private string $primaryKeyType;
     private bool $timestamps = false;
     /** @var Set<string> $headers */
@@ -110,7 +108,11 @@ final class LarabearDatabaseModelData {
             isNullable: $this->columns[$columnName]->isNullable,
         );
         if ($enumClass !== null) {
+            $this->headers->add(element: 'use ' . $enumClass . ';');
             $this->enumColumns[$columnName] = $enumClass;
+            $this->columns[$columnName]->eloquentCast = BearRegexService::extractFirst(regex: '~.*\\\\([^\\\\]+)$~', subject: $enumClass) . '::class';
+            $this->columns[$columnName]->phpDataType = BearRegexService::extractFirst(regex: '~.*\\\\([^\\\\]+)$~', subject: $enumClass);
+            $this->columns[$columnName]->sortOrder = 9999;
         }
     }
 
