@@ -49,7 +49,7 @@ final readonly class BearOauth2ClientUpdater {
         return $this;
     }
 
-    public function setUserRedirectPath(string|null $user_redirect_path): self {
+    public function setUserRedirectPath(string $user_redirect_path): self {
         $this->model->user_redirect_path = $user_redirect_path;
         return $this;
     }
@@ -72,7 +72,7 @@ final readonly class BearOauth2ClientUpdater {
     }
 
     public function getEncryptedOauth2ClientAccessToken(): string {
-        return $this->model->encrypted_oauth2_client_access_token ?? '';
+        return $this->model->encrypted_access_token ?? '';
     }
 
     public function update(): BearOauth2Client {

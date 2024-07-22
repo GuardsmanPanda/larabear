@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2UserUpdater;
-use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -36,8 +35,7 @@ final class BearOauth2UserService {
             }
 
             $client = $user->oauth2Client;
-            $enum = LarabearOauth2ClientTypeEnum::from($client->oauth2_client_type_enum);
-            $resp = Http::asForm()->post($enum->getTokenUri(), [
+            $resp = Http::asForm()->post($client->oauth2_client_type_enum->getTokenUri(), [
                 'refresh_token' => $user->encrypted_refresh_token,
                 'client_secret' => $client->encrypted_secret,
                 'grant_type' => 'refresh_token',

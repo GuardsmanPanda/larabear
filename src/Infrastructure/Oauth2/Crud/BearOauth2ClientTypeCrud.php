@@ -3,11 +3,11 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Interface\BearOauth2ClientTypeEnumInterface;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2ClientType;
 
 final class BearOauth2ClientTypeCrud {
-    public static function create(BearOauth2ClientTypeEnumInterface $enum): void {
+    public static function create(LarabearOauth2ClientTypeEnum $enum): void {
         BearDatabaseService::mustBeInTransaction();
 
         $model = new BearOauth2ClientType();

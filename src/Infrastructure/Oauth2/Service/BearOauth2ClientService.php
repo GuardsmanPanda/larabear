@@ -46,24 +46,23 @@ final class BearOauth2ClientService {
             $query_data .= urlencode(string: config(key: 'app.url') . "/bear/auth/oauth2-client/$client->id/callback");
         }
 
-        $enum = LarabearOauth2ClientTypeEnum::from(value: $client->oauth2_client_type_enum);
-        if ($enum === LarabearOauth2ClientTypeEnum::TWITCH) {
+        if ($client->oauth2_client_type_enum === LarabearOauth2ClientTypeEnum::TWITCH) {
             $query_data .= '&claims=' . urlencode(string: json_encode(['id_token' => ['email' => null, 'email_verified' => null, 'preferred_username' => null]], JSON_THROW_ON_ERROR));
         }
 
-        if ($enum === LarabearOauth2ClientTypeEnum::GOOGLE) {
+        if ($client->oauth2_client_type_enum === LarabearOauth2ClientTypeEnum::GOOGLE) {
             $query_data .= '&include_granted_scopes=true';
         }
 
         if ($accountPrompt) {
-            $query_data .= match ($enum) {
+            $query_data .= match ($client->oauth2_client_type_enum) {
                 LarabearOauth2ClientTypeEnum::MICROSOFT, LarabearOauth2ClientTypeEnum::GOOGLE => '&prompt=select_account',
                 LarabearOauth2ClientTypeEnum::HELP_SCOUT => '',
-                default => throw new RuntimeException(message: "User prompt not supported for client type" . $client->oauth2_client_type_enum),
+                default => throw new RuntimeException(message: "User prompt not supported for client type " . $client->oauth2_client_type_enum->getValue()),
             };
         }
 
-        return new RedirectResponse(url: "{$enum->getAuthorizeUri()}?$query_data");
+        return new RedirectResponse(url: "{$client->oauth2_client_type_enum->getAuthorizeUri()}?$query_data");
     }
 
     public static function getUserFromCallback(BearOauth2Client $client, string $code, string $redirectUri = null, bool $createBearUser = false): BearOauth2User {
@@ -106,7 +105,7 @@ final class BearOauth2ClientService {
     }
 
     public static function exchangeCode(string $code, BearOauth2Client $client, string $redirect_uri = null): Response {
-        $resp = Http::asForm()->post(url: $client->oauth2_token_uri, data: [
+        $resp = Http::asForm()->post(url: $client->oauth2_client_type_enum->getTokenUri(), data: [
             'code' => $code,
             'client_secret' => $client->encrypted_secret,
             'grant_type' => 'authorization_code',
@@ -148,7 +147,7 @@ final class BearOauth2ClientService {
                 return $updater->getEncryptedOauth2ClientAccessToken();
             }
 
-            $resp = Http::asForm()->post($client->oauth2_token_uri, [
+            $resp = Http::asForm()->post($client->oauth2_client_type_enum->getTokenUri(), [
                 'grant_type' => 'client_credentials',
                 'client_id' => $client->id,
                 'client_secret' => $client->encrypted_secret,
@@ -188,18 +187,18 @@ final class BearOauth2ClientService {
                 }
             }
         }
-        if ($client->oauth2_client_type_enum === LarabearOauth2ClientTypeEnum::MICROSOFT->value) {
+        if ($client->oauth2_client_type_enum === LarabearOauth2ClientTypeEnum::MICROSOFT) {
             $scopes->add(element: 'offline_access');
             $scopes->add(element: 'openid');
             $scopes->add(element: 'profile');
             $scopes->add(element: 'email');
         }
-        if ($client->oauth2_client_type_enum === LarabearOauth2ClientTypeEnum::GOOGLE->value) {
+        if ($client->oauth2_client_type_enum === LarabearOauth2ClientTypeEnum::GOOGLE) {
             $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.profile');
             $scopes->add(element: 'https://www.googleapis.com/auth/userinfo.email');
             $scopes->add(element: 'openid');
         }
-        if ($client->oauth2_client_type_enum === LarabearOauth2ClientTypeEnum::TWITCH->value) {
+        if ($client->oauth2_client_type_enum === LarabearOauth2ClientTypeEnum::TWITCH) {
             $scopes->add(element: 'user:read:email');
             $scopes->add(element: 'openid');
         }

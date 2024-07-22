@@ -6,6 +6,7 @@ use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -58,12 +59,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property string $encrypted_secret
  * @property string $user_redirect_path
- * @property string $oauth2_client_type_enum
  * @property string|null $client_scope
  * @property string|null $client_base_url
  * @property string|null $encrypted_access_token
  * @property string|null $access_token_error_message
  * @property CarbonInterface|null $access_token_expires_at
+ * @property LarabearOauth2ClientTypeEnum $oauth2_client_type_enum
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -78,6 +79,7 @@ final class BearOauth2Client extends Model {
         'access_token_expires_at' => 'immutable_datetime',
         'encrypted_access_token' => 'encrypted',
         'encrypted_secret' => 'encrypted',
+        'oauth2_client_type_enum' => LarabearOauth2ClientTypeEnum::class,
     ];
 
     protected $guarded = ['id', 'updated_at', 'created_at', 'deleted_at'];

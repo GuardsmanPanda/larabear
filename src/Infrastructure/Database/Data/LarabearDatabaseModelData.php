@@ -109,7 +109,6 @@ final class LarabearDatabaseModelData {
         );
         if ($enumClass !== null) {
             $this->headers->add(element: 'use ' . $enumClass . ';');
-            $this->enumColumns[$columnName] = $enumClass;
             $this->columns[$columnName]->eloquentCast = BearRegexService::extractFirst(regex: '~.*\\\\([^\\\\]+)$~', subject: $enumClass) . '::class';
             $this->columns[$columnName]->phpDataType = BearRegexService::extractFirst(regex: '~.*\\\\([^\\\\]+)$~', subject: $enumClass);
             $this->columns[$columnName]->sortOrder = 9999;

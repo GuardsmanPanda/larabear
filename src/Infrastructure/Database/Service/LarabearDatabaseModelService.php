@@ -8,7 +8,6 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeE
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
-use Infrastructure\App\Enum\BearOauth2ClientEnum;
 use RuntimeException;
 
 final class LarabearDatabaseModelService {

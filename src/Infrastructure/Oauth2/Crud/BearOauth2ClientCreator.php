@@ -4,14 +4,13 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
-use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Interface\BearOauth2ClientTypeEnumInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 
 final class BearOauth2ClientCreator {
     public static function create(
         string                       $id,
         string                       $description,
-        BearOauth2ClientTypeEnumInterface $oauth2_client_type,
+        LarabearOauth2ClientTypeEnum $oauth2_client_type,
         string                       $encrypted_secret,
         string                       $user_redirect_path,
         string                       $client_base_url = null,
@@ -24,7 +23,7 @@ final class BearOauth2ClientCreator {
 
         $model->id = $id;
         $model->description = $description;
-        $model->oauth2_client_type_enum = $oauth2_client_type->getValue();
+        $model->oauth2_client_type_enum = $oauth2_client_type;
         $model->encrypted_secret = $encrypted_secret;
         $model->user_redirect_path = $user_redirect_path;
         $model->client_base_url = $client_base_url;

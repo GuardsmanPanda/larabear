@@ -3,10 +3,9 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum;
 
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientTypeCrud;
-use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Interface\BearOauth2ClientTypeEnumInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2ClientType;
 
-enum LarabearOauth2ClientTypeEnum: string implements BearOauth2ClientTypeEnumInterface {
+enum LarabearOauth2ClientTypeEnum: string {
     case HELP_SCOUT = 'HELP_SCOUT';
     case GOOGLE = 'GOOGLE';
     case MICROSOFT = 'MICROSOFT';
