@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Middleware;
 use Carbon\Carbon;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
+use GuardsmanPanda\Larabear\Infrastructure\Config\Enum\LarabearConfigEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Contracts\Session\Session;
@@ -44,8 +45,8 @@ final class BearSessionAuthMiddleware {
         //  If we cannot find a userId in the session then only progress if explicitly allowed.
         //----------------------------------------------------------------------------------------------------------
         if ($bearUserId === null && $extra !== 'allow-guest') {
-            $target = BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in');
-            if (Req::path() !== null && strlen(Req::path()) > 1) {
+            $target = BearConfigService::getString(enum: LarabearConfigEnum::LARABEAR_PATH_TO_REDIRECT_IF_NOT_LOGGED_IN);
+            if (strlen(Req::path()) > 1) {
                 $target .= "?redirect=/" . Req::path();
             }
             if ($request->acceptsHtml()) {

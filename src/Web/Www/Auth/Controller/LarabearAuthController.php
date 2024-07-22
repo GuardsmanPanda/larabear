@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Web\Www\Auth\Controller;
 
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Crud\BearUserUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
+use GuardsmanPanda\Larabear\Infrastructure\Config\Enum\LarabearConfigEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
@@ -14,22 +15,22 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class LarabearAuthController extends Controller {
     public function signIn(): RedirectResponse {
-        $user = BearUser::where(column: 'user_email', operator: '=', value: Req::getStringOrDefault(key: 'email'))->first();
-        if ($user === null || $user->is_user_activated !== true || $user->password === null) {
-            return Resp::redirect(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: 'Invalid or deactivated user.');
+        $user = BearUser::where(column: 'user_email', operator: '=', value: Req::getString(key: 'email'))->first();
+        if ($user === null || $user->password === null) {
+            return Resp::redirect(url: BearConfigService::getString(enum: LarabearConfigEnum::LARABEAR_PATH_TO_REDIRECT_IF_NOT_LOGGED_IN), message: 'Invalid or deactivated user.');
         }
-        if (!password_verify(password: Req::getStringOrDefault(key: 'password'), hash: $user->password)) {
-            return Resp::redirect(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: 'Invalid password');
+        if (!password_verify(password: Req::getString(key: 'password'), hash: $user->password)) {
+            return Resp::redirect(url: BearConfigService::getString(enum: LarabearConfigEnum::LARABEAR_PATH_TO_REDIRECT_IF_NOT_LOGGED_IN), message: 'Invalid password');
         }
         (new BearUserUpdater($user))->setLastLoginNow()->update();
         Session::migrate(destroy: true);
         Session::put(key: 'bear_user_id', value: $user->id);
-        return new RedirectResponse(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-after-login'));
+        return new RedirectResponse(url: BearConfigService::getString(enum: LarabearConfigEnum::LARABEAR_PATH_TO_REDIRECT_AFTER_LOGIN));
     }
 
     public function signOut(): RedirectResponse {
         Session::invalidate();
-        return new RedirectResponse(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'));
+        return new RedirectResponse(url: BearConfigService::getString(enum: LarabearConfigEnum::LARABEAR_PATH_TO_REDIRECT_IF_NOT_LOGGED_IN));
     }
 
 

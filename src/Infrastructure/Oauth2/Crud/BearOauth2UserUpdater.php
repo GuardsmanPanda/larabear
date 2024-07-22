@@ -72,8 +72,8 @@ final readonly class BearOauth2UserUpdater {
         return $this->model->access_token_expires_at;
     }
 
-    public function getEncryptedUserAccessToken(): string {
-        return $this->model->encrypted_user_access_token ?? '';
+    public function getEncryptedAccessToken(): string {
+        return $this->model->encrypted_access_token ?? '';
     }
 
     public function getEmail(): string|null {

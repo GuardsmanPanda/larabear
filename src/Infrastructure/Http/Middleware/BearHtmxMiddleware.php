@@ -13,10 +13,10 @@ final class BearHtmxMiddleware {
     public function handle(Request $request, Closure $next, String $layout_location = 'layout.layout'): Response {
         $res = $next($request);
         Resp::header(key: 'Vary', value: 'hx-request');
-        if (Req::method() === 'GET' && Req::header(key: 'hx-request', nullIfMissing: true) === null && str_contains(haystack: Req::header(key: 'accept', nullIfMissing: true) ?? '', needle: 'html')) {
+        if (Req::method() === 'GET' && Req::headerOrNull(key: 'hx-request') === null && str_contains(haystack: Req::headerOrNull(key: 'accept') ?? '', needle: 'html')) {
             $headers = [];
             if (config(key: 'bear.ui.app_css') !== null) {
-                if (str_starts_with(haystack: Req::path() ?? '', needle: 'bear')) {
+                if (str_starts_with(haystack: Req::path(), needle: 'bear')) {
                     $headers = ['Link' => '<' . config(key: 'bear.ui.app_css') . '>; rel=preload; as=style'];
                 } else {
                     $headers = ['Link' => '<' . config(key: 'bear.ui.app_css') . '>; rel=preload; as=style, <' . config(key: 'bear.ui.app_js') . '>; rel=preload; as=script'];

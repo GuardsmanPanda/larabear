@@ -2,6 +2,6 @@
 
 namespace GuardsmanPanda\Larabear\Integration\Postmark\Data;
 
-final class BearPostMarkClientResponse {
-    public function __construct(public readonly string $message, public readonly int $code, public readonly string|null $messageId = null) {}
+final readonly class BearPostMarkClientResponse {
+    public function __construct(public string $message, public int $code, public string|null $messageId = null) {}
 }

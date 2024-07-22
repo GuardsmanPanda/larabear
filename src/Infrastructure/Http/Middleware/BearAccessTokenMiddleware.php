@@ -22,7 +22,7 @@ final class BearAccessTokenMiddleware {
 
         if (DB::getPdo()->getAttribute(attribute: PDO::ATTR_DRIVER_NAME) === 'pgsql') {
             $access = DB::selectOne(query: "
-            SELECT at.id, at.api_primary_key, at.last_usage_at
+            SELECT at.id, at.api_primary_key, at.last_usage_date
             FROM bear_access_token at
             WHERE
                 at.hashed_access_token = ? AND ? <<= at.ip_restriction
@@ -31,7 +31,7 @@ final class BearAccessTokenMiddleware {
         ", bindings: [$hashed_access_token, Req::ip(), Req::path()]);
         } else {
             $access = DB::selectOne(query: "
-            SELECT at.id, at.api_primary_key, at.last_usage_at
+            SELECT at.id, at.api_primary_key, at.last_usage_date
             FROM bear_access_token at
             WHERE
                 at.hashed_access_token = ? AND (at.ip_restriction = '0.0.0.0/0' OR at.ip_restriction = ?)
@@ -55,7 +55,7 @@ final class BearAccessTokenMiddleware {
         if ($access->last_usage_date === null || $access->last_usage_date !== now()->toDateString()) {
             DB::update(query: "
                 UPDATE bear_access_token
-                SET last_usage_at = now()
+                SET last_usage_date = now()
                 WHERE id = ?
             ", bindings: [$access->id]);
         }

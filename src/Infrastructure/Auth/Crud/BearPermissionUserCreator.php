@@ -7,15 +7,16 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearPermissionUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 final class BearPermissionUserCreator {
-    public static function create(
-        BearPermissionEnumInterface $permission,
-        string                      $user_id
-    ): BearPermissionUser {
+    public static function create(BearPermissionEnumInterface $permission, string $user_id): BearPermissionUser {
+        return self::createFromString(permission_enum: $permission->getValue(), user_id: $user_id);
+    }
+
+    public static function createFromString(string $permission_enum, string $user_id): BearPermissionUser {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
         $model = new BearPermissionUser();
 
-        $model->permission_enum = $permission->getValue();
+        $model->permission_enum = $permission_enum;
         $model->user_id = $user_id;
 
         $model->save();

@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Web\Www\Auth\Controller;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Action\BearAuthCookieLoginAction;
+use GuardsmanPanda\Larabear\Infrastructure\Config\Enum\LarabearConfigEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
@@ -21,9 +22,9 @@ final class LarabearAuthOauth2Controller extends Controller {
     public function oauth2Redirect(string $oauth2_client_id): RedirectResponse {
         return BearOauth2ClientService::getAuthorizeRedirectResponse(
             client: BearOauth2Client::findOrFail(id: $oauth2_client_id),
-            afterSignInRedirectPath: Req::getString(key: 'redirect_path', defaultIfMissing: null),
+            afterSignInRedirectPath: Req::getStringOrNull(key: 'redirect_path', isOptional: true),
             loginUser: Req::getBoolOrDefault(key: 'login_user', default: true),
-            specialScope: Req::getString(key: 'special_scope', defaultIfMissing: null),
+            specialScope: Req::getStringOrNull(key: 'special_scope', isOptional: true),
             accountPrompt: Req::getBoolOrDefault(key: 'account_prompt', default: false),
             internalRedirect: Req::getBoolOrDefault(key: 'internal_redirect', default: false),
         );
@@ -31,19 +32,19 @@ final class LarabearAuthOauth2Controller extends Controller {
 
     public static function oauth2Callback(string $oauth2_client_id): RedirectResponse {
         if (Req::getStringOrDefault(key: 'state', default: '-----') !== Session::get(key: 'oauth2_state')) {
-            return Resp::redirect(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: 'Invalid state');
+            return Resp::redirect(url: BearConfigService::getString(enum: LarabearConfigEnum::LARABEAR_PATH_TO_REDIRECT_IF_NOT_LOGGED_IN), message: 'Invalid state');
         }
         try {
             DB::beginTransaction();
-            $afterLoginRedirect = Session::get(key: 'oauth2_redirect_path') ?? BearConfigService::getString(config_key: 'larabear::path-to-redirect-after-login');
+            $afterLoginRedirect = Session::get(key: 'oauth2_redirect_path') ?? BearConfigService::getString(enum: LarabearConfigEnum::LARABEAR_PATH_TO_REDIRECT_AFTER_LOGIN);
             $redirectUri = config(key: 'app.url') . "/bear/auth/oauth2-client/$oauth2_client_id/callback";
-            $createUserIfNotExists = BearConfigService::getBoolean(config_key: 'larabear::oauth2-create-user-if-not-exists');
+            $createUserIfNotExists = BearConfigService::getBoolean(enum: LarabearConfigEnum::LARABEAR_OAUTH2_CREATE_USER_IF_NOT_EXISTS);
             if (Session::get(key: 'oauth2_login_user', default: false) !== true) {
                 $createUserIfNotExists = false;
             }
             $user = BearOauth2ClientService::getUserFromCallback(
                 client: BearOauth2Client::findOrFail(id: $oauth2_client_id),
-                code: Req::getStringOrDefault(key: 'code'),
+                code: Req::getString(key: 'code'),
                 redirectUri: $redirectUri,
                 createBearUser: $createUserIfNotExists
             );
@@ -60,7 +61,7 @@ final class LarabearAuthOauth2Controller extends Controller {
                 severity: BearSeverityEnum::CRITICAL,
                 exception: $t
             );
-            return Resp::redirect(url: BearConfigService::getString(config_key: 'larabear::path-to-redirect-if-not-logged-in'), message: $t->getMessage());
+            return Resp::redirect(url: BearConfigService::getString(enum: LarabearConfigEnum::LARABEAR_PATH_TO_REDIRECT_IF_NOT_LOGGED_IN), message: $t->getMessage());
         }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Command;
 
+use GuardsmanPanda\Larabear\Infrastructure\Config\Enum\LarabearConfigEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Service\BearConfigService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -11,13 +12,13 @@ final class LarabearCleanTablesCommand extends Command {
     protected $description = 'Clean the log tables';
 
     public function handle(): void {
-        $days_to_store_database_changes = BearConfigService::getInteger(config_key: 'larabear::log-database-change-store-for-days');
+        $days_to_store_database_changes = BearConfigService::getInteger(enum: LarabearConfigEnum::LARABEAR_LOG_DATABASE_CHANGE_STORE_FOR_DAYS);
         $res = DB::delete(query: "DELETE FROM bear_database_change WHERE created_at < ?", bindings: [now()->subDays($days_to_store_database_changes)->toDateString()]);
         if ($res > 0) {
             $this->info(string: "Deleted $res rows from bear_log_database_change");
         }
 
-        $days_to_store_logs = BearConfigService::getInteger(config_key: 'larabear::log-store-for-days');
+        $days_to_store_logs = BearConfigService::getInteger(enum: LarabearConfigEnum::LARABEAR_LOG_STORE_FOR_DAYS);
         $res = DB::delete(query: "DELETE FROM bear_console_event WHERE created_at < ?", bindings: [now()->subDays($days_to_store_logs)->toDateString()]);
         if ($res > 0) {
             $this->info(string: "Deleted $res rows from bear_console_event");

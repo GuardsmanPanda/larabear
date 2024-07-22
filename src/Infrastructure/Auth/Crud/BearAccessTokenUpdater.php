@@ -6,13 +6,13 @@ use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessToken;
 
-final readonly class BearAccessTokenAppUpdater {
+final readonly class BearAccessTokenUpdater {
     public function __construct(private BearAccessToken $model) {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
     }
 
-    public static function fromId(string $id): BearAccessTokenAppUpdater {
-        return new BearAccessTokenAppUpdater(model: BearAccessToken::findOrFail(id: $id));
+    public static function fromId(string $id): BearAccessTokenUpdater {
+        return new BearAccessTokenUpdater(model: BearAccessToken::findOrFail(id: $id));
     }
 
 
@@ -50,11 +50,11 @@ final readonly class BearAccessTokenAppUpdater {
         return $this;
     }
 
-    public function setLastUsageAt(CarbonInterface|null $last_usage_at): self {
-        if ($last_usage_at?->toIso8601String() === $this->model->last_usage_at?->toIso8601String()) {
+    public function setLastUsageDate(CarbonInterface|null $last_usage_date): self {
+        if ($last_usage_date?->toIso8601String() === $this->model->last_usage_date?->toIso8601String()) {
             return $this;
         }
-        $this->model->last_usage_at = $last_usage_at;
+        $this->model->last_usage_date = $last_usage_date;
         return $this;
     }
 

@@ -87,14 +87,7 @@ final class ValidateAndParseValue {
     }
 
 
-    public static function parseDate(mixed $value, string $errorMessage = null): CarbonImmutable {
-        if ($value instanceof CarbonImmutable) {
-            return $value;
-        }
-        if (!is_string(value: $value)) {
-            $msg = "$value is not a string, type: " . gettype(value: $value);
-            throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
-        }
+    public static function parseDate(string $value, string $errorMessage = null): CarbonImmutable {
         $arr = explode(separator: '-', string: $value);
         if (count($arr) !== 3 || strlen($arr[0]) !== 4 || strlen($arr[1]) !== 2 || strlen($arr[2]) !== 2) {
             $msg = "Invalid date format: $value, must be YYYY-MM-DD";

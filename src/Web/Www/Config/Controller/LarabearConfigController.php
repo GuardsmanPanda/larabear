@@ -14,25 +14,25 @@ use Illuminate\View\View;
 final class LarabearConfigController extends Controller {
     public function index(): View {
         return Resp::view(view: 'larabear-config::index', data: [
-            'configs' => DB::select(query: "SELECT * FROM bear_config ORDER BY config_key"),
+            'configs' => DB::select(query: "SELECT * FROM bear_config ORDER BY enum"),
         ]);
     }
 
     public function updateDialog(string $key): View {
         return Htmx::dialogView(view: 'larabear-config::update', title: "Update Config - $key",data: [
-            'config_data' => DB::selectOne(query: "SELECT * FROM bear_config WHERE config_key = ?", bindings: [$key]),
+            'config_data' => DB::selectOne(query: "SELECT * FROM bear_config WHERE enum = ?", bindings: [$key]),
         ]);
     }
 
     public function update(string $key): View {
         $updater = BearConfigUpdater::fromConfigKey(config_key: $key);
-        $updater->setDescription(description: Req::getStringOrDefault(key: 'config_description'));
-        $updater->setConfigString(config_string: Req::getString(key: 'config_string'));
-        $updater->setEncryptedConfigString(encrypted_config_string: Req::getString(key: 'encrypted_config_string'));
-        $updater->setConfigBoolean(config_boolean: Req::getBool(key: 'config_boolean'));
-        $updater->setConfigInteger(config_integer: Req::getInt(key: 'config_integer'));
-        $updater->setConfigDate(config_date: Req::getDate(key: 'config_date'));
-        $updater->setConfigTimestamp(config_timestamp: Req::getDateTime(key: 'config_timestamp'));
+        $updater->setDescription(description: Req::getString(key: 'config_description'));
+        $updater->setConfigString(config_string: Req::getStringOrNull(key: 'config_string', isOptional: true));
+        $updater->setEncryptedConfigString(encrypted_config_string: Req::getStringOrNull(key: 'encrypted_config_string', isOptional: true));
+        $updater->setConfigBoolean(config_boolean: Req::getBoolOrNull(key: 'config_boolean', isOptional: true));
+        $updater->setConfigInteger(config_integer: Req::getIntOrNull(key: 'config_integer', isOptional: true));
+        $updater->setConfigDate(config_date: Req::getDateOrNull(key: 'config_date', isOptional: true));
+        $updater->setConfigTimestamp(config_timestamp: Req::getDateTimeOrNull(key: 'config_timestamp', isOptional: true));
         $updater->update();
         return $this->index();
     }

@@ -63,7 +63,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $api_primary_key
  * @property string|null $external_api_enum
  * @property CarbonInterface|null $expires_at
- * @property CarbonInterface|null $last_usage_at
+ * @property CarbonInterface|null $last_usage_date
  *
  * @property BearExternalApi|null $externalApiEnum
  *
@@ -78,7 +78,7 @@ final class BearAccessToken extends Model {
     /** @var array<string, string> $casts */
     protected $casts = [
         'expires_at' => 'immutable_datetime',
-        'last_usage_at' => 'immutable_datetime',
+        'last_usage_date' => 'immutable_datetime',
     ];
 
     /** @return BelongsTo<BearExternalApi, self>|null */

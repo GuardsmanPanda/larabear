@@ -2,6 +2,6 @@
 
 namespace GuardsmanPanda\Larabear\Integration\Twilio\Data;
 
-final class BearTwilioSmsResponse {
-    public function __construct(public readonly string $error_message, public readonly int $code = -1, public readonly string|null $sid = null) {}
+final readonly class BearTwilioSmsResponse {
+    public function __construct(public string $error_message, public int $code = -1, public string|null $sid = null) {}
 }

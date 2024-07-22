@@ -13,21 +13,21 @@ final class LarabearErrorResponseController extends Controller {
     public function index(): View {
         return Resp::view(view: 'larabear-log::response-error.index', data: [
             'errors' => DB::select(query: "
-                SELECT le.*, bc.country_name
+                SELECT le.*, bc.cca2
                 FROM bear_error_response le
-                LEFT JOIN bear_country bc ON bc.country_iso2_code = le.request_country_code
+                LEFT JOIN bear_country bc ON bc.cca2 = le.country_code
                 ORDER BY le.created_at DESC
                 LIMIT 1000
-                "),
+            "),
         ]);
     }
 
     public function delete(): View {
         BearResponseErrorDeleter::delete(
-            id: Req::getInt(key: 'id', defaultIfMissing: null),
-            status_code: Req::getInt(key: 'response_status_code', defaultIfMissing: null),
-            http_path: Req::getString(key: 'request_path', defaultIfMissing: null),
-            action_name: Req::getString(key: 'app_action_name', defaultIfMissing: null),
+            id: Req::getIntOrNull(key: 'id', isOptional: true),
+            status_code: Req::getIntOrNull(key: 'status_code', isOptional: true),
+            http_path: Req::getStringOrNull(key: 'http_path', isOptional: true),
+            action_name: Req::getStringOrNull(key: 'action_name', isOptional: true),
         );
         return  $this->index();
     }

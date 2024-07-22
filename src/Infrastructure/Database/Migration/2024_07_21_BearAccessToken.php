@@ -27,7 +27,7 @@ return new class extends Migration {
                 $table->string(column: 'external_api_enum')->nullable();
                 $table->string(column: 'hashed_access_token')->index();
             }
-            $table->timestampTz(column: 'last_usage_at')->nullable();
+            $table->date(column: 'last_usage_date')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->foreign('external_api_enum')->references('enum')->on(table: 'bear_external_api');

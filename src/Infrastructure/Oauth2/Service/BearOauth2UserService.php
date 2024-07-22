@@ -32,7 +32,7 @@ final class BearOauth2UserService {
             // So we check again to see if we have recently refreshed the token.
             if ($updater->getAccessTokenExpiresAt() > Carbon::now()->addMinutes(self::SAFETY_BUFFER_MINUTES)) {
                 DB::rollBack();
-                return $updater->getEncryptedUserAccessToken();
+                return $updater->getEncryptedAccessToken();
             }
 
             $client = $user->oauth2Client;
@@ -58,7 +58,7 @@ final class BearOauth2UserService {
                 $updater->setAccessTokenErrorMessage(access_token_error_message: $resp->body())->update();
             }
             DB::commit();
-            return $updater->getEncryptedUserAccessToken();
+            return $updater->getEncryptedAccessToken();
         } catch (Throwable $t) {
             DB::rollBack();
             BearErrorCreator::create(

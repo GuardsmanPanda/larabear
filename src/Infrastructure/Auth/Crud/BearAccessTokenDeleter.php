@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessToken;
 
-final class BearAccessTokenAppDeleter {
+final class BearAccessTokenDeleter {
     public static function delete(BearAccessToken $model): void {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
         $model->delete();

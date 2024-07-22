@@ -11,7 +11,7 @@ final class BearRouteUsageCrud {
         $method = Req::method();
         $route = Req::routePath();
         $action = Req::actionName();
-        if ($route === null || $action === null) {
+        if ($action === null) {
             return;
         }
         $time = 0;
