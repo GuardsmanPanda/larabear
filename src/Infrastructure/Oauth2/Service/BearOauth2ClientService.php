@@ -71,7 +71,7 @@ final class BearOauth2ClientService {
         $token = OidcToken::fromJwt(jwt: $data['id_token'], client: $client);
 
         $bearOauth2User = BearOauth2User::where(column: 'oauth2_client_id', operator: '=', value: $token->issuedToClientId)
-            ->where(column: 'oauth2_user_identifier', operator: '=', value: $token->userIdentifier)
+            ->where(column: 'identifier', operator: '=', value: $token->userIdentifier)
             ->first();
         $bearUser = $bearOauth2User?->user;
         $bearUser ??= BearUser::where(column: 'user_email', operator: '=', value: $token->email)->first();

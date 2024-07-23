@@ -12,7 +12,6 @@ final class LarabearDashboardController extends Controller {
     public function index(): View {
         return Resp::view(view: 'larabear-dashboard::index', data: [
             'php_info' => $this->collectPhpInformation(),
-            'system' => $this->collectSystemInformation(),
         ]);
     }
 
@@ -21,7 +20,6 @@ final class LarabearDashboardController extends Controller {
      */
     private function collectPhpInformation(): array {
         $phpInfo = [];
-        //phpInfo(INFO_GENERAL);
 
         $phpInfo['php_version'] = ['name' => 'php_version', 'value' => PHP_VERSION, 'icon' => 'check', 'message' => 'PHP version is correct.'];
         $opCache = opcache_get_configuration();
@@ -29,13 +27,11 @@ final class LarabearDashboardController extends Controller {
             return $phpInfo;
         }
         $opcacheConfigs = $opCache['directives'];
-
         $phpInfo['opcache.enable'] = ['value' => $opcacheConfigs['opcache.enable'], 'icon' => 'check', 'message' => 'OPCache is enabled'];
         if (!$opcacheConfigs['opcache.enable']) {
             $phpInfo['opcache.enable']['message'] = 'OPCache is disabled.';
             $phpInfo['opcache.enable']['icon'] = 'exclamation-triangle';
         }
-
         $phpInfo['opcache.validate_timestamps'] = ['value' => $opcacheConfigs['opcache.validate_timestamps'], 'icon' => 'check', 'message' => 'OPCache is correctly not validating timestamps. (performance)'];
         if ($opcacheConfigs['opcache.validate_timestamps']) {
             $phpInfo['opcache.validate_timestamps']['message'] = 'OPCache is validating timestamps. (bad performance, only for development)';
@@ -48,14 +44,5 @@ final class LarabearDashboardController extends Controller {
         }
 
         return $phpInfo;
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    private function collectSystemInformation(): array {
-        return [
-            'host' => BearArrayService::stringToKeyValue(Process::command(command: 'hostnamectl')->run()->output(), separator: ': '),
-        ];
     }
 }
