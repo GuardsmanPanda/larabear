@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 final class BearRoleMiddleware {
     public function handle(Request $request, Closure $next, string $role): Response {
-        $result = BearAuthService::hasRole(role: $role);
+        $result = BearAuthService::hasRoleString(role: $role);
         if ($result !== true) {
             BearErrorCreator::create(
                 message: 'User tried to access a resource that requires a role that the user does not have.',

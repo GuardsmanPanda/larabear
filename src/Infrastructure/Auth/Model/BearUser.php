@@ -118,11 +118,11 @@ final class BearUser extends Model implements Authenticatable {
     }
 
     public function hasPermission(BearPermissionEnumInterface $permission): bool {
-        return BearAuthService::hasPermission(permission: $permission->getValue(), userId: $this->id);
+        return BearAuthService::hasPermission(permission: $permission, userId: $this->id);
     }
 
     public function hasRole(BearRoleEnumInterface $role): bool {
-        return BearAuthService::hasRole(role: $role->getValue(), userId: $this->id);
+        return BearAuthService::hasRole(role: $role, userId: $this->id);
     }
 
     public function getAuthPasswordName(): string {

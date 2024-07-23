@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 final class BearPermissionMiddleware {
     public function handle(Request $request, Closure $next, string $permission): Response {
-        $result = BearAuthService::hasPermission(permission: $permission);
+        $result = BearAuthService::hasPermissionString(permission: $permission);
         if ($result !== true) {
             BearErrorCreator::create(
                 message: 'User tried to access a resource that requires a permission that the user does not have.',

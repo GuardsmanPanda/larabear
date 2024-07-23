@@ -44,7 +44,11 @@ final class BearAuthService {
     }
 
 
-    public static function hasPermission(string $permission, string $userId = null): bool {
+    public static function hasPermission(BearPermissionEnumInterface $permission, string $userId = null): bool {
+        return self::hasPermissionString(permission: $permission->getValue(), userId: $userId);
+    }
+
+    public static function hasPermissionString(string $permission, string $userId = null): bool {
         $userId ??= BearGlobalStateService::getUserId();
         if ($userId === null) {
             return false;
@@ -69,7 +73,11 @@ final class BearAuthService {
     }
 
 
-    public static function hasRole(string $role, string $userId = null): bool {
+    public static function hasRole(BearRoleEnumInterface $role, string $userId = null): bool {
+        return self::hasRoleString(role: $role->getValue(), userId: $userId);
+    }
+
+    public static function hasRoleString(string $role, string $userId = null): bool {
         $userId ??= BearGlobalStateService::getUserId();
         if ($userId === null) {
             return false;
