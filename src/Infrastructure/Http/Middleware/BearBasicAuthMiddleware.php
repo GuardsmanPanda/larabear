@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 final class BearBasicAuthMiddleware {
-    public function handle(Request $request, Closure $next, string $field = 'user_email'): Response {
+    public function handle(Request $request, Closure $next, string $field = 'email'): Response {
         $user_info = $request->getUser();
         if ($user_info === null) {
             return new Response(content: 'No User Provided', status: 401, headers: ['WWW-Authenticate' => 'Basic']);
@@ -26,7 +26,7 @@ final class BearBasicAuthMiddleware {
     }
 
 
-    public static function using(string $field = 'user_email'): string {
+    public static function using(string $field = 'email'): string {
         return BearBasicAuthMiddleware::class . ':' . $field;
     }
 }

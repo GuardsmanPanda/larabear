@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class LarabearAuthController extends Controller {
     public function signIn(): RedirectResponse {
-        $user = BearUser::where(column: 'user_email', operator: '=', value: Req::getString(key: 'email'))->first();
+        $user = BearUser::where(column: 'email', operator: '=', value: Req::getString(key: 'email'))->first();
         if ($user === null || $user->password === null) {
             return Resp::redirect(url: BearConfigService::getString(enum: LarabearConfigEnum::LARABEAR_PATH_TO_REDIRECT_IF_NOT_LOGGED_IN), message: 'Invalid or deactivated user.');
         }
