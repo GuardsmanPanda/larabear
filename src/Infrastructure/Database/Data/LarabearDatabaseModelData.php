@@ -39,6 +39,7 @@ final class LarabearDatabaseModelData {
         $this->headers->add(element: 'use Carbon\CarbonInterface;');
         $this->headers->add(element: 'use Illuminate\Database\Eloquent\Model;');
         $this->headers->add(element: 'use Illuminate\Database\Eloquent\Collection;');
+        $this->headers->add(element: 'use Illuminate\Database\Eloquent\Builder;');
     }
 
     public function getTableName(): string {
@@ -294,35 +295,34 @@ final class LarabearDatabaseModelData {
         $content .= " * @method static Collection<int, $this->modelClassName> get(array \$columns = ['*'])" . PHP_EOL;
         $content .= " * @method static Collection<int|string, $this->modelClassName> pluck(string \$column, string \$key = null)" . PHP_EOL;
         $content .= " * @method static Collection<int, $this->modelClassName> fromQuery(string \$query, array \$bindings = [])" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName lockForUpdate()" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName select(array \$columns = ['*'])" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName selectRaw(string \$expression, array \$bindings = [])" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName with(array \$relations)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> lockForUpdate()" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> select(array \$columns = ['*'])" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> selectRaw(string \$expression, array \$bindings = [])" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> with(array \$relations)" . PHP_EOL;
         if ($this->softDeletes) {
-            $content .= " * @method static $this->modelClassName onlyTrashed()" . PHP_EOL;
-            $content .= " * @method static $this->modelClassName withTrashed()" . PHP_EOL;
+            $content .= " * @method static Builder<$this->modelClassName> onlyTrashed()" . PHP_EOL;
+            $content .= " * @method static Builder<$this->modelClassName> withTrashed()" . PHP_EOL;
         }
         $content .= " * @method static $this->modelClassName leftJoin(string \$table, string \$first, string \$operator = null, string \$second = null)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName where(string \$column, string \$operator = null, string|float|int|bool \$value = null)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereIn(string \$column, array \$values)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereNull(string|array \$columns)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereNotNull(string|array \$columns)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereYear(string \$column, string \$operator, CarbonInterface|string|int \$value)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereMonth(string \$column, string \$operator, CarbonInterface|string|int \$value)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereDate(string \$column, string \$operator, CarbonInterface|string \$value)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereExists(Closure \$callback)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereNotExists(Closure \$callback)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereHas(string \$relation, Closure \$callback = null, string \$operator = '>=', int \$count = 1)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName withWhereHas(string \$relation, Closure \$callback = null, string \$operator = '>=', int \$count = 1)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereDoesntHave(string \$relation, Closure \$callback = null)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName whereRaw(string \$sql, array \$bindings = [])" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName groupBy(string \$groupBy)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName orderBy(string \$column, string \$direction = 'asc')" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName orderByDesc(string \$column)" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName orderByRaw(string \$sql, array \$bindings = [])" . PHP_EOL;
-        $content .= " * @method static $this->modelClassName limit(int \$value)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> where(string \$column, string \$operator = null, string|float|int|bool \$value = null)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> whereIn(string \$column, array \$values)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> whereNull(string|array \$columns)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> whereNotNull(string|array \$columns)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> whereYear(string \$column, string \$operator, CarbonInterface|string|int \$value)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> whereMonth(string \$column, string \$operator, CarbonInterface|string|int \$value)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> whereDate(string \$column, string \$operator, CarbonInterface|string \$value)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> whereExists(Closure \$callback)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> whereNotExists(Closure \$callback)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> whereHas(string \$relation, Closure \$callback = null, string \$operator = '>=', int \$count = 1)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> withWhereHas(string \$relation, Closure \$callback = null, string \$operator = '>=', int \$count = 1)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> whereDoesntHave(string \$relation, Closure \$callback = null)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> whereRaw(string \$sql, array \$bindings = [])" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> groupBy(string \$groupBy)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> orderBy(string \$column, string \$direction = 'asc')" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> orderByDesc(string \$column)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> orderByRaw(string \$sql, array \$bindings = [])" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> limit(int \$value)" . PHP_EOL;
         $content .= " * @method static int count(array \$columns = ['*'])" . PHP_EOL;
-        $content .= " * @method static mixed sum(string \$column)" . PHP_EOL;
         $content .= " * @method static bool exists()" . PHP_EOL;
         $content .= " *" . PHP_EOL;
 

@@ -86,7 +86,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
     public function databaseTypeToPhpType(string $databaseType): string {
         return match ($databaseType) {
             'date', 'timestamp with time zone' => 'CarbonInterface',
-            'text', 'character varying', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 'string',
+            'text', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 'string',
             'integer', 'bigint', 'smallint' => 'int',
             'double precision' => 'float',
             'jsonb' => 'ArrayObject',
@@ -100,7 +100,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
             'integer', 'bigint', 'smallint' => 0,
             'timestamp with time zone' => 12,
             'date', => 10,
-            'text', 'character varying', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 6,
+            'text', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 6,
             'double precision' => 4,
             'jsonb' => 8,
             'boolean' => 2,
@@ -111,7 +111,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
     private function postgresTypeToPhpHeader(string $postgres_type): string {
         return match ($postgres_type) {
             'jsonb' => 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;',
-            'text', 'character varying', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'USER-DEFINED' => '',
+            'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'USER-DEFINED' => '',
             'date', 'timestamp with time zone' => 'use Carbon\\CarbonInterface;',
             default => throw new RuntimeException(message: "Unknown type: $postgres_type")
         };
@@ -122,7 +122,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
             return "'encrypted'";
         }
         return match ($postgres_type) {
-            'text', 'character varying', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'USER-DEFINED' => null,
+            'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'USER-DEFINED' => null,
             'timestamp with time zone' => "'immutable_datetime'",
             'jsonb' => "AsArrayObject::class",
             'date' => "'immutable_date'",
