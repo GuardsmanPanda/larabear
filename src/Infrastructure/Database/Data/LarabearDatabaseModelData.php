@@ -303,7 +303,7 @@ final class LarabearDatabaseModelData {
             $content .= " * @method static Builder<$this->modelClassName> onlyTrashed()" . PHP_EOL;
             $content .= " * @method static Builder<$this->modelClassName> withTrashed()" . PHP_EOL;
         }
-        $content .= " * @method static $this->modelClassName leftJoin(string \$table, string \$first, string \$operator = null, string \$second = null)" . PHP_EOL;
+        $content .= " * @method static Builder<$this->modelClassName> leftJoin(string \$table, string \$first, string \$operator = null, string \$second = null)" . PHP_EOL;
         $content .= " * @method static Builder<$this->modelClassName> where(string \$column, string \$operator = null, string|float|int|bool \$value = null)" . PHP_EOL;
         $content .= " * @method static Builder<$this->modelClassName> whereIn(string \$column, array \$values)" . PHP_EOL;
         $content .= " * @method static Builder<$this->modelClassName> whereNull(string|array \$columns)" . PHP_EOL;
@@ -373,7 +373,7 @@ final class LarabearDatabaseModelData {
 
 
         $content .= "    /**" . PHP_EOL;
-        $content .= "     * @param array<string, string> \$ids # Ids in the form ['key1' => 'value1', 'key2' => 'value2']" . PHP_EOL;
+        $content .= "     * @param array<string, string|int> \$ids # Ids in the form ['key1' => 'value1', 'key2' => 'value2']" . PHP_EOL;
         $content .= "     * @param array<string> \$columns" . PHP_EOL;
         $content .= "     * @return $this->modelClassName|null" . PHP_EOL;
         $content .= "     */" . PHP_EOL;
@@ -389,7 +389,7 @@ final class LarabearDatabaseModelData {
 
 
         $content .= "    /**" . PHP_EOL;
-        $content .= "     * @param array<string, string> \$ids # Ids in the form ['key1' => 'value1', 'key2' => 'value2']" . PHP_EOL;
+        $content .= "     * @param array<string, string|int> \$ids # Ids in the form ['key1' => 'value1', 'key2' => 'value2']" . PHP_EOL;
         $content .= "     * @param array<string> \$columns" . PHP_EOL;
         $content .= "     * @return $this->modelClassName" . PHP_EOL;
         $content .= "     */" . PHP_EOL;
