@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Traits;
 
+use BackedEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Crud\BearDatabaseChangeCreator;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Database\Eloquent\Model;
@@ -62,10 +63,10 @@ trait BearDatabaseChangeTrait {
                 }
 
                 // Fix enums
-                if ($old_value instanceof \UnitEnum) {
+                if ($old_value instanceof BackedEnum) {
                     $old_value = $old_value->value;
                 }
-                if ($new_value instanceof \UnitEnum) {
+                if ($new_value instanceof BackedEnum) {
                     $new_value = $new_value->value;
                 }
                 BearDatabaseChangeCreator::create(model: $model, changeType: 'UPDATE', columnName: $column_name, oldValue: is_null($old_value) ? null : (string)$old_value, newValue: is_null($new_value) ? null : (string)$new_value);
