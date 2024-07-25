@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Integration\Postmark\Client;
 
+use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearHttpMethodEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Client\BearExternalApiClient;
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
@@ -43,7 +44,7 @@ final class BearPostmarkClient {
         }
         $client = BearExternalApiClient::fromExternalApi(api: $external);
         try {
-            $result = $client->request(path: 'email', method: 'POST', body: [
+            $result = $client->request(path: 'email', method: BearHttpMethodEnum::POST, body: [
                 'From' => $external->metadata_json['from'] ?? throw new RuntimeException(message: 'Missing from in external_api_metadata_json'),
                 'To' => $to,
                 'subject' => $subject,

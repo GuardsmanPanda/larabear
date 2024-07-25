@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 final class BearRouteUsageCrud {
     public static function createOrUpdate(int $multiply = 1): void {
-        $method = Req::method();
         $route = Req::routePath();
         $action = Req::actionName();
         if ($action === null) {
@@ -22,11 +21,11 @@ final class BearRouteUsageCrud {
             DB::insert(query: "
             INSERT INTO bear_route_usage (http_method, http_path, action_name, count, time_microseconds)
             VALUES (?, ?, ?, ?, ?)
-            ON CONFLICT (http_method, http_path, action_name)  DO UPDATE SET
+            ON CONFLICT (http_method, http_path, action_name) DO UPDATE SET
                 last_usage_at = NOW(),                                                                                                  
                 count = bear_route_usage.count + excluded.count,
                 time_microseconds = bear_route_usage.time_microseconds + excluded.time_microseconds
-        ", bindings: [$method, $route, $action, $multiply, $time]);
+        ", bindings: [Req::method()->value, $route, $action, $multiply, $time]);
         }
     }
 }

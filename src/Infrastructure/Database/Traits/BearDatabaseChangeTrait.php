@@ -60,6 +60,14 @@ trait BearDatabaseChangeTrait {
                 if (is_bool($new_value)) {
                     $new_value = $new_value ? 'true' : 'false';
                 }
+
+                // Fix enums
+                if ($old_value instanceof \UnitEnum) {
+                    $old_value = $old_value->value;
+                }
+                if ($new_value instanceof \UnitEnum) {
+                    $new_value = $new_value->value;
+                }
                 BearDatabaseChangeCreator::create(model: $model, changeType: 'UPDATE', columnName: $column_name, oldValue: is_null($old_value) ? null : (string)$old_value, newValue: is_null($new_value) ? null : (string)$new_value);
             }
         });

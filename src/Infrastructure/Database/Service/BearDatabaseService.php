@@ -33,7 +33,7 @@ final class BearDatabaseService {
         if (App::runningUnitTests() || App::runningInConsole()) {
             return;
         }
-        if (!in_array(needle: Req::method(), haystack: $verbs, strict: true)) {
+        if (!in_array(needle: Req::method()->value, haystack: $verbs, strict: true)) {
             throw new RuntimeException(message: 'This method can only be called in the following HTTP methods: ' . implode(separator: ', ', array: $verbs));
         }
     }

@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
 use Carbon\CarbonImmutable;
+use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearHttpMethodEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
@@ -77,8 +78,20 @@ final class Req {
         return self::$r?->headers->get(key: 'referer');
     }
 
-    public static function method(): string {
-        return self::$r?->method() ?? 'CLI';
+    public static function method(): BearHttpMethodEnum {
+        if (self::$r === null) {
+            return BearHttpMethodEnum::CLI;
+        }
+        return match (self::$r->method()) {
+            'GET' => BearHttpMethodEnum::GET,
+            'POST' => BearHttpMethodEnum::POST,
+            'PUT' => BearHttpMethodEnum::PUT,
+            'PATCH' => BearHttpMethodEnum::PATCH,
+            'DELETE' => BearHttpMethodEnum::DELETE,
+            'OPTIONS' => BearHttpMethodEnum::OPTIONS,
+            'HEAD' => BearHttpMethodEnum::HEAD,
+            default => throw new RuntimeException(message: 'Unknown HTTP Method')
+        };
     }
 
     public static function path(): string {
@@ -114,7 +127,7 @@ final class Req {
 
     public static function isWriteRequest(): bool {
         return match (self::method()) {
-            'GET', 'HEAD', 'OPTIONS' => false,
+            BearHttpMethodEnum::GET, BearHttpMethodEnum::HEAD, BearHttpMethodEnum::OPTIONS => false,
             default => true
         };
     }

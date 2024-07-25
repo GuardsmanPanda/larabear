@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Integration\ExternalApi\Client;
 
+use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearHttpMethodEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearSeverityEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
@@ -127,13 +128,13 @@ final class BearExternalApiClient {
 
     /**
      * @param string $path
-     * @param string $method
+     * @param BearHttpMethodEnum $method
      * @param array<string, string> $headers
      * @param array<string, mixed> $body
      * @param array<string, string> $query
      * @return array<string, mixed>
      */
-    public function toArray(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = []): array {
+    public function toArray(string $path, BearHttpMethodEnum $method = BearHttpMethodEnum::GET, array $headers = [], array $body = [], array $query = []): array {
         return $this->request(path: $path, method: $method, headers: $headers, body: $body, query: $query)->json();
     }
 
@@ -188,31 +189,34 @@ final class BearExternalApiClient {
      * @return Response
      */
     public function formRequest(String $path, array $headers = [], array $body = []): Response {
-        return $this->request(path: $path, method: 'POST', headers: $headers, body: $body, asForm: true);
+        return $this->request(path: $path, method: BearHttpMethodEnum::POST, headers: $headers, body: $body, asForm: true);
     }
 
 
     /**
      * @param string $path
-     * @param string $method
+     * @param BearHttpMethodEnum $method
      * @param array<string, string> $headers
      * @param array<string, string> $body
      * @param array<string, string> $query
      * @return Response
      */
-    public function request(string $path, string $method = 'GET', array $headers = [], array $body = [], array $query = [], bool $asForm = false): Response {
+    public function request(
+        string $path, BearHttpMethodEnum $method = BearHttpMethodEnum::GET,
+        array $headers = [], array $body = [], array $query = [], bool $asForm = false
+    ): Response {
         $final_url = str_starts_with(haystack: $path, needle: 'https://') ? $path : $this->baseUrl . $path;
         $pending = Http::withOptions(['query' => $query + $this->baseQuery, 'headers' => $headers + $this->baseHeaders])->timeout(seconds: self::$API_REQUEST_TIMEOUT);
         if ($asForm) {
             $pending = $pending->asForm();
         }
         return match ($method) {
-            'GET' => $pending->get($final_url),
-            'POST' => $pending->post($final_url, $body),
-            'PUT' => $pending->put($final_url, $body),
-            'PATCH' => $pending->patch($final_url, $body),
-            'DELETE' => $pending->delete($final_url, $body),
-            default => throw new RuntimeException(message: "Method [$method] not supported")
+            BearHttpMethodEnum::GET => $pending->get($final_url),
+            BearHttpMethodEnum::POST => $pending->post($final_url, $body),
+            BearHttpMethodEnum::PUT => $pending->put($final_url, $body),
+            BearHttpMethodEnum::PATCH => $pending->patch($final_url, $body),
+            BearHttpMethodEnum::DELETE => $pending->delete($final_url, $body),
+            default => throw new RuntimeException(message: "Method [$method->value] not supported")
         };
     }
 }

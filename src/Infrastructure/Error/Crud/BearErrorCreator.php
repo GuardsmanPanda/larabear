@@ -35,7 +35,7 @@ final class BearErrorCreator {
             DB::connection(name: 'larabear_transaction_free')->insert(query: "
                 INSERT INTO bear_error (severity, slug, message, exception_message, exception_class, exception_trace, user_id, ip, country_code, http_method, http_path, query_json, action_name, hostname, referer, request_id, console_id)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ", bindings: [$severity->value, $slug, $message, $exception?->getMessage(), $exception_class, $exception?->getTraceAsString(), BearGlobalStateService::getUserId(), Req::ip(), Req::ipCountry(), Req::method(), Req::path(), $query_json, Req::actionName(), Req::hostname(), Req::referer(), BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleIdOrNull()]);
+            ", bindings: [$severity->value, $slug, $message, $exception?->getMessage(), $exception_class, $exception?->getTraceAsString(), BearGlobalStateService::getUserId(), Req::ip(), Req::ipCountry(), Req::method()->value, Req::path(), $query_json, Req::actionName(), Req::hostname(), Req::referer(), BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleIdOrNull()]);
         } catch (Throwable $e) {
             Log::error(message: 'Failed log error: ' . $e->getMessage());
         }

@@ -43,7 +43,7 @@ final class BearDatabaseChangeCreator {
                 $changeType, $softDeletion,
                 BearGlobalStateService::getUserId(),
                 Req::ip(), Req::ipCountry(),
-                Req::method(), Req::path(), Req::actionName(), Req::hostname(),
+                Req::method()->value, Req::path(), Req::actionName(), Req::hostname(),
                 BearGlobalStateService::getRequestId(), BearGlobalStateService::getConsoleIdOrNull()
             ]);
         } catch (Throwable $t) {
