@@ -7,6 +7,7 @@ use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,31 +27,30 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static Collection<int, BearAccessToken> get(array $columns = ['*'])
  * @method static Collection<int|string, BearAccessToken> pluck(string $column, string $key = null)
  * @method static Collection<int, BearAccessToken> fromQuery(string $query, array $bindings = [])
- * @method static BearAccessToken lockForUpdate()
- * @method static BearAccessToken select(array $columns = ['*'])
- * @method static BearAccessToken selectRaw(string $expression, array $bindings = [])
- * @method static BearAccessToken with(array $relations)
- * @method static BearAccessToken leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static BearAccessToken where(string $column, string $operator = null, string|float|int|bool $value = null)
- * @method static BearAccessToken whereIn(string $column, array $values)
- * @method static BearAccessToken whereNull(string|array $columns)
- * @method static BearAccessToken whereNotNull(string|array $columns)
- * @method static BearAccessToken whereYear(string $column, string $operator, CarbonInterface|string|int $value)
- * @method static BearAccessToken whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
- * @method static BearAccessToken whereDate(string $column, string $operator, CarbonInterface|string $value)
- * @method static BearAccessToken whereExists(Closure $callback)
- * @method static BearAccessToken whereNotExists(Closure $callback)
- * @method static BearAccessToken whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearAccessToken withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearAccessToken whereDoesntHave(string $relation, Closure $callback = null)
- * @method static BearAccessToken whereRaw(string $sql, array $bindings = [])
- * @method static BearAccessToken groupBy(string $groupBy)
- * @method static BearAccessToken orderBy(string $column, string $direction = 'asc')
- * @method static BearAccessToken orderByDesc(string $column)
- * @method static BearAccessToken orderByRaw(string $sql, array $bindings = [])
- * @method static BearAccessToken limit(int $value)
+ * @method static Builder<BearAccessToken> lockForUpdate()
+ * @method static Builder<BearAccessToken> select(array $columns = ['*'])
+ * @method static Builder<BearAccessToken> selectRaw(string $expression, array $bindings = [])
+ * @method static Builder<BearAccessToken> with(array $relations)
+ * @method static Builder<BearAccessToken> leftJoin(string $table, string $first, string $operator = null, string $second = null)
+ * @method static Builder<BearAccessToken> where(string $column, string $operator = null, string|float|int|bool $value = null)
+ * @method static Builder<BearAccessToken> whereIn(string $column, array $values)
+ * @method static Builder<BearAccessToken> whereNull(string|array $columns)
+ * @method static Builder<BearAccessToken> whereNotNull(string|array $columns)
+ * @method static Builder<BearAccessToken> whereYear(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static Builder<BearAccessToken> whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static Builder<BearAccessToken> whereDate(string $column, string $operator, CarbonInterface|string $value)
+ * @method static Builder<BearAccessToken> whereExists(Closure $callback)
+ * @method static Builder<BearAccessToken> whereNotExists(Closure $callback)
+ * @method static Builder<BearAccessToken> whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder<BearAccessToken> withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder<BearAccessToken> whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static Builder<BearAccessToken> whereRaw(string $sql, array $bindings = [])
+ * @method static Builder<BearAccessToken> groupBy(string $groupBy)
+ * @method static Builder<BearAccessToken> orderBy(string $column, string $direction = 'asc')
+ * @method static Builder<BearAccessToken> orderByDesc(string $column)
+ * @method static Builder<BearAccessToken> orderByRaw(string $sql, array $bindings = [])
+ * @method static Builder<BearAccessToken> limit(int $value)
  * @method static int count(array $columns = ['*'])
- * @method static mixed sum(string $column)
  * @method static bool exists()
  *
  * @property string $id
@@ -62,10 +62,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $path_prefix_restriction
  * @property string|null $api_primary_key
  * @property string|null $external_api_enum
- * @property CarbonInterface|null $expires_at
  * @property CarbonInterface|null $last_usage_date
+ * @property CarbonInterface|null $expires_at
  *
- * @property BearExternalApi|null $externalApiEnum
+ * @property BearExternalApi|null $externalApi
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */

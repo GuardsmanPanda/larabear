@@ -7,6 +7,7 @@ use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,31 +26,30 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Collection<int, BearOauth2Client> get(array $columns = ['*'])
  * @method static Collection<int|string, BearOauth2Client> pluck(string $column, string $key = null)
  * @method static Collection<int, BearOauth2Client> fromQuery(string $query, array $bindings = [])
- * @method static BearOauth2Client lockForUpdate()
- * @method static BearOauth2Client select(array $columns = ['*'])
- * @method static BearOauth2Client selectRaw(string $expression, array $bindings = [])
- * @method static BearOauth2Client with(array $relations)
- * @method static BearOauth2Client leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static BearOauth2Client where(string $column, string $operator = null, string|float|int|bool $value = null)
- * @method static BearOauth2Client whereIn(string $column, array $values)
- * @method static BearOauth2Client whereNull(string|array $columns)
- * @method static BearOauth2Client whereNotNull(string|array $columns)
- * @method static BearOauth2Client whereYear(string $column, string $operator, CarbonInterface|string|int $value)
- * @method static BearOauth2Client whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
- * @method static BearOauth2Client whereDate(string $column, string $operator, CarbonInterface|string $value)
- * @method static BearOauth2Client whereExists(Closure $callback)
- * @method static BearOauth2Client whereNotExists(Closure $callback)
- * @method static BearOauth2Client whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearOauth2Client withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearOauth2Client whereDoesntHave(string $relation, Closure $callback = null)
- * @method static BearOauth2Client whereRaw(string $sql, array $bindings = [])
- * @method static BearOauth2Client groupBy(string $groupBy)
- * @method static BearOauth2Client orderBy(string $column, string $direction = 'asc')
- * @method static BearOauth2Client orderByDesc(string $column)
- * @method static BearOauth2Client orderByRaw(string $sql, array $bindings = [])
- * @method static BearOauth2Client limit(int $value)
+ * @method static Builder<BearOauth2Client> lockForUpdate()
+ * @method static Builder<BearOauth2Client> select(array $columns = ['*'])
+ * @method static Builder<BearOauth2Client> selectRaw(string $expression, array $bindings = [])
+ * @method static Builder<BearOauth2Client> with(array $relations)
+ * @method static Builder<BearOauth2Client> leftJoin(string $table, string $first, string $operator = null, string $second = null)
+ * @method static Builder<BearOauth2Client> where(string $column, string $operator = null, string|float|int|bool $value = null)
+ * @method static Builder<BearOauth2Client> whereIn(string $column, array $values)
+ * @method static Builder<BearOauth2Client> whereNull(string|array $columns)
+ * @method static Builder<BearOauth2Client> whereNotNull(string|array $columns)
+ * @method static Builder<BearOauth2Client> whereYear(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static Builder<BearOauth2Client> whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static Builder<BearOauth2Client> whereDate(string $column, string $operator, CarbonInterface|string $value)
+ * @method static Builder<BearOauth2Client> whereExists(Closure $callback)
+ * @method static Builder<BearOauth2Client> whereNotExists(Closure $callback)
+ * @method static Builder<BearOauth2Client> whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder<BearOauth2Client> withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder<BearOauth2Client> whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static Builder<BearOauth2Client> whereRaw(string $sql, array $bindings = [])
+ * @method static Builder<BearOauth2Client> groupBy(string $groupBy)
+ * @method static Builder<BearOauth2Client> orderBy(string $column, string $direction = 'asc')
+ * @method static Builder<BearOauth2Client> orderByDesc(string $column)
+ * @method static Builder<BearOauth2Client> orderByRaw(string $sql, array $bindings = [])
+ * @method static Builder<BearOauth2Client> limit(int $value)
  * @method static int count(array $columns = ['*'])
- * @method static mixed sum(string $column)
  * @method static bool exists()
  *
  * @property string $id
@@ -65,6 +65,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $access_token_error_message
  * @property CarbonInterface|null $access_token_expires_at
  * @property LarabearOauth2ClientTypeEnum $oauth2_client_type_enum
+ *
+ * @property BearOauth2ClientType $oauth2ClientType
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */

@@ -12,6 +12,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2ClientService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2UserService;
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiAuthEnum;
+use GuardsmanPanda\Larabear\Integration\ExternalApi\Interface\BearExternalApiEnumInterface;
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
@@ -33,6 +34,7 @@ final class BearExternalApiClient {
         private readonly array $baseQuery = []
     ) {}
 
+
     /**
      * @param BearOauth2Client $client
      * @param string|null $baseUrl
@@ -46,6 +48,7 @@ final class BearExternalApiClient {
         );
     }
 
+
     /**
      * @param string $clientId
      * @param string|null $baseUrl
@@ -55,6 +58,7 @@ final class BearExternalApiClient {
     public static function fromOauth2ClientId(string $clientId, string $baseUrl = null, array $baseHeaders = []): self {
         return self::fromOauth2Client(client: BearOauth2Client::findOrFail(id: $clientId), baseUrl: $baseUrl, baseHeaders: $baseHeaders);
     }
+
 
     /**
      * @param BearOauth2User $user
@@ -69,34 +73,23 @@ final class BearExternalApiClient {
         );
     }
 
+
     public static function fromExternalApi(BearExternalApi $api, string $baseUrl = null): self {
         $headers = $api->base_headers_json?->getArrayCopy() ?? [];
-        $query = [];
-        $api_enum = BearExternalApiAuthEnum::from($api->external_api_type_enum);
-        if ($api_enum === BearExternalApiAuthEnum::OAUTH2_CLIENT) {
+        if ($api->external_api_auth_enum === BearExternalApiAuthEnum::OAUTH2_CLIENT) {
             return self::fromOauth2ClientId(clientId: $api->oauth2_client_id ?? throw new RuntimeException(message: 'OAUTH2_CLIENT API type must reference bear_oauth2_client'), baseUrl: $baseUrl ?? $api->base_url, baseHeaders: $headers);
         }
-        if ($api_enum === BearExternalApiAuthEnum::OAUTH2) {
+        if ($api->external_api_auth_enum === BearExternalApiAuthEnum::OAUTH2) {
             return self::fromOauth2User(user: $api->oauth2User ?? throw new RuntimeException(message: 'OAUTH2 API type must reference bear_oauth2_user'), baseUrl: $baseUrl ?? $api->base_url, baseHeaders: $headers);
         }
 
-        if ($api_enum === BearExternalApiAuthEnum::HEADER_X_API_KEY) {
-            $headers['X-API-Key'] = $api->encrypted_token;
+        $token = $api->encrypted_token ??  throw new InvalidArgumentException(message: "No access token for external API [$api->enum] provided");
+        $query = [];
+        if ($api->external_api_auth_enum->headerName() !== null) {
+            $headers[$api->external_api_auth_enum->headerName()] = $api->external_api_auth_enum->tokenPrefix() . $token;
         }
-        if ($api_enum === BearExternalApiAuthEnum::HEADER_X_POSTMARK_SERVER_TOKEN) {
-            $headers['X-Postmark-Server-Token'] = $api->encrypted_token;
-        }
-        if ($api_enum === BearExternalApiAuthEnum::QUERY_KEY) {
-            $query['key'] = $api->encrypted_token ?? throw new InvalidArgumentException(message: 'No API key provided');
-        }
-        if ($api_enum === BearExternalApiAuthEnum::QUERY_ACCESS_TOKEN) {
-            $query['access_token'] = $api->encrypted_token ?? throw new InvalidArgumentException(message: 'No access token provided');
-        }
-        if ($api_enum === BearExternalApiAuthEnum::BEARER_TOKEN) {
-            $headers['Authorization'] = "Bearer $api->encrypted_token";
-        }
-        if ($api_enum === BearExternalApiAuthEnum::BASIC_AUTH) {
-            $headers['Authorization'] = "Basic $api->encrypted_token";
+        if ($api->external_api_auth_enum->queryName() !== null) {
+            $query[$api->external_api_auth_enum->queryName()] = $api->external_api_auth_enum->tokenPrefix() . $token;
         }
 
         return new self(
@@ -106,13 +99,16 @@ final class BearExternalApiClient {
         );
     }
 
-    public static function fromSlug(string $slug, string $baseUrl = null): self {
-        return self::fromExternalApi(api: BearExternalApi::where(column: 'external_api_slug', operator: '=', value: $slug)->sole(), baseUrl: $baseUrl);
+
+    public static function fromEnum(BearExternalApiEnumInterface $enum, string $baseUrl = null): self {
+        return self::fromExternalApi(api: $enum->getModel(), baseUrl: $baseUrl);
     }
+
 
     public static function fromGlobal(string $baseUrl = null): self {
         return self::fromExternalApi(api: BearExternalApi::findOrFail(id: BearGlobalStateService::getApiPrimaryKey()), baseUrl: $baseUrl);
     }
+
 
     /**
      * @param string $path
@@ -125,6 +121,7 @@ final class BearExternalApiClient {
         $resp = $this->request(path: $path, method: Req::method(), headers: $headers, body: Req::allJsonData(allowEmpty: true) + $additionalBodyContent, query: Req::allQueryData() + $additionalQuery);
         return new JsonResponse(data: $resp->body(), status: $resp->status(), json: true);
     }
+
 
     /**
      * @param string $path
@@ -181,6 +178,7 @@ final class BearExternalApiClient {
         }
         return $value;
     }
+
 
     /**
      * @param string $path

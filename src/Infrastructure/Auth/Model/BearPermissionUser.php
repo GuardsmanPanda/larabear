@@ -6,6 +6,7 @@ use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -25,31 +26,30 @@ use RuntimeException;
  * @method static Collection<int, BearPermissionUser> get(array $columns = ['*'])
  * @method static Collection<int|string, BearPermissionUser> pluck(string $column, string $key = null)
  * @method static Collection<int, BearPermissionUser> fromQuery(string $query, array $bindings = [])
- * @method static BearPermissionUser lockForUpdate()
- * @method static BearPermissionUser select(array $columns = ['*'])
- * @method static BearPermissionUser selectRaw(string $expression, array $bindings = [])
- * @method static BearPermissionUser with(array $relations)
- * @method static BearPermissionUser leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static BearPermissionUser where(string $column, string $operator = null, string|float|int|bool $value = null)
- * @method static BearPermissionUser whereIn(string $column, array $values)
- * @method static BearPermissionUser whereNull(string|array $columns)
- * @method static BearPermissionUser whereNotNull(string|array $columns)
- * @method static BearPermissionUser whereYear(string $column, string $operator, CarbonInterface|string|int $value)
- * @method static BearPermissionUser whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
- * @method static BearPermissionUser whereDate(string $column, string $operator, CarbonInterface|string $value)
- * @method static BearPermissionUser whereExists(Closure $callback)
- * @method static BearPermissionUser whereNotExists(Closure $callback)
- * @method static BearPermissionUser whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearPermissionUser withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearPermissionUser whereDoesntHave(string $relation, Closure $callback = null)
- * @method static BearPermissionUser whereRaw(string $sql, array $bindings = [])
- * @method static BearPermissionUser groupBy(string $groupBy)
- * @method static BearPermissionUser orderBy(string $column, string $direction = 'asc')
- * @method static BearPermissionUser orderByDesc(string $column)
- * @method static BearPermissionUser orderByRaw(string $sql, array $bindings = [])
- * @method static BearPermissionUser limit(int $value)
+ * @method static Builder<BearPermissionUser> lockForUpdate()
+ * @method static Builder<BearPermissionUser> select(array $columns = ['*'])
+ * @method static Builder<BearPermissionUser> selectRaw(string $expression, array $bindings = [])
+ * @method static Builder<BearPermissionUser> with(array $relations)
+ * @method static Builder<BearPermissionUser> leftJoin(string $table, string $first, string $operator = null, string $second = null)
+ * @method static Builder<BearPermissionUser> where(string $column, string $operator = null, string|float|int|bool $value = null)
+ * @method static Builder<BearPermissionUser> whereIn(string $column, array $values)
+ * @method static Builder<BearPermissionUser> whereNull(string|array $columns)
+ * @method static Builder<BearPermissionUser> whereNotNull(string|array $columns)
+ * @method static Builder<BearPermissionUser> whereYear(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static Builder<BearPermissionUser> whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static Builder<BearPermissionUser> whereDate(string $column, string $operator, CarbonInterface|string $value)
+ * @method static Builder<BearPermissionUser> whereExists(Closure $callback)
+ * @method static Builder<BearPermissionUser> whereNotExists(Closure $callback)
+ * @method static Builder<BearPermissionUser> whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder<BearPermissionUser> withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder<BearPermissionUser> whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static Builder<BearPermissionUser> whereRaw(string $sql, array $bindings = [])
+ * @method static Builder<BearPermissionUser> groupBy(string $groupBy)
+ * @method static Builder<BearPermissionUser> orderBy(string $column, string $direction = 'asc')
+ * @method static Builder<BearPermissionUser> orderByDesc(string $column)
+ * @method static Builder<BearPermissionUser> orderByRaw(string $sql, array $bindings = [])
+ * @method static Builder<BearPermissionUser> limit(int $value)
  * @method static int count(array $columns = ['*'])
- * @method static mixed sum(string $column)
  * @method static bool exists()
  *
  * @property string $user_id
@@ -57,7 +57,7 @@ use RuntimeException;
  * @property string $permission_enum
  *
  * @property BearUser $user
- * @property BearPermission $permissionEnum
+ * @property BearPermission $permission
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */

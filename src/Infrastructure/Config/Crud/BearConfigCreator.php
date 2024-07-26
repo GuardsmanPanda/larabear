@@ -15,7 +15,6 @@ final class BearConfigCreator {
         $model->enum = $enum->getValue();
         $model->description = $enum->getDescription();
         $model->config_string = $enum->getDefaultConfigString();
-        $model->encrypted_config_string = $enum->getDefaultEncryptedConfigString();
         $model->config_boolean = $enum->getDefaultConfigBoolean();
         $model->config_integer = $enum->getDefaultConfigInteger();
         $model->config_date = $enum->getDefaultConfigDate();

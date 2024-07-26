@@ -6,11 +6,13 @@ use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -27,31 +29,30 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static Collection<int, BearErrorResponse> get(array $columns = ['*'])
  * @method static Collection<int|string, BearErrorResponse> pluck(string $column, string $key = null)
  * @method static Collection<int, BearErrorResponse> fromQuery(string $query, array $bindings = [])
- * @method static BearErrorResponse lockForUpdate()
- * @method static BearErrorResponse select(array $columns = ['*'])
- * @method static BearErrorResponse selectRaw(string $expression, array $bindings = [])
- * @method static BearErrorResponse with(array $relations)
- * @method static BearErrorResponse leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static BearErrorResponse where(string $column, string $operator = null, string|float|int|bool $value = null)
- * @method static BearErrorResponse whereIn(string $column, array $values)
- * @method static BearErrorResponse whereNull(string|array $columns)
- * @method static BearErrorResponse whereNotNull(string|array $columns)
- * @method static BearErrorResponse whereYear(string $column, string $operator, CarbonInterface|string|int $value)
- * @method static BearErrorResponse whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
- * @method static BearErrorResponse whereDate(string $column, string $operator, CarbonInterface|string $value)
- * @method static BearErrorResponse whereExists(Closure $callback)
- * @method static BearErrorResponse whereNotExists(Closure $callback)
- * @method static BearErrorResponse whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearErrorResponse withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearErrorResponse whereDoesntHave(string $relation, Closure $callback = null)
- * @method static BearErrorResponse whereRaw(string $sql, array $bindings = [])
- * @method static BearErrorResponse groupBy(string $groupBy)
- * @method static BearErrorResponse orderBy(string $column, string $direction = 'asc')
- * @method static BearErrorResponse orderByDesc(string $column)
- * @method static BearErrorResponse orderByRaw(string $sql, array $bindings = [])
- * @method static BearErrorResponse limit(int $value)
+ * @method static Builder<BearErrorResponse> lockForUpdate()
+ * @method static Builder<BearErrorResponse> select(array $columns = ['*'])
+ * @method static Builder<BearErrorResponse> selectRaw(string $expression, array $bindings = [])
+ * @method static Builder<BearErrorResponse> with(array $relations)
+ * @method static Builder<BearErrorResponse> leftJoin(string $table, string $first, string $operator = null, string $second = null)
+ * @method static Builder<BearErrorResponse> where(string $column, string $operator = null, string|float|int|bool $value = null)
+ * @method static Builder<BearErrorResponse> whereIn(string $column, array $values)
+ * @method static Builder<BearErrorResponse> whereNull(string|array $columns)
+ * @method static Builder<BearErrorResponse> whereNotNull(string|array $columns)
+ * @method static Builder<BearErrorResponse> whereYear(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static Builder<BearErrorResponse> whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static Builder<BearErrorResponse> whereDate(string $column, string $operator, CarbonInterface|string $value)
+ * @method static Builder<BearErrorResponse> whereExists(Closure $callback)
+ * @method static Builder<BearErrorResponse> whereNotExists(Closure $callback)
+ * @method static Builder<BearErrorResponse> whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder<BearErrorResponse> withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder<BearErrorResponse> whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static Builder<BearErrorResponse> whereRaw(string $sql, array $bindings = [])
+ * @method static Builder<BearErrorResponse> groupBy(string $groupBy)
+ * @method static Builder<BearErrorResponse> orderBy(string $column, string $direction = 'asc')
+ * @method static Builder<BearErrorResponse> orderByDesc(string $column)
+ * @method static Builder<BearErrorResponse> orderByRaw(string $sql, array $bindings = [])
+ * @method static Builder<BearErrorResponse> limit(int $value)
  * @method static int count(array $columns = ['*'])
- * @method static mixed sum(string $column)
  * @method static bool exists()
  *
  * @property int $id

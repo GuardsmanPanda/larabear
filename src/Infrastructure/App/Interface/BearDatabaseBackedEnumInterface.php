@@ -2,6 +2,11 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Interface;
 
-interface BearDatabaseBackedEnumInterface {
+use BackedEnum;
+use Illuminate\Database\Eloquent\Model;
+
+interface BearDatabaseBackedEnumInterface extends BackedEnum {
+    public function getModel(): Model;
+
     public static function syncToDatabase(): void;
 }

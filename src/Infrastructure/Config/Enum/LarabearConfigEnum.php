@@ -20,6 +20,11 @@ enum LarabearConfigEnum: string implements BearConfigEnumInterface {
     }
 
 
+    public function getModel(): BearConfig {
+        return BearConfig::findOrFail(id: $this->getValue());
+    }
+
+
     public function getDescription(): string {
         return match ($this) {
             self::LARABEAR_LOG_STORE_FOR_DAYS => 'Number of days to store logs for.',
@@ -39,11 +44,6 @@ enum LarabearConfigEnum: string implements BearConfigEnumInterface {
             self::LARABEAR_PATH_TO_REDIRECT_AFTER_LOGIN => '/dashboard',
             default => null
         };
-    }
-
-
-    public function getDefaultEncryptedConfigString(): string|null {
-        return null;
     }
 
 

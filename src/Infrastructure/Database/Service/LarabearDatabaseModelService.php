@@ -150,7 +150,7 @@ final class LarabearDatabaseModelService {
             'bear_config' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Config\\Model',
             'bear_console_event' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Console\\Model',
             'bear_error', 'bear_error_response' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Error\\Model',
-            'bear_external_api' => 'GuardsmanPanda\\Larabear\\Integration\\ExternalApi\\Model',
+            'bear_external_api', 'bear_external_api_auth' => 'GuardsmanPanda\\Larabear\\Integration\\ExternalApi\\Model',
             'bear_idempotency' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Integrity\\Model',
             'bear_oauth2_client', 'bear_oauth2_client_type', 'bear_oauth2_user' => "GuardsmanPanda\\Larabear\\Infrastructure\\Oauth2\\Model",
             'bear_database_change' => 'GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Model',

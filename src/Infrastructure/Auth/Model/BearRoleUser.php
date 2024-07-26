@@ -6,6 +6,7 @@ use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -25,31 +26,30 @@ use RuntimeException;
  * @method static Collection<int, BearRoleUser> get(array $columns = ['*'])
  * @method static Collection<int|string, BearRoleUser> pluck(string $column, string $key = null)
  * @method static Collection<int, BearRoleUser> fromQuery(string $query, array $bindings = [])
- * @method static BearRoleUser lockForUpdate()
- * @method static BearRoleUser select(array $columns = ['*'])
- * @method static BearRoleUser selectRaw(string $expression, array $bindings = [])
- * @method static BearRoleUser with(array $relations)
- * @method static BearRoleUser leftJoin(string $table, string $first, string $operator = null, string $second = null)
- * @method static BearRoleUser where(string $column, string $operator = null, string|float|int|bool $value = null)
- * @method static BearRoleUser whereIn(string $column, array $values)
- * @method static BearRoleUser whereNull(string|array $columns)
- * @method static BearRoleUser whereNotNull(string|array $columns)
- * @method static BearRoleUser whereYear(string $column, string $operator, CarbonInterface|string|int $value)
- * @method static BearRoleUser whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
- * @method static BearRoleUser whereDate(string $column, string $operator, CarbonInterface|string $value)
- * @method static BearRoleUser whereExists(Closure $callback)
- * @method static BearRoleUser whereNotExists(Closure $callback)
- * @method static BearRoleUser whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearRoleUser withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
- * @method static BearRoleUser whereDoesntHave(string $relation, Closure $callback = null)
- * @method static BearRoleUser whereRaw(string $sql, array $bindings = [])
- * @method static BearRoleUser groupBy(string $groupBy)
- * @method static BearRoleUser orderBy(string $column, string $direction = 'asc')
- * @method static BearRoleUser orderByDesc(string $column)
- * @method static BearRoleUser orderByRaw(string $sql, array $bindings = [])
- * @method static BearRoleUser limit(int $value)
+ * @method static Builder<BearRoleUser> lockForUpdate()
+ * @method static Builder<BearRoleUser> select(array $columns = ['*'])
+ * @method static Builder<BearRoleUser> selectRaw(string $expression, array $bindings = [])
+ * @method static Builder<BearRoleUser> with(array $relations)
+ * @method static Builder<BearRoleUser> leftJoin(string $table, string $first, string $operator = null, string $second = null)
+ * @method static Builder<BearRoleUser> where(string $column, string $operator = null, string|float|int|bool $value = null)
+ * @method static Builder<BearRoleUser> whereIn(string $column, array $values)
+ * @method static Builder<BearRoleUser> whereNull(string|array $columns)
+ * @method static Builder<BearRoleUser> whereNotNull(string|array $columns)
+ * @method static Builder<BearRoleUser> whereYear(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static Builder<BearRoleUser> whereMonth(string $column, string $operator, CarbonInterface|string|int $value)
+ * @method static Builder<BearRoleUser> whereDate(string $column, string $operator, CarbonInterface|string $value)
+ * @method static Builder<BearRoleUser> whereExists(Closure $callback)
+ * @method static Builder<BearRoleUser> whereNotExists(Closure $callback)
+ * @method static Builder<BearRoleUser> whereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder<BearRoleUser> withWhereHas(string $relation, Closure $callback = null, string $operator = '>=', int $count = 1)
+ * @method static Builder<BearRoleUser> whereDoesntHave(string $relation, Closure $callback = null)
+ * @method static Builder<BearRoleUser> whereRaw(string $sql, array $bindings = [])
+ * @method static Builder<BearRoleUser> groupBy(string $groupBy)
+ * @method static Builder<BearRoleUser> orderBy(string $column, string $direction = 'asc')
+ * @method static Builder<BearRoleUser> orderByDesc(string $column)
+ * @method static Builder<BearRoleUser> orderByRaw(string $sql, array $bindings = [])
+ * @method static Builder<BearRoleUser> limit(int $value)
  * @method static int count(array $columns = ['*'])
- * @method static mixed sum(string $column)
  * @method static bool exists()
  *
  * @property string $user_id
@@ -57,7 +57,7 @@ use RuntimeException;
  * @property string $created_at
  *
  * @property BearUser $user
- * @property BearRole $roleEnum
+ * @property BearRole $role
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */

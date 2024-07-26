@@ -2,7 +2,11 @@
 
 namespace GuardsmanPanda\Larabear\Integration\ExternalApi\Enum;
 
-enum BearExternalApiAuthEnum: string {
+use GuardsmanPanda\Larabear\Infrastructure\App\Interface\BearDatabaseBackedEnumInterface;
+use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
+use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApiAuth;
+
+enum BearExternalApiAuthEnum: string implements BearDatabaseBackedEnumInterface {
     case NO_AUTH = 'NO_AUTH';
     case BASIC_AUTH = 'BASIC_AUTH';
     case BEARER_TOKEN = 'BEARER_TOKEN';
@@ -12,6 +16,10 @@ enum BearExternalApiAuthEnum: string {
     case OAUTH2_CLIENT = 'OAUTH2_CLIENT';
     case QUERY_ACCESS_TOKEN = 'QUERY_ACCESS_TOKEN';
     case QUERY_KEY = 'QUERY_KEY';
+
+    public function getModel(): BearExternalApi {
+        return BearExternalApi::findOrFail(id: $this->value);
+    }
 
 
     public function headerName(): string|null {
@@ -39,5 +47,19 @@ enum BearExternalApiAuthEnum: string {
             self::BEARER_TOKEN => 'Bearer ',
             default => '',
         };
+    }
+
+
+    public static function syncToDatabase(): void {
+        foreach (self::cases() as $case) {
+            if (BearExternalApiAuth::find(id: $case->value) === null) {
+                $model = new BearExternalApiAuth();
+                $model->enum = $case->value;
+                $model->header_name = $case->headerName();
+                $model->query_name = $case->queryName();
+                $model->token_prefix = $case->tokenPrefix();
+                $model->save();
+            }
+        }
     }
 }

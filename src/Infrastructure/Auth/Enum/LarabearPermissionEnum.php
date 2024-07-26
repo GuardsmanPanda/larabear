@@ -26,4 +26,8 @@ enum LarabearPermissionEnum: string implements BearPermissionEnumInterface {
             }
         }
     }
+
+    public function getModel(): BearPermission {
+        return BearPermission::findOrFail(id: $this->getValue());
+    }
 }

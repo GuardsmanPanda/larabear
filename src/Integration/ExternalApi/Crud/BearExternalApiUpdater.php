@@ -56,7 +56,7 @@ final readonly class BearExternalApiUpdater {
     }
 
     /**
-     * @param ArrayObject<string|int, mixed>|null $metadata_json
+     * @param ArrayObject<string, mixed>|null $metadata_json
      * @return $this
      */
     public function setMetadataJson(ArrayObject|null $metadata_json): self {
