@@ -8,6 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTra
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
+use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiAuthEnum;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Collection;
@@ -60,13 +61,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $created_at
  * @property string $updated_at
  * @property string $description
- * @property string $external_api_type_enum
+ * @property BearExternalApiAuthEnum $external_api_auth_enum
  * @property string|null $base_url
  * @property string|null $oauth2_user_id
  * @property string|null $encrypted_token
  * @property string|null $oauth2_client_id
- * @property ArrayObject|null $metadata_json
- * @property ArrayObject|null $base_headers_json
+ * @property ArrayObject<string, mixed>|null $metadata_json
+ * @property ArrayObject<string, string>|null $base_headers_json
  *
  * @property BearOauth2User|null $oauth2User
  * @property BearOauth2Client|null $oauth2Client

@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->text(column: 'referer')->nullable();
             $table->text(column: 'action_name')->nullable();
             $table->text(column: 'response_body');
-            $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             $table->text(column: 'request_id')->nullable();
             $table->foreign('user_id')->references('id')->on(table: 'bear_user');
         });

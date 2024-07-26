@@ -28,8 +28,8 @@ return new class extends Migration {
             $table->text(column: 'encrypted_access_token')->nullable();
             $table->text(column: 'encrypted_refresh_token')->nullable();
             $table->text(column: 'access_token_error_message')->nullable();
-            $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'updated_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             $table->foreign('user_id')->references('id')->on('bear_user');
             $table->foreign('oauth2_client_id')->references('id')->on('bear_oauth2_client');
         });

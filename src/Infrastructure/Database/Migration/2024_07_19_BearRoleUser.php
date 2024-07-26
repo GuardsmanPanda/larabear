@@ -16,7 +16,7 @@ return new class extends Migration {
                 $table->string(column: 'role_enum');
             }
             $table->uuid(column: 'user_id')->index();
-            $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             $table->primary(columns: ['role_enum', 'user_id']);
             $table->foreign('role_enum')->references('enum')->on(table: 'bear_role');
             $table->foreign('user_id')->references('id')->on(table: 'bear_user');

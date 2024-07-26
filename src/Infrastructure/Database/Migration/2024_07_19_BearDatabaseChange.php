@@ -26,7 +26,7 @@ return new class extends Migration {
             $table->jsonb(column: 'record_json')->nullable();
             $table->boolean(column: 'is_soft_deletion')->nullable();
             $table->uuid(column: 'user_id')->nullable()->index();
-            $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             $table->ipAddress(column: 'ip')->nullable();
             $table->text(column: 'country_code')->nullable();
             $table->text(column: 'http_method');

@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->text(column: 'authorize_uri');
             $table->text(column: 'token_uri');
             $table->text(column: 'default_Scope');
-            $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'updated_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
         });
     }
 

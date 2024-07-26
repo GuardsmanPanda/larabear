@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->bigInteger(column: 'execution_time_microseconds')->nullable();
             $table->mediumText(column: 'output')->nullable();
             $table->uuid(column: 'console_id')->index();
-            $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
         });
     }
 

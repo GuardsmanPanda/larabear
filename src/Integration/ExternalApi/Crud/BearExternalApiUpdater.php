@@ -3,9 +3,10 @@
 namespace GuardsmanPanda\Larabear\Integration\ExternalApi\Crud;
 
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
-use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiTypeEnum;
+use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiAuthEnum;
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
+use InvalidArgumentException;
 
 final readonly class BearExternalApiUpdater {
     public function __construct(private BearExternalApi $model) {
@@ -21,13 +22,17 @@ final readonly class BearExternalApiUpdater {
         return $this;
     }
 
-    public function setExternalApiType(BearExternalApiTypeEnum $external_api_type): self {
-        $this->model->external_api_type_enum = $external_api_type->value;
+    public function setExternalApiAuth(BearExternalApiAuthEnum $external_api_auth): self {
+        $this->model->external_api_auth_enum = $external_api_auth;
         return $this;
     }
 
     public function setEncryptedToken(string|null $encrypted_token): self {
-        $this->model->encrypted_token = $encrypted_token;
+        if ($this->model->external_api_auth_enum === BearExternalApiAuthEnum::BASIC_AUTH) {
+            $this->model->encrypted_token = base64_encode(string: $encrypted_token ?? throw new InvalidArgumentException(message: 'Basic Auth requires a username:password'));
+        } else {
+            $this->model->encrypted_token = $encrypted_token;
+        }
         return $this;
     }
 

@@ -15,18 +15,18 @@ return new class extends Migration {
                 $table->string(column: 'enum')->primary();
             }
             $table->text(column: 'description');
-            $table->text(column: 'external_api_type_enum');
+            $table->text(column: 'external_api_auth_enum');
             $table->text(column: 'encrypted_token')->nullable();
             $table->text(column: 'base_url')->nullable();
             $table->text(column: 'oauth2_client_id')->nullable();
             $table->uuid(column: 'oauth2_user_id')->nullable();
             $table->jsonb(column: 'base_headers_json')->nullable();
             $table->jsonb(column: 'metadata_json')->nullable();
-            $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->useCurrentOnUpdate();
+            $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'updated_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             $table->foreign('oauth2_user_id')->references('id')->on(table: 'bear_oauth2_user');
             $table->foreign('oauth2_client_id')->references('id')->on(table: 'bear_oauth2_client');
-
+            $table->foreign('external_api_auth_enum')->references('enum')->on(table: 'bear_external_api_auth');
         });
     }
 

@@ -11,7 +11,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2User;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2ClientService;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Service\BearOauth2UserService;
-use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiTypeEnum;
+use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiAuthEnum;
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
@@ -72,30 +72,30 @@ final class BearExternalApiClient {
     public static function fromExternalApi(BearExternalApi $api, string $baseUrl = null): self {
         $headers = $api->base_headers_json?->getArrayCopy() ?? [];
         $query = [];
-        $api_enum = BearExternalApiTypeEnum::from($api->external_api_type_enum);
-        if ($api_enum === BearExternalApiTypeEnum::OAUTH2_CLIENT) {
+        $api_enum = BearExternalApiAuthEnum::from($api->external_api_type_enum);
+        if ($api_enum === BearExternalApiAuthEnum::OAUTH2_CLIENT) {
             return self::fromOauth2ClientId(clientId: $api->oauth2_client_id ?? throw new RuntimeException(message: 'OAUTH2_CLIENT API type must reference bear_oauth2_client'), baseUrl: $baseUrl ?? $api->base_url, baseHeaders: $headers);
         }
-        if ($api_enum === BearExternalApiTypeEnum::OAUTH2) {
+        if ($api_enum === BearExternalApiAuthEnum::OAUTH2) {
             return self::fromOauth2User(user: $api->oauth2User ?? throw new RuntimeException(message: 'OAUTH2 API type must reference bear_oauth2_user'), baseUrl: $baseUrl ?? $api->base_url, baseHeaders: $headers);
         }
 
-        if ($api_enum === BearExternalApiTypeEnum::X_API_KEY) {
+        if ($api_enum === BearExternalApiAuthEnum::HEADER_X_API_KEY) {
             $headers['X-API-Key'] = $api->encrypted_token;
         }
-        if ($api_enum === BearExternalApiTypeEnum::X_POSTMARK_SERVER_TOKEN) {
+        if ($api_enum === BearExternalApiAuthEnum::HEADER_X_POSTMARK_SERVER_TOKEN) {
             $headers['X-Postmark-Server-Token'] = $api->encrypted_token;
         }
-        if ($api_enum === BearExternalApiTypeEnum::KEY_QUERY) {
+        if ($api_enum === BearExternalApiAuthEnum::QUERY_KEY) {
             $query['key'] = $api->encrypted_token ?? throw new InvalidArgumentException(message: 'No API key provided');
         }
-        if ($api_enum === BearExternalApiTypeEnum::ACCESS_TOKEN_QUERY) {
+        if ($api_enum === BearExternalApiAuthEnum::QUERY_ACCESS_TOKEN) {
             $query['access_token'] = $api->encrypted_token ?? throw new InvalidArgumentException(message: 'No access token provided');
         }
-        if ($api_enum === BearExternalApiTypeEnum::BEARER_TOKEN) {
+        if ($api_enum === BearExternalApiAuthEnum::BEARER_TOKEN) {
             $headers['Authorization'] = "Bearer $api->encrypted_token";
         }
-        if ($api_enum === BearExternalApiTypeEnum::BASIC_AUTH) {
+        if ($api_enum === BearExternalApiAuthEnum::BASIC_AUTH) {
             $headers['Authorization'] = "Basic $api->encrypted_token";
         }
 

@@ -23,8 +23,8 @@ return new class extends Migration {
             $table->text(column: 'password')->nullable();
             $table->text(column: 'remember_token')->nullable();
             $table->timestampTz(column: 'last_login_at')->nullable();
-            $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'updated_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             $table->foreign('country_cca2')->references('cca2')->on(table: 'bear_country');
         });
     }

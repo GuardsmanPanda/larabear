@@ -21,8 +21,8 @@ return new class extends Migration {
             $table->text(column: 'calling_code');
             $table->text(column: 'currency_code');
             $table->text(column: 'dependency_status')->nullable();
-            $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'updated_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
         });
 
         $country = array(

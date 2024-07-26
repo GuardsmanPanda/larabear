@@ -14,7 +14,7 @@ return new class extends Migration {
             } else {
                 $table->string(column: 'idempotency_key')->primary();
             }
-            $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'expires_at')->nullable();
         });
     }

@@ -21,8 +21,8 @@ return new class extends Migration {
                     $table->string(column: 'enum')->primary();
                     $table->string(column: 'description');
                 }
-                $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-                $table->timestampTz(column: 'updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+                $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
+                $table->timestampTz(column: 'updated_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             });
         }
 
@@ -34,7 +34,7 @@ return new class extends Migration {
                 $table->string(column: 'role_enum');
                 $table->string(column: 'permission_enum');
             }
-            $table->timestampTz(column: 'created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             $table->primary(columns: ['role_enum', 'permission_enum']);
             $table->foreign('role_enum')->references('enum')->on(table: 'bear_role');
             $table->foreign('permission_enum')->references('enum')->on(table: 'bear_permission');
