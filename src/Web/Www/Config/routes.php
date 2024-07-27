@@ -7,4 +7,3 @@ Route::get(uri: '/', action: [LarabearConfigController::class, 'index']);
 
 Route::get(uri: '{key}/update', action: [LarabearConfigController::class, 'updateDialog']);
 Route::patch(uri: '{key}', action: [LarabearConfigController::class, 'update']);
-Route::delete(uri: '{key}', action: [LarabearConfigController::class, 'delete']);

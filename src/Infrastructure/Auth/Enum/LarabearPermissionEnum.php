@@ -19,15 +19,14 @@ enum LarabearPermissionEnum: string implements BearPermissionEnumInterface {
         };
     }
 
-    public static function syncToDatabase(): void {
-        foreach (self::cases() as $permission) {
-            if (BearPermission::find(id: $permission->getValue()) === null) {
-                BearPermissionCrud::create($permission);
-            }
-        }
-    }
 
     public function getModel(): BearPermission {
         return BearPermission::findOrFail(id: $this->getValue());
+    }
+
+    public static function syncToDatabase(): void {
+        foreach (self::cases() as $permission) {
+            BearPermissionCrud::syncToDatabase($permission);
+        }
     }
 }

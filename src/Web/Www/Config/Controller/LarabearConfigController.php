@@ -2,7 +2,6 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Config\Controller;
 
-use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigDeleter;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Htmx;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
@@ -35,9 +34,5 @@ final class LarabearConfigController extends Controller {
         $updater->setConfigTimestamp(config_timestamp: Req::getDateTimeOrNull(key: 'config_timestamp', isOptional: true));
         $updater->update();
         return $this->index();
-    }
-
-    public function delete(string $key): void {
-        BearConfigDeleter::deleteFromConfigKey(config_key: $key);
     }
 }

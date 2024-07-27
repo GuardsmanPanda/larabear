@@ -4,7 +4,6 @@ namespace GuardsmanPanda\Larabear\Web\Www\Credential\Controller;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Htmx;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
-use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Crud\BearOauth2ClientDeleter;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -26,10 +25,6 @@ final class LarabearOauth2ClientController extends Controller {
 
     public function update(string $oauth2_client_id): View {
         return $this->index();
-    }
-
-    public function delete(string $oauth2_client_id): void {
-        BearOauth2ClientDeleter::deleteFromId(id: $oauth2_client_id);
     }
 
     public function addUserDialog(string $oauth2_client_id): View {

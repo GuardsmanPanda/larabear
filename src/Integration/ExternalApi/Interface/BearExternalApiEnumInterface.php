@@ -16,8 +16,6 @@ interface BearExternalApiEnumInterface extends BearDatabaseBackedEnumInterface {
 
     public function baseUrl(): string|null;
 
-    public function oauth2UserId(): string|null;
-
     public function oauth2ClientId(): string|null;
 
     /**  @return ArrayObject<string, string>|null */

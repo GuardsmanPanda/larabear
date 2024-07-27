@@ -9,9 +9,10 @@ Route::prefix('oauth2/client')->group(function () {
     Route::get(uri: '{oauth2_client_id}/update', action: [LarabearOauth2ClientController::class, 'updateDialog']);
     Route::get(uri: '{oauth2_client_id}/add-user', action: [LarabearOauth2ClientController::class, 'addUserDialog']);
     Route::patch(uri: '{oauth2_client_id}', action: [LarabearOauth2ClientController::class, 'update']);
-    Route::delete(uri: '{oauth2_client_id}', action: [LarabearOauth2ClientController::class, 'delete']);
 });
 
 Route::prefix('external')->group(function () {
     Route::get(uri: '', action: [LarabearExternalApiController::class, 'index']);
+    Route::get(uri: '{enum}/update', action: [LarabearExternalApiController::class, 'updateDialog']);
+    Route::patch(uri: '{enum}', action: [LarabearExternalApiController::class, 'update']);
 });
