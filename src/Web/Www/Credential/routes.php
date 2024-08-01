@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('oauth2/client')->group(function () {
     Route::get(uri: '', action: [LarabearOauth2ClientController::class, 'index']);
-    Route::get(uri: '{oauth2_client_id}/update', action: [LarabearOauth2ClientController::class, 'updateDialog']);
-    Route::get(uri: '{oauth2_client_id}/add-user', action: [LarabearOauth2ClientController::class, 'addUserDialog']);
-    Route::patch(uri: '{oauth2_client_id}', action: [LarabearOauth2ClientController::class, 'update']);
+    Route::get(uri: '{id}/update', action: [LarabearOauth2ClientController::class, 'updateDialog']);
+    Route::get(uri: '{id}/add-user', action: [LarabearOauth2ClientController::class, 'addUserDialog']);
+    Route::patch(uri: '{id}', action: [LarabearOauth2ClientController::class, 'update']);
 });
 
 Route::prefix('external')->group(function () {

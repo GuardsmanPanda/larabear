@@ -40,8 +40,7 @@ enum LarabearConfigEnum: string implements BearConfigEnumInterface {
     public function getDefaultConfigString(): string|null {
         return match ($this) {
             self::LARABEAR_LAST_UNIQUE_SHORT_CODE => '1',
-            self::LARABEAR_PATH_TO_REDIRECT_IF_NOT_LOGGED_IN => '/login',
-            self::LARABEAR_PATH_TO_REDIRECT_AFTER_LOGIN => '/dashboard',
+            self::LARABEAR_PATH_TO_REDIRECT_IF_NOT_LOGGED_IN, self::LARABEAR_PATH_TO_REDIRECT_AFTER_LOGIN => '/',
             default => null
         };
     }

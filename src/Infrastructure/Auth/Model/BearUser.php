@@ -62,8 +62,6 @@ use RuntimeException;
  * @property string $created_at
  * @property string $updated_at
  * @property string $display_name
- * @property string $map_style_enum
- * @property string $map_marker_enum
  * @property string|null $email
  * @property string|null $password
  * @property string|null $country_cca2
@@ -79,7 +77,6 @@ final class BearUser extends Model implements Authenticatable {
 
     protected $table = 'bear_user';
     protected $keyType = 'string';
-    protected $dateFormat = 'Y-m-d\TH:i:sP';
 
     /** @var array<string, string> $casts */
     protected $casts = [

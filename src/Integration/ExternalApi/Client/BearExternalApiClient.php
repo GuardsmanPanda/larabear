@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Http;
 use InvalidArgumentException;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Throwable;
 
 final class BearExternalApiClient {
     private static int $API_REQUEST_TIMEOUT = 90;
@@ -30,9 +31,10 @@ final class BearExternalApiClient {
      */
     public function __construct(
         private readonly string $baseUrl,
-        private readonly array $baseHeaders = [],
-        private readonly array $baseQuery = []
-    ) {}
+        private readonly array  $baseHeaders = [],
+        private readonly array  $baseQuery = []
+    ) {
+    }
 
 
     /**
@@ -83,8 +85,15 @@ final class BearExternalApiClient {
             return self::fromOauth2User(user: $api->oauth2User ?? throw new RuntimeException(message: 'OAUTH2 API type must reference bear_oauth2_user'), baseUrl: $baseUrl ?? $api->base_url, baseHeaders: $headers);
         }
 
-        $token = $api->encrypted_token ??  throw new InvalidArgumentException(message: "No access token for external API [$api->enum] provided");
+        $baseUrl ??= $api->base_url ?? throw new InvalidArgumentException(message: 'No base URL provided');
+
+        if ($api->external_api_auth_enum === BearExternalApiAuthEnum::NO_AUTH) {
+            return new self(baseUrl: $baseUrl, baseHeaders: $headers);
+        }
+
+        $token = $api->encrypted_token ?? throw new InvalidArgumentException(message: "No access token for external API [$api->enum] provided");
         $query = [];
+
         if ($api->external_api_auth_enum->headerName() !== null) {
             $headers[$api->external_api_auth_enum->headerName()] = $api->external_api_auth_enum->tokenPrefix() . $token;
         }
@@ -93,7 +102,7 @@ final class BearExternalApiClient {
         }
 
         return new self(
-            baseUrl: $baseUrl ?? $api->base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
+            baseUrl: $baseUrl,
             baseHeaders: $headers,
             baseQuery: $query
         );
@@ -117,7 +126,7 @@ final class BearExternalApiClient {
      * @param array<string, string> $additionalQuery
      * @return JsonResponse
      */
-    public function requestToJsonResponse(string $path,  array $headers = [], array $additionalBodyContent = [], array $additionalQuery = []): JsonResponse {
+    public function requestToJsonResponse(string $path, array $headers = [], array $additionalBodyContent = [], array $additionalQuery = []): JsonResponse {
         $resp = $this->request(path: $path, method: Req::method(), headers: $headers, body: Req::allJsonData(allowEmpty: true) + $additionalBodyContent, query: Req::allQueryData() + $additionalQuery);
         return new JsonResponse(data: $resp->body(), status: $resp->status(), json: true);
     }
@@ -186,35 +195,51 @@ final class BearExternalApiClient {
      * @param array<string, string> $body
      * @return Response
      */
-    public function formRequest(String $path, array $headers = [], array $body = []): Response {
+    public function formRequest(string $path, array $headers = [], array $body = []): Response {
         return $this->request(path: $path, method: BearHttpMethodEnum::POST, headers: $headers, body: $body, asForm: true);
     }
 
 
     /**
-     * @param string $path
-     * @param BearHttpMethodEnum $method
      * @param array<string, string> $headers
      * @param array<string, string> $body
      * @param array<string, string> $query
-     * @return Response
      */
     public function request(
         string $path, BearHttpMethodEnum $method = BearHttpMethodEnum::GET,
-        array $headers = [], array $body = [], array $query = [], bool $asForm = false
+        array  $headers = [], array $body = [], array $query = [], bool $asForm = false, bool $throwOnFailure = true
     ): Response {
         $final_url = str_starts_with(haystack: $path, needle: 'https://') ? $path : $this->baseUrl . $path;
         $pending = Http::withOptions(['query' => $query + $this->baseQuery, 'headers' => $headers + $this->baseHeaders])->timeout(seconds: self::$API_REQUEST_TIMEOUT);
         if ($asForm) {
             $pending = $pending->asForm();
         }
-        return match ($method) {
-            BearHttpMethodEnum::GET => $pending->get($final_url),
-            BearHttpMethodEnum::POST => $pending->post($final_url, $body),
-            BearHttpMethodEnum::PUT => $pending->put($final_url, $body),
-            BearHttpMethodEnum::PATCH => $pending->patch($final_url, $body),
-            BearHttpMethodEnum::DELETE => $pending->delete($final_url, $body),
-            default => throw new RuntimeException(message: "Method [$method->value] not supported")
-        };
+        try {
+            $resp = match ($method) {
+                BearHttpMethodEnum::GET => $pending->get($final_url),
+                BearHttpMethodEnum::POST => $pending->post($final_url, $body),
+                BearHttpMethodEnum::PUT => $pending->put($final_url, $body),
+                BearHttpMethodEnum::PATCH => $pending->patch($final_url, $body),
+                BearHttpMethodEnum::DELETE => $pending->delete($final_url, $body),
+                default => throw new RuntimeException(message: "Method [$method->value] not supported")
+            };
+            if ($throwOnFailure && !$resp->successful()) {
+                BearErrorCreator::create(
+                    message: "Failed to make external API request to $final_url, error: {$resp->status()}, message: {$resp->body()}",
+                    slug: 'larabear::external_api_request_failed',
+                    severity: BearSeverityEnum::ERROR
+                );
+                throw new RuntimeException(message: "Failed to make external API request to $final_url, error: {$resp->status()}, message: {$resp->body()}");
+            }
+            return $resp;
+        } catch (Throwable $e) {
+            BearErrorCreator::create(
+                message: "Failed to make external API request to $final_url",
+                slug: 'larabear::external_api_request_failed',
+                severity: BearSeverityEnum::ERROR,
+                exception: $e
+            );
+            throw new RuntimeException(message: "Failed to make external API request to $final_url", previous: $e);
+        }
     }
 }

@@ -139,7 +139,7 @@ final class BearOauth2ClientService {
     private static function updateAccessToken(BearOauth2Client $client): string {
         try {
             DB::beginTransaction();
-            $updater = BearOauth2ClientUpdater::fromOauth2ClientId(oauth2_client_id: $client->id, lockForUpdate: true);
+            $updater = BearOauth2ClientUpdater::fromId(id: $client->id, lockForUpdate: true);
             // In case multiple request happens at the same time we may be queued here multiple times
             // So we check again to see if we have recently refreshed the token.
             if ($updater->getAccessTokenExpiresAt() > Carbon::now()->addMinutes(self::SAFETY_BUFFER_MINUTES)) {

@@ -18,7 +18,7 @@
             <x-bear::table.cell.relative>{{$api->created_at}}</x-bear::table.cell.relative>
             <x-bear::table.cell.relative>{{$api->updated_at}}</x-bear::table.cell.relative>
             <td class="px-2">
-                <x-bear::button.outline icon="pencil" size="tiny" hx-get='{{"/bear/credential/external/$api->enum/update"}}'>Edit Key</x-bear::button.outline>
+                <x-bear::button.outline icon="pencil" size="tiny" hx-get='{{"/bear/credential/external/$api->enum/update"}}'>Update Token</x-bear::button.outline>
             </td>
         </tr>
     @endforeach

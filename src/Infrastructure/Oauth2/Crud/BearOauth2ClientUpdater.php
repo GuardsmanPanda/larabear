@@ -9,11 +9,11 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 final readonly class BearOauth2ClientUpdater {
     public function __construct(private BearOauth2Client $model) {}
 
-    public static function fromOauth2ClientId(string $oauth2_client_id, bool $lockForUpdate = false): BearOauth2ClientUpdater {
+    public static function fromId(string $id, bool $lockForUpdate = false): BearOauth2ClientUpdater {
         if ($lockForUpdate) {
-            return new BearOauth2ClientUpdater(model: BearOauth2Client::lockForUpdate()->findOrFail(id: $oauth2_client_id));
+            return new BearOauth2ClientUpdater(model: BearOauth2Client::lockForUpdate()->findOrFail(id: $id));
         }
-        return new BearOauth2ClientUpdater(model: BearOauth2Client::findOrFail(id: $oauth2_client_id));
+        return new BearOauth2ClientUpdater(model: BearOauth2Client::findOrFail(id: $id));
     }
 
     public function setDescription(string $description): self {
