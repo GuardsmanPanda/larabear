@@ -28,6 +28,7 @@ final class LarabearCountryCrud {
         $model->calling_code = $data->calling_code;
         $model->dependency_status = $data->dependency_status;
         $model->is_driving_side_right = $data->is_driving_side_right;
+        $model->cca2_borders_json = $data->borders;
 
         $model->save();
     }

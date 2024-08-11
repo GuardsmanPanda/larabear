@@ -6,6 +6,7 @@ use Carbon\CarbonInterface;
 use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -68,6 +69,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $currency_name
  * @property string $currency_symbol
  * @property string|null $dependency_status
+ * @property ArrayObject $cca2_borders_json
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
