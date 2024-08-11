@@ -3,11 +3,12 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Config\Crud;
 
 use Carbon\CarbonInterface;
+use GuardsmanPanda\Larabear\Infrastructure\Config\Interface\BearConfigEnumInterface;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Model\BearConfig;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
-final class BearConfigUpdater {
-    public function __construct(private readonly BearConfig $model) {
+final readonly class BearConfigUpdater {
+    public function __construct(private BearConfig $model) {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
     }
 
@@ -16,6 +17,14 @@ final class BearConfigUpdater {
             return new self(model: BearConfig::lockForUpdate()->findOrFail(id: $config_key));
         }
         return new self(model: BearConfig::findOrFail(id: $config_key));
+    }
+
+
+    public static function fromEnumInterface(BearConfigEnumInterface $enum, bool $lockForUpdate = false): self {
+        if ($lockForUpdate) {
+            return new self(model: BearConfig::lockForUpdate()->findOrFail(id: $enum->getValue()));
+        }
+        return new self(model: BearConfig::findOrFail(id: $enum->getValue()));
     }
 
 

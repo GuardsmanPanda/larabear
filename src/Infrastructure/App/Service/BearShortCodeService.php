@@ -3,16 +3,17 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\App\Service;
 
 use GuardsmanPanda\Larabear\Infrastructure\Config\Crud\BearConfigUpdater;
+use GuardsmanPanda\Larabear\Infrastructure\Config\Enum\LarabearConfigEnum;
 use RuntimeException;
 
 final class BearShortCodeService {
     private const string CHARS = '25679BCDFGHJKLMNPQRSTVWXZbcdfghjkmnpqrstvwxz';
 
     public static function generateNextCode(): string {
-        $updater = BearConfigUpdater::fromConfigKey(config_key: 'larabear::last-unique-short-code', lockForUpdate: true);
+        $updater = BearConfigUpdater::fromEnumInterface(enum: LarabearConfigEnum::LARABEAR_LAST_UNIQUE_SHORT_CODE, lockForUpdate: true);
         $value = $updater->getConfigString();
         if (!is_string(value: $value)) {
-            throw new RuntimeException(message: 'The last-unique-short-code config value is not a string.');
+            throw new RuntimeException(message: 'The LARABEAR_LAST_UNIQUE_SHORT_CODE config value is not a string.');
         }
 
         if ($value === '1') {
