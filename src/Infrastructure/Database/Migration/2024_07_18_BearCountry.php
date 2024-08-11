@@ -17,9 +17,17 @@ return new class extends Migration {
                 $table->string(column: 'cca3')->unique();
             }
             $table->text(column: 'name');
+            $table->text(column: 'capital');
             $table->text(column: 'tld');
-            $table->text(column: 'calling_code');
+            $table->integer(column: 'area_km2');
+            $table->integer(column: 'area_rank');
+            $table->integer(column: 'population');
+            $table->integer(column: 'population_rank');
             $table->text(column: 'currency_code');
+            $table->text(column: 'currency_name');
+            $table->text(column: 'currency_symbol');
+            $table->text(column: 'calling_code');
+            $table->boolean(column: 'is_driving_side_right');
             $table->text(column: 'dependency_status')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
@@ -285,6 +293,6 @@ return new class extends Migration {
     }
 
     public function down(): void {
-        Schema::dropIfExists('bear_country');
+        Schema::dropIfExists(table: 'bear_country');
     }
 };

@@ -36,6 +36,6 @@ return new class extends Migration {
 
 
     public function down(): void {
-        Schema::dropIfExists('bear_access_token');
+        Schema::dropIfExists(table: 'bear_access_token');
     }
 };

@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Exception;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class BearException extends HttpResponseException {
+final class BearException extends HttpResponseException {
     /**
      * @param string $title
      * @param string $detail

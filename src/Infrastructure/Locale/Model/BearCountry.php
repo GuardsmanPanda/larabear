@@ -51,14 +51,22 @@ use Illuminate\Database\Eloquent\Model;
  * @method static mixed sum(string $column)
  * @method static bool exists()
  *
+ * @property int $area_km2
+ * @property int $area_rank
+ * @property int $population
+ * @property int $population_rank
+ * @property bool $is_driving_side_right
  * @property string $tld
  * @property string $cca2
  * @property string $cca3
  * @property string $name
+ * @property string $capital
  * @property string $created_at
  * @property string $updated_at
  * @property string $calling_code
  * @property string $currency_code
+ * @property string $currency_name
+ * @property string $currency_symbol
  * @property string|null $dependency_status
  *
  * AUTO GENERATED FILE DO NOT MODIFY

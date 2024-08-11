@@ -36,5 +36,4 @@ parameters:
     ignoreErrors:
         - '#Variable property access on #'
         - '#is not the same as PHPDoc type array of overridden property Illuminate\\Database\\Eloquent\\Model::\$casts#'
-        - '#Class GuardsmanPanda\\Larabear\\Infrastructure\\Http\\Exception\\BearException is neither abstract nor final.#'
         - '#must be rethrown. Either catch a more specific exception or add a "throw" clause in the "catch" block to propagate the exception#'
