@@ -7,6 +7,7 @@ use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -79,6 +80,11 @@ final class BearCountry extends Model {
     protected $table = 'bear_country';
     protected $primaryKey = 'cca2';
     protected $keyType = 'string';
+
+    /** @var array<string, string> $casts */
+    protected $casts = [
+        'cca2_borders_json' => AsArrayObject::class,
+    ];
 
     protected $guarded = ['cca2', 'updated_at', 'created_at', 'deleted_at'];
 }

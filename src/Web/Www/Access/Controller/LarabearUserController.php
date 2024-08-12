@@ -63,8 +63,8 @@ final class LarabearUserController extends Controller {
     }
 
 
-    public function deletePermissionFromUser(string $user_id, string $permission_slug): View {
-        BearPermissionUserDeleter::delete(model: BearPermissionUser::findOrFail(ids: ['user_id' => $user_id, 'permission_enum' => $permission_slug]));
+    public function deletePermissionFromUser(string $user_id, string $permission_enum): View {
+        BearPermissionUserDeleter::delete(model: BearPermissionUser::findOrFail(ids: ['user_id' => $user_id, 'permission_enum' => $permission_enum]));
         return $this->roleAndPermissionDialog(user_id: $user_id);
     }
 }
