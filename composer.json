@@ -19,7 +19,7 @@
     "php": "^8.3",
     "ext-pdo": "*",
     "ext-zend-opcache": "*",
-    "doctrine/dbal": "^4.0",
+    "doctrine/dbal": "^4.1",
     "guzzlehttp/guzzle": "^7.9",
     "laravel/framework": "^v11.20",
     "ramsey/collection": "^2.0"
