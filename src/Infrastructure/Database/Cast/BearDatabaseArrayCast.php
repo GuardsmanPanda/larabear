@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @implements CastsAttributes<string, array>
  */
-final class BearArrayCast implements CastsAttributes {
+final class BearDatabaseArrayCast implements CastsAttributes {
     public function get(Model $model, string $key, mixed $value, array $attributes) {
         // TODO: Implement get() method.
     }
