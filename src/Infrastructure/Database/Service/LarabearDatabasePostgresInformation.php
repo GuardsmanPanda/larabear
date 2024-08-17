@@ -85,12 +85,13 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
 
     public function databaseTypeToPhpType(string $databaseType): string {
         return match ($databaseType) {
-            'date', 'timestamp with time zone' => 'CarbonInterface',
-            'text', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 'string',
             'integer', 'bigint', 'smallint' => 'int',
-            'double precision' => 'float',
-            'jsonb' => 'ArrayObject',
             'boolean' => 'bool',
+            'double precision' => 'float',
+            'text', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 'string',
+            'jsonb' => 'ArrayObject',
+            'ARRAY' => 'ArrayObject<int,string>',
+            'date', 'timestamp with time zone' => 'CarbonInterface',
             default => throw new RuntimeException(message: "Unknown type: $databaseType")
         };
     }
@@ -98,12 +99,13 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
     private function postgresTypeSortOrder(string $postgres_type): int {
         return match ($postgres_type) {
             'integer', 'bigint', 'smallint' => 0,
-            'timestamp with time zone' => 12,
-            'date', => 10,
-            'text', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 6,
-            'double precision' => 4,
-            'jsonb' => 8,
             'boolean' => 2,
+            'double precision' => 4,
+            'text', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 6,
+            'jsonb' => 8,
+            'ARRAY' => 9,
+            'date', => 10,
+            'timestamp with time zone' => 12,
             default => throw new RuntimeException(message: "Unknown type: $postgres_type")
         };
     }
@@ -113,6 +115,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
             'jsonb' => 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;',
             'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'USER-DEFINED' => '',
             'date', 'timestamp with time zone' => 'use Carbon\\CarbonInterface;',
+            'ARRAY' => 'use GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Cast\\BearDatabaseArrayCast;',
             default => throw new RuntimeException(message: "Unknown type: $postgres_type")
         };
     }
@@ -124,6 +127,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
         return match ($postgres_type) {
             'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'USER-DEFINED' => null,
             'timestamp with time zone' => "'immutable_datetime'",
+            'ARRAY' => "BearDatabaseArrayCast::class",
             'jsonb' => "AsArrayObject::class",
             'date' => "'immutable_date'",
             default => throw new RuntimeException(message: "Unknown type: $postgres_type")
