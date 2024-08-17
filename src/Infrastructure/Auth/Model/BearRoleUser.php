@@ -24,7 +24,7 @@ use RuntimeException;
  * @method static BearRoleUser|null firstWhere(string $column, string $operator, string|float|int|bool $value)
  * @method static Collection<int, BearRoleUser> all(array $columns = ['*'])
  * @method static Collection<int, BearRoleUser> get(array $columns = ['*'])
- * @method static Collection<int|string, BearRoleUser> pluck(string $column, string $key = null)
+ * @method static Collection<array-key, BearRoleUser> pluck(string $column, string $key = null)
  * @method static Collection<int, BearRoleUser> fromQuery(string $query, array $bindings = [])
  * @method static Builder<BearRoleUser> lockForUpdate()
  * @method static Builder<BearRoleUser> select(array $columns = ['*'])

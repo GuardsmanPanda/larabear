@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearOauth2Client|null firstWhere(string $column, string $operator, string|float|int|bool $value)
  * @method static Collection<int, BearOauth2Client> all(array $columns = ['*'])
  * @method static Collection<int, BearOauth2Client> get(array $columns = ['*'])
- * @method static Collection<int|string, BearOauth2Client> pluck(string $column, string $key = null)
+ * @method static Collection<array-key, BearOauth2Client> pluck(string $column, string $key = null)
  * @method static Collection<int, BearOauth2Client> fromQuery(string $query, array $bindings = [])
  * @method static Builder<BearOauth2Client> lockForUpdate()
  * @method static Builder<BearOauth2Client> select(array $columns = ['*'])

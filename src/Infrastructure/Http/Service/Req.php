@@ -323,7 +323,7 @@ final class Req {
 
     /**
      * @param string $key
-     * @return ArrayObject<string|int, mixed>
+     * @return ArrayObject<array-key, mixed>
      */
     public static function getArrayObject(string $key): ArrayObject {
         return ValidateAndParseValue::parseJsonToArrayObject(value: self::request()->input(key: $key), errorMessage: "Input field '$key' error");

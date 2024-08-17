@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 
+use ArrayObject;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -14,7 +15,7 @@ final class BearDatabaseService {
      * @param array<mixed> $bindings
      * @return bool
      */
-    public static function exists(String $sql, array $bindings = []): bool {
+    public static function exists(string $sql, array $bindings = []): bool {
         return DB::selectOne(query: $sql, bindings: $bindings) !== null;
     }
 
@@ -42,4 +43,30 @@ final class BearDatabaseService {
         return Config::get(key: 'database.connections.' . Config::get(key: 'database.default') . '.driver');
     }
 
+    /**
+     * @param array<array-key, string>|ArrayObject<array-key, string> $values
+     */
+    public static function iterableToPostgres(array|ArrayObject $values, bool $sort = true, bool $noDuplicates = true): string {
+        if ($values instanceof ArrayObject) {
+            $values = $values->getArrayCopy();
+        }
+        if (count($values) === 0) {
+            return '{}';
+        }
+        if ($sort) {
+            sort(array: $values);
+        }
+        $processed = [];
+        foreach ($values as $element) {
+            $element = "'$element'";
+            if (str_contains(haystack: $element, needle: ',')) {
+                throw new RuntimeException(message: 'Array elements cannot contain a comma.');
+            }
+            if ($noDuplicates && in_array(needle: $element, haystack: $processed, strict: true)) {
+                throw new RuntimeException(message: 'Array elements cannot be duplicated.');
+            }
+            $processed[] = $element;
+        }
+        return '{' . implode(separator: ',', array: $processed) . '}';
+    }
 }

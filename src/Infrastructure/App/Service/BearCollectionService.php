@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 final class BearCollectionService {
     /**
-     * @template TKey of string|int
+     * @template TKey of array-key
      * @template TModel of Model
      *
      * @param Collection<TKey, TModel> $from

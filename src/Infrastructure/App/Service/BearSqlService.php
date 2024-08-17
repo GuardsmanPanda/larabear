@@ -21,7 +21,7 @@ final class BearSqlService {
     /**
      * @param String $sql
      * @param array<mixed> $bindings
-     * @return array<string|int, mixed>
+     * @return array<array-key, mixed>
      */
     public static function toKeyValueArray(String $sql, array $bindings = []): array {
         $res = DB::getReadPdo()->prepare($sql);

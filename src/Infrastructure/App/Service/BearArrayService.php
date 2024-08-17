@@ -8,7 +8,7 @@ final class BearArrayService {
     /**
      * @param array<mixed> $array
      * @param string $key
-     * @return array<int|string, array<int, mixed>>.
+     * @return array<array-key, array<int, mixed>>.
      */
     public static function groupArrayBy(array $array, string $key): array {
         $result = [];
@@ -23,8 +23,8 @@ final class BearArrayService {
     }
 
     /**
-     * @param array<string|int, mixed> $from
-     * @param array<string|int, mixed> $to
+     * @param array<array-key, mixed> $from
+     * @param array<array-key, mixed> $to
      * @param callable $filter
      * @return void
      */

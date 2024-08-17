@@ -10,8 +10,8 @@ final class Select extends Component {
     /**
      * @param string $id
      * @param string $label
-     * @param array<string|int, string> $options
-     * @param string|int $selected
+     * @param array<array-key, string> $options
+     * @param array-key $selected
      */
     public function __construct(public readonly string $id, public string $label = '', public readonly array $options = [], public readonly string|int $selected = '') {
         if ($this->label === '') {

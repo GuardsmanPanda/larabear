@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Cast;
 
+use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Database\Eloquent\Model;
@@ -36,18 +37,6 @@ final class BearDatabaseArrayCast implements CastsAttributes {
         if ($value === null) {
             throw new InvalidArgumentException(message: 'Array cannot be null.');
         }
-        $value->asort();
-        $processed = [];
-        foreach ($value as $element) {
-            if (str_contains(haystack: $element, needle: ',')) {
-                throw new InvalidArgumentException(message: 'Array elements cannot contain a comma.');
-            }
-            $element = "'$element'";
-            if (in_array(needle: $element, haystack: $processed, strict: true)) {
-                throw new InvalidArgumentException(message: 'Array elements cannot be duplicated.');
-            }
-            $processed[] = $element;
-        }
-        return '{' . implode(separator: ',', array: $processed) . '}';
+        return BearDatabaseService::iterableToPostgres(values: $value);
     }
 }

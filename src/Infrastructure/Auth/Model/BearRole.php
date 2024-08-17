@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearRole|null firstWhere(string $column, string $operator, string|float|int|bool $value)
  * @method static Collection<int, BearRole> all(array $columns = ['*'])
  * @method static Collection<int, BearRole> get(array $columns = ['*'])
- * @method static Collection<int|string, BearRole> pluck(string $column, string $key = null)
+ * @method static Collection<array-key, BearRole> pluck(string $column, string $key = null)
  * @method static Collection<int, BearRole> fromQuery(string $query, array $bindings = [])
  * @method static Builder<BearRole> lockForUpdate()
  * @method static Builder<BearRole> select(array $columns = ['*'])

@@ -30,7 +30,7 @@ use RuntimeException;
  * @method static BearUser|null firstWhere(string $column, string $operator, string|float|int|bool $value)
  * @method static Collection<int, BearUser> all(array $columns = ['*'])
  * @method static Collection<int, BearUser> get(array $columns = ['*'])
- * @method static Collection<int|string, BearUser> pluck(string $column, string $key = null)
+ * @method static Collection<array-key, BearUser> pluck(string $column, string $key = null)
  * @method static Collection<int, BearUser> fromQuery(string $query, array $bindings = [])
  * @method static Builder<BearUser> lockForUpdate()
  * @method static Builder<BearUser> select(array $columns = ['*'])
