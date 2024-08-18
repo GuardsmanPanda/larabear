@@ -20,6 +20,9 @@ final class BearDatabaseArrayCast implements CastsAttributes {
     public function get(Model $model, string $key, mixed $value, array $attributes) {
         $value = substr(string: $value, offset: 1, length: -1);
         $result = new ArrayObject();
+        if ($value === '') {
+            return $result;
+        }
         foreach (explode(separator: ',', string: $value) as $element) {
             $result[] = substr(string: $element, offset: 1, length: -1);
         }

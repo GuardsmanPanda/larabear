@@ -12,7 +12,7 @@ use RuntimeException;
 final class BearDatabaseService {
     /**
      * @param String $sql
-     * @param array<mixed> $bindings
+     * @param array<array-key, mixed> $bindings
      * @return bool
      */
     public static function exists(string $sql, array $bindings = []): bool {
