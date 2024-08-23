@@ -27,7 +27,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearOauth2User|null firstWhere(string $column, string $operator, string|float|int|bool $value)
  * @method static Collection<int, BearOauth2User> all(array $columns = ['*'])
  * @method static Collection<int, BearOauth2User> get(array $columns = ['*'])
- * @method static Collection<array-key, BearOauth2User> pluck(string $column, string $key = null)
  * @method static Collection<int, BearOauth2User> fromQuery(string $query, array $bindings = [])
  * @method static Builder<BearOauth2User> lockForUpdate()
  * @method static Builder<BearOauth2User> select(array $columns = ['*'])

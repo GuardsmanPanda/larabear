@@ -23,7 +23,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearPermission|null firstWhere(string $column, string $operator, string|float|int|bool $value)
  * @method static Collection<int, BearPermission> all(array $columns = ['*'])
  * @method static Collection<int, BearPermission> get(array $columns = ['*'])
- * @method static Collection<array-key, BearPermission> pluck(string $column, string $key = null)
  * @method static Collection<int, BearPermission> fromQuery(string $query, array $bindings = [])
  * @method static Builder<BearPermission> lockForUpdate()
  * @method static Builder<BearPermission> select(array $columns = ['*'])

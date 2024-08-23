@@ -23,7 +23,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearExternalApiAuth|null firstWhere(string $column, string $operator, string|float|int|bool $value)
  * @method static Collection<int, BearExternalApiAuth> all(array $columns = ['*'])
  * @method static Collection<int, BearExternalApiAuth> get(array $columns = ['*'])
- * @method static Collection<array-key, BearExternalApiAuth> pluck(string $column, string $key = null)
  * @method static Collection<int, BearExternalApiAuth> fromQuery(string $query, array $bindings = [])
  * @method static Builder<BearExternalApiAuth> lockForUpdate()
  * @method static Builder<BearExternalApiAuth> select(array $columns = ['*'])

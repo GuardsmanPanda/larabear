@@ -24,7 +24,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static BearCountry|null firstWhere(string $column, string $operator, string|float|int|bool $value)
  * @method static Collection<int, BearCountry> all(array $columns = ['*'])
  * @method static Collection<int, BearCountry> get(array $columns = ['*'])
- * @method static Collection<array-key, BearCountry> pluck(string $column, string $key = null)
  * @method static Collection<int, BearCountry> fromQuery(string $query, array $bindings = [])
  * @method static BearCountry lockForUpdate()
  * @method static BearCountry select(array $columns = ['*'])

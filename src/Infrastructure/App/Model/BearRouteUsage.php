@@ -23,7 +23,6 @@ use RuntimeException;
  * @method static BearRouteUsage|null firstWhere(string $column, string $operator, string|float|int|bool $value)
  * @method static Collection<int, BearRouteUsage> all(array $columns = ['*'])
  * @method static Collection<int, BearRouteUsage> get(array $columns = ['*'])
- * @method static Collection<array-key, BearRouteUsage> pluck(string $column, string $key = null)
  * @method static Collection<int, BearRouteUsage> fromQuery(string $query, array $bindings = [])
  * @method static Builder<BearRouteUsage> lockForUpdate()
  * @method static Builder<BearRouteUsage> select(array $columns = ['*'])

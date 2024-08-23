@@ -29,7 +29,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static BearExternalApi|null firstWhere(string $column, string $operator, string|float|int|bool $value)
  * @method static Collection<int, BearExternalApi> all(array $columns = ['*'])
  * @method static Collection<int, BearExternalApi> get(array $columns = ['*'])
- * @method static Collection<array-key, BearExternalApi> pluck(string $column, string $key = null)
  * @method static Collection<int, BearExternalApi> fromQuery(string $query, array $bindings = [])
  * @method static Builder<BearExternalApi> lockForUpdate()
  * @method static Builder<BearExternalApi> select(array $columns = ['*'])

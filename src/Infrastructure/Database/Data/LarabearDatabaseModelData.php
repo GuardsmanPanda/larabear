@@ -293,7 +293,6 @@ final class LarabearDatabaseModelData {
         $content .= " * @method static $this->modelClassName|null firstWhere(string \$column, string \$operator, string|float|int|bool \$value)" . PHP_EOL;
         $content .= " * @method static Collection<int, $this->modelClassName> all(array \$columns = ['*'])" . PHP_EOL;
         $content .= " * @method static Collection<int, $this->modelClassName> get(array \$columns = ['*'])" . PHP_EOL;
-        $content .= " * @method static Collection<array-key, $this->modelClassName> pluck(string \$column, string \$key = null)" . PHP_EOL;
         $content .= " * @method static Collection<int, $this->modelClassName> fromQuery(string \$query, array \$bindings = [])" . PHP_EOL;
         $content .= " * @method static Builder<$this->modelClassName> lockForUpdate()" . PHP_EOL;
         $content .= " * @method static Builder<$this->modelClassName> select(array \$columns = ['*'])" . PHP_EOL;
