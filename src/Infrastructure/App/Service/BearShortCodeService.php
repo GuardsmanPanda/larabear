@@ -55,4 +55,13 @@ final class BearShortCodeService {
         $updater->setConfigString(config_string: $value)->update();
         return $value;
     }
+
+
+    public static function getRandomShortCode(int $length): string {
+        $code = '';
+        for ($i = 0; $i < $length; $i++) {
+            $code .= self::CHARS[random_int(min: 0, max: strlen(string: self::CHARS) - 1)];
+        }
+        return $code;
+    }
 }
