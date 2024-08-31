@@ -5,7 +5,9 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 use Carbon\CarbonImmutable;
 use GuardsmanPanda\Larabear\Infrastructure\App\Enum\BearHttpMethodEnum;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearGlobalStateService;
+use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
 use GuardsmanPanda\Larabear\Infrastructure\Integrity\Service\ValidateAndParseValue;
+use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountryEnum;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -109,6 +111,19 @@ final class Req {
 
     public static function ipCountry(): string|null {
         return self::hasHeader(key: 'CF_IPCOUNTRY') ? self::header(key: 'CF_IPCOUNTRY') : null;
+    }
+
+    public static function ipCountryEnum(): BearCountryEnum|null {
+        if (!self::hasHeader(key: 'CF_IPCOUNTRY')) {
+            return null;
+        }
+        $country = self::header(key: 'CF_IPCOUNTRY');
+        $enum = BearCountryEnum::tryFrom(value: $country);
+        if ($enum === null) {
+            BearErrorCreator::create(message: "Unknown Country Code: $country");
+            return BearCountryEnum::XX;
+        }
+        return $enum;
     }
 
     public static function requestId(): string|null {
