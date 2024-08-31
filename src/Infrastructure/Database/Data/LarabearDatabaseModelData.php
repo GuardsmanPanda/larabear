@@ -133,6 +133,9 @@ final class LarabearDatabaseModelData {
         if ($column->requiredHeader === 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;') {
             $this->headers->add(element: 'use Illuminate\\Database\\Eloquent\\Casts\\AsArrayObject;');
         }
+        if ($column->requiredHeader === 'use GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Cast\\BearDatabaseArrayCast;') {
+            $this->headers->add(element: 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;');
+        }
         if ($column->phpDataType === 'CarbonInterface') {
             $this->headers->add(element: 'use Carbon\\CarbonInterface;');
         }
