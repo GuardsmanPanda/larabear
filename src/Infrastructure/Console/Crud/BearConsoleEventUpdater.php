@@ -8,7 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 final readonly class BearConsoleEventUpdater {
     public function __construct(private BearConsoleEvent $model) {
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['CLI']);
     }
 
     public static function fromConsoleEventId(string $consoleEventId): BearConsoleEventUpdater {

@@ -19,7 +19,7 @@ final class BearConsoleEventCreator {
         int $execution_time_microseconds = null,
         string $output = null
     ): BearConsoleEvent {
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['CLI']);
 
         $model = new BearConsoleEvent();
 

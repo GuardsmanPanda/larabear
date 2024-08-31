@@ -25,7 +25,8 @@ final class BearAccessTokenCreator {
         string          $api_primary_key = null,
         CarbonInterface $expires_at = null,
     ): array {
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
+        BearDatabaseService::mustBeInTransaction();
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT']);
 
         $model = new BearAccessToken();
         $model->id = Str::uuid()->toString();

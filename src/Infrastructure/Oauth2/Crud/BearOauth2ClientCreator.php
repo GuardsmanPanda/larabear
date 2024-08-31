@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeE
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Model\BearOauth2Client;
 
 final class BearOauth2ClientCreator {
-    public static function create(
+    public static function syncToDatabase(
         string                       $id,
         string                       $description,
         LarabearOauth2ClientTypeEnum $oauth2_client_type,
@@ -17,14 +17,19 @@ final class BearOauth2ClientCreator {
         string                       $client_scope = null,
         string                       $user_scope = '',
     ): BearOauth2Client {
+        BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
 
-        $model = new BearOauth2Client();
+        $model = BearOauth2Client::find(id: $id);
 
-        $model->id = $id;
+        if ($model === null) {
+            $model = new BearOauth2Client();
+            $model->id = $id;
+            $model->encrypted_secret = $encrypted_secret;
+        }
+
         $model->description = $description;
         $model->oauth2_client_type_enum = $oauth2_client_type;
-        $model->encrypted_secret = $encrypted_secret;
         $model->user_redirect_path = $user_redirect_path;
         $model->client_base_url = $client_base_url;
         $model->client_scope = $client_scope;
