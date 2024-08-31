@@ -4,6 +4,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Data\LarabearDatabaseModelData;
+use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountryEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
@@ -160,6 +161,7 @@ final class LarabearDatabaseModelService {
 
     private static function getBearEnumClass(string $tableName): string|null {
         return match ($tableName) {
+            'bear_country' => BearCountryEnum::class,
             'bear_oauth2_client_type' => LarabearOauth2ClientTypeEnum::class,
             default => null
         };
