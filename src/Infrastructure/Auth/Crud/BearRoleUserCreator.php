@@ -13,6 +13,7 @@ final class BearRoleUserCreator {
 
     public static function createFromString(string $role_enum, string $user_id): BearRoleUser {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
+        BearDatabaseService::mustBeInTransaction();
 
         $model = new BearRoleUser();
 

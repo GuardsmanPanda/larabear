@@ -9,7 +9,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 final readonly class BearConfigUpdater {
     public function __construct(private BearConfig $model) {
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
+        BearDatabaseService::mustBeInTransaction();
     }
 
     public static function fromConfigKey(string $config_key, bool $lockForUpdate = false): self {

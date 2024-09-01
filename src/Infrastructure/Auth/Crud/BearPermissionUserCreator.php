@@ -12,7 +12,8 @@ final class BearPermissionUserCreator {
     }
 
     public static function createFromString(string $permission_enum, string $user_id): BearPermissionUser {
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
+        BearDatabaseService::mustBeInTransaction();
 
         $model = new BearPermissionUser();
 

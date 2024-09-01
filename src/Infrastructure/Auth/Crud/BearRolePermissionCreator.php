@@ -9,7 +9,8 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearRolePermission;
 
 final class BearRolePermissionCreator {
     public static function create(BearRoleEnumInterface $role, BearPermissionEnumInterface $permission): BearRolePermission {
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
+        BearDatabaseService::mustBeInTransaction();
 
         $model = new BearRolePermission();
 

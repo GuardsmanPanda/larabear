@@ -8,8 +8,8 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessToken;
 
 final readonly class BearAccessTokenUpdater {
     public function __construct(private BearAccessToken $model) {
-        BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['PUT', 'PATCH']);
+        BearDatabaseService::mustBeInTransaction();
     }
 
     public static function fromId(string $id): BearAccessTokenUpdater {

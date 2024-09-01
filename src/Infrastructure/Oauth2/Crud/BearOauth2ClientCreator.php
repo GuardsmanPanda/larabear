@@ -17,8 +17,8 @@ final class BearOauth2ClientCreator {
         string                       $client_scope = null,
         string                       $user_scope = '',
     ): BearOauth2Client {
-        BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
+        BearDatabaseService::mustBeInTransaction();
 
         $model = BearOauth2Client::find(id: $id);
 

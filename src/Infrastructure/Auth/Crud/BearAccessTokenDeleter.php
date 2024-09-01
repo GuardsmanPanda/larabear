@@ -7,8 +7,8 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearAccessToken;
 
 final class BearAccessTokenDeleter {
     public static function delete(BearAccessToken $model): void {
-        BearDatabaseService::mustBeInTransaction();
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['DELETE']);
+        BearDatabaseService::mustBeInTransaction();
         $model->delete();
     }
 

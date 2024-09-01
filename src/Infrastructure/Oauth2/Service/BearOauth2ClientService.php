@@ -92,7 +92,7 @@ final class BearOauth2ClientService {
                 display_name: $token->name,
                 access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']),
                 encrypted_access_token: $data['access_token'],
-                encrypted_refresh_token: $data['refresh_token'],
+                encrypted_refresh_token: $data['refresh_token'] ?? null,
                 user: $bearUser
             );
         }

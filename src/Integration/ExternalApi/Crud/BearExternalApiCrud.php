@@ -8,7 +8,8 @@ use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 
 final class BearExternalApiCrud {
     public static function syncToDatabase(BearExternalApiEnumInterface $enum): BearExternalApi {
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['CLI']);
+        BearDatabaseService::mustBeInTransaction();
 
         $model = BearExternalApi::find($enum->getValue()) ?? new BearExternalApi();
 
@@ -26,7 +27,8 @@ final class BearExternalApiCrud {
 
 
     public static function updateEncryptedToken(string $enum, string $encrypted_token): BearExternalApi {
-        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);
+        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH']);
+        BearDatabaseService::mustBeInTransaction();
         $model = BearExternalApi::findOrFail(id: $enum);
         $model->encrypted_token = $encrypted_token;
         $model->save();
