@@ -28,6 +28,7 @@ return new class extends Migration {
             $table->timestampTz(column: 'updated_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
 
             $table->primary(columns: ['country_cca2', 'iso_3166']);
+            $table->foreign(columns: 'country_cca2')->references('cca2')->on(table: 'bear_country');
         });
     }
 

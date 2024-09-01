@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearRole;
 
 final class BearRoleCrud {
-    public static function syncToDatabase(BearRoleEnumInterface $role): BearRole {
+    public static function syncToDatabase(BearRoleEnumInterface $role): void {
         BearDatabaseService::mustBeInTransaction();
 
         $model = BearRole::find(id: $role->getValue()) ?? new BearRole();
@@ -15,6 +15,5 @@ final class BearRoleCrud {
         $model->description = $role->getDescription();
 
         $model->save();
-        return $model;
     }
 }

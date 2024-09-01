@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearPermission;
 
 final class BearPermissionCrud {
-    public static function syncToDatabase(BearPermissionEnumInterface $permission): BearPermission {
+    public static function syncToDatabase(BearPermissionEnumInterface $permission): void {
         BearDatabaseService::mustBeInTransaction();
 
         $model = BearPermission::find($permission->getValue()) ?? new BearPermission();
@@ -15,6 +15,5 @@ final class BearPermissionCrud {
         $model->description = $permission->getDescription();
 
         $model->save();
-        return $model;
     }
 }

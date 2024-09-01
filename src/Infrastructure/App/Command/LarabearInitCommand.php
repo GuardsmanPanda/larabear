@@ -6,6 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Auth\Enum\LarabearPermissionEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Config\Enum\LarabearConfigEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Console\Service\BearTransactionCommand;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountryEnum;
+use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountrySubdivisionEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiAuthEnum;
 
@@ -20,6 +21,8 @@ final class LarabearInitCommand extends BearTransactionCommand {
         LarabearOauth2ClientTypeEnum::syncToDatabase();
         LarabearPermissionEnum::syncToDatabase();
         LarabearConfigEnum::syncToDatabase();
+
+        BearCountrySubdivisionEnum::syncToDatabase(); // Must be after BearCountryEnum
 
         $this->info(string: "larabear package initialized");
     }

@@ -7,7 +7,7 @@ use GuardsmanPanda\Larabear\Integration\ExternalApi\Interface\BearExternalApiEnu
 use GuardsmanPanda\Larabear\Integration\ExternalApi\Model\BearExternalApi;
 
 final class BearExternalApiCrud {
-    public static function syncToDatabase(BearExternalApiEnumInterface $enum): BearExternalApi {
+    public static function syncToDatabase(BearExternalApiEnumInterface $enum): void {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['CLI']);
         BearDatabaseService::mustBeInTransaction();
 
@@ -22,7 +22,6 @@ final class BearExternalApiCrud {
         $model->metadata_json = $enum->metadataJson();
 
         $model->save();
-        return $model;
     }
 
 
