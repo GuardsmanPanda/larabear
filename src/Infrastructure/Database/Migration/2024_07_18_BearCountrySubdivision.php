@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::create(table: 'bear_country_division', callback: static function (Blueprint $table) {
+        Schema::create(table: 'bear_country_subdivision', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
                 $table->text(column: 'country_cca2');
                 $table->text(column: 'iso_3166');
@@ -32,6 +32,6 @@ return new class extends Migration {
     }
 
     public function down(): void {
-        Schema::dropIfExists(table: 'bear_country_division');
+        Schema::dropIfExists(table: 'bear_country_subdivision');
     }
 };
