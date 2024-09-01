@@ -16,25 +16,25 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     public function getCountrySubdivisionData(): BearCountrySubdivisionData {
         return match ($this) {
             self::GB_ENG => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::GB, iso_3166: 'GB-ENG',
+                iso_3166: 'GB-ENG', country_cca2: BearCountryEnum::GB,
                 name: 'England', capital: 'London',
                 area_km2: 130395, local_area_rank: 1,
                 population: 56223000, local_population_rank: 1,
             ),
             self::GB_NIR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::GB, iso_3166: 'GB-NIR',
+                iso_3166: 'GB-NIR', country_cca2: BearCountryEnum::GB,
                 name: 'Northern Ireland', capital: 'Belfast',
                 area_km2: 14330, local_area_rank: 4,
                 population: 1910543, local_population_rank: 4,
             ),
             self::GB_SCT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::GB, iso_3166: 'GB-SCT',
+                iso_3166: 'GB-SCT', country_cca2: BearCountryEnum::GB,
                 name: 'Scotland', capital: 'Edinburgh',
                 area_km2: 80231, local_area_rank: 2,
                 population: 5463300, local_population_rank: 2,
             ),
             self::GB_WLS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::GB, iso_3166: 'GB-WLS',
+                iso_3166: 'GB-WLS', country_cca2: BearCountryEnum::GB,
                 name: 'Wales', capital: 'Cardiff',
                 area_km2: 20779, local_area_rank: 3,
                 population: 3139000, local_population_rank: 3,

@@ -11,11 +11,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use RuntimeException;
 
 /**
  * AUTO GENERATED FILE DO NOT MODIFY
  *
+ * @method static BearCountrySubdivision|null find(string $id, array $columns = ['*'])
+ * @method static BearCountrySubdivision findOrFail(string $id, array $columns = ['*'])
  * @method static BearCountrySubdivision sole(array $columns = ['*'])
  * @method static BearCountrySubdivision|null first(array $columns = ['*'])
  * @method static BearCountrySubdivision firstOrFail(array $columns = ['*'])
@@ -72,10 +73,8 @@ final class BearCountrySubdivision extends Model {
     use BearDatabaseChangeTrait, LarabearFixDateFormatTrait;
 
     protected $table = 'bear_country_subdivision';
-    /** @var array<string> primaryKeyArray */
-    private array $primaryKeyArray = ['country_cca2', 'iso_3166'];
-    protected $keyType = 'array';
-    public $incrementing = false;
+    protected $primaryKey = 'iso_3166';
+    protected $keyType = 'string';
 
     /** @var array<string, string> $casts */
     protected $casts = [
@@ -87,53 +86,5 @@ final class BearCountrySubdivision extends Model {
         return $this->belongsTo(related: BearCountry::class, foreignKey: 'country_cca2', ownerKey: 'cca2');
     }
 
-    protected $guarded = ['country_cca2', 'iso_3166', 'updated_at', 'created_at', 'deleted_at'];
-
-
-    /** @return Mixed[] */
-    public function getKey(): array {
-        $attributes = [];
-        foreach ($this->primaryKeyArray as $key) {
-            $attributes[$key] = $this->getAttribute($key);
-        }
-        return $attributes;
-    }
-
-    /**
-     * @param array<string, string|int> $ids # Ids in the form ['key1' => 'value1', 'key2' => 'value2']
-     * @param array<string> $columns
-     * @return BearCountrySubdivision|null
-     */
-    public static function find(array $ids, array $columns = ['*']): BearCountrySubdivision|null {
-        $me = new self;
-        $query = $me->newQuery();
-        foreach ($me->primaryKeyArray as $key) {
-            $query->where(column: $key, operator: '=', value: $ids[$key]);
-        }
-        $result = $query->first($columns);
-        return $result instanceof self ? $result : null;
-    }
-
-    /**
-     * @param array<string, string|int> $ids # Ids in the form ['key1' => 'value1', 'key2' => 'value2']
-     * @param array<string> $columns
-     * @return BearCountrySubdivision
-     */
-    public static function findOrFail(array $ids, array $columns = ['*']): BearCountrySubdivision {
-        $result = self::find(ids: $ids, columns: $columns);
-        return $result ?? throw new RuntimeException(message: "No result found for " . self::class . " with ids " . json_encode($ids, JSON_THROW_ON_ERROR));
-    }
-
-    protected function setKeysForSaveQuery($query): Builder {
-        foreach ($this->primaryKeyArray as $key) {
-            $query->where(column: $key, operator: "=", value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));
-        }
-        return $query;
-    }
-    protected function setKeysForSelectQuery($query): Builder {
-        foreach ($this->primaryKeyArray as $key) {
-            $query->where(column: $key, operator: "=", value: $this->$key ?? throw new RuntimeException(message: "Missing primary key value for $key"));
-        }
-        return $query;
-    }
+    protected $guarded = ['iso_3166', 'updated_at', 'created_at', 'deleted_at'];
 }

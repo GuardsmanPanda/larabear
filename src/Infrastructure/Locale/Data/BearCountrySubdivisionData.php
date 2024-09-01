@@ -6,8 +6,8 @@ use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountryEnum;
 
 final readonly class BearCountrySubdivisionData {
     public function __construct(
-        public BearCountryEnum $country_cca2,
         public string $iso_3166,
+        public BearCountryEnum $country_cca2,
         public string $name,
         public string $capital,
         public int $area_km2,

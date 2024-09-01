@@ -12,7 +12,7 @@ final class LarabearCountrySubdivisionCrud {
         BearDatabaseService::mustBeInTransaction();
 
         $data = $enum->getCountrySubdivisionData();
-        $model = BearCountrySubdivision::find(ids: ['country_cca2' => $data->country_cca2->value, 'iso_3166' => $data->iso_3166]) ?? new BearCountrySubdivision();
+        $model = BearCountrySubdivision::find($data->iso_3166) ?? new BearCountrySubdivision();
 
         $ranks = DB::selectOne(query: "
             SELECT
