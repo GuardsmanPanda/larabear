@@ -10,11 +10,11 @@ return new class extends Migration {
     public function up(): void {
         Schema::create(table: 'bear_country_subdivision', callback: static function (Blueprint $table) {
             if (BearDatabaseService::defaultConnectionDriver() === 'pgsql') {
+                $table->text(column: 'iso_3166')->primary();
                 $table->text(column: 'country_cca2');
-                $table->text(column: 'iso_3166');
             } else {
+                $table->string(column: 'iso_3166')->primary();
                 $table->string(column: 'country_cca2');
-                $table->string(column: 'iso_3166');
             }
             $table->text(column: 'name');
             $table->text(column: 'capital');
@@ -27,7 +27,6 @@ return new class extends Migration {
             $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
 
-            $table->primary(columns: ['country_cca2', 'iso_3166']);
             $table->foreign(columns: 'country_cca2')->references('cca2')->on(table: 'bear_country');
         });
     }
