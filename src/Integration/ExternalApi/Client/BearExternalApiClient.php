@@ -242,4 +242,18 @@ final class BearExternalApiClient {
             throw new RuntimeException(message: "Failed to make external API request to $final_url", previous: $e);
         }
     }
+
+
+    /**
+     * @param array<string, string> $headers
+     * @param array<string, string> $body
+     * @param array<string, string> $query
+     *
+     * @return array<array-key, mixed>
+     */
+    public function requestJsonOrThrow(
+        string $path, BearHttpMethodEnum $method = BearHttpMethodEnum::GET, array  $headers = [], array $body = [], array $query = [], bool $asForm = false
+    ): array {
+        return $this->request(path: $path, method: $method, headers: $headers, body: $body, query: $query, asForm: $asForm)->json();
+    }
 }

@@ -21,7 +21,7 @@
     "ext-zend-opcache": "*",
     "doctrine/dbal": "^4.1",
     "guzzlehttp/guzzle": "^7.9",
-    "laravel/framework": "^v11.21",
+    "laravel/framework": "^v11.22",
     "ramsey/collection": "^2.0"
   },
   "autoload": {
@@ -34,7 +34,7 @@
   },
   "require-dev": {
     "ergebnis/phpstan-rules": "^2.2",
-    "phpstan/phpstan": "^1.11",
+    "phpstan/phpstan": "^1.12",
     "phpstan/phpstan-deprecation-rules": "^1.2",
     "phpstan/phpstan-strict-rules": "^1.6",
     "roave/security-advisories": "dev-latest",

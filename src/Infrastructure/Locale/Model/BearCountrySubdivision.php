@@ -63,6 +63,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $iso_3166
  * @property string $created_at
  * @property string $updated_at
+ * @property string $subdivision_type_enum
  * @property BearCountryEnum $country_cca2
  *
  * @property BearCountry $countryCca2

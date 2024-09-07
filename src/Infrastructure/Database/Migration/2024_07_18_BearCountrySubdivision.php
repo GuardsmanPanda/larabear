@@ -18,10 +18,11 @@ return new class extends Migration {
             }
             $table->text(column: 'name');
             $table->text(column: 'capital');
+            $table->text(column: 'subdivision_type_enum');
             $table->integer(column: 'area_km2');
             $table->integer(column: 'local_area_rank');
             $table->integer(column: 'global_area_rank');
-            $table->integer(column: 'population');
+            $table->bigInteger(column: 'population');
             $table->integer(column: 'local_population_rank');
             $table->integer(column: 'global_population_rank');
             $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));

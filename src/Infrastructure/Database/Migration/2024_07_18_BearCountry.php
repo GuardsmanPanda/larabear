@@ -21,13 +21,14 @@ return new class extends Migration {
             $table->text(column: 'tld');
             $table->integer(column: 'area_km2');
             $table->integer(column: 'area_rank');
-            $table->integer(column: 'population');
+            $table->bigInteger(column: 'population');
             $table->integer(column: 'population_rank');
             $table->text(column: 'currency_code');
             $table->text(column: 'currency_name');
             $table->text(column: 'currency_symbol');
             $table->text(column: 'calling_code');
             $table->boolean(column: 'is_driving_side_right');
+            $table->jsonb(column: 'osm_relation_ids_json');
             $table->jsonb(column: 'cca2_borders_json');
             $table->text(column: 'dependency_status')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));

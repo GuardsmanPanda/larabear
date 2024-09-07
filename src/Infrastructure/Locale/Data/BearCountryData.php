@@ -2,11 +2,10 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Locale\Data;
 
-use Illuminate\Database\Eloquent\Casts\ArrayObject;
-
 final readonly class BearCountryData {
     /**
-     * @param ArrayObject<int, string> $borders
+     * @param Array<int, int> $osm_relation_ids
+     * @param Array<int, string> $borders
      */
     public function __construct(
         public string      $cca2,
@@ -23,8 +22,9 @@ final readonly class BearCountryData {
         public string      $currency_symbol,
         public string      $calling_code,
         public bool        $is_driving_side_right,
+        public array       $osm_relation_ids,
         public string|null $dependency_status,
-        public ArrayObject       $borders,
+        public array       $borders,
     ) {
     }
 }

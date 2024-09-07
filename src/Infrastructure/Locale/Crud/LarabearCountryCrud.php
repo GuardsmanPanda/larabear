@@ -5,6 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Locale\Crud;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountryEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Model\BearCountry;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
 
 final class LarabearCountryCrud {
     public static function syncToDatabase(BearCountryEnum $enum): void {
@@ -28,7 +29,8 @@ final class LarabearCountryCrud {
         $model->calling_code = $data->calling_code;
         $model->dependency_status = $data->dependency_status;
         $model->is_driving_side_right = $data->is_driving_side_right;
-        $model->cca2_borders_json = $data->borders;
+        $model->cca2_borders_json = new ArrayObject($data->borders);
+        $model->osm_relation_ids_json = new ArrayObject($data->osm_relation_ids);
 
         $model->save();
     }
