@@ -334,623 +334,623 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
                 cca2: "AS", cca3: "ASM", name: "American Samoa", capital: "Pago Pago", tld: ".as",
                 area_km2: 199, area_rank: 222, population: 55197, population_rank: 212,
                 currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
-                calling_code: "+1684", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+1684", is_driving_side_right: true, osm_relation_ids: [2177187],
                 dependency_status: "Commonwealth of US", borders: []
             ),
             self::AT => new BearCountryData(
                 cca2: "AT", cca3: "AUT", name: "Austria", capital: "Vienna", tld: ".at",
                 area_km2: 83871, area_rank: 116, population: 8917205, population_rank: 99,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+43", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+43", is_driving_side_right: true, osm_relation_ids: [16239],
                 dependency_status: null, borders: ['CZ', 'DE', 'HU', 'IT', 'LI', 'SK', 'SI', 'CH']
             ),
             self::AU => new BearCountryData(
                 cca2: "AU", cca3: "AUS", name: "Australia", capital: "Canberra", tld: ".au",
                 area_km2: 7692024, area_rank: 7, population: 25687041, population_rank: 55,
                 currency_code: "AUD", currency_name: "Australian dollar", currency_symbol: "$",
-                calling_code: "+61", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+61", is_driving_side_right: false, osm_relation_ids: [80500],
                 dependency_status: null, borders: []
             ),
             self::AW => new BearCountryData(
                 cca2: "AW", cca3: "ABW", name: "Aruba", capital: "Oranjestad", tld: ".aw",
                 area_km2: 180, area_rank: 224, population: 106766, population_rank: 197,
                 currency_code: "AWG", currency_name: "Aruban florin", currency_symbol: "ƒ",
-                calling_code: "+297", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+297", is_driving_side_right: true, osm_relation_ids: [1231749],
                 dependency_status: "Part of the Netherlands", borders: []
             ),
             self::AX => new BearCountryData(
                 cca2: "AX", cca3: "ALA", name: "Åland Islands", capital: "Mariehamn", tld: ".ax",
                 area_km2: 1580, area_rank: 186, population: 29458, population_rank: 224,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+35818", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+35818", is_driving_side_right: true, osm_relation_ids: [1650407],
                 dependency_status: "Part of Finland", borders: []
             ),
             self::AZ => new BearCountryData(
                 cca2: "AZ", cca3: "AZE", name: "Azerbaijan", capital: "Baku", tld: ".az",
                 area_km2: 86600, area_rank: 115, population: 10110116, population_rank: 91,
                 currency_code: "AZN", currency_name: "Azerbaijani manat", currency_symbol: "₼",
-                calling_code: "+994", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+994", is_driving_side_right: true, osm_relation_ids: [364110],
                 dependency_status: null, borders: ['AM', 'GE', 'IR', 'RU', 'TR']
             ),
             self::BA => new BearCountryData(
                 cca2: "BA", cca3: "BIH", name: "Bosnia and Herzegovina", capital: "Sarajevo", tld: ".ba",
                 area_km2: 51209, area_rank: 130, population: 3280815, population_rank: 134,
                 currency_code: "BAM", currency_name: "Bosnia and Herzegovina convertible mark", currency_symbol: "",
-                calling_code: "+387", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+387", is_driving_side_right: true, osm_relation_ids: [2528142],
                 dependency_status: null, borders: ['HR', 'ME', 'RS']
             ),
             self::BB => new BearCountryData(
                 cca2: "BB", cca3: "BRB", name: "Barbados", capital: "Bridgetown", tld: ".bb",
                 area_km2: 430, area_rank: 207, population: 287371, population_rank: 183,
                 currency_code: "BBD", currency_name: "Barbadian dollar", currency_symbol: "$",
-                calling_code: "+1246", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+1246", is_driving_side_right: false, osm_relation_ids: [547511],
                 dependency_status: null, borders: []
             ),
             self::BD => new BearCountryData(
                 cca2: "BD", cca3: "BGD", name: "Bangladesh", capital: "Dhaka", tld: ".bd",
                 area_km2: 147570, area_rank: 95, population: 164689383, population_rank: 8,
                 currency_code: "BDT", currency_name: "Bangladeshi taka", currency_symbol: "৳",
-                calling_code: "+880", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+880", is_driving_side_right: false, osm_relation_ids: [184640],
                 dependency_status: null, borders: ['MM', 'IN']
             ),
             self::BE => new BearCountryData(
                 cca2: "BE", cca3: "BEL", name: "Belgium", capital: "Brussels", tld: ".be",
                 area_km2: 30528, area_rank: 142, population: 11555997, population_rank: 81,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+32", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+32", is_driving_side_right: true, osm_relation_ids: [52411],
                 dependency_status: null, borders: ['FR', 'DE', 'LU', 'NL']
             ),
             self::BF => new BearCountryData(
                 cca2: "BF", cca3: "BFA", name: "Burkina Faso", capital: "Ouagadougou", tld: ".bf",
                 area_km2: 272967, area_rank: 76, population: 20903278, population_rank: 59,
                 currency_code: "XOF", currency_name: "West African CFA franc", currency_symbol: "Fr",
-                calling_code: "+226", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+226", is_driving_side_right: true, osm_relation_ids: [192783],
                 dependency_status: null, borders: ['BJ', 'CI', 'GH', 'ML', 'NE', 'TG']
             ),
             self::BG => new BearCountryData(
                 cca2: "BG", cca3: "BGR", name: "Bulgaria", capital: "Sofia", tld: ".bg",
                 area_km2: 110879, area_rank: 106, population: 6927288, population_rank: 106,
                 currency_code: "BGN", currency_name: "Bulgarian lev", currency_symbol: "лв",
-                calling_code: "+359", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+359", is_driving_side_right: true, osm_relation_ids: [186382],
                 dependency_status: null, borders: ['GR', 'MK', 'RO', 'RS', 'TR']
             ),
             self::BH => new BearCountryData(
                 cca2: "BH", cca3: "BHR", name: "Bahrain", capital: "Manama", tld: ".bh",
                 area_km2: 765, area_rank: 193, population: 1701583, population_rank: 153,
                 currency_code: "BHD", currency_name: "Bahraini dinar", currency_symbol: ".د.ب",
-                calling_code: "+973", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+973", is_driving_side_right: true, osm_relation_ids: [378734],
                 dependency_status: null, borders: []
             ),
             self::BI => new BearCountryData(
                 cca2: "BI", cca3: "BDI", name: "Burundi", capital: "Gitega", tld: ".bi",
                 area_km2: 27834, area_rank: 148, population: 11890781, population_rank: 78,
                 currency_code: "BIF", currency_name: "Burundian franc", currency_symbol: "Fr",
-                calling_code: "+257", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+257", is_driving_side_right: true, osm_relation_ids: [195269],
                 dependency_status: null, borders: ['CD', 'RW', 'TZ']
             ),
             self::BJ => new BearCountryData(
                 cca2: "BJ", cca3: "BEN", name: "Benin", capital: "Porto-Novo", tld: ".bj",
                 area_km2: 112622, area_rank: 103, population: 12123198, population_rank: 77,
                 currency_code: "XOF", currency_name: "West African CFA franc", currency_symbol: "Fr",
-                calling_code: "+229", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+229", is_driving_side_right: true, osm_relation_ids: [192784],
                 dependency_status: null, borders: ['BF', 'NE', 'NG', 'TG']
             ),
             self::BL => new BearCountryData(
                 cca2: "BL", cca3: "BLM", name: "Saint Barthélemy", capital: "Gustavia", tld: ".bl",
                 area_km2: 21, area_rank: 245, population: 4255, population_rank: 234,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+590", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+590", is_driving_side_right: true, osm_relation_ids: [537967],
                 dependency_status: "Part of France", borders: []
             ),
             self::BM => new BearCountryData(
                 cca2: "BM", cca3: "BMU", name: "Bermuda", capital: "Hamilton", tld: ".bm",
                 area_km2: 54, area_rank: 235, population: 63903, population_rank: 207,
                 currency_code: "BMD", currency_name: "Bermudian dollar", currency_symbol: "$",
-                calling_code: "+1441", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+1441", is_driving_side_right: false, osm_relation_ids: [1993208],
                 dependency_status: "British Overseas Territory", borders: []
             ),
             self::BN => new BearCountryData(
                 cca2: "BN", cca3: "BRN", name: "Brunei", capital: "Bandar Seri Begawan", tld: ".bn",
                 area_km2: 5765, area_rank: 175, population: 437483, population_rank: 176,
                 currency_code: "BND", currency_name: "Brunei dollar", currency_symbol: "$",
-                calling_code: "+673", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+673", is_driving_side_right: false, osm_relation_ids: [2103120],
                 dependency_status: null, borders: ['MY']
             ),
             self::BO => new BearCountryData(
                 cca2: "BO", cca3: "BOL", name: "Bolivia", capital: "Sucre", tld: ".bo",
                 area_km2: 1098581, area_rank: 29, population: 11673029, population_rank: 80,
                 currency_code: "BOB", currency_name: "Bolivian boliviano", currency_symbol: "Bs.",
-                calling_code: "+591", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+591", is_driving_side_right: true, osm_relation_ids: [252645],
                 dependency_status: null, borders: ['AR', 'BR', 'CL', 'PY', 'PE']
             ),
             self::BQ => new BearCountryData(
                 cca2: "BQ", cca3: "BES", name: "Caribbean Netherlands", capital: "Kralendijk", tld: ".bq",
                 area_km2: 328, area_rank: 214, population: 25987, population_rank: 225,
                 currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
-                calling_code: "+599", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+599", is_driving_side_right: true, osm_relation_ids: [1216720],
                 dependency_status: "Part of the Netherlands", borders: []
             ),
             self::BR => new BearCountryData(
                 cca2: "BR", cca3: "BRA", name: "Brazil", capital: "Brasília", tld: ".br",
                 area_km2: 8515767, area_rank: 6, population: 212559409, population_rank: 6,
                 currency_code: "BRL", currency_name: "Brazilian real", currency_symbol: "R$",
-                calling_code: "+55", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+55", is_driving_side_right: true, osm_relation_ids: [59470],
                 dependency_status: null, borders: ['AR', 'BO', 'CO', 'GF', 'GY', 'PY', 'PE', 'SR', 'UY', 'VE']
             ),
             self::BS => new BearCountryData(
                 cca2: "BS", cca3: "BHS", name: "Bahamas", capital: "Nassau", tld: ".bs",
                 area_km2: 13943, area_rank: 162, population: 393248, population_rank: 179,
                 currency_code: "BSD", currency_name: "Bahamian dollar", currency_symbol: "$",
-                calling_code: "+1242", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+1242", is_driving_side_right: false, osm_relation_ids: [547469],
                 dependency_status: null, borders: []
             ),
             self::BT => new BearCountryData(
                 cca2: "BT", cca3: "BTN", name: "Bhutan", capital: "Thimphu", tld: ".bt",
                 area_km2: 38394, area_rank: 138, population: 771612, population_rank: 166,
                 currency_code: "BTN", currency_name: "Bhutanese ngultrum", currency_symbol: "Nu.",
-                calling_code: "+975", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+975", is_driving_side_right: false, osm_relation_ids: [184629],
                 dependency_status: null, borders: ['CN', 'IN']
             ),
             self::BV => new BearCountryData(
                 cca2: "BV", cca3: "BVT", name: "Bouvet Island", capital: "", tld: ".bv",
                 area_km2: 49, area_rank: 237, population: 0, population_rank: 249,
                 currency_code: "", currency_name: "", currency_symbol: "",
-                calling_code: "+47", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+47", is_driving_side_right: true, osm_relation_ids: [2425963],
                 dependency_status: "Territory of Norway", borders: []
             ),
             self::BW => new BearCountryData(
                 cca2: "BW", cca3: "BWA", name: "Botswana", capital: "Gaborone", tld: ".bw",
                 area_km2: 582000, area_rank: 48, population: 2351625, population_rank: 145,
                 currency_code: "BWP", currency_name: "Botswana pula", currency_symbol: "P",
-                calling_code: "+267", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+267", is_driving_side_right: false, osm_relation_ids: [1889339],
                 dependency_status: null, borders: ['NA', 'ZA', 'ZM', 'ZW']
             ),
             self::BY => new BearCountryData(
                 cca2: "BY", cca3: "BLR", name: "Belarus", capital: "Minsk", tld: ".by",
                 area_km2: 207600, area_rank: 87, population: 9398861, population_rank: 96,
                 currency_code: "BYN", currency_name: "Belarusian ruble", currency_symbol: "Br",
-                calling_code: "+375", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+375", is_driving_side_right: true, osm_relation_ids: [59065],
                 dependency_status: null, borders: ['LV', 'LT', 'PL', 'RU', 'UA']
             ),
             self::BZ => new BearCountryData(
                 cca2: "BZ", cca3: "BLZ", name: "Belize", capital: "Belmopan", tld: ".bz",
                 area_km2: 22966, area_rank: 153, population: 397621, population_rank: 178,
                 currency_code: "BZD", currency_name: "Belize dollar", currency_symbol: "$",
-                calling_code: "+501", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+501", is_driving_side_right: true, osm_relation_ids: [287827],
                 dependency_status: null, borders: ['GT', 'MX']
             ),
             self::CA => new BearCountryData(
                 cca2: "CA", cca3: "CAN", name: "Canada", capital: "Ottawa", tld: ".ca",
                 area_km2: 9984670, area_rank: 3, population: 38005238, population_rank: 38,
                 currency_code: "CAD", currency_name: "Canadian dollar", currency_symbol: "$",
-                calling_code: "+1", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+1", is_driving_side_right: true, osm_relation_ids: [1428125],
                 dependency_status: null, borders: ['US']
             ),
             self::CC => new BearCountryData(
                 cca2: "CC", cca3: "CCK", name: "Cocos (Keeling) Islands", capital: "West Island", tld: ".cc",
                 area_km2: 14, area_rank: 246, population: 544, population_rank: 243,
                 currency_code: "AUD", currency_name: "Australian dollar", currency_symbol: "$",
-                calling_code: "+61", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+61", is_driving_side_right: false, osm_relation_ids: [82636],
                 dependency_status: "Territory of Australia", borders: []
             ),
             self::CD => new BearCountryData(
                 cca2: "CD", cca3: "COD", name: "DR Congo", capital: "Kinshasa", tld: ".cd",
                 area_km2: 2344858, area_rank: 12, population: 108407721, population_rank: 14,
                 currency_code: "CDF", currency_name: "Congolese franc", currency_symbol: "FC",
-                calling_code: "+243", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+243", is_driving_side_right: true, osm_relation_ids: [192795],
                 dependency_status: null, borders: ['AO', 'BI', 'CF', 'CG', 'RW', 'SS', 'TZ', 'UG', 'ZM']
             ),
             self::CF => new BearCountryData(
                 cca2: "CF", cca3: "CAF", name: "Central African Republic", capital: "Bangui", tld: ".cf",
                 area_km2: 622984, area_rank: 44, population: 4829764, population_rank: 126,
                 currency_code: "XAF", currency_name: "Central African CFA franc", currency_symbol: "Fr",
-                calling_code: "+236", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+236", is_driving_side_right: true, osm_relation_ids: [192790],
                 dependency_status: null, borders: ['CM', 'TD', 'CD', 'CG', 'SS', 'SD']
             ),
             self::CG => new BearCountryData(
                 cca2: "CG", cca3: "COG", name: "Republic of the Congo", capital: "Brazzaville", tld: ".cg",
                 area_km2: 342000, area_rank: 66, population: 5657000, population_rank: 116,
                 currency_code: "XAF", currency_name: "Central African CFA franc", currency_symbol: "Fr",
-                calling_code: "+242", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+242", is_driving_side_right: true, osm_relation_ids: [192794],
                 dependency_status: null, borders: ['AO', 'CM', 'CF', 'CD', 'GA']
             ),
             self::CH => new BearCountryData(
                 cca2: "CH", cca3: "CHE", name: "Switzerland", capital: "Bern", tld: ".ch",
                 area_km2: 41284, area_rank: 137, population: 8654622, population_rank: 100,
                 currency_code: "CHF", currency_name: "Swiss franc", currency_symbol: "Fr.",
-                calling_code: "+41", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+41", is_driving_side_right: true, osm_relation_ids: [51701],
                 dependency_status: null, borders: ['AT', 'FR', 'IT', 'LI', 'DE']
             ),
             self::CI => new BearCountryData(
                 cca2: "CI", cca3: "CIV", name: "Ivory Coast", capital: "Yamoussoukro", tld: ".ci",
                 area_km2: 322463, area_rank: 71, population: 26378275, population_rank: 53,
                 currency_code: "XOF", currency_name: "West African CFA franc", currency_symbol: "Fr",
-                calling_code: "+225", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+225", is_driving_side_right: true, osm_relation_ids: [192779],
                 dependency_status: null, borders: ['BF', 'GH', 'GN', 'LR', 'ML']
             ),
             self::CK => new BearCountryData(
                 cca2: "CK", cca3: "COK", name: "Cook Islands", capital: "Avarua", tld: ".ck",
                 area_km2: 236, area_rank: 221, population: 18100, population_rank: 226,
                 currency_code: "CKD", currency_name: "Cook Islands dollar", currency_symbol: "$",
-                calling_code: "+682", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+682", is_driving_side_right: false, osm_relation_ids: [2184233],
                 dependency_status: "Associated State of New Zealand", borders: []
             ),
             self::CL => new BearCountryData(
                 cca2: "CL", cca3: "CHL", name: "Chile", capital: "Santiago", tld: ".cl",
                 area_km2: 756102, area_rank: 39, population: 19116209, population_rank: 63,
                 currency_code: "CLP", currency_name: "Chilean peso", currency_symbol: "$",
-                calling_code: "+56", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+56", is_driving_side_right: true, osm_relation_ids: [167454],
                 dependency_status: null, borders: ['AR', 'BO', 'PE']
             ),
             self::CM => new BearCountryData(
                 cca2: "CM", cca3: "CMR", name: "Cameroon", capital: "Yaoundé", tld: ".cm",
                 area_km2: 475442, area_rank: 55, population: 26545864, population_rank: 52,
                 currency_code: "XAF", currency_name: "Central African CFA franc", currency_symbol: "Fr",
-                calling_code: "+237", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+237", is_driving_side_right: true, osm_relation_ids: [192830],
                 dependency_status: null, borders: ['CF', 'TD', 'CG', 'GQ', 'GA', 'NG']
             ),
             self::CN => new BearCountryData(
                 cca2: "CN", cca3: "CHN", name: "China", capital: "Beijing", tld: ".cn",
                 area_km2: 9706961, area_rank: 4, population: 1402112000, population_rank: 1,
                 currency_code: "CNY", currency_name: "Chinese yuan", currency_symbol: "¥",
-                calling_code: "+86", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+86", is_driving_side_right: true, osm_relation_ids: [270056],
                 dependency_status: null, borders: ['AF', 'BT', 'MM', 'HK', 'IN', 'KZ', 'NP', 'KP', 'KG', 'LA', 'MO', 'MN', 'PK', 'RU', 'TJ', 'VN']
             ),
             self::CO => new BearCountryData(
                 cca2: "CO", cca3: "COL", name: "Colombia", capital: "Bogotá", tld: ".co",
                 area_km2: 1141748, area_rank: 27, population: 50882884, population_rank: 29,
                 currency_code: "COP", currency_name: "Colombian peso", currency_symbol: "$",
-                calling_code: "+57", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+57", is_driving_side_right: true, osm_relation_ids: [120027],
                 dependency_status: null, borders: ['BR', 'EC', 'PA', 'PE', 'VE']
             ),
             self::CR => new BearCountryData(
                 cca2: "CR", cca3: "CRI", name: "Costa Rica", capital: "San José", tld: ".cr",
                 area_km2: 51100, area_rank: 131, population: 5094114, population_rank: 122,
                 currency_code: "CRC", currency_name: "Costa Rican colón", currency_symbol: "₡",
-                calling_code: "+506", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+506", is_driving_side_right: true, osm_relation_ids: [287667],
                 dependency_status: null, borders: ['NI', 'PA']
             ),
             self::CU => new BearCountryData(
                 cca2: "CU", cca3: "CUB", name: "Cuba", capital: "Havana", tld: ".cu",
                 area_km2: 109884, area_rank: 107, population: 11326616, population_rank: 83,
                 currency_code: "CUC", currency_name: "Cuban convertible peso", currency_symbol: "$",
-                calling_code: "+53", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+53", is_driving_side_right: true, osm_relation_ids: [307833],
                 dependency_status: null, borders: []
             ),
             self::CV => new BearCountryData(
                 cca2: "CV", cca3: "CPV", name: "Cape Verde", capital: "Praia", tld: ".cv",
                 area_km2: 4033, area_rank: 178, population: 555988, population_rank: 172,
                 currency_code: "CVE", currency_name: "Cape Verdean escudo", currency_symbol: "Esc",
-                calling_code: "+238", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+238", is_driving_side_right: true, osm_relation_ids: [535774],
                 dependency_status: null, borders: []
             ),
             self::CW => new BearCountryData(
                 cca2: "CW", cca3: "CUW", name: "Curaçao", capital: "Willemstad", tld: ".cw",
                 area_km2: 444, area_rank: 205, population: 155014, population_rank: 192,
                 currency_code: "ANG", currency_name: "Netherlands Antillean guilder", currency_symbol: "ƒ",
-                calling_code: "+599", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+599", is_driving_side_right: true, osm_relation_ids: [1216719],
                 dependency_status: "Part of the Netherlands", borders: []
             ),
             self::CX => new BearCountryData(
                 cca2: "CX", cca3: "CXR", name: "Christmas Island", capital: "Flying Fish Cove", tld: ".cx",
                 area_km2: 135, area_rank: 228, population: 2072, population_rank: 239,
                 currency_code: "AUD", currency_name: "Australian dollar", currency_symbol: "$",
-                calling_code: "+61", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+61", is_driving_side_right: false, osm_relation_ids: [2177207],
                 dependency_status: "Territory of Australia", borders: []
             ),
             self::CY => new BearCountryData(
                 cca2: "CY", cca3: "CYP", name: "Cyprus", capital: "Nicosia", tld: ".cy",
                 area_km2: 9251, area_rank: 171, population: 1207361, population_rank: 159,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+357", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+357", is_driving_side_right: false, osm_relation_ids: [307787],
                 dependency_status: null, borders: []
             ),
             self::CZ => new BearCountryData(
                 cca2: "CZ", cca3: "CZE", name: "Czechia", capital: "Prague", tld: ".cz",
                 area_km2: 78865, area_rank: 119, population: 10698896, population_rank: 87,
                 currency_code: "CZK", currency_name: "Czech koruna", currency_symbol: "Kč",
-                calling_code: "+420", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+420", is_driving_side_right: true, osm_relation_ids: [51684],
                 dependency_status: null, borders: ['AT', 'DE', 'PL', 'SK']
             ),
             self::DE => new BearCountryData(
                 cca2: "DE", cca3: "DEU", name: "Germany", capital: "Berlin", tld: ".de",
                 area_km2: 357114, area_rank: 64, population: 83240525, population_rank: 19,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+49", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+49", is_driving_side_right: true, osm_relation_ids: [51477],
                 dependency_status: null, borders: ['AT', 'BE', 'CZ', 'DK', 'FR', 'LU', 'NL', 'PL', 'CH']
             ),
             self::DJ => new BearCountryData(
                 cca2: "DJ", cca3: "DJI", name: "Djibouti", capital: "Djibouti", tld: ".dj",
                 area_km2: 23200, area_rank: 152, population: 988002, population_rank: 161,
                 currency_code: "DJF", currency_name: "Djiboutian franc", currency_symbol: "Fr",
-                calling_code: "+253", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+253", is_driving_side_right: true, osm_relation_ids: [192801],
                 dependency_status: null, borders: ['ER', 'ET', 'SO']
             ),
             self::DK => new BearCountryData(
                 cca2: "DK", cca3: "DNK", name: "Denmark", capital: "Copenhagen", tld: ".dk",
                 area_km2: 43094, area_rank: 135, population: 5831404, population_rank: 114,
                 currency_code: "DKK", currency_name: "Danish krone", currency_symbol: "kr",
-                calling_code: "+45", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+45", is_driving_side_right: true, osm_relation_ids: [50046],
                 dependency_status: null, borders: ['DE']
             ),
             self::DM => new BearCountryData(
                 cca2: "DM", cca3: "DMA", name: "Dominica", capital: "Roseau", tld: ".dm",
                 area_km2: 751, area_rank: 194, population: 71991, population_rank: 205,
                 currency_code: "XCD", currency_name: "Eastern Caribbean dollar", currency_symbol: "$",
-                calling_code: "+1767", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+1767", is_driving_side_right: false, osm_relation_ids: [307823],
                 dependency_status: null, borders: []
             ),
             self::DO => new BearCountryData(
                 cca2: "DO", cca3: "DOM", name: "Dominican Republic", capital: "Santo Domingo", tld: ".do",
                 area_km2: 48671, area_rank: 133, population: 10847904, population_rank: 85,
                 currency_code: "DOP", currency_name: "Dominican peso", currency_symbol: "$",
-                calling_code: "+1809", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+1809", is_driving_side_right: true, osm_relation_ids: [307828],
                 dependency_status: null, borders: ['HT']
             ),
             self::DZ => new BearCountryData(
                 cca2: "DZ", cca3: "DZA", name: "Algeria", capital: "Algiers", tld: ".dz",
                 area_km2: 2381741, area_rank: 11, population: 44700000, population_rank: 33,
                 currency_code: "DZD", currency_name: "Algerian dinar", currency_symbol: "د.ج",
-                calling_code: "+213", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+213", is_driving_side_right: true, osm_relation_ids: [192756],
                 dependency_status: null, borders: ['TN', 'LY', 'NE', 'EH', 'MR', 'ML', 'MA']
             ),
             self::EC => new BearCountryData(
                 cca2: "EC", cca3: "ECU", name: "Ecuador", capital: "Quito", tld: ".ec",
                 area_km2: 276841, area_rank: 75, population: 17643060, population_rank: 66,
                 currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
-                calling_code: "+593", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+593", is_driving_side_right: true, osm_relation_ids: [108089],
                 dependency_status: null, borders: ['CO', 'PE']
             ),
             self::EE => new BearCountryData(
                 cca2: "EE", cca3: "EST", name: "Estonia", capital: "Tallinn", tld: ".ee",
                 area_km2: 45227, area_rank: 134, population: 1331057, population_rank: 156,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+372", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+372", is_driving_side_right: true, osm_relation_ids: [79510],
                 dependency_status: null, borders: ['LV', 'RU']
             ),
             self::EG => new BearCountryData(
                 cca2: "EG", cca3: "EGY", name: "Egypt", capital: "Cairo", tld: ".eg",
                 area_km2: 1002450, area_rank: 31, population: 102334403, population_rank: 15,
                 currency_code: "EGP", currency_name: "Egyptian pound", currency_symbol: "£",
-                calling_code: "+20", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+20", is_driving_side_right: true, osm_relation_ids: [1473947],
                 dependency_status: null, borders: ['IL', 'LY', 'PS', 'SD']
             ),
             self::EH => new BearCountryData(
                 cca2: "EH", cca3: "ESH", name: "Western Sahara", capital: "El Aaiún", tld: ".eh",
                 area_km2: 266000, area_rank: 79, population: 510713, population_rank: 175,
                 currency_code: "DZD", currency_name: "Algerian dinar", currency_symbol: "دج",
-                calling_code: "+2125288", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+2125288", is_driving_side_right: true, osm_relation_ids: [2559126],
                 dependency_status: "Disputed", borders: ['DZ', 'MR', 'MA']
             ),
             self::ER => new BearCountryData(
                 cca2: "ER", cca3: "ERI", name: "Eritrea", capital: "Asmara", tld: ".er",
                 area_km2: 117600, area_rank: 102, population: 5352000, population_rank: 120,
                 currency_code: "ERN", currency_name: "Eritrean nakfa", currency_symbol: "Nfk",
-                calling_code: "+291", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+291", is_driving_side_right: true, osm_relation_ids: [296961],
                 dependency_status: null, borders: ['DJ', 'ET', 'SD']
             ),
             self::ES => new BearCountryData(
                 cca2: "ES", cca3: "ESP", name: "Spain", capital: "Madrid", tld: ".es",
                 area_km2: 505992, area_rank: 53, population: 47351567, population_rank: 30,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+34", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+34", is_driving_side_right: true, osm_relation_ids: [1311341],
                 dependency_status: null, borders: ['AD', 'FR', 'GI', 'PT', 'MA']
             ),
             self::ET => new BearCountryData(
                 cca2: "ET", cca3: "ETH", name: "Ethiopia", capital: "Addis Ababa", tld: ".et",
                 area_km2: 1104300, area_rank: 28, population: 114963583, population_rank: 12,
                 currency_code: "ETB", currency_name: "Ethiopian birr", currency_symbol: "Br",
-                calling_code: "+251", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+251", is_driving_side_right: true, osm_relation_ids: [192800],
                 dependency_status: null, borders: ['DJ', 'ER', 'KE', 'SO', 'SS', 'SD']
             ),
             self::FI => new BearCountryData(
                 cca2: "FI", cca3: "FIN", name: "Finland", capital: "Helsinki", tld: ".fi",
                 area_km2: 338424, area_rank: 67, population: 5530719, population_rank: 117,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+358", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+358", is_driving_side_right: true, osm_relation_ids: [54224],
                 dependency_status: null, borders: ['NO', 'SE', 'RU']
             ),
             self::FJ => new BearCountryData(
                 cca2: "FJ", cca3: "FJI", name: "Fiji", capital: "Suva", tld: ".fj",
                 area_km2: 18272, area_rank: 158, population: 896444, population_rank: 162,
                 currency_code: "FJD", currency_name: "Fijian dollar", currency_symbol: "$",
-                calling_code: "+679", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+679", is_driving_side_right: false, osm_relation_ids: [571747],
                 dependency_status: null, borders: []
             ),
             self::FK => new BearCountryData(
                 cca2: "FK", cca3: "FLK", name: "Falkland Islands", capital: "Stanley", tld: ".fk",
                 area_km2: 12173, area_rank: 165, population: 2563, population_rank: 236,
                 currency_code: "FKP", currency_name: "Falkland Islands pound", currency_symbol: "£",
-                calling_code: "+500", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+500", is_driving_side_right: false, osm_relation_ids: [2185374],
                 dependency_status: "British Overseas Territory", borders: []
             ),
             self::FM => new BearCountryData(
                 cca2: "FM", cca3: "FSM", name: "Micronesia", capital: "Palikir", tld: ".fm",
                 area_km2: 702, area_rank: 197, population: 115021, population_rank: 194,
                 currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
-                calling_code: "+691", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+691", is_driving_side_right: true, osm_relation_ids: [571802],
                 dependency_status: null, borders: []
             ),
             self::FO => new BearCountryData(
                 cca2: "FO", cca3: "FRO", name: "Faroe Islands", capital: "Tórshavn", tld: ".fo",
                 area_km2: 1393, area_rank: 187, population: 48865, population_rank: 215,
                 currency_code: "DKK", currency_name: "Danish krone", currency_symbol: "kr",
-                calling_code: "+298", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+298", is_driving_side_right: true, osm_relation_ids: [52939],
                 dependency_status: "Part of Denmark", borders: []
             ),
             self::FR => new BearCountryData(
                 cca2: "FR", cca3: "FRA", name: "France", capital: "Paris", tld: ".fr",
                 area_km2: 551695, area_rank: 50, population: 67391582, population_rank: 21,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+33", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+33", is_driving_side_right: true, osm_relation_ids: [2202162],
                 dependency_status: null, borders: ['AD', 'BE', 'DE', 'IT', 'LU', 'MC', 'ES', 'CH']
             ),
             self::GA => new BearCountryData(
                 cca2: "GA", cca3: "GAB", name: "Gabon", capital: "Libreville", tld: ".ga",
                 area_km2: 267668, area_rank: 78, population: 2225728, population_rank: 146,
                 currency_code: "XAF", currency_name: "Central African CFA franc", currency_symbol: "Fr",
-                calling_code: "+241", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+241", is_driving_side_right: true, osm_relation_ids: [192793],
                 dependency_status: null, borders: ['CM', 'CG', 'GQ']
             ),
             self::GB => new BearCountryData(
                 cca2: "GB", cca3: "GBR", name: "United Kingdom", capital: "London", tld: ".uk",
                 area_km2: 242900, area_rank: 81, population: 67215293, population_rank: 22,
                 currency_code: "GBP", currency_name: "British pound", currency_symbol: "£",
-                calling_code: "+44", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+44", is_driving_side_right: false, osm_relation_ids: [62149],
                 dependency_status: null, borders: ['IE']
             ),
             self::GD => new BearCountryData(
                 cca2: "GD", cca3: "GRD", name: "Grenada", capital: "St. George's", tld: ".gd",
                 area_km2: 344, area_rank: 213, population: 112519, population_rank: 195,
                 currency_code: "XCD", currency_name: "Eastern Caribbean dollar", currency_symbol: "$",
-                calling_code: "+1473", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+1473", is_driving_side_right: false, osm_relation_ids: [550727],
                 dependency_status: null, borders: []
             ),
             self::GE => new BearCountryData(
                 cca2: "GE", cca3: "GEO", name: "Georgia", capital: "Tbilisi", tld: ".ge",
                 area_km2: 69700, area_rank: 123, population: 3714000, population_rank: 132,
                 currency_code: "GEL", currency_name: "lari", currency_symbol: "₾",
-                calling_code: "+995", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+995", is_driving_side_right: true, osm_relation_ids: [28699],
                 dependency_status: null, borders: ['AM', 'AZ', 'RU', 'TR']
             ),
             self::GF => new BearCountryData(
                 cca2: "GF", cca3: "GUF", name: "French Guiana", capital: "Cayenne", tld: ".gf",
                 area_km2: 83534, area_rank: 118, population: 254541, population_rank: 186,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+594", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+594", is_driving_side_right: true, osm_relation_ids: [1260551],
                 dependency_status: "Part of France", borders: ['BR', 'SR']
             ),
             self::GG => new BearCountryData(
                 cca2: "GG", cca3: "GGY", name: "Guernsey", capital: "St. Peter Port", tld: ".gg",
                 area_km2: 78, area_rank: 232, population: 62999, population_rank: 208,
                 currency_code: "GBP", currency_name: "British pound", currency_symbol: "£",
-                calling_code: "+44", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+44", is_driving_side_right: false, osm_relation_ids: [270009],
                 dependency_status: "Crown Dependency of the UK", borders: []
             ),
             self::GH => new BearCountryData(
                 cca2: "GH", cca3: "GHA", name: "Ghana", capital: "Accra", tld: ".gh",
                 area_km2: 238533, area_rank: 83, population: 31072945, population_rank: 47,
                 currency_code: "GHS", currency_name: "Ghanaian cedi", currency_symbol: "₵",
-                calling_code: "+233", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+233", is_driving_side_right: true, osm_relation_ids: [192781],
                 dependency_status: null, borders: ['BF', 'CI', 'TG']
             ),
             self::GI => new BearCountryData(
                 cca2: "GI", cca3: "GIB", name: "Gibraltar", capital: "Gibraltar", tld: ".gi",
                 area_km2: 6, area_rank: 248, population: 33691, population_rank: 222,
                 currency_code: "GIP", currency_name: "Gibraltar pound", currency_symbol: "£",
-                calling_code: "+350", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+350", is_driving_side_right: true, osm_relation_ids: [1278736],
                 dependency_status: "British Overseas Territory", borders: ['ES']
             ),
             self::GL => new BearCountryData(
                 cca2: "GL", cca3: "GRL", name: "Greenland", capital: "Nuuk", tld: ".gl",
                 area_km2: 2166086, area_rank: 13, population: 56367, population_rank: 211,
                 currency_code: "DKK", currency_name: "krone", currency_symbol: "kr.",
-                calling_code: "+299", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+299", is_driving_side_right: true, osm_relation_ids: [2184073],
                 dependency_status: "Part of Denmark", borders: []
             ),
             self::GM => new BearCountryData(
                 cca2: "GM", cca3: "GMB", name: "Gambia", capital: "Banjul", tld: ".gm",
                 area_km2: 10689, area_rank: 169, population: 2416664, population_rank: 144,
                 currency_code: "GMD", currency_name: "dalasi", currency_symbol: "D",
-                calling_code: "+220", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+220", is_driving_side_right: true, osm_relation_ids: [192774],
                 dependency_status: null, borders: ['SN']
             ),
             self::GN => new BearCountryData(
                 cca2: "GN", cca3: "GIN", name: "Guinea", capital: "Conakry", tld: ".gn",
                 area_km2: 245857, area_rank: 80, population: 13132792, population_rank: 75,
                 currency_code: "GNF", currency_name: "Guinean franc", currency_symbol: "Fr",
-                calling_code: "+224", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+224", is_driving_side_right: true, osm_relation_ids: [192778],
                 dependency_status: null, borders: ['CI', 'GW', 'LR', 'ML', 'SN', 'SL']
             ),
             self::GP => new BearCountryData(
                 cca2: "GP", cca3: "GLP", name: "Guadeloupe", capital: "Basse-Terre", tld: ".gp",
                 area_km2: 1628, area_rank: 185, population: 400132, population_rank: 177,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+590", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+590", is_driving_side_right: true, osm_relation_ids: [1401835],
                 dependency_status: "Part of France", borders: []
             ),
             self::GQ => new BearCountryData(
                 cca2: "GQ", cca3: "GNQ", name: "Equatorial Guinea", capital: "Malabo", tld: ".gq",
                 area_km2: 28051, area_rank: 147, population: 1402985, population_rank: 154,
                 currency_code: "XAF", currency_name: "Central African CFA franc", currency_symbol: "Fr",
-                calling_code: "+240", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+240", is_driving_side_right: true, osm_relation_ids: [192791],
                 dependency_status: null, borders: ['CM', 'GA']
             ),
             self::GR => new BearCountryData(
                 cca2: "GR", cca3: "GRC", name: "Greece", capital: "Athens", tld: ".gr",
                 area_km2: 131990, area_rank: 98, population: 10715549, population_rank: 86,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+30", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+30", is_driving_side_right: true, osm_relation_ids: [192307],
                 dependency_status: null, borders: ['AL', 'BG', 'TR', 'MK']
             ),
             self::GS => new BearCountryData(
                 cca2: "GS", cca3: "SGS", name: "South Georgia", capital: "King Edward Point", tld: ".gs",
                 area_km2: 3903, area_rank: 179, population: 30, population_rank: 248,
                 currency_code: "SHP", currency_name: "Saint Helena pound", currency_symbol: "£",
-                calling_code: "+500", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+500", is_driving_side_right: true, osm_relation_ids: [1983628],
                 dependency_status: "British Overseas Territory", borders: []
             ),
             self::GT => new BearCountryData(
                 cca2: "GT", cca3: "GTM", name: "Guatemala", capital: "Guatemala City", tld: ".gt",
                 area_km2: 108889, area_rank: 108, population: 16858333, population_rank: 68,
                 currency_code: "GTQ", currency_name: "Guatemalan quetzal", currency_symbol: "Q",
-                calling_code: "+502", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+502", is_driving_side_right: true, osm_relation_ids: [1521463],
                 dependency_status: null, borders: ['BZ', 'SV', 'HN', 'MX']
             ),
             self::GU => new BearCountryData(
                 cca2: "GU", cca3: "GUM", name: "Guam", capital: "Hagåtña", tld: ".gu",
                 area_km2: 549, area_rank: 200, population: 168783, population_rank: 191,
                 currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
-                calling_code: "+1671", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+1671", is_driving_side_right: true, osm_relation_ids: [306001],
                 dependency_status: "Commonwealth of US", borders: []
             ),
             self::GW => new BearCountryData(
                 cca2: "GW", cca3: "GNB", name: "Guinea-Bissau", capital: "Bissau", tld: ".gw",
                 area_km2: 36125, area_rank: 140, population: 1967998, population_rank: 150,
                 currency_code: "XOF", currency_name: "West African CFA franc", currency_symbol: "Fr",
-                calling_code: "+245", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+245", is_driving_side_right: true, osm_relation_ids: [192776],
                 dependency_status: null, borders: ['GN', 'SN']
             ),
             self::GY => new BearCountryData(
                 cca2: "GY", cca3: "GUY", name: "Guyana", capital: "Georgetown", tld: ".gy",
                 area_km2: 214969, area_rank: 86, population: 786559, population_rank: 165,
                 currency_code: "GYD", currency_name: "Guyanese dollar", currency_symbol: "$",
-                calling_code: "+592", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+592", is_driving_side_right: false, osm_relation_ids: [287083],
                 dependency_status: null, borders: ['BR', 'SR', 'VE']
             ),
             self::HK => new BearCountryData(
                 cca2: "HK", cca3: "HKG", name: "Hong Kong", capital: "City of Victoria", tld: ".hk",
                 area_km2: 1104, area_rank: 189, population: 7500700, population_rank: 103,
                 currency_code: "HKD", currency_name: "Hong Kong dollar", currency_symbol: "$",
-                calling_code: "+852", is_driving_side_right: false, osm_relation_ids: [],
+                calling_code: "+852", is_driving_side_right: false, osm_relation_ids: [913110],
                 dependency_status: "Part of China", borders: ['CN']
             ),
             self::HM => new BearCountryData(
                 cca2: "HM", cca3: "HMD", name: "Heard Island and McDonald Islands", capital: "", tld: ".hm",
                 area_km2: 412, area_rank: 208, population: 0, population_rank: 250,
                 currency_code: "", currency_name: "", currency_symbol: "",
-                calling_code: "undefined", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "undefined", is_driving_side_right: true, osm_relation_ids: [2177227],
                 dependency_status: "Territory of Australia", borders: []
             ),
             self::HN => new BearCountryData(
                 cca2: "HN", cca3: "HND", name: "Honduras", capital: "Tegucigalpa", tld: ".hn",
                 area_km2: 112492, area_rank: 104, population: 9904608, population_rank: 92,
                 currency_code: "HNL", currency_name: "Honduran lempira", currency_symbol: "L",
-                calling_code: "+504", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+504", is_driving_side_right: true, osm_relation_ids: [287670],
                 dependency_status: null, borders: ['GT', 'SV', 'NI']
             ),
             self::HR => new BearCountryData(
                 cca2: "HR", cca3: "HRV", name: "Croatia", capital: "Zagreb", tld: ".hr",
                 area_km2: 56594, area_rank: 129, population: 4047200, population_rank: 131,
                 currency_code: "EUR", currency_name: "Euro", currency_symbol: "€",
-                calling_code: "+385", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+385", is_driving_side_right: true, osm_relation_ids: [214885],
                 dependency_status: null, borders: ['BA', 'HU', 'ME', 'RS', 'SI']
             ),
             self::HT => new BearCountryData(
                 cca2: "HT", cca3: "HTI", name: "Haiti", capital: "Port-au-Prince", tld: ".ht",
                 area_km2: 27750, area_rank: 149, population: 11402533, population_rank: 82,
                 currency_code: "HTG", currency_name: "Haitian gourde", currency_symbol: "G",
-                calling_code: "+509", is_driving_side_right: true, osm_relation_ids: [],
+                calling_code: "+509", is_driving_side_right: true, osm_relation_ids: [307829],
                 dependency_status: null, borders: ['DO']
             ),
             self::HU => new BearCountryData(
