@@ -14,24 +14,11 @@ final class LarabearCountrySubdivisionCrud {
         $data = $enum->getCountrySubdivisionData();
         $model = BearCountrySubdivision::find($data->iso_3166) ?? new BearCountrySubdivision();
 
-        $ranks = DB::selectOne(query: "
-            SELECT
-                (SELECT COUNT(*) FROM bear_country WHERE area_km2 > ?) + 1 as global_area_rank,
-                (SELECT COUNT(*) FROM bear_country WHERE population > ?) + 1 as global_population_rank
-        ", bindings: [$data->area_km2, $data->population]);
-
         $model->country_cca2 = $data->country_cca2;
         $model->iso_3166 = $data->iso_3166;
         $model->subdivision_type_enum = $data->subdivision_type->value;
         $model->name = $data->name;
         $model->capital = $data->capital;
-        $model->area_km2 = $data->area_km2;
-        $model->local_area_rank = $data->local_area_rank;
-        $model->global_area_rank = $ranks->global_area_rank;
-        $model->population = $data->population;
-        $model->local_population_rank = $data->local_population_rank;
-        $model->global_population_rank = $ranks->global_population_rank;
-
 
         $model->save();
     }

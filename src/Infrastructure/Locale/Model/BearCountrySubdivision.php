@@ -52,12 +52,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static int count(array $columns = ['*'])
  * @method static bool exists()
  *
- * @property int $area_km2
- * @property int $population
- * @property int $local_area_rank
- * @property int $global_area_rank
- * @property int $local_population_rank
- * @property int $global_population_rank
+ * @property int $osm_relation_id
  * @property string $name
  * @property string $capital
  * @property string $iso_3166

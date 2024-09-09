@@ -12,10 +12,7 @@ final readonly class BearCountrySubdivisionData {
         public BearCountrySubdivisionTypeEnum $subdivision_type,
         public string                         $name,
         public string                         $capital,
-        public int                            $area_km2,
-        public int                            $local_area_rank,
-        public int                            $population,
-        public int                            $local_population_rank,
+        public int                            $osm_relation_id,
     ) {
     }
 }
