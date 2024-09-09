@@ -4,7 +4,6 @@ namespace GuardsmanPanda\Larabear\Infrastructure\Locale\Data;
 
 final readonly class BearCountryData {
     /**
-     * @param Array<int, int> $osm_relation_ids
      * @param Array<int, string> $borders
      */
     public function __construct(
@@ -22,7 +21,7 @@ final readonly class BearCountryData {
         public string      $currency_symbol,
         public string      $calling_code,
         public bool        $is_driving_side_right,
-        public array       $osm_relation_ids,
+        public int|null    $osm_relation_id,
         public string|null $dependency_status,
         public array       $borders,
     ) {
