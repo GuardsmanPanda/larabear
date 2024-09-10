@@ -1650,7 +1650,7 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
                 cca2: "SH", cca3: "SHN", name: "Saint Helena, Ascension and Tristan da Cunha", capital: "Jamestown", tld: ".sh",
                 area_km2: 394, area_rank: 209, population: 53192, population_rank: 213,
                 currency_code: "GBP", currency_name: "Pound sterling", currency_symbol: "£",
-                calling_code: "+290", is_driving_side_right: false, osm_relation_id: 155987,
+                calling_code: "+290", is_driving_side_right: false, osm_relation_id: 1964272,
                 dependency_status: "British Overseas Territory", borders: []
             ),
             self::SI => new BearCountryData(

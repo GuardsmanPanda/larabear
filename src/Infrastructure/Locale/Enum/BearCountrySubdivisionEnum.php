@@ -7,6 +7,30 @@ use GuardsmanPanda\Larabear\Infrastructure\Locale\Crud\LarabearCountrySubdivisio
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Data\BearCountrySubdivisionData;
 
 enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterface {
+    // Canada
+    case CA_AB = 'CA-AB';
+    case CA_BC = 'CA-BC';
+    case CA_MB = 'CA-MB';
+    case CA_NB = 'CA-NB';
+    case CA_NL = 'CA-NL';
+    case CA_NS = 'CA-NS';
+    case CA_NT = 'CA-NT';
+    case CA_NU = 'CA-NU';
+    case CA_ON = 'CA-ON';
+    case CA_PE = 'CA-PE';
+    case CA_QC = 'CA-QC';
+    case CA_SK = 'CA-SK';
+    case CA_YT = 'CA-YT';
+
+
+    // DENMARK
+    case DK_81 = 'DK-81';
+    case DK_82 = 'DK-82';
+    case DK_83 = 'DK-83';
+    case DK_84 = 'DK-84';
+    case DK_85 = 'DK-85';
+
+
     // GERMANY
     case DE_BW = 'DE-BW';
     case DE_BY = 'DE-BY';
@@ -87,6 +111,85 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
     public function getCountrySubdivisionData(): BearCountrySubdivisionData {
         return match ($this) {
+            // CANADA
+            self::CA_AB => new BearCountrySubdivisionData(
+                iso_3166: 'CA-AB', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                name: 'Alberta', capital: 'Edmonton', osm_relation_id: 391186,
+            ),
+            self::CA_BC => new BearCountrySubdivisionData(
+                iso_3166: 'CA-BC', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                name: 'British Columbia', capital: 'Victoria', osm_relation_id: 390867,
+            ),
+            self::CA_MB => new BearCountrySubdivisionData(
+                iso_3166: 'CA-MB', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                name: 'Manitoba', capital: 'Winnipeg', osm_relation_id: 390841,
+            ),
+            self::CA_NB => new BearCountrySubdivisionData(
+                iso_3166: 'CA-NB', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                name: 'New Brunswick', capital: 'Fredericton', osm_relation_id: 68942,
+            ),
+            self::CA_NL => new BearCountrySubdivisionData(
+                iso_3166: 'CA-NL', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                name: 'Newfoundland and Labrador', capital: 'St. John\'s', osm_relation_id: 391196,
+            ),
+            self::CA_NS => new BearCountrySubdivisionData(
+                iso_3166: 'CA-NS', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                name: 'Nova Scotia', capital: 'Halifax', osm_relation_id: 390558,
+            ),
+            self::CA_NT => new BearCountrySubdivisionData(
+                iso_3166: 'CA-NT', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::TERRITORY,
+                name: 'Northwest Territories', capital: 'Yellowknife', osm_relation_id: 391220,
+            ),
+            self::CA_NU => new BearCountrySubdivisionData(
+                iso_3166: 'CA-NU', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::TERRITORY,
+                name: 'Nunavut', capital: 'Iqaluit', osm_relation_id: 390840,
+            ),
+            self::CA_ON => new BearCountrySubdivisionData(
+                iso_3166: 'CA-ON', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                name: 'Ontario', capital: 'Toronto', osm_relation_id: 68841,
+            ),
+            self::CA_PE => new BearCountrySubdivisionData(
+                iso_3166: 'CA-PE', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                name: 'Prince Edward Island', capital: 'Charlottetown', osm_relation_id: 391115,
+            ),
+            self::CA_QC => new BearCountrySubdivisionData(
+                iso_3166: 'CA-QC', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                name: 'Quebec', capital: 'Quebec City', osm_relation_id: 61549,
+            ),
+            self::CA_SK => new BearCountrySubdivisionData(
+                iso_3166: 'CA-SK', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                name: 'Saskatchewan', capital: 'Regina', osm_relation_id: 391178,
+            ),
+            self::CA_YT => new BearCountrySubdivisionData(
+                iso_3166: 'CA-YT', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::TERRITORY,
+                name: 'Yukon', capital: 'Whitehorse', osm_relation_id: 391455,
+            ),
+
+
+            // DENMARK
+            self::DK_81 => new BearCountrySubdivisionData(
+                iso_3166: 'DK-81', country_cca2: BearCountryEnum::DK, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                name: 'North Denmark', capital: 'Aalborg', osm_relation_id: 1319936,
+            ),
+            self::DK_82 => new BearCountrySubdivisionData(
+                iso_3166: 'DK-82', country_cca2: BearCountryEnum::DK, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                name: 'Central Denmark', capital: 'Viborg', osm_relation_id: 1319935,
+            ),
+            self::DK_83 => new BearCountrySubdivisionData(
+                iso_3166: 'DK-83', country_cca2: BearCountryEnum::DK, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                name: 'Southern Denmark', capital: 'Vejen', osm_relation_id: 1319978,
+            ),
+            self::DK_84 => new BearCountrySubdivisionData(
+                iso_3166: 'DK-84', country_cca2: BearCountryEnum::DK, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                name: 'Capital Region', capital: 'Hillerød', osm_relation_id: 1320608,
+            ),
+            self::DK_85 => new BearCountrySubdivisionData(
+                iso_3166: 'DK-85', country_cca2: BearCountryEnum::DK, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                name: 'Zealand', capital: 'Sorø', osm_relation_id: 1320370,
+            ),
+
+
+
             // GERMANY
             self::DE_BW => new BearCountrySubdivisionData(
                 iso_3166: 'DE-BW', country_cca2: BearCountryEnum::DE, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
