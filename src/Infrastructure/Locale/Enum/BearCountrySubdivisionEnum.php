@@ -7,6 +7,17 @@ use GuardsmanPanda\Larabear\Infrastructure\Locale\Crud\LarabearCountrySubdivisio
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Data\BearCountrySubdivisionData;
 
 enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterface {
+    // AUSTRALIA
+    case AU_ACT = 'AU-ACT';
+    case AU_NSW = 'AU-NSW';
+    case AU_NT = 'AU-NT';
+    case AU_QLD = 'AU-QLD';
+    case AU_SA = 'AU-SA';
+    case AU_TAS = 'AU-TAS';
+    case AU_VIC = 'AU-VIC';
+    case AU_WA = 'AU-WA';
+
+
     // Canada
     case CA_AB = 'CA-AB';
     case CA_BC = 'CA-BC';
@@ -111,6 +122,41 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
     public function getCountrySubdivisionData(): BearCountrySubdivisionData {
         return match ($this) {
+            // AUSTRALIA
+            self::AU_ACT => new BearCountrySubdivisionData(
+                iso_3166: 'AU-ACT', country_cca2: BearCountryEnum::AU, subdivision_type: BearCountrySubdivisionTypeEnum::TERRITORY,
+                name: 'Australian Capital Territory', capital: 'Canberra', osm_relation_id: 2354197,
+            ),
+            self::AU_NSW => new BearCountrySubdivisionData(
+                iso_3166: 'AU-NSW', country_cca2: BearCountryEnum::AU, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                name: 'New South Wales', capital: 'Sydney', osm_relation_id: 2316593,
+            ),
+            self::AU_NT => new BearCountrySubdivisionData(
+                iso_3166: 'AU-NT', country_cca2: BearCountryEnum::AU, subdivision_type: BearCountrySubdivisionTypeEnum::TERRITORY,
+                name: 'Northern Territory', capital: 'Darwin', osm_relation_id: 2316594,
+            ),
+            self::AU_QLD => new BearCountrySubdivisionData(
+                iso_3166: 'AU-QLD', country_cca2: BearCountryEnum::AU, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                name: 'Queensland', capital: 'Brisbane', osm_relation_id: 2316595,
+            ),
+            self::AU_SA => new BearCountrySubdivisionData(
+                iso_3166: 'AU-SA', country_cca2: BearCountryEnum::AU, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                name: 'South Australia', capital: 'Adelaide', osm_relation_id: 2316596,
+            ),
+            self::AU_TAS => new BearCountrySubdivisionData(
+                iso_3166: 'AU-TAS', country_cca2: BearCountryEnum::AU, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                name: 'Tasmania', capital: 'Hobart', osm_relation_id: 2369652,
+            ),
+            self::AU_VIC => new BearCountrySubdivisionData(
+                iso_3166: 'AU-VIC', country_cca2: BearCountryEnum::AU, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                name: 'Victoria', capital: 'Melbourne', osm_relation_id: 2316741,
+            ),
+            self::AU_WA => new BearCountrySubdivisionData(
+                iso_3166: 'AU-WA', country_cca2: BearCountryEnum::AU, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                name: 'Western Australia', capital: 'Perth', osm_relation_id: 2316598,
+            ),
+
+
             // CANADA
             self::CA_AB => new BearCountrySubdivisionData(
                 iso_3166: 'CA-AB', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
