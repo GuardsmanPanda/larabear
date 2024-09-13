@@ -61,6 +61,28 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case DK_85 = 'DK-85';
 
 
+    // SPAIN
+    case ES_AN = 'ES-AN';
+    case ES_AR = 'ES-AR';
+    case ES_AS = 'ES-AS';
+    case ES_CB = 'ES-CB';
+    case ES_CE = 'ES-CE';
+    case ES_CL = 'ES-CL';
+    case ES_CM = 'ES-CM';
+    case ES_CN = 'ES-CN';
+    case ES_CT = 'ES-CT';
+    case ES_EX = 'ES-EX';
+    case ES_GA = 'ES-GA';
+    case ES_IB = 'ES-IB';
+    case ES_MC = 'ES-MC';
+    case ES_MD = 'ES-MD';
+    case ES_ML = 'ES-ML';
+    case ES_NC = 'ES-NC';
+    case ES_PV = 'ES-PV';
+    case ES_RI = 'ES-RI';
+    case ES_VC = 'ES-VC';
+
+
     // FRANCE
     case FR_ARA = 'FR-ARA';
     case FR_BFC = 'FR-BFC';
@@ -317,6 +339,85 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::DK_85 => new BearCountrySubdivisionData(
                 iso_3166: 'DK-85', country_cca2: BearCountryEnum::DK, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
                 english_name: 'Zealand', capital: 'Sorø', osm_relation_id: 1320370,
+            ),
+
+
+            // SPAIN
+            self::ES_AN => new BearCountrySubdivisionData(
+                iso_3166: 'ES-AN', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Andalusia', capital: 'Seville', osm_relation_id: 349044,
+            ),
+            self::ES_AR => new BearCountrySubdivisionData(
+                iso_3166: 'ES-AR', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Aragon', capital: 'Zaragoza', osm_relation_id: 349045,
+            ),
+            self::ES_AS => new BearCountrySubdivisionData(
+                iso_3166: 'ES-AS', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Asturias', capital: 'Oviedo', osm_relation_id: 349033,
+            ),
+            self::ES_CB => new BearCountrySubdivisionData(
+                iso_3166: 'ES-CB', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Cantabria', capital: 'Santander', osm_relation_id: 349013,
+            ),
+            self::ES_CE => new BearCountrySubdivisionData(
+                iso_3166: 'ES-CE', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Ceuta', capital: 'Ceuta', osm_relation_id: 1154756,
+            ),
+            self::ES_CL => new BearCountrySubdivisionData(
+                iso_3166: 'ES-CL', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Castile and León', capital: 'Valladolid', osm_relation_id: 349041,
+            ),
+            self::ES_CM => new BearCountrySubdivisionData(
+                iso_3166: 'ES-CM', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Castile-La Mancha', capital: 'Toledo', osm_relation_id: 349052,
+            ),
+            self::ES_CN => new BearCountrySubdivisionData(
+                iso_3166: 'ES-CN', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Canary Islands', capital: 'Las Palmas', osm_relation_id: 349048,
+            ),
+            self::ES_CT => new BearCountrySubdivisionData(
+                iso_3166: 'ES-CT', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Catalonia', capital: 'Barcelona', osm_relation_id: 349053,
+            ),
+            self::ES_EX => new BearCountrySubdivisionData(
+                iso_3166: 'ES-EX', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Extremadura', capital: 'Mérida', osm_relation_id: 349050,
+            ),
+            self::ES_GA => new BearCountrySubdivisionData(
+                iso_3166: 'ES-GA', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Galicia', capital: 'Santiago de Compostela', osm_relation_id: 349036,
+            ),
+            self::ES_IB => new BearCountrySubdivisionData(
+                iso_3166: 'ES-IB', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Balearic Islands', capital: 'Palma', osm_relation_id: 348981,
+            ),
+            self::ES_MC => new BearCountrySubdivisionData(
+                iso_3166: 'ES-MC', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Region of Murcia', capital: 'Murcia', osm_relation_id: 349047,
+            ),
+            self::ES_MD => new BearCountrySubdivisionData(
+                iso_3166: 'ES-MD', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Community of Madrid', capital: 'Madrid', osm_relation_id: 349055,
+            ),
+            self::ES_ML => new BearCountrySubdivisionData(
+                iso_3166: 'ES-ML', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Melilla', capital: 'Melilla', osm_relation_id: 1154757,
+            ),
+            self::ES_NC => new BearCountrySubdivisionData(
+                iso_3166: 'ES-NC', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Navarre', capital: 'Pamplona', osm_relation_id: 349027,
+            ),
+            self::ES_PV => new BearCountrySubdivisionData(
+                iso_3166: 'ES-PV', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Basque Country', capital: 'Vitoria-Gasteiz', osm_relation_id: 349042,
+            ),
+            self::ES_RI => new BearCountrySubdivisionData(
+                iso_3166: 'ES-RI', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'La Rioja', capital: 'Logroño', osm_relation_id: 348991,
+            ),
+            self::ES_VC => new BearCountrySubdivisionData(
+                iso_3166: 'ES-VC', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                english_name: 'Valencian Community', capital: 'Valencia', osm_relation_id: 349043,
             ),
 
 

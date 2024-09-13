@@ -3,6 +3,8 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Locale\Enum;
 
 enum BearCountrySubdivisionTypeEnum: string {
+    case AUTONOMOUS_COMMUNITY = 'AUTONOMOUS_COMMUNITY';
+    case AUTONOMOUS_CITY = 'AUTONOMOUS_CITY';
     case COUNTRY = 'COUNTRY';
     case STATE = 'STATE';
     case PROVINCE = 'PROVINCE';

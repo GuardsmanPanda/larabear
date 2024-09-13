@@ -21,7 +21,7 @@
     "ext-zend-opcache": "*",
     "doctrine/dbal": "^4.1",
     "guzzlehttp/guzzle": "^7.9",
-    "laravel/framework": "^v11.22",
+    "laravel/framework": "^v11.23",
     "ramsey/collection": "^2.0"
   },
   "autoload": {
