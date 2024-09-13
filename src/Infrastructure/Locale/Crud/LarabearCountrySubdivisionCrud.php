@@ -18,7 +18,7 @@ final class LarabearCountrySubdivisionCrud {
         $model->iso_3166 = $data->iso_3166;
         $model->subdivision_type_enum = $data->subdivision_type->value;
         $model->osm_relation_id = $data->osm_relation_id;
-        $model->name = $data->name;
+        $model->name = $data->english_name;
         $model->capital = $data->capital;
 
         $model->save();

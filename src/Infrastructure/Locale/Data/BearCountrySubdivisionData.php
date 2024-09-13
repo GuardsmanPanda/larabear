@@ -10,7 +10,7 @@ final readonly class BearCountrySubdivisionData {
         public string                         $iso_3166,
         public BearCountryEnum                $country_cca2,
         public BearCountrySubdivisionTypeEnum $subdivision_type,
-        public string                         $name,
+        public string                         $english_name,
         public string                         $capital,
         public int                            $osm_relation_id,
     ) {

@@ -8,5 +8,6 @@ enum BearCountrySubdivisionTypeEnum: string {
     case PROVINCE = 'PROVINCE';
     case REGION = 'REGION';
     case TERRITORY = 'TERRITORY';
+    case METROPOLITAN = 'METROPOLITAN';
     case DISTRICT = 'DISTRICT';
 }
