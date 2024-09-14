@@ -134,6 +134,13 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case GB_WLS = 'GB-WLS';
 
 
+    // IRELAND
+    case IE_C = 'IE-C';
+    case IE_L = 'IE-L';
+    case IE_M = 'IE-M';
+    case IE_U = 'IE-U';
+
+
     // ITALY
     case IT_21 = 'IT-21';
     case IT_23 = 'IT-23';
@@ -667,6 +674,25 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::GB_WLS => new BearCountrySubdivisionData(
                 iso_3166: 'GB-WLS', country_cca2: BearCountryEnum::GB, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTRY,
                 english_name: 'Wales', capital: 'Cardiff', osm_relation_id: 58437,
+            ),
+
+
+            // IRELAND
+            self::IE_C => new BearCountrySubdivisionData(
+                iso_3166: 'IE-C', country_cca2: BearCountryEnum::IE, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Connacht', capital: 'Galway', osm_relation_id: 278721,
+            ),
+            self::IE_L => new BearCountrySubdivisionData(
+                iso_3166: 'IE-L', country_cca2: BearCountryEnum::IE, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Leinster', capital: 'Dublin', osm_relation_id: 278746,
+            ),
+            self::IE_M => new BearCountrySubdivisionData(
+                iso_3166: 'IE-M', country_cca2: BearCountryEnum::IE, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Munster', capital: 'Cork', osm_relation_id: 278750,
+            ),
+            self::IE_U => new BearCountrySubdivisionData(
+                iso_3166: 'IE-U', country_cca2: BearCountryEnum::IE, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Ulster', capital: 'Belfast', osm_relation_id: 278664,
             ),
 
 

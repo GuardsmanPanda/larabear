@@ -19,11 +19,12 @@ return new class extends Migration {
             $table->text(column: 'name');
             $table->text(column: 'capital');
             $table->integer(column: 'osm_relation_id');
-            $table->text(column: 'subdivision_type_enum');
+            $table->text(column: 'country_subdivision_type_enum');
             $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
 
             $table->foreign(columns: 'country_cca2')->references('cca2')->on(table: 'bear_country');
+            $table->foreign(columns: 'country_subdivision_type_enum')->references('enum')->on(table: 'bear_country_subdivision_type');
         });
     }
 
