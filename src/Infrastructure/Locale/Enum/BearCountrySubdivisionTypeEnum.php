@@ -2,14 +2,42 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Locale\Enum;
 
-enum BearCountrySubdivisionTypeEnum: string {
-    case AUTONOMOUS_COMMUNITY = 'AUTONOMOUS_COMMUNITY';
-    case AUTONOMOUS_CITY = 'AUTONOMOUS_CITY';
+use GuardsmanPanda\Larabear\Infrastructure\App\Interface\BearDatabaseBackedEnumInterface;
+
+enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInterface {
+    case CANTON = 'CANTON';
+    case CITY = 'CITY';
+    case COMMUNITY = 'COMMUNITY';
     case COUNTRY = 'COUNTRY';
-    case STATE = 'STATE';
+    case COUNTY = 'COUNTY';
+    case DISTRICT = 'DISTRICT';
+    case METROPOLITAN = 'METROPOLITAN';
+    case OBLAST = 'OBLAST';
     case PROVINCE = 'PROVINCE';
     case REGION = 'REGION';
+    case STATE = 'STATE';
     case TERRITORY = 'TERRITORY';
-    case METROPOLITAN = 'METROPOLITAN';
-    case DISTRICT = 'DISTRICT';
+
+
+    public function getName(): string {
+        return match ($this) {
+            self::COMMUNITY => 'Community',
+            self::CANTON => 'Canton',
+            self::CITY => 'City',
+            self::COUNTRY => 'Country',
+            self::COUNTY => 'County',
+            self::DISTRICT => 'District',
+            self::METROPOLITAN => 'Metropolitan',
+            self::OBLAST => 'Oblast',
+            self::PROVINCE => 'Province',
+            self::REGION => 'Region',
+            self::STATE => 'State',
+            self::TERRITORY => 'Territory',
+        };
+    }
+
+
+    public static function syncToDatabase(): void {
+        // TODO: Implement syncToDatabase() method.
+    }
 }

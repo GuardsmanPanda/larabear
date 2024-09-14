@@ -7,6 +7,18 @@ use GuardsmanPanda\Larabear\Infrastructure\Locale\Crud\LarabearCountrySubdivisio
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Data\BearCountrySubdivisionData;
 
 enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterface {
+    // Austria
+    case AT_1 = 'AT-1';
+    case AT_2 = 'AT-2';
+    case AT_3 = 'AT-3';
+    case AT_4 = 'AT-4';
+    case AT_5 = 'AT-5';
+    case AT_6 = 'AT-6';
+    case AT_7 = 'AT-7';
+    case AT_8 = 'AT-8';
+    case AT_9 = 'AT-9';
+
+
     // AUSTRALIA
     case AU_ACT = 'AU-ACT';
     case AU_NSW = 'AU-NSW';
@@ -16,6 +28,22 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case AU_TAS = 'AU-TAS';
     case AU_VIC = 'AU-VIC';
     case AU_WA = 'AU-WA';
+
+
+    // BELGIUM
+    case BE_BRU = 'BE-BRU';
+    case BE_VLG = 'BE-VLG';
+    case BE_WAL = 'BE-WAL';
+
+
+    // BELARUS
+    case BY_BR = 'BY-BR';
+    case BY_HM = 'BY-HM';
+    case BY_HO = 'BY-HO';
+    case BY_HR = 'BY-HR';
+    case BY_MA = 'BY-MA';
+    case BY_MI = 'BY-MI';
+    case BY_VI = 'BY-VI';
 
 
     // Canada
@@ -106,6 +134,67 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case GB_WLS = 'GB-WLS';
 
 
+    // ITALY
+    case IT_21 = 'IT-21';
+    case IT_23 = 'IT-23';
+    case IT_25 = 'IT-25';
+    case IT_32 = 'IT-32';
+    case IT_34 = 'IT-34';
+    case IT_36 = 'IT-36';
+    case IT_42 = 'IT-42';
+    case IT_45 = 'IT-45';
+    case IT_52 = 'IT-52';
+    case IT_55 = 'IT-55';
+    case IT_57 = 'IT-57';
+    case IT_62 = 'IT-62';
+    case IT_65 = 'IT-65';
+    case IT_67 = 'IT-67';
+    case IT_72 = 'IT-72';
+    case IT_75 = 'IT-75';
+    case IT_77 = 'IT-77';
+    case IT_78 = 'IT-78';
+    case IT_82 = 'IT-82';
+    case IT_88 = 'IT-88';
+
+
+    // NORWAY
+    case NO_03 = 'NO-03';
+    case NO_11 = 'NO-11';
+    case NO_15 = 'NO-15';
+    case NO_18 = 'NO-18';
+    case NO_30 = 'NO-30';
+    case NO_34 = 'NO-34';
+    case NO_38 = 'NO-38';
+    case NO_42 = 'NO-42';
+    case NO_46 = 'NO-46';
+    case NO_50 = 'NO-50';
+    case NO_54 = 'NO-54';
+
+
+    // SWEDEN
+    case SE_AB = 'SE-AB';
+    case SE_AC = 'SE-AC';
+    case SE_BD = 'SE-BD';
+    case SE_C = 'SE-C';
+    case SE_D = 'SE-D';
+    case SE_E = 'SE-E';
+    case SE_F = 'SE-F';
+    case SE_G = 'SE-G';
+    case SE_H = 'SE-H';
+    case SE_I = 'SE-I';
+    case SE_K = 'SE-K';
+    case SE_M = 'SE-M';
+    case SE_N = 'SE-N';
+    case SE_O = 'SE-O';
+    case SE_S = 'SE-S';
+    case SE_T = 'SE-T';
+    case SE_U = 'SE-U';
+    case SE_W = 'SE-W';
+    case SE_X = 'SE_X';
+    case SE_Y = 'SE-Y';
+    case SE_Z = 'SE-Z';
+
+
     // THE UNITED STATES
     case US_AL = 'US-AL';
     case US_AK = 'US-AK';
@@ -162,6 +251,45 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
     public function getCountrySubdivisionData(): BearCountrySubdivisionData {
         return match ($this) {
+            // Austria
+            self::AT_1 => new BearCountrySubdivisionData(
+                iso_3166: 'AT-1', country_cca2: BearCountryEnum::AT, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                english_name: 'Burgenland', capital: 'Eisenstadt', osm_relation_id: 76909,
+            ),
+            self::AT_2 => new BearCountrySubdivisionData(
+                iso_3166: 'AT-2', country_cca2: BearCountryEnum::AT, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                english_name: 'Carinthia', capital: 'Klagenfurt', osm_relation_id: 52345,
+            ),
+            self::AT_3 => new BearCountrySubdivisionData(
+                iso_3166: 'AT-3', country_cca2: BearCountryEnum::AT, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                english_name: 'Lower Austria', capital: 'Sankt Pölten', osm_relation_id: 77189,
+            ),
+            self::AT_4 => new BearCountrySubdivisionData(
+                iso_3166: 'AT-4', country_cca2: BearCountryEnum::AT, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                english_name: 'Upper Austria', capital: 'Linz', osm_relation_id: 102303,
+            ),
+            self::AT_5 => new BearCountrySubdivisionData(
+                iso_3166: 'AT-5', country_cca2: BearCountryEnum::AT, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                english_name: 'Salzburg', capital: 'Salzburg', osm_relation_id: 86539,
+            ),
+            self::AT_6 => new BearCountrySubdivisionData(
+                iso_3166: 'AT-6', country_cca2: BearCountryEnum::AT, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                english_name: 'Styria', capital: 'Graz', osm_relation_id: 35183,
+            ),
+            self::AT_7 => new BearCountrySubdivisionData(
+                iso_3166: 'AT-7', country_cca2: BearCountryEnum::AT, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                english_name: 'Tyrol', capital: 'Innsbruck', osm_relation_id: 52343,
+            ),
+            self::AT_8 => new BearCountrySubdivisionData(
+                iso_3166: 'AT-8', country_cca2: BearCountryEnum::AT, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                english_name: 'Vorarlberg', capital: 'Bregenz', osm_relation_id: 74942,
+            ),
+            self::AT_9 => new BearCountrySubdivisionData(
+                iso_3166: 'AT-9', country_cca2: BearCountryEnum::AT, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
+                english_name: 'Vienna', capital: 'Vienna', osm_relation_id: 109166,
+            ),
+
+
             // AUSTRALIA
             self::AU_ACT => new BearCountrySubdivisionData(
                 iso_3166: 'AU-ACT', country_cca2: BearCountryEnum::AU, subdivision_type: BearCountrySubdivisionTypeEnum::TERRITORY,
@@ -195,6 +323,53 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
                 iso_3166: 'AU-WA', country_cca2: BearCountryEnum::AU, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
                 english_name: 'Western Australia', capital: 'Perth', osm_relation_id: 2316598,
             ),
+
+
+            // BELGIUM
+            self::BE_BRU => new BearCountrySubdivisionData(
+                iso_3166: 'BE-BRU', country_cca2: BearCountryEnum::BE, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Brussels Capital Region', capital: 'Brussels', osm_relation_id: 54094,
+            ),
+            self::BE_VLG => new BearCountrySubdivisionData(
+                iso_3166: 'BE-VLG', country_cca2: BearCountryEnum::BE, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Flanders', capital: 'Brussels', osm_relation_id: 53134,
+            ),
+            self::BE_WAL => new BearCountrySubdivisionData(
+                iso_3166: 'BE-WAL', country_cca2: BearCountryEnum::BE, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Wallonia', capital: 'Namur', osm_relation_id: 90348,
+            ),
+
+
+            // BELARUS
+            self::BY_BR => new BearCountrySubdivisionData(
+                iso_3166: 'BY-BR', country_cca2: BearCountryEnum::BY, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
+                english_name: 'Brest', capital: 'Brest', osm_relation_id: 59189,
+            ),
+            self::BY_HM => new BearCountrySubdivisionData(
+                iso_3166: 'BY-HM', country_cca2: BearCountryEnum::BY, subdivision_type: BearCountrySubdivisionTypeEnum::CITY,
+                english_name: 'Minsk', capital: 'Minsk', osm_relation_id: 59195,
+            ),
+            self::BY_HO => new BearCountrySubdivisionData(
+                iso_3166: 'BY-HO', country_cca2: BearCountryEnum::BY, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
+                english_name: 'Gomel', capital: 'Gomel', osm_relation_id: 59161,
+            ),
+            self::BY_HR => new BearCountrySubdivisionData(
+                iso_3166: 'BY-HR', country_cca2: BearCountryEnum::BY, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
+                english_name: 'Grodno', capital: 'Grodno', osm_relation_id: 59275,
+            ),
+            self::BY_MA => new BearCountrySubdivisionData(
+                iso_3166: 'BY-MA', country_cca2: BearCountryEnum::BY, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
+                english_name: 'Minsk', capital: 'Minsk', osm_relation_id: 59752,
+            ),
+            self::BY_MI => new BearCountrySubdivisionData(
+                iso_3166: 'BY-MI', country_cca2: BearCountryEnum::BY, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
+                english_name: 'Mogilev', capital: 'Mogilev', osm_relation_id: 59162,
+            ),
+            self::BY_VI => new BearCountrySubdivisionData(
+                iso_3166: 'BY-VI', country_cca2: BearCountryEnum::BY, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
+                english_name: 'Vitebsk', capital: 'Vitebsk', osm_relation_id: 59506,
+            ),
+
 
 
             // CANADA
@@ -344,79 +519,79 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
             // SPAIN
             self::ES_AN => new BearCountrySubdivisionData(
-                iso_3166: 'ES-AN', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-AN', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Andalusia', capital: 'Seville', osm_relation_id: 349044,
             ),
             self::ES_AR => new BearCountrySubdivisionData(
-                iso_3166: 'ES-AR', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-AR', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Aragon', capital: 'Zaragoza', osm_relation_id: 349045,
             ),
             self::ES_AS => new BearCountrySubdivisionData(
-                iso_3166: 'ES-AS', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-AS', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Asturias', capital: 'Oviedo', osm_relation_id: 349033,
             ),
             self::ES_CB => new BearCountrySubdivisionData(
-                iso_3166: 'ES-CB', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-CB', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Cantabria', capital: 'Santander', osm_relation_id: 349013,
             ),
             self::ES_CE => new BearCountrySubdivisionData(
-                iso_3166: 'ES-CE', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-CE', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::CITY,
                 english_name: 'Ceuta', capital: 'Ceuta', osm_relation_id: 1154756,
             ),
             self::ES_CL => new BearCountrySubdivisionData(
-                iso_3166: 'ES-CL', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-CL', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Castile and León', capital: 'Valladolid', osm_relation_id: 349041,
             ),
             self::ES_CM => new BearCountrySubdivisionData(
-                iso_3166: 'ES-CM', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-CM', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Castile-La Mancha', capital: 'Toledo', osm_relation_id: 349052,
             ),
             self::ES_CN => new BearCountrySubdivisionData(
-                iso_3166: 'ES-CN', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-CN', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Canary Islands', capital: 'Las Palmas', osm_relation_id: 349048,
             ),
             self::ES_CT => new BearCountrySubdivisionData(
-                iso_3166: 'ES-CT', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-CT', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Catalonia', capital: 'Barcelona', osm_relation_id: 349053,
             ),
             self::ES_EX => new BearCountrySubdivisionData(
-                iso_3166: 'ES-EX', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-EX', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Extremadura', capital: 'Mérida', osm_relation_id: 349050,
             ),
             self::ES_GA => new BearCountrySubdivisionData(
-                iso_3166: 'ES-GA', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-GA', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Galicia', capital: 'Santiago de Compostela', osm_relation_id: 349036,
             ),
             self::ES_IB => new BearCountrySubdivisionData(
-                iso_3166: 'ES-IB', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-IB', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Balearic Islands', capital: 'Palma', osm_relation_id: 348981,
             ),
             self::ES_MC => new BearCountrySubdivisionData(
-                iso_3166: 'ES-MC', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-MC', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Region of Murcia', capital: 'Murcia', osm_relation_id: 349047,
             ),
             self::ES_MD => new BearCountrySubdivisionData(
-                iso_3166: 'ES-MD', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-MD', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Community of Madrid', capital: 'Madrid', osm_relation_id: 349055,
             ),
             self::ES_ML => new BearCountrySubdivisionData(
-                iso_3166: 'ES-ML', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-ML', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::CITY,
                 english_name: 'Melilla', capital: 'Melilla', osm_relation_id: 1154757,
             ),
             self::ES_NC => new BearCountrySubdivisionData(
-                iso_3166: 'ES-NC', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-NC', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Navarre', capital: 'Pamplona', osm_relation_id: 349027,
             ),
             self::ES_PV => new BearCountrySubdivisionData(
-                iso_3166: 'ES-PV', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-PV', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Basque Country', capital: 'Vitoria-Gasteiz', osm_relation_id: 349042,
             ),
             self::ES_RI => new BearCountrySubdivisionData(
-                iso_3166: 'ES-RI', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-RI', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'La Rioja', capital: 'Logroño', osm_relation_id: 348991,
             ),
             self::ES_VC => new BearCountrySubdivisionData(
-                iso_3166: 'ES-VC', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::AUTONOMOUS_COMMUNITY,
+                iso_3166: 'ES-VC', country_cca2: BearCountryEnum::ES, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
                 english_name: 'Valencian Community', capital: 'Valencia', osm_relation_id: 349043,
             ),
 
@@ -492,6 +667,223 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::GB_WLS => new BearCountrySubdivisionData(
                 iso_3166: 'GB-WLS', country_cca2: BearCountryEnum::GB, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTRY,
                 english_name: 'Wales', capital: 'Cardiff', osm_relation_id: 58437,
+            ),
+
+
+            // ITALY
+            self::IT_21 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-21', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Piedmont', capital: 'Turin', osm_relation_id: 44874,
+            ),
+            self::IT_23 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-23', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Aosta Valley', capital: 'Aosta', osm_relation_id: 45155,
+            ),
+            self::IT_25 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-25', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Lombardy', capital: 'Milan', osm_relation_id: 44879,
+            ),
+            self::IT_32 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-32', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Trentino-South Tyrol', capital: 'Trento', osm_relation_id: 45757,
+            ),
+            self::IT_34 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-34', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Veneto', capital: 'Venice', osm_relation_id: 43648,
+            ),
+            self::IT_36 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-36', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Friuli-Venezia Giulia', capital: 'Trieste', osm_relation_id: 179296,
+            ),
+            self::IT_42 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-42', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Liguria', capital: 'Genoa', osm_relation_id: 301482,
+            ),
+            self::IT_45 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-45', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Emilia-Romagna', capital: 'Bologna', osm_relation_id: 42611,
+            ),
+            self::IT_52 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-52', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Tuscany', capital: 'Florence', osm_relation_id: 41977,
+            ),
+            self::IT_55 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-55', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Umbria', capital: 'Perugia', osm_relation_id: 42004,
+            ),
+            self::IT_57 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-57', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Marche', capital: 'Ancona', osm_relation_id: 53060,
+            ),
+            self::IT_62 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-62', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Lazio', capital: 'Rome', osm_relation_id: 40784,
+            ),
+            self::IT_65 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-65', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Abruzzo', capital: 'L\'Aquila', osm_relation_id: 53937,
+            ),
+            self::IT_67 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-67', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Molise', capital: 'Campobasso', osm_relation_id: 41256,
+            ),
+            self::IT_72 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-72', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Campania', capital: 'Naples', osm_relation_id: 40218,
+            ),
+            self::IT_75 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-75', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Apulia', capital: 'Bari', osm_relation_id: 40095,
+            ),
+            self::IT_77 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-77', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Basilicata', capital: 'Potenza', osm_relation_id: 40137,
+            ),
+            self::IT_78 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-78', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Calabria', capital: 'Catanzaro', osm_relation_id: 1783980,
+            ),
+            self::IT_82 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-82', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Sicily', capital: 'Palermo', osm_relation_id: 39152,
+            ),
+            self::IT_88 => new BearCountrySubdivisionData(
+                iso_3166: 'IT-88', country_cca2: BearCountryEnum::IT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Sardinia', capital: 'Cagliari', osm_relation_id: 7361997,
+            ),
+
+
+            // NORWAY
+            self::NO_03 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-03', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Oslo', capital: 'Oslo', osm_relation_id: 406091,
+            ),
+            self::NO_11 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-11', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Rogaland', capital: 'Stavanger', osm_relation_id: 405836,
+            ),
+            self::NO_15 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-15', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'More and Romsdal', capital: 'Molde', osm_relation_id: 406868,
+            ),
+            self::NO_18 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-18', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Northland', capital: 'Bodø', osm_relation_id: 408105,
+            ),
+            self::NO_30 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-30', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Viken', capital: 'Drammen', osm_relation_id: 10155539,
+            ),
+            self::NO_34 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-34', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Inland', capital: 'Lillehammer', osm_relation_id: 10155527,
+            ),
+            self::NO_38 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-38', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Vestfold and Telemark', capital: 'Skien', osm_relation_id: 10487008,
+            ),
+            self::NO_42 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-42', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Agder', capital: 'Arendal', osm_relation_id: 10155517,
+            ),
+            self::NO_46 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-46', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Westland', capital: 'Bergen', osm_relation_id: 10155543,
+            ),
+            self::NO_50 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-50', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Trondelag', capital: 'Steinkjer', osm_relation_id: 406567,
+            ),
+            self::NO_54 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-54', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Troms and Finnmark', capital: 'Tromsø', osm_relation_id: 10155507,
+            ),
+
+
+            // SWEDEN
+            self::SE_AB => new BearCountrySubdivisionData(
+                iso_3166: 'SE-AB', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Stockholm', capital: 'Stockholm', osm_relation_id: 54391,
+            ),
+            self::SE_AC => new BearCountrySubdivisionData(
+                iso_3166: 'SE-AC', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Västerbotten', capital: 'Umeå', osm_relation_id: 52825,
+            ),
+            self::SE_BD => new BearCountrySubdivisionData(
+                iso_3166: 'SE-BD', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Norrbotten', capital: 'Luleå', osm_relation_id: 52824,
+            ),
+            self::SE_C => new BearCountrySubdivisionData(
+                iso_3166: 'SE-C', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Uppsala', capital: 'Uppsala', osm_relation_id: 54220,
+            ),
+            self::SE_D => new BearCountrySubdivisionData(
+                iso_3166: 'SE-D', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Södermanland', capital: 'Nyköping', osm_relation_id: 54386,
+            ),
+            self::SE_E => new BearCountrySubdivisionData(
+                iso_3166: 'SE-E', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Östergötland', capital: 'Linköping', osm_relation_id: 940675,
+            ),
+            self::SE_F => new BearCountrySubdivisionData(
+                iso_3166: 'SE-F', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Jönköping', capital: 'Jönköping', osm_relation_id: 54374,
+            ),
+            self::SE_G => new BearCountrySubdivisionData(
+                iso_3166: 'SE-G', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Kronoberg', capital: 'Växjö', osm_relation_id: 54412,
+            ),
+            self::SE_H => new BearCountrySubdivisionData(
+                iso_3166: 'SE-H', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Kalmar', capital: 'Kalmar', osm_relation_id: 54417,
+            ),
+            self::SE_I => new BearCountrySubdivisionData(
+                iso_3166: 'SE-I', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Gotland', capital: 'Visby', osm_relation_id: 941530,
+            ),
+            self::SE_K => new BearCountrySubdivisionData(
+                iso_3166: 'SE-K', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Blekinge', capital: 'Karlskrona', osm_relation_id: 54413,
+            ),
+            self::SE_M => new BearCountrySubdivisionData(
+                iso_3166: 'SE-M', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Skåne', capital: 'Malmö', osm_relation_id: 54409,
+            ),
+            self::SE_N => new BearCountrySubdivisionData(
+                iso_3166: 'SE-N', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Halland', capital: 'Halmstad', osm_relation_id: 54403,
+            ),
+            self::SE_O => new BearCountrySubdivisionData(
+                iso_3166: 'SE-O', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Västra Götaland', capital: 'Gothenburg', osm_relation_id: 54367,
+            ),
+            self::SE_S => new BearCountrySubdivisionData(
+                iso_3166: 'SE-S', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Värmland', capital: 'Karlstad', osm_relation_id: 54223,
+            ),
+            self::SE_T => new BearCountrySubdivisionData(
+                iso_3166: 'SE-T', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Örebro', capital: 'Örebro', osm_relation_id: 54222,
+            ),
+            self::SE_U => new BearCountrySubdivisionData(
+                iso_3166: 'SE-U', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Västmanland', capital: 'Västerås', osm_relation_id: 54221,
+            ),
+            self::SE_W => new BearCountrySubdivisionData(
+                iso_3166: 'SE-W', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Dalarna', capital: 'Falun', osm_relation_id: 52834,
+            ),
+            self::SE_X => new BearCountrySubdivisionData(
+                iso_3166: 'SE-X', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Gävleborg', capital: 'Gävle', osm_relation_id: 52832,
+            ),
+            self::SE_Y => new BearCountrySubdivisionData(
+                iso_3166: 'SE-Y', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Västernorrland', capital: 'Härnösand', osm_relation_id: 52827,
+            ),
+            self::SE_Z => new BearCountrySubdivisionData(
+                iso_3166: 'SE-Z', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Jämtland', capital: 'Östersund', osm_relation_id: 52826,
             ),
 
 
