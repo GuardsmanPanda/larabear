@@ -7,6 +7,16 @@ use GuardsmanPanda\Larabear\Infrastructure\Locale\Crud\LarabearCountrySubdivisio
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Data\BearCountrySubdivisionData;
 
 enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterface {
+    // United Arab Emirates
+    case AE_AJ = 'AE-AJ';
+    case AE_AZ = 'AE-AZ';
+    case AE_DU = 'AE-DU';
+    case AE_FU = 'AE-FU';
+    case AE_RK = 'AE-RK';
+    case AE_SH = 'AE-SH';
+    case AE_UQ = 'AE-UQ';
+
+
     // Austria
     case AT_1 = 'AT-1';
     case AT_2 = 'AT-2';
@@ -258,6 +268,37 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
     public function getCountrySubdivisionData(): BearCountrySubdivisionData {
         return match ($this) {
+            // United Arab Emirates
+            self::AE_AJ => new BearCountrySubdivisionData(
+                iso_3166: 'AE-AJ', country_cca2: BearCountryEnum::AE, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
+                english_name: 'Ajman', capital: 'Ajman', osm_relation_id: 3766482,
+            ),
+            self::AE_AZ => new BearCountrySubdivisionData(
+                iso_3166: 'AE-AZ', country_cca2: BearCountryEnum::AE, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
+                english_name: 'Abu Dhabi', capital: 'Abu Dhabi', osm_relation_id: 3766481,
+            ),
+            self::AE_DU => new BearCountrySubdivisionData(
+                iso_3166: 'AE-DU', country_cca2: BearCountryEnum::AE, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
+                english_name: 'Dubai', capital: 'Dubai', osm_relation_id: 3766483,
+            ),
+            self::AE_FU => new BearCountrySubdivisionData(
+                iso_3166: 'AE-FU', country_cca2: BearCountryEnum::AE, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
+                english_name: 'Fujairah', capital: 'Fujairah', osm_relation_id: 3766484,
+            ),
+            self::AE_RK => new BearCountrySubdivisionData(
+                iso_3166: 'AE-RK', country_cca2: BearCountryEnum::AE, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
+                english_name: 'Ras Al Khaimah', capital: 'Ras Al Khaimah', osm_relation_id: 3766485,
+            ),
+            self::AE_SH => new BearCountrySubdivisionData(
+                iso_3166: 'AE-SH', country_cca2: BearCountryEnum::AE, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
+                english_name: 'Sharjah', capital: 'Sharjah', osm_relation_id: 3766486,
+            ),
+            self::AE_UQ => new BearCountrySubdivisionData(
+                iso_3166: 'AE-UQ', country_cca2: BearCountryEnum::AE, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
+                english_name: 'Umm Al Quwain', capital: 'Umm Al Quwain', osm_relation_id: 3766487,
+            ),
+
+
             // Austria
             self::AT_1 => new BearCountrySubdivisionData(
                 iso_3166: 'AT-1', country_cca2: BearCountryEnum::AT, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,

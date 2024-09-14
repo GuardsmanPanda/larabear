@@ -7,6 +7,7 @@ use Closure;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\BearDatabaseChangeTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Traits\LarabearFixDateFormatTrait;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountryEnum;
+use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountrySubdivisionTypeEnum;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -58,10 +59,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $iso_3166
  * @property string $created_at
  * @property string $updated_at
- * @property string $subdivision_type_enum
  * @property BearCountryEnum $country_cca2
+ * @property BearCountrySubdivisionTypeEnum $country_subdivision_type_enum
  *
  * @property BearCountry $countryCca2
+ * @property BearCountrySubdivisionType $countrySubdivisionType
  *
  * AUTO GENERATED FILE DO NOT MODIFY
  */
@@ -75,11 +77,17 @@ final class BearCountrySubdivision extends Model {
     /** @var array<string, string> $casts */
     protected $casts = [
         'country_cca2' => BearCountryEnum::class,
+        'country_subdivision_type_enum' => BearCountrySubdivisionTypeEnum::class,
     ];
 
     /** @return BelongsTo<BearCountry, self> */
     public function countryCca2(): BelongsTo {
         return $this->belongsTo(related: BearCountry::class, foreignKey: 'country_cca2', ownerKey: 'cca2');
+    }
+
+    /** @return BelongsTo<BearCountrySubdivisionType, self> */
+    public function countrySubdivisionType(): BelongsTo {
+        return $this->belongsTo(related: BearCountrySubdivisionType::class, foreignKey: 'country_subdivision_type_enum', ownerKey: 'enum');
     }
 
     protected $guarded = ['iso_3166', 'updated_at', 'created_at', 'deleted_at'];
