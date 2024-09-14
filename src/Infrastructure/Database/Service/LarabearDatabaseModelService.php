@@ -7,7 +7,6 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Data\LarabearDatabaseModelDa
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountryEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountrySubdivisionEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountrySubdivisionTypeEnum;
-use GuardsmanPanda\Larabear\Infrastructure\Locale\Model\BearCountrySubdivision;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;

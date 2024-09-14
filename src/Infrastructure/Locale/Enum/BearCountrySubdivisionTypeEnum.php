@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Locale\Enum;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Interface\BearDatabaseBackedEnumInterface;
+use GuardsmanPanda\Larabear\Infrastructure\Locale\Crud\LarabearCountrySubdivisionTypeCrud;
 
 enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInterface {
     case CANTON = 'CANTON';
@@ -38,6 +39,8 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
 
 
     public static function syncToDatabase(): void {
-        // TODO: Implement syncToDatabase() method.
+        foreach (self::cases() as $enum) {
+            LarabearCountrySubdivisionTypeCrud::syncToDatabase($enum);
+        }
     }
 }
