@@ -179,13 +179,17 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case NO_11 = 'NO-11';
     case NO_15 = 'NO-15';
     case NO_18 = 'NO-18';
-    case NO_30 = 'NO-30';
+    case NO_31 = 'NO-31';
+    case NO_32 = 'NO-32';
+    case NO_33 = 'NO-33';
     case NO_34 = 'NO-34';
-    case NO_38 = 'NO-38';
+    case NO_39 = 'NO-39';
+    case NO_40 = 'NO-40';
     case NO_42 = 'NO-42';
     case NO_46 = 'NO-46';
     case NO_50 = 'NO-50';
-    case NO_54 = 'NO-54';
+    case NO_55 = 'NO-55';
+    case NO_56 = 'NO-56';
 
 
     // SWEDEN
@@ -207,7 +211,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case SE_T = 'SE-T';
     case SE_U = 'SE-U';
     case SE_W = 'SE-W';
-    case SE_X = 'SE_X';
+    case SE_X = 'SE-X';
     case SE_Y = 'SE-Y';
     case SE_Z = 'SE-Z';
 
@@ -407,11 +411,11 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             ),
             self::BY_MA => new BearCountrySubdivisionData(
                 iso_3166: 'BY-MA', country_cca2: BearCountryEnum::BY, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
-                english_name: 'Minsk', capital: 'Minsk', osm_relation_id: 59752,
+                english_name: 'Mogilev', capital: 'Mogilev', osm_relation_id: 59162,
             ),
             self::BY_MI => new BearCountrySubdivisionData(
                 iso_3166: 'BY-MI', country_cca2: BearCountryEnum::BY, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
-                english_name: 'Mogilev', capital: 'Mogilev', osm_relation_id: 59162,
+                english_name: 'Minsk', capital: 'Minsk', osm_relation_id: 59752,
             ),
             self::BY_VI => new BearCountrySubdivisionData(
                 iso_3166: 'BY-VI', country_cca2: BearCountryEnum::BY, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
@@ -831,27 +835,39 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             ),
             self::NO_15 => new BearCountrySubdivisionData(
                 iso_3166: 'NO-15', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-                english_name: 'More and Romsdal', capital: 'Molde', osm_relation_id: 406868,
+                english_name: 'Møre and Romsdal', capital: 'Molde', osm_relation_id: 406868,
             ),
             self::NO_18 => new BearCountrySubdivisionData(
                 iso_3166: 'NO-18', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
                 english_name: 'Northland', capital: 'Bodø', osm_relation_id: 408105,
             ),
-            self::NO_30 => new BearCountrySubdivisionData(
-                iso_3166: 'NO-30', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-                english_name: 'Viken', capital: 'Drammen', osm_relation_id: 10155539,
+            self::NO_31 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-31', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Østfold', capital: 'Sarpsborg', osm_relation_id: 406060,
+            ),
+            self::NO_32 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-32', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Akershus', capital: 'Oslo', osm_relation_id: 406106,
+            ),
+            self::NO_33 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-33', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Buskerud', capital: 'Drammen', osm_relation_id: 412297,
             ),
             self::NO_34 => new BearCountrySubdivisionData(
                 iso_3166: 'NO-34', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-                english_name: 'Inland', capital: 'Lillehammer', osm_relation_id: 10155527,
+                english_name: 'Inland', capital: 'Hamar', osm_relation_id: 10155527,
             ),
-            self::NO_38 => new BearCountrySubdivisionData(
-                iso_3166: 'NO-38', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-                english_name: 'Vestfold and Telemark', capital: 'Skien', osm_relation_id: 10487008,
+            self::NO_39 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-39', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Vestfold', capital: 'Tønsberg', osm_relation_id: 404589,
+            ),
+            self::NO_40 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-40', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Telemark', capital: 'Skien', osm_relation_id: 405156,
             ),
             self::NO_42 => new BearCountrySubdivisionData(
                 iso_3166: 'NO-42', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-                english_name: 'Agder', capital: 'Arendal', osm_relation_id: 10155517,
+                english_name: 'Agder', capital: 'Kristiansand', osm_relation_id: 10155517,
             ),
             self::NO_46 => new BearCountrySubdivisionData(
                 iso_3166: 'NO-46', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
@@ -859,11 +875,15 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             ),
             self::NO_50 => new BearCountrySubdivisionData(
                 iso_3166: 'NO-50', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-                english_name: 'Trondelag', capital: 'Steinkjer', osm_relation_id: 406567,
+                english_name: 'Trøndelag', capital: 'Steinkjer', osm_relation_id: 406567,
             ),
-            self::NO_54 => new BearCountrySubdivisionData(
-                iso_3166: 'NO-54', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-                english_name: 'Troms and Finnmark', capital: 'Tromsø', osm_relation_id: 10155507,
+            self::NO_55 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-55', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Troms', capital: 'Tromsø', osm_relation_id: 407717,
+            ),
+            self::NO_56 => new BearCountrySubdivisionData(
+                iso_3166: 'NO-56', country_cca2: BearCountryEnum::NO, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
+                english_name: 'Finnmark', capital: 'Vadsø', osm_relation_id: 406389,
             ),
 
 
