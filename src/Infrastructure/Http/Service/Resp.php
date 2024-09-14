@@ -3,7 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
 use GuardsmanPanda\Larabear\Infrastructure\Http\Middleware\BearInitiateMiddleware;
-use Illuminate\Support\Str;
+use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -45,5 +45,12 @@ final class Resp {
     public static function view(string $view, array $data = []): View {
         $res = view(view: $view, data: $data);
         return $res instanceof View ? $res : throw new RuntimeException(message: 'Unexpect View Type');
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function json(array $data, int $status = 200): JsonResponse {
+        return new JsonResponse(data: $data, status: $status);
     }
 }
