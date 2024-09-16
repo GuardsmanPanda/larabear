@@ -73,7 +73,7 @@ final class BearServiceProvider extends ServiceProvider {
             ]);
 
             $this->publishes(paths: [base_path(path: 'vendor/guardsmanpanda/larabear/config/config.php') => $this->app->configPath(path: 'bear.php')], groups: 'bear');
-            $this->publishes(paths: [base_path(path: 'vendor/guardsmanpanda/larabear/assets/public') => $this->app->basePath(path: 'public')], groups: 'bear-flags');
+            $this->publishes(paths: [base_path(path: 'vendor/guardsmanpanda/larabear/assets/public/static/flag') => $this->app->basePath(path: 'public/static/flag')], groups: 'bear-flags');
             $this->loadMigrationsFrom(paths: [base_path(path: 'vendor/guardsmanpanda/larabear/src/Infrastructure/Database/Migration')]);
 
             $this->app->booted(function () {

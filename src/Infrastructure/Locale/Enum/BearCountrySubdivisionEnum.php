@@ -247,6 +247,56 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case NP_P7 = 'NP-P7';
 
 
+    // PORTUGAL
+    case PT_01 = 'PT-01';
+    case PT_02 = 'PT-02';
+    case PT_03 = 'PT-03';
+    case PT_04 = 'PT-04';
+    case PT_05 = 'PT-05';
+    case PT_06 = 'PT-06';
+    case PT_07 = 'PT-07';
+    case PT_08 = 'PT-08';
+    case PT_09 = 'PT-09';
+    case PT_10 = 'PT-10';
+    case PT_11 = 'PT-11';
+    case PT_12 = 'PT-12';
+    case PT_13 = 'PT-13';
+    case PT_14 = 'PT-14';
+    case PT_15 = 'PT-15';
+    case PT_16 = 'PT-16';
+    case PT_17 = 'PT-17';
+    case PT_18 = 'PT-18';
+    case PT_20 = 'PT-20';
+    case PT_30 = 'PT-30';
+
+
+    // QATAR
+    case QA_DA = 'QA-DA';
+    case QA_KH = 'QA-KH';
+    case QA_MS = 'QA-MS';
+    case QA_RA = 'QA-RA';
+    case QA_SH = 'QA-SH';
+    case QA_US = 'QA-US';
+    case QA_WA = 'QA-WA';
+    case QA_ZA = 'QA-ZA';
+
+
+    // SAUDI ARABIA
+    case SA_01 = 'SA-01';
+    case SA_02 = 'SA-02';
+    case SA_03 = 'SA-03';
+    case SA_04 = 'SA-04';
+    case SA_05 = 'SA-05';
+    case SA_06 = 'SA-06';
+    case SA_07 = 'SA-07';
+    case SA_08 = 'SA-08';
+    case SA_09 = 'SA-09';
+    case SA_10 = 'SA-10';
+    case SA_11 = 'SA-11';
+    case SA_12 = 'SA-12';
+    case SA_14 = 'SA-14';
+
+
     // SWEDEN
     case SE_AB = 'SE-AB';
     case SE_AC = 'SE-AC';
@@ -269,6 +319,14 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case SE_X = 'SE-X';
     case SE_Y = 'SE-Y';
     case SE_Z = 'SE-Z';
+
+
+    // SINGAPORE
+    case SG_01 = 'SG-01';
+    case SG_02 = 'SG-02';
+    case SG_03 = 'SG-03';
+    case SG_04 = 'SG-04';
+    case SG_05 = 'SG-05';
 
 
     // THE UNITED STATES
@@ -1134,6 +1192,179 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             ),
 
 
+            // PORTUGAL
+            self::PT_01 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-01', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Aveiro', capital: 'Aveiro', osm_relation_id: 3920249,
+            ),
+            self::PT_02 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-02', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Beja', capital: 'Beja', osm_relation_id: 5134927,
+            ),
+            self::PT_03 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-03', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Braga', capital: 'Braga', osm_relation_id: 3738284,
+            ),
+            self::PT_04 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-04', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Bragança', capital: 'Bragança', osm_relation_id: 3905929,
+            ),
+            self::PT_05 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-05', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Castelo Branco', capital: 'Castelo Branco', osm_relation_id: 4104644,
+            ),
+            self::PT_06 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-06', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Coimbra', capital: 'Coimbra', osm_relation_id: 4875183,
+            ),
+            self::PT_07 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-07', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Évora', capital: 'Évora', osm_relation_id: 5130767,
+            ),
+            self::PT_08 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-08', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Faro', capital: 'Faro', osm_relation_id: 1278415,
+            ),
+            self::PT_09 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-09', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Guarda', capital: 'Guarda', osm_relation_id: 3905924,
+            ),
+            self::PT_10 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-10', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Leiria', capital: 'Leiria', osm_relation_id: 5011694,
+            ),
+            self::PT_11 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-11', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Lisbon', capital: 'Lisbon', osm_relation_id: 2897141,
+            ),
+            self::PT_12 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-12', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Portalegre', capital: 'Portalegre', osm_relation_id: 5123448,
+            ),
+            self::PT_13 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-13', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Porto', capital: 'Porto', osm_relation_id: 3459013,
+            ),
+            self::PT_14 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-14', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Santarém', capital: 'Santarém', osm_relation_id: 5122644,
+            ),
+            self::PT_15 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-15', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Setúbal', capital: 'Setúbal', osm_relation_id: 5143590,
+            ),
+            self::PT_16 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-16', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Viana do Castelo', capital: 'Viana do Castelo', osm_relation_id: 3898131,
+            ),
+            self::PT_17 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-17', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Vila Real', capital: 'Vila Real', osm_relation_id: 3967823,
+            ),
+            self::PT_18 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-18', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Viseu', capital: 'Viseu', osm_relation_id: 3920285,
+            ),
+            self::PT_20 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-20', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Azores', capital: 'Ponta Delgada', osm_relation_id: 1629146,
+            ),
+            self::PT_30 => new BearCountrySubdivisionData(
+                iso_3166: 'PT-30', country_cca2: BearCountryEnum::PT, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Madeira', capital: 'Funchal', osm_relation_id: 1629145,
+            ),
+
+
+            // QATAR
+            self::QA_DA => new BearCountrySubdivisionData(
+                iso_3166: 'QA-DA', country_cca2: BearCountryEnum::QA, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
+                english_name: 'Ad Dawhah', capital: 'Doha', osm_relation_id: 27332,
+            ),
+            self::QA_KH => new BearCountrySubdivisionData(
+                iso_3166: 'QA-KH', country_cca2: BearCountryEnum::QA, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
+                english_name: 'Al Khor', capital: 'Al Khor', osm_relation_id: 27329,
+            ),
+            self::QA_MS => new BearCountrySubdivisionData(
+                iso_3166: 'QA-MS', country_cca2: BearCountryEnum::QA, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
+                english_name: 'Al Shamal', capital: 'Madinat ash Shamal', osm_relation_id: 27335,
+            ),
+            self::QA_RA => new BearCountrySubdivisionData(
+                iso_3166: 'QA-RA', country_cca2: BearCountryEnum::QA, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
+                english_name: 'Al Rayyan', capital: 'Ar Rayyan', osm_relation_id: 27331,
+            ),
+            self::QA_SH => new BearCountrySubdivisionData(
+                iso_3166: 'QA-SH', country_cca2: BearCountryEnum::QA, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
+                english_name: 'Al-Shahaniya', capital: 'Al-Shahaniya', osm_relation_id: 27330,
+            ),
+            self::QA_US => new BearCountrySubdivisionData(
+                iso_3166: 'QA-US', country_cca2: BearCountryEnum::QA, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
+                english_name: 'Umm Salal', capital: 'Umm Salal', osm_relation_id: 27328,
+            ),
+            self::QA_WA => new BearCountrySubdivisionData(
+                iso_3166: 'QA-WA', country_cca2: BearCountryEnum::QA, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
+                english_name: 'Al Wakrah', capital: 'Al Wakrah', osm_relation_id: 27337,
+            ),
+            self::QA_ZA => new BearCountrySubdivisionData(
+                iso_3166: 'QA-ZA', country_cca2: BearCountryEnum::QA, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
+                english_name: 'Al Daayen', capital: 'Umm Qarn', osm_relation_id: 11146904,
+            ),
+
+
+            // SAUDI ARABIA
+            self::SA_01 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-01', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Riyadh', capital: 'Riyadh', osm_relation_id: 3678409,
+            ),
+            self::SA_02 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-02', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Makkah', capital: 'Makkah', osm_relation_id: 3678639,
+            ),
+            self::SA_03 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-03', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Medina', capital: 'Madinah', osm_relation_id: 3679869,
+            ),
+            self::SA_04 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-04', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Eastern', capital: 'Dammam', osm_relation_id: 3667294,
+            ),
+            self::SA_05 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-05', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Al-Qassim', capital: 'Buraidah', osm_relation_id: 3679872,
+            ),
+            self::SA_06 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-06', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Ha\'il', capital: 'Ha\'il', osm_relation_id: 3676707,
+            ),
+            self::SA_07 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-07', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Tabuk', capital: 'Tabuk', osm_relation_id: 3679867,
+            ),
+            self::SA_08 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-08', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Northern Borders', capital: 'Arar', osm_relation_id: 3673927,
+            ),
+            self::SA_09 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-09', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Jazan', capital: 'Jazan', osm_relation_id: 3679903,
+            ),
+            self::SA_10 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-10', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Najran', capital: 'Najran', osm_relation_id: 3667317,
+            ),
+            self::SA_11 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-11', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Al Bahah', capital: 'Al Bahah', osm_relation_id: 3679888,
+            ),
+            self::SA_12 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-12', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Al Jawf', capital: 'Sakaka', osm_relation_id: 3842543,
+            ),
+            self::SA_14 => new BearCountrySubdivisionData(
+                iso_3166: 'SA-14', country_cca2: BearCountryEnum::SA, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
+                english_name: 'Asir', capital: 'Abha', osm_relation_id: 3678598,
+            ),
+
+
             // SWEDEN
             self::SE_AB => new BearCountrySubdivisionData(
                 iso_3166: 'SE-AB', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
@@ -1218,6 +1449,29 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::SE_Z => new BearCountrySubdivisionData(
                 iso_3166: 'SE-Z', country_cca2: BearCountryEnum::SE, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
                 english_name: 'Jämtland', capital: 'Östersund', osm_relation_id: 52826,
+            ),
+
+
+            // SINGAPORE
+            self::SG_01 => new BearCountrySubdivisionData(
+                iso_3166: 'SG-01', country_cca2: BearCountryEnum::SG, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Central Singapore', capital: 'Singapore', osm_relation_id: 3831712,
+            ),
+            self::SG_02 => new BearCountrySubdivisionData(
+                iso_3166: 'SG-02', country_cca2: BearCountryEnum::SG, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'North East', capital: 'Singapore', osm_relation_id: 3831713,
+            ),
+            self::SG_03 => new BearCountrySubdivisionData(
+                iso_3166: 'SG-03', country_cca2: BearCountryEnum::SG, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'North West', capital: 'Singapore', osm_relation_id: 3831714,
+            ),
+            self::SG_04 => new BearCountrySubdivisionData(
+                iso_3166: 'SG-04', country_cca2: BearCountryEnum::SG, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'South East', capital: 'Singapore', osm_relation_id: 3831715,
+            ),
+            self::SG_05 => new BearCountrySubdivisionData(
+                iso_3166: 'SG-05', country_cca2: BearCountryEnum::SG, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'South West', capital: 'Singapore', osm_relation_id: 3831716,
             ),
 
 
