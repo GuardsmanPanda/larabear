@@ -11,11 +11,13 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
     case COMMUNITY = 'COMMUNITY';
     case COUNTRY = 'COUNTRY';
     case COUNTY = 'COUNTY';
+    case DEPENDENCY = 'DEPENDENCY';
     case DISTRICT = 'DISTRICT';
     case EMIRATE = 'EMIRATE';
     case METROPOLITAN = 'METROPOLITAN';
     case MUNICIPALITY = 'MUNICIPALITY';
     case OBLAST = 'OBLAST';
+    case PARISH = 'PARISH';
     case PROVINCE = 'PROVINCE';
     case REGION = 'REGION';
     case STATE = 'STATE';
@@ -29,11 +31,13 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
             self::CITY => 'City',
             self::COUNTRY => 'Country',
             self::COUNTY => 'County',
+            self::DEPENDENCY => 'Dependency',
             self::DISTRICT => 'District',
             self::EMIRATE => 'Emirate',
             self::METROPOLITAN => 'Metropolitan',
             self::MUNICIPALITY => 'Municipality',
             self::OBLAST => 'Oblast',
+            self::PARISH => 'Parish',
             self::PROVINCE => 'Province',
             self::REGION => 'Region',
             self::STATE => 'State',
