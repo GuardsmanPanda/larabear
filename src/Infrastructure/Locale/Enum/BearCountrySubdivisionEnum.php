@@ -189,6 +189,25 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case CA_YT = 'CA-YT';
 
 
+    // COSTA RICA
+    case CR_A = 'CR-A';
+    case CR_C = 'CR-C';
+    case CR_G = 'CR-G';
+    case CR_H = 'CR-H';
+    case CR_L = 'CR-L';
+    case CR_P = 'CR-P';
+    case CR_SJ = 'CR-SJ';
+
+
+    // CYPRUS
+    case CY_01 = 'CY-01';
+    case CY_02 = 'CY-02';
+    case CY_03 = 'CY-03';
+    case CY_04 = 'CY-04';
+    case CY_05 = 'CY-05';
+    case CY_06 = 'CY-06';
+
+
     // GERMANY
     case DE_BW = 'DE-BW';
     case DE_BY = 'DE-BY';
@@ -468,6 +487,32 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case US_WI = 'US-WI';
     case US_WY = 'US-WY';
     case US_DC = 'US-DC';
+
+
+    // ZAMBIA
+    case ZM_01 = 'ZM-01';
+    case ZM_02 = 'ZM-02';
+    case ZM_03 = 'ZM-03';
+    case ZM_04 = 'ZM-04';
+    case ZM_05 = 'ZM-05';
+    case ZM_06 = 'ZM-06';
+    case ZM_07 = 'ZM-07';
+    case ZM_08 = 'ZM-08';
+    case ZM_09 = 'ZM-09';
+    case ZM_10 = 'ZM-10';
+
+
+    // ZIMBABWE
+    case ZW_BU = 'ZW-BU';
+    case ZW_HA = 'ZW-HA';
+    case ZW_MA = 'ZW-MA';
+    case ZW_MC = 'ZW-MC';
+    case ZW_ME = 'ZW-ME';
+    case ZW_MI = 'ZW-MI';
+    case ZW_MN = 'ZW-MN';
+    case ZW_MS = 'ZW-MS';
+    case ZW_MV = 'ZW-MV';
+    case ZW_MW = 'ZW-MW';
 
 
     public function getCountrySubdivisionData(): BearCountrySubdivisionData {
@@ -770,7 +815,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             ),
             self::AM_AV => new BearCountrySubdivisionData(
                 iso_3166: 'AM-AV', country_cca2: BearCountryEnum::AM, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-                english_name: 'Armavir', capital: 'Armavir', osm_relation_id: 1225797,
+                english_name: 'Armavir', capital: 'Armavir', osm_relation_id: 364086,
             ),
             self::AM_ER => new BearCountrySubdivisionData(
                 iso_3166: 'AM-ER', country_cca2: BearCountryEnum::AM, subdivision_type: BearCountrySubdivisionTypeEnum::CITY,
@@ -1089,6 +1134,64 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::CA_YT => new BearCountrySubdivisionData(
                 iso_3166: 'CA-YT', country_cca2: BearCountryEnum::CA, subdivision_type: BearCountrySubdivisionTypeEnum::TERRITORY,
                 english_name: 'Yukon', capital: 'Whitehorse', osm_relation_id: 391455,
+            ),
+
+
+            // COSTA RICA
+            self::CR_A => new BearCountrySubdivisionData(
+                iso_3166: 'CR-A', country_cca2: BearCountryEnum::CR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Alajuela', capital: 'Alajuela', osm_relation_id: 3222933,
+            ),
+            self::CR_C => new BearCountrySubdivisionData(
+                iso_3166: 'CR-C', country_cca2: BearCountryEnum::CR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Cartago', capital: 'Cartago', osm_relation_id: 3223054,
+            ),
+            self::CR_G => new BearCountrySubdivisionData(
+                iso_3166: 'CR-G', country_cca2: BearCountryEnum::CR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Guanacaste', capital: 'Liberia', osm_relation_id: 3222919,
+            ),
+            self::CR_H => new BearCountrySubdivisionData(
+                iso_3166: 'CR-H', country_cca2: BearCountryEnum::CR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Heredia', capital: 'Heredia', osm_relation_id: 3221947,
+            ),
+            self::CR_L => new BearCountrySubdivisionData(
+                iso_3166: 'CR-L', country_cca2: BearCountryEnum::CR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Limón', capital: 'Limón', osm_relation_id: 3223056,
+            ),
+            self::CR_P => new BearCountrySubdivisionData(
+                iso_3166: 'CR-P', country_cca2: BearCountryEnum::CR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Puntarenas', capital: 'Puntarenas', osm_relation_id: 3223028,
+            ),
+            self::CR_SJ => new BearCountrySubdivisionData(
+                iso_3166: 'CR-SJ', country_cca2: BearCountryEnum::CR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'San José', capital: 'San José', osm_relation_id: 3223004,
+            ),
+
+
+            // CYPRUS
+            self::CY_01 => new BearCountrySubdivisionData(
+                iso_3166: 'CY-01', country_cca2: BearCountryEnum::CY, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Nicosia', capital: 'Nicosia', osm_relation_id: 3264382,
+            ),
+            self::CY_02 => new BearCountrySubdivisionData(
+                iso_3166: 'CY-02', country_cca2: BearCountryEnum::CY, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Limassol', capital: 'Limassol', osm_relation_id: 2087230,
+            ),
+            self::CY_03 => new BearCountrySubdivisionData(
+                iso_3166: 'CY-03', country_cca2: BearCountryEnum::CY, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Larnaca', capital: 'Larnaca', osm_relation_id: 2087229,
+            ),
+            self::CY_04 => new BearCountrySubdivisionData(
+                iso_3166: 'CY-04', country_cca2: BearCountryEnum::CY, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Famagusta', capital: 'Famagusta', osm_relation_id: 3264447,
+            ),
+            self::CY_05 => new BearCountrySubdivisionData(
+                iso_3166: 'CY-05', country_cca2: BearCountryEnum::CY, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Paphos', capital: 'Paphos', osm_relation_id: 3263729,
+            ),
+            self::CY_06 => new BearCountrySubdivisionData(
+                iso_3166: 'CY-06', country_cca2: BearCountryEnum::CY, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Kyrenia', capital: 'Kyrenia', osm_relation_id: 3264494,
             ),
 
 
@@ -2069,6 +2172,92 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::US_DC => new BearCountrySubdivisionData(
                 iso_3166: 'US-DC', country_cca2: BearCountryEnum::US, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
                 english_name: 'District of Columbia', capital: 'Washington', osm_relation_id: 162069,
+            ),
+
+
+            // ZAMBIA
+            self::ZM_01 => new BearCountrySubdivisionData(
+                iso_3166: 'ZM-01', country_cca2: BearCountryEnum::ZM, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Western', capital: 'Mongu', osm_relation_id: 318852,
+            ),
+            self::ZM_02 => new BearCountrySubdivisionData(
+                iso_3166: 'ZM-02', country_cca2: BearCountryEnum::ZM, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Central', capital: 'Kabwe', osm_relation_id: 318861,
+            ),
+            self::ZM_03 => new BearCountrySubdivisionData(
+                iso_3166: 'ZM-03', country_cca2: BearCountryEnum::ZM, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Eastern', capital: 'Chipata', osm_relation_id: 318865,
+            ),
+            self::ZM_04 => new BearCountrySubdivisionData(
+                iso_3166: 'ZM-04', country_cca2: BearCountryEnum::ZM, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Luapula', capital: 'Mansa', osm_relation_id: 318866,
+            ),
+            self::ZM_05 => new BearCountrySubdivisionData(
+                iso_3166: 'ZM-05', country_cca2: BearCountryEnum::ZM, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Northern', capital: 'Kasama', osm_relation_id: 318862,
+            ),
+            self::ZM_06 => new BearCountrySubdivisionData(
+                iso_3166: 'ZM-06', country_cca2: BearCountryEnum::ZM, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'North-Western', capital: 'Solwezi', osm_relation_id: 318859,
+            ),
+            self::ZM_07 => new BearCountrySubdivisionData(
+                iso_3166: 'ZM-07', country_cca2: BearCountryEnum::ZM, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Southern', capital: 'Choma', osm_relation_id: 318863,
+            ),
+            self::ZM_08 => new BearCountrySubdivisionData(
+                iso_3166: 'ZM-08', country_cca2: BearCountryEnum::ZM, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Copperbelt', capital: 'Ndola', osm_relation_id: 318860,
+            ),
+            self::ZM_09 => new BearCountrySubdivisionData(
+                iso_3166: 'ZM-09', country_cca2: BearCountryEnum::ZM, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Lusaka', capital: 'Lusaka', osm_relation_id: 318864,
+            ),
+            self::ZM_10 => new BearCountrySubdivisionData(
+                iso_3166: 'ZM-10', country_cca2: BearCountryEnum::ZM, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Muchinga', capital: 'Chinsali', osm_relation_id: 3668334,
+            ),
+
+
+            // ZIMBABWE
+            self::ZW_BU => new BearCountrySubdivisionData(
+                iso_3166: 'ZW-BU', country_cca2: BearCountryEnum::ZW, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Bulawayo', capital: 'Bulawayo', osm_relation_id: 3337019,
+            ),
+            self::ZW_HA => new BearCountrySubdivisionData(
+                iso_3166: 'ZW-HA', country_cca2: BearCountryEnum::ZW, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Harare', capital: 'Harare', osm_relation_id: 318467,
+            ),
+            self::ZW_MA => new BearCountrySubdivisionData(
+                iso_3166: 'ZW-MA', country_cca2: BearCountryEnum::ZW, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Manicaland', capital: 'Mutare', osm_relation_id: 3336975,
+            ),
+            self::ZW_MC => new BearCountrySubdivisionData(
+                iso_3166: 'ZW-MC', country_cca2: BearCountryEnum::ZW, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Mashonaland Central', capital: 'Bindura', osm_relation_id: 3336976,
+            ),
+            self::ZW_ME => new BearCountrySubdivisionData(
+                iso_3166: 'ZW-ME', country_cca2: BearCountryEnum::ZW, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Mashonaland East', capital: 'Marondera', osm_relation_id: 3336977,
+            ),
+            self::ZW_MI => new BearCountrySubdivisionData(
+                iso_3166: 'ZW-MI', country_cca2: BearCountryEnum::ZW, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Midlands', capital: 'Gweru', osm_relation_id: 3336982,
+            ),
+            self::ZW_MN => new BearCountrySubdivisionData(
+                iso_3166: 'ZW-MN', country_cca2: BearCountryEnum::ZW, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Matabeleland North', capital: 'Lupane', osm_relation_id: 3336980,
+            ),
+            self::ZW_MS => new BearCountrySubdivisionData(
+                iso_3166: 'ZW-MS', country_cca2: BearCountryEnum::ZW, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Matabeleland South', capital: 'Gwanda', osm_relation_id: 3336981,
+            ),
+            self::ZW_MV => new BearCountrySubdivisionData(
+                iso_3166: 'ZW-MV', country_cca2: BearCountryEnum::ZW, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Masvingo', capital: 'Masvingo', osm_relation_id: 3336979,
+            ),
+            self::ZW_MW => new BearCountrySubdivisionData(
+                iso_3166: 'ZW-MW', country_cca2: BearCountryEnum::ZW, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Mashonaland West', capital: 'Chinhoyi', osm_relation_id: 3336978,
             ),
         };
     }
