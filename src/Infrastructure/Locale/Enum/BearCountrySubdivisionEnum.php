@@ -104,6 +104,54 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case AM_VD = 'AM-VD';
 
 
+    // ANGOLA
+    case AO_BGO = 'AO-BGO';
+    case AO_BGU = 'AO-BGU';
+    case AO_BIE = 'AO-BIE';
+    case AO_CAB = 'AO-CAB';
+    case AO_CCU = 'AO-CCU';
+    case AO_CNN = 'AO-CNN';
+    case AO_CNO = 'AO-CNO';
+    case AO_CUS = 'AO-CUS';
+    case AO_HUA = 'AO-HUA';
+    case AO_HUI = 'AO-HUI';
+    case AO_LNO = 'AO-LNO';
+    case AO_LSU = 'AO-LSU';
+    case AO_LUA = 'AO-LUA';
+    case AO_MAL = 'AO-MAL';
+    case AO_MOX = 'AO-MOX';
+    case AO_NAM = 'AO-NAM';
+    case AO_UIG = 'AO-UIG';
+    case AO_ZAI = 'AO-ZAI';
+
+
+    // ARGENTINA
+    case AR_A = 'AR-A';
+    case AR_B = 'AR-B';
+    case AR_C = 'AR-C';
+    case AR_D = 'AR-D';
+    case AR_E = 'AR-E';
+    case AR_F = 'AR-F';
+    case AR_G = 'AR-G';
+    case AR_H = 'AR-H';
+    case AR_J = 'AR-J';
+    case AR_K = 'AR-K';
+    case AR_L = 'AR-L';
+    case AR_M = 'AR-M';
+    case AR_N = 'AR-N';
+    case AR_P = 'AR-P';
+    case AR_Q = 'AR-Q';
+    case AR_R = 'AR-R';
+    case AR_S = 'AR-S';
+    case AR_T = 'AR-T';
+    case AR_U = 'AR-U';
+    case AR_V = 'AR-V';
+    case AR_W = 'AR-W';
+    case AR_X = 'AR-X';
+    case AR_Y = 'AR-Y';
+    case AR_Z = 'AR-Z';
+
+
     // Austria
     case AT_1 = 'AT-1';
     case AT_2 = 'AT-2';
@@ -127,12 +175,43 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case AU_WA = 'AU-WA';
 
 
+    // BOSNIA AND HERZEGOVINA
+    case BA_BIH = 'BA-BIH';
+    case BA_BRC = 'BA-BRC';
+    case BA_SRP = 'BA-SRP';
+
+
+    // BARBADOS
+    case BB_01 = 'BB-01';
+    case BB_02 = 'BB-02';
+    case BB_03 = 'BB-03';
+    case BB_04 = 'BB-04';
+    case BB_05 = 'BB-05';
+    case BB_06 = 'BB-06';
+    case BB_07 = 'BB-07';
+    case BB_08 = 'BB-08';
+    case BB_09 = 'BB-09';
+    case BB_10 = 'BB-10';
+    case BB_11 = 'BB-11';
+
+
+    // BANGLADESH
+    case BD_A = 'BD-A';
+    case BD_B = 'BD-B';
+    case BD_C = 'BD-C';
+    case BD_D = 'BD-D';
+    case BD_E = 'BD-E';
+    case BD_F = 'BD-F';
+    case BD_G = 'BD-G';
+    case BD_H = 'BD-H';
+
+
     // BELGIUM
     case BE_BRU = 'BE-BRU';
     case BE_VLG = 'BE-VLG';
     case BE_WAL = 'BE-WAL';
 
-
+    
     // BRAZIL
     case BR_AC = 'BR-AC';
     case BR_AL = 'BR-AL';
@@ -851,6 +930,180 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             ),
 
 
+            // ANGOLA
+            self::AO_BGO => new BearCountrySubdivisionData(
+                iso_3166: 'AO-BGO', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Bengo', capital: 'Caxito', osm_relation_id: 1802539,
+            ),
+            self::AO_BGU => new BearCountrySubdivisionData(
+                iso_3166: 'AO-BGU', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Benguela', capital: 'Benguela', osm_relation_id: 1802540,
+            ),
+            self::AO_BIE => new BearCountrySubdivisionData(
+                iso_3166: 'AO-BIE', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Bié', capital: 'Kuito', osm_relation_id: 1802541,
+            ),
+            self::AO_CAB => new BearCountrySubdivisionData(
+                iso_3166: 'AO-CAB', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Cabinda', capital: 'Cabinda', osm_relation_id: 422607,
+            ),
+            self::AO_CCU => new BearCountrySubdivisionData(
+                iso_3166: 'AO-CCU', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Cuando Cubango', capital: 'Menongue', osm_relation_id: 568485,
+            ),
+            self::AO_CNN => new BearCountrySubdivisionData(
+                iso_3166: 'AO-CNN', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Cunene', capital: 'Ondjiva', osm_relation_id: 422606,
+            ),
+            self::AO_CNO => new BearCountrySubdivisionData(
+                iso_3166: 'AO-CNO', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'North Cuanza', capital: 'N\'dalatando', osm_relation_id: 1802542,
+            ),
+            self::AO_CUS => new BearCountrySubdivisionData(
+                iso_3166: 'AO-CUS', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'South Cuanza', capital: 'Sumbe', osm_relation_id: 1802543,
+            ),
+            self::AO_HUA => new BearCountrySubdivisionData(
+                iso_3166: 'AO-HUA', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Huambo', capital: 'Huambo', osm_relation_id: 1802544,
+            ),
+            self::AO_HUI => new BearCountrySubdivisionData(
+                iso_3166: 'AO-HUI', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Huíla', capital: 'Lubango', osm_relation_id: 1802545,
+            ),
+            self::AO_LNO => new BearCountrySubdivisionData(
+                iso_3166: 'AO-LNO', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'North Lunda', capital: 'Dundo', osm_relation_id: 1802547,
+            ),
+            self::AO_LSU => new BearCountrySubdivisionData(
+                iso_3166: 'AO-LSU', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'South Lunda', capital: 'Saurimo', osm_relation_id: 1802548,
+            ),
+            self::AO_LUA => new BearCountrySubdivisionData(
+                iso_3166: 'AO-LUA', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Luanda', capital: 'Luanda', osm_relation_id: 1802546,
+            ),
+            self::AO_MAL => new BearCountrySubdivisionData(
+                iso_3166: 'AO-MAL', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Malanje', capital: 'Malanje', osm_relation_id: 422660,
+            ),
+            self::AO_MOX => new BearCountrySubdivisionData(
+                iso_3166: 'AO-MOX', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Moxico', capital: 'Luena', osm_relation_id: 1802549,
+            ),
+            self::AO_NAM => new BearCountrySubdivisionData(
+                iso_3166: 'AO-NAM', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Namibe', capital: 'Moçâmedes', osm_relation_id: 1802550,
+            ),
+            self::AO_UIG => new BearCountrySubdivisionData(
+                iso_3166: 'AO-UIG', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Uíge', capital: 'Uíge', osm_relation_id: 422659,
+            ),
+            self::AO_ZAI => new BearCountrySubdivisionData(
+                iso_3166: 'AO-ZAI', country_cca2: BearCountryEnum::AO, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Zaire', capital: 'M\'banza-Kongo', osm_relation_id: 422608,
+            ),
+
+
+            // ARGENTINA
+            self::AR_A => new BearCountrySubdivisionData(
+                iso_3166: 'AR-A', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Salta', capital: 'Salta', osm_relation_id: 2405230,
+            ),
+            self::AR_B => new BearCountrySubdivisionData(
+                iso_3166: 'AR-B', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Buenos Aires', capital: 'La Plata', osm_relation_id: 1632167,
+            ),
+            self::AR_C => new BearCountrySubdivisionData(
+                iso_3166: 'AR-C', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::CITY,
+                english_name: 'Buenos Aires', capital: 'Buenos Aires', osm_relation_id: 3082668,
+            ),
+            self::AR_D => new BearCountrySubdivisionData(
+                iso_3166: 'AR-D', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'San Luis', capital: 'San Luis', osm_relation_id: 153538,
+            ),
+            self::AR_E => new BearCountrySubdivisionData(
+                iso_3166: 'AR-E', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Entre Ríos', capital: 'Paraná', osm_relation_id: 153551,
+            ),
+            self::AR_F => new BearCountrySubdivisionData(
+                iso_3166: 'AR-F', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'La Rioja', capital: 'La Rioja', osm_relation_id: 153536,
+            ),
+            self::AR_G => new BearCountrySubdivisionData(
+                iso_3166: 'AR-G', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Santiago del Estero', capital: 'Santiago del Estero', osm_relation_id: 153544,
+            ),
+            self::AR_H => new BearCountrySubdivisionData(
+                iso_3166: 'AR-H', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Chaco', capital: 'Resistencia', osm_relation_id: 153554,
+            ),
+            self::AR_J => new BearCountrySubdivisionData(
+                iso_3166: 'AR-J', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'San Juan', capital: 'San Juan', osm_relation_id: 153539,
+            ),
+            self::AR_K => new BearCountrySubdivisionData(
+                iso_3166: 'AR-K', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Catamarca', capital: 'Catamarca', osm_relation_id: 153545,
+            ),
+            self::AR_L => new BearCountrySubdivisionData(
+                iso_3166: 'AR-L', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'La Pampa', capital: 'Santa Rosa', osm_relation_id: 153541,
+            ),
+            self::AR_M => new BearCountrySubdivisionData(
+                iso_3166: 'AR-M', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Mendoza', capital: 'Mendoza', osm_relation_id: 153540,
+            ),
+            self::AR_N => new BearCountrySubdivisionData(
+                iso_3166: 'AR-N', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Misiones', capital: 'Posadas', osm_relation_id: 153553,
+            ),
+            self::AR_P => new BearCountrySubdivisionData(
+                iso_3166: 'AR-P', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Formosa', capital: 'Formosa', osm_relation_id: 2849847,
+            ),
+            self::AR_Q => new BearCountrySubdivisionData(
+                iso_3166: 'AR-Q', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Neuquén', capital: 'Neuquén', osm_relation_id: 1606727,
+            ),
+            self::AR_R => new BearCountrySubdivisionData(
+                iso_3166: 'AR-R', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Rio Nеgro', capital: 'Viedma', osm_relation_id: 153547,
+            ),
+            self::AR_S => new BearCountrySubdivisionData(
+                iso_3166: 'AR-S', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Santa Cruz', capital: 'Río Gallegos', osm_relation_id: 153543,
+            ),
+            self::AR_T => new BearCountrySubdivisionData(
+                iso_3166: 'AR-T', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Tucumán', capital: 'San Miguel de Tucumán', osm_relation_id: 153558,
+            ),
+            self::AR_U => new BearCountrySubdivisionData(
+                iso_3166: 'AR-U', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Chubut', capital: 'Rawson', osm_relation_id: 153548,
+            ),
+            self::AR_V => new BearCountrySubdivisionData(
+                iso_3166: 'AR-V', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Tierra del Fuego', capital: 'Ushuaia', osm_relation_id: 153550,
+            ),
+            self::AR_W => new BearCountrySubdivisionData(
+                iso_3166: 'AR-W', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Corrientes', capital: 'Corrientes', osm_relation_id: 153552,
+            ),
+            self::AR_X => new BearCountrySubdivisionData(
+                iso_3166: 'AR-X', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Córdoba', capital: 'Córdoba', osm_relation_id: 3592494,
+            ),
+            self::AR_Y => new BearCountrySubdivisionData(
+                iso_3166: 'AR-Y', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Jujuy', capital: 'San Salvador de Jujuy', osm_relation_id: 153556,
+            ),
+            self::AR_Z => new BearCountrySubdivisionData(
+                iso_3166: 'AR-Z', country_cca2: BearCountryEnum::AR, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
+                english_name: 'Santa Fe', capital: 'Santa Fe', osm_relation_id: 153549,
+            ),
+
+
             // Austria
             self::AT_1 => new BearCountrySubdivisionData(
                 iso_3166: 'AT-1', country_cca2: BearCountryEnum::AT, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
@@ -922,6 +1175,103 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::AU_WA => new BearCountrySubdivisionData(
                 iso_3166: 'AU-WA', country_cca2: BearCountryEnum::AU, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
                 english_name: 'Western Australia', capital: 'Perth', osm_relation_id: 2316598,
+            ),
+
+
+            // BOSNIA AND HERZEGOVINA
+            self::BA_BRC => new BearCountrySubdivisionData(
+                iso_3166: 'BA-BRC', country_cca2: BearCountryEnum::BA, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
+                english_name: 'Brčko', capital: 'Brčko', osm_relation_id: 2528143,
+            ),
+            self::BA_BIH => new BearCountrySubdivisionData(
+                iso_3166: 'BA-BIH', country_cca2: BearCountryEnum::BA, subdivision_type: BearCountrySubdivisionTypeEnum::ENTITY,
+                english_name: 'Federation of Bosnia and Herzegovina', capital: 'Sarajevo', osm_relation_id: 2528144,
+            ),
+            self::BA_SRP => new BearCountrySubdivisionData(
+                iso_3166: 'BA-SRP', country_cca2: BearCountryEnum::BA, subdivision_type: BearCountrySubdivisionTypeEnum::ENTITY,
+                english_name: 'Republika Srpska', capital: 'Banja Luka', osm_relation_id: 2528145,
+            ),
+
+
+            // BARBADOS
+            self::BB_01 => new BearCountrySubdivisionData(
+                iso_3166: 'BB-01', country_cca2: BearCountryEnum::BB, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
+                english_name: 'Christ Church', capital: 'Oistins', osm_relation_id: 3961378,
+            ),
+            self::BB_02 => new BearCountrySubdivisionData(
+                iso_3166: 'BB-02', country_cca2: BearCountryEnum::BB, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
+                english_name: 'Saint Andrew', capital: 'Greenland', osm_relation_id: 3961379,
+            ),
+            self::BB_03 => new BearCountrySubdivisionData(
+                iso_3166: 'BB-03', country_cca2: BearCountryEnum::BB, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
+                english_name: 'Saint George', capital: 'Bulkeley', osm_relation_id: 3961988,
+            ),
+            self::BB_04 => new BearCountrySubdivisionData(
+                iso_3166: 'BB-04', country_cca2: BearCountryEnum::BB, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
+                english_name: 'Saint James', capital: 'Holetown', osm_relation_id: 3961380,
+            ),
+            self::BB_05 => new BearCountrySubdivisionData(
+                iso_3166: 'BB-05', country_cca2: BearCountryEnum::BB, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
+                english_name: 'Saint John', capital: 'Four Roads', osm_relation_id: 3961381,
+            ),
+            self::BB_06 => new BearCountrySubdivisionData(
+                iso_3166: 'BB-06', country_cca2: BearCountryEnum::BB, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
+                english_name: 'Saint Joseph', capital: 'Bathsheba', osm_relation_id: 3961382,
+            ),
+            self::BB_07 => new BearCountrySubdivisionData(
+                iso_3166: 'BB-07', country_cca2: BearCountryEnum::BB, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
+                english_name: 'Saint Lucy', capital: 'Crab Hill', osm_relation_id: 3961383,
+            ),
+            self::BB_08 => new BearCountrySubdivisionData(
+                iso_3166: 'BB-08', country_cca2: BearCountryEnum::BB, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
+                english_name: 'Saint Michael', capital: 'Bridgetown', osm_relation_id: 3961384,
+            ),
+            self::BB_09 => new BearCountrySubdivisionData(
+                iso_3166: 'BB-09', country_cca2: BearCountryEnum::BB, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
+                english_name: 'Saint Peter', capital: 'Speightstown', osm_relation_id: 3961385,
+            ),
+            self::BB_10 => new BearCountrySubdivisionData(
+                iso_3166: 'BB-10', country_cca2: BearCountryEnum::BB, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
+                english_name: 'Saint Philip', capital: 'Six Roads', osm_relation_id: 3961386,
+            ),
+            self::BB_11 => new BearCountrySubdivisionData(
+                iso_3166: 'BB-11', country_cca2: BearCountryEnum::BB, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
+                english_name: 'Saint Thomas', capital: 'Hillaby', osm_relation_id: 3961387,
+            ),
+
+
+            // BANGLADESH
+            self::BD_A => new BearCountrySubdivisionData(
+                iso_3166: 'BD-A', country_cca2: BearCountryEnum::BD, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
+                english_name: 'Barisal', capital: 'Barisal', osm_relation_id: 3921298,
+            ),
+            self::BD_B => new BearCountrySubdivisionData(
+                iso_3166: 'BD-B', country_cca2: BearCountryEnum::BD, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
+                english_name: 'Chittagong', capital: 'Chittagong', osm_relation_id: 3824588,
+            ),
+            self::BD_C => new BearCountrySubdivisionData(
+                iso_3166: 'BD-C', country_cca2: BearCountryEnum::BD, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
+                english_name: 'Dhaka', capital: 'Dhaka', osm_relation_id: 3921322,
+            ),
+            self::BD_D => new BearCountrySubdivisionData(
+                iso_3166: 'BD-D', country_cca2: BearCountryEnum::BD, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
+                english_name: 'Khulna', capital: 'Khulna', osm_relation_id: 3825003,
+            ),
+            self::BD_E => new BearCountrySubdivisionData(
+                iso_3166: 'BD-E', country_cca2: BearCountryEnum::BD, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
+                english_name: 'Rajshahi', capital: 'Rajshahi', osm_relation_id: 3859335,
+            ),
+            self::BD_F => new BearCountrySubdivisionData(
+                iso_3166: 'BD-F', country_cca2: BearCountryEnum::BD, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
+                english_name: 'Rangpur', capital: 'Rangpur', osm_relation_id: 3921211,
+            ),
+            self::BD_G => new BearCountrySubdivisionData(
+                iso_3166: 'BD-G', country_cca2: BearCountryEnum::BD, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
+                english_name: 'Sylhet', capital: 'Sylhet', osm_relation_id: 3921222,
+            ),
+            self::BD_H => new BearCountrySubdivisionData(
+                iso_3166: 'BD-H', country_cca2: BearCountryEnum::BD, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
+                english_name: 'Mymensingh', capital: 'Mymensingh', osm_relation_id: 7318343,
             ),
 
 
