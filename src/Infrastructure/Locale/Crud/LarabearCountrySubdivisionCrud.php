@@ -14,11 +14,11 @@ final class LarabearCountrySubdivisionCrud {
         $data = $enum->getCountrySubdivisionData();
         $model = BearCountrySubdivision::find($enum->value) ?? new BearCountrySubdivision();
 
-        $model->country_cca2 = $data->country_cca2;
+        $model->country_cca2 = $data->cca2;
         $model->iso_3166 = $enum->value;
-        $model->country_subdivision_type_enum = $data->subdivision_type;
-        $model->osm_relation_id = $data->osm_relation_id;
-        $model->name = $data->english_name;
+        $model->country_subdivision_type_enum = $data->type;
+        $model->osm_relation_id = $data->osm;
+        $model->name = $data->name;
         $model->capital = $data->capital;
 
         $model->save();

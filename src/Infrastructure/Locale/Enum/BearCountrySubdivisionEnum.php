@@ -411,7 +411,6 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case NL_ZH = 'NL-ZH';
 
 
-
     // NORWAY
     case BVT = 'BVT';
     case NO_03 = 'NO-03';
@@ -599,6 +598,20 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case US_DC = 'US-DC';
 
 
+    // SAMOA
+    case WS_AA = 'WS-AA';
+    case WS_AL = 'WS-AL';
+    case WS_AT = 'WS-AT';
+    case WS_FA = 'WS-FA';
+    case WS_GE = 'WS-GE';
+    case WS_GI = 'WS-GI';
+    case WS_PA = 'WS-PA';
+    case WS_SA = 'WS-SA';
+    case WS_TU = 'WS-TU';
+    case WS_VF = 'WS-VF';
+    case WS_VS = 'WS-VS';
+
+
     // YEMEN
     case YE_AB = 'YE-AB';
     case YE_AD = 'YE-AD';
@@ -665,1997 +678,671 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     public function getCountrySubdivisionData(): BearCountrySubdivisionData {
         return match ($this) {
             // ANDORRA
-            self::AD_02 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AD, english_name: 'Canillo', capital: 'Canillo', osm_relation_id: 2804754, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::AD_03 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AD, english_name: 'Encamp', capital: 'Encamp', osm_relation_id: 2804755, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::AD_04 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AD, english_name: 'La Massana', capital: 'La Massana', osm_relation_id: 2804757, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::AD_05 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AD, english_name: 'Ordino', capital: 'Ordino', osm_relation_id: 2804758, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::AD_06 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AD, english_name: 'Sant Julià de Lòria', capital: 'Sant Julià de Lòria', osm_relation_id: 2804759, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::AD_07 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AD, english_name: 'Andorra la Vella', capital: 'Andorra la Vella', osm_relation_id: 2804753, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::AD_08 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AD, english_name: 'Escaldes-Engordany', capital: 'Escaldes-Engordany', osm_relation_id: 2804756, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
+            self::AD_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AD, name: 'Canillo', capital: 'Canillo', osm: 2804754, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::AD_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AD, name: 'Encamp', capital: 'Encamp', osm: 2804755, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::AD_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AD, name: 'La Massana', capital: 'La Massana', osm: 2804757, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::AD_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AD, name: 'Ordino', capital: 'Ordino', osm: 2804758, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::AD_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AD, name: 'Sant Julià de Lòria', capital: 'Sant Julià de Lòria', osm: 2804759, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::AD_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AD, name: 'Andorra la Vella', capital: 'Andorra la Vella', osm: 2804753, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::AD_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AD, name: 'Escaldes-Engordany', capital: 'Escaldes-Engordany', osm: 2804756, type: BearCountrySubdivisionTypeEnum::PARISH),
 
 
             // United Arab Emirates
-            self::AE_AJ => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AE, english_name: 'Ajman',
-                capital: 'Ajman', osm_relation_id: 3766482, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
-            ),
-            self::AE_AZ => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AE, english_name: 'Abu Dhabi',
-                capital: 'Abu Dhabi', osm_relation_id: 3766481, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
-            ),
-            self::AE_DU => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AE, english_name: 'Dubai',
-                capital: 'Dubai', osm_relation_id: 3766483, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
-            ),
-            self::AE_FU => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AE, english_name: 'Fujairah',
-                capital: 'Fujairah', osm_relation_id: 3766484, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
-            ),
-            self::AE_RK => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AE, english_name: 'Ras Al Khaimah',
-                capital: 'Ras Al Khaimah', osm_relation_id: 3766485, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
-            ),
-            self::AE_SH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AE, english_name: 'Sharjah',
-                capital: 'Sharjah', osm_relation_id: 3766486, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
-            ),
-            self::AE_UQ => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AE, english_name: 'Umm Al Quwain',
-                capital: 'Umm Al Quwain', osm_relation_id: 3766487, subdivision_type: BearCountrySubdivisionTypeEnum::EMIRATE,
-            ),
+            self::AE_AJ => new BearCountrySubdivisionData(cca2: BearCountryEnum::AE, name: 'Ajman', capital: 'Ajman', osm: 3766482, type: BearCountrySubdivisionTypeEnum::EMIRATE),
+            self::AE_AZ => new BearCountrySubdivisionData(cca2: BearCountryEnum::AE, name: 'Abu Dhabi', capital: 'Abu Dhabi', osm: 3766481, type: BearCountrySubdivisionTypeEnum::EMIRATE),
+            self::AE_DU => new BearCountrySubdivisionData(cca2: BearCountryEnum::AE, name: 'Dubai', capital: 'Dubai', osm: 3766483, type: BearCountrySubdivisionTypeEnum::EMIRATE),
+            self::AE_FU => new BearCountrySubdivisionData(cca2: BearCountryEnum::AE, name: 'Fujairah', capital: 'Fujairah', osm: 3766484, type: BearCountrySubdivisionTypeEnum::EMIRATE),
+            self::AE_RK => new BearCountrySubdivisionData(cca2: BearCountryEnum::AE, name: 'Ras Al Khaimah', capital: 'Ras Al Khaimah', osm: 3766485, type: BearCountrySubdivisionTypeEnum::EMIRATE),
+            self::AE_SH => new BearCountrySubdivisionData(cca2: BearCountryEnum::AE, name: 'Sharjah', capital: 'Sharjah', osm: 3766486, type: BearCountrySubdivisionTypeEnum::EMIRATE),
+            self::AE_UQ => new BearCountrySubdivisionData(cca2: BearCountryEnum::AE, name: 'Umm Al Quwain', capital: 'Umm Al Quwain', osm: 3766487, type: BearCountrySubdivisionTypeEnum::EMIRATE),
 
 
             // AFGHANISTAN
-            self::AF_BAL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Balkh',
-                capital: 'Mazar-i-Sharif', osm_relation_id: 1674795, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_BAM => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Bamyan',
-                capital: 'Bamyan', osm_relation_id: 1674849, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_BDG => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Badghis',
-                capital: 'Qala i Naw', osm_relation_id: 1674811, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_BDS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Badakhshan',
-                capital: 'Feyzabad', osm_relation_id: 1674535, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_BGL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Baghlan',
-                capital: 'Puli Khumri', osm_relation_id: 1674785, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_DAY => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Daykundi',
-                capital: 'Nili', osm_relation_id: 1674833, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_FRA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Farah',
-                capital: 'Farah', osm_relation_id: 1674802, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_FYB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Faryab',
-                capital: 'Maymana', osm_relation_id: 1674814, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_GHA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Ghazni',
-                capital: 'Ghazni', osm_relation_id: 1675048, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_GHO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Ghor',
-                capital: 'Chaghcharan', osm_relation_id: 1674816, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_HEL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Helmand',
-                capital: 'Lashkargah', osm_relation_id: 1674573, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_HER => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Herat',
-                capital: 'Herat', osm_relation_id: 1674803, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_JOW => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Jowzjan',
-                capital: 'Sheberghan', osm_relation_id: 1674800, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_KAB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Kabul',
-                capital: 'Kabul', osm_relation_id: 1674876, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_KAN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Kandahar',
-                capital: 'Kandahar', osm_relation_id: 1674567, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_KAP => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Kapisa',
-                capital: 'Mahmud-i-Raqi', osm_relation_id: 1674767, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_KDZ => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Kunduz',
-                capital: 'Kunduz', osm_relation_id: 1674564, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_KHO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Khost',
-                capital: 'Khost', osm_relation_id: 1674878, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_KNR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Kunar',
-                capital: 'Asadabad', osm_relation_id: 1674607, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_LAG => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Laghman',
-                capital: 'Mehtar Lam', osm_relation_id: 1674766, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_LOG => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Logar',
-                capital: 'Puli Alam', osm_relation_id: 1674874, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_NAN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Nangarhar',
-                capital: 'Jalalabad', osm_relation_id: 1674770, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_NIM => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Nimroz',
-                capital: 'Zaranj', osm_relation_id: 1674664, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_NUR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Nuristan',
-                capital: 'Parun', osm_relation_id: 1674544, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_PAN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Panjshir',
-                capital: 'Bazarak', osm_relation_id: 1675032, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_PAR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Parwan',
-                capital: 'Charikar', osm_relation_id: 1674782, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_PIA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Paktia',
-                capital: 'Gardez', osm_relation_id: 1674882, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_PKA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Paktika',
-                capital: 'Sharana', osm_relation_id: 1675047, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_SAM => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Samangan',
-                capital: 'Aybak', osm_relation_id: 1674791, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_SAR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Sar-e Pol',
-                capital: 'Sar-e Pol', osm_relation_id: 1674994, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_TAK => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Takhar',
-                capital: 'Taloqan', osm_relation_id: 1674541, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_URU => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Urozgan',
-                capital: 'Tarin Kowt', osm_relation_id: 1674993, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_WAR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Wardak',
-                capital: 'Maidan Shahr', osm_relation_id: 1759757, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AF_ZAB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AF, english_name: 'Zabul',
-                capital: 'Qalat', osm_relation_id: 1674841, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
+            self::AF_BAL => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Balkh', capital: 'Mazar-i-Sharif', osm: 1674795, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_BAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Bamyan', capital: 'Bamyan', osm: 1674849, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_BDG => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Badghis', capital: 'Qala i Naw', osm: 1674811, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_BDS => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Badakhshan', capital: 'Feyzabad', osm: 1674535, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_BGL => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Baghlan', capital: 'Puli Khumri', osm: 1674785, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_DAY => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Daykundi', capital: 'Nili', osm: 1674833, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_FRA => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Farah', capital: 'Farah', osm: 1674802, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_FYB => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Faryab', capital: 'Maymana', osm: 1674814, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_GHA => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Ghazni', capital: 'Ghazni', osm: 1675048, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_GHO => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Ghor', capital: 'Chaghcharan', osm: 1674816, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_HEL => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Helmand', capital: 'Lashkargah', osm: 1674573, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_HER => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Herat', capital: 'Herat', osm: 1674803, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_JOW => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Jowzjan', capital: 'Sheberghan', osm: 1674800, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_KAB => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Kabul', capital: 'Kabul', osm: 1674876, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_KAN => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Kandahar', capital: 'Kandahar', osm: 1674567, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_KAP => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Kapisa', capital: 'Mahmud-i-Raqi', osm: 1674767, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_KDZ => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Kunduz', capital: 'Kunduz', osm: 1674564, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_KHO => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Khost', capital: 'Khost', osm: 1674878, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_KNR => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Kunar', capital: 'Asadabad', osm: 1674607, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_LAG => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Laghman', capital: 'Mehtar Lam', osm: 1674766, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_LOG => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Logar', capital: 'Puli Alam', osm: 1674874, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_NAN => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Nangarhar', capital: 'Jalalabad', osm: 1674770, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_NIM => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Nimroz', capital: 'Zaranj', osm: 1674664, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_NUR => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Nuristan', capital: 'Parun', osm: 1674544, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_PAN => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Panjshir', capital: 'Bazarak', osm: 1675032, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_PAR => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Parwan', capital: 'Charikar', osm: 1674782, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_PIA => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Paktia', capital: 'Gardez', osm: 1674882, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_PKA => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Paktika', capital: 'Sharana', osm: 1675047, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_SAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Samangan', capital: 'Aybak', osm: 1674791, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_SAR => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Sar-e Pol', capital: 'Sar-e Pol', osm: 1674994, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_TAK => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Takhar', capital: 'Taloqan', osm: 1674541, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_URU => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Urozgan', capital: 'Tarin Kowt', osm: 1674993, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_WAR => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Wardak', capital: 'Maidan Shahr', osm: 1759757, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AF_ZAB => new BearCountrySubdivisionData(cca2: BearCountryEnum::AF, name: 'Zabul', capital: 'Qalat', osm: 1674841, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
             // ANTIGUA AND BARBUDA
-            self::AG_03 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AG, english_name: 'Saint George',
-                capital: 'Fitches Creek', osm_relation_id: 9604933, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::AG_04 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AG, english_name: 'Saint John',
-                capital: 'St. John\'s', osm_relation_id: 9604932, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::AG_05 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AG, english_name: 'Saint Mary',
-                capital: 'Old Road', osm_relation_id: 9604457, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::AG_06 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AG, english_name: 'Saint Paul',
-                capital: 'Falmouth', osm_relation_id: 9604629, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::AG_07 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AG, english_name: 'Saint Peter',
-                capital: 'Parham', osm_relation_id: 9604794, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::AG_08 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AG, english_name: 'Saint Philip',
-                capital: 'St. Philip\'s', osm_relation_id: 9604456, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::AG_10 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AG, english_name: 'Barbuda',
-                capital: 'Codrington', osm_relation_id: 7742426, subdivision_type: BearCountrySubdivisionTypeEnum::DEPENDENCY,
-            ),
-            self::AG_11 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AG, english_name: 'Redonda',
-                capital: '', osm_relation_id: 7742427, subdivision_type: BearCountrySubdivisionTypeEnum::DEPENDENCY,
-            ),
+            self::AG_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AG, name: 'Saint George', capital: 'Fitches Creek', osm: 9604933, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::AG_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AG, name: 'Saint John', capital: 'St. John\'s', osm: 9604932, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::AG_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AG, name: 'Saint Mary', capital: 'Old Road', osm: 9604457, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::AG_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AG, name: 'Saint Paul', capital: 'Falmouth', osm: 9604629, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::AG_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AG, name: 'Saint Peter', capital: 'Parham', osm: 9604794, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::AG_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AG, name: 'Saint Philip', capital: 'St. Philip\'s', osm: 9604456, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::AG_10 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AG, name: 'Barbuda', capital: 'Codrington', osm: 7742426, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
+            self::AG_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AG, name: 'Redonda', capital: '', osm: 7742427, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
 
 
             // ALBANIA
-            self::AL_01 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AL, english_name: 'Berat',
-                capital: 'Berat', osm_relation_id: 1252289, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::AL_02 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AL, english_name: 'Durrës',
-                capital: 'Durrës', osm_relation_id: 1249872, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::AL_03 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AL, english_name: 'Elbasan',
-                capital: 'Elbasan', osm_relation_id: 1250609, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::AL_04 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AL, english_name: 'Fier',
-                capital: 'Fier', osm_relation_id: 1251469, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::AL_05 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AL, english_name: 'Gjirokastër',
-                capital: 'Gjirokastër', osm_relation_id: 1253915, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::AL_06 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AL, english_name: 'Korçë',
-                capital: 'Korçë', osm_relation_id: 1252589, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::AL_07 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AL, english_name: 'Kukës',
-                capital: 'Kukës', osm_relation_id: 1759889, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::AL_08 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AL, english_name: 'Lezhë',
-                capital: 'Lezhë', osm_relation_id: 1248935, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::AL_09 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AL, english_name: 'Dibër',
-                capital: 'Dibër', osm_relation_id: 1249567, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::AL_10 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AL, english_name: 'Shkodër',
-                capital: 'Shkodër', osm_relation_id: 1248293, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::AL_11 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AL, english_name: 'Tiranë',
-                capital: 'Tiranë', osm_relation_id: 1250098, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::AL_12 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AL, english_name: 'Vlorë',
-                capital: 'Vlorë', osm_relation_id: 1255521, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
+            self::AL_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AL, name: 'Berat', capital: 'Berat', osm: 1252289, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::AL_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AL, name: 'Durrës', capital: 'Durrës', osm: 1249872, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::AL_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AL, name: 'Elbasan', capital: 'Elbasan', osm: 1250609, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::AL_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AL, name: 'Fier', capital: 'Fier', osm: 1251469, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::AL_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AL, name: 'Gjirokastër', capital: 'Gjirokastër', osm: 1253915, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::AL_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AL, name: 'Korçë', capital: 'Korçë', osm: 1252589, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::AL_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AL, name: 'Kukës', capital: 'Kukës', osm: 1759889, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::AL_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AL, name: 'Lezhë', capital: 'Lezhë', osm: 1248935, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::AL_09 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AL, name: 'Dibër', capital: 'Dibër', osm: 1249567, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::AL_10 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AL, name: 'Shkodër', capital: 'Shkodër', osm: 1248293, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::AL_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AL, name: 'Tiranë', capital: 'Tiranë', osm: 1250098, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::AL_12 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AL, name: 'Vlorë', capital: 'Vlorë', osm: 1255521, type: BearCountrySubdivisionTypeEnum::COUNTY),
 
 
             // ARMENIA
-            self::AM_AG => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AM, english_name: 'Aragatsotn',
-                capital: 'Ashtarak', osm_relation_id: 3917110, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::AM_AR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AM, english_name: 'Ararat',
-                capital: 'Artashat', osm_relation_id: 364083, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::AM_AV => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AM, english_name: 'Armavir',
-                capital: 'Armavir', osm_relation_id: 364086, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::AM_ER => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AM, english_name: 'Yerevan',
-                capital: 'Yerevan', osm_relation_id: 364087, subdivision_type: BearCountrySubdivisionTypeEnum::CITY,
-            ),
-            self::AM_GR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AM, english_name: 'Gegharkunik',
-                capital: 'Gavar', osm_relation_id: 364080, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::AM_KT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AM, english_name: 'Kotayk',
-                capital: 'Hrazdan', osm_relation_id: 364084, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::AM_LO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AM, english_name: 'Lori',
-                capital: 'Vanadzor', osm_relation_id: 364078, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::AM_SH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AM, english_name: 'Shirak',
-                capital: 'Gyumri', osm_relation_id: 364077, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::AM_SU => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AM, english_name: 'Syunik',
-                capital: 'Kapan', osm_relation_id: 364082, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::AM_TV => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AM, english_name: 'Tavush',
-                capital: 'Ijevan', osm_relation_id: 364079, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::AM_VD => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AM, english_name: 'Vayots Dzor',
-                capital: 'Yeghegnadzor', osm_relation_id: 364081, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
+            self::AM_AG => new BearCountrySubdivisionData(cca2: BearCountryEnum::AM, name: 'Aragatsotn', capital: 'Ashtarak', osm: 3917110, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::AM_AR => new BearCountrySubdivisionData(cca2: BearCountryEnum::AM, name: 'Ararat', capital: 'Artashat', osm: 364083, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::AM_AV => new BearCountrySubdivisionData(cca2: BearCountryEnum::AM, name: 'Armavir', capital: 'Armavir', osm: 364086, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::AM_ER => new BearCountrySubdivisionData(cca2: BearCountryEnum::AM, name: 'Yerevan', capital: 'Yerevan', osm: 364087, type: BearCountrySubdivisionTypeEnum::CITY),
+            self::AM_GR => new BearCountrySubdivisionData(cca2: BearCountryEnum::AM, name: 'Gegharkunik', capital: 'Gavar', osm: 364080, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::AM_KT => new BearCountrySubdivisionData(cca2: BearCountryEnum::AM, name: 'Kotayk', capital: 'Hrazdan', osm: 364084, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::AM_LO => new BearCountrySubdivisionData(cca2: BearCountryEnum::AM, name: 'Lori', capital: 'Vanadzor', osm: 364078, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::AM_SH => new BearCountrySubdivisionData(cca2: BearCountryEnum::AM, name: 'Shirak', capital: 'Gyumri', osm: 364077, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::AM_SU => new BearCountrySubdivisionData(cca2: BearCountryEnum::AM, name: 'Syunik', capital: 'Kapan', osm: 364082, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::AM_TV => new BearCountrySubdivisionData(cca2: BearCountryEnum::AM, name: 'Tavush', capital: 'Ijevan', osm: 364079, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::AM_VD => new BearCountrySubdivisionData(cca2: BearCountryEnum::AM, name: 'Vayots Dzor', capital: 'Yeghegnadzor', osm: 364081, type: BearCountrySubdivisionTypeEnum::REGION),
 
 
             // ANGOLA
-            self::AO_BGO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Bengo',
-                capital: 'Caxito', osm_relation_id: 1802539, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_BGU => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Benguela',
-                capital: 'Benguela', osm_relation_id: 1802540, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_BIE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Bié',
-                capital: 'Kuito', osm_relation_id: 1802541, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_CAB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Cabinda',
-                capital: 'Cabinda', osm_relation_id: 422607, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_CCU => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Cuando Cubango',
-                capital: 'Menongue', osm_relation_id: 568485, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_CNN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Cunene',
-                capital: 'Ondjiva', osm_relation_id: 422606, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_CNO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'North Cuanza',
-                capital: 'N\'dalatando', osm_relation_id: 1802542, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_CUS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'South Cuanza',
-                capital: 'Sumbe', osm_relation_id: 1802543, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_HUA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Huambo',
-                capital: 'Huambo', osm_relation_id: 1802544, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_HUI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Huíla',
-                capital: 'Lubango', osm_relation_id: 1802545, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_LNO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'North Lunda',
-                capital: 'Dundo', osm_relation_id: 1802547, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_LSU => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'South Lunda',
-                capital: 'Saurimo', osm_relation_id: 1802548, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_LUA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Luanda',
-                capital: 'Luanda', osm_relation_id: 1802546, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_MAL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Malanje',
-                capital: 'Malanje', osm_relation_id: 422660, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_MOX => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Moxico',
-                capital: 'Luena', osm_relation_id: 1802549, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_NAM => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Namibe',
-                capital: 'Moçâmedes', osm_relation_id: 1802550, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_UIG => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Uíge',
-                capital: 'Uíge', osm_relation_id: 422659, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AO_ZAI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AO, english_name: 'Zaire',
-                capital: 'M\'banza-Kongo', osm_relation_id: 422608, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
+            self::AO_BGO => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Bengo', capital: 'Caxito', osm: 1802539, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_BGU => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Benguela', capital: 'Benguela', osm: 1802540, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_BIE => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Bié', capital: 'Kuito', osm: 1802541, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_CAB => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Cabinda', capital: 'Cabinda', osm: 422607, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_CCU => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Cuando Cubango', capital: 'Menongue', osm: 568485, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_CNN => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Cunene', capital: 'Ondjiva', osm: 422606, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_CNO => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'North Cuanza', capital: 'N\'dalatando', osm: 1802542, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_CUS => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'South Cuanza', capital: 'Sumbe', osm: 1802543, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_HUA => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Huambo', capital: 'Huambo', osm: 1802544, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_HUI => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Huíla', capital: 'Lubango', osm: 1802545, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_LNO => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'North Lunda', capital: 'Dundo', osm: 1802547, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_LSU => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'South Lunda', capital: 'Saurimo', osm: 1802548, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_LUA => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Luanda', capital: 'Luanda', osm: 1802546, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_MAL => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Malanje', capital: 'Malanje', osm: 422660, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_MOX => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Moxico', capital: 'Luena', osm: 1802549, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_NAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Namibe', capital: 'Moçâmedes', osm: 1802550, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_UIG => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Uíge', capital: 'Uíge', osm: 422659, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AO_ZAI => new BearCountrySubdivisionData(cca2: BearCountryEnum::AO, name: 'Zaire', capital: 'M\'banza-Kongo', osm: 422608, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
             // ARGENTINA
-            self::AR_A => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Salta',
-                capital: 'Salta', osm_relation_id: 2405230, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_B => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Buenos Aires',
-                capital: 'La Plata', osm_relation_id: 1632167, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_C => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Buenos Aires',
-                capital: 'Buenos Aires', osm_relation_id: 3082668, subdivision_type: BearCountrySubdivisionTypeEnum::CITY,
-            ),
-            self::AR_D => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'San Luis',
-                capital: 'San Luis', osm_relation_id: 153538, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_E => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Entre Ríos',
-                capital: 'Paraná', osm_relation_id: 153551, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_F => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'La Rioja',
-                capital: 'La Rioja', osm_relation_id: 153536, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_G => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Santiago del Estero',
-                capital: 'Santiago del Estero', osm_relation_id: 153544, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_H => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Chaco',
-                capital: 'Resistencia', osm_relation_id: 153554, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_J => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'San Juan',
-                capital: 'San Juan', osm_relation_id: 153539, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_K => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Catamarca',
-                capital: 'Catamarca', osm_relation_id: 153545, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_L => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'La Pampa',
-                capital: 'Santa Rosa', osm_relation_id: 153541, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_M => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Mendoza',
-                capital: 'Mendoza', osm_relation_id: 153540, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_N => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Misiones',
-                capital: 'Posadas', osm_relation_id: 153553, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_P => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Formosa',
-                capital: 'Formosa', osm_relation_id: 2849847, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_Q => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Neuquén',
-                capital: 'Neuquén', osm_relation_id: 1606727, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_R => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Rio Nеgro',
-                capital: 'Viedma', osm_relation_id: 153547, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_S => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Santa Cruz',
-                capital: 'Río Gallegos', osm_relation_id: 153543, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_T => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Tucumán',
-                capital: 'San Miguel de Tucumán', osm_relation_id: 153558, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_U => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Chubut',
-                capital: 'Rawson', osm_relation_id: 153548, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_V => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Tierra del Fuego',
-                capital: 'Ushuaia', osm_relation_id: 153550, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_W => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Corrientes',
-                capital: 'Corrientes', osm_relation_id: 153552, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_X => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Córdoba',
-                capital: 'Córdoba', osm_relation_id: 3592494, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_Y => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Jujuy',
-                capital: 'San Salvador de Jujuy', osm_relation_id: 153556, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::AR_Z => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AR, english_name: 'Santa Fe',
-                capital: 'Santa Fe', osm_relation_id: 153549, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
+            self::AR_A => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Salta', capital: 'Salta', osm: 2405230, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_B => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Buenos Aires', capital: 'La Plata', osm: 1632167, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_C => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Buenos Aires', capital: 'Buenos Aires', osm: 3082668, type: BearCountrySubdivisionTypeEnum::CITY),
+            self::AR_D => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'San Luis', capital: 'San Luis', osm: 153538, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_E => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Entre Ríos', capital: 'Paraná', osm: 153551, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_F => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'La Rioja', capital: 'La Rioja', osm: 153536, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_G => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Santiago del Estero', capital: 'Santiago del Estero', osm: 153544, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_H => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Chaco', capital: 'Resistencia', osm: 153554, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_J => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'San Juan', capital: 'San Juan', osm: 153539, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_K => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Catamarca', capital: 'Catamarca', osm: 153545, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_L => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'La Pampa', capital: 'Santa Rosa', osm: 153541, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_M => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Mendoza', capital: 'Mendoza', osm: 153540, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_N => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Misiones', capital: 'Posadas', osm: 153553, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_P => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Formosa', capital: 'Formosa', osm: 2849847, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_Q => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Neuquén', capital: 'Neuquén', osm: 1606727, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_R => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Rio Nеgro', capital: 'Viedma', osm: 153547, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_S => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Santa Cruz', capital: 'Río Gallegos', osm: 153543, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_T => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Tucumán', capital: 'San Miguel de Tucumán', osm: 153558, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_U => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Chubut', capital: 'Rawson', osm: 153548, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_V => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Tierra del Fuego', capital: 'Ushuaia', osm: 153550, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_W => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Corrientes', capital: 'Corrientes', osm: 153552, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_X => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Córdoba', capital: 'Córdoba', osm: 3592494, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_Y => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Jujuy', capital: 'San Salvador de Jujuy', osm: 153556, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::AR_Z => new BearCountrySubdivisionData(cca2: BearCountryEnum::AR, name: 'Santa Fe', capital: 'Santa Fe', osm: 153549, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
             // Austria
-            self::AT_1 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AT, english_name: 'Burgenland',
-                capital: 'Eisenstadt', osm_relation_id: 76909, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AT_2 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AT, english_name: 'Carinthia',
-                capital: 'Klagenfurt', osm_relation_id: 52345, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AT_3 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AT, english_name: 'Lower Austria',
-                capital: 'Sankt Pölten', osm_relation_id: 77189, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AT_4 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AT, english_name: 'Upper Austria',
-                capital: 'Linz', osm_relation_id: 102303, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AT_5 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AT, english_name: 'Salzburg',
-                capital: 'Salzburg', osm_relation_id: 86539, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AT_6 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AT, english_name: 'Styria',
-                capital: 'Graz', osm_relation_id: 35183, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AT_7 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AT, english_name: 'Tyrol',
-                capital: 'Innsbruck', osm_relation_id: 52343, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AT_8 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AT, english_name: 'Vorarlberg',
-                capital: 'Bregenz', osm_relation_id: 74942, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AT_9 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AT, english_name: 'Vienna',
-                capital: 'Vienna', osm_relation_id: 109166, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
+            self::AT_1 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AT, name: 'Burgenland', capital: 'Eisenstadt', osm: 76909, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AT_2 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AT, name: 'Carinthia', capital: 'Klagenfurt', osm: 52345, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AT_3 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AT, name: 'Lower Austria', capital: 'Sankt Pölten', osm: 77189, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AT_4 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AT, name: 'Upper Austria', capital: 'Linz', osm: 102303, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AT_5 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AT, name: 'Salzburg', capital: 'Salzburg', osm: 86539, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AT_6 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AT, name: 'Styria', capital: 'Graz', osm: 35183, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AT_7 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AT, name: 'Tyrol', capital: 'Innsbruck', osm: 52343, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AT_8 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AT, name: 'Vorarlberg', capital: 'Bregenz', osm: 74942, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AT_9 => new BearCountrySubdivisionData(cca2: BearCountryEnum::AT, name: 'Vienna', capital: 'Vienna', osm: 109166, type: BearCountrySubdivisionTypeEnum::STATE),
 
 
             // AUSTRALIA
-            self::AU_ACT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AU, english_name: 'Australian Capital Territory',
-                capital: 'Canberra', osm_relation_id: 2354197, subdivision_type: BearCountrySubdivisionTypeEnum::TERRITORY,
-            ),
-            self::AU_NSW => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AU, english_name: 'New South Wales',
-                capital: 'Sydney', osm_relation_id: 2316593, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AU_NT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AU, english_name: 'Northern Territory',
-                capital: 'Darwin', osm_relation_id: 2316594, subdivision_type: BearCountrySubdivisionTypeEnum::TERRITORY,
-            ),
-            self::AU_QLD => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AU, english_name: 'Queensland',
-                capital: 'Brisbane', osm_relation_id: 2316595, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AU_SA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AU, english_name: 'South Australia',
-                capital: 'Adelaide', osm_relation_id: 2316596, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AU_TAS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AU, english_name: 'Tasmania',
-                capital: 'Hobart', osm_relation_id: 2369652, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AU_VIC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AU, english_name: 'Victoria',
-                capital: 'Melbourne', osm_relation_id: 2316741, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::AU_WA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::AU, english_name: 'Western Australia',
-                capital: 'Perth', osm_relation_id: 2316598, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
+            self::AU_ACT => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Australian Capital Territory', capital: 'Canberra', osm: 2354197, type: BearCountrySubdivisionTypeEnum::TERRITORY),
+            self::AU_NSW => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'New South Wales', capital: 'Sydney', osm: 2316593, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AU_NT => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Northern Territory', capital: 'Darwin', osm: 2316594, type: BearCountrySubdivisionTypeEnum::TERRITORY),
+            self::AU_QLD => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Queensland', capital: 'Brisbane', osm: 2316595, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AU_SA => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'South Australia', capital: 'Adelaide', osm: 2316596, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AU_TAS => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Tasmania', capital: 'Hobart', osm: 2369652, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AU_VIC => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Victoria', capital: 'Melbourne', osm: 2316741, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::AU_WA => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Western Australia', capital: 'Perth', osm: 2316598, type: BearCountrySubdivisionTypeEnum::STATE),
 
 
             // BOSNIA AND HERZEGOVINA
-            self::BA_BRC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BA, english_name: 'Brčko',
-                capital: 'Brčko', osm_relation_id: 2528143, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::BA_BIH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BA, english_name: 'Federation of Bosnia and Herzegovina',
-                capital: 'Sarajevo', osm_relation_id: 2528144, subdivision_type: BearCountrySubdivisionTypeEnum::ENTITY,
-            ),
-            self::BA_SRP => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BA, english_name: 'Republika Srpska',
-                capital: 'Banja Luka', osm_relation_id: 2528145, subdivision_type: BearCountrySubdivisionTypeEnum::ENTITY,
-            ),
+            self::BA_BRC => new BearCountrySubdivisionData(cca2: BearCountryEnum::BA, name: 'Brčko', capital: 'Brčko', osm: 2528143, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BA_BIH => new BearCountrySubdivisionData(cca2: BearCountryEnum::BA, name: 'Federation of Bosnia and Herzegovina', capital: 'Sarajevo', osm: 2528144, type: BearCountrySubdivisionTypeEnum::ENTITY),
+            self::BA_SRP => new BearCountrySubdivisionData(cca2: BearCountryEnum::BA, name: 'Republika Srpska', capital: 'Banja Luka', osm: 2528145, type: BearCountrySubdivisionTypeEnum::ENTITY),
 
 
             // BARBADOS
-            self::BB_01 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BB, english_name: 'Christ Church',
-                capital: 'Oistins', osm_relation_id: 3961378, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::BB_02 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BB, english_name: 'Saint Andrew',
-                capital: 'Greenland', osm_relation_id: 3961379, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::BB_03 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BB, english_name: 'Saint George',
-                capital: 'Bulkeley', osm_relation_id: 3961988, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::BB_04 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BB, english_name: 'Saint James',
-                capital: 'Holetown', osm_relation_id: 3961380, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::BB_05 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BB, english_name: 'Saint John',
-                capital: 'Four Roads', osm_relation_id: 3961381, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::BB_06 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BB, english_name: 'Saint Joseph',
-                capital: 'Bathsheba', osm_relation_id: 3961382, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::BB_07 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BB, english_name: 'Saint Lucy',
-                capital: 'Crab Hill', osm_relation_id: 3961383, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::BB_08 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BB, english_name: 'Saint Michael',
-                capital: 'Bridgetown', osm_relation_id: 3961384, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::BB_09 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BB, english_name: 'Saint Peter',
-                capital: 'Speightstown', osm_relation_id: 3961385, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::BB_10 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BB, english_name: 'Saint Philip',
-                capital: 'Six Roads', osm_relation_id: 3961386, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
-            self::BB_11 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BB, english_name: 'Saint Thomas',
-                capital: 'Hillaby', osm_relation_id: 3961387, subdivision_type: BearCountrySubdivisionTypeEnum::PARISH,
-            ),
+            self::BB_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BB, name: 'Christ Church', capital: 'Oistins', osm: 3961378, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::BB_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BB, name: 'Saint Andrew', capital: 'Greenland', osm: 3961379, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::BB_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BB, name: 'Saint George', capital: 'Bulkeley', osm: 3961988, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::BB_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BB, name: 'Saint James', capital: 'Holetown', osm: 3961380, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::BB_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BB, name: 'Saint John', capital: 'Four Roads', osm: 3961381, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::BB_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BB, name: 'Saint Joseph', capital: 'Bathsheba', osm: 3961382, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::BB_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BB, name: 'Saint Lucy', capital: 'Crab Hill', osm: 3961383, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::BB_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BB, name: 'Saint Michael', capital: 'Bridgetown', osm: 3961384, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::BB_09 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BB, name: 'Saint Peter', capital: 'Speightstown', osm: 3961385, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::BB_10 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BB, name: 'Saint Philip', capital: 'Six Roads', osm: 3961386, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::BB_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BB, name: 'Saint Thomas', capital: 'Hillaby', osm: 3961387, type: BearCountrySubdivisionTypeEnum::PARISH),
 
 
             // BANGLADESH
-            self::BD_A => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BD, english_name: 'Barisal',
-                capital: 'Barisal', osm_relation_id: 3921298, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
-            ),
-            self::BD_B => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BD, english_name: 'Chittagong',
-                capital: 'Chittagong', osm_relation_id: 3824588, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
-            ),
-            self::BD_C => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BD, english_name: 'Dhaka',
-                capital: 'Dhaka', osm_relation_id: 3921322, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
-            ),
-            self::BD_D => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BD, english_name: 'Khulna',
-                capital: 'Khulna', osm_relation_id: 3825003, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
-            ),
-            self::BD_E => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BD, english_name: 'Rajshahi',
-                capital: 'Rajshahi', osm_relation_id: 3859335, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
-            ),
-            self::BD_F => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BD, english_name: 'Rangpur',
-                capital: 'Rangpur', osm_relation_id: 3921211, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
-            ),
-            self::BD_G => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BD, english_name: 'Sylhet',
-                capital: 'Sylhet', osm_relation_id: 3921222, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
-            ),
-            self::BD_H => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BD, english_name: 'Mymensingh',
-                capital: 'Mymensingh', osm_relation_id: 7318343, subdivision_type: BearCountrySubdivisionTypeEnum::DIVISION,
-            ),
+            self::BD_A => new BearCountrySubdivisionData(cca2: BearCountryEnum::BD, name: 'Barisal', capital: 'Barisal', osm: 3921298, type: BearCountrySubdivisionTypeEnum::DIVISION),
+            self::BD_B => new BearCountrySubdivisionData(cca2: BearCountryEnum::BD, name: 'Chittagong', capital: 'Chittagong', osm: 3824588, type: BearCountrySubdivisionTypeEnum::DIVISION),
+            self::BD_C => new BearCountrySubdivisionData(cca2: BearCountryEnum::BD, name: 'Dhaka', capital: 'Dhaka', osm: 3921322, type: BearCountrySubdivisionTypeEnum::DIVISION),
+            self::BD_D => new BearCountrySubdivisionData(cca2: BearCountryEnum::BD, name: 'Khulna', capital: 'Khulna', osm: 3825003, type: BearCountrySubdivisionTypeEnum::DIVISION),
+            self::BD_E => new BearCountrySubdivisionData(cca2: BearCountryEnum::BD, name: 'Rajshahi', capital: 'Rajshahi', osm: 3859335, type: BearCountrySubdivisionTypeEnum::DIVISION),
+            self::BD_F => new BearCountrySubdivisionData(cca2: BearCountryEnum::BD, name: 'Rangpur', capital: 'Rangpur', osm: 3921211, type: BearCountrySubdivisionTypeEnum::DIVISION),
+            self::BD_G => new BearCountrySubdivisionData(cca2: BearCountryEnum::BD, name: 'Sylhet', capital: 'Sylhet', osm: 3921222, type: BearCountrySubdivisionTypeEnum::DIVISION),
+            self::BD_H => new BearCountrySubdivisionData(cca2: BearCountryEnum::BD, name: 'Mymensingh', capital: 'Mymensingh', osm: 7318343, type: BearCountrySubdivisionTypeEnum::DIVISION),
 
 
             // BELGIUM
-            self::BE_BRU => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BE, english_name: 'Brussels Capital Region',
-                capital: 'Brussels', osm_relation_id: 54094, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::BE_VLG => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BE, english_name: 'Flanders',
-                capital: 'Brussels', osm_relation_id: 53134, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::BE_WAL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BE, english_name: 'Wallonia',
-                capital: 'Namur', osm_relation_id: 90348, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
+            self::BE_BRU => new BearCountrySubdivisionData(cca2: BearCountryEnum::BE, name: 'Brussels Capital Region', capital: 'Brussels', osm: 54094, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::BE_VLG => new BearCountrySubdivisionData(cca2: BearCountryEnum::BE, name: 'Flanders', capital: 'Brussels', osm: 53134, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::BE_WAL => new BearCountrySubdivisionData(cca2: BearCountryEnum::BE, name: 'Wallonia', capital: 'Namur', osm: 90348, type: BearCountrySubdivisionTypeEnum::REGION),
 
 
             // BRAZIL
-            self::BR_AC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Acre',
-                capital: 'Rio Branco', osm_relation_id: 326266, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_AL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Alagoas',
-                capital: 'Maceió', osm_relation_id: 303781, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_AM => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Amazonas',
-                capital: 'Manaus', osm_relation_id: 332476, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_AP => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Amapá',
-                capital: 'Macapá', osm_relation_id: 331463, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_BA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Bahia',
-                capital: 'Salvador', osm_relation_id: 362413, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_CE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Ceará',
-                capital: 'Fortaleza', osm_relation_id: 302635, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_DF => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Federal District',
-                capital: 'Brasília', osm_relation_id: 421151, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::BR_ES => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Espírito Santo',
-                capital: 'Vitória', osm_relation_id: 54882, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_GO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Goiás',
-                capital: 'Goiânia', osm_relation_id: 334443, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_MA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Maranhão',
-                capital: 'São Luís', osm_relation_id: 332924, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_MT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Mato Grosso',
-                capital: 'Cuiabá', osm_relation_id: 333597, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_MS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Mato Grosso do Sul',
-                capital: 'Campo Grande', osm_relation_id: 334051, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_MG => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Minas Gerais',
-                capital: 'Belo Horizonte', osm_relation_id: 315173, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_PA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Pará',
-                capital: 'Belém', osm_relation_id: 185579, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_PB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Paraíba',
-                capital: 'João Pessoa', osm_relation_id: 301464, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_PR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Paraná',
-                capital: 'Curitiba', osm_relation_id: 297640, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_PE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Pernambuco',
-                capital: 'Recife', osm_relation_id: 303702, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_PI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Piauí',
-                capital: 'Teresina', osm_relation_id: 302819, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_RJ => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Rio de Janeiro',
-                capital: 'Rio de Janeiro', osm_relation_id: 57963, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_RN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Rio Grande do Norte',
-                capital: 'Natal', osm_relation_id: 301079, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_RS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Rio Grande do Sul',
-                capital: 'Porto Alegre', osm_relation_id: 242620, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_RO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Rondônia',
-                capital: 'Porto Velho', osm_relation_id: 325866, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_RR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Roraima',
-                capital: 'Boa Vista', osm_relation_id: 326287, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_SC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Santa Catarina',
-                capital: 'Florianópolis', osm_relation_id: 296584, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_SP => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'São Paulo',
-                capital: 'São Paulo', osm_relation_id: 298204, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_SE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Sergipe',
-                capital: 'Aracaju', osm_relation_id: 303940, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::BR_TO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BR, english_name: 'Tocantins',
-                capital: 'Palmas', osm_relation_id: 336819, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
+            self::BR_AC => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Acre', capital: 'Rio Branco', osm: 326266, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_AL => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Alagoas', capital: 'Maceió', osm: 303781, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_AM => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Amazonas', capital: 'Manaus', osm: 332476, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_AP => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Amapá', capital: 'Macapá', osm: 331463, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_BA => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Bahia', capital: 'Salvador', osm: 362413, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_CE => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Ceará', capital: 'Fortaleza', osm: 302635, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_DF => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Federal District', capital: 'Brasília', osm: 421151, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BR_ES => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Espírito Santo', capital: 'Vitória', osm: 54882, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_GO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Goiás', capital: 'Goiânia', osm: 334443, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_MA => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Maranhão', capital: 'São Luís', osm: 332924, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_MT => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Mato Grosso', capital: 'Cuiabá', osm: 333597, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_MS => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Mato Grosso do Sul', capital: 'Campo Grande', osm: 334051, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_MG => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Minas Gerais', capital: 'Belo Horizonte', osm: 315173, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_PA => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Pará', capital: 'Belém', osm: 185579, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_PB => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Paraíba', capital: 'João Pessoa', osm: 301464, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_PR => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Paraná', capital: 'Curitiba', osm: 297640, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_PE => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Pernambuco', capital: 'Recife', osm: 303702, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_PI => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Piauí', capital: 'Teresina', osm: 302819, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_RJ => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Rio de Janeiro', capital: 'Rio de Janeiro', osm: 57963, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_RN => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Rio Grande do Norte', capital: 'Natal', osm: 301079, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_RS => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Rio Grande do Sul', capital: 'Porto Alegre', osm: 242620, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_RO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Rondônia', capital: 'Porto Velho', osm: 325866, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_RR => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Roraima', capital: 'Boa Vista', osm: 326287, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_SC => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Santa Catarina', capital: 'Florianópolis', osm: 296584, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_SP => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'São Paulo', capital: 'São Paulo', osm: 298204, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_SE => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Sergipe', capital: 'Aracaju', osm: 303940, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::BR_TO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Tocantins', capital: 'Palmas', osm: 336819, type: BearCountrySubdivisionTypeEnum::STATE),
 
 
             // BELARUS
-            self::BY_BR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BY, english_name: 'Brest',
-                capital: 'Brest', osm_relation_id: 59189, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
-            ),
-            self::BY_HM => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BY, english_name: 'Minsk',
-                capital: 'Minsk', osm_relation_id: 59195, subdivision_type: BearCountrySubdivisionTypeEnum::CITY,
-            ),
-            self::BY_HO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BY, english_name: 'Gomel',
-                capital: 'Gomel', osm_relation_id: 59161, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
-            ),
-            self::BY_HR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BY, english_name: 'Grodno',
-                capital: 'Grodno', osm_relation_id: 59275, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
-            ),
-            self::BY_MA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BY, english_name: 'Mogilev',
-                capital: 'Mogilev', osm_relation_id: 59162, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
-            ),
-            self::BY_MI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BY, english_name: 'Minsk',
-                capital: 'Minsk', osm_relation_id: 59752, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
-            ),
-            self::BY_VI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::BY, english_name: 'Vitebsk',
-                capital: 'Vitebsk', osm_relation_id: 59506, subdivision_type: BearCountrySubdivisionTypeEnum::OBLAST,
-            ),
+            self::BY_BR => new BearCountrySubdivisionData(cca2: BearCountryEnum::BY, name: 'Brest', capital: 'Brest', osm: 59189, type: BearCountrySubdivisionTypeEnum::OBLAST),
+            self::BY_HM => new BearCountrySubdivisionData(cca2: BearCountryEnum::BY, name: 'Minsk', capital: 'Minsk', osm: 59195, type: BearCountrySubdivisionTypeEnum::CITY),
+            self::BY_HO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BY, name: 'Gomel', capital: 'Gomel', osm: 59161, type: BearCountrySubdivisionTypeEnum::OBLAST),
+            self::BY_HR => new BearCountrySubdivisionData(cca2: BearCountryEnum::BY, name: 'Grodno', capital: 'Grodno', osm: 59275, type: BearCountrySubdivisionTypeEnum::OBLAST),
+            self::BY_MA => new BearCountrySubdivisionData(cca2: BearCountryEnum::BY, name: 'Mogilev', capital: 'Mogilev', osm: 59162, type: BearCountrySubdivisionTypeEnum::OBLAST),
+            self::BY_MI => new BearCountrySubdivisionData(cca2: BearCountryEnum::BY, name: 'Minsk', capital: 'Minsk', osm: 59752, type: BearCountrySubdivisionTypeEnum::OBLAST),
+            self::BY_VI => new BearCountrySubdivisionData(cca2: BearCountryEnum::BY, name: 'Vitebsk', capital: 'Vitebsk', osm: 59506, type: BearCountrySubdivisionTypeEnum::OBLAST),
 
 
             // CANADA
-            self::CA_AB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'Alberta',
-                capital: 'Edmonton', osm_relation_id: 391186, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CA_BC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'British Columbia',
-                capital: 'Victoria', osm_relation_id: 390867, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CA_MB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'Manitoba',
-                capital: 'Winnipeg', osm_relation_id: 390841, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CA_NB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'New Brunswick',
-                capital: 'Fredericton', osm_relation_id: 68942, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CA_NL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'Newfoundland and Labrador',
-                capital: 'St. John\'s', osm_relation_id: 391196, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CA_NS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'Nova Scotia',
-                capital: 'Halifax', osm_relation_id: 390558, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CA_NT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'Northwest Territories',
-                capital: 'Yellowknife', osm_relation_id: 391220, subdivision_type: BearCountrySubdivisionTypeEnum::TERRITORY,
-            ),
-            self::CA_NU => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'Nunavut',
-                capital: 'Iqaluit', osm_relation_id: 390840, subdivision_type: BearCountrySubdivisionTypeEnum::TERRITORY,
-            ),
-            self::CA_ON => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'Ontario',
-                capital: 'Toronto', osm_relation_id: 68841, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CA_PE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'Prince Edward Island',
-                capital: 'Charlottetown', osm_relation_id: 391115, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CA_QC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'Quebec',
-                capital: 'Quebec City', osm_relation_id: 61549, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CA_SK => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'Saskatchewan',
-                capital: 'Regina', osm_relation_id: 391178, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CA_YT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CA, english_name: 'Yukon',
-                capital: 'Whitehorse', osm_relation_id: 391455, subdivision_type: BearCountrySubdivisionTypeEnum::TERRITORY,
-            ),
+            self::CA_AB => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'Alberta', capital: 'Edmonton', osm: 391186, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CA_BC => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'British Columbia', capital: 'Victoria', osm: 390867, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CA_MB => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'Manitoba', capital: 'Winnipeg', osm: 390841, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CA_NB => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'New Brunswick', capital: 'Fredericton', osm: 68942, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CA_NL => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'Newfoundland and Labrador', capital: 'St. John\'s', osm: 391196, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CA_NS => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'Nova Scotia', capital: 'Halifax', osm: 390558, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CA_NT => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'Northwest Territories', capital: 'Yellowknife', osm: 391220, type: BearCountrySubdivisionTypeEnum::TERRITORY),
+            self::CA_NU => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'Nunavut', capital: 'Iqaluit', osm: 390840, type: BearCountrySubdivisionTypeEnum::TERRITORY),
+            self::CA_ON => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'Ontario', capital: 'Toronto', osm: 68841, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CA_PE => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'Prince Edward Island', capital: 'Charlottetown', osm: 391115, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CA_QC => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'Quebec', capital: 'Quebec City', osm: 61549, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CA_SK => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'Saskatchewan', capital: 'Regina', osm: 391178, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CA_YT => new BearCountrySubdivisionData(cca2: BearCountryEnum::CA, name: 'Yukon', capital: 'Whitehorse', osm: 391455, type: BearCountrySubdivisionTypeEnum::TERRITORY),
 
 
             // COSTA RICA
-            self::CR_A => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CR, english_name: 'Alajuela',
-                capital: 'Alajuela', osm_relation_id: 3222933, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CR_C => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CR, english_name: 'Cartago',
-                capital: 'Cartago', osm_relation_id: 3223054, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CR_G => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CR, english_name: 'Guanacaste',
-                capital: 'Liberia', osm_relation_id: 3222919, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CR_H => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CR, english_name: 'Heredia',
-                capital: 'Heredia', osm_relation_id: 3221947, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CR_L => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CR, english_name: 'Limón',
-                capital: 'Limón', osm_relation_id: 3223056, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CR_P => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CR, english_name: 'Puntarenas',
-                capital: 'Puntarenas', osm_relation_id: 3223028, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::CR_SJ => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CR, english_name: 'San José', capital: 'San José', osm_relation_id: 3223004, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
+            self::CR_A => new BearCountrySubdivisionData(cca2: BearCountryEnum::CR, name: 'Alajuela', capital: 'Alajuela', osm: 3222933, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CR_C => new BearCountrySubdivisionData(cca2: BearCountryEnum::CR, name: 'Cartago', capital: 'Cartago', osm: 3223054, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CR_G => new BearCountrySubdivisionData(cca2: BearCountryEnum::CR, name: 'Guanacaste', capital: 'Liberia', osm: 3222919, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CR_H => new BearCountrySubdivisionData(cca2: BearCountryEnum::CR, name: 'Heredia', capital: 'Heredia', osm: 3221947, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CR_L => new BearCountrySubdivisionData(cca2: BearCountryEnum::CR, name: 'Limón', capital: 'Limón', osm: 3223056, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CR_P => new BearCountrySubdivisionData(cca2: BearCountryEnum::CR, name: 'Puntarenas', capital: 'Puntarenas', osm: 3223028, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::CR_SJ => new BearCountrySubdivisionData(cca2: BearCountryEnum::CR, name: 'San José', capital: 'San José', osm: 3223004, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
             // CYPRUS
-            self::CY_01 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CY, english_name: 'Nicosia', capital: 'Nicosia', osm_relation_id: 3264382, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::CY_02 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CY, english_name: 'Limassol', capital: 'Limassol', osm_relation_id: 2087230, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::CY_03 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CY, english_name: 'Larnaca', capital: 'Larnaca', osm_relation_id: 2087229, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::CY_04 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CY, english_name: 'Famagusta', capital: 'Famagusta', osm_relation_id: 3264447, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::CY_05 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CY, english_name: 'Paphos', capital: 'Paphos', osm_relation_id: 3263729, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::CY_06 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::CY, english_name: 'Kyrenia', capital: 'Kyrenia', osm_relation_id: 3264494, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
+            self::CY_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::CY, name: 'Nicosia', capital: 'Nicosia', osm: 3264382, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::CY_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::CY, name: 'Limassol', capital: 'Limassol', osm: 2087230, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::CY_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::CY, name: 'Larnaca', capital: 'Larnaca', osm: 2087229, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::CY_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::CY, name: 'Famagusta', capital: 'Famagusta', osm: 3264447, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::CY_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::CY, name: 'Paphos', capital: 'Paphos', osm: 3263729, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::CY_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::CY, name: 'Kyrenia', capital: 'Kyrenia', osm: 3264494, type: BearCountrySubdivisionTypeEnum::DISTRICT),
 
 
             // GERMANY
-            self::DE_BW => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Baden-Württemberg', capital: 'Stuttgart', osm_relation_id: 62611, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_BY => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Bavaria', capital: 'Munich', osm_relation_id: 2145268, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_BE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Berlin', capital: 'Berlin', osm_relation_id: 62422, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_BB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Brandenburg', capital: 'Potsdam', osm_relation_id: 62504, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_HB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Bremen', capital: 'Bremen', osm_relation_id: 62718, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_HH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Hamburg', capital: 'Hamburg', osm_relation_id: 62782, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_HE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Hesse', capital: 'Wiesbaden', osm_relation_id: 62650, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_MV => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Mecklenburg-Vorpommern', capital: 'Schwerin', osm_relation_id: 28322, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_NI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Lower Saxony', capital: 'Hanover', osm_relation_id: 62771, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_NW => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'North Rhine-Westphalia', capital: 'Düsseldorf', osm_relation_id: 62761, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_RP => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Rhineland-Palatinate', capital: 'Mainz', osm_relation_id: 62341, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_SL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Saarland', capital: 'Saarbrücken', osm_relation_id: 62372, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_SN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Saxony', capital: 'Dresden', osm_relation_id: 62467, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_ST => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Saxony-Anhalt', capital: 'Magdeburg', osm_relation_id: 62607, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_SH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Schleswig-Holstein', capital: 'Kiel', osm_relation_id: 51529, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::DE_TH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DE, english_name: 'Thuringia', capital: 'Erfurt', osm_relation_id: 62366, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
+            self::DE_BW => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Baden-Württemberg', capital: 'Stuttgart', osm: 62611, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_BY => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Bavaria', capital: 'Munich', osm: 2145268, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_BE => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Berlin', capital: 'Berlin', osm: 62422, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_BB => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Brandenburg', capital: 'Potsdam', osm: 62504, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_HB => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Bremen', capital: 'Bremen', osm: 62718, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_HH => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Hamburg', capital: 'Hamburg', osm: 62782, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_HE => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Hesse', capital: 'Wiesbaden', osm: 62650, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_MV => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Mecklenburg-Vorpommern', capital: 'Schwerin', osm: 28322, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_NI => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Lower Saxony', capital: 'Hanover', osm: 62771, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_NW => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'North Rhine-Westphalia', capital: 'Düsseldorf', osm: 62761, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_RP => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Rhineland-Palatinate', capital: 'Mainz', osm: 62341, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_SL => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Saarland', capital: 'Saarbrücken', osm: 62372, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_SN => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Saxony', capital: 'Dresden', osm: 62467, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_ST => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Saxony-Anhalt', capital: 'Magdeburg', osm: 62607, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_SH => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Schleswig-Holstein', capital: 'Kiel', osm: 51529, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::DE_TH => new BearCountrySubdivisionData(cca2: BearCountryEnum::DE, name: 'Thuringia', capital: 'Erfurt', osm: 62366, type: BearCountrySubdivisionTypeEnum::STATE),
 
 
             // DENMARK
-            self::DK_81 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DK, english_name: 'North Denmark',
-                capital: 'Aalborg', osm_relation_id: 1319936, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::DK_82 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DK, english_name: 'Central Denmark',
-                capital: 'Viborg', osm_relation_id: 1319935, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::DK_83 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DK, english_name: 'Southern Denmark',
-                capital: 'Vejen', osm_relation_id: 1319978, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::DK_84 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DK, english_name: 'Capital Region',
-                capital: 'Hillerød', osm_relation_id: 1320608, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::DK_85 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::DK, english_name: 'Zealand',
-                capital: 'Sorø', osm_relation_id: 1320370, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
+            self::DK_81 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DK, name: 'North Denmark', capital: 'Aalborg', osm: 1319936, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::DK_82 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DK, name: 'Central Denmark', capital: 'Viborg', osm: 1319935, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::DK_83 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DK, name: 'Southern Denmark', capital: 'Vejen', osm: 1319978, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::DK_84 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DK, name: 'Capital Region', capital: 'Hillerød', osm: 1320608, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::DK_85 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DK, name: 'Zealand', capital: 'Sorø', osm: 1320370, type: BearCountrySubdivisionTypeEnum::REGION),
 
 
             // SPAIN
-            self::ES_AN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Andalusia',
-                capital: 'Seville', osm_relation_id: 349044, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_AR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Aragon',
-                capital: 'Zaragoza', osm_relation_id: 349045, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_AS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Asturias',
-                capital: 'Oviedo', osm_relation_id: 349033, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_CB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Cantabria',
-                capital: 'Santander', osm_relation_id: 349013, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_CE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Ceuta',
-                capital: 'Ceuta', osm_relation_id: 1154756, subdivision_type: BearCountrySubdivisionTypeEnum::CITY,
-            ),
-            self::ES_CL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Castile and León',
-                capital: 'Valladolid', osm_relation_id: 349041, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_CM => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Castile-La Mancha',
-                capital: 'Toledo', osm_relation_id: 349052, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_CN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Canary Islands',
-                capital: 'Las Palmas', osm_relation_id: 349048, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_CT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Catalonia',
-                capital: 'Barcelona', osm_relation_id: 349053, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_EX => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Extremadura',
-                capital: 'Mérida', osm_relation_id: 349050, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_GA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Galicia',
-                capital: 'Santiago de Compostela', osm_relation_id: 349036, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_IB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Balearic Islands',
-                capital: 'Palma', osm_relation_id: 348981, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_MC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Region of Murcia',
-                capital: 'Murcia', osm_relation_id: 349047, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_MD => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Madrid',
-                capital: 'Madrid', osm_relation_id: 349055, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_ML => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Melilla',
-                capital: 'Melilla', osm_relation_id: 1154757, subdivision_type: BearCountrySubdivisionTypeEnum::CITY,
-            ),
-            self::ES_NC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Navarre',
-                capital: 'Pamplona', osm_relation_id: 349027, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_PV => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Basque Country',
-                capital: 'Vitoria-Gasteiz', osm_relation_id: 349042, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_RI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'La Rioja',
-                capital: 'Logroño', osm_relation_id: 348991, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
-            self::ES_VC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ES, english_name: 'Valencia',
-                capital: 'Valencia', osm_relation_id: 349043, subdivision_type: BearCountrySubdivisionTypeEnum::COMMUNITY,
-            ),
+            self::ES_AN => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Andalusia', capital: 'Seville', osm: 349044, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_AR => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Aragon', capital: 'Zaragoza', osm: 349045, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_AS => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Asturias', capital: 'Oviedo', osm: 349033, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_CB => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Cantabria', capital: 'Santander', osm: 349013, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_CE => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Ceuta', capital: 'Ceuta', osm: 1154756, type: BearCountrySubdivisionTypeEnum::CITY),
+            self::ES_CL => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Castile and León', capital: 'Valladolid', osm: 349041, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_CM => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Castile-La Mancha', capital: 'Toledo', osm: 349052, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_CN => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Canary Islands', capital: 'Las Palmas', osm: 349048, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_CT => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Catalonia', capital: 'Barcelona', osm: 349053, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_EX => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Extremadura', capital: 'Mérida', osm: 349050, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_GA => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Galicia', capital: 'Santiago de Compostela', osm: 349036, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_IB => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Balearic Islands', capital: 'Palma', osm: 348981, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_MC => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Region of Murcia', capital: 'Murcia', osm: 349047, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_MD => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Madrid', capital: 'Madrid', osm: 349055, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_ML => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Melilla', capital: 'Melilla', osm: 1154757, type: BearCountrySubdivisionTypeEnum::CITY),
+            self::ES_NC => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Navarre', capital: 'Pamplona', osm: 349027, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_PV => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Basque Country', capital: 'Vitoria-Gasteiz', osm: 349042, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_RI => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'La Rioja', capital: 'Logroño', osm: 348991, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+            self::ES_VC => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Valencia', capital: 'Valencia', osm: 349043, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
 
 
             // FRANCE
-            self::FR_ARA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Auvergne-Rhône-Alps',
-                capital: 'Lyon', osm_relation_id: 3792877, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_BFC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Burgundy-Free-County',
-                capital: 'Dijon', osm_relation_id: 3792878, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_BRE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Brittany',
-                capital: 'Rennes', osm_relation_id: 102740, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_CVL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Central-Vale of the Loire',
-                capital: 'Orléans', osm_relation_id: 8640, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_COR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Corsica',
-                capital: 'Ajaccio', osm_relation_id: 76910, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_GES => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Greater East',
-                capital: 'Strasbourg', osm_relation_id: 3792876, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_HDF => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Heights-of-France',
-                capital: 'Lille', osm_relation_id: 4217435, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_IDF => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Isle-of-France',
-                capital: 'Paris', osm_relation_id: 8649, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_NOR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Normandy',
-                capital: 'Rouen', osm_relation_id: 3793170, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_NAQ => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'New Aquitaine',
-                capital: 'Bordeaux', osm_relation_id: 3792880, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_OCC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Occitania',
-                capital: 'Toulouse', osm_relation_id: 3792883, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_PDL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Lands of the Loire',
-                capital: 'Nantes', osm_relation_id: 8650, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_PAC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Provence-Alps-Azure Coast',
-                capital: 'Marseille', osm_relation_id: 8654, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::FR_CP => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::FR, english_name: 'Clipperton', capital: '', osm_relation_id: 2573009, subdivision_type: BearCountrySubdivisionTypeEnum::DEPENDENCY,
-            ),
+            self::FR_ARA => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Auvergne-Rhône-Alps', capital: 'Lyon', osm: 3792877, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_BFC => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Burgundy-Free-County', capital: 'Dijon', osm: 3792878, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_BRE => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Brittany', capital: 'Rennes', osm: 102740, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_CVL => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Central-Vale of the Loire', capital: 'Orléans', osm: 8640, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_COR => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Corsica', capital: 'Ajaccio', osm: 76910, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_GES => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Greater East', capital: 'Strasbourg', osm: 3792876, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_HDF => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Heights-of-France', capital: 'Lille', osm: 4217435, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_IDF => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Isle-of-France', capital: 'Paris', osm: 8649, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_NOR => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Normandy', capital: 'Rouen', osm: 3793170, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_NAQ => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'New Aquitaine', capital: 'Bordeaux', osm: 3792880, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_OCC => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Occitania', capital: 'Toulouse', osm: 3792883, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_PDL => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Lands of the Loire', capital: 'Nantes', osm: 8650, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_PAC => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Provence-Alps-Azure Coast', capital: 'Marseille', osm: 8654, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_CP => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Clipperton', capital: '', osm: 2573009, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
 
 
             // THE UNITED KINGDOM
-            self::GB_ENG => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::GB, english_name: 'England',
-                capital: 'London', osm_relation_id: 58447, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTRY,
-            ),
-            self::GB_NIR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::GB, english_name: 'Northern Ireland',
-                capital: 'Belfast', osm_relation_id: 156393, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::GB_SCT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::GB, english_name: 'Scotland',
-                capital: 'Edinburgh', osm_relation_id: 58446, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTRY,
-            ),
-            self::GB_WLS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::GB, english_name: 'Wales',
-                capital: 'Cardiff', osm_relation_id: 58437, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTRY,
-            ),
+            self::GB_ENG => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'England', capital: 'London', osm: 58447, type: BearCountrySubdivisionTypeEnum::COUNTRY),
+            self::GB_NIR => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Northern Ireland', capital: 'Belfast', osm: 156393, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::GB_SCT => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Scotland', capital: 'Edinburgh', osm: 58446, type: BearCountrySubdivisionTypeEnum::COUNTRY),
+            self::GB_WLS => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Wales', capital: 'Cardiff', osm: 58437, type: BearCountrySubdivisionTypeEnum::COUNTRY),
 
 
             // IRELAND
-            self::IE_C => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IE, english_name: 'Connacht',
-                capital: 'Galway', osm_relation_id: 278721, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::IE_L => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IE, english_name: 'Leinster',
-                capital: 'Dublin', osm_relation_id: 278746, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::IE_M => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IE, english_name: 'Munster',
-                capital: 'Cork', osm_relation_id: 278750, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::IE_U => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IE, english_name: 'Ulster',
-                capital: 'Belfast', osm_relation_id: 278664, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
+            self::IE_C => new BearCountrySubdivisionData(cca2: BearCountryEnum::IE, name: 'Connacht', capital: 'Galway', osm: 278721, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::IE_L => new BearCountrySubdivisionData(cca2: BearCountryEnum::IE, name: 'Leinster', capital: 'Dublin', osm: 278746, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::IE_M => new BearCountrySubdivisionData(cca2: BearCountryEnum::IE, name: 'Munster', capital: 'Cork', osm: 278750, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::IE_U => new BearCountrySubdivisionData(cca2: BearCountryEnum::IE, name: 'Ulster', capital: 'Belfast', osm: 278664, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
             // ITALY
-            self::IT_21 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Piedmont',
-                capital: 'Turin', osm_relation_id: 44874, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_23 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Aosta Valley',
-                capital: 'Aosta', osm_relation_id: 45155, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_25 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Lombardy',
-                capital: 'Milan', osm_relation_id: 44879, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_32 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Trentino-South Tyrol',
-                capital: 'Trento', osm_relation_id: 45757, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_34 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Veneto',
-                capital: 'Venice', osm_relation_id: 43648, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_36 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Friuli-Venezia Giulia',
-                capital: 'Trieste', osm_relation_id: 179296, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_42 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Liguria',
-                capital: 'Genoa', osm_relation_id: 301482, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_45 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Emilia-Romagna',
-                capital: 'Bologna', osm_relation_id: 42611, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_52 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Tuscany',
-                capital: 'Florence', osm_relation_id: 41977, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_55 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Umbria',
-                capital: 'Perugia', osm_relation_id: 42004, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_57 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Marche',
-                capital: 'Ancona', osm_relation_id: 53060, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_62 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Lazio',
-                capital: 'Rome', osm_relation_id: 40784, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_65 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Abruzzo',
-                capital: 'L\'Aquila', osm_relation_id: 53937, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_67 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Molise',
-                capital: 'Campobasso', osm_relation_id: 41256, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_72 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Campania',
-                capital: 'Naples', osm_relation_id: 40218, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_75 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Apulia',
-                capital: 'Bari', osm_relation_id: 40095, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_77 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Basilicata',
-                capital: 'Potenza', osm_relation_id: 40137, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_78 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Calabria',
-                capital: 'Catanzaro', osm_relation_id: 1783980, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_82 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Sicily', capital: 'Palermo', osm_relation_id: 39152, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::IT_88 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::IT, english_name: 'Sardinia', capital: 'Cagliari', osm_relation_id: 7361997, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
+            self::IT_21 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Piedmont', capital: 'Turin', osm: 44874, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_23 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Aosta Valley', capital: 'Aosta', osm: 45155, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_25 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Lombardy', capital: 'Milan', osm: 44879, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_32 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Trentino-South Tyrol', capital: 'Trento', osm: 45757, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_34 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Veneto', capital: 'Venice', osm: 43648, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_36 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Friuli-Venezia Giulia', capital: 'Trieste', osm: 179296, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_42 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Liguria', capital: 'Genoa', osm: 301482, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_45 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Emilia-Romagna', capital: 'Bologna', osm: 42611, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_52 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Tuscany', capital: 'Florence', osm: 41977, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_55 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Umbria', capital: 'Perugia', osm: 42004, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_57 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Marche', capital: 'Ancona', osm: 53060, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_62 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Lazio', capital: 'Rome', osm: 40784, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_65 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Abruzzo', capital: 'L\'Aquila', osm: 53937, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_67 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Molise', capital: 'Campobasso', osm: 41256, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_72 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Campania', capital: 'Naples', osm: 40218, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_75 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Apulia', capital: 'Bari', osm: 40095, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_77 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Basilicata', capital: 'Potenza', osm: 40137, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_78 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Calabria', capital: 'Catanzaro', osm: 1783980, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_82 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Sicily', capital: 'Palermo', osm: 39152, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::IT_88 => new BearCountrySubdivisionData(cca2: BearCountryEnum::IT, name: 'Sardinia', capital: 'Cagliari', osm: 7361997, type: BearCountrySubdivisionTypeEnum::REGION),
 
 
             // NETHERLANDS
-            self::NL_AW => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Aruba', capital: 'Oranjestad', osm_relation_id: 1231749, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTRY,
-            ),
-            self::NL_BQ1 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Bonaire', capital: 'Kralendijk', osm_relation_id: 2324450, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
-            ),
-            self::NL_BQ2 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Saba', capital: 'The Bottom', osm_relation_id: 2324451, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
-            ),
-            self::NL_BQ3 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Sint Eustatius', capital: 'Oranjestad', osm_relation_id: 2324452, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
-            ),
-            self::NL_CW => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Curaçao', capital: 'Willemstad', osm_relation_id: 102406, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTRY,
-            ),
-            self::NL_DR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Drenthe', capital: 'Assen', osm_relation_id: 47540, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NL_FL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Flevoland', capital: 'Lelystad', osm_relation_id: 47407, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NL_FR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Friesland', capital: 'Leeuwarden', osm_relation_id: 47381, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NL_GE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Gelderland', capital: 'Arnhem', osm_relation_id: 47554, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NL_GR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Groningen', capital: 'Groningen', osm_relation_id: 47826, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NL_LI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Limburg', capital: 'Maastricht', osm_relation_id: 47793, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NL_NB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'North Brabant', capital: 'Den Bosch', osm_relation_id: 47696, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NL_NH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'North Holland', capital: 'Haarlem', osm_relation_id: 47654, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NL_OV => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Overijssel', capital: 'Zwolle', osm_relation_id: 47608, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NL_SX => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Sint Maarten', capital: 'Philipsburg', osm_relation_id: 1231790, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTRY,
-            ),
-            self::NL_UT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Utrecht', capital: 'Utrecht', osm_relation_id: 47667, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NL_ZE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'Zeeland', capital: 'Middelburg', osm_relation_id: 47806, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NL_ZH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NL, english_name: 'South Holland', capital: 'The Hague', osm_relation_id: 47772, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
+            self::NL_AW => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Aruba', capital: 'Oranjestad', osm: 1231749, type: BearCountrySubdivisionTypeEnum::COUNTRY),
+            self::NL_BQ1 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Bonaire', capital: 'Kralendijk', osm: 2324450, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::NL_BQ2 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Saba', capital: 'The Bottom', osm: 2324451, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::NL_BQ3 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Sint Eustatius', capital: 'Oranjestad', osm: 2324452, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::NL_CW => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Curaçao', capital: 'Willemstad', osm: 102406, type: BearCountrySubdivisionTypeEnum::COUNTRY),
+            self::NL_DR => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Drenthe', capital: 'Assen', osm: 47540, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NL_FL => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Flevoland', capital: 'Lelystad', osm: 47407, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NL_FR => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Friesland', capital: 'Leeuwarden', osm: 47381, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NL_GE => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Gelderland', capital: 'Arnhem', osm: 47554, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NL_GR => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Groningen', capital: 'Groningen', osm: 47826, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NL_LI => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Limburg', capital: 'Maastricht', osm: 47793, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NL_NB => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'North Brabant', capital: 'Den Bosch', osm: 47696, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NL_NH => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'North Holland', capital: 'Haarlem', osm: 47654, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NL_OV => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Overijssel', capital: 'Zwolle', osm: 47608, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NL_SX => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Sint Maarten', capital: 'Philipsburg', osm: 1231790, type: BearCountrySubdivisionTypeEnum::COUNTRY),
+            self::NL_UT => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Utrecht', capital: 'Utrecht', osm: 47667, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NL_ZE => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Zeeland', capital: 'Middelburg', osm: 47806, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NL_ZH => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'South Holland', capital: 'The Hague', osm: 47772, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
             // NORWAY
-            self::BVT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Bouvet Island', capital: '', osm_relation_id: 2425963, subdivision_type: BearCountrySubdivisionTypeEnum::DEPENDENCY,
-            ),
-            self::NO_03 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Oslo', capital: 'Oslo', osm_relation_id: 406091, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_11 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Rogaland', capital: 'Stavanger', osm_relation_id: 405836, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_15 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Møre and Romsdal', capital: 'Molde', osm_relation_id: 406868, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_18 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Northland', capital: 'Bodø', osm_relation_id: 408105, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_21 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Svalbard', capital: 'Longyearbyen', osm_relation_id: 1337397, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NO_22 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Jan Mayen', capital: 'Longyearbyen', osm_relation_id: 1337126, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NO_31 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Østfold', capital: 'Sarpsborg', osm_relation_id: 406060, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_32 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Akershus', capital: 'Oslo', osm_relation_id: 406106, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_33 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Buskerud', capital: 'Drammen', osm_relation_id: 412297, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_34 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Inland', capital: 'Hamar', osm_relation_id: 10155527, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_39 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Vestfold', capital: 'Tønsberg', osm_relation_id: 404589, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_40 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Telemark', capital: 'Skien', osm_relation_id: 405156, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_42 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Agder', capital: 'Kristiansand', osm_relation_id: 10155517, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_46 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Westland', capital: 'Bergen', osm_relation_id: 10155543, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_50 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Trøndelag', capital: 'Steinkjer', osm_relation_id: 406567, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_55 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Troms', capital: 'Tromsø', osm_relation_id: 407717, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::NO_56 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NO, english_name: 'Finnmark', capital: 'Vadsø', osm_relation_id: 406389, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
+            self::BVT => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Bouvet Island', capital: '', osm: 2425963, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
+            self::NO_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Oslo', capital: 'Oslo', osm: 406091, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Rogaland', capital: 'Stavanger', osm: 405836, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_15 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Møre and Romsdal', capital: 'Molde', osm: 406868, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_18 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Northland', capital: 'Bodø', osm: 408105, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_21 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Svalbard', capital: 'Longyearbyen', osm: 1337397, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NO_22 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Jan Mayen', capital: 'Longyearbyen', osm: 1337126, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NO_31 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Østfold', capital: 'Sarpsborg', osm: 406060, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_32 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Akershus', capital: 'Oslo', osm: 406106, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_33 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Buskerud', capital: 'Drammen', osm: 412297, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_34 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Inland', capital: 'Hamar', osm: 10155527, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_39 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Vestfold', capital: 'Tønsberg', osm: 404589, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_40 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Telemark', capital: 'Skien', osm: 405156, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_42 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Agder', capital: 'Kristiansand', osm: 10155517, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_46 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Westland', capital: 'Bergen', osm: 10155543, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_50 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Trøndelag', capital: 'Steinkjer', osm: 406567, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_55 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Troms', capital: 'Tromsø', osm: 407717, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::NO_56 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NO, name: 'Finnmark', capital: 'Vadsø', osm: 406389, type: BearCountrySubdivisionTypeEnum::COUNTY),
 
 
             // NEPAL
-            self::NP_P1 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NP, english_name: 'Koshi', capital: 'Biratnagar', osm_relation_id: 10489132, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NP_P2 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NP, english_name: 'Madhesh', capital: 'Janakpur', osm_relation_id: 10489318, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NP_P3 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NP, english_name: 'Bagmati', capital: 'Hetauda', osm_relation_id: 10489317, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NP_P4 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NP, english_name: 'Gandaki', capital: 'Pokhara', osm_relation_id: 10489605, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NP_P5 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NP, english_name: 'Lumbini', capital: 'Butwal', osm_relation_id: 10493722, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NP_P6 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NP, english_name: 'Karnali', capital: 'Birendranagar', osm_relation_id: 10493723, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::NP_P7 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NP, english_name: 'Sudurpashchim', capital: 'Dhangadhi', osm_relation_id: 10488187, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
+            self::NP_P1 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NP, name: 'Koshi', capital: 'Biratnagar', osm: 10489132, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NP_P2 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NP, name: 'Madhesh', capital: 'Janakpur', osm: 10489318, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NP_P3 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NP, name: 'Bagmati', capital: 'Hetauda', osm: 10489317, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NP_P4 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NP, name: 'Gandaki', capital: 'Pokhara', osm: 10489605, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NP_P5 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NP, name: 'Lumbini', capital: 'Butwal', osm: 10493722, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NP_P6 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NP, name: 'Karnali', capital: 'Birendranagar', osm: 10493723, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::NP_P7 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NP, name: 'Sudurpashchim', capital: 'Dhangadhi', osm: 10488187, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
             // NEW ZEALAND
-            self::NZ_AUK => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Auckland', capital: 'Auckland', osm_relation_id: 2094141, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_BOP => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Bay of Plenty', capital: 'Whakatāne', osm_relation_id: 1790755, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_CAN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Canterbury', capital: 'Christchurch', osm_relation_id: 1640137, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_CIT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Chatham Islands', capital: '', osm_relation_id: 2647558, subdivision_type: BearCountrySubdivisionTypeEnum::ISLAND,
-            ),
-            self::NZ_GIS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Gisborne', capital: 'Gisborne', osm_relation_id: 2643819, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_HKB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Hawke\'s Bay', capital: 'Napier', osm_relation_id: 1643811, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_MBH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Marlborough', capital: 'Blenheim', osm_relation_id: 4266977, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_MWT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Manawatu-Wanganui', capital: 'Palmerston North', osm_relation_id: 1638992, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_NSN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Nelson', capital: 'Nelson', osm_relation_id: 4266962, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_NTL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Northland', capital: 'Whangārei', osm_relation_id: 2133870, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_OTA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Otago', capital: 'Dunedin', osm_relation_id: 1640138, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_STL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Southland', capital: 'Invercargill', osm_relation_id: 1640159, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_TAS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Tasman', capital: 'Richmond', osm_relation_id: 4266979, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_TKI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Taranaki', capital: 'Stratford', osm_relation_id: 1643812, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_WGN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Wellington', capital: 'Wellington', osm_relation_id: 1638991, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_WKO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'Waikato', capital: 'Hamilton', osm_relation_id: 2094142, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::NZ_WTC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::NZ, english_name: 'West Coast', capital: 'Greymouth', osm_relation_id: 1640136, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
+            self::NZ_AUK => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Auckland', capital: 'Auckland', osm: 2094141, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_BOP => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Bay of Plenty', capital: 'Whakatāne', osm: 1790755, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_CAN => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Canterbury', capital: 'Christchurch', osm: 1640137, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_CIT => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Chatham Islands', capital: '', osm: 2647558, type: BearCountrySubdivisionTypeEnum::ISLAND),
+            self::NZ_GIS => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Gisborne', capital: 'Gisborne', osm: 2643819, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_HKB => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Hawke\'s Bay', capital: 'Napier', osm: 1643811, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_MBH => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Marlborough', capital: 'Blenheim', osm: 4266977, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_MWT => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Manawatu-Wanganui', capital: 'Palmerston North', osm: 1638992, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_NSN => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Nelson', capital: 'Nelson', osm: 4266962, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_NTL => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Northland', capital: 'Whangārei', osm: 2133870, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_OTA => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Otago', capital: 'Dunedin', osm: 1640138, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_STL => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Southland', capital: 'Invercargill', osm: 1640159, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_TAS => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Tasman', capital: 'Richmond', osm: 4266979, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_TKI => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Taranaki', capital: 'Stratford', osm: 1643812, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_WGN => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Wellington', capital: 'Wellington', osm: 1638991, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_WKO => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'Waikato', capital: 'Hamilton', osm: 2094142, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::NZ_WTC => new BearCountrySubdivisionData(cca2: BearCountryEnum::NZ, name: 'West Coast', capital: 'Greymouth', osm: 1640136, type: BearCountrySubdivisionTypeEnum::REGION),
 
 
             // PORTUGAL
-            self::PT_01 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Aveiro', capital: 'Aveiro', osm_relation_id: 3920249, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_02 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Beja', capital: 'Beja', osm_relation_id: 5134927, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_03 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Braga', capital: 'Braga', osm_relation_id: 3738284, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_04 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Bragança', capital: 'Bragança', osm_relation_id: 3905929, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_05 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Castelo Branco', capital: 'Castelo Branco', osm_relation_id: 4104644, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_06 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Coimbra', capital: 'Coimbra', osm_relation_id: 4875183, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_07 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Évora', capital: 'Évora', osm_relation_id: 5130767, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_08 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Faro', capital: 'Faro', osm_relation_id: 1278415, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_09 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Guarda', capital: 'Guarda', osm_relation_id: 3905924, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_10 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Leiria', capital: 'Leiria', osm_relation_id: 5011694, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_11 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Lisbon', capital: 'Lisbon', osm_relation_id: 2897141, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_12 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Portalegre', capital: 'Portalegre', osm_relation_id: 5123448, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_13 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Porto', capital: 'Porto', osm_relation_id: 3459013, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_14 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Santarém', capital: 'Santarém', osm_relation_id: 5122644, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_15 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Setúbal', capital: 'Setúbal', osm_relation_id: 5143590, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_16 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Viana do Castelo', capital: 'Viana do Castelo', osm_relation_id: 3898131, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_17 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Vila Real', capital: 'Vila Real', osm_relation_id: 3967823, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_18 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Viseu', capital: 'Viseu', osm_relation_id: 3920285, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::PT_20 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Azores', capital: 'Ponta Delgada', osm_relation_id: 1629146, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::PT_30 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::PT, english_name: 'Madeira', capital: 'Funchal', osm_relation_id: 1629145, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
+            self::PT_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Aveiro', capital: 'Aveiro', osm: 3920249, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Beja', capital: 'Beja', osm: 5134927, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Braga', capital: 'Braga', osm: 3738284, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Bragança', capital: 'Bragança', osm: 3905929, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Castelo Branco', capital: 'Castelo Branco', osm: 4104644, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Coimbra', capital: 'Coimbra', osm: 4875183, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Évora', capital: 'Évora', osm: 5130767, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Faro', capital: 'Faro', osm: 1278415, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_09 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Guarda', capital: 'Guarda', osm: 3905924, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_10 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Leiria', capital: 'Leiria', osm: 5011694, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Lisbon', capital: 'Lisbon', osm: 2897141, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_12 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Portalegre', capital: 'Portalegre', osm: 5123448, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_13 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Porto', capital: 'Porto', osm: 3459013, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_14 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Santarém', capital: 'Santarém', osm: 5122644, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_15 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Setúbal', capital: 'Setúbal', osm: 5143590, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_16 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Viana do Castelo', capital: 'Viana do Castelo', osm: 3898131, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_17 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Vila Real', capital: 'Vila Real', osm: 3967823, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_18 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Viseu', capital: 'Viseu', osm: 3920285, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::PT_20 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Azores', capital: 'Ponta Delgada', osm: 1629146, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::PT_30 => new BearCountrySubdivisionData(cca2: BearCountryEnum::PT, name: 'Madeira', capital: 'Funchal', osm: 1629145, type: BearCountrySubdivisionTypeEnum::REGION),
 
 
             // QATAR
-            self::QA_DA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::QA, english_name: 'Ad Dawhah', capital: 'Doha', osm_relation_id: 27332, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
-            ),
-            self::QA_KH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::QA, english_name: 'Al Khor', capital: 'Al Khor', osm_relation_id: 27329, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
-            ),
-            self::QA_MS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::QA, english_name: 'Al Shamal', capital: 'Madinat ash Shamal', osm_relation_id: 27335, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
-            ),
-            self::QA_RA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::QA, english_name: 'Al Rayyan', capital: 'Ar Rayyan', osm_relation_id: 27331, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
-            ),
-            self::QA_SH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::QA, english_name: 'Al-Shahaniya', capital: 'Al-Shahaniya', osm_relation_id: 27330, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
-            ),
-            self::QA_US => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::QA, english_name: 'Umm Salal', capital: 'Umm Salal', osm_relation_id: 27328, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
-            ),
-            self::QA_WA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::QA, english_name: 'Al Wakrah', capital: 'Al Wakrah', osm_relation_id: 27337, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
-            ),
-            self::QA_ZA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::QA, english_name: 'Al Daayen', capital: 'Umm Qarn', osm_relation_id: 11146904, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
-            ),
+            self::QA_DA => new BearCountrySubdivisionData(cca2: BearCountryEnum::QA, name: 'Ad Dawhah', capital: 'Doha', osm: 27332, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::QA_KH => new BearCountrySubdivisionData(cca2: BearCountryEnum::QA, name: 'Al Khor', capital: 'Al Khor', osm: 27329, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::QA_MS => new BearCountrySubdivisionData(cca2: BearCountryEnum::QA, name: 'Al Shamal', capital: 'Madinat ash Shamal', osm: 27335, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::QA_RA => new BearCountrySubdivisionData(cca2: BearCountryEnum::QA, name: 'Al Rayyan', capital: 'Ar Rayyan', osm: 27331, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::QA_SH => new BearCountrySubdivisionData(cca2: BearCountryEnum::QA, name: 'Al-Shahaniya', capital: 'Al-Shahaniya', osm: 27330, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::QA_US => new BearCountrySubdivisionData(cca2: BearCountryEnum::QA, name: 'Umm Salal', capital: 'Umm Salal', osm: 27328, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::QA_WA => new BearCountrySubdivisionData(cca2: BearCountryEnum::QA, name: 'Al Wakrah', capital: 'Al Wakrah', osm: 27337, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::QA_ZA => new BearCountrySubdivisionData(cca2: BearCountryEnum::QA, name: 'Al Daayen', capital: 'Umm Qarn', osm: 11146904, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
 
 
             // SAUDI ARABIA
-            self::SA_01 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Riyadh', capital: 'Riyadh', osm_relation_id: 3678409, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::SA_02 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Makkah', capital: 'Makkah', osm_relation_id: 3678639, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::SA_03 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Medina', capital: 'Madinah', osm_relation_id: 3679869, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::SA_04 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Eastern', capital: 'Dammam', osm_relation_id: 3667294, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::SA_05 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Al-Qassim', capital: 'Buraidah', osm_relation_id: 3679872, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::SA_06 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Ha\'il', capital: 'Ha\'il', osm_relation_id: 3676707, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::SA_07 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Tabuk', capital: 'Tabuk', osm_relation_id: 3679867, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::SA_08 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Northern Borders', capital: 'Arar', osm_relation_id: 3673927, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::SA_09 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Jazan', capital: 'Jazan', osm_relation_id: 3679903, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::SA_10 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Najran', capital: 'Najran', osm_relation_id: 3667317, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::SA_11 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Al Bahah', capital: 'Al Bahah', osm_relation_id: 3679888, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::SA_12 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Al Jawf', capital: 'Sakaka', osm_relation_id: 3842543, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
-            self::SA_14 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SA, english_name: 'Asir', capital: 'Abha', osm_relation_id: 3678598, subdivision_type: BearCountrySubdivisionTypeEnum::REGION,
-            ),
+            self::SA_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Riyadh', capital: 'Riyadh', osm: 3678409, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::SA_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Makkah', capital: 'Makkah', osm: 3678639, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::SA_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Medina', capital: 'Madinah', osm: 3679869, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::SA_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Eastern', capital: 'Dammam', osm: 3667294, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::SA_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Al-Qassim', capital: 'Buraidah', osm: 3679872, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::SA_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Ha\'il', capital: 'Ha\'il', osm: 3676707, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::SA_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Tabuk', capital: 'Tabuk', osm: 3679867, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::SA_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Northern Borders', capital: 'Arar', osm: 3673927, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::SA_09 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Jazan', capital: 'Jazan', osm: 3679903, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::SA_10 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Najran', capital: 'Najran', osm: 3667317, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::SA_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Al Bahah', capital: 'Al Bahah', osm: 3679888, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::SA_12 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Al Jawf', capital: 'Sakaka', osm: 3842543, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::SA_14 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SA, name: 'Asir', capital: 'Abha', osm: 3678598, type: BearCountrySubdivisionTypeEnum::REGION),
 
 
             // SWEDEN
-            self::SE_AB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Stockholm', capital: 'Stockholm', osm_relation_id: 54391, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_AC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Västerbotten', capital: 'Umeå', osm_relation_id: 52825, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_BD => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Norrbotten', capital: 'Luleå', osm_relation_id: 52824, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_C => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Uppsala', capital: 'Uppsala', osm_relation_id: 54220, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_D => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Södermanland', capital: 'Nyköping', osm_relation_id: 54386, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_E => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Östergötland', capital: 'Linköping', osm_relation_id: 940675, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_F => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Jönköping', capital: 'Jönköping', osm_relation_id: 54374, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_G => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Kronoberg', capital: 'Växjö', osm_relation_id: 54412, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_H => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Kalmar', capital: 'Kalmar', osm_relation_id: 54417, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_I => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Gotland', capital: 'Visby', osm_relation_id: 941530, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_K => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Blekinge', capital: 'Karlskrona', osm_relation_id: 54413, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_M => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Skåne', capital: 'Malmö', osm_relation_id: 54409, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_N => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Halland', capital: 'Halmstad', osm_relation_id: 54403, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_O => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Västra Götaland', capital: 'Gothenburg', osm_relation_id: 54367, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_S => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Värmland', capital: 'Karlstad', osm_relation_id: 54223, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_T => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Örebro', capital: 'Örebro', osm_relation_id: 54222, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_U => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Västmanland', capital: 'Västerås', osm_relation_id: 54221, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_W => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Dalarna', capital: 'Falun', osm_relation_id: 52834, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_X => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Gävleborg', capital: 'Gävle', osm_relation_id: 52832, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_Y => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Västernorrland', capital: 'Härnösand', osm_relation_id: 52827, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
-            self::SE_Z => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SE, english_name: 'Jämtland', capital: 'Östersund', osm_relation_id: 52826, subdivision_type: BearCountrySubdivisionTypeEnum::COUNTY,
-            ),
+            self::SE_AB => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Stockholm', capital: 'Stockholm', osm: 54391, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_AC => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Västerbotten', capital: 'Umeå', osm: 52825, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_BD => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Norrbotten', capital: 'Luleå', osm: 52824, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_C => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Uppsala', capital: 'Uppsala', osm: 54220, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_D => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Södermanland', capital: 'Nyköping', osm: 54386, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_E => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Östergötland', capital: 'Linköping', osm: 940675, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_F => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Jönköping', capital: 'Jönköping', osm: 54374, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_G => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Kronoberg', capital: 'Växjö', osm: 54412, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_H => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Kalmar', capital: 'Kalmar', osm: 54417, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_I => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Gotland', capital: 'Visby', osm: 941530, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_K => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Blekinge', capital: 'Karlskrona', osm: 54413, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_M => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Skåne', capital: 'Malmö', osm: 54409, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_N => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Halland', capital: 'Halmstad', osm: 54403, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_O => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Västra Götaland', capital: 'Gothenburg', osm: 54367, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_S => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Värmland', capital: 'Karlstad', osm: 54223, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_T => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Örebro', capital: 'Örebro', osm: 54222, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_U => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Västmanland', capital: 'Västerås', osm: 54221, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_W => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Dalarna', capital: 'Falun', osm: 52834, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_X => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Gävleborg', capital: 'Gävle', osm: 52832, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_Y => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Västernorrland', capital: 'Härnösand', osm: 52827, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::SE_Z => new BearCountrySubdivisionData(cca2: BearCountryEnum::SE, name: 'Jämtland', capital: 'Östersund', osm: 52826, type: BearCountrySubdivisionTypeEnum::COUNTY),
 
 
             // SINGAPORE
-            self::SG_01 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SG, english_name: 'Central Singapore', capital: 'Singapore', osm_relation_id: 3831712, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::SG_02 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SG, english_name: 'North East', capital: 'Singapore', osm_relation_id: 3831713, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::SG_03 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SG, english_name: 'North West', capital: 'Singapore', osm_relation_id: 3831714, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::SG_04 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SG, english_name: 'South East', capital: 'Singapore', osm_relation_id: 3831715, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
-            self::SG_05 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::SG, english_name: 'South West', capital: 'Singapore', osm_relation_id: 3831716, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
+            self::SG_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SG, name: 'Central Singapore', capital: 'Singapore', osm: 3831712, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::SG_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SG, name: 'North East', capital: 'Singapore', osm: 3831713, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::SG_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SG, name: 'North West', capital: 'Singapore', osm: 3831714, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::SG_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SG, name: 'South East', capital: 'Singapore', osm: 3831715, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::SG_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::SG, name: 'South West', capital: 'Singapore', osm: 3831716, type: BearCountrySubdivisionTypeEnum::DISTRICT),
 
 
             // THE UNITED STATES
-            self::US_AL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Alabama', capital: 'Montgomery', osm_relation_id: 161950, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_AK => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Alaska', capital: 'Juneau', osm_relation_id: 1116270, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_AZ => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Arizona', capital: 'Phoenix', osm_relation_id: 162018, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_AR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Arkansas', capital: 'Little Rock', osm_relation_id: 161646, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_CA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'California', capital: 'Sacramento', osm_relation_id: 165475, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_CO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Colorado', capital: 'Denver', osm_relation_id: 161961, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_CT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Connecticut', capital: 'Hartford', osm_relation_id: 165794, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_DE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Delaware', capital: 'Dover', osm_relation_id: 162110, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_FL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Florida', capital: 'Tallahassee', osm_relation_id: 162050, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_GA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Georgia', capital: 'Atlanta', osm_relation_id: 161957, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_HI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Hawaii', capital: 'Honolulu', osm_relation_id: 166563, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_ID => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Idaho', capital: 'Boise', osm_relation_id: 162116, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_IL => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Illinois', capital: 'Springfield', osm_relation_id: 122586, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_IN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Indiana', capital: 'Indianapolis', osm_relation_id: 161816, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_IA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Iowa', capital: 'Des Moines', osm_relation_id: 161650, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_KS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Kansas', capital: 'Topeka', osm_relation_id: 161644, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_KY => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Kentucky', capital: 'Frankfort', osm_relation_id: 161655, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_LA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Louisiana', capital: 'Baton Rouge', osm_relation_id: 224922, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_ME => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Maine', capital: 'Augusta', osm_relation_id: 63512, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_MD => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Maryland', capital: 'Annapolis', osm_relation_id: 162112, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_MA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Massachusetts', capital: 'Boston', osm_relation_id: 61315, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_MI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Michigan', capital: 'Lansing', osm_relation_id: 165789, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_MN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Minnesota', capital: 'St. Paul', osm_relation_id: 165471, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_MS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Mississippi', capital: 'Jackson', osm_relation_id: 161943, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_MO => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Missouri', capital: 'Jefferson City', osm_relation_id: 161638, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_MT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Montana', capital: 'Helena', osm_relation_id: 162115, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_NE => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Nebraska', capital: 'Lincoln', osm_relation_id: 161648, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_NV => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Nevada', capital: 'Carson City', osm_relation_id: 165473, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_NH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'New Hampshire', capital: 'Concord', osm_relation_id: 67213, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_NJ => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'New Jersey', capital: 'Trenton', osm_relation_id: 224951, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_NM => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'New Mexico', capital: 'Santa Fe', osm_relation_id: 162014, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_NY => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'New York', capital: 'Albany', osm_relation_id: 61320, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_NC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'North Carolina', capital: 'Raleigh', osm_relation_id: 224045, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_ND => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'North Dakota', capital: 'Bismarck', osm_relation_id: 161653, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_OH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Ohio', capital: 'Columbus', osm_relation_id: 162061, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_OK => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Oklahoma', capital: 'Oklahoma City', osm_relation_id: 161645, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_OR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Oregon', capital: 'Salem', osm_relation_id: 165476, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_PA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Pennsylvania', capital: 'Harrisburg', osm_relation_id: 162109, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_RI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Rhode Island', capital: 'Providence', osm_relation_id: 392915, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_SC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'South Carolina', capital: 'Columbia', osm_relation_id: 224040, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_SD => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'South Dakota', capital: 'Pierre', osm_relation_id: 161652, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_TN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Tennessee', capital: 'Nashville', osm_relation_id: 161838, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_TX => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Texas', capital: 'Austin', osm_relation_id: 114690, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_UT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Utah', capital: 'Salt Lake City', osm_relation_id: 161993, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_VT => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Vermont', capital: 'Montpelier', osm_relation_id: 60759, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_VA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Virginia', capital: 'Richmond', osm_relation_id: 224042, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_WA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Washington', capital: 'Olympia', osm_relation_id: 165479, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_WV => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'West Virginia', capital: 'Charleston', osm_relation_id: 162068, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_WI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Wisconsin', capital: 'Madison', osm_relation_id: 165466, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_WY => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'Wyoming', capital: 'Cheyenne', osm_relation_id: 161991, subdivision_type: BearCountrySubdivisionTypeEnum::STATE,
-            ),
-            self::US_DC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::US, english_name: 'District of Columbia', capital: 'Washington', osm_relation_id: 162069, subdivision_type: BearCountrySubdivisionTypeEnum::DISTRICT,
-            ),
+            self::US_AL => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Alabama', capital: 'Montgomery', osm: 161950, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_AK => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Alaska', capital: 'Juneau', osm: 1116270, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_AZ => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Arizona', capital: 'Phoenix', osm: 162018, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_AR => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Arkansas', capital: 'Little Rock', osm: 161646, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_CA => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'California', capital: 'Sacramento', osm: 165475, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_CO => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Colorado', capital: 'Denver', osm: 161961, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_CT => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Connecticut', capital: 'Hartford', osm: 165794, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_DE => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Delaware', capital: 'Dover', osm: 162110, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_FL => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Florida', capital: 'Tallahassee', osm: 162050, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_GA => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Georgia', capital: 'Atlanta', osm: 161957, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_HI => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Hawaii', capital: 'Honolulu', osm: 166563, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_ID => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Idaho', capital: 'Boise', osm: 162116, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_IL => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Illinois', capital: 'Springfield', osm: 122586, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_IN => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Indiana', capital: 'Indianapolis', osm: 161816, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_IA => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Iowa', capital: 'Des Moines', osm: 161650, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_KS => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Kansas', capital: 'Topeka', osm: 161644, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_KY => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Kentucky', capital: 'Frankfort', osm: 161655, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_LA => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Louisiana', capital: 'Baton Rouge', osm: 224922, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_ME => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Maine', capital: 'Augusta', osm: 63512, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_MD => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Maryland', capital: 'Annapolis', osm: 162112, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_MA => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Massachusetts', capital: 'Boston', osm: 61315, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_MI => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Michigan', capital: 'Lansing', osm: 165789, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_MN => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Minnesota', capital: 'St. Paul', osm: 165471, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_MS => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Mississippi', capital: 'Jackson', osm: 161943, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_MO => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Missouri', capital: 'Jefferson City', osm: 161638, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_MT => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Montana', capital: 'Helena', osm: 162115, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_NE => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Nebraska', capital: 'Lincoln', osm: 161648, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_NV => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Nevada', capital: 'Carson City', osm: 165473, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_NH => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'New Hampshire', capital: 'Concord', osm: 67213, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_NJ => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'New Jersey', capital: 'Trenton', osm: 224951, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_NM => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'New Mexico', capital: 'Santa Fe', osm: 162014, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_NY => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'New York', capital: 'Albany', osm: 61320, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_NC => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'North Carolina', capital: 'Raleigh', osm: 224045, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_ND => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'North Dakota', capital: 'Bismarck', osm: 161653, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_OH => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Ohio', capital: 'Columbus', osm: 162061, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_OK => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Oklahoma', capital: 'Oklahoma City', osm: 161645, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_OR => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Oregon', capital: 'Salem', osm: 165476, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_PA => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Pennsylvania', capital: 'Harrisburg', osm: 162109, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_RI => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Rhode Island', capital: 'Providence', osm: 392915, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_SC => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'South Carolina', capital: 'Columbia', osm: 224040, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_SD => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'South Dakota', capital: 'Pierre', osm: 161652, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_TN => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Tennessee', capital: 'Nashville', osm: 161838, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_TX => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Texas', capital: 'Austin', osm: 114690, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_UT => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Utah', capital: 'Salt Lake City', osm: 161993, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_VT => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Vermont', capital: 'Montpelier', osm: 60759, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_VA => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Virginia', capital: 'Richmond', osm: 224042, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_WA => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Washington', capital: 'Olympia', osm: 165479, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_WV => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'West Virginia', capital: 'Charleston', osm: 162068, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_WI => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Wisconsin', capital: 'Madison', osm: 165466, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_WY => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Wyoming', capital: 'Cheyenne', osm: 161991, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::US_DC => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'District of Columbia', capital: 'Washington', osm: 162069, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+
+
+            // SAMOA
+            self::WS_AA => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'A\'ana', capital: 'Leulumoega', osm: 383891, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_AL => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Aiga-i-le-Tai', capital: 'Mulifanua', osm: 383892, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_AT => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Atua', capital: 'Lufilufi', osm: 383893, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_FA => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Fa\'asaleleaga', capital: 'Safotulafai', osm: 383894, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_GE => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Gaga\'emauga', capital: 'Saleaula', osm: 383895, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_GI => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Gagaifomauga', capital: 'Aopo', osm: 383896, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_PA => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Palauli', capital: 'Vailoa', osm: 383897, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_SA => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Satupa\'itea', capital: 'Satupa\'itea', osm: 383898, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_TU => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Tuamasaga', capital: 'Afenga', osm: 383899, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_VF => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Va\'a-o-Fonoti', capital: 'Samamea', osm: 383900, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_VS => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Vaisigano', capital: 'Asau', osm: 383901, type: BearCountrySubdivisionTypeEnum::DISTRICT),
 
 
             // YEMEN
-            self::YE_AB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Abyan', capital: 'Zinjibar', osm_relation_id: 383898, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_AD => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Aden', capital: 'Aden', osm_relation_id: 383893, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_AM => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Amran', capital: 'Amran', osm_relation_id: 383907, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_BA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Al Bayda', capital: 'Al Bayda', osm_relation_id: 383901, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_DA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Dhale', capital: 'Dhale', osm_relation_id: 383902, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_DH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Dhamar', capital: 'Dhamar', osm_relation_id: 383906, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_HD => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Hadramaut', capital: 'Mukalla', osm_relation_id: 383897, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_HJ => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Hajjah', capital: 'Hajjah', osm_relation_id: 383905, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_HU => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Al Hudaydah', capital: 'Al Hudaydah', osm_relation_id: 383894, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_IB => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Ibb', capital: 'Ibb', osm_relation_id: 383900, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_JA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Al Jawf', capital: 'Al Hazm', osm_relation_id: 383899, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_LA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Lahij', capital: 'Lahij', osm_relation_id: 383892, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_MA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Marib', capital: 'Marib', osm_relation_id: 383909, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_MR => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Al Mahrah', capital: 'Al Ghaydah', osm_relation_id: 383908, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_MW => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Al Mahwit', capital: 'Al Mahwit', osm_relation_id: 383903, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_RA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Raymah', capital: 'Al-Jabin', osm_relation_id: 383910, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_SA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Sanaa', capital: 'Sanaa', osm_relation_id: 80501, subdivision_type: BearCountrySubdivisionTypeEnum::MUNICIPALITY,
-            ),
-            self::YE_SD => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Shabwah', capital: 'Ataq', osm_relation_id: 383904, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_SH => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Shabwah', capital: 'Ataq', osm_relation_id: 383896, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_SN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Sanaa', capital: 'Sanaa', osm_relation_id: 383891, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_SU => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Socotra', capital: 'Hadibu', osm_relation_id: 5486640, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
-            self::YE_TA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::YE, english_name: 'Taiz', capital: 'Taiz', osm_relation_id: 383895, subdivision_type: BearCountrySubdivisionTypeEnum::GOVERNORATE,
-            ),
+            self::YE_AB => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Abyan', capital: 'Zinjibar', osm: 383898, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_AD => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Aden', capital: 'Aden', osm: 383893, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_AM => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Amran', capital: 'Amran', osm: 383907, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_BA => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Al Bayda', capital: 'Al Bayda', osm: 383901, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_DA => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Dhale', capital: 'Dhale', osm: 383902, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_DH => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Dhamar', capital: 'Dhamar', osm: 383906, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_HD => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Hadramaut', capital: 'Mukalla', osm: 383897, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_HJ => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Hajjah', capital: 'Hajjah', osm: 383905, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_HU => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Al Hudaydah', capital: 'Al Hudaydah', osm: 383894, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_IB => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Ibb', capital: 'Ibb', osm: 383900, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_JA => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Al Jawf', capital: 'Al Hazm', osm: 383899, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_LA => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Lahij', capital: 'Lahij', osm: 383892, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_MA => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Marib', capital: 'Marib', osm: 383909, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_MR => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Al Mahrah', capital: 'Al Ghaydah', osm: 383908, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_MW => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Al Mahwit', capital: 'Al Mahwit', osm: 383903, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_RA => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Raymah', capital: 'Al-Jabin', osm: 383910, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_SA => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Sanaa', capital: 'Sanaa', osm: 8894341, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::YE_SD => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Shabwah', capital: 'Ataq', osm: 383904, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_SH => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Shabwah', capital: 'Ataq', osm: 383896, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_SN => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Sanaa', capital: 'Sanaa', osm: 383891, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_SU => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Socotra', capital: 'Hadibu', osm: 5486640, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::YE_TA => new BearCountrySubdivisionData(cca2: BearCountryEnum::YE, name: 'Taiz', capital: 'Taiz', osm: 383895, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
 
 
             // SOUTH AFRICA
-            self::ZA_EC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZA, english_name: 'Eastern Cape', capital: 'Bisho', osm_relation_id: 88574, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZA_FS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZA, english_name: 'Free State', capital: 'Bloemfontein', osm_relation_id: 92417, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZA_GP => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZA, english_name: 'Gauteng', capital: 'Johannesburg', osm_relation_id: 349344, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZA_KZN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZA, english_name: 'KwaZulu-Natal', capital: 'Pietermaritzburg', osm_relation_id: 349390, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZA_LP => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZA, english_name: 'Limpopo', capital: 'Polokwane', osm_relation_id: 349547, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZA_MP => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZA, english_name: 'Mpumalanga', capital: 'Mbombela', osm_relation_id: 349556, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZA_NC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZA, english_name: 'Northern Cape', capital: 'Kimberley', osm_relation_id: 86720, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZA_NW => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZA, english_name: 'North West', capital: 'Mahikeng', osm_relation_id: 349519, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZA_WC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZA, english_name: 'Western Cape', capital: 'Cape Town', osm_relation_id: 80501, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
+            self::ZA_EC => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZA, name: 'Eastern Cape', capital: 'Bisho', osm: 88574, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZA_FS => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZA, name: 'Free State', capital: 'Bloemfontein', osm: 92417, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZA_GP => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZA, name: 'Gauteng', capital: 'Johannesburg', osm: 349344, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZA_KZN => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZA, name: 'KwaZulu-Natal', capital: 'Pietermaritzburg', osm: 349390, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZA_LP => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZA, name: 'Limpopo', capital: 'Polokwane', osm: 349547, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZA_MP => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZA, name: 'Mpumalanga', capital: 'Mbombela', osm: 349556, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZA_NC => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZA, name: 'Northern Cape', capital: 'Kimberley', osm: 86720, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZA_NW => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZA, name: 'North West', capital: 'Mahikeng', osm: 349519, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZA_WC => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZA, name: 'Western Cape', capital: 'Cape Town', osm: 80501, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
             // ZAMBIA
-            self::ZM_01 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZM, english_name: 'Western', capital: 'Mongu', osm_relation_id: 318852, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZM_02 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZM, english_name: 'Central', capital: 'Kabwe', osm_relation_id: 318861, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZM_03 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZM, english_name: 'Eastern', capital: 'Chipata', osm_relation_id: 318865, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZM_04 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZM, english_name: 'Luapula', capital: 'Mansa', osm_relation_id: 318866, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZM_05 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZM, english_name: 'Northern', capital: 'Kasama', osm_relation_id: 318862, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZM_06 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZM, english_name: 'North-Western', capital: 'Solwezi', osm_relation_id: 318859, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZM_07 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZM, english_name: 'Southern', capital: 'Choma', osm_relation_id: 318863, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZM_08 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZM, english_name: 'Copperbelt', capital: 'Ndola', osm_relation_id: 318860, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZM_09 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZM, english_name: 'Lusaka', capital: 'Lusaka', osm_relation_id: 318864, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZM_10 => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZM, english_name: 'Muchinga', capital: 'Chinsali', osm_relation_id: 3668334, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
+            self::ZM_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZM, name: 'Western', capital: 'Mongu', osm: 318852, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZM_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZM, name: 'Central', capital: 'Kabwe', osm: 318861, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZM_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZM, name: 'Eastern', capital: 'Chipata', osm: 318865, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZM_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZM, name: 'Luapula', capital: 'Mansa', osm: 318866, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZM_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZM, name: 'Northern', capital: 'Kasama', osm: 318862, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZM_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZM, name: 'North-Western', capital: 'Solwezi', osm: 318859, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZM_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZM, name: 'Southern', capital: 'Choma', osm: 318863, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZM_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZM, name: 'Copperbelt', capital: 'Ndola', osm: 318860, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZM_09 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZM, name: 'Lusaka', capital: 'Lusaka', osm: 318864, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZM_10 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZM, name: 'Muchinga', capital: 'Chinsali', osm: 3668334, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
             // ZIMBABWE
-            self::ZW_BU => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZW, english_name: 'Bulawayo', capital: 'Bulawayo', osm_relation_id: 3337019, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZW_HA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZW, english_name: 'Harare', capital: 'Harare', osm_relation_id: 318467, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZW_MA => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZW, english_name: 'Manicaland', capital: 'Mutare', osm_relation_id: 3336975, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZW_MC => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZW, english_name: 'Mashonaland Central', capital: 'Bindura', osm_relation_id: 3336976, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZW_ME => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZW, english_name: 'Mashonaland East', capital: 'Marondera', osm_relation_id: 3336977, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZW_MI => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZW, english_name: 'Midlands', capital: 'Gweru', osm_relation_id: 3336982, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZW_MN => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZW, english_name: 'Matabeleland North', capital: 'Lupane', osm_relation_id: 3336980, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZW_MS => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZW, english_name: 'Matabeleland South', capital: 'Gwanda', osm_relation_id: 3336981, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZW_MV => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZW, english_name: 'Masvingo', capital: 'Masvingo', osm_relation_id: 3336979, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
-            self::ZW_MW => new BearCountrySubdivisionData(
-                country_cca2: BearCountryEnum::ZW, english_name: 'Mashonaland West', capital: 'Chinhoyi', osm_relation_id: 3336978, subdivision_type: BearCountrySubdivisionTypeEnum::PROVINCE,
-            ),
+            self::ZW_BU => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZW, name: 'Bulawayo', capital: 'Bulawayo', osm: 3337019, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZW_HA => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZW, name: 'Harare', capital: 'Harare', osm: 318467, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZW_MA => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZW, name: 'Manicaland', capital: 'Mutare', osm: 3336975, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZW_MC => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZW, name: 'Mashonaland Central', capital: 'Bindura', osm: 3336976, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZW_ME => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZW, name: 'Mashonaland East', capital: 'Marondera', osm: 3336977, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZW_MI => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZW, name: 'Midlands', capital: 'Gweru', osm: 3336982, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZW_MN => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZW, name: 'Matabeleland North', capital: 'Lupane', osm: 3336980, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZW_MS => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZW, name: 'Matabeleland South', capital: 'Gwanda', osm: 3336981, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZW_MV => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZW, name: 'Masvingo', capital: 'Masvingo', osm: 3336979, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::ZW_MW => new BearCountrySubdivisionData(cca2: BearCountryEnum::ZW, name: 'Mashonaland West', capital: 'Chinhoyi', osm: 3336978, type: BearCountrySubdivisionTypeEnum::PROVINCE),
         };
     }
 

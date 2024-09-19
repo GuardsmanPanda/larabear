@@ -7,11 +7,11 @@ use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountrySubdivisionTyp
 
 final readonly class BearCountrySubdivisionData {
     public function __construct(
-        public BearCountryEnum                $country_cca2,
-        public string                         $english_name,
+        public BearCountryEnum                $cca2,
+        public string                         $name,
         public string                         $capital,
-        public int                            $osm_relation_id,
-        public BearCountrySubdivisionTypeEnum $subdivision_type,
+        public int                            $osm,
+        public BearCountrySubdivisionTypeEnum $type,
     ) {
     }
 }
