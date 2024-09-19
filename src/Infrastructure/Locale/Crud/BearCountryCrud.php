@@ -2,12 +2,14 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Locale\Crud;
 
+use Carbon\CarbonImmutable;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountryEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Model\BearCountry;
 use Illuminate\Database\Eloquent\Casts\ArrayObject;
+use RuntimeException;
 
-final class LarabearCountryCrud {
+final class BearCountryCrud {
     public static function syncToDatabase(BearCountryEnum $enum): void {
         BearDatabaseService::mustBeInTransaction();
 
@@ -32,6 +34,16 @@ final class LarabearCountryCrud {
         $model->is_driving_side_right = $data->is_driving_side_right;
         $model->cca2_borders_json = new ArrayObject($data->borders);
 
+        $model->save();
+    }
+
+    public static function setOsmSyncAt(BearCountryEnum $enum, CarbonImmutable $syncAt): void {
+        BearDatabaseService::mustBeInTransaction();
+        $model = BearCountry::find($enum->value);
+        if ($model === null) {
+            throw new RuntimeException("Country {$enum->getCountryData()->name} not found");
+        }
+        $model->osm_sync_at = $syncAt;
         $model->save();
     }
 }

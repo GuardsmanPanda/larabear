@@ -3,7 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Locale\Enum;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Interface\BearDatabaseBackedEnumInterface;
-use GuardsmanPanda\Larabear\Infrastructure\Locale\Crud\LarabearCountryCrud;
+use GuardsmanPanda\Larabear\Infrastructure\Locale\Crud\BearCountryCrud;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Data\BearCountryData;
 enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
     case AD = 'AD';
@@ -2022,7 +2022,7 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
 
     public static function syncToDatabase(): void {
         foreach (self::cases() as $countryEnum) {
-            LarabearCountryCrud::syncToDatabase(enum: $countryEnum);
+            BearCountryCrud::syncToDatabase(enum: $countryEnum);
         }
     }
 }

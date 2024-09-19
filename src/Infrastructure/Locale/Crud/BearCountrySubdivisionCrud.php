@@ -2,12 +2,13 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Locale\Crud;
 
+use Carbon\CarbonImmutable;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountrySubdivisionEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Model\BearCountrySubdivision;
-use Illuminate\Support\Facades\DB;
+use RuntimeException;
 
-final class LarabearCountrySubdivisionCrud {
+final class BearCountrySubdivisionCrud {
     public static function syncToDatabase(BearCountrySubdivisionEnum $enum): void {
         BearDatabaseService::mustBeInTransaction();
 
@@ -21,6 +22,16 @@ final class LarabearCountrySubdivisionCrud {
         $model->name = $data->name;
         $model->capital = $data->capital;
 
+        $model->save();
+    }
+
+    public static function setOsmSyncAt(BearCountrySubdivisionEnum $enum, CarbonImmutable $syncAt): void {
+        BearDatabaseService::mustBeInTransaction();
+        $model = BearCountrySubdivision::find($enum->value);
+        if ($model === null) {
+            throw new RuntimeException("Country {$enum->getCountrySubdivisionData()->name} not found");
+        }
+        $model->osm_sync_at = $syncAt;
         $model->save();
     }
 }

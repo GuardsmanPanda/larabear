@@ -3,7 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Locale\Enum;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\Interface\BearDatabaseBackedEnumInterface;
-use GuardsmanPanda\Larabear\Infrastructure\Locale\Crud\LarabearCountrySubdivisionCrud;
+use GuardsmanPanda\Larabear\Infrastructure\Locale\Crud\BearCountrySubdivisionCrud;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Data\BearCountrySubdivisionData;
 
 enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterface {
@@ -1351,7 +1351,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
     public static function syncToDatabase(): void {
         foreach (self::cases() as $case) {
-            LarabearCountrySubdivisionCrud::syncToDatabase($case);
+            BearCountrySubdivisionCrud::syncToDatabase($case);
         }
     }
 }
