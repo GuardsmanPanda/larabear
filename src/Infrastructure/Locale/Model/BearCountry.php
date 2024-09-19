@@ -70,6 +70,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $currency_name
  * @property string $currency_symbol
  * @property string|null $dependency_status
+ * @property CarbonInterface|null $osm_sync_at
  * @property ArrayObject<int,string> $cca2_borders_json
  *
  * AUTO GENERATED FILE DO NOT MODIFY
@@ -84,6 +85,7 @@ final class BearCountry extends Model {
     /** @var array<string, string> $casts */
     protected $casts = [
         'cca2_borders_json' => AsArrayObject::class,
+        'osm_sync_at' => 'immutable_datetime',
     ];
 
     protected $guarded = ['cca2', 'updated_at', 'created_at', 'deleted_at'];

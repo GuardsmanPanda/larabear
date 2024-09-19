@@ -34,6 +34,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
             self::COMMUNITY => 'Community',
             self::CANTON => 'Canton',
             self::CITY => 'City',
+            self::COLLECTIVITY => 'Collectivity',
             self::COUNTRY => 'Country',
             self::COUNTY => 'County',
             self::DEPENDENCY => 'Dependency',

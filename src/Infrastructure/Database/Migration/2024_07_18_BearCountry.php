@@ -29,6 +29,7 @@ return new class extends Migration {
             $table->text(column: 'calling_code');
             $table->boolean(column: 'is_driving_side_right');
             $table->integer(column: 'osm_relation_id')->nullable();
+            $table->timestampTz(column: 'osm_sync_at')->nullable();
             $table->jsonb(column: 'cca2_borders_json');
             $table->text(column: 'dependency_status')->nullable();
             $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));

@@ -641,7 +641,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     // SOUTH AFRICA
     case ZA_EC = 'ZA-EC';
     case ZA_FS = 'ZA-FS';
-    case ZA_GP = 'ZA-GT';
+    case ZA_GP = 'ZA-GP';
     case ZA_KZN = 'ZA-KZN';
     case ZA_LP = 'ZA-LP';
     case ZA_MP = 'ZA-MP';
@@ -1067,7 +1067,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::NL_BQ1 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Bonaire', capital: 'Kralendijk', osm: 2324450, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
             self::NL_BQ2 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Saba', capital: 'The Bottom', osm: 2324451, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
             self::NL_BQ3 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Sint Eustatius', capital: 'Oranjestad', osm: 2324452, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
-            self::NL_CW => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Curaçao', capital: 'Willemstad', osm: 102406, type: BearCountrySubdivisionTypeEnum::COUNTRY),
+            self::NL_CW => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Curaçao', capital: 'Willemstad', osm: 1216719, type: BearCountrySubdivisionTypeEnum::COUNTRY),
             self::NL_DR => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Drenthe', capital: 'Assen', osm: 47540, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::NL_FL => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Flevoland', capital: 'Lelystad', osm: 47407, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::NL_FR => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Friesland', capital: 'Leeuwarden', osm: 47381, type: BearCountrySubdivisionTypeEnum::PROVINCE),
