@@ -9,6 +9,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
     case CANTON = 'CANTON';
     case CITY = 'CITY';
     case COMMUNITY = 'COMMUNITY';
+    case COLLECTIVITY = 'COLLECTIVITY';
     case COUNTRY = 'COUNTRY';
     case COUNTY = 'COUNTY';
     case DEPENDENCY = 'DEPENDENCY';

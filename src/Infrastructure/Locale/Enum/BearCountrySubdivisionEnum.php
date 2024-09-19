@@ -337,6 +337,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
 
     // FRANCE
+    case FR_976 = 'FR-976';
     case FR_ARA = 'FR-ARA';
     case FR_BFC = 'FR-BFC';
     case FR_BRE = 'FR-BRE';
@@ -1007,6 +1008,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
 
             // FRANCE
+            self::FR_976 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Mayotte', capital: 'Mamoudzou', osm: 1259885, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
             self::FR_ARA => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Auvergne-Rhône-Alps', capital: 'Lyon', osm: 3792877, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_BFC => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Burgundy-Free-County', capital: 'Dijon', osm: 3792878, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_BRE => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Brittany', capital: 'Rennes', osm: 102740, type: BearCountrySubdivisionTypeEnum::REGION),
@@ -1269,17 +1271,17 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
 
             // SAMOA
-            self::WS_AA => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'A\'ana', capital: 'Leulumoega', osm: 383891, type: BearCountrySubdivisionTypeEnum::DISTRICT),
-            self::WS_AL => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Aiga-i-le-Tai', capital: 'Mulifanua', osm: 383892, type: BearCountrySubdivisionTypeEnum::DISTRICT),
-            self::WS_AT => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Atua', capital: 'Lufilufi', osm: 383893, type: BearCountrySubdivisionTypeEnum::DISTRICT),
-            self::WS_FA => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Fa\'asaleleaga', capital: 'Safotulafai', osm: 383894, type: BearCountrySubdivisionTypeEnum::DISTRICT),
-            self::WS_GE => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Gaga\'emauga', capital: 'Saleaula', osm: 383895, type: BearCountrySubdivisionTypeEnum::DISTRICT),
-            self::WS_GI => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Gagaifomauga', capital: 'Aopo', osm: 383896, type: BearCountrySubdivisionTypeEnum::DISTRICT),
-            self::WS_PA => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Palauli', capital: 'Vailoa', osm: 383897, type: BearCountrySubdivisionTypeEnum::DISTRICT),
-            self::WS_SA => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Satupa\'itea', capital: 'Satupa\'itea', osm: 383898, type: BearCountrySubdivisionTypeEnum::DISTRICT),
-            self::WS_TU => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Tuamasaga', capital: 'Afenga', osm: 383899, type: BearCountrySubdivisionTypeEnum::DISTRICT),
-            self::WS_VF => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Va\'a-o-Fonoti', capital: 'Samamea', osm: 383900, type: BearCountrySubdivisionTypeEnum::DISTRICT),
-            self::WS_VS => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Vaisigano', capital: 'Asau', osm: 383901, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_AA => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'A\'ana', capital: 'Leulumoega', osm: 13285809, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_AL => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Aiga-i-le-Tai', capital: 'Mulifanua', osm: 13285778, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_AT => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Atua', capital: 'Lufilufi', osm: 13285780, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_FA => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Fa\'asaleleaga', capital: 'Safotulafai', osm: 13285392, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_GE => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Gaga\'emauga', capital: 'Saleaula', osm: 13285430, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_GI => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Gaga\'ifomauga', capital: 'Aopo', osm: 13285429, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_PA => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Palauli', capital: 'Vailoa', osm: 13285391, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_SA => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Satupa\'itea', capital: 'Satupa\'itea', osm: 13285390, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_TU => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Tuamasaga', capital: 'Afenga', osm: 13285808, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_VF => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Va\'a-o-Fonoti', capital: 'Samamea', osm: 13285779, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::WS_VS => new BearCountrySubdivisionData(cca2: BearCountryEnum::WS, name: 'Vaisigano', capital: 'Asau', osm: 13285389, type: BearCountrySubdivisionTypeEnum::DISTRICT),
 
 
             // YEMEN
