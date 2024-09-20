@@ -361,7 +361,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case GB_SCT = 'GB-SCT';
     case GB_WLS = 'GB-WLS';
     case IOT = 'IO';
-    case PCN = 'PNC';
+    case PCN = 'PCN';
     case SGS = 'SGS';
 
 
@@ -1483,8 +1483,8 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
 
             // VANUATU
-            self::VU_MAP => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Malampa', capital: '3765629', osm: 13285810, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::VU_PAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Penama', capital: 'Saratamata', osm: 3765606, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VU_MAP => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Malampa', capital: '3765629', osm: 3765629, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VU_PAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Penama', capital: 'Saratamata', osm: 3765629, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::VU_SAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Sanma', capital: 'Luganville', osm: 3765591, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::VU_SEE => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Shefa', capital: 'Port Vila', osm: 3765630, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::VU_TAE => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Tafea', capital: 'Isangel', osm: 3765631, type: BearCountrySubdivisionTypeEnum::PROVINCE),
