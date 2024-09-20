@@ -352,6 +352,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case FR_PDL = 'FR-PDL';
     case FR_PAC = 'FR-PAC';
     case FR_CP = 'FR-CP';
+    case FR_WF = 'FR-WF';
 
 
     // THE UNITED KINGDOM
@@ -597,6 +598,87 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case US_WI = 'US-WI';
     case US_WY = 'US-WY';
     case US_DC = 'US-DC';
+    case US_AS = 'US-AS';
+    case US_GU = 'US-GU';
+    case US_MP = 'US-MP';
+    case US_PR = 'US-PR';
+    case US_UM = 'US-UM';
+    case US_VI = 'US-VI';
+
+
+    // VIETNAM
+    case VN_01 = 'VN-01';
+    case VN_02 = 'VN-02';
+    case VN_03 = 'VN-03';
+    case VN_04 = 'VN-04';
+    case VN_05 = 'VN-05';
+    case VN_06 = 'VN-06';
+    case VN_07 = 'VN-07';
+    case VN_09 = 'VN-09';
+    case VN_13 = 'VN-13';
+    case VN_14 = 'VN-14';
+    case VN_18 = 'VN-18';
+    case VN_20 = 'VN-20';
+    case VN_21 = 'VN-21';
+    case VN_22 = 'VN-22';
+    case VN_23 = 'VN-23';
+    case VN_24 = 'VN-24';
+    case VN_25 = 'VN-25';
+    case VN_26 = 'VN-26';
+    case VN_27 = 'VN-27';
+    case VN_28 = 'VN-28';
+    case VN_29 = 'VN-29';
+    case VN_30 = 'VN-30';
+    case VN_31 = 'VN-31';
+    case VN_32 = 'VN-32';
+    case VN_33 = 'VN-33';
+    case VN_34 = 'VN-34';
+    case VN_35 = 'VN-35';
+    case VN_36 = 'VN-36';
+    case VN_37 = 'VN-37';
+    case VN_39 = 'VN-39';
+    case VN_40 = 'VN-40';
+    case VN_41 = 'VN-41';
+    case VN_43 = 'VN-43';
+    case VN_44 = 'VN-44';
+    case VN_45 = 'VN-45';
+    case VN_46 = 'VN-46';
+    case VN_47 = 'VN-47';
+    case VN_49 = 'VN-49';
+    case VN_50 = 'VN-50';
+    case VN_51 = 'VN-51';
+    case VN_52 = 'VN-52';
+    case VN_53 = 'VN-53';
+    case VN_54 = 'VN-54';
+    case VN_55 = 'VN-55';
+    case VN_56 = 'VN-56';
+    case VN_57 = 'VN-57';
+    case VN_58 = 'VN-58';
+    case VN_59 = 'VN-59';
+    case VN_61 = 'VN-61';
+    case VN_63 = 'VN-63';
+    case VN_66 = 'VN-66';
+    case VN_67 = 'VN-67';
+    case VN_68 = 'VN-68';
+    case VN_69 = 'VN-69';
+    case VN_70 = 'VN-70';
+    case VN_71 = 'VN-71';
+    case VN_72 = 'VN-72';
+    case VN_73 = 'VN-73';
+    case VN_CT = 'VN-CT';
+    case VN_DN = 'VN-DN';
+    case VN_HN = 'VN-HN';
+    case VN_HP = 'VN-HP';
+    case VN_SG = 'VN-SG';
+
+
+    // VANUATU
+    case VU_MAP = 'VU-MAP';
+    case VU_PAM = 'VU-PAM';
+    case VU_SAM = 'VU-SAM';
+    case VU_SEE = 'VU-SEE';
+    case VU_TAE = 'VU-TAE';
+    case VU_TOB = 'VU-TOB';
 
 
     // SAMOA
@@ -1023,6 +1105,8 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::FR_PDL => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Lands of the Loire', capital: 'Nantes', osm: 8650, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_PAC => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Provence-Alps-Azure Coast', capital: 'Marseille', osm: 8654, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_CP => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Clipperton', capital: '', osm: 2573009, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
+            self::FR_WF => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Wallis and Futuna', capital: 'Mata-Utu', osm: 3412448, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
+
 
 
             // THE UNITED KINGDOM
@@ -1063,11 +1147,9 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
 
             // NETHERLANDS
-            self::NL_AW => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Aruba', capital: 'Oranjestad', osm: 1231749, type: BearCountrySubdivisionTypeEnum::COUNTRY),
             self::NL_BQ1 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Bonaire', capital: 'Kralendijk', osm: 2324450, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
             self::NL_BQ2 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Saba', capital: 'The Bottom', osm: 2324451, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
             self::NL_BQ3 => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Sint Eustatius', capital: 'Oranjestad', osm: 2324452, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
-            self::NL_CW => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Curaçao', capital: 'Willemstad', osm: 1216719, type: BearCountrySubdivisionTypeEnum::COUNTRY),
             self::NL_DR => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Drenthe', capital: 'Assen', osm: 47540, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::NL_FL => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Flevoland', capital: 'Lelystad', osm: 47407, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::NL_FR => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Friesland', capital: 'Leeuwarden', osm: 47381, type: BearCountrySubdivisionTypeEnum::PROVINCE),
@@ -1077,7 +1159,6 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::NL_NB => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'North Brabant', capital: 'Den Bosch', osm: 47696, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::NL_NH => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'North Holland', capital: 'Haarlem', osm: 47654, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::NL_OV => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Overijssel', capital: 'Zwolle', osm: 47608, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::NL_SX => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Sint Maarten', capital: 'Philipsburg', osm: 1231790, type: BearCountrySubdivisionTypeEnum::COUNTRY),
             self::NL_UT => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Utrecht', capital: 'Utrecht', osm: 47667, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::NL_ZE => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'Zeeland', capital: 'Middelburg', osm: 47806, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::NL_ZH => new BearCountrySubdivisionData(cca2: BearCountryEnum::NL, name: 'South Holland', capital: 'The Hague', osm: 47772, type: BearCountrySubdivisionTypeEnum::PROVINCE),
@@ -1268,6 +1349,88 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::US_WI => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Wisconsin', capital: 'Madison', osm: 165466, type: BearCountrySubdivisionTypeEnum::STATE),
             self::US_WY => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Wyoming', capital: 'Cheyenne', osm: 161991, type: BearCountrySubdivisionTypeEnum::STATE),
             self::US_DC => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'District of Columbia', capital: 'Washington', osm: 162069, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::US_AS => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'American Samoa', capital: 'Pago Pago', osm: 2177187, type: BearCountrySubdivisionTypeEnum::OUTLYING_AREA),
+            self::US_GU => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Guam', capital: 'Hagåtña', osm: 306001, type: BearCountrySubdivisionTypeEnum::OUTLYING_AREA),
+            self::US_MP => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Northern Mariana Islands', capital: 'Saipan', osm: 306004, type: BearCountrySubdivisionTypeEnum::OUTLYING_AREA),
+            self::US_PR => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Puerto Rico', capital: 'San Juan', osm: 4422604, type: BearCountrySubdivisionTypeEnum::OUTLYING_AREA),
+            self::US_UM => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'United States Minor Outlying Islands', capital: '', osm: 2185386, type: BearCountrySubdivisionTypeEnum::OUTLYING_AREA),
+            self::US_VI => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Virgin Islands', capital: 'Charlotte Amalie', osm: 286898, type: BearCountrySubdivisionTypeEnum::OUTLYING_AREA),
+
+
+
+            // VIETNAM
+            self::VN_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Lai Châu', capital: 'Lai Châu', osm: 1903322, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Lào Cai', capital: 'Lào Cai', osm: 1903400, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Hà Giang', capital: 'Vị Thanh', osm: 1903478, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Cao Bằng', capital: 'Cao Bằng', osm: 1844412, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Sơn La', capital: 'Sơn La', osm: 1903291, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Yên Bái', capital: 'Yên Bái', osm: 1903199, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Tuyên Quang', capital: 'Tuyên Quang', osm: 1903418, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_09 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Lạng Sơn', capital: 'Lạng Sơn', osm: 5522596, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_13 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Quảng Ninh', capital: 'Hạ Long', osm: 1902947, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_14 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Hòa Bình', capital: 'Hòa Bình', osm: 1902973, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_18 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Ninh Bình', capital: 'Ninh Bình', osm: 1900963, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_20 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Thái Bình', capital: 'Thái Bình', osm: 1901019, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_21 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Thanh Hóa', capital: 'Thanh Hóa', osm: 1898590, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_22 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Nghệ An', capital: 'Vinh', osm: 1898509, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_23 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Hà Tĩnh', capital: 'Hà Tĩnh', osm: 1898458, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_24 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Quảng Bình', capital: 'Đồng Hới', osm: 1896050, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_25 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Quảng Trị', capital: 'Đông Hà', osm: 1895630, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_26 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Thừa Thiên-Huế', capital: 'Huế', osm: 1891483, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_27 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Quảng Nam', capital: 'Tam Kỳ', osm: 1891352, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_28 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Kon Tum', capital: 'Kon Tum', osm: 1879515, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_29 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Quảng Ngãi', capital: 'Quảng Ngãi', osm: 1890793, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_30 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Gia Lai', capital: 'Pleiku', osm: 1884018, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_31 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Bình Định', capital: 'Quy Nhon', osm: 1889794, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_32 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Phú Yên', capital: 'Tuy Hòa', osm: 1889204, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_33 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Đắk Lắk', capital: 'Buôn Ma Thuột', osm: 1884034, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_34 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Khánh Hòa', capital: 'Nha Trang', osm: 1887959, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_35 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Lâm Đồng', capital: 'Đà Lạt', osm: 1885367, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_36 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Ninh Thuận', capital: 'Phan Rang–Tháp Chàm', osm: 1886159, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_37 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Tây Ninh', capital: 'Tây Ninh', osm: 1898961, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_39 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Đồng Nai', capital: 'Biên Hòa', osm: 1904421, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_40 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Bình Thuận', capital: 'Phan Thiết', osm: 1904231, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_41 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Long An', capital: 'Tân An', osm: 1877236, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_43 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Bà Rịa-Vũng Tàu', capital: 'Bà Rịa', osm: 1904296, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_44 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'An Giang', capital: 'An Giang', osm: 1875748, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_45 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Đồng Tháp', capital: 'Cao Lãnh', osm: 1875866, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_46 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Tiền Giang', capital: 'Mỹ Tho', osm: 1876011, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_47 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Kiên Giang', capital: 'Rạch Giá', osm: 1874471, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_49 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Vĩnh Long', capital: 'Vĩnh Long', osm: 1875887, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_50 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Bến Tre', capital: 'Bến Tre', osm: 1875968, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_51 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Trà Vinh', capital: 'Trà Vinh', osm: 1873642, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_52 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Sóc Trăng', capital: 'Sóc Trăng', osm: 1873632, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_53 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Bắc Kạn', capital: 'Bắc Kạn', osm: 1903471, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_54 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Bắc Giang', capital: 'Bắc Giang', osm: 1902941, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_55 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Bạc Liêu', capital: 'Bạc Liêu', osm: 1873533, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_56 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Bắc Ninh', capital: 'Bắc Ninh', osm: 1902690, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_57 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Bình Dương', capital: 'Thủ Dầu Một', osm: 1906037, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_58 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Bình Phước', capital: 'Đồng Xoài', osm: 1898841, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_59 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Cà Mau', capital: 'Cà Mau', osm: 1873490, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_61 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Hải Dương', capital: 'Hải Dương', osm: 1902686, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_63 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Hà Nam', capital: 'Phủ Lý', osm: 1901010, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_66 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Hưng Yên', capital: 'Hưng Yên', osm: 1901032, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_67 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Nam Định', capital: 'Nam Định', osm: 1901008, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_68 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Phú Thọ', capital: 'Việt Trì', osm: 1902930, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_69 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Thái Nguyên', capital: 'Thái Nguyên', osm: 1902967, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_70 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Vĩnh Phúc', capital: 'Vĩnh Yên', osm: 1902889, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_71 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Điện Biên', capital: 'Điện Biên Phủ', osm: 1903340, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_72 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Đắk Nông', capital: 'Gia Nghĩa', osm: 1884042, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_73 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Hậu Giang', capital: 'Hậu Giang', osm: 1874249, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VN_CT => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Cần Thơ', capital: 'Cần Thơ', osm: 1874283, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::VN_DN => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Đà Nẵng', capital: 'Đà Nẵng', osm: 1891418, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::VN_HN => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Hà Nội', capital: 'Hà Nội', osm: 1903516, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::VN_HP => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Hải Phòng', capital: 'Hải Phòng', osm: 1902682, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::VN_SG => new BearCountrySubdivisionData(cca2: BearCountryEnum::VN, name: 'Hồ Chí Minh', capital: 'Hồ Chí Minh', osm: 1973756, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+
+
+            // VANUATU
+            self::VU_MAP => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Malampa', capital: '3765629', osm: 13285810, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VU_PAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Penama', capital: 'Saratamata', osm: 3765606, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VU_SAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Sanma', capital: 'Luganville', osm: 3765591, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VU_SEE => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Shefa', capital: 'Port Vila', osm: 3765630, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VU_TAE => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Tafea', capital: 'Isangel', osm: 3765631, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VU_TOB => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Torba', capital: 'Sola', osm: 3765596, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
             // SAMOA
