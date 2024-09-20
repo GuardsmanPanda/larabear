@@ -360,6 +360,9 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case GB_NIR = 'GB-NIR';
     case GB_SCT = 'GB-SCT';
     case GB_WLS = 'GB-WLS';
+    case IOT = 'IO';
+    case PCN = 'PNC';
+    case SGS = 'SGS';
 
 
     // IRELAND
@@ -393,11 +396,9 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
 
     // The Netherlands
-    case NL_AW = 'NL-AW';
     case NL_BQ1 = 'NL-BQ1';
     case NL_BQ2 = 'NL-BQ2';
     case NL_BQ3 = 'NL-BQ3';
-    case NL_CW = 'NL-CW';
     case NL_DR = 'NL-DR';
     case NL_FL = 'NL-FL';
     case NL_FR = 'NL-FR';
@@ -407,7 +408,6 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case NL_NB = 'NL-NB';
     case NL_NH = 'NL-NH';
     case NL_OV = 'NL-OV';
-    case NL_SX = 'NL-SX';
     case NL_UT = 'NL-UT';
     case NL_ZE = 'NL-ZE';
     case NL_ZH = 'NL-ZH';
@@ -604,6 +604,34 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case US_PR = 'US-PR';
     case US_UM = 'US-UM';
     case US_VI = 'US-VI';
+
+
+    // VENEZUELA
+    case VE_A = 'VE-A';
+    case VE_B = 'VE-B';
+    case VE_C = 'VE-C';
+    case VE_D = 'VE-D';
+    case VE_E = 'VE-E';
+    case VE_F = 'VE-F';
+    case VE_G = 'VE-G';
+    case VE_H = 'VE-H';
+    case VE_I = 'VE-I';
+    case VE_J = 'VE-J';
+    case VE_K = 'VE-K';
+    case VE_L = 'VE-L';
+    case VE_M = 'VE-M';
+    case VE_N = 'VE-N';
+    case VE_O = 'VE-O';
+    case VE_P = 'VE-P';
+    case VE_R = 'VE-R';
+    case VE_S = 'VE-S';
+    case VE_T = 'VE-T';
+    case VE_U = 'VE-U';
+    case VE_V = 'VE-V';
+    case VE_W = 'VE-W';
+    case VE_X = 'VE-X';
+    case VE_Y = 'VE-Y';
+    case VE_Z = 'VE-Z';
 
 
     // VIETNAM
@@ -1114,6 +1142,9 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::GB_NIR => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Northern Ireland', capital: 'Belfast', osm: 156393, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::GB_SCT => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Scotland', capital: 'Edinburgh', osm: 58446, type: BearCountrySubdivisionTypeEnum::COUNTRY),
             self::GB_WLS => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Wales', capital: 'Cardiff', osm: 58437, type: BearCountrySubdivisionTypeEnum::COUNTRY),
+            self::IOT => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'British Indian Ocean Territory', capital: 'Diego Garcia', osm: 1993867, type: BearCountrySubdivisionTypeEnum::TERRITORY),
+            self::PCN => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Pitcairn Islands', capital: 'Adamstown', osm: 2185375, type: BearCountrySubdivisionTypeEnum::TERRITORY),
+            self::SGS => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'South Georgia and the South Sandwich Islands', capital: 'King Edward Point', osm: 1983628, type: BearCountrySubdivisionTypeEnum::TERRITORY),
 
 
             // IRELAND
@@ -1356,6 +1387,33 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::US_UM => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'United States Minor Outlying Islands', capital: '', osm: 2185386, type: BearCountrySubdivisionTypeEnum::OUTLYING_AREA),
             self::US_VI => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Virgin Islands', capital: 'Charlotte Amalie', osm: 286898, type: BearCountrySubdivisionTypeEnum::OUTLYING_AREA),
 
+
+            // VENEZUELA
+            self::VE_A => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Distrito Capital', capital: 'Caracas', osm: 2444378, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::VE_B => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Anzoátegui', capital: 'Barcelona', osm: 2267150, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_C => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Apure', capital: 'San Fernando de Apure', osm: 3395162, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_D => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Aragua', capital: 'Maracay', osm: 272746, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_E => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Barinas', capital: 'Barinas', osm: 3763132, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_F => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Bolívar', capital: 'Ciudad Bolívar', osm: 2269155, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_G => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Carabobo', capital: 'Valencia', osm: 272745, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_H => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Cojedes', capital: 'San Carlos', osm: 272662, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_I => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Falcón', capital: 'Coro', osm: 2269792, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_J => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Guárico', capital: 'San Juan de Los Morros', osm: 272663, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_K => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Lara', capital: 'Barquisimeto', osm: 272744, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_L => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Mérida', capital: 'Mérida', osm: 272635, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_M => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Miranda', capital: 'Los Teques', osm: 272673, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_N => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Monagas', capital: 'Maturín', osm: 272670, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_O => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Nueva Esparta', capital: 'La Asunción', osm: 2269770, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_P => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Portuguesa', capital: 'Guanare', osm: 272661, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_R => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Sucre', capital: 'Cumaná', osm: 272671, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_S => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Táchira', capital: 'San Cristóbal', osm: 272633, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_T => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Trujillo', capital: 'Trujillo', osm: 272634, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_U => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Yaracuy', capital: 'San Felipe', osm: 272743, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_V => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Zulia', capital: 'Maracaibo', osm: 272632, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_W => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Dependencias Federales', capital: 'Isla La Tortuga', osm: 3399075, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
+            self::VE_X => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'La Guaira', capital: 'La Guaira', osm: 2442704, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_Y => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Delta Amacuro', capital: 'Tucupita', osm: 272669, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::VE_Z => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Amazonas', capital: 'Puerto Ayacucho', osm: 2269815, type: BearCountrySubdivisionTypeEnum::STATE),
 
 
             // VIETNAM

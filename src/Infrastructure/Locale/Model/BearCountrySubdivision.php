@@ -59,7 +59,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $iso_3166
  * @property string $created_at
  * @property string $updated_at
- * @property CarbonInterface|null $osm_sync_at
  * @property BearCountryEnum $country_cca2
  * @property BearCountrySubdivisionTypeEnum $country_subdivision_type_enum
  *
@@ -79,7 +78,6 @@ final class BearCountrySubdivision extends Model {
     protected $casts = [
         'country_cca2' => BearCountryEnum::class,
         'country_subdivision_type_enum' => BearCountrySubdivisionTypeEnum::class,
-        'osm_sync_at' => 'immutable_datetime',
     ];
 
     /** @return BelongsTo<BearCountry, self> */

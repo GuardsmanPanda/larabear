@@ -22,7 +22,6 @@ final readonly class BearCountryData {
         public string      $calling_code,
         public bool        $is_driving_side_right,
         public int|null    $osm_relation_id,
-        public string|null $dependency_status,
         public array       $borders,
     ) {
     }
