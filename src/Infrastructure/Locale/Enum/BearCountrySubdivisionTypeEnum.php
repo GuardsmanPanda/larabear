@@ -31,6 +31,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
     case REPUBLIC = 'REPUBLIC';
     case STATE = 'STATE';
     case TERRITORY = 'TERRITORY';
+    case TOWN = 'TOWN';
 
 
     public function getName(): string {
@@ -60,6 +61,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
             self::REPUBLIC => 'Republic',
             self::STATE => 'State',
             self::TERRITORY => 'Territory',
+            self::TOWN => 'Town',
         };
     }
 

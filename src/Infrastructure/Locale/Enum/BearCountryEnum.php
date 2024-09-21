@@ -17,7 +17,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
     case AO = 'AO';
     case AQ = 'AQ';
     case AR = 'AR';
-    case AS = 'AS';
     case AT = 'AT';
     case AU = 'AU';
     case AW = 'AW';
@@ -94,12 +93,9 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
     case GP = 'GP';
     case GQ = 'GQ';
     case GR = 'GR';
-    case GS = 'GS';
     case GT = 'GT';
-    case GU = 'GU';
     case GW = 'GW';
     case GY = 'GY';
-    case HK = 'HK';
     case HM = 'HM';
     case HN = 'HN';
     case HR = 'HR';
@@ -110,7 +106,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
     case IL = 'IL';
     case IM = 'IM';
     case IN = 'IN';
-    case IO = 'IO';
     case IQ = 'IQ';
     case IR = 'IR';
     case IS = 'IS';
@@ -152,8 +147,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
     case ML = 'ML';
     case MM = 'MM';
     case MN = 'MN';
-    case MO = 'MO';
-    case MP = 'MP';
     case MQ = 'MQ';
     case MR = 'MR';
     case MS = 'MS';
@@ -185,8 +178,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
     case PK = 'PK';
     case PL = 'PL';
     case PM = 'PM';
-    case PN = 'PN';
-    case PR = 'PR';
     case PS = 'PS';
     case PT = 'PT';
     case PW = 'PW';
@@ -235,7 +226,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
     case TZ = 'TZ';
     case UA = 'UA';
     case UG = 'UG';
-    case UM = 'UM';
     case US = 'US';
     case UY = 'UY';
     case UZ = 'UZ';
@@ -243,7 +233,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
     case VC = 'VC';
     case VE = 'VE';
     case VG = 'VG';
-    case VI = 'VI';
     case VN = 'VN';
     case VU = 'VU';
     case WF = 'WF';
@@ -326,13 +315,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
                 currency_code: "ARS", currency_name: "Argentine peso", currency_symbol: "$",
                 calling_code: "+54", is_driving_side_right: true, osm_relation_id: 286393,
                 borders: ['BO', 'BR', 'CL', 'PY', 'UY']
-            ),
-            self::AS => new BearCountryData(
-                cca2: "AS", cca3: "ASM", name: "American Samoa", capital: "Pago Pago", tld: ".as",
-                area_km2: 199, area_rank: 221, population: 55197, population_rank: 212,
-                currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
-                calling_code: "+1684", is_driving_side_right: true, osm_relation_id: 2177187,
-                borders: []
             ),
             self::AT => new BearCountryData(
                 cca2: "AT", cca3: "AUT", name: "Austria", capital: "Vienna", tld: ".at",
@@ -577,7 +559,7 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
                 area_km2: 9706961, area_rank: 4, population: 1402112000, population_rank: 1,
                 currency_code: "CNY", currency_name: "Chinese yuan", currency_symbol: "¥",
                 calling_code: "+86", is_driving_side_right: true, osm_relation_id: 270056,
-                borders: ['AF', 'BT', 'MM', 'HK', 'IN', 'KZ', 'NP', 'KP', 'KG', 'LA', 'MO', 'MN', 'PK', 'RU', 'TJ', 'VN']
+                borders: ['AF', 'BT', 'MM', 'IN', 'KZ', 'NP', 'KP', 'KG', 'LA', 'MN', 'PK', 'RU', 'TJ', 'VN']
             ),
             self::CO => new BearCountryData(
                 cca2: "CO", cca3: "COL", name: "Colombia", capital: "Bogotá", tld: ".co",
@@ -866,26 +848,12 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
                 calling_code: "+30", is_driving_side_right: true, osm_relation_id: 192307,
                 borders: ['AL', 'BG', 'TR', 'MK']
             ),
-            self::GS => new BearCountryData(
-                cca2: "GS", cca3: "SGS", name: "South Georgia", capital: "King Edward Point", tld: ".gs",
-                area_km2: 3903, area_rank: 178, population: 30, population_rank: 248,
-                currency_code: "SHP", currency_name: "Saint Helena pound", currency_symbol: "£",
-                calling_code: "+500", is_driving_side_right: true, osm_relation_id: 1983628,
-                borders: []
-            ),
             self::GT => new BearCountryData(
                 cca2: "GT", cca3: "GTM", name: "Guatemala", capital: "Guatemala City", tld: ".gt",
                 area_km2: 108889, area_rank: 108, population: 16858333, population_rank: 68,
                 currency_code: "GTQ", currency_name: "Guatemalan quetzal", currency_symbol: "Q",
                 calling_code: "+502", is_driving_side_right: true, osm_relation_id: 1521463,
                 borders: ['BZ', 'SV', 'HN', 'MX']
-            ),
-            self::GU => new BearCountryData(
-                cca2: "GU", cca3: "GUM", name: "Guam", capital: "Hagåtña", tld: ".gu",
-                area_km2: 549, area_rank: 199, population: 168783, population_rank: 191,
-                currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
-                calling_code: "+1671", is_driving_side_right: true, osm_relation_id: 306001,
-                borders: []
             ),
             self::GW => new BearCountryData(
                 cca2: "GW", cca3: "GNB", name: "Guinea-Bissau", capital: "Bissau", tld: ".gw",
@@ -900,13 +868,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
                 currency_code: "GYD", currency_name: "Guyanese dollar", currency_symbol: "$",
                 calling_code: "+592", is_driving_side_right: false, osm_relation_id: 287083,
                 borders: ['BR', 'SR', 'VE']
-            ),
-            self::HK => new BearCountryData(
-                cca2: "HK", cca3: "HKG", name: "Hong Kong", capital: "City of Victoria", tld: ".hk",
-                area_km2: 1104, area_rank: 188, population: 7500700, population_rank: 103,
-                currency_code: "HKD", currency_name: "Hong Kong dollar", currency_symbol: "$",
-                calling_code: "+852", is_driving_side_right: false, osm_relation_id: 913110,
-                borders: ['CN']
             ),
             self::HM => new BearCountryData(
                 cca2: "HM", cca3: "HMD", name: "Heard Island and McDonald Islands", capital: "", tld: ".hm",
@@ -977,13 +938,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
                 currency_code: "INR", currency_name: "Indian rupee", currency_symbol: "₹",
                 calling_code: "+91", is_driving_side_right: false, osm_relation_id: 304716,
                 borders: ['BD', 'BT', 'MM', 'CN', 'NP', 'PK']
-            ),
-            self::IO => new BearCountryData(
-                cca2: "IO", cca3: "IOT", name: "British Indian Ocean Territory", capital: "Diego Garcia", tld: ".io",
-                area_km2: 60, area_rank: 233, population: 3000, population_rank: 235,
-                currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
-                calling_code: "+246", is_driving_side_right: true, osm_relation_id: 1993867,
-                borders: []
             ),
             self::IQ => new BearCountryData(
                 cca2: "IQ", cca3: "IRQ", name: "Iraq", capital: "Baghdad", tld: ".iq",
@@ -1272,20 +1226,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
                 calling_code: "+976", is_driving_side_right: true, osm_relation_id: 161033,
                 borders: ['CN', 'RU']
             ),
-            self::MO => new BearCountryData(
-                cca2: "MO", cca3: "MAC", name: "Macau", capital: "", tld: ".mo",
-                area_km2: 30, area_rank: 241, population: 649342, population_rank: 168,
-                currency_code: "MOP", currency_name: "Macanese pataca", currency_symbol: "P",
-                calling_code: "+853", is_driving_side_right: false, osm_relation_id: 1867188,
-                borders: ['CN']
-            ),
-            self::MP => new BearCountryData(
-                cca2: "MP", cca3: "MNP", name: "Northern Mariana Islands", capital: "Saipan", tld: ".mp",
-                area_km2: 464, area_rank: 201, population: 57557, population_rank: 210,
-                currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
-                calling_code: "+1670", is_driving_side_right: true, osm_relation_id: 306004,
-                borders: []
-            ),
             self::MQ => new BearCountryData(
                 cca2: "MQ", cca3: "MTQ", name: "Martinique", capital: "Fort-de-France", tld: ".mq",
                 area_km2: 1128, area_rank: 187, population: 378243, population_rank: 180,
@@ -1503,20 +1443,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
                 calling_code: "+508", is_driving_side_right: true, osm_relation_id: 3406826,
                 borders: []
             ),
-            self::PN => new BearCountryData(
-                cca2: "PN", cca3: "PCN", name: "Pitcairn Islands", capital: "Adamstown", tld: ".pn",
-                area_km2: 47, area_rank: 237, population: 56, population_rank: 247,
-                currency_code: "NZD", currency_name: "New Zealand dollar", currency_symbol: "$",
-                calling_code: "+64", is_driving_side_right: false, osm_relation_id: 2185375,
-                borders: []
-            ),
-            self::PR => new BearCountryData(
-                cca2: "PR", cca3: "PRI", name: "Puerto Rico", capital: "San Juan", tld: ".pr",
-                area_km2: 8870, area_rank: 171, population: 3194034, population_rank: 136,
-                currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
-                calling_code: "+1787", is_driving_side_right: true, osm_relation_id: 4422604,
-                borders: []
-            ),
             self::PS => new BearCountryData(
                 cca2: "PS", cca3: "PSE", name: "Palestine", capital: "Ramallah / Jerusalem", tld: ".ps",
                 area_km2: 6220, area_rank: 173, population: 4803269, population_rank: 127,
@@ -1633,7 +1559,7 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
                 cca2: "SH", cca3: "SHN", name: "Saint Helena, Ascension and Tristan da Cunha", capital: "Jamestown", tld: ".sh",
                 area_km2: 394, area_rank: 208, population: 53192, population_rank: 213,
                 currency_code: "GBP", currency_name: "Pound sterling", currency_symbol: "£",
-                calling_code: "+290", is_driving_side_right: false, osm_relation_id: 155987,
+                calling_code: "+290", is_driving_side_right: false, osm_relation_id: 1964272,
                 borders: []
             ),
             self::SI => new BearCountryData(
@@ -1853,13 +1779,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
                 calling_code: "+256", is_driving_side_right: false, osm_relation_id: 192796,
                 borders: ['CD', 'KE', 'RW', 'SS', 'TZ']
             ),
-            self::UM => new BearCountryData(
-                cca2: "UM", cca3: "UMI", name: "United States Minor Outlying Islands", capital: "Washington DC", tld: ".us",
-                area_km2: 34, area_rank: 240, population: 300, population_rank: 246,
-                currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
-                calling_code: "+268", is_driving_side_right: true, osm_relation_id: 2185386,
-                borders: []
-            ),
             self::US => new BearCountryData(
                 cca2: "US", cca3: "USA", name: "United States", capital: "Washington, D.C.", tld: ".us",
                 area_km2: 9372610, area_rank: 5, population: 329484123, population_rank: 3,
@@ -1907,13 +1826,6 @@ enum BearCountryEnum: string implements BearDatabaseBackedEnumInterface {
                 area_km2: 151, area_rank: 225, population: 30237, population_rank: 223,
                 currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
                 calling_code: "+1284", is_driving_side_right: false, osm_relation_id: 285454,
-                borders: []
-            ),
-            self::VI => new BearCountryData(
-                cca2: "VI", cca3: "VIR", name: "United States Virgin Islands", capital: "Charlotte Amalie", tld: ".vi",
-                area_km2: 347, area_rank: 211, population: 106290, population_rank: 198,
-                currency_code: "USD", currency_name: "United States dollar", currency_symbol: "$",
-                calling_code: "+1340", is_driving_side_right: true, osm_relation_id: 286898,
                 borders: []
             ),
             self::VN => new BearCountryData(

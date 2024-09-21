@@ -173,6 +173,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case AU_TAS = 'AU-TAS';
     case AU_VIC = 'AU-VIC';
     case AU_WA = 'AU-WA';
+    case CCK = 'CCK';
 
 
     // AZERBAIJAN
@@ -367,6 +368,40 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case BI_RY = 'BI-RY';
 
 
+    // BENIN
+    case BJ_AL = 'BJ-AL';
+    case BJ_AK = 'BJ-AK';
+    case BJ_AQ = 'BJ-AQ';
+    case BJ_BO = 'BJ-BO';
+    case BJ_CO = 'BJ-CO';
+    case BJ_DO = 'BJ-DO';
+    case BJ_KO = 'BJ-KO';
+    case BJ_LI = 'BJ-LI';
+    case BJ_MO = 'BJ-MO';
+    case BJ_OU = 'BJ-OU';
+    case BJ_PL = 'BJ-PL';
+    case BJ_ZO = 'BJ-ZO';
+
+
+    // BRUNEI
+    case BN_BE = 'BN-BE';
+    case BN_BM = 'BN-BM';
+    case BN_TE = 'BN-TE';
+    case BN_TU = 'BN-TU';
+
+
+    // BOLIVIA
+    case BO_B = 'BO-B';
+    case BO_C = 'BO-C';
+    case BO_H = 'BO-H';
+    case BO_L = 'BO-L';
+    case BO_N = 'BO-N';
+    case BO_O = 'BO-O';
+    case BO_P = 'BO-P';
+    case BO_S = 'BO-S';
+    case BO_T = 'BO-T';
+
+
     // BRAZIL
     case BR_AC = 'BR-AC';
     case BR_AL = 'BR-AL';
@@ -397,6 +432,83 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case BR_TO = 'BR-TO';
 
 
+    // BAHAMAS
+    case BS_AK = 'BS-AK';
+    case BS_BI = 'BS-BI';
+    case BS_BP = 'BS-BP';
+    case BS_BY = 'BS-BY';
+    case BS_CE = 'BS-CE';
+    case BS_CI = 'BS-CI';
+    case BS_CK = 'BS-CK';
+    case BS_CO = 'BS-CO';
+    case BS_CS = 'BS-CS';
+    case BS_EG = 'BS-EG';
+    case BS_EX = 'BS-EX';
+    case BS_FP = 'BS-FP';
+    case BS_GC = 'BS-GC';
+    case BS_HI = 'BS-HI';
+    case BS_HT = 'BS-HT';
+    case BS_IN = 'BS-IN';
+    case BS_LI = 'BS-LI';
+    case BS_MC = 'BS-MC';
+    case BS_MG = 'BS-MG';
+    case BS_MI = 'BS-MI';
+    case BS_NE = 'BS-NE';
+    case BS_NO = 'BS-NO';
+    case BS_NP = 'BS-NP';
+    case BS_NS = 'BS-NS';
+    case BS_RC = 'BS-RC';
+    case BS_RI = 'BS-RI';
+    case BS_SA = 'BS-SA';
+    case BS_SE = 'BS-SE';
+    case BS_SO = 'BS-SO';
+    case BS_SS = 'BS-SS';
+    case BS_SW = 'BS-SW';
+    case BS_WG = 'BS-WG';
+
+
+    // BHUTAN
+    case BT_11 = 'BT-11';
+    case BT_12 = 'BT-12';
+    case BT_13 = 'BT-13';
+    case BT_14 = 'BT-14';
+    case BT_15 = 'BT-15';
+    case BT_21 = 'BT-21';
+    case BT_22 = 'BT-22';
+    case BT_23 = 'BT-23';
+    case BT_24 = 'BT-24';
+    case BT_31 = 'BT-31';
+    case BT_32 = 'BT-32';
+    case BT_33 = 'BT-33';
+    case BT_34 = 'BT-34';
+    case BT_41 = 'BT-41';
+    case BT_42 = 'BT-42';
+    case BT_43 = 'BT-43';
+    case BT_44 = 'BT-44';
+    case BT_45 = 'BT-45';
+    case BT_GA = 'BT-GA';
+    case BT_TY = 'BT-TY';
+
+
+    // BOTSWANA
+    case BW_CE = 'BW-CE';
+    case BW_CH = 'BW-CH';
+    case BW_FR = 'BW-FR';
+    case BW_GA = 'BW-GA';
+    case BW_GH = 'BW-GH';
+    case BW_JW = 'BW-JW';
+    case BW_KG = 'BW-KG';
+    case BW_KL = 'BW-KL';
+    case BW_KW = 'BW-KW';
+    case BW_LO = 'BW-LO';
+    case BW_NE = 'BW-NE';
+    case BW_NW = 'BW-NW';
+    case BW_SP = 'BW-SP';
+    case BW_SE = 'BW-SE';
+    case BW_SO = 'BW-SO';
+    case BW_ST = 'BW-ST';
+
+
     // BELARUS
     case BY_BR = 'BY-BR';
     case BY_HM = 'BY-HM';
@@ -405,6 +517,15 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case BY_MA = 'BY-MA';
     case BY_MI = 'BY-MI';
     case BY_VI = 'BY-VI';
+
+
+    // BELIZE
+    case BZ_BZ = 'BZ-BZ';
+    case BZ_CY = 'BZ-CY';
+    case BZ_CZL = 'BZ-CZL';
+    case BZ_OW = 'BZ-OW';
+    case BZ_SC = 'BZ-SC';
+    case BZ_TOL = 'BZ-TOL';
 
 
     // Canada
@@ -506,6 +627,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case FR_OCC = 'FR-OCC';
     case FR_PDL = 'FR-PDL';
     case FR_PAC = 'FR-PAC';
+    case FR_BL = 'FR-BL';
     case FR_CP = 'FR-CP';
     case FR_WF = 'FR-WF';
 
@@ -1164,6 +1286,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::AU_TAS => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Tasmania', capital: 'Hobart', osm: 2369652, type: BearCountrySubdivisionTypeEnum::STATE),
             self::AU_VIC => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Victoria', capital: 'Melbourne', osm: 2316741, type: BearCountrySubdivisionTypeEnum::STATE),
             self::AU_WA => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Western Australia', capital: 'Perth', osm: 2316598, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::CCK => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Cocos (Keeling) Islands', capital: 'West Island', osm: 82636, type: BearCountrySubdivisionTypeEnum::TERRITORY),
 
 
             // AZERBAIJAN
@@ -1358,6 +1481,40 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::BI_RY => new BearCountrySubdivisionData(cca2: BearCountryEnum::BI, name: 'Ruyigi', capital: 'Ruyigi', osm: 1695105, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
+            // BENIN
+            self::BJ_AL => new BearCountrySubdivisionData(cca2: BearCountryEnum::BJ, name: 'Alibori', capital: 'Kandi', osm: 2803879, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BJ_AK => new BearCountrySubdivisionData(cca2: BearCountryEnum::BJ, name: 'Atakora', capital: 'Natitingou', osm: 2845850, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BJ_AQ => new BearCountrySubdivisionData(cca2: BearCountryEnum::BJ, name: 'Atlantique', capital: 'Ouidah', osm: 2848205, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BJ_BO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BJ, name: 'Borgou', capital: 'Parakou', osm: 2803880, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BJ_CO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BJ, name: 'Collines', capital: 'Savalou', osm: 2845888, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BJ_DO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BJ, name: 'Donga', capital: 'Djougou', osm: 2845865, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BJ_KO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BJ, name: 'Couffo', capital: 'Aplahoué', osm: 2846891, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BJ_LI => new BearCountrySubdivisionData(cca2: BearCountryEnum::BJ, name: 'Littoral', capital: 'Cotonou', osm: 2848206, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BJ_MO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BJ, name: 'Mono', capital: 'Lokossa', osm: 2848207, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BJ_OU => new BearCountrySubdivisionData(cca2: BearCountryEnum::BJ, name: 'Ouémé', capital: 'Porto-Novo', osm: 2848208, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BJ_PL => new BearCountrySubdivisionData(cca2: BearCountryEnum::BJ, name: 'Plateau', capital: 'Pobè', osm: 2846872, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BJ_ZO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BJ, name: 'Zou', capital: 'Abomey', osm: 2846873, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+
+
+            // BRUNEI
+            self::BN_BE => new BearCountrySubdivisionData(cca2: BearCountryEnum::BN, name: 'Belait', capital: 'Kuala Belait', osm: 3853884, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BN_BM => new BearCountrySubdivisionData(cca2: BearCountryEnum::BN, name: 'Brunei dan Muara', capital: 'Bandar Seri Begawan', osm: 3853885, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BN_TE => new BearCountrySubdivisionData(cca2: BearCountryEnum::BN, name: 'Temburong', capital: 'Bangar', osm: 7843853, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BN_TU => new BearCountrySubdivisionData(cca2: BearCountryEnum::BN, name: 'Tutong', capital: 'Tutong', osm: 3853886, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+
+
+            // BOLIVIA
+            self::BO_B => new BearCountrySubdivisionData(cca2: BearCountryEnum::BO, name: 'Beni', capital: 'Trinidad', osm: 405935, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BO_C => new BearCountrySubdivisionData(cca2: BearCountryEnum::BO, name: 'Cochabamba', capital: 'Cochabamba', osm: 393562, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BO_H => new BearCountrySubdivisionData(cca2: BearCountryEnum::BO, name: 'Chuquisaca', capital: 'Sucre', osm: 396197, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BO_L => new BearCountrySubdivisionData(cca2: BearCountryEnum::BO, name: 'La Paz', capital: 'La Paz', osm: 400473, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BO_N => new BearCountrySubdivisionData(cca2: BearCountryEnum::BO, name: 'Pando', capital: 'Cobija', osm: 3358584, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BO_O => new BearCountrySubdivisionData(cca2: BearCountryEnum::BO, name: 'Oruro', capital: 'Oruro', osm: 395910, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BO_P => new BearCountrySubdivisionData(cca2: BearCountryEnum::BO, name: 'Potosí', capital: 'Potosí', osm: 4509552, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BO_S => new BearCountrySubdivisionData(cca2: BearCountryEnum::BO, name: 'Santa Cruz', capital: 'Santa Cruz de la Sierra', osm: 3360565, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+            self::BO_T => new BearCountrySubdivisionData(cca2: BearCountryEnum::BO, name: 'Tarija', capital: 'Tarija', osm: 396198, type: BearCountrySubdivisionTypeEnum::DEPARTMENT),
+
+
             // BRAZIL
             self::BR_AC => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Acre', capital: 'Rio Branco', osm: 326266, type: BearCountrySubdivisionTypeEnum::STATE),
             self::BR_AL => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Alagoas', capital: 'Maceió', osm: 303781, type: BearCountrySubdivisionTypeEnum::STATE),
@@ -1388,6 +1545,83 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::BR_TO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BR, name: 'Tocantins', capital: 'Palmas', osm: 336819, type: BearCountrySubdivisionTypeEnum::STATE),
 
 
+            // BAHAMAS
+            self::BS_AK => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Acklins', capital: 'Salina Point', osm: 3772879, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_BI => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Bimini', capital: 'Alice Town', osm: 3776645, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_BP => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Black Point', capital: 'Black Point', osm: 3776646, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_BY => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Berry Islands', capital: 'Great Harbour Cay', osm: 3776644, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_CE => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Central Eleuthera', capital: 'Governor\'s Harbour', osm: 3776650, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_CI => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Cat Island', capital: 'Arthur\'s Town', osm: 3776647, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_CK => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Crooked Island and Long Cay', capital: 'Colonel Hill', osm: 3775751, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_CO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Central Abaco', capital: 'Cooper\'s Town', osm: 3776648, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_CS => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Central Andros', capital: 'Fresh Creek', osm: 3776649, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_EG => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'East Grand Bahama', capital: 'High Rock', osm: 3776651, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_EX => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Exuma', capital: 'George Town', osm: 3776652, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_FP => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'City of Freeport', capital: 'Freeport', osm: 3776653, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_GC => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Grand Cay', capital: 'Grand Cay', osm: 3776654, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_HI => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Harbour Island', capital: 'Dunmore Town', osm: 3776655, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_HT => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Hope Town', capital: 'Hope Town', osm: 3776656, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_IN => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Inagua', capital: 'Matthew Town', osm: 3775740, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_LI => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Long Island', capital: 'Clarence Town', osm: 3776657, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_MC => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Mangrove Cay', capital: 'Mangrove Cay', osm: 3776658, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_MG => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Mayaguana', capital: 'Abraham\'s Bay', osm: 3775742, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_MI => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Moore\'s Island', capital: 'Hard Bargain', osm: 3776659, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_NE => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'North Eleuthera', capital: 'The Bluff', osm: 3776663, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_NO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'North Abaco', capital: 'Treasure Cay', osm: 3776661, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_NP => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'New Providence', capital: 'Nassau', osm: 3776660, type: BearCountrySubdivisionTypeEnum::ISLAND),
+            self::BS_NS => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'North Eleuthera', capital: 'The Bluff', osm: 3776662, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_RC => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Rum Cay', capital: 'Port Nelson', osm: 3776665, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_RI => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Ragged Island', capital: 'Duncan Town', osm: 3776664, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_SA => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'South Abaco', capital: 'Sandy Point', osm: 3776678, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_SE => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'South Andros', capital: 'Mangrove Cay', osm: 3776668, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_SO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'South Eleuthera', capital: 'Rock Sound', osm: 3776667, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_SS => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'San Salvador', capital: 'Cockburn Town', osm: 3776666, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_SW => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'Spanish Wells', capital: 'Spanish Wells', osm: 3776669, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BS_WG => new BearCountrySubdivisionData(cca2: BearCountryEnum::BS, name: 'West Grand Bahama', capital: 'Eight Mile Rock', osm: 3776685, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+
+
+            // BHUTAN
+            self::BT_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Paro', capital: '', osm: 3899610, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_12 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Chhukha', capital: '', osm: 3899603, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_13 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Haa', capital: '', osm: 3899607, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_14 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Samtse', capital: '', osm: 3899614, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_15 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Thimphu', capital: '', osm: 3899616, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_21 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Tsirang', capital: '', osm: 3899620, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_22 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Dagana', capital: '', osm: 3899605, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_23 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Punakha', capital: '', osm: 3899612, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_24 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Wangdue Phodrang', capital: '', osm: 3899621, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_31 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Sarpang', capital: '', osm: 3899615, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_32 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Trongsa', capital: '', osm: 3899619, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_33 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Bumthang', capital: '', osm: 3899602, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_34 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Zhemgang', capital: '', osm: 3899622, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_41 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Trashigang', capital: '', osm: 3899617, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_42 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Mongar', capital: '', osm: 3899609, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_43 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Pemagatshel', capital: '', osm: 3899611, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_44 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Lhuentse', capital: '', osm: 3899608, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_45 => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Samdrup Jongkhar', capital: '', osm: 3899613, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_GA => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Gasa', capital: '', osm: 3899606, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BT_TY => new BearCountrySubdivisionData(cca2: BearCountryEnum::BT, name: 'Trashi Yangtse', capital: '', osm: 3899618, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+
+
+            // BOTSWANA
+            self::BW_CE => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Central', capital: 'Serowe', osm: 270335, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BW_CH => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Chobe', capital: 'Kasane', osm: 7321165, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BW_FR => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Francistown', capital: 'Francistown', osm: 17349212, type: BearCountrySubdivisionTypeEnum::CITY),
+            self::BW_GA => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Gaborone', capital: 'Gaborone', osm: 17349208, type: BearCountrySubdivisionTypeEnum::CITY),
+            self::BW_GH => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Ghanzi', capital: 'Ghanzi', osm: 270336, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BW_JW => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Jwaneng', capital: 'Jwaneng', osm: 17349210, type: BearCountrySubdivisionTypeEnum::TOWN),
+            self::BW_KG => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Kgalagadi', capital: 'Tsabong', osm: 270339, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BW_KL => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Kgatleng', capital: 'Mochudi', osm: 270333, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BW_KW => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Kweneng', capital: 'Molepolole', osm: 270337, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BW_LO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Lobatse', capital: 'Lobatse', osm: 17349209, type: BearCountrySubdivisionTypeEnum::TOWN),
+            self::BW_NE => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'North-East', capital: 'Masunga', osm: 270334, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BW_NW => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'North-West', capital: 'Maun', osm: 2104170, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BW_SP => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Selibe Phikwe', capital: 'Selibe Phikwe', osm: 17349211, type: BearCountrySubdivisionTypeEnum::TOWN),
+            self::BW_SE => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'South-East', capital: 'Ramotswa', osm: 270332, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BW_SO => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Southern', capital: 'Kanye', osm: 270338, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BW_ST => new BearCountrySubdivisionData(cca2: BearCountryEnum::BW, name: 'Sowa', capital: 'Sowa', osm: 17349213, type: BearCountrySubdivisionTypeEnum::TOWN),
+
+
             // BELARUS
             self::BY_BR => new BearCountrySubdivisionData(cca2: BearCountryEnum::BY, name: 'Brest', capital: 'Brest', osm: 59189, type: BearCountrySubdivisionTypeEnum::OBLAST),
             self::BY_HM => new BearCountrySubdivisionData(cca2: BearCountryEnum::BY, name: 'Minsk', capital: 'Minsk', osm: 59195, type: BearCountrySubdivisionTypeEnum::CITY),
@@ -1396,6 +1630,15 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::BY_MA => new BearCountrySubdivisionData(cca2: BearCountryEnum::BY, name: 'Mogilev', capital: 'Mogilev', osm: 59162, type: BearCountrySubdivisionTypeEnum::OBLAST),
             self::BY_MI => new BearCountrySubdivisionData(cca2: BearCountryEnum::BY, name: 'Minsk', capital: 'Minsk', osm: 59752, type: BearCountrySubdivisionTypeEnum::OBLAST),
             self::BY_VI => new BearCountrySubdivisionData(cca2: BearCountryEnum::BY, name: 'Vitebsk', capital: 'Vitebsk', osm: 59506, type: BearCountrySubdivisionTypeEnum::OBLAST),
+
+
+            // BELIZE
+            self::BZ_BZ => new BearCountrySubdivisionData(cca2: BearCountryEnum::BZ, name: 'Belize', capital: 'Belmopan', osm: 962354, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BZ_CY => new BearCountrySubdivisionData(cca2: BearCountryEnum::BZ, name: 'Cayo', capital: 'Belmopan', osm: 962357, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BZ_CZL => new BearCountrySubdivisionData(cca2: BearCountryEnum::BZ, name: 'Corozal', capital: 'Corozal Town', osm: 962356, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BZ_OW => new BearCountrySubdivisionData(cca2: BearCountryEnum::BZ, name: 'Orange Walk', capital: 'Orange Walk Town', osm: 962355, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BZ_SC => new BearCountrySubdivisionData(cca2: BearCountryEnum::BZ, name: 'Stann Creek', capital: 'Dangriga', osm: 962353, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::BZ_TOL => new BearCountrySubdivisionData(cca2: BearCountryEnum::BZ, name: 'Toledo', capital: 'Punta Gorda', osm: 962358, type: BearCountrySubdivisionTypeEnum::DISTRICT),
 
 
             // CANADA
@@ -1497,6 +1740,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::FR_OCC => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Occitania', capital: 'Toulouse', osm: 3792883, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_PDL => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Lands of the Loire', capital: 'Nantes', osm: 8650, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_PAC => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Provence-Alps-Azure Coast', capital: 'Marseille', osm: 8654, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FR_BL => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Saint Barthélemy', capital: 'Gustavia', osm: 537967, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
             self::FR_CP => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Clipperton', capital: '', osm: 2573009, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
             self::FR_WF => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Wallis and Futuna', capital: 'Mata-Utu', osm: 3412448, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
 
