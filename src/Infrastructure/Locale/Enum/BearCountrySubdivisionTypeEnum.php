@@ -12,6 +12,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
     case COLLECTIVITY = 'COLLECTIVITY';
     case COUNTRY = 'COUNTRY';
     case COUNTY = 'COUNTY';
+    case DEPARTMENT = 'DEPARTMENT';
     case DEPENDENCY = 'DEPENDENCY';
     case DISTRICT = 'DISTRICT';
     case DIVISION = 'DIVISION';
@@ -25,7 +26,9 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
     case OUTLYING_AREA = 'OUTLYING_AREA';
     case PARISH = 'PARISH';
     case PROVINCE = 'PROVINCE';
+    case RAYON = 'RAYON';
     case REGION = 'REGION';
+    case REPUBLIC = 'REPUBLIC';
     case STATE = 'STATE';
     case TERRITORY = 'TERRITORY';
 
@@ -38,6 +41,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
             self::COLLECTIVITY => 'Collectivity',
             self::COUNTRY => 'Country',
             self::COUNTY => 'County',
+            self::DEPARTMENT => 'Department',
             self::DEPENDENCY => 'Dependency',
             self::DISTRICT => 'District',
             self::DIVISION => 'Division',
@@ -51,7 +55,9 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
             self::OUTLYING_AREA => 'Outlying Area',
             self::PARISH => 'Parish',
             self::PROVINCE => 'Province',
+            self::RAYON => 'Rayon',
             self::REGION => 'Region',
+            self::REPUBLIC => 'Republic',
             self::STATE => 'State',
             self::TERRITORY => 'Territory',
         };
