@@ -337,12 +337,12 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
 
     // FRANCE
+    case FR_20R = 'FR-20R';
     case FR_976 = 'FR-976';
     case FR_ARA = 'FR-ARA';
     case FR_BFC = 'FR-BFC';
     case FR_BRE = 'FR-BRE';
     case FR_CVL = 'FR-CVL';
-    case FR_COR = 'FR-COR';
     case FR_GES = 'FR-GES';
     case FR_HDF = 'FR-HDF';
     case FR_IDF = 'FR-IDF';
@@ -604,6 +604,14 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case US_PR = 'US-PR';
     case US_UM = 'US-UM';
     case US_VI = 'US-VI';
+
+    // SAINT VINCENT AND THE GRENADINES
+    case VC_01 = 'VC-01';
+    case VC_02 = 'VC-02';
+    case VC_03 = 'VC-03';
+    case VC_04 = 'VC-04';
+    case VC_05 = 'VC-05';
+    case VC_06 = 'VC-06';
 
 
     // VENEZUELA
@@ -1118,12 +1126,12 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
 
             // FRANCE
+            self::FR_20R => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Corsica', capital: 'Ajaccio', osm: 76910, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_976 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Mayotte', capital: 'Mamoudzou', osm: 1259885, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
             self::FR_ARA => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Auvergne-Rhône-Alps', capital: 'Lyon', osm: 3792877, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_BFC => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Burgundy-Free-County', capital: 'Dijon', osm: 3792878, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_BRE => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Brittany', capital: 'Rennes', osm: 102740, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_CVL => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Central-Vale of the Loire', capital: 'Orléans', osm: 8640, type: BearCountrySubdivisionTypeEnum::REGION),
-            self::FR_COR => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Corsica', capital: 'Ajaccio', osm: 76910, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_GES => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Greater East', capital: 'Strasbourg', osm: 3792876, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_HDF => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Heights-of-France', capital: 'Lille', osm: 4217435, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_IDF => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Isle-of-France', capital: 'Paris', osm: 8649, type: BearCountrySubdivisionTypeEnum::REGION),
@@ -1151,7 +1159,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::IE_C => new BearCountrySubdivisionData(cca2: BearCountryEnum::IE, name: 'Connacht', capital: 'Galway', osm: 278721, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::IE_L => new BearCountrySubdivisionData(cca2: BearCountryEnum::IE, name: 'Leinster', capital: 'Dublin', osm: 278746, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::IE_M => new BearCountrySubdivisionData(cca2: BearCountryEnum::IE, name: 'Munster', capital: 'Cork', osm: 278750, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::IE_U => new BearCountrySubdivisionData(cca2: BearCountryEnum::IE, name: 'Ulster', capital: 'Belfast', osm: 278664, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::IE_U => new BearCountrySubdivisionData(cca2: BearCountryEnum::IE, name: 'Ulster', capital: 'Belfast', osm: 14419962, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
             // ITALY
@@ -1388,6 +1396,15 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::US_VI => new BearCountrySubdivisionData(cca2: BearCountryEnum::US, name: 'Virgin Islands', capital: 'Charlotte Amalie', osm: 286898, type: BearCountrySubdivisionTypeEnum::OUTLYING_AREA),
 
 
+            // SAINT VINCENT AND THE GRENADINES
+            self::VC_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VC, name: 'Charlotte', capital: 'Georgetown', osm: 11146905, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::VC_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VC, name: 'Saint Andrew', capital: 'Layou', osm: 11146906, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::VC_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VC, name: 'Saint David', capital: 'Chateaubelair', osm: 11146907, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::VC_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VC, name: 'Saint George', capital: 'Kingstown', osm: 11146908, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::VC_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VC, name: 'Saint Patrick', capital: 'Barrouallie', osm: 11146909, type: BearCountrySubdivisionTypeEnum::PARISH),
+            self::VC_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::VC, name: 'Grenadines', capital: 'Port Elizabeth', osm: 11146910, type: BearCountrySubdivisionTypeEnum::PARISH),
+
+
             // VENEZUELA
             self::VE_A => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Distrito Capital', capital: 'Caracas', osm: 2444378, type: BearCountrySubdivisionTypeEnum::DISTRICT),
             self::VE_B => new BearCountrySubdivisionData(cca2: BearCountryEnum::VE, name: 'Anzoátegui', capital: 'Barcelona', osm: 2267150, type: BearCountrySubdivisionTypeEnum::STATE),
@@ -1484,7 +1501,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
             // VANUATU
             self::VU_MAP => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Malampa', capital: '3765629', osm: 3765629, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::VU_PAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Penama', capital: 'Saratamata', osm: 3765629, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::VU_PAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Penama', capital: 'Saratamata', osm: 3765606, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::VU_SAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Sanma', capital: 'Luganville', osm: 3765591, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::VU_SEE => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Shefa', capital: 'Port Vila', osm: 3765630, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::VU_TAE => new BearCountrySubdivisionData(cca2: BearCountryEnum::VU, name: 'Tafea', capital: 'Isangel', osm: 3765631, type: BearCountrySubdivisionTypeEnum::PROVINCE),
