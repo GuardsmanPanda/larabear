@@ -18,7 +18,6 @@ final class BearCountrySubdivisionCrud {
         $model->country_subdivision_type_enum = $data->type;
         $model->osm_relation_id = $data->osm;
         $model->name = $data->name;
-        $model->capital = $data->capital;
 
         $model->save();
     }

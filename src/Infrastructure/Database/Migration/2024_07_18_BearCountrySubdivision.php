@@ -17,7 +17,6 @@ return new class extends Migration {
                 $table->string(column: 'country_cca2');
             }
             $table->text(column: 'name');
-            $table->text(column: 'capital');
             $table->integer(column: 'osm_relation_id')->unique();
             $table->timestampTz(column: 'osm_sync_at')->nullable();
             $table->text(column: 'country_subdivision_type_enum');

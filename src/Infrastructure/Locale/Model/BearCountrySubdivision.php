@@ -55,7 +55,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $osm_relation_id
  * @property string $name
- * @property string $capital
  * @property string $iso_3166
  * @property string $created_at
  * @property string $updated_at

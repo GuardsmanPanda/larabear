@@ -9,7 +9,6 @@ final readonly class BearCountrySubdivisionData {
     public function __construct(
         public BearCountryEnum                $cca2,
         public string                         $name,
-        public string                         $capital,
         public int                            $osm,
         public BearCountrySubdivisionTypeEnum $type,
     ) {
