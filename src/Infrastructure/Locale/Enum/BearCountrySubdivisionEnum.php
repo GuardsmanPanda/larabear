@@ -2320,7 +2320,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::CZ_64 => new BearCountrySubdivisionData(cca2: BearCountryEnum::CZ, name: 'South Moravia', osm: 442311, type: BearCountrySubdivisionTypeEnum::REGION),
             self::CZ_71 => new BearCountrySubdivisionData(cca2: BearCountryEnum::CZ, name: 'Olomouc', osm: 442459, type: BearCountrySubdivisionTypeEnum::REGION),
             self::CZ_72 => new BearCountrySubdivisionData(cca2: BearCountryEnum::CZ, name: 'Zlín', osm: 442449, type: BearCountrySubdivisionTypeEnum::REGION),
-            self::CZ_80 => new BearCountrySubdivisionData(cca2: BearCountryEnum::CZ, name: 'Moravia-Silesia', osm: 442312, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::CZ_80 => new BearCountrySubdivisionData(cca2: BearCountryEnum::CZ, name: 'Moravia-Silesia', osm: 442461, type: BearCountrySubdivisionTypeEnum::REGION),
 
 
             // GERMANY
