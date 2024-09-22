@@ -986,6 +986,63 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case EC_Z = 'EC-Z';
 
 
+    // ESTONIA
+    case EE_37 = 'EE-37';
+    case EE_39 = 'EE-39';
+    case EE_45 = 'EE-45';
+    case EE_52 = 'EE-52';
+    case EE_50 = 'EE-50';
+    case EE_60 = 'EE-60';
+    case EE_56 = 'EE-56';
+    case EE_68 = 'EE-68';
+    case EE_64 = 'EE-64';
+    case EE_71 = 'EE-71';
+    case EE_74 = 'EE-74';
+    case EE_79 = 'EE-79';
+    case EE_81 = 'EE-81';
+    case EE_84 = 'EE-84';
+    case EE_87 = 'EE-87';
+
+
+    // EGYPT
+    case EG_ALX = 'EG-ALX';
+    case EG_ASN = 'EG-ASN';
+    case EG_AST = 'EG-AST';
+    case EG_BA = 'EG-BA';
+    case EG_BH = 'EG-BH';
+    case EG_BNS = 'EG-BNS';
+    case EG_C = 'EG-C';
+    case EG_DK = 'EG-DK';
+    case EG_DT = 'EG-DT';
+    case EG_FYM = 'EG-FYM';
+    case EG_GH = 'EG-GH';
+    case EG_GZ = 'EG-GZ';
+    case EG_IS = 'EG-IS';
+    case EG_JS = 'EG-JS';
+    case EG_KB = 'EG-KB';
+    case EG_KFS = 'EG-KFS';
+    case EG_KN = 'EG-KN';
+    case EG_LX = 'EG-LX';
+    case EG_MN = 'EG-MN';
+    case EG_MNF = 'EG-MNF';
+    case EG_MT = 'EG-MT';
+    case EG_PTS = 'EG-PTS';
+    case EG_SHG = 'EG-SHG';
+    case EG_SHR = 'EG-SHR';
+    case EG_SIN = 'EG-SIN';
+    case EG_SUZ = 'EG-SUZ';
+    case EG_WAD = 'EG-WAD';
+
+
+    // ERITREA
+    case ER_AN = 'ER-AN';
+    case ER_DK = 'ER-DK';
+    case ER_DU = 'ER-DU';
+    case ER_GB = 'ER-GB';
+    case ER_MA = 'ER-MA';
+    case ER_SK = 'ER-SK';
+
+
     // SPAIN
     case ES_AN = 'ES-AN';
     case ES_AR = 'ES-AR';
@@ -1006,6 +1063,52 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case ES_PV = 'ES-PV';
     case ES_RI = 'ES-RI';
     case ES_VC = 'ES-VC';
+
+
+    // ETHIOPIA
+    case ET_AA = 'ET-AA';
+    case ET_AF = 'ET-AF';
+    case ET_AM = 'ET-AM';
+    case ET_BE = 'ET-BE';
+    case ET_DD = 'ET-DD';
+    case ET_GA = 'ET-GA';
+    case ET_HA = 'ET-HA';
+    case ET_OR = 'ET-OR';
+    case ET_SI = 'ET-SI';
+    case ET_SO = 'ET-SO';
+    case ET_TI = 'ET-TI';
+    case ET_SN = 'ET-SN';
+    case ET_SW = 'ET-SW';
+
+
+    // FINLAND
+    case FI_01 = 'FI-01';
+    case FI_02 = 'FI-02';
+    case FI_03 = 'FI-03';
+    case FI_04 = 'FI-04';
+    case FI_05 = 'FI-05';
+    case FI_06 = 'FI-06';
+    case FI_07 = 'FI-07';
+    case FI_08 = 'FI-08';
+    case FI_09 = 'FI-09';
+    case FI_10 = 'FI-10';
+    case FI_11 = 'FI-11';
+    case FI_12 = 'FI-12';
+    case FI_13 = 'FI-13';
+    case FI_14 = 'FI-14';
+    case FI_15 = 'FI-15';
+    case FI_16 = 'FI-16';
+    case FI_17 = 'FI-17';
+    case FI_18 = 'FI-18';
+    case FI_19 = 'FI-19';
+
+
+    // FIJI
+    case FJ_C = 'FJ-C';
+    case FJ_E = 'FJ-E';
+    case FJ_N = 'FJ-N';
+    case FJ_R = 'FJ-R';
+    case FJ_W = 'FJ-W';
 
 
     // FRANCE
@@ -1034,6 +1137,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case GB_SCT = 'GB-SCT';
     case GB_WLS = 'GB-WLS';
     case IOT = 'IOT';
+    case FLK = 'FLK';
     case PCN = 'PCN';
     case SGS = 'SGS';
 
@@ -2408,64 +2512,64 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
 
             // ALGERIA
-            self::DZ_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Adrar', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Chlef', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Laghouat', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Oum el Bouaghi', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Batna', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Béjaïa', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Biskra', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Béchar', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_09 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Blida', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_10 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Bouira', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tamanrasset', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_12 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tébessa', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_13 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tlemcen', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_14 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tiaret', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_15 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tizi Ouzou', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_16 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Alger', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_17 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Djelfa', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_18 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Jijel', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_19 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Sétif', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_20 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Saïda', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_21 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Skikda', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_22 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Sidi Bel Abbès', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_23 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Annaba', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_24 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Guelma', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_25 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Constantine', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_26 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Médéa', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_27 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Mostaganem', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_28 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'M\'sila', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_29 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Mascara', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_30 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Ouargla', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_31 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Oran', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_32 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'El Bayadh', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_33 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Illizi', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_34 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Bordj Bou Arréridj', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_35 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Boumerdès', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_36 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'El Tarf', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_37 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tindouf', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_38 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tissemsilt', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_39 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'El Oued', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_40 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Khenchela', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_41 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Souk Ahras', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_42 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tipaza', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_43 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Mila', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_44 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Aïn Defla', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_45 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Naama', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_46 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Aïn Témouchent', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_47 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Ghardaïa', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_48 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Relizane', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_49 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Timimoun', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_50 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Bordj Badji Mokhtar', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_51 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Ouled Djellal', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_52 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Béni Abbès', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_53 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'In Salah', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_54 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'In Guezzam', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_55 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Touggourt', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_56 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Djanet', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_57 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'El Meghaier', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
-            self::DZ_58 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'El Meniaa', osm: 1, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Adrar', osm: 1258650, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Chlef', osm: 1283740, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Laghouat', osm: 1280081, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Oum el Bouaghi', osm: 1278749, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Batna', osm: 1278748, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Béjaïa', osm: 1278765, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Biskra', osm: 1280072, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Béchar', osm: 1258647, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_09 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Blida', osm: 1283683, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_10 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Bouira', osm: 1283093, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tamanrasset', osm: 1279667, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_12 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tébessa', osm: 1280465, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_13 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tlemcen', osm: 1280702, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_14 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tiaret', osm: 1281404, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_15 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tizi Ouzou', osm: 1283601, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_16 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Alger', osm: 157062, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_17 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Djelfa', osm: 1280073, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_18 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Jijel', osm: 1278746, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_19 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Sétif', osm: 1278747, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_20 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Saïda', osm: 1281260, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_21 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Skikda', osm: 1273552, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_22 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Sidi Bel Abbès', osm: 1259189, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_23 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Annaba', osm: 1455599, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_24 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Guelma', osm: 1273369, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_25 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Constantine', osm: 1273368, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_26 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Médéa', osm: 1282111, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_27 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Mostaganem', osm: 1259191, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_28 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'M\'sila', osm: 1278767, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_29 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Mascara', osm: 1259190, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_30 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Ouargla', osm: 1279811, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_31 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Oran', osm: 1259187, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_32 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'El Bayadh', osm: 1258649, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_33 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Illizi', osm: 1279816, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_34 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Bordj Bou Arréridj', osm: 1278766, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_35 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Boumerdès', osm: 1283608, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_36 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'El Tarf', osm: 1455600, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_37 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tindouf', osm: 1258651, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_38 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tissemsilt', osm: 1282090, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_39 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'El Oued', osm: 1280071, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_40 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Khenchela', osm: 1280466, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_41 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Souk Ahras', osm: 1283457, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_42 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Tipaza', osm: 1286213, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_43 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Mila', osm: 1273544, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_44 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Aïn Defla', osm: 1283678, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_45 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Naama', osm: 1258648, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_46 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Aïn Témouchent', osm: 1259188, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_47 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Ghardaïa', osm: 1279666, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_48 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Relizane', osm: 1282091, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_49 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Timimoun', osm: 6528164, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_50 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Bordj Badji Mokhtar', osm: 6528163, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_51 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Ouled Djellal', osm: 10489092, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_52 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Béni Abbès', osm: 6824843, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_53 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'In Salah', osm: 6824900, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_54 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'In Guezzam', osm: 6825881, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_55 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Touggourt', osm: 6822397, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_56 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'Djanet', osm: 6825876, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_57 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'El Meghaier', osm: 6825874, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::DZ_58 => new BearCountrySubdivisionData(cca2: BearCountryEnum::DZ, name: 'El Meniaa', osm: 6825901, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
             // ECUADOR
@@ -2495,6 +2599,63 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::EC_Z => new BearCountrySubdivisionData(cca2: BearCountryEnum::EC, name: 'Zamora Chinchipe', osm: 108326, type: BearCountrySubdivisionTypeEnum::PROVINCE),
 
 
+            // ESTONIA
+            self::EE_37 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Harju', osm: 350585, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_39 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Hiiu', osm: 350340, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_45 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Ida-Viru', osm: 350459, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_52 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Järva', osm: 353776, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_50 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Jõgeva', osm: 354089, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_60 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Lääne-Viru', osm: 351063, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_56 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Lääne', osm: 350424, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_68 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Pärnu', osm: 350303, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_64 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Põlva', osm: 352454, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_71 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Rapla', osm: 353779, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_74 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Saare', osm: 350144, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_79 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Tartu', osm: 351246, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_81 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Valga', osm: 351379, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_84 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Viljandi', osm: 352449, type: BearCountrySubdivisionTypeEnum::COUNTY),
+            self::EE_87 => new BearCountrySubdivisionData(cca2: BearCountryEnum::EE, name: 'Võru', osm: 353812, type: BearCountrySubdivisionTypeEnum::COUNTY),
+
+
+            // EGYPT
+            self::EG_ALX => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Alexandria', osm: 3061846, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_ASN => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Aswan', osm: 3061757, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_AST => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Asyut', osm: 3726184, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_BA => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Red Sea', osm: 3061758, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_BH => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Beheira', osm: 3824513, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_BNS => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Beni Suef', osm: 3726170, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_C => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Cairo', osm: 4103336, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_DK => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Dakahlia', osm: 4103403, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_DT => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Damietta', osm: 4103404, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_FYM => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Faiyum', osm: 3726124, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_GH => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Gharbia', osm: 3584607, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_GZ => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Giza', osm: 3824206, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_IS => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Ismailia', osm: 3062184, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_JS => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'South Sinai', osm: 3060793, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_KB => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Qalyubia', osm: 4103337, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_KFS => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Kafr el-Sheikh', osm: 4103405, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_KN => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Qena', osm: 3726189, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_LX => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Luxor', osm: 3726211, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_MN => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Minya', osm: 3726175, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_MNF => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Monufia', osm: 3824207, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_MT => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Matrouh', osm: 3061826, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_PTS => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Port Said', osm: 4103406, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_SHG => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Sohag', osm: 3726186, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_SHR => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Al Sharqia', osm: 4103407, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_SIN => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'North Sinai', osm: 3060792, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_SUZ => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'Suez', osm: 3062185, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+            self::EG_WAD => new BearCountrySubdivisionData(cca2: BearCountryEnum::EG, name: 'New Valley', osm: 3061827, type: BearCountrySubdivisionTypeEnum::GOVERNORATE),
+
+
+            // ERITREA
+            self::ER_AN => new BearCountrySubdivisionData(cca2: BearCountryEnum::ER, name: 'Anseba', osm: 4605384, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ER_DK => new BearCountrySubdivisionData(cca2: BearCountryEnum::ER, name: 'Southern Red Sea', osm: 4610935, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ER_DU => new BearCountrySubdivisionData(cca2: BearCountryEnum::ER, name: 'Southern', osm: 4610903, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ER_GB => new BearCountrySubdivisionData(cca2: BearCountryEnum::ER, name: 'Gash-Barka', osm: 4605551, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ER_MA => new BearCountrySubdivisionData(cca2: BearCountryEnum::ER, name: 'Central', osm: 4610904, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ER_SK => new BearCountrySubdivisionData(cca2: BearCountryEnum::ER, name: 'Northern Red Sea', osm: 4610926, type: BearCountrySubdivisionTypeEnum::REGION),
+
+
             // SPAIN
             self::ES_AN => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Andalusia', osm: 349044, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
             self::ES_AR => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Aragon', osm: 349045, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
@@ -2515,6 +2676,52 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::ES_PV => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Basque Country', osm: 349042, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
             self::ES_RI => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'La Rioja', osm: 348991, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
             self::ES_VC => new BearCountrySubdivisionData(cca2: BearCountryEnum::ES, name: 'Valencia', osm: 349043, type: BearCountrySubdivisionTypeEnum::COMMUNITY),
+
+
+            // ETHIOPIA
+            self::ET_AA => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Addis Ababa', osm: 1707699, type: BearCountrySubdivisionTypeEnum::ADMINISTRATION),
+            self::ET_AF => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Afar', osm: 1707249, type: BearCountrySubdivisionTypeEnum::REGIONAL_STATE),
+            self::ET_AM => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Amara', osm: 1707264, type: BearCountrySubdivisionTypeEnum::REGIONAL_STATE),
+            self::ET_BE => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Benshangul-Gumaz', osm: 1707653, type: BearCountrySubdivisionTypeEnum::REGIONAL_STATE),
+            self::ET_DD => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Dire Dawa', osm: 1707654, type: BearCountrySubdivisionTypeEnum::ADMINISTRATION),
+            self::ET_GA => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Gambela Peoples', osm: 1707655, type: BearCountrySubdivisionTypeEnum::REGIONAL_STATE),
+            self::ET_HA => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Harari People', osm: 1707700, type: BearCountrySubdivisionTypeEnum::REGIONAL_STATE),
+            self::ET_OR => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Oromia', osm: 1707656, type: BearCountrySubdivisionTypeEnum::REGIONAL_STATE),
+            self::ET_SI => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Sidama', osm: 3306775, type: BearCountrySubdivisionTypeEnum::REGIONAL_STATE),
+            self::ET_SO => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Somali', osm: 1707658, type: BearCountrySubdivisionTypeEnum::REGIONAL_STATE),
+            self::ET_TI => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Tigrai', osm: 1707148, type: BearCountrySubdivisionTypeEnum::REGIONAL_STATE),
+            self::ET_SN => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Southern Nations', osm: 16827893, type: BearCountrySubdivisionTypeEnum::REGIONAL_STATE),
+            self::ET_SW => new BearCountrySubdivisionData(cca2: BearCountryEnum::ET, name: 'Southwest Ethiopia', osm: 13509372, type: BearCountrySubdivisionTypeEnum::REGIONAL_STATE),
+
+
+            // FINLAND
+            self::FI_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Åland', osm: 2375171, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'South Karelia', osm: 2067231, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Southern Ostrobothnia', osm: 1702263, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Southern Savonia', osm: 918897, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Kainuu', osm: 1997164, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Tavastia Proper', osm: 1473990, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Central Ostrobothnia', osm: 1702330, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Central Finland', osm: 1701740, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_09 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Kymenlaakso', osm: 2102313, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_10 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Lapland', osm: 1724359, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Pirkanmaa', osm: 1701741, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_12 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Ostrobothnia', osm: 2000320, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_13 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'North Karelia', osm: 1999428, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_14 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Northern Ostrobothnia', osm: 1724360, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_15 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Northern Savonia', osm: 918898, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_16 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Päijänne Tavastia', osm: 1703362, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_17 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Satakunta', osm: 2000361, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_18 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Uusimaa', osm: 37355, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_19 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Southwest Finland', osm: 38092, type: BearCountrySubdivisionTypeEnum::REGION),
+
+
+            // FIJI
+            self::FJ_C => new BearCountrySubdivisionData(cca2: BearCountryEnum::FJ, name: 'Central', osm: 4632579, type: BearCountrySubdivisionTypeEnum::DIVISION),
+            self::FJ_E => new BearCountrySubdivisionData(cca2: BearCountryEnum::FJ, name: 'Eastern', osm: 4632580, type: BearCountrySubdivisionTypeEnum::DIVISION),
+            self::FJ_N => new BearCountrySubdivisionData(cca2: BearCountryEnum::FJ, name: 'Northern', osm: 4632581, type: BearCountrySubdivisionTypeEnum::DIVISION),
+            self::FJ_R => new BearCountrySubdivisionData(cca2: BearCountryEnum::FJ, name: 'Rotuma', osm: 7223650, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
+            self::FJ_W => new BearCountrySubdivisionData(cca2: BearCountryEnum::FJ, name: 'Western', osm: 4632582, type: BearCountrySubdivisionTypeEnum::DIVISION),
 
 
             // FRANCE
@@ -2543,6 +2750,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::GB_SCT => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Scotland', osm: 58446, type: BearCountrySubdivisionTypeEnum::COUNTRY),
             self::GB_WLS => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Wales', osm: 58437, type: BearCountrySubdivisionTypeEnum::COUNTRY),
             self::IOT => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'British Indian Ocean Territory', osm: 1993867, type: BearCountrySubdivisionTypeEnum::TERRITORY),
+            self::FLK => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Falkland Islands', osm: 2185374, type: BearCountrySubdivisionTypeEnum::TERRITORY),
             self::PCN => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Pitcairn Islands', osm: 2185375, type: BearCountrySubdivisionTypeEnum::TERRITORY),
             self::SGS => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'South Georgia and the South Sandwich Islands', osm: 1983628, type: BearCountrySubdivisionTypeEnum::TERRITORY),
 

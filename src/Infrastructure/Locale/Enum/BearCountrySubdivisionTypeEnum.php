@@ -6,6 +6,7 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Interface\BearDatabaseBackedEnumI
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Crud\LarabearCountrySubdivisionTypeCrud;
 
 enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInterface {
+    case ADMINISTRATION = 'ADMINISTRATION';
     case CANTON = 'CANTON';
     case CITY = 'CITY';
     case COMMUNITY = 'COMMUNITY';
@@ -30,6 +31,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
     case PROVINCE = 'PROVINCE';
     case RAYON = 'RAYON';
     case REGION = 'REGION';
+    case REGIONAL_STATE = 'REGIONAL_STATE';
     case REPUBLIC = 'REPUBLIC';
     case STATE = 'STATE';
     case TERRITORY = 'TERRITORY';
@@ -38,6 +40,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
 
     public function getName(): string {
         return match ($this) {
+            self::ADMINISTRATION => 'Administration',
             self::COMMUNITY => 'Community',
             self::CANTON => 'Canton',
             self::CITY => 'City',
@@ -62,6 +65,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
             self::PROVINCE => 'Province',
             self::RAYON => 'Rayon',
             self::REGION => 'Region',
+            self::REGIONAL_STATE => 'Regional State',
             self::REPUBLIC => 'Republic',
             self::STATE => 'State',
             self::TERRITORY => 'Territory',
