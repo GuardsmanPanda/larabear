@@ -33,9 +33,13 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
     case REGION = 'REGION';
     case REGIONAL_STATE = 'REGIONAL_STATE';
     case REPUBLIC = 'REPUBLIC';
+    case SECTOR = 'SECTOR';
+    case SELF_GOVERNED_PART = 'SELF_GOVERNED_PART';
     case STATE = 'STATE';
     case TERRITORY = 'TERRITORY';
     case TOWN = 'TOWN';
+    case UNION_TERRITORY = 'UNION_TERRITORY';
+    case UNIT = 'UNIT';
 
 
     public function getName(): string {
@@ -67,9 +71,13 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
             self::REGION => 'Region',
             self::REGIONAL_STATE => 'Regional State',
             self::REPUBLIC => 'Republic',
+            self::SECTOR => 'Sector',
+            self::SELF_GOVERNED_PART => 'Self-Governed Part',
             self::STATE => 'State',
             self::TERRITORY => 'Territory',
             self::TOWN => 'Town',
+            self::UNION_TERRITORY => 'Union Territory',
+            self::UNIT => 'Unit',
         };
     }
 
