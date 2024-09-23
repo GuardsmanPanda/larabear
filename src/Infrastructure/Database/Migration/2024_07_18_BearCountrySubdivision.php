@@ -18,7 +18,6 @@ return new class extends Migration {
             }
             $table->text(column: 'name');
             $table->integer(column: 'osm_relation_id')->unique();
-            $table->timestampTz(column: 'osm_sync_at')->nullable();
             $table->text(column: 'country_subdivision_type_enum');
             $table->timestampTz(column: 'created_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
             $table->timestampTz(column: 'updated_at')->default(DB::raw(value: 'CURRENT_TIMESTAMP'));
