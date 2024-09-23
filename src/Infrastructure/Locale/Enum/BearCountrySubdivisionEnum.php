@@ -176,6 +176,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case CCK = 'CCK';
     case CXR = 'CXR';
     case HMD = 'HMD';
+    case NFK = 'NFK';
 
 
     // AZERBAIJAN
@@ -1122,7 +1123,9 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     // FRANCE
     case FR_20R = 'FR-20R';
     case FR_971 = 'FR-971';
+    case FR_972 = 'FR-972';
     case FR_973 = 'FR-973';
+    case FR_974 = 'FR-974';
     case FR_976 = 'FR-976';
     case FR_ARA = 'FR-ARA';
     case FR_BFC = 'FR-BFC';
@@ -1139,6 +1142,9 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case FR_BL = 'FR-BL';
     case FR_CP = 'FR-CP';
     case FR_MF = 'FR-MF';
+    case FR_PF = 'FR-PF';
+    case FR_PM = 'FR-PM';
+    case FR_TF = 'FR-TF';
     case FR_WF = 'FR-WF';
 
 
@@ -1165,8 +1171,11 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case IOT = 'IOT';
     case JEY = 'JEY';
     case FLK = 'FLK';
+    case MSR = 'MSR';
     case PCN = 'PCN';
     case SGS = 'SGS';
+    case TCA = 'TCA';
+    case VGB = 'VGB';
 
 
     // GRENADA
@@ -2022,22 +2031,14 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
 
     // MONACO
-    case MC_CL = 'MC-CL';
     case MC_CO = 'MC-CO';
     case MC_FO = 'MC-FO';
-    case MC_GA = 'MC-GA';
     case MC_JE = 'MC-JE';
     case MC_LA = 'MC-LA';
-    case MC_MA = 'MC-MA';
     case MC_MC = 'MC-MC';
     case MC_MG = 'MC-MG';
     case MC_MO = 'MC-MO';
-    case MC_MU = 'MC-MU';
-    case MC_PH = 'MC-PH';
     case MC_SD = 'MC-SD';
-    case MC_SO = 'MC-SO';
-    case MC_SP = 'MC-SP';
-    case MC_SR = 'MC-SR';
     case MC_VR = 'MC-VR';
 
 
@@ -2116,6 +2117,320 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
     case MG_M = 'MG-M';
     case MG_T = 'MG-T';
     case MG_U = 'MG-U';
+
+
+    // MARSHALL ISLANDS
+    case MH_L = 'MH-L';
+    case MH_T = 'MH-T';
+
+
+    // NORTH MACEDONIA
+    case MK_101 = 'MK-101';
+    case MK_102 = 'MK-102';
+    case MK_103 = 'MK-103';
+    case MK_104 = 'MK-104';
+    case MK_105 = 'MK-105';
+    case MK_106 = 'MK-106';
+    case MK_107 = 'MK-107';
+    case MK_108 = 'MK-108';
+    case MK_109 = 'MK-109';
+    case MK_201 = 'MK-201';
+    case MK_202 = 'MK-202';
+    case MK_203 = 'MK-203';
+    case MK_204 = 'MK-204';
+    case MK_205 = 'MK-205';
+    case MK_206 = 'MK-206';
+    case MK_207 = 'MK-207';
+    case MK_208 = 'MK-208';
+    case MK_209 = 'MK-209';
+    case MK_210 = 'MK-210';
+    case MK_211 = 'MK-211';
+    case MK_301 = 'MK-301';
+    case MK_303 = 'MK-303';
+    case MK_304 = 'MK-304';
+    case MK_307 = 'MK-307';
+    case MK_308 = 'MK-308';
+    case MK_310 = 'MK-310';
+    case MK_311 = 'MK-311';
+    case MK_312 = 'MK-312';
+    case MK_313 = 'MK-313';
+    case MK_401 = 'MK-401';
+    case MK_402 = 'MK-402';
+    case MK_403 = 'MK-403';
+    case MK_404 = 'MK-404';
+    case MK_405 = 'MK-405';
+    case MK_406 = 'MK-406';
+    case MK_407 = 'MK-407';
+    case MK_408 = 'MK-408';
+    case MK_409 = 'MK-409';
+    case MK_410 = 'MK-410';
+    case MK_501 = 'MK-501';
+    case MK_502 = 'MK-502';
+    case MK_503 = 'MK-503';
+    case MK_504 = 'MK-504';
+    case MK_505 = 'MK-505';
+    case MK_506 = 'MK-506';
+    case MK_507 = 'MK-507';
+    case MK_508 = 'MK-508';
+    case MK_509 = 'MK-509';
+    case MK_601 = 'MK-601';
+    case MK_602 = 'MK-602';
+    case MK_603 = 'MK-603';
+    case MK_604 = 'MK-604';
+    case MK_605 = 'MK-605';
+    case MK_606 = 'MK-606';
+    case MK_607 = 'MK-607';
+    case MK_608 = 'MK-608';
+    case MK_609 = 'MK-609';
+    case MK_701 = 'MK-701';
+    case MK_702 = 'MK-702';
+    case MK_703 = 'MK-703';
+    case MK_704 = 'MK-704';
+    case MK_705 = 'MK-705';
+    case MK_706 = 'MK-706';
+    case MK_801 = 'MK-801';
+    case MK_802 = 'MK-802';
+    case MK_803 = 'MK-803';
+    case MK_804 = 'MK-804';
+    case MK_805 = 'MK-805';
+    case MK_806 = 'MK-806';
+    case MK_807 = 'MK-807';
+    case MK_808 = 'MK-808';
+    case MK_809 = 'MK-809';
+    case MK_810 = 'MK-810';
+    case MK_811 = 'MK-811';
+    case MK_812 = 'MK-812';
+    case MK_813 = 'MK-813';
+    case MK_814 = 'MK-814';
+    case MK_815 = 'MK-815';
+    case MK_816 = 'MK-816';
+    case MK_817 = 'MK-817';
+
+
+    // MALI
+    case ML_1 = 'ML-1';
+    case ML_2 = 'ML-2';
+    case ML_3 = 'ML-3';
+    case ML_4 = 'ML-4';
+    case ML_5 = 'ML-5';
+    case ML_6 = 'ML-6';
+    case ML_7 = 'ML-7';
+    case ML_8 = 'ML-8';
+    case ML_9 = 'ML-9';
+    case ML_10 = 'ML-10';
+    case ML_BKO = 'ML-BKO';
+
+
+    // MYANMAR
+    case MM_01 = 'MM-01';
+    case MM_02 = 'MM-02';
+    case MM_03 = 'MM-03';
+    case MM_04 = 'MM-04';
+    case MM_05 = 'MM-05';
+    case MM_06 = 'MM-06';
+    case MM_07 = 'MM-07';
+    case MM_11 = 'MM-11';
+    case MM_12 = 'MM-12';
+    case MM_13 = 'MM-13';
+    case MM_14 = 'MM-14';
+    case MM_15 = 'MM-15';
+    case MM_16 = 'MM-16';
+    case MM_17 = 'MM-17';
+    case MM_18 = 'MM-18';
+
+
+    // MONGOLIA
+    case MN_1 = 'MN-1';
+    case MN_035 = 'MN-035';
+    case MN_037 = 'MN-037';
+    case MN_039 = 'MN-039';
+    case MN_041 = 'MN-041';
+    case MN_043 = 'MN-043';
+    case MN_046 = 'MN-046';
+    case MN_047 = 'MN-047';
+    case MN_049 = 'MN-049';
+    case MN_051 = 'MN-051';
+    case MN_053 = 'MN-053';
+    case MN_055 = 'MN-055';
+    case MN_057 = 'MN-057';
+    case MN_059 = 'MN-059';
+    case MN_061 = 'MN-061';
+    case MN_063 = 'MN-063';
+    case MN_064 = 'MN-064';
+    case MN_065 = 'MN-065';
+    case MN_067 = 'MN-067';
+    case MN_069 = 'MN-069';
+    case MN_071 = 'MN-071';
+    case MN_073 = 'MN-073';
+
+
+    // MAURITANIA
+    case MR_01 = 'MR-01';
+    case MR_02 = 'MR-02';
+    case MR_03 = 'MR-03';
+    case MR_04 = 'MR-04';
+    case MR_05 = 'MR-05';
+    case MR_06 = 'MR-06';
+    case MR_07 = 'MR-07';
+    case MR_08 = 'MR-08';
+    case MR_09 = 'MR-09';
+    case MR_10 = 'MR-10';
+    case MR_11 = 'MR-11';
+    case MR_12 = 'MR-12';
+    case MR_13 = 'MR-13';
+    case MR_14 = 'MR-14';
+    case MR_15 = 'MR-15';
+
+
+    // MALTA
+    case MT_01 = 'MT-01';
+    case MT_02 = 'MT-02';
+    case MT_03 = 'MT-03';
+    case MT_04 = 'MT-04';
+    case MT_05 = 'MT-05';
+    case MT_06 = 'MT-06';
+    case MT_07 = 'MT-07';
+    case MT_08 = 'MT-08';
+    case MT_09 = 'MT-09';
+    case MT_10 = 'MT-10';
+    case MT_11 = 'MT-11';
+    case MT_12 = 'MT-12';
+    case MT_13 = 'MT-13';
+    case MT_14 = 'MT-14';
+    case MT_15 = 'MT-15';
+    case MT_16 = 'MT-16';
+    case MT_17 = 'MT-17';
+    case MT_18 = 'MT-18';
+    case MT_19 = 'MT-19';
+    case MT_20 = 'MT-20';
+    case MT_21 = 'MT-21';
+    case MT_22 = 'MT-22';
+    case MT_23 = 'MT-23';
+    case MT_24 = 'MT-24';
+    case MT_25 = 'MT-25';
+    case MT_26 = 'MT-26';
+    case MT_27 = 'MT-27';
+    case MT_28 = 'MT-28';
+    case MT_29 = 'MT-29';
+    case MT_30 = 'MT-30';
+    case MT_31 = 'MT-31';
+    case MT_32 = 'MT-32';
+    case MT_33 = 'MT-33';
+    case MT_34 = 'MT-34';
+    case MT_35 = 'MT-35';
+    case MT_36 = 'MT-36';
+    case MT_37 = 'MT-37';
+    case MT_38 = 'MT-38';
+    case MT_39 = 'MT-39';
+    case MT_40 = 'MT-40';
+    case MT_41 = 'MT-41';
+    case MT_42 = 'MT-42';
+    case MT_43 = 'MT-43';
+    case MT_44 = 'MT-44';
+    case MT_45 = 'MT-45';
+    case MT_46 = 'MT-46';
+    case MT_47 = 'MT-47';
+    case MT_48 = 'MT-48';
+    case MT_49 = 'MT-49';
+    case MT_50 = 'MT-50';
+    case MT_51 = 'MT-51';
+    case MT_52 = 'MT-52';
+    case MT_53 = 'MT-53';
+    case MT_54 = 'MT-54';
+    case MT_55 = 'MT-55';
+    case MT_56 = 'MT-56';
+    case MT_57 = 'MT-57';
+    case MT_58 = 'MT-58';
+    case MT_59 = 'MT-59';
+    case MT_60 = 'MT-60';
+    case MT_61 = 'MT-61';
+    case MT_62 = 'MT-62';
+    case MT_63 = 'MT-63';
+    case MT_64 = 'MT-64';
+    case MT_65 = 'MT-65';
+    case MT_66 = 'MT-66';
+    case MT_67 = 'MT-67';
+    case MT_68 = 'MT-68';
+
+
+    // MAURITIUS
+    case MU_AG = 'MU-AG';
+    case MU_BL = 'MU-BL';
+    case MU_CC = 'MU-CC';
+    case MU_FL = 'MU-FL';
+    case MU_GP = 'MU-GP';
+    case MU_MO = 'MU-MO';
+    case MU_PA = 'MU-PA';
+    case MU_PL = 'MU-PL';
+    case MU_PW = 'MU-PW';
+    case MU_RO = 'MU-RO';
+    case MU_RR = 'MU-RR';
+    case MU_SA = 'MU-SA';
+
+
+    // MALDIVES
+    case MV_00 = 'MV-00';
+    case MV_01 = 'MV-01';
+    case MV_02 = 'MV-02';
+    case MV_03 = 'MV-03';
+    case MV_04 = 'MV-04';
+    case MV_05 = 'MV-05';
+    case MV_07 = 'MV-07';
+    case MV_08 = 'MV-08';
+    case MV_12 = 'MV-12';
+    case MV_13 = 'MV-13';
+    case MV_14 = 'MV-14';
+    case MV_17 = 'MV-17';
+    case MV_20 = 'MV-20';
+    case MV_23 = 'MV-23';
+    case MV_24 = 'MV-24';
+    case MV_25 = 'MV-25';
+    case MV_26 = 'MV-26';
+    case MV_27 = 'MV-27';
+    case MV_28 = 'MV-28';
+    case MV_29 = 'MV-29';
+    case MV_MLE = 'MV-MLE';
+
+
+    // MALAWI
+    case MW_C = 'MW-C';
+    case MW_N = 'MW-N';
+    case MW_S = 'MW-S';
+
+
+    // MEXICO
+    case MX_AGU = 'MX-AGU';
+    case MX_BCN = 'MX-BCN';
+    case MX_BCS = 'MX-BCS';
+    case MX_CAM = 'MX-CAM';
+    case MX_CHH = 'MX-CHH';
+    case MX_CHP = 'MX-CHP';
+    case MX_CMX = 'MX-CMX';
+    case MX_COA = 'MX-COA';
+    case MX_COL = 'MX-COL';
+    case MX_DUR = 'MX-DUR';
+    case MX_GRO = 'MX-GRO';
+    case MX_GUA = 'MX-GUA';
+    case MX_HID = 'MX-HID';
+    case MX_JAL = 'MX-JAL';
+    case MX_MEX = 'MX-MEX';
+    case MX_MIC = 'MX-MIC';
+    case MX_MOR = 'MX-MOR';
+    case MX_NAY = 'MX-NAY';
+    case MX_NLE = 'MX-NLE';
+    case MX_OAX = 'MX-OAX';
+    case MX_PUE = 'MX-PUE';
+    case MX_QUE = 'MX-QUE';
+    case MX_ROO = 'MX-ROO';
+    case MX_SIN = 'MX-SIN';
+    case MX_SLP = 'MX-SLP';
+    case MX_SON = 'MX-SON';
+    case MX_TAB = 'MX-TAB';
+    case MX_TAM = 'MX-TAM';
+    case MX_TLA = 'MX-TLA';
+    case MX_VER = 'MX-VER';
+    case MX_YUC = 'MX-YUC';
+    case MX_ZAC = 'MX-ZAC';
 
 
     // The Netherlands
@@ -2735,6 +3050,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::CCK => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Cocos (Keeling) Islands', osm: 82636, type: BearCountrySubdivisionTypeEnum::TERRITORY),
             self::CXR => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Christmas Island', osm: 2177207, type: BearCountrySubdivisionTypeEnum::TERRITORY),
             self::HMD => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Heard Island and McDonald Islands', osm: 2177227, type: BearCountrySubdivisionTypeEnum::TERRITORY),
+            self::NFK => new BearCountrySubdivisionData(cca2: BearCountryEnum::AU, name: 'Norfolk Island', osm: 2574988, type: BearCountrySubdivisionTypeEnum::TERRITORY),
 
 
             // AZERBAIJAN
@@ -3681,7 +3997,9 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             // FRANCE
             self::FR_20R => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Corsica', osm: 76910, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_971 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Guadeloupe', osm: 2562137, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
+            self::FR_972 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Martinique', osm: 2473088, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
             self::FR_973 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'French Guiana', osm: 1260551, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
+            self::FR_974 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Reunion', osm: 1785276, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
             self::FR_976 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Mayotte', osm: 1259885, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
             self::FR_ARA => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Auvergne-Rhône-Alps', osm: 3792877, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FR_BFC => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Burgundy-Free County', osm: 3792878, type: BearCountrySubdivisionTypeEnum::REGION),
@@ -3698,6 +4016,9 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::FR_BL => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Saint Barthélemy', osm: 537967, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
             self::FR_CP => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Clipperton', osm: 2573009, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
             self::FR_MF => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Saint Martin', osm: 1891583, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
+            self::FR_PF => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'French Polynesia', osm: 3412620, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
+            self::FR_PM => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Saint Pierre and Miquelon', osm: 3406826, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
+            self::FR_TF => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'French Southern and Antarctic Lands', osm: 2186658, type: BearCountrySubdivisionTypeEnum::TERRITORY),
             self::FR_WF => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Wallis and Futuna', osm: 3412448, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
 
 
@@ -3723,9 +4044,12 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::IMN => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Isle of Man', osm: 62269, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
             self::IOT => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'British Indian Ocean Territory', osm: 1993867, type: BearCountrySubdivisionTypeEnum::TERRITORY),
             self::JEY => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Jersey', osm: 367988, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
+            self::MSR => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Montserrat', osm: 537257, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
             self::FLK => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Falkland Islands', osm: 2185374, type: BearCountrySubdivisionTypeEnum::TERRITORY),
             self::PCN => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Pitcairn Islands', osm: 2185375, type: BearCountrySubdivisionTypeEnum::TERRITORY),
             self::SGS => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'South Georgia and the South Sandwich Islands', osm: 1983628, type: BearCountrySubdivisionTypeEnum::TERRITORY),
+            self::TCA => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'Turks and Caicos Islands', osm: 547479, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
+            self::VGB => new BearCountrySubdivisionData(cca2: BearCountryEnum::GB, name: 'British Virgin Islands', osm: 285454, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
 
 
             // GRENADA
@@ -4667,6 +4991,320 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
             self::MG_M => new BearCountrySubdivisionData(cca2: BearCountryEnum::MG, name: 'Mahajanga', osm: 3203752, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::MG_T => new BearCountrySubdivisionData(cca2: BearCountryEnum::MG, name: 'Antananarivo', osm: 3203754, type: BearCountrySubdivisionTypeEnum::PROVINCE),
             self::MG_U => new BearCountrySubdivisionData(cca2: BearCountryEnum::MG, name: 'Toliara', osm: 3203749, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+
+
+            // MARSHALL ISLANDS
+            self::MH_L => new BearCountrySubdivisionData(cca2: BearCountryEnum::MH, name: 'Ralik', osm: 7240959, type: BearCountrySubdivisionTypeEnum::CHAIN),
+            self::MH_T => new BearCountrySubdivisionData(cca2: BearCountryEnum::MH, name: 'Ratak', osm: 7240960, type: BearCountrySubdivisionTypeEnum::CHAIN),
+
+
+            // NORTH MACEDONIA
+            self::MK_101 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Veles', osm: 2575609, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_102 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Gradsko', osm: 2575972, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_103 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Demir Kapija', osm: 2577810, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_104 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Kavadarci', osm: 2577610, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_105 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Lozovo', osm: 2572593, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_106 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Negotino', osm: 2577657, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_107 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Rosoman', osm: 2577488, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_108 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Sveti Nikole', osm: 2572599, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_109 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Čaška', osm: 2576148, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_201 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Berovo', osm: 2583831, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_202 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Vinica', osm: 2583460, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_203 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Delčevo', osm: 2583474, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_204 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Zrnovci', osm: 2581655, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_205 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Karbinci', osm: 2580986, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_206 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Kočani', osm: 2454874, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_207 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Makedonska Kamenica', osm: 2583425, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_208 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Pehčevo', osm: 2583788, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_209 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Probištip', osm: 2582634, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_210 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Češinovo-Obleševo', osm: 2581719, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_211 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Štip', osm: 2580154, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_301 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Vevčani', osm: 2603187, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_303 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Debar', osm: 2605591, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_304 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Debrca', osm: 2603059, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_307 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Kičevo', osm: 2606600, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_308 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Makedonski Brod', osm: 2608091, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_310 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Ohrid', osm: 2601514, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_311 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Plasnica', osm: 2608063, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_312 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Struga', osm: 2603188, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_313 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Centar Župa', osm: 2605589, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_401 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Bogdanci', osm: 2591418, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_402 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Bosilovo', osm: 2589323, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_403 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Valandovo', osm: 2590953, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_404 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Vasilevo', osm: 2589047, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_405 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Gevgelija', osm: 2591417, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_406 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Dojran', osm: 2591259, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_407 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Konče', osm: 2589262, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_408 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Novo Selo', osm: 2589373, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_409 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Radoviš', osm: 2588938, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_410 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Strumica', osm: 2591087, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_501 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Bitola', osm: 2598354, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_502 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Demir Hisar', osm: 2598353, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_503 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Dolneni', osm: 2592899, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_504 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Krivogaštani', osm: 2596009, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_505 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Kruševo', osm: 2596098, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_506 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Mogila', osm: 2596099, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_507 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Novaci', osm: 2598190, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_508 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Prilep', osm: 2593112, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_509 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Resen', osm: 2598355, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_601 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Bogovinje', osm: 2615507, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_602 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Brvenica', osm: 2615505, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_603 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Vrapčište', osm: 2615539, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_604 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Gostivar', osm: 2615530, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_605 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Želino', osm: 2615107, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_606 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Jegunovce', osm: 2608570, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_607 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Mavrovo i Rostuše', osm: 2615675, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_608 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Tearce', osm: 2615128, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_609 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Tetovo', osm: 2615182, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_701 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Kratovo', osm: 2587448, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_702 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Kriva Palanka', osm: 2587615, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_703 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Kumanovo', osm: 2585982, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_704 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Lipkovo', osm: 2585376, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_705 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Rankovce', osm: 2587610, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_706 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Staro Nagoričane', osm: 2586114, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_801 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Aerodrom', osm: 2432325, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_802 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Aračinovo', osm: 2460855, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_803 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Butel', osm: 2433475, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_804 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Gazi Baba', osm: 2433366, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_805 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Gjorče Petrov', osm: 2440352, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_806 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Zelenikovo', osm: 2460678, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_807 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Ilinden', osm: 2460762, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_808 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Karpoš', osm: 2440380, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_809 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Kisela Voda', osm: 2432321, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_810 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Petrovec', osm: 2460743, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_811 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Saraj', osm: 2440308, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_812 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Sopište', osm: 2460481, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_813 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Studeničani', osm: 2460539, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_814 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Centar', osm: 2439777, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_815 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Čair', osm: 2433521, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_816 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Čučer-Sandevo', osm: 2460854, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+            self::MK_817 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MK, name: 'Šuto Orizari', osm: 2433628, type: BearCountrySubdivisionTypeEnum::MUNICIPALITY),
+
+
+            // MALI
+            self::ML_1 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ML, name: 'Kayes', osm: 2096896, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ML_2 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ML, name: 'Koulikoro', osm: 2096898, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ML_3 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ML, name: 'Sikasso', osm: 2096900, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ML_4 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ML, name: 'Ségou', osm: 2096901, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ML_5 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ML, name: 'Mopti', osm: 2096899, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ML_6 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ML, name: 'Tombouctou', osm: 2096902, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ML_7 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ML, name: 'Gao', osm: 2096895, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ML_8 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ML, name: 'Kidal', osm: 2096897, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ML_9 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ML, name: 'Ménaka', osm: 3079153, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ML_10 => new BearCountrySubdivisionData(cca2: BearCountryEnum::ML, name: 'Taoudénit', osm: 12558577, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::ML_BKO => new BearCountrySubdivisionData(cca2: BearCountryEnum::ML, name: 'Bamako', osm: 2105525, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+
+
+            // MYANMAR
+            self::MM_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Sagaing', osm: 5996484, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::MM_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Bago', osm: 5996474, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::MM_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Magway', osm: 5996479, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::MM_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Mandalay', osm: 5996480, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::MM_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Tanintharyi', osm: 5996486, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::MM_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Yangon', osm: 5996487, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::MM_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Ayeyarwady', osm: 5996473, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::MM_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Kachin', osm: 5996476, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MM_12 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Kayah', osm: 5996477, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MM_13 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Kayin', osm: 5996478, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MM_14 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Chin', osm: 5996475, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MM_15 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Mon', osm: 5996481, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MM_16 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Rakhine', osm: 5996483, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MM_17 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Shan', osm: 5996485, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MM_18 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MM, name: 'Nay Pyi Taw', osm: 5996482, type: BearCountrySubdivisionTypeEnum::UNION_TERRITORY),
+
+
+            // MONGOLIA
+            self::MN_1 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Ulaanbaatar', osm: 270090, type: BearCountrySubdivisionTypeEnum::CITY),
+            self::MN_035 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Orhon', osm: 270092, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_037 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Darhan uul', osm: 270091, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_039 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Hentiy', osm: 269885, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_041 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Hövsgöl', osm: 270072, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_043 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Hovd', osm: 270055, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_046 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Uvs', osm: 270059, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_047 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Töv', osm: 3382267, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_049 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Selenge', osm: 270089, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_051 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Sühbaatar', osm: 269874, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_053 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Ömnögovĭ', osm: 270051, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_055 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Övörhangay', osm: 270074, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_057 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Dzavhan', osm: 4074177, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_059 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Dundgovĭ', osm: 270094, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_061 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Dornod', osm: 269886, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_063 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Dornogovĭ', osm: 270050, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_064 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Govĭ-Sümber', osm: 270095, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_065 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Govĭ-Altay', osm: 270054, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_067 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Bulgan', osm: 270073, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_069 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Bayanhongor', osm: 270052, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_071 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Bayan-Ölgiy', osm: 3382266, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MN_073 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MN, name: 'Arhangay', osm: 270075, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+
+
+            // MAURITANIA
+            self::MR_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'Eastern Basin', osm: 3394987, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'Western Basin', osm: 3395036, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'Assaba', osm: 3395241, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'Gorgol', osm: 3395243, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'Brakna', osm: 3395242, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'Trarza', osm: 3395245, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'Adrar', osm: 3394986, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'Nouadhibou Peninsula', osm: 3395035, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_09 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'Tagant', osm: 3394988, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_10 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'Guidimaka', osm: 3395244, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'Tiris Zemmour', osm: 3394989, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_12 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'Inchiri', osm: 3395037, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_13 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'West Nouakchott', osm: 16510636, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_14 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'North Nouakchott', osm: 3395130, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+            self::MR_15 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MR, name: 'South Nouakchott', osm: 16510635, type: BearCountrySubdivisionTypeEnum::PROVINCE),
+
+
+            // MALTA
+            self::MT_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Attard', osm: 7510551, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Balzan', osm: 7510550, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Birgu', osm: 6172198, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Birkirkara', osm: 7510585, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Birżebbuġa', osm: 7510570, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_06 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Bormla', osm: 7510576, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Dingli', osm: 7510566, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Fgura', osm: 7510560, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_09 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Floriana', osm: 7510581, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_10 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Fontana', osm: 7508578, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_11 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Gudja', osm: 7510557, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_12 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Gżira', osm: 7510588, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_13 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Għajnsielem', osm: 6311965, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_14 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Għarb', osm: 7508581, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_15 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Għargħur', osm: 7510592, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_16 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Għasri', osm: 7508582, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_17 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Għaxaq', osm: 7510562, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_18 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Ħamrun', osm: 7510547, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_19 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Iklin', osm: 7510586, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_20 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Isla', osm: 7510578, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_21 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Kalkara', osm: 7510575, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_22 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Kerċem', osm: 7508579, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_23 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Kirkop', osm: 7510554, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_24 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Lija', osm: 7510593, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_25 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Luqa', osm: 7510563, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_26 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Marsa', osm: 7510579, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_27 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Marsaskala', osm: 7510572, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_28 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Marsaxlokk', osm: 7510571, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_29 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Mdina', osm: 7510549, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_30 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Mellieħa', osm: 6181422, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_31 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Mġarr', osm: 6172218, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_32 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Mosta', osm: 7510594, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_33 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Mqabba', osm: 7510555, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_34 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Msida', osm: 7510584, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_35 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Mtarfa', osm: 7510564, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_36 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Munxar', osm: 7508589, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_37 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Nadur', osm: 7508587, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_38 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Naxxar', osm: 7510595, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_39 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Paola', osm: 7510577, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_40 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Pembroke', osm: 7510590, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_41 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Pietà', osm: 7510582, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_42 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Qala', osm: 7508586, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_43 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Qormi', osm: 7510556, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_44 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Qrendi', osm: 7510568, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_45 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Rabat Għawdex', osm: 7508583, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_46 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Rabat Malta', osm: 7510565, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_47 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Safi', osm: 7510553, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_48 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'San Ġiljan', osm: 7510589, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_49 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'San Ġwann', osm: 7510587, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_50 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'San Lawrenz', osm: 7508580, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_51 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'San Pawl il-Baħar', osm: 7510596, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_52 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Sannat', osm: 7508590, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_53 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Santa Luċija', osm: 7510558, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_54 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Santa Venera', osm: 7510548, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_55 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Siġġiewi', osm: 7510567, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_56 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Sliema', osm: 6172199, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_57 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Swieqi', osm: 7510591, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_58 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Ta\' Xbiex', osm: 7510583, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_59 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Tarxien', osm: 7510559, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_60 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Valletta', osm: 7510580, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_61 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Xagħra', osm: 7508585, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_62 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Xewkija', osm: 7508588, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_63 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Xgħajra', osm: 7510574, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_64 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Żabbar', osm: 7510573, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_65 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Żebbuġ Għawdex', osm: 7508584, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_66 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Żebbuġ Malta', osm: 7510552, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_67 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Żejtun', osm: 7510561, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+            self::MT_68 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MT, name: 'Żurrieq', osm: 7510569, type: BearCountrySubdivisionTypeEnum::COUNCIL),
+
+
+            // MAURITIUS
+            self::MU_AG => new BearCountrySubdivisionData(cca2: BearCountryEnum::MU, name: 'Agalega Islands', osm: 3691785, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
+            self::MU_BL => new BearCountrySubdivisionData(cca2: BearCountryEnum::MU, name: 'Black River', osm: 3488093, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::MU_CC => new BearCountrySubdivisionData(cca2: BearCountryEnum::MU, name: 'Cargados Carajos Shoals', osm: 3691786, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
+            self::MU_FL => new BearCountrySubdivisionData(cca2: BearCountryEnum::MU, name: 'Flacq', osm: 3488094, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::MU_GP => new BearCountrySubdivisionData(cca2: BearCountryEnum::MU, name: 'Grand Port', osm: 3488095, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::MU_MO => new BearCountrySubdivisionData(cca2: BearCountryEnum::MU, name: 'Moka', osm: 3488096, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::MU_PA => new BearCountrySubdivisionData(cca2: BearCountryEnum::MU, name: 'Pamplemousses', osm: 3488097, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::MU_PL => new BearCountrySubdivisionData(cca2: BearCountryEnum::MU, name: 'Port Louis', osm: 3488099, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::MU_PW => new BearCountrySubdivisionData(cca2: BearCountryEnum::MU, name: 'Plaines Wilhems', osm: 3488098, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::MU_RO => new BearCountrySubdivisionData(cca2: BearCountryEnum::MU, name: 'Rodrigues Island', osm: 3691784, type: BearCountrySubdivisionTypeEnum::DEPENDENCY),
+            self::MU_RR => new BearCountrySubdivisionData(cca2: BearCountryEnum::MU, name: 'Rivière du Rempart', osm: 3488100, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+            self::MU_SA => new BearCountrySubdivisionData(cca2: BearCountryEnum::MU, name: 'Savanne', osm: 3488101, type: BearCountrySubdivisionTypeEnum::DISTRICT),
+
+
+            // MALDIVES
+            self::MV_00 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'South Ari', osm: 6599352, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'Addu', osm: 6599413, type: BearCountrySubdivisionTypeEnum::CITY),
+            self::MV_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'North Ari', osm: 6599351, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'Faadhippolhu', osm: 6599328, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'Felidhu', osm: 6600315, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_05 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'Hahdhunmathi', osm: 6599390, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_07 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'North Thiladhunmathi', osm: 6599296, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_08 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'Kolhumadulu', osm: 6599381, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_12 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'Mulaku', osm: 6599365, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_13 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'North Maalhosmadulu', osm: 6599331, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_14 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'North Nilandhe', osm: 6599372, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_17 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'South Nilandhe', osm: 6599371, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_20 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'South Maalhosmadulu', osm: 6599335, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_23 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'South Thiladhunmathi', osm: 6599297, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_24 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'North Miladhunmadulu', osm: 6599324, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_25 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'South Miladhunmadulu', osm: 6599323, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_26 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'Male', osm: 6599423, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_27 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'North Huvadhu', osm: 6599410, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_28 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'South Huvadhu', osm: 6599411, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_29 => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'Fuvammulah', osm: 6599412, type: BearCountrySubdivisionTypeEnum::ATOLL),
+            self::MV_MLE => new BearCountrySubdivisionData(cca2: BearCountryEnum::MV, name: 'Male', osm: 6599336, type: BearCountrySubdivisionTypeEnum::CITY),
+
+
+            // MALAWI
+            self::MW_C => new BearCountrySubdivisionData(cca2: BearCountryEnum::MW, name: 'Chapakati', osm: 192621, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::MW_N => new BearCountrySubdivisionData(cca2: BearCountryEnum::MW, name: 'Chakumpoto', osm: 192622, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::MW_S => new BearCountrySubdivisionData(cca2: BearCountryEnum::MW, name: 'Chakumwera', osm: 192623, type: BearCountrySubdivisionTypeEnum::REGION),
+
+
+            // MEXICO
+            self::MX_AGU => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Aguascalientes', osm: 2610002, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_BCN => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Baja California', osm: 2589601, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_BCS => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Baja California Sur', osm: 2589611, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_CAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Campeche', osm: 2568834, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_CHH => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Chihuahua', osm: 1673425, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_CHP => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Chiapas', osm: 2556679, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_CMX => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Ciudad de México', osm: 1376330, type: BearCountrySubdivisionTypeEnum::ENTITY),
+            self::MX_COA => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Coahuila de Zaragoza', osm: 1661524, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_COL => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Colima', osm: 2340912, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_DUR => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Durango', osm: 2399740, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_GRO => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Guerrero', osm: 2439316, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_GUA => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Guanajuato', osm: 2340909, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_HID => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Hidalgo', osm: 1376490, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_JAL => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Jalisco', osm: 2340910, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_MEX => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'México', osm: 1376489, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_MIC => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Michoacán de Ocampo', osm: 2340636, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_MOR => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Morelos', osm: 1376332, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_NAY => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Nayarit', osm: 7695827, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_NLE => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Nuevo León', osm: 1661523, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_OAX => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Oaxaca', osm: 2529822, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_PUE => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Puebla', osm: 1376491, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_QUE => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Querétaro', osm: 2340903, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_ROO => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Quintana Roo', osm: 2614434, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_SIN => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Sinaloa', osm: 2455086, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_SLP => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'San Luis Potosí', osm: 4086617, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_SON => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Sonora', osm: 1673426, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_TAB => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Tabasco', osm: 2556680, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_TAM => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Tamaulipas', osm: 2415518, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_TLA => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Tlaxcala', osm: 1375274, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_VER => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Veracruz de Ignacio de la Llave', osm: 2415761, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_YUC => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Yucatán', osm: 2614435, type: BearCountrySubdivisionTypeEnum::STATE),
+            self::MX_ZAC => new BearCountrySubdivisionData(cca2: BearCountryEnum::MX, name: 'Zacatecas', osm: 2399704, type: BearCountrySubdivisionTypeEnum::STATE),
 
 
             // NETHERLANDS

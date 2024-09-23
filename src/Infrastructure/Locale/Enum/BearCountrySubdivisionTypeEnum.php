@@ -7,11 +7,14 @@ use GuardsmanPanda\Larabear\Infrastructure\Locale\Crud\LarabearCountrySubdivisio
 
 enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInterface {
     case ADMINISTRATION = 'ADMINISTRATION';
+    case ATOLL = 'ATOLL';
     case CANTON = 'CANTON';
+    case CHAIN = 'CHAIN';
     case CITY = 'CITY';
     case COMMUNITY = 'COMMUNITY';
     case COLLECTIVITY = 'COLLECTIVITY';
     case COMMUNE = 'COMMUNE';
+    case COUNCIL = 'COUNCIL';
     case COUNTRY = 'COUNTRY';
     case COUNTY = 'COUNTY';
     case DEPARTMENT = 'DEPARTMENT';
@@ -47,11 +50,14 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
     public function getName(): string {
         return match ($this) {
             self::ADMINISTRATION => 'Administration',
+            self::ATOLL => 'Atoll',
             self::COMMUNITY => 'Community',
             self::CANTON => 'Canton',
+            self::CHAIN => 'Chain',
             self::CITY => 'City',
             self::COLLECTIVITY => 'Collectivity',
             self::COMMUNE => 'Commune',
+            self::COUNCIL => 'Council',
             self::COUNTRY => 'Country',
             self::COUNTY => 'County',
             self::DEPARTMENT => 'Department',
