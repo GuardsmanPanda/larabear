@@ -6,9 +6,11 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Interface\BearDatabaseBackedEnumI
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Crud\LarabearCountrySubdivisionTypeCrud;
 
 enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInterface {
+    case AREA = 'AREA';
     case ADMINISTRATION = 'ADMINISTRATION';
     case ATOLL = 'ATOLL';
     case CANTON = 'CANTON';
+    case CAPITAL = 'CAPITAL';
     case CHAIN = 'CHAIN';
     case CITY = 'CITY';
     case COMMUNITY = 'COMMUNITY';
@@ -25,9 +27,11 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
     case ENTITY = 'ENTITY';
     case GOVERNORATE = 'GOVERNORATE';
     case ISLAND = 'ISLAND';
+    case KRAY = 'KRAY';
     case METROPOLITAN = 'METROPOLITAN';
     case MUNICIPALITY = 'MUNICIPALITY';
     case OBLAST = 'OBLAST';
+    case OKRUG = 'OKRUG';
     case OUTLYING_AREA = 'OUTLYING_AREA';
     case PARISH = 'PARISH';
     case POPULARATE = 'POPULARATE';
@@ -45,14 +49,17 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
     case TOWN = 'TOWN';
     case UNION_TERRITORY = 'UNION_TERRITORY';
     case UNIT = 'UNIT';
+    case VOIVODSHIP = 'VOIVODSHIP';
 
 
     public function getName(): string {
         return match ($this) {
+            self::AREA => 'Area',
             self::ADMINISTRATION => 'Administration',
             self::ATOLL => 'Atoll',
             self::COMMUNITY => 'Community',
             self::CANTON => 'Canton',
+            self::CAPITAL => 'Capital',
             self::CHAIN => 'Chain',
             self::CITY => 'City',
             self::COLLECTIVITY => 'Collectivity',
@@ -68,9 +75,11 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
             self::ENTITY => 'Entity',
             self::GOVERNORATE => 'Governorate',
             self::ISLAND => 'Island',
+            self::KRAY => 'Kray',
             self::METROPOLITAN => 'Metropolitan',
             self::MUNICIPALITY => 'Municipality',
             self::OBLAST => 'Oblast',
+            self::OKRUG => 'Okrug',
             self::OUTLYING_AREA => 'Outlying Area',
             self::PARISH => 'Parish',
             self::POPULARATE => 'Popularate',
@@ -88,6 +97,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
             self::TOWN => 'Town',
             self::UNION_TERRITORY => 'Union Territory',
             self::UNIT => 'Unit',
+            self::VOIVODSHIP => 'Voivodship',
         };
     }
 
