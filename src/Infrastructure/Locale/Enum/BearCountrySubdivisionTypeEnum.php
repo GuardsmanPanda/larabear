@@ -9,6 +9,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
     case AREA = 'AREA';
     case ADMINISTRATION = 'ADMINISTRATION';
     case ATOLL = 'ATOLL';
+    case BOROUGH = 'BOROUGH';
     case CANTON = 'CANTON';
     case CAPITAL = 'CAPITAL';
     case CHAIN = 'CHAIN';
@@ -50,6 +51,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
     case UNION_TERRITORY = 'UNION_TERRITORY';
     case UNIT = 'UNIT';
     case VOIVODSHIP = 'VOIVODSHIP';
+    case WARD = 'WARD';
 
 
     public function getName(): string {
@@ -57,6 +59,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
             self::AREA => 'Area',
             self::ADMINISTRATION => 'Administration',
             self::ATOLL => 'Atoll',
+            self::BOROUGH => 'Borough',
             self::COMMUNITY => 'Community',
             self::CANTON => 'Canton',
             self::CAPITAL => 'Capital',
@@ -98,6 +101,7 @@ enum BearCountrySubdivisionTypeEnum: string implements BearDatabaseBackedEnumInt
             self::UNION_TERRITORY => 'Union Territory',
             self::UNIT => 'Unit',
             self::VOIVODSHIP => 'Voivodship',
+            self::WARD => 'Ward',
         };
     }
 
