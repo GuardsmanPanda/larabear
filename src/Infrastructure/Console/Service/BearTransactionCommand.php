@@ -23,8 +23,8 @@ abstract class BearTransactionCommand extends Command {
     abstract protected function handleInTransaction(): void;
 
     #[Override] public final function option($key = null): bool {
-        if ($key === null) {
-            throw new InvalidArgumentException(message: "Option key must not be null");
+        if (!is_string($key)) {
+            throw new InvalidArgumentException(message: "Option key must be a string");
         }
         $parent = parent::option($key);
         if (!is_bool($parent)) {

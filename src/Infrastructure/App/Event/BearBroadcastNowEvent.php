@@ -4,18 +4,16 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Event;
 
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-final class BearBroadcastNowEvent implements ShouldBroadcastNow {
+final readonly class BearBroadcastNowEvent implements ShouldBroadcastNow {
     /**
      * @param string $channel
      * @param string $event
      * @param array<string, mixed> $payload
-     * @param bool $afterCommit
      */
     public function __construct(
-        private readonly string $channel,
-        private readonly string $event,
-        private readonly array $payload,
-        public bool $afterCommit = true
+        private string $channel,
+        private string $event,
+        private array  $payload
     ) {}
 
     public function broadcastOn(): string {
