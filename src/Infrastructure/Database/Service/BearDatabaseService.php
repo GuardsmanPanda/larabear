@@ -58,7 +58,7 @@ final class BearDatabaseService {
         }
         $processed = [];
         foreach ($values as $element) {
-            $element = "'$element'";
+            $element = str_contains(haystack: $element, needle: ' ') ? "\"$element\"" : $element;
             if (str_contains(haystack: $element, needle: ',')) {
                 throw new RuntimeException(message: 'Array elements cannot contain a comma.');
             }
