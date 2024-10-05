@@ -58,4 +58,14 @@ final class BearEnvService {
         }
         return ValidateAndParseValue::parseBool(value: Env::get(key: $key), errorMessage: "env key [$key] must be a boolean");
     }
+
+    /**
+     * @param string $key
+     * @param array<string> $array
+     * @return string
+     */
+    public static function getStringFromArray(string $key, array $array): string {
+        $value = self::getString(key: $key);
+        return ValidateAndParseValue::mustBeInArray(value: $value, array: $array, errorMessage: "env key [$key] must be one of: " . implode(separator: ', ', array: $array));
+    }
 }
