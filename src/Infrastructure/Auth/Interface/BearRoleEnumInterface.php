@@ -7,4 +7,9 @@ use GuardsmanPanda\Larabear\Infrastructure\App\Interface\BearDatabaseBackedEnumI
 interface BearRoleEnumInterface extends BearDatabaseBackedEnumInterface {
     public function getValue(): string;
     public function getDescription(): string;
+
+    /**
+     * @return array<BearPermissionEnumInterface>
+     */
+    public function getRolePermission(): array;
 }
