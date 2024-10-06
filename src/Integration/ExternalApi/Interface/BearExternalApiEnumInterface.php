@@ -18,11 +18,11 @@ interface BearExternalApiEnumInterface extends BearDatabaseBackedEnumInterface {
 
     public function oauth2ClientId(): string|null;
 
-    /**  @return ArrayObject<string, string>|null */
-    public function baseHeadersJson(): ArrayObject|null;
+    /**  @return ArrayObject<string, string> */
+    public function baseHeadersJson(): ArrayObject;
 
-    /**  @return ArrayObject<string, mixed>|null */
-    public function metadataJson(): ArrayObject|null;
+    /**  @return ArrayObject<string, mixed> */
+    public function metadataJson(): ArrayObject;
 
     public function getModel(): BearExternalApi;
 }
