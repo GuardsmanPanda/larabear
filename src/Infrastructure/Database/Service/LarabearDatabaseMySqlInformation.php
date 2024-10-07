@@ -32,9 +32,9 @@ final class LarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInforma
                 columnName: $row->column_name,
                 nativeDataType: $row->data_type,
                 isNullable: (bool)$row->is_nullable,
-                phpDataType: $this->databaseTypeToPhpType(databaseType: $row->data_type),
+                phpDataType: $this->mysqlTypeToPhpType(databaseType: $row->data_type),
                 sortOrder: $this->mysqlTypeSortOrder($row->data_type) + ($row->is_nullable ? 1 : 0),
-                requiredHeader: $this->mysqlTypeToPhpHeader($row->data_type),
+                requiredHeaders: $this->mysqlTypeToPhpHeaders($row->data_type),
                 eloquentCast: $this->mysqlTypeToEloquentCast($row->column_name, $row->data_type),
                 columnDefault: $row->column_default
             );
@@ -75,7 +75,7 @@ final class LarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInforma
     }
 
 
-    public function databaseTypeToPhpType(string $databaseType): string {
+    public function mysqlTypeToPhpType(string $databaseType): string {
         return match ($databaseType) {
             'date', 'datetime', 'timestamp' => 'CarbonInterface',
             'char', 'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum' => 'string',
@@ -101,11 +101,19 @@ final class LarabearDatabaseMySqlInformation extends LarabearDatabaseBaseInforma
     }
 
 
-    private function mysqlTypeToPhpHeader(string $mysql_type): string {
+    /**
+     * @return array<string>
+     */
+    private function mysqlTypeToPhpHeaders(string $mysql_type): array {
         return match ($mysql_type) {
-            'json' => 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;',
-            'char', 'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum', 'tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'double' => '',
-            'date', 'datetime', 'timestamp' => 'use Carbon\\CarbonInterface;',
+            'char', 'varchar', 'tinytext', 'text', 'mediumtext', 'longtext', 'enum', 'tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'double' => [],
+            'json' => [
+                'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;',
+                'use Illuminate\\Database\\Eloquent\\Casts\\AsArrayObject;'
+            ],
+            'date', 'datetime', 'timestamp' => [
+                'use Carbon\\CarbonInterface;'
+            ],
             default => throw new RuntimeException(message: "Unknown type: $mysql_type")
         };
     }

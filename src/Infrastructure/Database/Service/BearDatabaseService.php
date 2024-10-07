@@ -10,15 +10,6 @@ use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
 final class BearDatabaseService {
-    /**
-     * @param String $sql
-     * @param array<array-key, mixed> $bindings
-     * @return bool
-     */
-    public static function exists(string $sql, array $bindings = []): bool {
-        return DB::selectOne(query: $sql, bindings: $bindings) !== null;
-    }
-
     public static function mustBeInTransaction(): void {
         if (App::runningUnitTests() || DB::transactionLevel() > 0) {
             return;

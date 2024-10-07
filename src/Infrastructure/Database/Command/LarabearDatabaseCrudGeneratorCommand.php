@@ -222,7 +222,9 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
                     $headers->add("use stdClass;");
                     continue;
                 }
-                $headers->add($column->requiredHeader);
+                foreach ($column->requiredHeaders as $header) {
+                    $headers->add($header);
+                }
             }
         }
 

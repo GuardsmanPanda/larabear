@@ -30,7 +30,9 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
 
     public function getColumnsForTable(string $tableName): array {
         $res = DB::connection(name: $this->connectionName)->select(query: "
-            SELECT column_name, data_type, is_nullable = 'YES' AS is_nullable
+            SELECT 
+                column_name, data_type, udt_name,
+                is_nullable = 'YES' AS is_nullable
             FROM information_schema.columns
             WHERE table_catalog = ? AND table_name = ?
             ORDER BY ordinal_position
@@ -41,9 +43,9 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
                 columnName: $row->column_name,
                 nativeDataType: $row->data_type,
                 isNullable: $row->is_nullable,
-                phpDataType: $this->databaseTypeToPhpType(databaseType: $row->data_type),
+                phpDataType: $this->postgresTypeToPhpType(data_type: $row->data_type, udt_name: $row->udt_name),
                 sortOrder: $this->postgresTypeSortOrder($row->data_type) + ($row->is_nullable ? 1 : 0),
-                requiredHeader: $this->postgresTypeToPhpHeader($row->data_type),
+                requiredHeaders: $this->postgresTypeToPhpHeaders($row->data_type),
                 eloquentCast: $this->postgresTypeToEloquentCast($row->column_name, $row->data_type)
             );
         }
@@ -83,16 +85,21 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
     }
 
 
-    public function databaseTypeToPhpType(string $databaseType): string {
-        return match ($databaseType) {
+    public function postgresTypeToPhpType(string $data_type, string $udt_name): string {
+        if ($data_type === 'ARRAY') {
+            if ($udt_name !== '_text') {
+                throw new RuntimeException(message: "Unsupported array type: $udt_name");
+            }
+            return "ArrayObject<int,string>";
+        }
+        return match ($data_type) {
             'integer', 'bigint', 'smallint' => 'int',
             'boolean' => 'bool',
             'double precision' => 'float',
             'text', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 'string',
             'jsonb' => 'ArrayObject',
-            'ARRAY' => 'ArrayObject<int,string>',
             'date', 'timestamp with time zone' => 'CarbonInterface',
-            default => throw new RuntimeException(message: "Unknown type: $databaseType")
+            default => throw new RuntimeException(message: "Unknown type: $data_type")
         };
     }
 
@@ -110,12 +117,23 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
         };
     }
 
-    private function postgresTypeToPhpHeader(string $postgres_type): string {
+    /**
+     * @return array<string>
+     */
+    private function postgresTypeToPhpHeaders(string $postgres_type): array {
         return match ($postgres_type) {
-            'jsonb' => 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;',
-            'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'USER-DEFINED' => '',
-            'date', 'timestamp with time zone' => 'use Carbon\\CarbonInterface;',
-            'ARRAY' => 'use GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Cast\\BearDatabaseArrayCast;',
+            'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'USER-DEFINED' => [],
+            'jsonb' => [
+                'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;',
+                'use Illuminate\\Database\\Eloquent\\Casts\\AsArrayObject;',
+            ],
+            'date', 'timestamp with time zone' => [
+                'use Carbon\\CarbonInterface;'
+            ],
+            'ARRAY' => [
+                'use GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Cast\\BearDatabaseTextArrayCast;',
+                'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;',
+            ],
             default => throw new RuntimeException(message: "Unknown type: $postgres_type")
         };
     }
@@ -127,7 +145,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
         return match ($postgres_type) {
             'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'USER-DEFINED' => null,
             'timestamp with time zone' => "'immutable_datetime'",
-            'ARRAY' => "BearDatabaseArrayCast::class",
+            'ARRAY' => "BearDatabaseTextArrayCast::class",
             'jsonb' => "AsArrayObject::class",
             'date' => "'immutable_date'",
             default => throw new RuntimeException(message: "Unknown type: $postgres_type")

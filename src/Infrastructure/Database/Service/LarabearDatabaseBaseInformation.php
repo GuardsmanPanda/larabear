@@ -37,5 +37,4 @@ abstract class LarabearDatabaseBaseInformation {
      */
     abstract public function getAllForeignKeys(): array;
     abstract public function getDateFormat(): string;
-    abstract public function databaseTypeToPhpType(string $databaseType): string;
 }

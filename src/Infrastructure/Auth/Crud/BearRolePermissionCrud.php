@@ -10,11 +10,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 final class BearRolePermissionCrud {
     public static function syncToDatabase(BearRoleEnumInterface $role): void {
         BearDatabaseService::mustBeInTransaction();
-        $permissions_in_database = BearSqlService::toValueArray(sql: "
-            SELECT permission_enum
-            FROM bear_role_permission
-            WHERE role_enum = ?
-        ", bindings: [$role->getValue()]);
+
         $permissions_in_enum = [];
         foreach ($role->getRolePermission() as $permission) {
             $permissions_in_enum[] = $permission->getValue();
@@ -23,6 +19,13 @@ final class BearRolePermissionCrud {
             $model->permission_enum = $permission->getValue();
             $model->save();
         }
+
+        $permissions_in_database = BearSqlService::toValueArray(sql: "
+            SELECT permission_enum
+            FROM bear_role_permission
+            WHERE role_enum = ?
+        ", bindings: [$role->getValue()]);
+
         foreach ($permissions_in_database as $permission) {
             if (!in_array(needle: $permission, haystack: $permissions_in_enum, strict: true)) {
                 BearRolePermission::find(ids: ['role_enum' => $role->getValue(), 'permission_enum' => $permission])?->delete();

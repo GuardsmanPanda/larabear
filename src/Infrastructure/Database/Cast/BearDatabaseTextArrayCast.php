@@ -11,7 +11,7 @@ use InvalidArgumentException;
 /**
  * @implements CastsAttributes<ArrayObject<int, string>, ArrayObject<int, string>>
  */
-final class BearDatabaseArrayCast implements CastsAttributes {
+final class BearDatabaseTextArrayCast implements CastsAttributes {
     /**
      * Transform a string representation of a postgres ARRAY into a php array.
      * @param array<string, mixed> $attributes

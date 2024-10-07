@@ -2,12 +2,11 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Auth\Crud;
 
-use Carbon\CarbonInterface;
 use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearRegexService;
 use GuardsmanPanda\Larabear\Infrastructure\Auth\Model\BearUser;
 use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 use GuardsmanPanda\Larabear\Infrastructure\Error\Crud\BearErrorCreator;
-use Illuminate\Database\Eloquent\Casts\ArrayObject;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 final class BearUserCreator {
@@ -21,7 +20,7 @@ final class BearUserCreator {
 
         if ($country_cca2 !== null) {
             // Check if the country code is valid, otherwise set it to null
-            if (!BearDatabaseService::exists(sql: "SELECT 1 FROM bear_country WHERE cca2 = ?", bindings: [$country_cca2])) {
+            if (DB::selectOne(query: "SELECT 1 FROM bear_country WHERE cca2 = ?", bindings: [$country_cca2]) !== null) {
                 BearErrorCreator::create(message: "Invalid country code: $country_cca2");
                 $country_cca2 = null;
             }

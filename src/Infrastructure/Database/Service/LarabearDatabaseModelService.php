@@ -8,6 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountryEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountrySubdivisionEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Locale\Enum\BearCountrySubdivisionTypeEnum;
 use GuardsmanPanda\Larabear\Infrastructure\Oauth2\Enum\LarabearOauth2ClientTypeEnum;
+use GuardsmanPanda\Larabear\Integration\ExternalApi\Enum\BearExternalApiAuthEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
@@ -47,11 +48,6 @@ final class LarabearDatabaseModelService {
 
             $columns = $dbInfo->getColumnsForTable(tableName: $table_name);
             foreach ($columns as $column) {
-                if (array_key_exists(key: 'data_type_cast', array: $info) && array_key_exists(key: $column->nativeDataType, array: $info['data_type_cast'])) {
-                    $cast = $info['data_type_cast'][$column->nativeDataType];
-                    $column->requiredHeader = "use $cast;";
-                    $column->eloquentCast = BearRegexService::extractFirst(regex: '~.*\\\\([^\\\\]+)$~', subject: $cast) . '::class';
-                }
                 $dto->addColumn($column);
             }
             $models[$table_name] = $dto;
@@ -166,6 +162,7 @@ final class LarabearDatabaseModelService {
             'bear_country' => BearCountryEnum::class,
             'bear_country_subdivision' => BearCountrySubdivisionEnum::class,
             'bear_country_subdivision_type' => BearCountrySubdivisionTypeEnum::class,
+            'bear_external_api_auth' => BearExternalApiAuthEnum::class,
             'bear_oauth2_client_type' => LarabearOauth2ClientTypeEnum::class,
             default => null
         };

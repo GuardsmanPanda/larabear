@@ -127,19 +127,12 @@ final class LarabearDatabaseModelData {
         if (in_array(needle: $column->columnName, haystack: ['created_at', 'updated_at', 'deleted_at'], strict: true)) {
             $column->eloquentCast = null;
             $column->phpDataType = 'string';
-            $column->requiredHeader = '';
+            $column->requiredHeaders = [];
             $column->sortOrder = 6;
         }
-        if ($column->requiredHeader === 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;') {
-            $this->headers->add(element: 'use Illuminate\\Database\\Eloquent\\Casts\\AsArrayObject;');
+        foreach ($column->requiredHeaders as $header) {
+            $this->headers->add(element: $header);
         }
-        if ($column->requiredHeader === 'use GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Cast\\BearDatabaseArrayCast;') {
-            $this->headers->add(element: 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;');
-        }
-        if ($column->phpDataType === 'CarbonInterface') {
-            $this->headers->add(element: 'use Carbon\\CarbonInterface;');
-        }
-        $this->headers->add(element: $column->requiredHeader);
         $this->columns[$column->columnName] = $column;
     }
 
