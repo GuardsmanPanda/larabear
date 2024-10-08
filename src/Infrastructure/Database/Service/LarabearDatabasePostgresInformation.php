@@ -39,14 +39,26 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
         ", bindings: [$this->databaseName, $tableName]);
         $tmp = [];
         foreach ($res as $row) {
+            $postgis_type = null;
+            if ($row->data_type === 'USER-DEFINED' && $row->udt_name === 'geography') {
+                $column = DB::connection(name: $this->connectionName)->selectOne(query: "
+                SELECT type, srid
+                FROM public.geography_columns
+                WHERE f_table_catalog = ? AND f_table_schema AND f_table_name = ? AND f_geography_column = ?
+            ", bindings: [$this->databaseName, $this->schemaName, $tableName, $row->column_name]);
+                if ($column->srid !== 4326) {
+                    throw new RuntimeException(message: "Unsupported SRID: $column->srid for table: $tableName, row: $row->column_name");
+                }
+                $postgis_type = $column->type;
+            }
             $tmp[] = new LarabearDatabaseColumnData(
                 columnName: $row->column_name,
                 nativeDataType: $row->data_type,
                 isNullable: $row->is_nullable,
-                phpDataType: $this->postgresTypeToPhpType(data_type: $row->data_type, udt_name: $row->udt_name),
-                sortOrder: $this->postgresTypeSortOrder($row->data_type) + ($row->is_nullable ? 1 : 0),
-                requiredHeaders: $this->postgresTypeToPhpHeaders($row->data_type),
-                eloquentCast: $this->postgresTypeToEloquentCast($row->column_name, $row->data_type)
+                phpDataType: $this->postgresTypeToPhpType(postgres_type: $postgis_type ?? $row->data_type, udt_name: $row->udt_name),
+                sortOrder: $this->postgresTypeSortOrder(postgres_type: $postgis_type ?? $row->data_type, is_nullable: $row->is_nullable),
+                requiredHeaders: $this->postgresTypeToPhpHeaders(postgres_type: $postgis_type ?? $row->data_type),
+                eloquentCast: $this->postgresTypeToEloquentCast($row->column_name, postgres_type: $postgis_type ?? $row->data_type)
             );
         }
         return $tmp;
@@ -85,36 +97,40 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
     }
 
 
-    public function postgresTypeToPhpType(string $data_type, string $udt_name): string {
-        if ($data_type === 'ARRAY') {
-            if ($udt_name !== '_text') {
-                throw new RuntimeException(message: "Unsupported array type: $udt_name");
-            }
-            return "ArrayObject<int,string>";
+    private function postgresTypeToPhpType(string $postgres_type, string $udt_name): string {
+        if ($postgres_type === 'ARRAY') {
+            return match ($udt_name) {
+                '_text' => 'ArrayObject<int,string>',
+                default => throw new RuntimeException(message: "Unsupported array type: $udt_name")
+            };
         }
-        return match ($data_type) {
+        return match ($postgres_type) {
             'integer', 'bigint', 'smallint' => 'int',
             'boolean' => 'bool',
             'double precision' => 'float',
-            'text', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 'string',
             'jsonb' => 'ArrayObject',
+            'Point' => 'BearPoint',
+            'PointM' => 'BearPointM',
+            'text', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 'string',
             'date', 'timestamp with time zone' => 'CarbonInterface',
-            default => throw new RuntimeException(message: "Unknown type: $data_type")
+            default => throw new RuntimeException(message: "Unknown type: $postgres_type")
         };
     }
 
-    private function postgresTypeSortOrder(string $postgres_type): int {
+
+    private function postgresTypeSortOrder(string $postgres_type, bool $is_nullable): int {
         return match ($postgres_type) {
-            'integer', 'bigint', 'smallint' => 0,
-            'boolean' => 2,
-            'double precision' => 4,
-            'text', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 6,
-            'jsonb' => 8,
-            'ARRAY' => 9,
-            'date', => 10,
-            'timestamp with time zone' => 12,
-            default => throw new RuntimeException(message: "Unknown type: $postgres_type")
-        };
+                'integer', 'bigint', 'smallint' => 0,
+                'boolean' => 2,
+                'double precision' => 4,
+                'text', 'inet', 'cidr', 'uuid' => 6,
+                'Point', 'PointM', 'Polygon' => 8,
+                'jsonb' => 10,
+                'ARRAY' => 12,
+                'date', => 14,
+                'timestamp with time zone' => 16,
+                default => throw new RuntimeException(message: "Unknown type: $postgres_type")
+            } + ($is_nullable ? 1 : 0);
     }
 
     /**
@@ -134,12 +150,20 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
                 'use GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Cast\\BearDatabaseTextArrayCast;',
                 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;',
             ],
+            'Point' => [
+                'use GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Cast\\BearDatabasePointCast;',
+                'use GuardsmanPanda\\Larabear\\Infrastructure\\App\\DataType\\BearPoint;',
+            ],
+            'PointM' => [
+                'use GuardsmanPanda\\Larabear\\Infrastructure\\Database\\Cast\\BearDatabasePointMCast;',
+                'use GuardsmanPanda\\Larabear\\Infrastructure\\App\\DataType\\BearPointM;',
+            ],
             default => throw new RuntimeException(message: "Unknown type: $postgres_type")
         };
     }
 
-    private function postgresTypeToEloquentCast(string $name, string $postgres_type): string|null {
-        if (str_starts_with($name, 'encrypted_')) {
+    private function postgresTypeToEloquentCast(string $column_name, string $postgres_type): string|null {
+        if (str_starts_with($column_name, 'encrypted_')) {
             return "'encrypted'";
         }
         return match ($postgres_type) {
@@ -148,6 +172,8 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
             'ARRAY' => "BearDatabaseTextArrayCast::class",
             'jsonb' => "AsArrayObject::class",
             'date' => "'immutable_date'",
+            'Point' => "BearDatabasePointCast::class",
+            'PointM' => "BearDatabasePointMCast::class",
             default => throw new RuntimeException(message: "Unknown type: $postgres_type")
         };
     }
