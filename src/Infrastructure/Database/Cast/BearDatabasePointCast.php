@@ -3,6 +3,7 @@
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Cast;
 
 use GuardsmanPanda\Larabear\Infrastructure\App\DataType\BearPoint;
+use GuardsmanPanda\Larabear\Infrastructure\App\Parser\BearBinaryStringParser;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
@@ -11,15 +12,14 @@ use InvalidArgumentException;
  * @implements CastsAttributes<BearPoint, BearPoint>
  */
 final class BearDatabasePointCast implements CastsAttributes {
-    /**
-     * Transform a string representation of a postgres ARRAY into a php array.
-     * @param array<string, mixed> $attributes
-     * @return BearPoint
-     */
     public function get(Model $model, string $key, mixed $value, array $attributes): BearPoint {
-        $data = pack('H*', $value);
-
-        return new BearPoint(longitude: 0, latitude: 0);
+        $parser = BearBinaryStringParser::fromHexEWKBString(hexString: $value);
+        $geoTypeId = $parser->getInt32();
+        if ($geoTypeId !== 536870913) {
+            throw new InvalidArgumentException(message: 'GeoType is not a point.');
+        }
+        $parser->getInt32(); // srid, we know it is 4326
+        return new BearPoint(longitude: $parser->getDouble(), latitude: $parser->getDouble());
     }
 
     /**
@@ -32,7 +32,7 @@ final class BearDatabasePointCast implements CastsAttributes {
         if ($value === null) {
             throw new InvalidArgumentException(message: 'Array cannot be null.');
         }
-
+        dd($value);
         return 'test';
     }
 }

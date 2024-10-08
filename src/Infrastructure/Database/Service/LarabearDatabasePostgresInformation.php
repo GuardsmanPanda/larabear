@@ -44,7 +44,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
                 $column = DB::connection(name: $this->connectionName)->selectOne(query: "
                 SELECT type, srid
                 FROM public.geography_columns
-                WHERE f_table_catalog = ? AND f_table_schema AND f_table_name = ? AND f_geography_column = ?
+                WHERE f_table_catalog = ? AND f_table_schema = ? AND f_table_name = ? AND f_geography_column = ?
             ", bindings: [$this->databaseName, $this->schemaName, $tableName, $row->column_name]);
                 if ($column->srid !== 4326) {
                     throw new RuntimeException(message: "Unsupported SRID: $column->srid for table: $tableName, row: $row->column_name");
@@ -111,7 +111,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
             'jsonb' => 'ArrayObject',
             'Point' => 'BearPoint',
             'PointM' => 'BearPointM',
-            'text', 'inet', 'cidr', 'uuid', 'USER-DEFINED' => 'string',
+            'text', 'inet', 'cidr', 'uuid', 'Polygon' => 'string',
             'date', 'timestamp with time zone' => 'CarbonInterface',
             default => throw new RuntimeException(message: "Unknown type: $postgres_type")
         };
@@ -123,8 +123,8 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
                 'integer', 'bigint', 'smallint' => 0,
                 'boolean' => 2,
                 'double precision' => 4,
-                'text', 'inet', 'cidr', 'uuid' => 6,
-                'Point', 'PointM', 'Polygon' => 8,
+                'text', 'inet', 'cidr', 'uuid', 'Polygon' => 6,
+                'Point', 'PointM'  => 8,
                 'jsonb' => 10,
                 'ARRAY' => 12,
                 'date', => 14,
@@ -138,7 +138,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
      */
     private function postgresTypeToPhpHeaders(string $postgres_type): array {
         return match ($postgres_type) {
-            'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'USER-DEFINED' => [],
+            'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'Polygon' => [],
             'jsonb' => [
                 'use Illuminate\\Database\\Eloquent\\Casts\\ArrayObject;',
                 'use Illuminate\\Database\\Eloquent\\Casts\\AsArrayObject;',
@@ -167,7 +167,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
             return "'encrypted'";
         }
         return match ($postgres_type) {
-            'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'USER-DEFINED' => null,
+            'text', 'inet', 'cidr', 'uuid', 'integer', 'bigint', 'smallint', 'double precision', 'boolean', 'Polygon' => null,
             'timestamp with time zone' => "'immutable_datetime'",
             'ARRAY' => "BearDatabaseTextArrayCast::class",
             'jsonb' => "AsArrayObject::class",
