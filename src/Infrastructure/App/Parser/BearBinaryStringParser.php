@@ -5,8 +5,9 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\Parser;
 use RuntimeException;
 
 final class BearBinaryStringParser {
+    private int $offset = 0;
 
-    private function __construct(private readonly string $binaryString, private bool $littleEndian = true, private int $offset = 0) {
+    private function __construct(private readonly string $binaryString) {
     }
 
     public static function fromHexEWKBString(string $hexString): self {
@@ -15,7 +16,9 @@ final class BearBinaryStringParser {
             throw new RuntimeException(message: 'Failed to convert hex string to binary string');
         }
         $tmp = new self(binaryString: $binaryString);
-        $tmp->littleEndian = $tmp->getByte() === 1;
+        if ($tmp->getByte() !== 1) {
+            throw new RuntimeException(message: 'Invalid EWKB byte order');
+        }
         return $tmp;
     }
 
@@ -31,7 +34,7 @@ final class BearBinaryStringParser {
 
 
     public function getInt32(): int {
-        $int32 = unpack(format: $this->littleEndian ? 'V' : 'N', string: $this->binaryString, offset: $this->offset);
+        $int32 = unpack(format: 'V', string: $this->binaryString, offset: $this->offset);
         if ($int32 === false) {
             throw new RuntimeException(message: 'Failed to unpack int32');
         }
@@ -41,7 +44,7 @@ final class BearBinaryStringParser {
 
 
     public function getDouble(): float {
-        $double = unpack(format: $this->littleEndian ? 'e' : 'E', string: $this->binaryString, offset: $this->offset);
+        $double = unpack(format: 'e', string: $this->binaryString, offset: $this->offset);
         if ($double === false) {
             throw new RuntimeException(message: 'Failed to unpack double');
         }

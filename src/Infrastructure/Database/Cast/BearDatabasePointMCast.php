@@ -2,7 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Cast;
 
-use GuardsmanPanda\Larabear\Infrastructure\App\DataType\BearPoint;
+use GuardsmanPanda\Larabear\Infrastructure\App\DataType\BearPointM;
 use GuardsmanPanda\Larabear\Infrastructure\App\Parser\BearBinaryStringBuilder;
 use GuardsmanPanda\Larabear\Infrastructure\App\Parser\BearBinaryStringParser;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
@@ -10,25 +10,25 @@ use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
 
 /**
- * @implements CastsAttributes<BearPoint, BearPoint>
+ * @implements CastsAttributes<BearPointM, BearPointM>
  */
-final class BearDatabasePointCast implements CastsAttributes {
-    const int GEO_TYPE_POINT = 536870913;
+final class BearDatabasePointMCast implements CastsAttributes {
+    const int GEO_TYPE_POINT = 1073741825;
 
-    public function get(Model $model, string $key, mixed $value, array $attributes): BearPoint {
+    public function get(Model $model, string $key, mixed $value, array $attributes): BearPointM {
         $parser = BearBinaryStringParser::fromHexEWKBString(hexString: $value);
         $geoTypeId = $parser->getInt32();
         if ($geoTypeId !== self::GEO_TYPE_POINT) {
             throw new InvalidArgumentException(message: 'GeoType is not a point.');
         }
         $srid = $parser->getInt32(); // srid, we know it is 4326
-        return new BearPoint(longitude: $parser->getDouble(), latitude: $parser->getDouble(), srid: $srid);
+        return new BearPointM(longitude: $parser->getDouble(), latitude: $parser->getDouble(), measurement: $parser->getDouble(), srid: $srid);
     }
 
     /**
      * Transform the values in a php array into a string representation of a postgres ARRAY.
      * Throws an exception on duplicate values, or values that contain a comma.
-     * @param BearPoint|null $value
+     * @param BearPointM|null $value
      * @param array<string, mixed> $attributes
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): string|null {
@@ -41,6 +41,7 @@ final class BearDatabasePointCast implements CastsAttributes {
             ->appendInt32(int32: $value->srid)
             ->appendDouble(double: $value->longitude)
             ->appendDouble(double: $value->latitude)
+            ->appendDouble(double: $value->measurement)
             ->getStringAsHex();
     }
 }

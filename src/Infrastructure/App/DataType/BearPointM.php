@@ -5,7 +5,7 @@ namespace GuardsmanPanda\Larabear\Infrastructure\App\DataType;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
 
 final readonly class BearPointM {
-    public function __construct(public float $longitude, public float $latitude, public float $measurement) {
+    public function __construct(public float $longitude, public float $latitude, public float $measurement, public int $srid = 4326) {
     }
 
     public static function fromRequest(): self {
