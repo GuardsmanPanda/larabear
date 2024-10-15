@@ -210,6 +210,11 @@ final class Req {
     }
 
 
+    public static function getUuid(string $key): string {
+        return ValidateAndParseValue::parseUuid(value: self::getInput(key: $key), errorMessage: "Input field '$key' error");
+    }
+
+
     public static function getInt(string $key, int $min = null, int $max = null): int {
         $val = self::getInput(key: $key);
         $result = ValidateAndParseValue::parseInt(value: $val, errorMessage: "Input field '$key' error");

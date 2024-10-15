@@ -36,6 +36,17 @@ final class ValidateAndParseValue {
         throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
     }
 
+
+    public static function parseUuid(mixed $value, string $errorMessage = null): string {
+        $value = self::parseString($value, $errorMessage);
+        if (!BearRegexService::isMatch(regex: '/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/', string: $value)) {
+            $msg = "Invalid UUID: $value";
+            throw new InvalidArgumentException(message: $errorMessage === null ? $msg : "$errorMessage [$msg]");
+        }
+        return $value;
+    }
+
+
     /**
      * @param array<mixed>|string $value
      * @param string|null $errorMessage
@@ -53,6 +64,7 @@ final class ValidateAndParseValue {
         }
     }
 
+
     /**
      * @param ArrayObject<array-key, mixed>|array<mixed>|string $value
      * @param string|null $errorMessage
@@ -64,6 +76,7 @@ final class ValidateAndParseValue {
         }
         return $value instanceof ArrayObject ? $value : new ArrayObject($value);
     }
+
 
     public static function parseJsonToStdClass(string $value, string $errorMessage = null): stdClass {
         try {
