@@ -41,6 +41,6 @@ final class BearDatabasePointCast implements CastsAttributes {
             ->appendInt32(int32: $value->srid)
             ->appendDouble(double: $value->longitude)
             ->appendDouble(double: $value->latitude)
-            ->getStringAsHex();
+            ->getStringAsUpperHex();
     }
 }

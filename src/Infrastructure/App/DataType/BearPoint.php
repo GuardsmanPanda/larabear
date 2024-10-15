@@ -11,4 +11,8 @@ final readonly class BearPoint {
     public static function fromRequest(): self {
         return new self(longitude: Req::getFloat(key: 'longitude'), latitude: Req::getFloat(key: 'latitude'));
     }
+
+    public function __toString(): string {
+        return sprintf('POINT(%F %F)', $this->longitude, $this->latitude);
+    }
 }

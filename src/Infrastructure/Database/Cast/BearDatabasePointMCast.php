@@ -42,6 +42,6 @@ final class BearDatabasePointMCast implements CastsAttributes {
             ->appendDouble(double: $value->longitude)
             ->appendDouble(double: $value->latitude)
             ->appendDouble(double: $value->measurement)
-            ->getStringAsHex();
+            ->getStringAsUpperHex();
     }
 }

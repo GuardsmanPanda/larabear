@@ -19,9 +19,8 @@
     "php": "^8.3",
     "ext-pdo": "*",
     "ext-zend-opcache": "*",
-    "doctrine/dbal": "^4.1",
     "guzzlehttp/guzzle": "^7.9",
-    "laravel/framework": "^v11.26",
+    "laravel/framework": "^v11.28",
     "ramsey/collection": "^2.0"
   },
   "autoload": {

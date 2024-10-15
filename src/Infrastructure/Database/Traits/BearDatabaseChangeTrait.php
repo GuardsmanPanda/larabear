@@ -21,15 +21,15 @@ trait BearDatabaseChangeTrait {
         static::updated(static function (Model $model) {
             $ignore_columns = property_exists(object_or_class: $model, property: 'log_exclude_columns') ? $model->log_exclude_columns : [];
             foreach ($model->getChanges() as $column_name => $new_value) {
-                if ($column_name === 'updated_at' || in_array($column_name, $ignore_columns, true)) {
+                if ($column_name === 'updated_at' || in_array(needle: $column_name, haystack: $ignore_columns, strict: true)) {
                     continue;
                 }
 
                 $old_value = $model->getOriginal($column_name);
 
-                if ($old_value === null && $new_value === null) {
-                    continue;
-                }
+                //if ($old_value === null && $new_value === null) {
+                //    continue;
+                //}
 
                 if (str_starts_with($column_name, 'encrypted_')) {
                     $new_value = 'HIDDEN';

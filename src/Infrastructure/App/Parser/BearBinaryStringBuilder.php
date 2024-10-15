@@ -25,7 +25,7 @@ final class BearBinaryStringBuilder {
         return $this;
     }
 
-    public function getStringAsHex(): string {
-        return bin2hex($this->binaryString);
+    public function getStringAsUpperHex(): string {
+        return strtoupper(string: bin2hex($this->binaryString));
     }
 }
