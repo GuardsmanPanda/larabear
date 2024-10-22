@@ -183,6 +183,10 @@ final class Req {
 
 
     public static function has(string $key): bool {
+        return self::request()->get(key: $key) !== null;
+    }
+
+    public static function hasNullable(string $key): bool {
         return self::request()->has(key: $key);
     }
 
