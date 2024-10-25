@@ -6,9 +6,9 @@ use Random\RandomException;
 use RuntimeException;
 
 final class BearRandomService {
-    public static function percentChance(int $percent): bool {
+    public static function percentChance(int $chance): bool {
         try {
-            return random_int(1, 100) <= $percent;
+            return random_int(1, 100) <= $chance;
         } catch (RandomException $e) {
             throw new RuntimeException(message: 'Failed to generate random number.', previous: $e);
         }
