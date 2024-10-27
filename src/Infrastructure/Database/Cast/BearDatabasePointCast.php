@@ -15,7 +15,10 @@ use InvalidArgumentException;
 final class BearDatabasePointCast implements CastsAttributes {
     const int GEO_TYPE_POINT = 536870913;
 
-    public function get(Model $model, string $key, mixed $value, array $attributes): BearPoint {
+    public function get(Model $model, string $key, mixed $value, array $attributes): BearPoint|null {
+        if ($value === null) {
+            return null;
+        }
         $parser = BearBinaryStringParser::fromHexEWKBString(hexString: $value);
         $geoTypeId = $parser->getInt32();
         if ($geoTypeId !== self::GEO_TYPE_POINT) {
