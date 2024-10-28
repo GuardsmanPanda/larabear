@@ -13,7 +13,7 @@ use InvalidArgumentException;
  * @implements CastsAttributes<BearPointM, BearPointM>
  */
 final class BearDatabasePointMCast implements CastsAttributes {
-    const int GEO_TYPE_POINT = 1073741825;
+    const int GEO_TYPE_POINT = 1610612737;
 
     public function get(Model $model, string $key, mixed $value, array $attributes): BearPointM|null {
         if ($value === null) {
@@ -22,7 +22,7 @@ final class BearDatabasePointMCast implements CastsAttributes {
         $parser = BearBinaryStringParser::fromHexEWKBString(hexString: $value);
         $geoTypeId = $parser->getInt32();
         if ($geoTypeId !== self::GEO_TYPE_POINT) {
-            throw new InvalidArgumentException(message: 'GeoType is not a point.');
+            throw new InvalidArgumentException(message: 'GeoType is not a PointM.');
         }
         $srid = $parser->getInt32(); // srid, we know it is 4326
         return new BearPointM(longitude: $parser->getDouble(), latitude: $parser->getDouble(), measurement: $parser->getDouble(), srid: $srid);

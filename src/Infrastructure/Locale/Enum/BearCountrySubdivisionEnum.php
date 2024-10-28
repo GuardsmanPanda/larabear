@@ -5269,7 +5269,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
 
             // FINLAND
-            self::FI_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Åland', osm: 2375171, type: BearCountrySubdivisionTypeEnum::REGION),
+            self::FI_01 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Åland', osm: 1650407, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FI_02 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'South Karelia', osm: 2067231, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FI_03 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Southern Ostrobothnia', osm: 1702263, type: BearCountrySubdivisionTypeEnum::REGION),
             self::FI_04 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FI, name: 'Southern Savonia', osm: 918897, type: BearCountrySubdivisionTypeEnum::REGION),
@@ -5307,7 +5307,7 @@ enum BearCountrySubdivisionEnum: string implements BearDatabaseBackedEnumInterfa
 
             // FRANCE
             self::FR_20R => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Corsica', osm: 76910, type: BearCountrySubdivisionTypeEnum::REGION),
-            self::FR_971 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Guadeloupe', osm: 2562137, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
+            self::FR_971 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Guadeloupe', osm: 1401835, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
             self::FR_972 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Martinique', osm: 2473088, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
             self::FR_973 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'French Guiana', osm: 1260551, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
             self::FR_974 => new BearCountrySubdivisionData(cca2: BearCountryEnum::FR, name: 'Reunion', osm: 1785276, type: BearCountrySubdivisionTypeEnum::COLLECTIVITY),
