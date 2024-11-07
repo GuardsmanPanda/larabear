@@ -20,7 +20,7 @@
     "ext-pdo": "*",
     "ext-zend-opcache": "*",
     "guzzlehttp/guzzle": "^7.9",
-    "laravel/framework": "^v11.29",
+    "laravel/framework": "^v11.30",
     "ramsey/collection": "^2.0"
   },
   "autoload": {
