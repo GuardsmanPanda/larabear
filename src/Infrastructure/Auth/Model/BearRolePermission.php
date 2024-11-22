@@ -70,12 +70,12 @@ final class BearRolePermission extends Model {
     public $incrementing = false;
     public $timestamps = false;
 
-    /** @return BelongsTo<BearRole, self> */
+    /** @return BelongsTo<BearRole, $this> */
     public function roleEnum(): BelongsTo {
         return $this->belongsTo(related: BearRole::class, foreignKey: 'role_enum', ownerKey: 'enum');
     }
 
-    /** @return BelongsTo<BearPermission, self> */
+    /** @return BelongsTo<BearPermission, $this> */
     public function permissionEnum(): BelongsTo {
         return $this->belongsTo(related: BearPermission::class, foreignKey: 'permission_enum', ownerKey: 'enum');
     }

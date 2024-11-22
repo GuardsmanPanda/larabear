@@ -85,7 +85,7 @@ final class BearErrorResponse extends Model {
         'query_json' => AsArrayObject::class,
     ];
 
-    /** @return BelongsTo<BearUser, self>|null */
+    /** @return BelongsTo<BearUser, $this>|null */
     public function user(): BelongsTo|null {
         return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
     }

@@ -82,7 +82,7 @@ final class BearUser extends Model implements Authenticatable {
         'last_login_at' => 'immutable_datetime',
     ];
 
-    /** @return BelongsTo<BearCountry, self> */
+    /** @return BelongsTo<BearCountry, $this> */
     public function countryCca2(): BelongsTo {
         return $this->belongsTo(related: BearCountry::class, foreignKey: 'country_cca2', ownerKey: 'cca2');
     }

@@ -79,12 +79,12 @@ final class BearCountrySubdivision extends Model {
         'country_subdivision_type_enum' => BearCountrySubdivisionTypeEnum::class,
     ];
 
-    /** @return BelongsTo<BearCountry, self> */
+    /** @return BelongsTo<BearCountry, $this> */
     public function countryCca2(): BelongsTo {
         return $this->belongsTo(related: BearCountry::class, foreignKey: 'country_cca2', ownerKey: 'cca2');
     }
 
-    /** @return BelongsTo<BearCountrySubdivisionType, self> */
+    /** @return BelongsTo<BearCountrySubdivisionType, $this> */
     public function countrySubdivisionType(): BelongsTo {
         return $this->belongsTo(related: BearCountrySubdivisionType::class, foreignKey: 'country_subdivision_type_enum', ownerKey: 'enum');
     }

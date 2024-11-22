@@ -329,7 +329,7 @@ final class LarabearDatabaseModelData {
             return $a->sortOrder - $b->sortOrder;
         });
         foreach ($sortedColumns as $column) {
-            $content .= " * @property " . $column->phpDataType;
+            $content .= " * @property " . ($column->phpDataType === 'ArrayObject' ? 'ArrayObject<string, mixed>' : $column->phpDataType);
             if ($column->isNullable) {
                 $content .= "|null";
             }

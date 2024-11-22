@@ -88,12 +88,12 @@ final class BearOauth2User extends Model {
         'scope_json' => AsArrayObject::class,
     ];
 
-    /** @return BelongsTo<BearUser, self>|null */
+    /** @return BelongsTo<BearUser, $this>|null */
     public function user(): BelongsTo|null {
         return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
     }
 
-    /** @return BelongsTo<BearOauth2Client, self> */
+    /** @return BelongsTo<BearOauth2Client, $this> */
     public function oauth2Client(): BelongsTo {
         return $this->belongsTo(related: BearOauth2Client::class, foreignKey: 'oauth2_client_id', ownerKey: 'id');
     }

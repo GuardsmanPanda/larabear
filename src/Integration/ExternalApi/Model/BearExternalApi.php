@@ -90,17 +90,17 @@ final class BearExternalApi extends Model {
         'metadata_json' => AsArrayObject::class,
     ];
 
-    /** @return BelongsTo<BearOauth2User, self>|null */
+    /** @return BelongsTo<BearOauth2User, $this>|null */
     public function oauth2User(): BelongsTo|null {
         return $this->belongsTo(related: BearOauth2User::class, foreignKey: 'oauth2_user_id', ownerKey: 'id');
     }
 
-    /** @return BelongsTo<BearOauth2Client, self>|null */
+    /** @return BelongsTo<BearOauth2Client, $this>|null */
     public function oauth2Client(): BelongsTo|null {
         return $this->belongsTo(related: BearOauth2Client::class, foreignKey: 'oauth2_client_id', ownerKey: 'id');
     }
 
-    /** @return BelongsTo<BearExternalApiAuth, self> */
+    /** @return BelongsTo<BearExternalApiAuth, $this> */
     public function externalApiAuth(): BelongsTo {
         return $this->belongsTo(related: BearExternalApiAuth::class, foreignKey: 'external_api_auth_enum', ownerKey: 'enum');
     }

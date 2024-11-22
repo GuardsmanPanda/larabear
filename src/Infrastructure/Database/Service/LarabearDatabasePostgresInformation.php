@@ -100,7 +100,7 @@ final class LarabearDatabasePostgresInformation extends LarabearDatabaseBaseInfo
     private function postgresTypeToPhpType(string $postgres_type, string $udt_name): string {
         if ($postgres_type === 'ARRAY') {
             return match ($udt_name) {
-                '_text' => 'ArrayObject<int,string>',
+                '_text' => 'ArrayObject<int, string>',
                 default => throw new RuntimeException(message: "Unsupported array type: $udt_name")
             };
         }

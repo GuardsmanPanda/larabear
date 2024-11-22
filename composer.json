@@ -32,11 +32,9 @@
     "sort-packages": true
   },
   "require-dev": {
-    "ergebnis/phpstan-rules": "^2.2",
     "phpstan/phpstan": "^1.12",
     "phpstan/phpstan-deprecation-rules": "^1.2",
     "phpstan/phpstan-strict-rules": "^1.6",
-    "roave/security-advisories": "dev-latest",
-    "thecodingmachine/phpstan-strict-rules": "^1.0"
+    "roave/security-advisories": "dev-latest"
   }
 }
