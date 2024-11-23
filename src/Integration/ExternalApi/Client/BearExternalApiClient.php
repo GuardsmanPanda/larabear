@@ -202,7 +202,7 @@ final class BearExternalApiClient {
 
     /**
      * @param array<string, string> $headers
-     * @param array<string, string> $body
+     * @param array<string, string|null> $body
      * @param array<string, string> $query
      */
     public function request(

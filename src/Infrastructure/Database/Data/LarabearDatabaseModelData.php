@@ -214,14 +214,8 @@ final class LarabearDatabaseModelData {
         if (count(value: $this->foreignKeyColumns) > 0) {
             foreach ($this->foreignKeyColumns as $column) {
                 $content .= "    /** @return BelongsTo<$column->foreignModelName, \$this>";
-                if ($column->isNullable) {
-                    $content .= "|null";
-                }
                 $content .= " */" . PHP_EOL;
                 $content .= "    public function $column->methodName(): BelongsTo";
-                if ($column->isNullable) {
-                    $content .= "|null";
-                }
                 $content .= " {" . PHP_EOL;
                 $content .= "        return \$this->belongsTo(related: $column->foreignModelName::class, foreignKey: '$column->columnName', ownerKey: '$column->foreignColumnName');" . PHP_EOL;
                 $content .= "    }" . PHP_EOL . PHP_EOL;

@@ -11,19 +11,6 @@ use RuntimeException;
 use Throwable;
 
 final class BearPostmarkClient {
-    /**
-     * @param string $to
-     * @param string $subject
-     * @param string|null $htmlBody
-     * @param string|null $textBody
-     * @param string|null $tag
-     * @param string|null $replyTo
-     * @param string|null $cc
-     * @param string|null $bcc
-     * @param bool $sandbox
-     * @param array<array<string,string>> $attachments
-     * @return BearPostMarkClientResponse
-     */
     public static function sendMessage(
         string $to,
         string $subject,
@@ -34,7 +21,6 @@ final class BearPostmarkClient {
         string $cc = null,
         string $bcc = null,
         bool $sandbox = false,
-        array $attachments = []
     ): BearPostMarkClientResponse {
         $slug = $sandbox ? 'postmark-sandbox' : 'postmark';
         $external = BearExternalApi::where(column: 'external_api_slug', operator: '=', value: $slug)->first();
@@ -53,8 +39,7 @@ final class BearPostmarkClient {
                 'Tag' => $tag,
                 'ReplyTo' => $replyTo,
                 'Cc' => $cc,
-                'Bcc' => $bcc,
-                'Attachments' => $attachments
+                'Bcc' => $bcc
             ])->json();
             return new BearPostMarkClientResponse(message: $result['Message'] ?? "Success", code: $result['ErrorCode'] ?? 0, messageId: $result['MessageID'] ?? null);
         } catch (Throwable $t) {

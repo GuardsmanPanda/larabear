@@ -8,8 +8,8 @@ use PDO;
 final class BearSqlService {
     /**
      * @param String $sql
-     * @param array<mixed> $bindings
-     * @return array<mixed>
+     * @param array<array-key, mixed> $bindings
+     * @return array<array-key, mixed>
      */
     public static function toValueArray(String $sql, array $bindings = []): array {
         $res = DB::getReadPdo()->prepare($sql);
@@ -20,7 +20,7 @@ final class BearSqlService {
 
     /**
      * @param String $sql
-     * @param array<mixed> $bindings
+     * @param array<array-key, mixed> $bindings
      * @return array<array-key, mixed>
      */
     public static function toKeyValueArray(String $sql, array $bindings = []): array {

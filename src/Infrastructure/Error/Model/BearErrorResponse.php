@@ -68,7 +68,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $request_id
  * @property string|null $action_name
  * @property string|null $country_code
- * @property ArrayObject|null $query_json
+ * @property ArrayObject<string, mixed>|null $query_json
  *
  * @property BearUser|null $user
  *
@@ -85,8 +85,8 @@ final class BearErrorResponse extends Model {
         'query_json' => AsArrayObject::class,
     ];
 
-    /** @return BelongsTo<BearUser, $this>|null */
-    public function user(): BelongsTo|null {
+    /** @return BelongsTo<BearUser, $this> */
+    public function user(): BelongsTo {
         return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
     }
 

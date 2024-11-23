@@ -9,4 +9,5 @@ parameters:
         - config
     ignoreErrors:
         - '#Variable property access on #'
+        - '# has PHPDoc tag @method for method #'
         - '#is not the same as PHPDoc type array of overridden property Illuminate\\Database\\Eloquent\\Model::\$casts#'

@@ -20,7 +20,7 @@ final class Json {
 
     /**
      * @param string $sql
-     * @param array<mixed> $data
+     * @param array<array-key, mixed> $data
      * @return JsonResponse
      */
     public static function fromSql(string $sql, array $data = []): JsonResponse {
@@ -29,7 +29,7 @@ final class Json {
 
     /**
      * @param string $sql
-     * @param array<mixed> $data
+     * @param array<array-key, mixed> $data
      * @return JsonResponse
      */
     public static function fromSqlSingle(string $sql, array $data = []): JsonResponse {

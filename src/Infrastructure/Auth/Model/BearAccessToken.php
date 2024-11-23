@@ -80,8 +80,8 @@ final class BearAccessToken extends Model {
         'last_usage_date' => 'immutable_datetime',
     ];
 
-    /** @return BelongsTo<BearExternalApi, $this>|null */
-    public function externalApiEnum(): BelongsTo|null {
+    /** @return BelongsTo<BearExternalApi, $this> */
+    public function externalApiEnum(): BelongsTo {
         return $this->belongsTo(related: BearExternalApi::class, foreignKey: 'external_api_enum', ownerKey: 'enum');
     }
 

@@ -73,7 +73,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $record_uuid
  * @property string|null $country_code
  * @property string|null $record_identifier
- * @property ArrayObject|null $record_json
+ * @property ArrayObject<string, mixed>|null $record_json
  *
  * @property BearUser|null $user
  *
@@ -90,8 +90,8 @@ final class BearDatabaseChange extends Model {
         'record_json' => AsArrayObject::class,
     ];
 
-    /** @return BelongsTo<BearUser, $this>|null */
-    public function user(): BelongsTo|null {
+    /** @return BelongsTo<BearUser, $this> */
+    public function user(): BelongsTo {
         return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
     }
 

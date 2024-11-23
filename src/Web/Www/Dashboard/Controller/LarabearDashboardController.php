@@ -2,10 +2,8 @@
 
 namespace GuardsmanPanda\Larabear\Web\Www\Dashboard\Controller;
 
-use GuardsmanPanda\Larabear\Infrastructure\App\Service\BearArrayService;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Resp;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Process;
 use Illuminate\View\View;
 
 final class LarabearDashboardController extends Controller {

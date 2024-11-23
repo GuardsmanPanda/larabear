@@ -48,9 +48,9 @@ final class ValidateAndParseValue {
 
 
     /**
-     * @param array<mixed>|string $value
+     * @param array<array-key, mixed>|string $value
      * @param string|null $errorMessage
-     * @return array<mixed>
+     * @return array<array-key, mixed>
      */
     public static function parseJsonToArray(array|string $value, string $errorMessage = null): array {
         if (is_array($value)) {
@@ -66,7 +66,7 @@ final class ValidateAndParseValue {
 
 
     /**
-     * @param ArrayObject<array-key, mixed>|array<mixed>|string $value
+     * @param ArrayObject<array-key, mixed>|array<array-key, mixed>|string $value
      * @param string|null $errorMessage
      * @return ArrayObject<array-key, mixed>
      */
@@ -146,7 +146,7 @@ final class ValidateAndParseValue {
     /**
      * @param mixed $value
      * @param string|null $errorMessage
-     * @return array<mixed>
+     * @return array<array-key, mixed>
      */
     public static function parseArray(mixed $value, string $errorMessage = null): array {
         if (is_array(value: $value)) {
@@ -158,7 +158,7 @@ final class ValidateAndParseValue {
 
     /**
      * @param mixed $value
-     * @param array<mixed> $array
+     * @param array<array-key, mixed> $array
      * @param string|null $errorMessage
      * @return mixed
      */

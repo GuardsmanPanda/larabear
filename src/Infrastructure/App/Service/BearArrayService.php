@@ -6,9 +6,9 @@ use InvalidArgumentException;
 
 final class BearArrayService {
     /**
-     * @param array<mixed> $array
+     * @param array<array-key, mixed> $array
      * @param string $key
-     * @return array<array-key, array<int, mixed>>.
+     * @return array<array-key, array<int, mixed>>
      */
     public static function groupArrayBy(array $array, string $key): array {
         $result = [];

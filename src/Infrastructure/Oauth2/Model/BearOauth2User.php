@@ -66,7 +66,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $encrypted_access_token
  * @property string|null $encrypted_refresh_token
  * @property string|null $access_token_error_message
- * @property ArrayObject $scope_json
+ * @property ArrayObject<string, mixed> $scope_json
  * @property CarbonInterface|null $access_token_expires_at
  *
  * @property BearUser|null $user
@@ -88,8 +88,8 @@ final class BearOauth2User extends Model {
         'scope_json' => AsArrayObject::class,
     ];
 
-    /** @return BelongsTo<BearUser, $this>|null */
-    public function user(): BelongsTo|null {
+    /** @return BelongsTo<BearUser, $this> */
+    public function user(): BelongsTo {
         return $this->belongsTo(related: BearUser::class, foreignKey: 'user_id', ownerKey: 'id');
     }
 

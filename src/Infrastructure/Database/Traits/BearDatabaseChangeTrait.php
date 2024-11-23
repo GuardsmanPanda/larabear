@@ -37,11 +37,11 @@ trait BearDatabaseChangeTrait {
                 }
 
                 // if arrays are equal but key positions are different, then we do not need to log this change
-                if (is_array($old_value) && is_array($new_value) && $old_value == $new_value) {
+                if (is_array($old_value) && is_array($new_value) && count($old_value) === count($new_value) && array_diff_assoc($old_value, $new_value) === []) {
                     continue;
                 }
                 // Same for array objects
-                if ($old_value instanceof ArrayObject && $new_value instanceof ArrayObject && $old_value->toArray() == $new_value->toArray()) {
+                if ($old_value instanceof ArrayObject && $new_value instanceof ArrayObject && count($old_value) === count($new_value) && array_diff_assoc($old_value->getArrayCopy(), $new_value->getArrayCopy()) === []) {
                     continue;
                 }
 

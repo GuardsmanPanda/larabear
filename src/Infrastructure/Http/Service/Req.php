@@ -323,7 +323,7 @@ final class Req {
 
     /**
      * @param string $key
-     * @return array<mixed>
+     * @return array<array-key, mixed>
      */
     public static function getArray(string $key): array {
         if (!self::has(key: $key)) {
@@ -335,7 +335,7 @@ final class Req {
 
     /**
      * @param string $key
-     * @return array<mixed>
+     * @return array<array-key, mixed>
      */
     public static function getJson(string $key): array {
         if (!self::has(key: $key)) {
