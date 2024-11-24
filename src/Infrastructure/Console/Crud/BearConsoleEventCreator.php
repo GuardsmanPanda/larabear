@@ -10,14 +10,14 @@ use GuardsmanPanda\Larabear\Infrastructure\Database\Service\BearDatabaseService;
 
 final class BearConsoleEventCreator {
     public static function create(
-        string $event_type,
-        string $command,
-        string $cron_schedule_expression = null,
-        string $cron_schedule_timezone = null,
-        CarbonInterface $finished_at = null,
-        CarbonInterface $failed_at = null,
-        int $execution_time_microseconds = null,
-        string $output = null
+        string           $event_type,
+        string           $command,
+        ?string          $cron_schedule_expression = null,
+        ?string          $cron_schedule_timezone = null,
+        ?CarbonInterface $finished_at = null,
+        ?CarbonInterface $failed_at = null,
+        ?int             $execution_time_microseconds = null,
+        ?string          $output = null
     ): BearConsoleEvent {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['CLI']);
 

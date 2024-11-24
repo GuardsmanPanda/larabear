@@ -11,10 +11,10 @@ use Illuminate\Support\Str;
 
 final class BearUserCreator {
     public static function create(
-        string $display_name,
-        string $id = null,
-        string $email = null,
-        string $country_cca2 = null,
+        string  $display_name,
+        ?string $id = null,
+        ?string $email = null,
+        ?string $country_cca2 = null,
     ): BearUser {
         BearDatabaseService::mustBeInTransaction();
 

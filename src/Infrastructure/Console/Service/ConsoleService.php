@@ -20,7 +20,7 @@ final class ConsoleService {
         self::writeLine(message: "<fg=bright-blue;options=bold>$headline</>");
     }
 
-    public static function printTestResult(string $testName, string $warningMessage = null, string $errorMessage = null): void {
+    public static function printTestResult(string $testName, ?string $warningMessage = null, ?string $errorMessage = null): void {
         $prefix = "<bg=green;fg=bright-green;options=bold>  PASS  </>";
         if ($errorMessage !== null) {
             $prefix = "<bg=bright-red;fg=white;options=bold>  FAIL  </>";

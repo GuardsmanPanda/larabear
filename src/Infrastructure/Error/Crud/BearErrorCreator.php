@@ -23,7 +23,7 @@ final class BearErrorCreator {
         string           $message,
         string           $slug = 'default',
         BearSeverityEnum $severity = BearSeverityEnum::INFO,
-        Throwable        $exception = null,
+        ?Throwable       $exception = null,
         bool             $rethrow = false
     ): void {
         try {

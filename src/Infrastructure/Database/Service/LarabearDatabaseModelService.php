@@ -58,7 +58,7 @@ final class LarabearDatabaseModelService {
                 continue;
             }
             $dto = $models[$constraint->table_name];
-            $dto->setPrimaryKeyInformation(primaryKeyColumnName: $constraint->column_name, primaryKeyType: $dto->getColumns()[$constraint->column_name]->phpDataType);
+            $dto->setPrimaryKeyInformation(primaryKeyColumnName: $constraint->column_name, primaryKeyType: $dto->columns[$constraint->column_name]->phpDataType);
         }
 
         foreach ($dbInfo->getAllForeignKeys() as $constraint) {

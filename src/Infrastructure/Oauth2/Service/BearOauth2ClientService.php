@@ -28,7 +28,7 @@ use Throwable;
 final class BearOauth2ClientService {
     private const int SAFETY_BUFFER_MINUTES = 10;
 
-    public static function getAuthorizeRedirectResponse(BearOauth2Client $client, string $afterSignInRedirectPath = null, bool $loginUser = true, string $specialScope = null, bool $accountPrompt = false, bool $internalRedirect = false): RedirectResponse {
+    public static function getAuthorizeRedirectResponse(BearOauth2Client $client, ?string $afterSignInRedirectPath = null, bool $loginUser = true, ?string $specialScope = null, bool $accountPrompt = false, bool $internalRedirect = false): RedirectResponse {
         if ($afterSignInRedirectPath !== null && !str_starts_with(haystack: $afterSignInRedirectPath, needle: '/')) {
             throw new RuntimeException(message: 'The redirect path must start with a slash.');
         }
@@ -65,7 +65,7 @@ final class BearOauth2ClientService {
         return new RedirectResponse(url: "{$client->oauth2_client_type_enum->getAuthorizeUri()}?$query_data");
     }
 
-    public static function getUserFromCallback(BearOauth2Client $client, string $code, string $redirectUri = null, bool $createBearUser = false): BearOauth2User {
+    public static function getUserFromCallback(BearOauth2Client $client, string $code, ?string $redirectUri = null, bool $createBearUser = false): BearOauth2User {
         $redirectUri ??= trim(string: config(key: 'app.url'), characters: '/ ') . '/' . Req::path();
         $data = self::exchangeCode(code: $code, client: $client, redirect_uri: $redirectUri)->json();
         $token = OidcToken::fromJwt(jwt: $data['id_token'], client: $client);
@@ -96,7 +96,7 @@ final class BearOauth2ClientService {
                 user: $bearUser
             );
         }
-        return (new BearOauth2UserUpdater($bearOauth2User))->setEncryptedRefreshToken(encrypted_refresh_token: $data['refresh_token'] ?? $bearOauth2User->encrypted_refresh_token)
+        return new BearOauth2UserUpdater($bearOauth2User)->setEncryptedRefreshToken(encrypted_refresh_token: $data['refresh_token'] ?? $bearOauth2User->encrypted_refresh_token)
             ->setEncryptedAccessToken(encrypted_access_token: $data['access_token'], access_token_expires_at: Carbon::now()->addSeconds($data['expires_in']))
             ->setDisplayName(display_name: $token->name)
             ->setEmail(email: $token->email)
@@ -104,7 +104,7 @@ final class BearOauth2ClientService {
             ->setUserId(user_id: $bearUser?->id)->update();
     }
 
-    public static function exchangeCode(string $code, BearOauth2Client $client, string $redirect_uri = null): Response {
+    public static function exchangeCode(string $code, BearOauth2Client $client, ?string $redirect_uri = null): Response {
         $resp = Http::asForm()->post(url: $client->oauth2_client_type_enum->getTokenUri(), data: [
             'code' => $code,
             'client_secret' => $client->encrypted_secret,
@@ -177,7 +177,7 @@ final class BearOauth2ClientService {
         }
     }
 
-    private static function buildScopeString(BearOauth2Client $client, string $scopeString = null): string {
+    private static function buildScopeString(BearOauth2Client $client, ?string $scopeString = null): string {
         $scopes = new Set(setType: 'string');
         if ($scopeString !== null) {
             $separator = str_contains(haystack: $scopeString, needle: ' ') ? ' ' : '+';

@@ -12,15 +12,15 @@ use Throwable;
 
 final class BearPostmarkClient {
     public static function sendMessage(
-        string $to,
-        string $subject,
-        string $htmlBody = null,
-        string $textBody = null,
-        string $tag = null,
-        string $replyTo = null,
-        string $cc = null,
-        string $bcc = null,
-        bool $sandbox = false,
+        string  $to,
+        string  $subject,
+        ?string $htmlBody = null,
+        ?string $textBody = null,
+        ?string $tag = null,
+        ?string $replyTo = null,
+        ?string $cc = null,
+        ?string $bcc = null,
+        bool    $sandbox = false,
     ): BearPostMarkClientResponse {
         $slug = $sandbox ? 'postmark-sandbox' : 'postmark';
         $external = BearExternalApi::where(column: 'external_api_slug', operator: '=', value: $slug)->first();

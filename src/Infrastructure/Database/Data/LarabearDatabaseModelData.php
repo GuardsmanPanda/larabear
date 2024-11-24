@@ -9,15 +9,15 @@ use Ramsey\Collection\Set;
 
 final class LarabearDatabaseModelData {
     /** @var array<string> $primaryKeyColumns */
-    private array $primaryKeyColumns = [];
+    private(set) array $primaryKeyColumns = [];
     /** @var array<LarabearDatabaseForeignColumnData> $foreignKeyColumns */
     private array $foreignKeyColumns = [];
-    private string $primaryKeyType;
+    private(set) string $primaryKeyType;
     private bool $timestamps = false;
     /** @var Set<string> $headers */
     private Set $headers;
     /** @var array<string, LarabearDatabaseColumnData> $columns */
-    private array $columns = [];
+    private(set) array $columns = [];
 
     /**
      * @param array<string> $modelTraits
@@ -50,10 +50,6 @@ final class LarabearDatabaseModelData {
         return $this->modelClassName;
     }
 
-    public function getModelLocation(): string {
-        return $this->modelLocation;
-    }
-
     public function getModelDirectory(): string {
         return App::basePath(path: trim(string: $this->modelLocation, characters: '/'));
     }
@@ -71,34 +67,21 @@ final class LarabearDatabaseModelData {
         return count($this->primaryKeyColumns) > 1;
     }
 
-    /**
-     * @return array<string>
-     */
-    public function getPrimaryKeyColumns(): array {
-        return $this->primaryKeyColumns;
-    }
-
-    public function getPrimaryKeyType(): string {
-        return $this->primaryKeyType;
-    }
-
     public function setPrimaryKeyInformation(string $primaryKeyColumnName, string $primaryKeyType): void {
         $this->primaryKeyColumns[] = $primaryKeyColumnName;
         $this->primaryKeyType = $primaryKeyType;
     }
 
     public function setForeignKeyInformation(
-        string $columnName,
-        string $foreignColumnName,
-        string $foreignModelName,
-        string $foreignNamespace,
-        string $enumClass = null,
+        string  $columnName,
+        string  $foreignColumnName,
+        string  $foreignModelName,
+        string  $foreignNamespace,
+        ?string $enumClass = null,
     ): void {
         $methodName = Str::camel(value: preg_replace(pattern: '/_(id|uuid|slug|enum)$/', replacement: '', subject: $columnName) ?? $columnName);
-        foreach ($this->foreignKeyColumns as $foreignKeyColumn) {
-            if ($foreignKeyColumn->methodName === $methodName && str_ends_with(haystack: $foreignKeyColumn->columnName, needle: 'id')) {
-                return;
-            }
+        if (array_any($this->foreignKeyColumns, fn($foreignKeyColumn) => $foreignKeyColumn->methodName === $methodName && str_ends_with(haystack: $foreignKeyColumn->columnName, needle: 'id'))) {
+            return;
         }
         $this->foreignKeyColumns[$methodName] = new LarabearDatabaseForeignColumnData(
             columnName: $columnName,
@@ -134,13 +117,6 @@ final class LarabearDatabaseModelData {
             $this->headers->add(element: $header);
         }
         $this->columns[$column->columnName] = $column;
-    }
-
-    /**
-     * @return array<string, LarabearDatabaseColumnData>
-     */
-    public function getColumns(): array {
-        return $this->columns;
     }
 
     /**

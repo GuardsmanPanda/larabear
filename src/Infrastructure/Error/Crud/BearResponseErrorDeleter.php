@@ -6,10 +6,10 @@ use Illuminate\Support\Facades\DB;
 
 final class BearResponseErrorDeleter {
     public static function delete(
-        int    $id = null,
-        int    $status_code = null,
-        string $http_path = null,
-        string $action_name = null,
+        ?int    $id = null,
+        ?int    $status_code = null,
+        ?string $http_path = null,
+        ?string $action_name = null,
     ): void {
         $filters = [];
         if ($id !== null) {

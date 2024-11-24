@@ -13,8 +13,8 @@ final class BearOauth2ClientCreator {
         LarabearOauth2ClientTypeEnum $oauth2_client_type,
         string                       $encrypted_secret,
         string                       $user_redirect_path,
-        string                       $client_base_url = null,
-        string                       $client_scope = null,
+        ?string                      $client_base_url = null,
+        ?string                      $client_scope = null,
         string                       $user_scope = '',
     ): BearOauth2Client {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT', 'PATCH', 'DELETE']);

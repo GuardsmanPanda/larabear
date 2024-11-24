@@ -14,7 +14,7 @@ final class Resp {
         BearInitiateMiddleware::$headers[$key] = $value;
     }
 
-    public static function ok(string $content = null): Response {
+    public static function ok(?string $content = null): Response {
         return new Response(content: $content, status: 200);
     }
 
@@ -30,7 +30,7 @@ final class Resp {
         return new Response(status: 204);
     }
 
-    public static function redirect(string $url, string $message = null, int $status = 303): RedirectResponse {
+    public static function redirect(string $url, ?string $message = null, int $status = 303): RedirectResponse {
         if ($message !== null) {
             session()->flash(key: 'message', value: $message);
         }

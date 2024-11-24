@@ -12,15 +12,15 @@ use Illuminate\Support\Str;
 
 final class BearOauth2UserCreator {
     public static function create(
-        string          $oauth2_client_id,
-        string          $identifier,
-        string          $scope,
-        string          $email = null,
-        string          $display_name = null,
-        CarbonInterface $access_token_expires_at = null,
-        string          $encrypted_access_token = null,
-        string          $encrypted_refresh_token = null,
-        BearUser        $user = null,
+        string           $oauth2_client_id,
+        string           $identifier,
+        string           $scope,
+        ?string          $email = null,
+        ?string          $display_name = null,
+        ?CarbonInterface $access_token_expires_at = null,
+        ?string          $encrypted_access_token = null,
+        ?string          $encrypted_refresh_token = null,
+        ?BearUser        $user = null,
     ): BearOauth2User {
         BearDatabaseService::mustBeInTransaction();
 

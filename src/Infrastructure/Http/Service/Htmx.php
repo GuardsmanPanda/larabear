@@ -12,7 +12,7 @@ final class Htmx {
         return Resp::noContent();
     }
 
-    public static function redirect(string $url, string $message = null): Response {
+    public static function redirect(string $url, ?string $message = null): Response {
         if ($message !== null) {
             session()->flash(key: 'message', value: $message);
         }

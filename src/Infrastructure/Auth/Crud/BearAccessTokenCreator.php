@@ -18,12 +18,12 @@ final class BearAccessTokenCreator {
      * @return array{BearAccessToken, string}
      */
     public static function create(
-        string          $path_prefix_restriction,
-        string          $description,
-        string          $access_token = null,
-        string          $ip_restriction = '0.0.0.0/0',
-        string          $api_primary_key = null,
-        CarbonInterface $expires_at = null,
+        string           $path_prefix_restriction,
+        string           $description,
+        ?string          $access_token = null,
+        string           $ip_restriction = '0.0.0.0/0',
+        ?string          $api_primary_key = null,
+        ?CarbonInterface $expires_at = null,
     ): array {
         BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST', 'PUT']);
         BearDatabaseService::mustBeInTransaction();

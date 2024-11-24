@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\DB;
 
 final class BearErrorDeleter {
     public static function delete(
-        int $id = null,
-        string $error_key = null,
-        string $app_action_name = null,
+        ?int    $id = null,
+        ?string $error_key = null,
+        ?string $app_action_name = null,
     ): void {
         $filters = [];
         if ($id !== null) {

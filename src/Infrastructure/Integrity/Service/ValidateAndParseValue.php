@@ -10,7 +10,7 @@ use stdClass;
 use Throwable;
 
 final class ValidateAndParseValue {
-    public static function parseInt(mixed $value, string $errorMessage = null): int {
+    public static function parseInt(mixed $value, ?string $errorMessage = null): int {
         if (is_int($value) || (is_string(value: $value) && BearRegexService::isMatch(regex: '/^-?\d+$/', string: $value))) {
             return (int)$value;
         }
@@ -19,7 +19,7 @@ final class ValidateAndParseValue {
     }
 
 
-    public static function parseFloat(mixed $value, string $errorMessage = null): float {
+    public static function parseFloat(mixed $value, ?string $errorMessage = null): float {
         if (is_numeric($value)) {
             return (float)$value;
         }
@@ -28,7 +28,7 @@ final class ValidateAndParseValue {
     }
 
 
-    public static function parseString(mixed $value, string $errorMessage = null): string {
+    public static function parseString(mixed $value, ?string $errorMessage = null): string {
         if (is_string(value: $value)) {
             return $value;
         }
@@ -37,7 +37,7 @@ final class ValidateAndParseValue {
     }
 
 
-    public static function parseUuid(mixed $value, string $errorMessage = null): string {
+    public static function parseUuid(mixed $value, ?string $errorMessage = null): string {
         $value = self::parseString($value, $errorMessage);
         if (!BearRegexService::isMatch(regex: '/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/', string: $value)) {
             $msg = "Invalid UUID: $value";
@@ -52,7 +52,7 @@ final class ValidateAndParseValue {
      * @param string|null $errorMessage
      * @return array<array-key, mixed>
      */
-    public static function parseJsonToArray(array|string $value, string $errorMessage = null): array {
+    public static function parseJsonToArray(array|string $value, ?string $errorMessage = null): array {
         if (is_array($value)) {
             return $value;
         }
@@ -70,7 +70,7 @@ final class ValidateAndParseValue {
      * @param string|null $errorMessage
      * @return ArrayObject<array-key, mixed>
      */
-    public static function parseJsonToArrayObject(ArrayObject|array|string $value, string $errorMessage = null): ArrayObject {
+    public static function parseJsonToArrayObject(ArrayObject|array|string $value, ?string $errorMessage = null): ArrayObject {
         if (is_string(value: $value)) {
             $value = self::parseJsonToArray($value, $errorMessage);
         }
@@ -78,7 +78,7 @@ final class ValidateAndParseValue {
     }
 
 
-    public static function parseJsonToStdClass(string $value, string $errorMessage = null): stdClass {
+    public static function parseJsonToStdClass(string $value, ?string $errorMessage = null): stdClass {
         try {
             return json_decode(json: $value, associative: false, depth: 256, flags: JSON_THROW_ON_ERROR);
         } catch (Throwable $e) {
@@ -88,7 +88,7 @@ final class ValidateAndParseValue {
     }
 
 
-    public static function parseBool(mixed $value, string $errorMessage = null): bool {
+    public static function parseBool(mixed $value, ?string $errorMessage = null): bool {
         if (is_string(value: $value)) {
             $value = strtolower($value);
         }
@@ -100,7 +100,7 @@ final class ValidateAndParseValue {
     }
 
 
-    public static function parseDate(string $value, string $errorMessage = null): CarbonImmutable {
+    public static function parseDate(string $value, ?string $errorMessage = null): CarbonImmutable {
         $arr = explode(separator: '-', string: $value);
         if (count($arr) !== 3 || strlen($arr[0]) !== 4 || strlen($arr[1]) !== 2 || strlen($arr[2]) !== 2) {
             $msg = "Invalid date format: $value, must be YYYY-MM-DD";
@@ -116,7 +116,7 @@ final class ValidateAndParseValue {
     }
 
 
-    public static function parseDateTime(mixed $value, string|null $timezone = null, string $errorMessage = null): CarbonImmutable {
+    public static function parseDateTime(mixed $value, string|null $timezone = null, ?string $errorMessage = null): CarbonImmutable {
         if ($value instanceof CarbonImmutable) {
             return $value;
         }
@@ -148,7 +148,7 @@ final class ValidateAndParseValue {
      * @param string|null $errorMessage
      * @return array<array-key, mixed>
      */
-    public static function parseArray(mixed $value, string $errorMessage = null): array {
+    public static function parseArray(mixed $value, ?string $errorMessage = null): array {
         if (is_array(value: $value)) {
             return $value;
         }
@@ -162,7 +162,7 @@ final class ValidateAndParseValue {
      * @param string|null $errorMessage
      * @return mixed
      */
-    public static function mustBeInArray(mixed $value, array $array, string $errorMessage = null): mixed {
+    public static function mustBeInArray(mixed $value, array $array, ?string $errorMessage = null): mixed {
         if (in_array(needle: $value, haystack: $array, strict: true)) {
             return $value;
         }

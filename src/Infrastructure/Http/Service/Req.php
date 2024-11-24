@@ -191,7 +191,7 @@ final class Req {
     }
 
 
-    public static function getString(string $key, int $minLength = 0, int $maxLength = null): string {
+    public static function getString(string $key, int $minLength = 0, ?int $maxLength = null): string {
         $val = self::getInput(key: $key);
         $result = ValidateAndParseValue::parseString(value: $val, errorMessage: "Input field '$key' error");
         if (strlen($result) < $minLength) {
@@ -219,7 +219,7 @@ final class Req {
     }
 
 
-    public static function getInt(string $key, int $min = null, int $max = null): int {
+    public static function getInt(string $key, ?int $min = null, ?int $max = null): int {
         $val = self::getInput(key: $key);
         $result = ValidateAndParseValue::parseInt(value: $val, errorMessage: "Input field '$key' error");
         if ($min !== null && $result < $min) {
@@ -242,7 +242,7 @@ final class Req {
     }
 
 
-    public static function getFloat(string $key, float $min = null, float $max = null): float {
+    public static function getFloat(string $key, ?float $min = null, ?float $max = null): float {
         $val = self::getInput(key: $key);
         $result = ValidateAndParseValue::parseFloat(value: $val, errorMessage: "Input field '$key' error");
         if ($min !== null && $result < $min) {
@@ -296,13 +296,13 @@ final class Req {
     }
 
 
-    public static function getDateTime(string $key, string $defaultTimezone = null): CarbonImmutable {
+    public static function getDateTime(string $key, ?string $defaultTimezone = null): CarbonImmutable {
         $val = self::getString(key: $key);
         $timezone = self::getStringOrNull(key: $key . "_timezone", isOptional: true) ?? $defaultTimezone;
         return ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone or supply it in the Req::getDateTime() defaultTimezone parameter');
     }
 
-    public static function getDateTimeOrNull(string $key, bool $isOptional = false, string $defaultTimezone = null): CarbonImmutable|null {
+    public static function getDateTimeOrNull(string $key, bool $isOptional = false, ?string $defaultTimezone = null): CarbonImmutable|null {
         $val = self::getStringOrNull(key: $key, isOptional: $isOptional);
         if ($val === null) {
             return null;
@@ -311,7 +311,7 @@ final class Req {
         return ValidateAndParseValue::parseDateTime(value: $val, timezone: $timezone, errorMessage: 'You may need to include timezone as form_field_name_timezone or supply it in the Req::getDateTimeOrNull() defaultTimezone parameter');
     }
 
-    public static function getDateTimeOrDefault(string $key, CarbonImmutable $default, string $defaultTimezone = null): CarbonImmutable {
+    public static function getDateTimeOrDefault(string $key, CarbonImmutable $default, ?string $defaultTimezone = null): CarbonImmutable {
         $value = self::getStringOrNull(key: $key, isOptional: true);
         if ($value === null) {
             return $default;

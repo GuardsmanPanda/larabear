@@ -13,11 +13,11 @@ use Throwable;
 
 final class BearDatabaseChangeCreator {
     public static function create(
-        Model $model,
-        string $changeType,
-        string $columnName = null,
-        string $oldValue = null,
-        string $newValue = null,
+        Model   $model,
+        string  $changeType,
+        ?string $columnName = null,
+        ?string $oldValue = null,
+        ?string $newValue = null,
     ): void {
         $keys = LarabearDatabaseModelService::extractPrimaryKeyArray($model);
         $table = $model->getTable();

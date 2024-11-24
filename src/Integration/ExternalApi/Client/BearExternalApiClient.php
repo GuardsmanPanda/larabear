@@ -43,7 +43,7 @@ final class BearExternalApiClient {
      * @param array<string, string> $baseHeaders
      * @return BearExternalApiClient
      */
-    public static function fromOauth2Client(BearOauth2Client $client, string $baseUrl = null, array $baseHeaders = []): self {
+    public static function fromOauth2Client(BearOauth2Client $client, ?string $baseUrl = null, array $baseHeaders = []): self {
         return new self(
             baseUrl: $baseUrl ?? $client->client_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
             baseHeaders: ['Authorization' => 'Bearer ' . BearOauth2ClientService::getAccessToken(client: $client)] + $baseHeaders
@@ -57,7 +57,7 @@ final class BearExternalApiClient {
      * @param array<string, string> $baseHeaders
      * @return self
      */
-    public static function fromOauth2ClientId(string $clientId, string $baseUrl = null, array $baseHeaders = []): self {
+    public static function fromOauth2ClientId(string $clientId, ?string $baseUrl = null, array $baseHeaders = []): self {
         return self::fromOauth2Client(client: BearOauth2Client::findOrFail(id: $clientId), baseUrl: $baseUrl, baseHeaders: $baseHeaders);
     }
 
@@ -68,7 +68,7 @@ final class BearExternalApiClient {
      * @param array<string, string> $baseHeaders
      * @return self
      */
-    public static function fromOauth2User(BearOauth2User $user, string $baseUrl = null, array $baseHeaders = []): self {
+    public static function fromOauth2User(BearOauth2User $user, ?string $baseUrl = null, array $baseHeaders = []): self {
         return new self(
             baseUrl: $baseUrl ?? $user->oauth2Client->client_base_url ?? throw new InvalidArgumentException(message: 'No base URL provided'),
             baseHeaders: ['Authorization' => 'Bearer ' . BearOauth2UserService::getAccessToken(user: $user)] + $baseHeaders
@@ -76,7 +76,7 @@ final class BearExternalApiClient {
     }
 
 
-    public static function fromExternalApi(BearExternalApi $api, string $baseUrl = null): self {
+    public static function fromExternalApi(BearExternalApi $api, ?string $baseUrl = null): self {
         $headers = $api->base_headers_json?->getArrayCopy() ?? [];
         if ($api->external_api_auth_enum === BearExternalApiAuthEnum::OAUTH2_CLIENT) {
             return self::fromOauth2ClientId(clientId: $api->oauth2_client_id ?? throw new RuntimeException(message: 'OAUTH2_CLIENT API type must reference bear_oauth2_client'), baseUrl: $baseUrl ?? $api->base_url, baseHeaders: $headers);
@@ -109,12 +109,12 @@ final class BearExternalApiClient {
     }
 
 
-    public static function fromEnum(BearExternalApiEnumInterface $enum, string $baseUrl = null): self {
+    public static function fromEnum(BearExternalApiEnumInterface $enum, ?string $baseUrl = null): self {
         return self::fromExternalApi(api: $enum->getModel(), baseUrl: $baseUrl);
     }
 
 
-    public static function fromGlobal(string $baseUrl = null): self {
+    public static function fromGlobal(?string $baseUrl = null): self {
         return self::fromExternalApi(api: BearExternalApi::findOrFail(id: BearGlobalStateService::getApiPrimaryKey()), baseUrl: $baseUrl);
     }
 

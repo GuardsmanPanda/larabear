@@ -73,7 +73,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
         }
 
         $headers = new Set(setType: 'string');
-        if (!$model->hasCompositePrimaryKey() && $model->getColumns()[$model->getPrimaryKeyColumns()[0]]->nativeDataType === 'uuid') {
+        if (!$model->hasCompositePrimaryKey() && $model->columns[$model->primaryKeyColumns[0]]->nativeDataType === 'uuid') {
             $headers->add("use Illuminate\\Support\\Str;");
         }
 
@@ -95,8 +95,8 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
         $content .= "        BearDatabaseService::mustBeProperHttpMethod(verbs: ['POST']);" . PHP_EOL . PHP_EOL;
         $content .= "        \$model = new {$model->getModelClassName()}();" . PHP_EOL;
 
-        if (!$model->hasCompositePrimaryKey() && $model->getColumns()[$model->getPrimaryKeyColumns()[0]]->nativeDataType === 'uuid') {
-            $content .= "        \$model->{$model->getPrimaryKeyColumns()[0]} = Str::uuid()->toString();" . PHP_EOL;
+        if (!$model->hasCompositePrimaryKey() && $model->columns[$model->primaryKeyColumns[0]]->nativeDataType === 'uuid') {
+            $content .= "        \$model->{$model->primaryKeyColumns[0]} = Str::uuid()->toString();" . PHP_EOL;
         }
 
         $content .= PHP_EOL;
@@ -133,9 +133,9 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
 
 
         if (!$model->hasCompositePrimaryKey()) {
-            $key = $model->getPrimaryKeyColumns()[0];
+            $key = $model->primaryKeyColumns[0];
             $keyStudly = Str::studly($key);
-            $content .= "    public static function from$keyStudly(" . $model->getPrimaryKeyType() . " \$$key): self {" . PHP_EOL;
+            $content .= "    public static function from$keyStudly(" . $model->primaryKeyType . " \$$key): self {" . PHP_EOL;
             $content .= "        return new self(model: $modelClass::findOrFail(id: \$$key));" . PHP_EOL;
             $content .= '    }' . PHP_EOL . PHP_EOL . PHP_EOL;
         }
@@ -193,9 +193,9 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
         $content .= '    }' . PHP_EOL;
 
         if (!$model->hasCompositePrimaryKey()) {
-            $key = $model->getPrimaryKeyColumns()[0];
+            $key = $model->primaryKeyColumns[0];
             $keyStudly = Str::studly($key);
-            $content .= PHP_EOL . "    public static function deleteFrom$keyStudly(" . $model->getPrimaryKeyType() . " \$$key): void {" . PHP_EOL;
+            $content .= PHP_EOL . "    public static function deleteFrom$keyStudly(" . $model->primaryKeyType . " \$$key): void {" . PHP_EOL;
             $content .= "        self::delete(model: $modelClass::findOrFail(id: \$$key));" . PHP_EOL;
             $content .= '    }' . PHP_EOL;
         }
@@ -254,17 +254,17 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
     private function getModifiableColumnArray(LarabearDatabaseModelData $model, bool $forCreator = false): array {
         $skipColumns = ['id', 'created_at', 'updated_at', 'deleted_at'];
         if (!$forCreator) {
-            foreach ($model->getPrimaryKeyColumns() as $col) {
+            foreach ($model->primaryKeyColumns as $col) {
                 $skipColumns[] = $col;
             }
         }
         $columns = [];
-        foreach ($model->getColumns() as $column) {
+        foreach ($model->columns as $column) {
             if ($column->isNullable === false && !in_array(needle: $column->columnName, haystack: $skipColumns, strict: true)) {
                 $columns[] = $column;
             }
         }
-        foreach ($model->getColumns() as $column) {
+        foreach ($model->columns as $column) {
             if ($column->isNullable === true && !in_array(needle: $column->columnName, haystack: $skipColumns, strict: true)) {
                 $columns[] = $column;
             }

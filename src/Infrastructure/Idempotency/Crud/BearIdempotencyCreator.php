@@ -8,7 +8,7 @@ use GuardsmanPanda\Larabear\Infrastructure\Idempotency\Model\BearIdempotency;
 final class BearIdempotencyCreator {
     public static function create(
         string $idempotency_key,
-        CarbonInterface $expires_at = null
+        ?CarbonInterface $expires_at = null
     ): BearIdempotency {
         $model = new BearIdempotency();
 
