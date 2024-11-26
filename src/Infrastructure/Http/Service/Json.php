@@ -2,6 +2,7 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Http\Service;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -16,6 +17,10 @@ final class Json {
 
     public static function serverError(string $message): JsonResponse {
         return new JsonResponse(data: ['message' => $message], status: 500);
+    }
+
+    public static function fromModel(Model $model): JsonResponse {
+        return new JsonResponse(data: $model->toArray());
     }
 
     /**

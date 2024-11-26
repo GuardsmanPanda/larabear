@@ -183,11 +183,31 @@ final class Req {
 
 
     public static function has(string $key): bool {
-        return self::request()->get(key: $key) !== null;
+        return self::request()->has(key: $key);
     }
 
-    public static function hasNullable(string $key): bool {
-        return self::request()->has(key: $key);
+    /**
+     * @param array<string> $keys
+     */
+    public static function hasAny(array $keys): bool {
+        foreach ($keys as $key) {
+            if (self::has(key: $key)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param array<string> $keys
+     */
+    public static function hasAll(array $keys): bool {
+        foreach ($keys as $key) {
+            if (!self::has(key: $key)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
