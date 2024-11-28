@@ -45,7 +45,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
 
         $models = LarabearDatabaseModelService::buildAll(connectionName: $connectionUse, tableConfig: $connectionUseConfig);
         $model = $models[$table_input];
-        $location = BearRegexService::extractFirst(regex: '~(.*?)/[^/]+$~', subject:$model->getModelDirectory()) . '/Crud';
+        $location = BearRegexService::extractFirstString(regex: '~(.*?)/[^/]+$~', subject:$model->getModelDirectory()) . '/Crud';
 
         if (!is_dir($location)) {
             if (!mkdir($location) && !is_dir($location)) {
@@ -228,7 +228,7 @@ final class LarabearDatabaseCrudGeneratorCommand extends Command {
             }
         }
 
-        $namespace = BearRegexService::extractFirst(regex: '~(.*)\\\\[^\\\\]+$~', subject: $model->getNameSpace()) . '\\Crud';
+        $namespace = BearRegexService::extractFirstString(regex: '~(.*)\\\\[^\\\\]+$~', subject: $model->getNameSpace()) . '\\Crud';
         $content = '<?php declare(strict_types=1);' . PHP_EOL . PHP_EOL;
         $content .= 'namespace ' . $namespace . ';' . PHP_EOL . PHP_EOL;
         $hh = $headers->toArray();

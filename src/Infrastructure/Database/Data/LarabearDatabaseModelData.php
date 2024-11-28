@@ -93,8 +93,8 @@ final class LarabearDatabaseModelData {
         );
         if ($enumClass !== null) {
             $this->headers->add(element: 'use ' . $enumClass . ';');
-            $this->columns[$columnName]->eloquentCast = BearRegexService::extractFirst(regex: '~.*\\\\([^\\\\]+)$~', subject: $enumClass) . '::class';
-            $this->columns[$columnName]->phpDataType = BearRegexService::extractFirst(regex: '~.*\\\\([^\\\\]+)$~', subject: $enumClass);
+            $this->columns[$columnName]->eloquentCast = BearRegexService::extractFirstString(regex: '~.*\\\\([^\\\\]+)$~', subject: $enumClass) . '::class';
+            $this->columns[$columnName]->phpDataType = BearRegexService::extractFirstString(regex: '~.*\\\\([^\\\\]+)$~', subject: $enumClass);
             $this->columns[$columnName]->sortOrder = 9999;
         }
     }
@@ -140,7 +140,7 @@ final class LarabearDatabaseModelData {
 
         if (count($this->modelTraits) > 0) {
             foreach ($this->modelTraits as $trait) {
-                $content .= "    use " . BearRegexService::extractFirst(regex: '~.*\\\\([^\\\\]+)$~', subject: $trait) . ';' . PHP_EOL;
+                $content .= "    use " . BearRegexService::extractFirstString(regex: '~.*\\\\([^\\\\]+)$~', subject: $trait) . ';' . PHP_EOL;
             }
             $content .= PHP_EOL;
         }
