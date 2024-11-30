@@ -16,8 +16,19 @@ final class BearRegexService {
         return $matches[1] ?? throw new RuntimeException(message: "No match found for regex: $regex, subject: $subject");
     }
 
+    public static function extractFirstStringOrNull(string $regex, string $subject): string|null {
+        $matches = [];
+        preg_match(pattern: $regex, subject: $subject, matches: $matches);
+        return $matches[1] ?? null;
+    }
+
     public static function extractFirstFloat(string $regex, string $subject): float {
         return ValidateAndParseValue::parseFloat(value: self::extractFirstString(regex: $regex, subject: $subject));
+    }
+
+    public static function extractFirstFloatOrNull(string $regex, string $subject): float|null {
+        $res = self::extractFirstStringOrNull(regex: $regex, subject: $subject);
+        return $res === null ? null : ValidateAndParseValue::parseFloat(value: $res);
     }
 
     public static function superTrim(string $string): string {
