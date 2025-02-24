@@ -24,7 +24,7 @@ final class BearDatabaseTextArrayCast implements CastsAttributes {
             return $result;
         }
         foreach (explode(separator: ',', string: $value) as $element) {
-            $result[] = str_starts_with($element, '"') ? substr(string: $element, offset: 1, length: -1) : $element;
+            $result->append(str_starts_with($element, '"') ? substr(string: $element, offset: 1, length: -1) : $element);
         }
         return $result;
     }
