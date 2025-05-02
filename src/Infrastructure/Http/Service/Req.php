@@ -376,7 +376,7 @@ final class Req {
 
     public static function getFile(string $key): UploadedFile {
         foreach (self::request()->allFiles() as $name => $file) {
-            if ($name === $key) {
+            if ($name === $key && $file instanceof UploadedFile) {
                 return $file;
             }
         }
@@ -385,7 +385,7 @@ final class Req {
 
     public static function getFileOrNull(string $key, bool $isOptional = false): UploadedFile|null {
         foreach (self::request()->allFiles() as $name => $file) {
-            if ($name === $key) {
+            if ($name === $key && $file instanceof UploadedFile) {
                 return $file;
             }
         }

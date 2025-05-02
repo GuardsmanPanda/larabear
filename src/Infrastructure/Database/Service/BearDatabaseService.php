@@ -2,8 +2,8 @@
 
 namespace GuardsmanPanda\Larabear\Infrastructure\Database\Service;
 
-use ArrayObject;
 use GuardsmanPanda\Larabear\Infrastructure\Http\Service\Req;
+use Illuminate\Database\Eloquent\Casts\ArrayObject;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +32,23 @@ final class BearDatabaseService {
 
     public static function defaultConnectionDriver(): string {
         return Config::get(key: 'database.connections.' . Config::get(key: 'database.default') . '.driver');
+    }
+
+
+    /**
+     * @param string $text
+     * @return ArrayObject<int, string>
+     */
+    public static function postgresTextArrayToArrayObject(string $text): ArrayObject {
+        $value = substr(string: $text, offset: 1, length: -1);
+        $result = new ArrayObject();
+        if ($value === '') {
+            return $result;
+        }
+        foreach (explode(separator: ',', string: $value) as $element) {
+            $result->append(str_starts_with($element, '"') ? substr(string: $element, offset: 1, length: -1) : $element);
+        }
+        return $result;
     }
 
     /**

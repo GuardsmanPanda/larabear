@@ -18,15 +18,7 @@ final class BearDatabaseTextArrayCast implements CastsAttributes {
      * @return ArrayObject<int, string>
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): ArrayObject {
-        $value = substr(string: $value, offset: 1, length: -1);
-        $result = new ArrayObject();
-        if ($value === '') {
-            return $result;
-        }
-        foreach (explode(separator: ',', string: $value) as $element) {
-            $result->append(str_starts_with($element, '"') ? substr(string: $element, offset: 1, length: -1) : $element);
-        }
-        return $result;
+        return BearDatabaseService::postgresTextArrayToArrayObject(text: $value);
     }
 
     /**
